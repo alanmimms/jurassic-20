@@ -433,7 +433,7 @@ e7:   10109 or buffer
       c1=ad [n+1] h
       d1=ad [n+2] h
       e1=internal-e7-2
-      q1=ad [n+0] [n+5]=0 h
+      q1=ad [n+0]-[n+5]=0 h
       a2=0
       b2=0
       c2=ad [n+3] h
@@ -562,3 +562,436 @@ e21:  10164 8 mix
       sel1=cram adb sel 1 [n] h
       en=0
       b=adb [n-1] h
+
+e14:  10174 2x4 mix
+      d00=ar [n+0] h
+      d01=arx [n+0] h
+      d02=mq [n+0] h
+      d03=vma held or pc [n+0] h
+      d10=ar [n+1] h
+      d11=arx [n+1] h
+      d12=mq [n+1] h
+      d13=vma held or pc [n+1] h
+      sel2=cram ada sel 2 [n] h
+      sel1=cram ada sel 1 [n] h
+      en=cram ada dis [n] l
+      b0=ada [n+0] h
+      b1=ada [n+1] h
+
+e16:  10174 2x4 mix
+      d00=ar [n+2] h
+      d01=arx [n+2] h
+      d02=mq [n+2] h
+      d03=vma held or pc [n+2] h
+      d10=ar [n+3] h
+      d11=arx [n+3] h
+      d12=mq [n+3] h
+      d13=vma held or pc [n+3] h
+      sel2=cram ada sel 2 [n] h
+      sel1=cram ada sel 1 [n] h
+      en=cram ada dis [n] l
+      b0=ada [n+2] h
+      b1=ada [n+3] h
+
+e18:  10174 2x4 mix
+      d00=ar [n+4] h
+      d01=arx [n+4] h
+      d02=mq [n+4] h
+      d03=vma held or pc [n+4] h
+      d10=ar [n+5] h
+      d11=arx [n+5] h
+      d12=mq [n+5] h
+      d13=vma held or pc [n+5] h
+      sel2=cram ada sel 2 [n] h
+      sel1=cram ada sel 1 [n] h
+      en=cram ada dis [n] l
+      b0=ada [n+4] h
+      b1=ada [n+5] h
+
+e17:  10158 4x2 mix
+      d00=0
+      d01=0
+      d10=0
+      d11=arx [n+0] h
+      d20=0
+      d21=arx [n+1] h
+      d30=0
+      d31=arx [n+2] h
+      sel=cram ada dis [n] l
+      b0=
+      b1=adxa [n+0] h
+      b2=adxa [n+1] h
+      b3=adxa [n+2] h
+
+e5:   10158 4x2 mix
+      d00=0
+      d01=0
+      d10=0
+      d11=arx [n+3] h
+      d20=0
+      d21=arx [n+4] h
+      d30=0
+      d31=arx [n+5] h
+      sel=cram ada dis [n] l
+      b0=
+      b1=adxa [n+3] h
+      b2=adxa [n+4] h
+      b3=adxa [n+5] h
+
+e23:  10174 2x4 mix
+      d00=fm [n+0] h
+      d01=br [n+1] h
+      d02=br [n+0] h
+      d03=ar [n+2] h
+      d10=fm [n+1] h
+      d11=fm [n+2] h
+      d12=br [n+1] h
+      d13=ar [n+3] h
+      sel2=cram adb sel 2 [n] h
+      sel1=cram adb sel 1 [n] h
+      b0=adb [n+0] h
+      b1=adb [n+1] h
+      en=0
+      
+e26:  10174 2x4 mix
+      d00=fm [n+2] h
+      d01=br [n+3] h
+      d02=br [n+2] h
+      d03=ar [n+4] h
+      d10=fm [n+3] h
+      d11=fm [n+4] h
+      d12=br [n+3] h
+      d13=ar [n+5] h
+      sel2=cram adb sel 2 [n] h
+      sel1=cram adb sel 1 [n] h
+      b0=adb [n+0] h
+      b1=adb [n+1] h
+      en=0
+
+e19:  10174 2x4 mix
+      d00=fm [n+4] h
+      d01=br [n+5] h
+      d02=br [n+4] h
+      d03=[n/30+1, ar [n+6] n, arx 00 h]
+      d10=fm [n+5] h
+      d11=[n/30+1, br [n+6] a h, brx 00 h]
+      d12=br [n+5] h
+      d13=[n/30+1, ar [n+7] h, arx 01 h]
+      sel2=cram adb sel 2 [n] h
+      sel1=cram adb sel 1 [n] h
+      b0=adb [n+4] h
+      b1=adb [n+5] h
+      en=0
+
+e9:   10174 2x4 mix
+      d00=# [n+0] h
+      d01=brx [n+1] h
+      d02=brx [n+0] h
+      d03=arx [n+2] h
+      d10=# [n+1] h
+      d11=brx [n+2] h
+      d12=brx [n+1] h
+      d13=arx [n+3] h
+      sel2=cram adb sel 2 [n] h
+      sel1=cram adb sel 1 [n] h
+      b0=adxb [n+0] h
+      b1=adxb [n+1] h
+      en=0
+
+e12:  10174 2x4 mix
+      d00=# [n+2] h
+      d01=brx [n+3] h
+      d02=brx [n+2] h
+      d03=arx [n+4] h
+      d10=# [n+3] h
+      d11=brx [n+4] h
+      d12=brx [n+3] h
+      d13=arx [n+5] h
+      sel2=cram adb sel 2 [n] h
+      sel1=cram adb sel 1 [n] h
+      b0=adxb [n+2] h
+      b1=adxb [n+3] h
+      en=0
+
+e6:   10174 2x4 mix
+      d00=# [n+4] h
+      d01=brx [n+5] h
+      d02=brx [n+4] h
+      d03=arx [n+6] h
+      d10=# [n+5] h
+      d11=brx [n+6] h
+      d12=brx [n+5] h
+      d13=arx [n+7] h
+      sel2=cram adb sel 2 [n] h
+      sel1=cram adb sel 1 [n] h
+      b0=adxb [n+4] h
+      b1=adxb [n+5] h
+      en=0
+
+e59: 10101 or buffer
+     a1=diag read func 12x h
+     b1=[n/18+1, ctl ad to ebus l h, ctl ad to ebus r h]
+     nq1=internal-e59-14
+
+e57: 10164 8 mix
+     d0=ar [n+0] h
+     d1=br [n+0] h
+     d2=mq [n+0] h
+     d3=fm [n+0] h
+     d4=brx [n+0] h
+     d5=arx [n+0] h
+     d6=adx [n+0] h
+     d7=ad [n+0] h
+     sel4=diag 04 a h					// buffered via e59.4-5
+     sel2=diag 05 a h					// buffered via e59.7-6
+     sel1=diag 06 a h					// buffered via e59.13-9
+     en=internal-e59-14
+     b=ebus d[n+0] e h
+
+e50: 10164 8 mix
+     d0=ar [n+1] h
+     d1=br [n+1] h
+     d2=mq [n+1] h
+     d3=fm [n+1] h
+     d4=brx [n+1] h
+     d5=arx [n+1] h
+     d6=adx [n+1] h
+     d7=ad [n+1] h
+     sel4=diag 04 a h					// buffered via e59.4-5
+     sel2=diag 05 a h					// buffered via e59.7-6
+     sel1=diag 06 a h					// buffered via e59.13-9
+     en=internal-e59-14
+     b=ebus d[n+1] e h
+
+e43: 10164 8 mix
+     d0=ar [n+2] h
+     d1=br [n+2] h
+     d2=mq [n+2] h
+     d3=fm [n+2] h
+     d4=brx [n+2] h
+     d5=arx [n+2] h
+     d6=adx [n+2] h
+     d7=ad [n+2] h
+     sel4=diag 04 a h					// buffered via e59.4-5
+     sel2=diag 05 a h					// buffered via e59.7-6
+     sel1=diag 06 a h					// buffered via e59.13-9
+     en=internal-e59-14
+     b=ebus d[n+2] e h
+
+e44: 10164 8 mix
+     d0=ar [n+3] h
+     d1=br [n+3] h
+     d2=mq [n+3] h
+     d3=fm [n+3] h
+     d4=brx [n+3] h
+     d5=arx [n+3] h
+     d6=adx [n+3] h
+     d7=ad [n+3] h
+     sel4=diag 04 a h					// buffered via e59.4-5
+     sel2=diag 05 a h					// buffered via e59.7-6
+     sel1=diag 06 a h					// buffered via e59.13-9
+     en=internal-e59-14
+     b=ebus d[n+3] e h
+
+e36: 10164 8 mix
+     d0=ar [n+4] h
+     d1=br [n+4] h
+     d2=mq [n+4] h
+     d3=fm [n+4] h
+     d4=brx [n+4] h
+     d5=arx [n+4] h
+     d6=adx [n+4] h
+     d7=ad [n+4] h
+     sel4=diag 04 a h					// buffered via e59.4-5
+     sel2=diag 05 a h					// buffered via e59.7-6
+     sel1=diag 06 a h					// buffered via e59.13-9
+     en=internal-e59-14
+     b=ebus d[n+4] e h
+
+e37: 10164 8 mix
+     d0=ar [n+5] h
+     d1=br [n+5] h
+     d2=mq [n+5] h
+     d3=fm [n+5] h
+     d4=brx [n+5] h
+     d5=arx [n+5] h
+     d6=adx [n+5] h
+     d7=ad [n+5] h
+     sel4=diag 04 a h					// buffered via e59.4-5
+     sel2=diag 05 a h					// buffered via e59.7-6
+     sel1=diag 06 a h					// buffered via e59.13-9
+     en=internal-e59-14
+     b=ebus d[n+5] e h
+
+e69: 10147 128x1 ram
+     a0=apr fm block 4 h
+     a1=apr fm block 2 h
+     a2=apr fm block 1 h
+     a3=apr fm adr 10 h
+     a4=apr fm adr 4 h
+     a5=apr fm adr 2 h
+     a6=apr fm adr 1 h
+     and en1=0
+     and en2=0
+     write=dp04 fm write l
+     q=fm [n+0] h
+     d=ar [n+0] h
+
+e70: 10147 128x1 ram
+     a0=apr fm block 4 h
+     a1=apr fm block 2 h
+     a2=apr fm block 1 h
+     a3=apr fm adr 10 h
+     a4=apr fm adr 4 h
+     a5=apr fm adr 2 h
+     a6=apr fm adr 1 h
+     and en1=0
+     and en2=0
+     write=dp04 fm write l
+     q=fm [n+1] h
+     d=ar [n+1] h
+
+e71: 10147 128x1 ram
+     a0=apr fm block 4 h
+     a1=apr fm block 2 h
+     a2=apr fm block 1 h
+     a3=apr fm adr 10 h
+     a4=apr fm adr 4 h
+     a5=apr fm adr 2 h
+     a6=apr fm adr 1 h
+     and en1=0
+     and en2=0
+     write=dp04 fm write l
+     q=fm [n+2] h
+     d=ar [n+2] h
+
+e72: 10147 128x1 ram
+     a0=apr fm block 4 h
+     a1=apr fm block 2 h
+     a2=apr fm block 1 h
+     a3=apr fm adr 10 h
+     a4=apr fm adr 4 h
+     a5=apr fm adr 2 h
+     a6=apr fm adr 1 h
+     and en1=0
+     and en2=0
+     write=dp04 fm write l
+     q=fm [n+3] h
+     d=ar [n+3] h
+
+e65: 10147 128x1 ram
+     a0=apr fm block 4 h
+     a1=apr fm block 2 h
+     a2=apr fm block 1 h
+     a3=apr fm adr 10 h
+     a4=apr fm adr 4 h
+     a5=apr fm adr 2 h
+     a6=apr fm adr 1 h
+     and en1=0
+     and en2=0
+     write=dp04 fm write l
+     q=fm [n+4] h
+     d=ar [n+4] h
+
+e58: 10147 128x1 ram
+     a0=apr fm block 4 h
+     a1=apr fm block 2 h
+     a2=apr fm block 1 h
+     a3=apr fm adr 10 h
+     a4=apr fm adr 4 h
+     a5=apr fm adr 2 h
+     a6=apr fm adr 1 h
+     and en1=0
+     and en2=0
+     write=dp04 fm write l
+     q=fm [n+5] h
+     d=ar [n+5] h
+
+e64: 10160 parity
+     d0=fm [n+0] h
+     d1=fm [n+1] h
+     d2=fm [n+2] h
+     d3=fm [n+3] h
+     d4=fm [n+4] h
+     d5=fm [n+5] h
+     d6=0
+     d7=0
+     d8=0
+     d9=0
+     d10=0
+     d11=0
+     odd=edp fm parity [n+0]-[n+5] h
+
+e34: 10210 or buffer
+     a1=0
+     b1=0
+     c1=clk edp [n] delayed h
+     q11=dp04 clk a h
+     q12=dp04 clk b h
+     q13=dp04 clk c h
+     a2=0
+     b2=0
+     c2=clk edp [n] delayed h
+     q21=dp04 clk d h
+     q22=dp04 clk e h
+     q23=dp04 clk f h
+
+e61: 10141 shft reg
+     shft 0in=0
+     d0=ar [n+0] a h
+     d1=ar [n+0] a h
+     d2=ar [n+1] a h
+     d3=ar [n+2] a h
+     shft 3in=0
+     op2=/cram br load a h				// inverted through e38.10-14
+     op1=/cram br load a h				// inverted through e38.10-14
+     q0=br [n+0] a h
+     q1=br [n+0] h
+     q2=br [n+1] h
+     q3=br [n+2] h
+     clk=dp04 clk a h
+
+e63: 10141 shft reg
+     shft 0in=0
+     d0=ar [n+3] a h
+     d1=ar [n+4] a h
+     d2=ar [n+5] a h
+     d3=0
+     shft 3in=0
+     op2=/cram br load a h				// inverted through e38.10-14
+     op1=/cram br load a h				// inverted through e38.10-14
+     q0=br [n+3] h
+     q1=br [n+4] h
+     q2=br [n+5] h
+     q3=
+     clk=dp04 clk a h
+
+e8:  10141 shft reg
+     shft 0in=0
+     d0=arx [n+0] a h
+     d1=arx [n+1] a h
+     d2=arx [n+2] a h
+     d3=0
+     shft 3in=0
+     op2=/cram brx load a h				// inverted through e11.10-14
+     op1=/cram brx load a h				// inverted through e11.10-14
+     q0=brx [n+0] h
+     q1=brx [n+1] h
+     q2=brx [n+2] h
+     q3=
+     clk=dp04 clk d h
+
+e10: 10141 shft reg
+     shft 0in=0
+     d0=arx [n+3] a h
+     d1=arx [n+4] a h
+     d2=arx [n+5] a h
+     d3=0
+     shft 3in=0
+     op2=/cram brx load a h				// inverted through e11.10-14
+     op1=/cram brx load a h				// inverted through e11.10-14
+     q0=brx [n+3] h
+     q1=brx [n+4] h
+     q2=brx [n+5] h
+     q3=
+     clk=dp04 clk d h
