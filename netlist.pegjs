@@ -10,24 +10,29 @@
   }
 }
 
-nelist = pages:page+			{ return pages }
+netlist = pages:page+			{ return pages }
 
-page = p:pageDef nodes:nodeDef+		{ p.nodes = nodes; return p }
+page = p:pageDef EOL+ nodes:nodeDef+		{ p.nodes = nodes; return p }
 
-pageDef = 'Page' _ ':' _ name:ID _ ',' _ pdfRef:ID _ EOL
+pageDef = 'Page' _ ':' _ name:$( [a-zA-Z0-9-]+ ) _ ',' _ pdfRef:ID _
 					{ return ast('Page').set({name, pdfRef}) }
 
 nodeDef = head:nodeHead pins:pinDef+	{ return head.set({pins}) }
 
-nodeHead = chip:ID _ ':' _ desc:ID _ EOL { return ast('Chip').set({chip, desc}) }
+nodeHead = chip:ID _ ':' _ desc:$( (!EOL .)+ ) EOL+ { return ast('Chip').set({chip, desc}) }
 
-pinDef = _ name:ID _ '=' _ net:netName _ EOL
+pinDef = _ name:ID _ '=' _ net:netName _ EOL+
 					{ return ast('Pin').set({name, net}) }
 
-netName = ID				{ return ast('ID').set({name: text()}) }
+netName = identifier
 /	selector
+/	'0'				{ return ast('Const').set({value: 0}) }
+/	'1'				{ return ast('Const').set({value: 1}) }
+/	'%NC%'				{ return ast('NC') }
 
-selector = '[' _ head:netExpr _ nets:( ',' _ netExpr _ )+ ']'
+// First child of Selector node is the selector, the rest are cases
+selector = '[' _ value:netExpr _ ']'	{ return ast('Macro').set({value}) }
+/	 '[' _ head:netExpr _ nets:( ',' _ identifier _ )+ ']'
 					{ return ast('Selector')
 					    .add(unroll(head, nets, 2))
 					}
@@ -46,13 +51,16 @@ primary = operand
 /	'(' _ val:sum _ ')'		{ return val }
 
 
-operand = ID
-/	dig:[0-9]+			{ return parseInt(dig.join(''), 10) }
+operand = id:ID
+/	[0-9]+				{ return ast('#').set({value: parseInt(text(), 10)}) }
 
 
-ID = [-a-zA-Z] [-a-zA-Z0-9]*		{ return ast('ID').set({name: text()}) }
+identifier = [-/a-zA-Z]+ ( [-/ a-zA-Z0-9] / selector )*
+					{ return ast('Identifier').set({name: text()}) }
+
+ID = [-/ a-zA-Z0-9]+			{ return ast('ID').set({name: text()}) }
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
 
 _ "whitespace or comments"
-=	(   [ \t]+   /   '//' (!EOL .)*   /   '/*' (!'*/' .)* '*/'   )*
+=	(   [ \t]+   /    '\\' EOL    /    '//' (!EOL .)*   /   '/*' (!'*/' .)* '*/'   )*

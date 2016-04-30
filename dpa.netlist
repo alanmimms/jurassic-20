@@ -12,7 +12,7 @@ e53: 10164 8 mix
      sel4=[n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2=[n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1=[n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h,
+     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
      	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b=arm [n+0] h
 
@@ -28,7 +28,7 @@ e46: 10164 8 mix
      sel4=[n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2=[n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1=[n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h,
+     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
      	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b=arm [n+1] h
 
@@ -44,7 +44,7 @@ e47: 10164 8 mix
      sel4=[n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2=[n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1=[n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h,
+     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
      	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b=arm [n+2] h
 
@@ -60,7 +60,7 @@ e41: 10164 8 mix
      sel4=[n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2=[n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1=[n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h,
+     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
      	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b=arm [n+3] h
 
@@ -76,7 +76,7 @@ e40: 10164 8 mix
      sel4=[n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2=[n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1=[n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h,
+     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
      	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b=arm [n+4] h
 
@@ -92,7 +92,7 @@ e54: 10164 8 mix
      sel4=[n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2=[n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1=[n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h,
+     en=[n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
      	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b=arm [n+5] h
 
@@ -103,12 +103,12 @@ e51: 10141 shft reg
      d2=arm [n+4] h
      d3=arm [n+5] h
      shft 3in=0
-     op2=[n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l,
+     op2=[n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
 	  ctl arr load a l, ctl arr load a l, ctl arr load a l]
-     op1=[n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l,
+     op1=[n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
 	  ctl arr load a l, ctl arr load a l, ctl arr load a l]
      clk=dp04 clk f h
-     q0=
+     q0=%NC%
      q1=ar [n+3] h
      q2=ar [n+4] h
      q3=ar [n+5] h
@@ -120,21 +120,19 @@ e28: 10110 or buffer
      q11=ar [n+3] a h
      q12=ar [n+3] b h
      q13=ar [n+3] c h
-     
      a2=0
      b2=0
      c2=ar [n+4] h
      q21=ar [n+4] a h
      q22=ar [n+4] b h
      q23=ar [n+4] c h
-     
      a3=0
      b3=0
      c3=ar [n+5] h
      q31=ar [n+5] a h
      q32=ar [n+5] b h
      q33=ar [n+5] c h
-     
+
 e39: 10141 shft reg
      shft 0in=0
      d0=arm [n+0] h
@@ -142,9 +140,9 @@ e39: 10141 shft reg
      d2=arm [n+1] h
      d3=arm [n+2] h
      shft 3in=0
-     op2=[n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l,
+     op2=[n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l, \
           ctl arr load b l, ctl arr load b l, ctl arr load b l]
-     op1=[n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l,
+     op1=[n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l, \
           ctl arr load b l, ctl arr load b l, ctl arr load b l]
      clk=dp04 clk b h
      q0=ar [n+0] d h
@@ -159,14 +157,12 @@ e68: 10110 or buffer
      q11=ar [n+0] a h
      q12=ar [n+0] b h
      q13=ar [n+0] c h
-     
      a2=0
      b2=0
      c2=ar [n+1] h
      q21=ar [n+1] a h
      q22=ar [n+1] b h
      q23=ar [n+1] c h
-     
      a3=0
      b3=0
      c3=ar [n+2] h
@@ -324,7 +320,7 @@ e13: 10141 shft reg
      q0=mq [n+0] h
      q1=mq [n+1] h
      q2=mq [n+2] h
-     q3=
+     q3=%NC%
 
 e15: 10141 shft reg
      shft 0in=mqm [n+3] h
@@ -335,7 +331,7 @@ e15: 10141 shft reg
      shft 3in=[n/30+1, mq [n+6] h, ad cry -02 a h]	// buffered through e20.10-11
      op2=ctl mq sel 2 h					// buffered through e20.4-5
      op1=ctl mq sel 1 h					// buffered through e20.7-6
-     q0=
+     q0=%NC%
      q1=mq [n+3] h
      q2=mq [n+4] h
      q3=mq [n+5] h
@@ -397,15 +393,12 @@ e27:  10101 or buffer
       b1=0
       nq1=ad [n+0] a l
       q1=adx [n+5] a h
-
       a2=ad [n+4] h
       b2=0
       q2=ad [n+4] a h
-
       a3=ad [n+5] h
       b3=0
       q3=ad [n+5] a h
-
       a4=adx [n+0] h
       b4=0
       q4=adx [n+0] a h
@@ -502,8 +495,8 @@ e3:   10181 alu
       s2=cram ad sel 2 [n] h
       s1=cram ad sel 1 [n] h
       boole=cram ad boole [n] h
-      c out=
-      f8=
+      c out=%NC%
+      f8=%NC%
       f4=adx [n+0] h
       f2=adx [n+1] h
       f1=adx [n+2] h
@@ -526,7 +519,7 @@ e4:   10181 alu
       s1=cram ad sel 1 [n] h
       boole=cram ad boole [n] h
       c out=adx cry [n+3] h
-      f8=
+      f8=%NC%
       f4=adx [n+3] h
       f2=adx [n+4] h
       f1=adx [n+5] h
@@ -618,7 +611,7 @@ e17:  10158 4x2 mix
       d30=0
       d31=arx [n+2] h
       sel=cram ada dis [n] l
-      b0=
+      b0=%NC%
       b1=adxa [n+0] h
       b2=adxa [n+1] h
       b3=adxa [n+2] h
@@ -633,7 +626,7 @@ e5:   10158 4x2 mix
       d30=0
       d31=arx [n+5] h
       sel=cram ada dis [n] l
-      b0=
+      b0=%NC%
       b1=adxa [n+3] h
       b2=adxa [n+4] h
       b3=adxa [n+5] h
@@ -963,7 +956,7 @@ e63: 10141 shft reg
      q0=br [n+3] h
      q1=br [n+4] h
      q2=br [n+5] h
-     q3=
+     q3=%NC%
      clk=dp04 clk a h
 
 e8:  10141 shft reg
@@ -978,7 +971,7 @@ e8:  10141 shft reg
      q0=brx [n+0] h
      q1=brx [n+1] h
      q2=brx [n+2] h
-     q3=
+     q3=%NC%
      clk=dp04 clk d h
 
 e10: 10141 shft reg
@@ -993,5 +986,5 @@ e10: 10141 shft reg
      q0=brx [n+3] h
      q1=brx [n+4] h
      q2=brx [n+5] h
-     q3=
+     q3=%NC%
      clk=dp04 clk d h

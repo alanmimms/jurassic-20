@@ -1,0 +1,15 @@
+{
+  "name": "kl10-schematics",
+  "version": "1.0.0",
+  "description": "DEC KL10 CPU schematic recapture tool",
+  "main": "compile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://alan@alan.thefuture.place:/home/alan/dec20-git/kl10-schematics"
+  },
+  "author": "Alan Mimms <a.mimms@f5.com>",
+  "license": "ISC"
+}
