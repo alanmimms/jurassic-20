@@ -21,21 +21,18 @@ nodeDef = head:nodeHead pins:pinDef+	{ return head.set({pins}) }
 
 nodeHead = chip:ID _ ':' _ desc:$( (!EOL .)+ ) EOL+ { return ast('Chip').set({chip, desc}) }
 
-pinDef = _ name:ID _ '=' _ net:netName _ EOL+
+pinDef = _ name:ID _ '=' _ net:netExpr _ EOL+
 					{ return ast('Pin').set({name, net}) }
 
-netName = identifier
-/	selector
-/	'0'				{ return ast('Const').set({value: 0}) }
-/	'1'				{ return ast('Const').set({value: 1}) }
-/	'%NC%'				{ return ast('NC') }
-
-// First child of Selector node is the selector, the rest are cases
-selector = '[' _ value:netExpr _ ']'	{ return ast('Macro').set({value}) }
-/	 '[' _ head:netExpr _ nets:( ',' _ identifier _ )+ ']'
+macro =  '[' _ head:netExpr _ nets:( ',' _ identifier _ )+ ']'
 					{ return ast('Selector')
 					    .add(unroll(head, nets, 2))
 					}
+/	'[' _ expr:netExpr _ ']'	{ return ast('Macro').set({expr}) }
+
+// First child of Selector node is the selector, the rest are cases
+selector = [-/a-zA-Z0-9]* ( [-/ a-zA-Z0-9]* macro* )*
+					{ return ast('Selector').set({value: text()}) }
 
 netExpr = sum
 
@@ -53,9 +50,9 @@ primary = operand
 
 operand = id:ID
 /	[0-9]+				{ return ast('#').set({value: parseInt(text(), 10)}) }
+/	%NC%				{ return ast('%NC%') }
 
-
-identifier = [-/a-zA-Z]+ ( [-/ a-zA-Z0-9] / selector )*
+identifier = [-/a-zA-Z]+ ( [-/ a-zA-Z0-9] )*
 					{ return ast('Identifier').set({name: text()}) }
 
 ID = [-/ a-zA-Z0-9]+			{ return ast('ID').set({name: text()}) }
