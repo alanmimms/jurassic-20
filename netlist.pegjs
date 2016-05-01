@@ -19,20 +19,23 @@ pageDef = 'Page' _ ':' _ name:$( [a-zA-Z0-9-]+ ) _ ',' _ pdfRef:ID _
 
 nodeDef = head:nodeHead pins:pinDef+	{ return head.set({pins}) }
 
-nodeHead = chip:ID _ ':' _ desc:$( (!EOL .)+ ) EOL+ { return ast('Chip').set({chip, desc}) }
+nodeHead = chip:ID _ ':' _ desc:$( (!EOL .)+ ) EOL+
+					{ return ast('Chip').set({chip, desc}) }
 
-pinDef = _ name:ID _ '=' _ net:netExpr _ EOL+
-					{ return ast('Pin').set({name, net}) }
+pinDef = _ name:bareID '=' _ net:( identifier / operand ) _ EOL+
+					{ console.log("pinDef name=", name);
+					  return ast('Pin').set({name, net}) }
 
-macro =  '[' _ head:netExpr _ nets:( ',' _ identifier _ )+ ']'
-					{ return ast('Selector')
-					    .add(unroll(head, nets, 2))
+macroRef =  '[' _ head:netExpr _ nets:( ',' $( [^,\]\n\r]+ ) )* ']'
+					{ return ast('Macro')
+					    .add(unroll(head, ast('case').set({text: nets}), 1))
 					}
-/	'[' _ expr:netExpr _ ']'	{ return ast('Macro').set({expr}) }
 
-// First child of Selector node is the selector, the rest are cases
-selector = [-/a-zA-Z0-9]* ( [-/ a-zA-Z0-9]* macro* )*
-					{ return ast('Selector').set({value: text()}) }
+identifier = [-/a-zA-Z]+ ( macroRef / [-/ a-zA-Z0-9] )*
+					{ return ast('Identifier').set({name: text()}) }
+/	macroRef
+
+bareID = [-/a-zA-Z]+ [-/ a-zA-Z0-9]*	{ return ast('ID').set({name: text()}) }
 
 netExpr = sum
 
@@ -48,12 +51,9 @@ primary = operand
 /	'(' _ val:sum _ ')'		{ return val }
 
 
-operand = id:ID
+operand = id:identifier			{ return id }
 /	[0-9]+				{ return ast('#').set({value: parseInt(text(), 10)}) }
-/	%NC%				{ return ast('%NC%') }
-
-identifier = [-/a-zA-Z]+ ( [-/ a-zA-Z0-9] )*
-					{ return ast('Identifier').set({name: text()}) }
+/	'%NC%'				{ return ast('%NC%') }
 
 ID = [-/ a-zA-Z0-9]+			{ return ast('ID').set({name: text()}) }
 
