@@ -19,7 +19,10 @@ let result = PEGUtil.parse(parser, dpa, {
   makeAST: (line, col, offset, args) => asty.create.apply(asty, args).pos(line, col, offset),
 });
 
-console.log('result:',result);
+console.log('result:', result);
 
-if (result.ast)
+if (result.error !== null)
+    console.log("ERROR: Parsing Failure:\n" +
+        PEGUtil.errorMessage(result.error, true).replace(/^/mg, "ERROR: "))
+else
   console.log('AST:', result.ast.dump().replace(/\n$/, ''), 'utf8');
