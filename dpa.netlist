@@ -428,7 +428,7 @@ e7:   10109 or buffer
       e1=internal-e7-2
       q1=ad [n+0]-[n+5]=0 h
       a2=0
-      b2=0
+      b2=0ok
       c2=ad [n+3] h
       d2=ad [n+4] h
       e2=ad [n+5] h
@@ -645,7 +645,7 @@ e23:  10174 2x4 mix
       b0=adb [n+0] h
       b1=adb [n+1] h
       en=0
-      
+
 e26:  10174 2x4 mix
       d00=fm [n+2] h
       d01=br [n+3] h

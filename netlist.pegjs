@@ -41,7 +41,7 @@ identifier = macroRef
 
 bareID = [-/a-zA-Z]+ [-/ a-zA-Z0-9]*	{ return ast('ID').set({name: text()}) }
 
-idChunk = $( ( '\\' EOL _ / [-/ a-zA-Z0-9] )+ )
+idChunk = $( ( '\\' EOL _ / [-/ a-zA-Z0-9=] )+ )
 					{ DBG(`idChunk='${text()}'`); 
 					  return text().replace(/\\[\n\r]/g, '') 
 					}
