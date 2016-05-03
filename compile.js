@@ -7,6 +7,10 @@ const PEG = require('pegjs');
 const PEGUtil = require('pegjs-util');
 const ASTY = require('asty');
 
+
+const dumpAST = true;
+
+
 const asty = new ASTY();
 
 const parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
@@ -29,22 +33,65 @@ if (result.error !== null) {
   process.exit(1);
 }
 
-console.log('AST:', result.ast.dump().replace(/\n$/, ''), 'utf8');
+if (dumpAST) {
+  let f = fs.openSync('out', 'w');
+  fs.writeSync(f, result.ast.dump().replace(/\n$/, ''));
+  fs.closeSync(f);
+}
 
-if (0) {
-result.ast.walk((node, depth, parent, when) => {
-  let as = ' ';
-  let name = node.get('name');
-  if (name) as += `'${name}'`;
 
-  if (node.type() === 'ID') {
-    as += node.childs().map(c => c.type()).join(', ');
-  } else if (node.type() === '[]') {
-    as += node.childs().map(p => node.type()).join(', ');
+let macroEnv = {n: 12};
+
+expandMacros(result.ast, macroEnv);
+
+
+
+// Expand all '[]' nodes and join the adjacent IDchunks with them to
+// form a single 'ID' node with attribute 'name'.
+function expandMacros(ast, env) {
+
+  if (!ast) return;  
+
+  // Every 'ID' might have macros and a bunch of 'IDchunk' children. Expand-o-rama.
+  if (ast.type() === 'ID') {
+
+    ast.childs().forEach(k => {
+
+      switch (k.type()) {
+      case '[]':		// Macro
+
+	break;
+
+      case 'IDchunk':		// Piece of an identifier
+	break;
+
+      default:
+	console.log(`ID with child of unknown flavor '${k.type()}' IGNORED`);
+	break;
+      }
+    });
+  } else {
+    ast.childs().forEach(k => expandMacros(k, env));
   }
-  
-  console.log(_.padStart('', depth*2) + node.type() + as);
-  return false;
-});
+}
+
+
+////////////////////////////////////////////////////////////////
+
+if (0) {			// Old crufty debugging shit
+  result.ast.walk((node, depth, parent, when) => {
+    let as = ' ';
+    let name = node.get('name');
+    if (name) as += `'${name}'`;
+
+    if (node.type() === 'ID') {
+      as += node.childs().map(c => c.type()).join(', ');
+    } else if (node.type() === '[]') {
+      as += node.childs().map(p => node.type()).join(', ');
+    }
+    
+    console.log(_.padStart('', depth*2) + node.type() + as);
+    return false;
+  });
 
 }

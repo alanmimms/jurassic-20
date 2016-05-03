@@ -39,7 +39,7 @@ bareID = [-/#=a-zA-Z]+ [-/#= a-zA-Z0-9]*
 					{ return text() }
 
 idChunk = ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+
-					{ let t = text().replace(/\\[\n\r]/g, '');
+					{ let t = text().replace(/\\[\n\r]\s*/g, '').trim();
 					  return ast('IDchunk').set({name: t})
 					}
 
@@ -53,7 +53,9 @@ product = l:primary _ op:('*' / '/') _ r:product
 					{ return ast(op).add(l).add(r) }
 /	p:primary			{ return p }
 
-primary = macroName
+primary = [0-9]+			{ return ast('#').set({value: 
+						parseInt(text(), 10)}) }
+/	macroName
 /	'(' _ val:sum _ ')'		{ return val }
 
 
@@ -62,7 +64,8 @@ macroName = [a-zA-Z0-9]+		{ return ast('id').set({name: text()}) }
 operand = '%NC%'			{ return ast('%NC%') }
 /	m:macroRef			{ return m }
 /	chunks:( macroRef / idChunk )*	{ return ast('ID').add(chunks) }
-/	[0-9]+				{ return ast('#').set({value: parseInt(text(), 10)}) }
+/	[0-9]+				{ return ast('#').set({value:
+						 parseInt(text(), 10)}) }
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
 
