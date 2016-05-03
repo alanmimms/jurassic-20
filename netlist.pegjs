@@ -1,8 +1,8 @@
 {
   let unroll = options.util.makeUnroll(location, options);
 
-  let DBG = console.log;
-//  let DBG = function() {}
+//  let DBG = console.log;
+  let DBG = function() {}
 
   let ast = function(a) {
     DBG("makeAST('" + a + "')");
@@ -10,20 +10,20 @@
   }
 }
 
-netlist = pages:page+			{ return pages }
+netlist = pages:page+			{ return ast('Netlist').add(pages) }
 
-page = p:pageDef nodes:nodeDef+		{ p.nodes = nodes; return p }
+page = p:pageDef nodes:nodeDef+		{ p.add(nodes); return p }
 
 pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  EOL+
 					{ return ast('Page').set({name, pdfRef}) }
 
-nodeDef = head:nodeHead pins:pinDef+	{ return head.set({pins}) }
+nodeDef = head:nodeHead pins:pinDef+	{ return head.add(pins) }
 
-nodeHead = chip:ID _ ':' _ desc:$( (!EOL .)+ ) EOL+
-					{ return ast('Chip').set({chip, desc}) }
+nodeHead = name:ID _ ':' _ desc:$( (!EOL .)+ ) EOL+
+					{ return ast('Chip').set({name, desc}) }
 
 pinDef = _ name:bareID '=' _ net:operand _ EOL+
-					{ return ast('Pin').set({name, net}) }
+					{ return ast('Pin').set({name}).add(net) }
 
 macroRef =  '[' _ head:netExpr _ nets:( ',' ( idChunk / macroRef )+  )* ']'
 					{ return ast('Macro')
@@ -36,12 +36,12 @@ macroSeg = seg:$( ( '\\' EOL _ / [^\[\],\n\r] )+ )
 					}
 					  
 identifier = macroRef
-/	[-/a-zA-Z]+ ( macroRef / idChunk )*
+/	[-/#a-zA-Z]+ ( macroRef / idChunk )*
 					{ return ast('Identifier').set({name: text()}) }
 
-bareID = [-/a-zA-Z]+ [-/ a-zA-Z0-9]*	{ return ast('ID').set({name: text()}) }
+bareID = [-/#a-zA-Z]+ [-/# a-zA-Z0-9]*	{ return ast('ID').set({name: text()}) }
 
-idChunk = $( ( '\\' EOL _ / [-/ a-zA-Z0-9=] )+ )
+idChunk = $( ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+ )
 					{ DBG(`idChunk='${text()}'`); 
 					  return text().replace(/\\[\n\r]/g, '') 
 					}

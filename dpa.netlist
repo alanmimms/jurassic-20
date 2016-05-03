@@ -428,7 +428,7 @@ e7:   10109 or buffer
       e1=internal-e7-2
       q1=ad [n+0]-[n+5]=0 h
       a2=0
-      b2=0ok
+      b2=0
       c2=ad [n+3] h
       d2=ad [n+4] h
       e2=ad [n+5] h
