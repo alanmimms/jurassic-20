@@ -1,4 +1,5 @@
 {
+  const util = require('util');
   let unroll = options.util.makeUnroll(location, options);
 
 //  let DBG = console.log;
@@ -25,9 +26,9 @@ nodeHead = name:bareID _ ':' _ desc:$( (!EOL .)+ ) EOL+
 pinDef = _ name:bareID ':' _ net:operand _ EOL+
 					{ return ast('Pin').set({name}).add(net) }
 
-macroRef =  '[' _ head:expr _ nets:( ',' c:( idChunk / macroRef )+ { return ast(c) }  )* ']'
-					{ return ast('Macro')
-					    .add(head).set({name: head.name})
+macroRef =  '[' _ head:expr _ nets:( ',' c:( idChunk / macroRef )+ { return c[0] }  )* ']'
+					{ return ast('[]')
+					    .add(head)
 					    .add(nets)
 					}
 
@@ -37,7 +38,7 @@ macroSeg = seg:$( ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+ )
 bareID = [-/#=a-zA-Z]+ [-/#= a-zA-Z0-9]*
 					{ return text() }
 
-idChunk = $( ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+ )
+idChunk = ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+
 					{ let t = text().replace(/\\[\n\r]/g, '');
 					  return ast('IDchunk').set({name: t})
 					}
@@ -56,7 +57,7 @@ primary = macroName
 /	'(' _ val:sum _ ')'		{ return val }
 
 
-macroName = [a-zA-Z0-9]+		{ return ast('macroName').set({name: text()}) }
+macroName = [a-zA-Z0-9]+		{ return ast('id').set({name: text()}) }
 
 operand = '%NC%'			{ return ast('%NC%') }
 /	m:macroRef			{ return m }

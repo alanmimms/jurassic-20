@@ -29,8 +29,9 @@ if (result.error !== null) {
   process.exit(1);
 }
 
-//console.log('AST:', result.ast.dump().replace(/\n$/, ''), 'utf8');
+console.log('AST:', result.ast.dump().replace(/\n$/, ''), 'utf8');
 
+if (0) {
 result.ast.walk((node, depth, parent, when) => {
   let as = ' ';
   let name = node.get('name');
@@ -38,8 +39,7 @@ result.ast.walk((node, depth, parent, when) => {
 
   if (node.type() === 'ID') {
     as += node.childs().map(c => c.type()).join(', ');
-  } else if (node.type() === 'Macro') {
-    as += node.get('name') + ' -- ';
+  } else if (node.type() === '[]') {
     as += node.childs().map(p => node.type()).join(', ');
   }
   
@@ -47,3 +47,4 @@ result.ast.walk((node, depth, parent, when) => {
   return false;
 });
 
+}
