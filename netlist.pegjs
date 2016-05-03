@@ -25,7 +25,7 @@ nodeHead = chip:ID _ ':' _ desc:$( (!EOL .)+ ) EOL+
 pinDef = _ name:bareID '=' _ net:operand _ EOL+
 					{ return ast('Pin').set({name, net}) }
 
-macroRef =  '[' _ head:netExpr _ nets:( ',' ( macroRef / idChunk )  )* ']'
+macroRef =  '[' _ head:netExpr _ nets:( ',' ( idChunk / macroRef )+  )* ']'
 					{ return ast('Macro')
 					    .set({parts: unroll(head, nets, 1)})
 					}
@@ -35,7 +35,6 @@ macroSeg = seg:$( ( '\\' EOL _ / [^\[\],\n\r] )+ )
 					  return seg.replace(/\\[\n\r]/g, '') 
 					}
 					  
-
 identifier = macroRef
 /	[-/a-zA-Z]+ ( macroRef / idChunk )*
 					{ return ast('Identifier').set({name: text()}) }
