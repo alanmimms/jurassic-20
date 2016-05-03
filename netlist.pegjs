@@ -39,7 +39,7 @@ bareID = [-/#=a-zA-Z]+ [-/#= a-zA-Z0-9]*
 					{ return text() }
 
 idChunk = ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+
-					{ let t = text().replace(/\\[\n\r]\s*/g, '').trim();
+					{ let t = text().replace(/\\[\n\r]\s*/g, '');
 					  return ast('IDchunk').set({name: t})
 					}
 

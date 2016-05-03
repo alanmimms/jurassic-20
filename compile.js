@@ -34,7 +34,7 @@ if (result.error !== null) {
 }
 
 if (dumpAST) {
-  let f = fs.openSync('out', 'w');
+  let f = fs.openSync('before.evaluation', 'w');
   fs.writeSync(f, result.ast.dump().replace(/\n$/, ''));
   fs.closeSync(f);
 }
@@ -42,37 +42,98 @@ if (dumpAST) {
 
 let macroEnv = {n: 12};
 
-expandMacros(result.ast, macroEnv);
+expandMacros(result.ast);
 
 
 
 // Expand all '[]' nodes and join the adjacent IDchunks with them to
 // form a single 'ID' node with attribute 'name'.
-function expandMacros(ast, env) {
+function expandMacros(ast) {
 
   if (!ast) return;  
 
   // Every 'ID' might have macros and a bunch of 'IDchunk' children. Expand-o-rama.
-  if (ast.type() === 'ID') {
+  const type = ast.type();
 
-    ast.childs().forEach(k => {
+  if (type === 'ID' || type === '%NC%') {
+    let expansion = '';
 
-      switch (k.type()) {
-      case '[]':		// Macro
+    if (type === 'ID') {
+      ast.childs().forEach(k => {
 
-	break;
+	switch (k.type()) {
+	case '[]':		// Macro
+	  expansion += evalExpr(k);
+	  break;
 
-      case 'IDchunk':		// Piece of an identifier
-	break;
+	case 'IDchunk':		// Piece of an identifier
+	  expansion += k.get('name');
+	  break;
 
-      default:
-	console.log(`ID with child of unknown flavor '${k.type()}' IGNORED`);
-	break;
-      }
-    });
+	default:
+	  console.log(`ID with child of unknown flavor '${k.type()}' IGNORED`);
+	  break;
+	}
+      });
+    } else {
+      expansion = '%NC%';
+    }
+    
+    const pinNode = ast.parent();
+    const chipNode = pinNode.parent();
+    const chip = chipNode.get('name');
+    const pin = pinNode.get('name');
+
+    console.log(`Chip ${chip} pin ${pin}: '${expansion}'.`);
+    ast.parent().set('id', expansion);
+//    ast.parent().del([ast]);
   } else {
-    ast.childs().forEach(k => expandMacros(k, env));
+    ast.childs().forEach(k => expandMacros(k));
   }
+}
+
+
+// For the given AST subtree evaluate and expand any macro 'id' nodes
+// with the corresponding value from 'macroEnv' and numerically
+// evaluate any expression. Returns the full expansion of the
+// resulting collapsed tree.
+function evalExpr(t) {
+  let kids = t.childs();
+
+  switch (t.type()) {
+  case '[]':
+
+    if (kids.length > 1) {	// It's a selector
+      let n = +evalExpr(kids[0]);
+      return evalExpr(kids[n]);
+    } else {			// It's a simple expression macro
+      return evalExpr(kids[0]);
+    }
+
+  case '+':
+  case '-':
+  case '/':
+  case '*':
+    return Math.trunc(eval(+evalExpr(kids[0]) + t.type() + +evalExpr(kids[1])));
+
+  case 'IDchunk':
+  case 'id':
+    return macroEnv[t.get('name')];
+
+  case '#':
+    return t.get('value');
+
+  default:
+    console.log(`Unhandled subtree node type in [] macro: '${t.type()}'.`);
+    break;
+  }
+}
+
+
+if (dumpAST) {
+  let f = fs.openSync('after.evaluation', 'w');
+  fs.writeSync(f, result.ast.dump().replace(/\n$/, ''));
+  fs.closeSync(f);
 }
 
 
