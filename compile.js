@@ -26,15 +26,23 @@ let result = PEGUtil.parse(parser, dpa, {
 if (result.error !== null) {
     console.log("ERROR: Parsing Failure:\n" +
         PEGUtil.errorMessage(result.error, true).replace(/^/mg, "ERROR: "))
-  Process.exit(1);
+  process.exit(1);
 }
 
-//console.log('AST:', result.ast.dump(2).replace(/\n$/, ''), 'utf8');
+//console.log('AST:', result.ast.dump().replace(/\n$/, ''), 'utf8');
 
 result.ast.walk((node, depth, parent, when) => {
   let as = ' ';
   let name = node.get('name');
   if (name) as += `'${name}'`;
+
+  if (node.type() === 'ID') {
+    as += node.childs().map(c => c.type()).join(', ');
+  } else if (node.type() === 'Macro') {
+    as += node.get('name') + ' -- ';
+    as += node.childs().map(p => node.type()).join(', ');
+  }
+  
   console.log(_.padStart('', depth*2) + node.type() + as);
   return false;
 });
