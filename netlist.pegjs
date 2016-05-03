@@ -12,9 +12,9 @@
 
 netlist = pages:page+			{ return pages }
 
-page = p:pageDef EOL+ nodes:nodeDef+		{ p.nodes = nodes; return p }
+page = p:pageDef nodes:nodeDef+		{ p.nodes = nodes; return p }
 
-pageDef = 'Page' _ ':' _ name:$( [a-zA-Z0-9-]+ ) _ ',' _ pdfRef:ID _
+pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  EOL+
 					{ return ast('Page').set({name, pdfRef}) }
 
 nodeDef = head:nodeHead pins:pinDef+	{ return head.set({pins}) }
