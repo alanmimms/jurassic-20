@@ -25,7 +25,7 @@ nodeHead = chip:ID _ ':' _ desc:$( (!EOL .)+ ) EOL+
 pinDef = _ name:bareID '=' _ net:operand _ EOL+
 					{ return ast('Pin').set({name, net}) }
 
-macroRef =  '[' _ head:netExpr _ nets:( ',' ( macroRef / macroSeg )  )* ']'
+macroRef =  '[' _ head:netExpr _ nets:( ',' ( macroRef / idChunk )  )* ']'
 					{ return ast('Macro')
 					    .set({parts: unroll(head, nets, 1)})
 					}
@@ -36,11 +36,16 @@ macroSeg = seg:$( ( '\\' EOL _ / [^\[\],\n\r] )+ )
 					}
 					  
 
-identifier = [-/a-zA-Z]+ ( macroRef / [-/ a-zA-Z0-9] )*
+identifier = macroRef
+/	[-/a-zA-Z]+ ( macroRef / idChunk )*
 					{ return ast('Identifier').set({name: text()}) }
-/	macroRef
 
 bareID = [-/a-zA-Z]+ [-/ a-zA-Z0-9]*	{ return ast('ID').set({name: text()}) }
+
+idChunk = $( ( '\\' EOL _ / [-/ a-zA-Z0-9] )+ )
+					{ DBG(`idChunk='${text()}'`); 
+					  return text().replace(/\\[\n\r]/g, '') 
+					}
 
 netExpr = sum
 
