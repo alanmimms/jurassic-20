@@ -1,5 +1,4 @@
 {
-  const util = require('util');
   let unroll = options.util.makeUnroll(location, options);
 
 //  let DBG = console.log;
@@ -20,10 +19,10 @@ pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  E
 
 nodeDef = head:nodeHead pins:pinDef+	{ return head.add(pins) }
 
-nodeHead = name:bareID _ ':' _ desc:$( (!EOL .)+ ) EOL+
+nodeHead = !'Page' name:bareID _ ':' _ desc:$( (!EOL .)+ ) EOL+
 					{ return ast('Chip').set({name, desc}) }
 
-pinDef = _ name:bareID ':' _ net:operand _ EOL+
+pinDef = [ \t]+ name:bareID ':' _ net:operand _ EOL+
 					{ return ast('Pin').set({name}).add(net) }
 
 macroRef =  '[' _ head:expr _ nets:( ',' c:( idChunk / macroRef )+ { return c[0] }  )* ']'

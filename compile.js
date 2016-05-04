@@ -46,8 +46,9 @@ expandMacros(result.ast);
 
 
 
-// Expand all '[]' nodes and join the adjacent IDchunks with them to
-// form a single 'ID' node with attribute 'name'.
+// Under all 'Pin' nodes evaluate and expand all '[]' nodes and join
+// any adjacent IDchunks with them to form a single 'ID' node with
+// attribute 'name'.
 function expandMacros(ast) {
 
   if (!ast) return;  
@@ -85,7 +86,7 @@ function expandMacros(ast) {
     const pin = pinNode.get('name');
 
     console.log(`Chip ${chip} pin ${pin}: '${expansion}'.`);
-    ast.parent().set('id', expansion);
+    ast.parent().set('connects-to', expansion);
 //    ast.parent().del([ast]);
   } else {
     ast.childs().forEach(k => expandMacros(k));
