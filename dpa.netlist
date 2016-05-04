@@ -8,7 +8,7 @@ e53: 10164 8 mix
      d4: sh [n+0] h
      d5: ad [n+1] h
      d6: adx [n+0] h
-     d7: [n/6+1, ad ex -02 h, ad 04 h, ad 10h, ad 16 h, ad 22 h, ad 28 h]
+     d7: [n/6+1, ad ex -02 h, ad 04 h, ad 10 h, ad 16 h, ad 22 h, ad 28 h]
      sel4: [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2: [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1: [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
@@ -24,7 +24,7 @@ e46: 10164 8 mix
      d4: sh [n+1] h
      d5: ad [n+2] h
      d6: adx [n+1] h
-     d7: [n/6+1, ad ex -01 h, ad 05 h, ad 11h, ad 17 h, ad 23 h, ad 29 h]
+     d7: [n/6+1, ad ex -01 h, ad 05 h, ad 11 h, ad 17 h, ad 23 h, ad 29 h]
      sel4: [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2: [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1: [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9

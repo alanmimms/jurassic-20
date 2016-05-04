@@ -49,44 +49,87 @@ expandMacros(result.ast);
 // Under all 'Pin' nodes evaluate and expand all '[]' nodes and join
 // any adjacent IDchunks with them to form a single 'ID' node with
 // attribute 'name'.
+var pin, chip, page;
 function expandMacros(ast) {
 
-  if (!ast) return;  
+  if (!ast) return;
 
-  // Every 'ID' might have macros and a bunch of 'IDchunk' children. Expand-o-rama.
   const type = ast.type();
+  const kids = ast.childs();
 
+  switch (type) {
+  case 'Chip':
+    chip = ast;
+    console.log(`\nChip ${chip.get('name')}:  ${chip.get('desc')}`);
+    kids.forEach(k => expandMacros(k));
+    break;
+
+  case 'Page':
+    page = ast;
+    console.log(`\nPage ${page.get('name')}, pdfRef ${page.get('pdfRef')}`);
+    kids.forEach(k => expandMacros(k));
+    break;
+
+  case 'Netlist':
+    kids.forEach(k => expandMacros(k));
+    break;
+
+  case 'Pin':
+    pin = ast;
+    var expansion = '';
+
+    kids.forEach(pinKid => {
+
+      switch (pinKid.type()) {
+      case 'ID':
+	pinKid.childs().forEach(idKid => {
+
+	  switch (idKid.type()) {
+	  case '[]':		// Macro
+	    expansion += evalExpr(idKid);
+	    break;
+
+	  case 'IDchunk':		// Piece of an identifier
+	    expansion += idKid.get('name');
+	    break;
+
+	  default:
+	    break;
+	  }
+	});
+
+	break;
+
+      case '[]':		// Macro
+	expansion += evalExpr(pinKid);
+	break;
+
+      case '%NC%':
+	expansion += '%NC%';
+	break;
+
+      default:
+	console.log(`Pin child node of unknown flavor '${pinKid.type()}' IGNORED`);
+	return;
+      }
+
+      console.log(`Chip ${chip.get('name')} pin ${pin.get('name')}: '${expansion}'.`);
+      pin.set('connects-to', expansion);
+    });
+
+    break;
+
+  default:
+    break;
+  }
+  
   if (type === 'ID' || type === '%NC%') {
-    let expansion = '';
 
     if (type === 'ID') {
-      ast.childs().forEach(k => {
-
-	switch (k.type()) {
-	case '[]':		// Macro
-	  expansion += evalExpr(k);
-	  break;
-
-	case 'IDchunk':		// Piece of an identifier
-	  expansion += k.get('name');
-	  break;
-
-	default:
-	  console.log(`ID with child of unknown flavor '${k.type()}' IGNORED`);
-	  break;
-	}
-      });
     } else {
       expansion = '%NC%';
     }
     
-    const pinNode = ast.parent();
-    const chipNode = pinNode.parent();
-    const chip = chipNode.get('name');
-    const pin = pinNode.get('name');
-
-    console.log(`Chip ${chip} pin ${pin}: '${expansion}'.`);
-    ast.parent().set('connects-to', expansion);
 //    ast.parent().del([ast]);
   } else {
     ast.childs().forEach(k => expandMacros(k));
@@ -119,7 +162,9 @@ function evalExpr(t) {
 
   case 'IDchunk':
   case 'id':
-    return macroEnv[t.get('name')];
+    let e = macroEnv[t.get('name')];
+    if (e === undefined) e = t.get('name');
+    return e;
 
   case '#':
     return t.get('value');
