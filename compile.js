@@ -202,3 +202,6 @@ if (0) {			// Old crufty debugging shit
   });
 
 }
+
+
+console.log(`Unconnected node names:`);

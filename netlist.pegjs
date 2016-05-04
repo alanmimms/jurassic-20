@@ -22,8 +22,10 @@ nodeDef = head:nodeHead pins:pinDef+	{ return head.add(pins) }
 nodeHead = !'Page' name:bareID _ ':' _ desc:$( (!EOL .)+ ) EOL+
 					{ return ast('Chip').set({name, desc}) }
 
-pinDef = [ \t]+ name:bareID ':' _ net:operand _ EOL+
-					{ return ast('Pin').set({name}).add(net) }
+pinDef = [ \t]+ name:bareID _ dir:direction _ net:operand _ EOL+
+					{ return ast('Pin').set({name, dir}).add(net) }
+
+direction = $( '->' | '<-' | '<->' )
 
 macroRef =  '[' _ head:expr _ nets:( ',' c:( idChunk / macroRef )+ { return c[0] }  )* ']'
 					{ return ast('[]')
