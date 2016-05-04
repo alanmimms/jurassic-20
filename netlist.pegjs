@@ -25,7 +25,7 @@ nodeHead = !'Page' name:bareID _ ':' _ desc:$( (!EOL .)+ ) EOL+
 pinDef = [ \t]+ name:bareID _ dir:direction _ net:operand _ EOL+
 					{ return ast('Pin').set({name, dir}).add(net) }
 
-direction = $( '->' | '<-' | '<->' )
+direction = $( '>' / '<' / '<>' )
 
 macroRef =  '[' _ head:expr _ nets:( ',' c:( idChunk / macroRef )+ { return c[0] }  )* ']'
 					{ return ast('[]')
