@@ -6,7 +6,7 @@ const _ = require('lodash');
 const PEG = require('pegjs');
 const PEGUtil = require('pegjs-util');
 const ASTY = require('asty');
-
+const logic = require('./logic.js');
 
 const dumpAST = true;
 
@@ -17,10 +17,10 @@ const parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
 //  trace: true,
 });
 
-const dpa = fs.readFileSync('dpa.netlist', 'utf8');
+const dpa = fs.readFileSync('dpa.board', 'utf8');
 
 let result = PEGUtil.parse(parser, dpa, {
-  startRule: 'netlist',
+  startRule: 'board',
   makeAST: (line, col, offset, args) => 
     asty.create.apply(asty, args).pos(line, col, offset),
 });
@@ -40,16 +40,16 @@ if (dumpAST) {
 }
 
 
-let macroEnv = {n: 12};
+var macroEnv = {n: 12};
+var netRefs = {};
 
 expandMacros(result.ast);
-
 
 
 // Under all 'Pin' nodes evaluate and expand all '[]' nodes and join
 // any adjacent IDchunks with them to form a single 'ID' node with
 // attribute 'name'.
-var pin, chip, page;
+var net, dir, pin, chip, page;
 function expandMacros(ast) {
 
   if (!ast) return;
@@ -60,23 +60,32 @@ function expandMacros(ast) {
   switch (type) {
   case 'Chip':
     chip = ast;
-    console.log(`\nChip ${chip.get('name')}:  ${chip.get('desc')}`);
+    chip.logic = logic[chip.get('type')];
+
+    if (!chip.logic) {
+      chip.logic = {'<': [], '>': [], '<>': []};
+      console.log(`${page.get('name')}.${chip.get('name')} ` +
+		  `undefined logic device '${chip.get('type')}'`);
+    }
+    
+//  console.log(`\n${page.get('name')}.${chip.get('name')}: ${chip.get('type')} ${chip.get('desc')}`);
     kids.forEach(k => expandMacros(k));
     break;
 
   case 'Page':
     page = ast;
-    console.log(`\nPage ${page.get('name')}, pdfRef ${page.get('pdfRef')}`);
+//    console.log(`\nPage ${page.get('name')}, pdfRef ${page.get('pdfRef')}`);
     kids.forEach(k => expandMacros(k));
     break;
 
-  case 'Netlist':
+  case 'Board':
     kids.forEach(k => expandMacros(k));
     break;
 
   case 'Pin':
     pin = ast;
-    var expansion = '';
+    net = '';
+    dir = pin.get('dir');
 
     kids.forEach(pinKid => {
 
@@ -86,11 +95,11 @@ function expandMacros(ast) {
 
 	  switch (idKid.type()) {
 	  case '[]':		// Macro
-	    expansion += evalExpr(idKid);
+	    net += evalExpr(idKid);
 	    break;
 
 	  case 'IDchunk':		// Piece of an identifier
-	    expansion += idKid.get('name');
+	    net += idKid.get('name');
 	    break;
 
 	  default:
@@ -101,11 +110,11 @@ function expandMacros(ast) {
 	break;
 
       case '[]':		// Macro
-	expansion += evalExpr(pinKid);
+	net += evalExpr(pinKid);
 	break;
 
       case '%NC%':
-	expansion += '%NC%';
+	net += '%NC%';
 	break;
 
       default:
@@ -113,8 +122,16 @@ function expandMacros(ast) {
 	return;
       }
 
-      console.log(`Chip ${chip.get('name')} pin ${pin.get('name')}: '${expansion}'.`);
-      pin.set('connects-to', expansion);
+      if (!chip.logic[dir] || chip.logic[dir].indexOf(pin.get('name')) < 0)
+	  console.log(`  ${chip.get('name')} undefined pin ${pin.get('name')} ${dir} ` +
+		      `for ${chip.get('type')}`);
+
+      pin.net = net;
+//      console.log(`  ${chip.get('name')}.${pin.get('name')} ${dir} ${net}`);
+
+      if (!netRefs[net]) netRefs[net] = {[dir]: []};
+      if (!netRefs[net][dir]) netRefs[net][dir] = [];
+      netRefs[net][dir].push(pin);
     });
 
     break;
@@ -127,7 +144,7 @@ function expandMacros(ast) {
 
     if (type === 'ID') {
     } else {
-      expansion = '%NC%';
+      net = '%NC%';
     }
     
 //    ast.parent().del([ast]);
@@ -202,6 +219,18 @@ if (0) {			// Old crufty debugging shit
   });
 
 }
+
+
+// Check each net for more than one driving pin.
+Object.keys(netRefs)
+  .filter(net => netRefs[net]['>'] && netRefs[net]['>'].length > 1)
+  .forEach(net => console.log(`${net} has more than one driving pin`));
+
+
+console.log('internal-e33-3:', require('util').inspect(netRefs['internal-e33-3']['>'], {depth: 1}));
+
+console.log(`Check pins vs logic:`);
+
 
 
 console.log(`Unconnected node names:`);

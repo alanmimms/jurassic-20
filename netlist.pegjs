@@ -10,7 +10,7 @@
   }
 }
 
-netlist = pages:page+			{ return ast('Netlist').add(pages) }
+board = pages:page+			{ return ast('Board').add(pages) }
 
 page = p:pageDef nodes:nodeDef+		{ p.add(nodes); return p }
 
@@ -19,15 +19,16 @@ pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  E
 
 nodeDef = head:nodeHead pins:pinDef+	{ return head.add(pins) }
 
-nodeHead = !'Page' name:bareID _ ':' _ desc:$( (!EOL .)+ ) EOL+
-					{ return ast('Chip').set({name, desc}) }
+nodeHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) EOL+
+					{ return ast('Chip').set({name, type, desc}) }
 
 pinDef = [ \t]+ name:bareID _ dir:direction _ net:operand _ EOL+
 					{ return ast('Pin').set({name, dir}).add(net) }
 
 direction = $( '>' / '<' / '<>' )
 
-macroRef =  '[' _ head:expr _ nets:( ',' c:( idChunk / macroRef )+ { return c[0] }  )* ']'
+macroRef =  '[' _ head:expr _ 
+		nets:( ',' c:( idChunk / macroRef )+ { return c[0] }  )* ']'
 					{ return ast('[]')
 					    .add(head)
 					    .add(nets)
@@ -37,7 +38,7 @@ macroSeg = seg:$( ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+ )
 					{ return seg.replace(/\\[\n\r]/g, '') }
 
 bareID = [-/#=a-zA-Z]+ [-/#= a-zA-Z0-9]*
-					{ return text() }
+					{ return text().trim() }
 
 idChunk = ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+
 					{ let t = text().replace(/\\[\n\r]\s*/g, '');
