@@ -28,7 +28,7 @@ pinDef = [ \t]+ name:bareID _ dir:direction _ net:operand _ EOL+
 direction = $( '>' / '<' / '<>' )
 
 macroRef =  '[' _ head:expr _ 
-		nets:( ',' c:( idChunk / macroRef )+ { return c[0] }  )* ']'
+		nets:( ',' _ c:( idChunk / macroRef )+ { return c[0] }  )* ']'
 					{ return ast('[]')
 					    .add(head)
 					    .add(nets)

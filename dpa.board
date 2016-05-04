@@ -331,8 +331,8 @@ e15: 10141 shft reg
      d2 < mqm [n+4] h
      d3 < mqm [n+5] h
      shft 3in < [n/30+1, mq [n+6] h, ad cry -02 a h]	// buffered through e20.10-11
-     op2 < ctl mq sel 2 h					// buffered through e20.4-5
-     op1 < ctl mq sel 1 h					// buffered through e20.7-6
+     op2 < ctl mq sel 2 h				// buffered through e20.4-5
+     op1 < ctl mq sel 1 h				// buffered through e20.7-6
      q0 > %NC%
      q1 > mq [n+3] h
      q2 > mq [n+4] h
@@ -412,18 +412,18 @@ e27: 10101 4xor/nor
 e33:  10107 3x2 xor/xnor
       a1 < ad ex [n-2] h
       a2 < ad ex [n-1] h
-      qa > internal-e33-3
+      qa > internal-e33-3 [n/6+1]
       b1 < ad ex [n-1] h
       b2 < ad [n+0] h
-      qb > internal-e33-10
-      c1 < internal-e33-10
+      qb > internal-e33-10 [n/6+1]
+      c1 < internal-e33-10 [n/6+1]
       c2 < ad cry [n-2] h
       nqc > ad cry [n+1] l
       qc > ad cry [n+1] h
 
 e29:  10105 3x2-3-2 or/nor
-      a1 < internal-e33-3
-      a2 < internal-e33-10
+      a1 < internal-e33-3 [n/6+1]
+      a2 < internal-e33-10 [n/6+1]
       nqa > ad overflow [n] l
       qa > %NC%
       b1 < 0
@@ -441,13 +441,13 @@ e7:   10109 or buffer
       b2 < ad [n+0] h
       b3 < ad [n+1] h
       b4 < ad [n+2] h
-      b5 < internal-e7-2
+      b5 < internal-e7-2 [n/6+1]
       qb > ad [n+0]-[n+5]=0 h
       a1 < 0
       a2 < ad [n+3] h
       a3 < ad [n+4] h
       a4 < ad [n+5] h
-      qa > internal-e7-2
+      qa > internal-e7-2 [n/6+1]
 
 e1:   10181 alu
       a8 < ada [n+0] h
@@ -739,7 +739,7 @@ e6:   10174 2x4 mix
 e59: 10101 or buffer
      a1 < diag read func 12x h
      abcd2 < [n/18+1, ctl ad to ebus l h, ctl ad to ebus r h]
-     nqa > internal-e59-14
+     nqa > internal-e59-14 [n/6+1]
      qa > %NC%
      b1 < 0
      nqb > %NC%
@@ -763,7 +763,7 @@ e57: 10164 8 mix
      sel4 < diag 04 a h					// buffered via e59.4-5
      sel2 < diag 05 a h					// buffered via e59.7-6
      sel1 < diag 06 a h					// buffered via e59.13-9
-     en < internal-e59-14
+     en < internal-e59-14 [n/6+1]
      b > ebus d[n+0] e h
 
 e50: 10164 8 mix
@@ -778,7 +778,7 @@ e50: 10164 8 mix
      sel4 < diag 04 a h					// buffered via e59.4-5
      sel2 < diag 05 a h					// buffered via e59.7-6
      sel1 < diag 06 a h					// buffered via e59.13-9
-     en < internal-e59-14
+     en < internal-e59-14 [n/6+1]
      b > ebus d[n+1] e h
 
 e43: 10164 8 mix
@@ -793,7 +793,7 @@ e43: 10164 8 mix
      sel4 < diag 04 a h					// buffered via e59.4-5
      sel2 < diag 05 a h					// buffered via e59.7-6
      sel1 < diag 06 a h					// buffered via e59.13-9
-     en < internal-e59-14
+     en < internal-e59-14 [n/6+1]
      b > ebus d[n+2] e h
 
 e44: 10164 8 mix
@@ -808,7 +808,7 @@ e44: 10164 8 mix
      sel4 < diag 04 a h					// buffered via e59.4-5
      sel2 < diag 05 a h					// buffered via e59.7-6
      sel1 < diag 06 a h					// buffered via e59.13-9
-     en < internal-e59-14
+     en < internal-e59-14 [n/6+1]
      b > ebus d[n+3] e h
 
 e36: 10164 8 mix
@@ -823,7 +823,7 @@ e36: 10164 8 mix
      sel4 < diag 04 a h					// buffered via e59.4-5
      sel2 < diag 05 a h					// buffered via e59.7-6
      sel1 < diag 06 a h					// buffered via e59.13-9
-     en < internal-e59-14
+     en < internal-e59-14 [n/6+1]
      b > ebus d[n+4] e h
 
 e37: 10164 8 mix
@@ -838,7 +838,7 @@ e37: 10164 8 mix
      sel4 < diag 04 a h					// buffered via e59.4-5
      sel2 < diag 05 a h					// buffered via e59.7-6
      sel1 < diag 06 a h					// buffered via e59.13-9
-     en < internal-e59-14
+     en < internal-e59-14 [n/6+1]
      b > ebus d[n+5] e h
 
 e69: 10147 128x1 ram

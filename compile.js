@@ -63,6 +63,7 @@ function expandMacros(ast) {
     chip.logic = logic[chip.get('type')];
 
     if (!chip.logic) {
+      // Provide dummy entry just so we can go on
       chip.logic = {'<': [], '>': [], '<>': []};
       console.log(`${page.get('name')}.${chip.get('name')} ` +
 		  `undefined logic device '${chip.get('type')}'`);
@@ -86,6 +87,7 @@ function expandMacros(ast) {
     pin = ast;
     net = '';
     dir = pin.get('dir');
+    'dir name'.split(/\s+/).forEach(p => pin[p] = pin.get(p));
 
     kids.forEach(pinKid => {
 
@@ -122,35 +124,29 @@ function expandMacros(ast) {
 	return;
       }
 
-      if (!chip.logic[dir] || chip.logic[dir].indexOf(pin.get('name')) < 0)
-	  console.log(`  ${chip.get('name')} undefined pin ${pin.get('name')} ${dir} ` +
+      if (!chip.logic[dir] || chip.logic[dir].indexOf(pin.name) < 0)
+	  console.log(`  ${chip.get('name')} undefined pin ${pin.name} ${dir} ` +
 		      `for ${chip.get('type')}`);
 
       pin.net = net;
-//      console.log(`  ${chip.get('name')}.${pin.get('name')} ${dir} ${net}`);
-
-      if (!netRefs[net]) netRefs[net] = {[dir]: []};
-      if (!netRefs[net][dir]) netRefs[net][dir] = [];
-      netRefs[net][dir].push(pin);
+      pin.set('net', net);
     });
 
+    /*
+    if (chip.get('name') === 'e33' || chip.get('name') === 'e29')
+      console.log(`  ${chip.get('name')}.${pin.name} ${dir} ${net}`);
+     */
+    
+    if (!netRefs[net]) netRefs[net] = {[dir]: []};
+    if (!netRefs[net][dir]) netRefs[net][dir] = {};
+    netRefs[net][dir][pin] = pin;
     break;
 
   default:
     break;
   }
   
-  if (type === 'ID' || type === '%NC%') {
-
-    if (type === 'ID') {
-    } else {
-      net = '%NC%';
-    }
-    
-//    ast.parent().del([ast]);
-  } else {
-    ast.childs().forEach(k => expandMacros(k));
-  }
+  if (type !== 'ID' && type !== '%NC%') ast.childs().forEach(k => expandMacros(k));
 }
 
 
@@ -223,11 +219,18 @@ if (0) {			// Old crufty debugging shit
 
 // Check each net for more than one driving pin.
 Object.keys(netRefs)
-  .filter(net => netRefs[net]['>'] && netRefs[net]['>'].length > 1)
-  .forEach(net => console.log(`${net} has more than one driving pin`));
+  .filter(net => {
+    if (!netRefs[net]['>']) return true;
+    let nOuts = Object.keys(netRefs[net]['>']).length;
+    return (nOuts !== 1);
+  })
+  .forEach(net => console.log(`${net} has zero or more than one driving pin`));
 
 
-console.log('internal-e33-3:', require('util').inspect(netRefs['internal-e33-3']['>'], {depth: 1}));
+/*
+const it = 'internal-e33-3 3';
+console.log(it + ':', require('util').inspect(netRefs[it]['>'], {depth: 1}));
+ */
 
 console.log(`Check pins vs logic:`);
 
