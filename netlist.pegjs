@@ -1,13 +1,15 @@
 {
-  let unroll = options.util.makeUnroll(location, options);
+  const unroll = options.util.makeUnroll(location, options);
 
-//  let DBG = console.log;
-  let DBG = function() {}
+//  const DBG = console.log;
+  const DBG = function() {}
 
-  let ast = function(a) {
+  const ast = function(a) {
     DBG("makeAST('" + a + "')");
     return options.util.makeAST(location, options)(a);
   }
+
+  const asty = parser.asty;
 }
 
 board = pages:page+			{ return ast('Board').add(pages) }
@@ -28,14 +30,11 @@ pinDef = [ \t]+ name:bareID _ dir:direction _ net:operand _ EOL+
 direction = $( '>' / '<' / '<>' )
 
 macroRef =  '[' _ head:expr _ 
-		nets:( ',' _ c:( idChunk / macroRef )+ { return c[0] }  )* ']'
+		nets:( ',' _ c:( idChunk / macroRef )+ )* ']'
 					{ return ast('[]')
 					    .add(head)
-					    .add(nets)
+					    .add(nets.filter(n => asty.isA(n)));
 					}
-
-macroSeg = seg:$( ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+ )
-					{ return seg.replace(/\\[\n\r]/g, '') }
 
 bareID = [-/#=a-zA-Z]+ [-/#= a-zA-Z0-9]*
 					{ return text().trim() }

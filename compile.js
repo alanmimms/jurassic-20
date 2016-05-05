@@ -13,9 +13,11 @@ const dumpAST = true;
 
 const asty = new ASTY();
 
-const parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
+let parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
 //  trace: true,
 });
+
+parser.asty = asty;
 
 const dpa = fs.readFileSync('dpa.board', 'utf8');
 
@@ -23,6 +25,7 @@ let result = PEGUtil.parse(parser, dpa, {
   startRule: 'board',
   makeAST: (line, col, offset, args) => 
     asty.create.apply(asty, args).pos(line, col, offset),
+  asty,
 });
 
 //console.log('result:', util.inspect(result, {depth: 9, colors: false}));
