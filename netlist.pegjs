@@ -1,72 +1,60 @@
 {
-  const unroll = options.util.makeUnroll(location, options);
-
-//  const DBG = console.log;
-  const DBG = function() {}
-
-  const ast = function(a) {
-    DBG("makeAST('" + a + "')");
-    return options.util.makeAST(location, options)(a);
-  }
-
-  const asty = parser.asty;
 }
 
-board = pages:page+			{ return ast('Board').add(pages) }
+board = p:page+ { return {t: 'Board', pages: p } }
 
-page = p:pageDef nodes:nodeDef+		{ p.add(nodes); return p }
+page = p:pageDef n:nodeDef+
+		{ p.nodes = n; return p }
 
 pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  EOL+
-					{ return ast('Page').set({name, pdfRef}) }
+		{ return {t: 'Page', name, pdfRef} }
 
-nodeDef = head:nodeHead pins:pinDef+	{ return head.add(pins) }
+nodeDef = h:nodeHead p:pinDef+
+		{ h.pins = p; return h }
 
 nodeHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) EOL+
-					{ return ast('Chip').set({name, type, desc}) }
+		{ return {t: 'Chip', name, type, desc} }
 
-pinDef = [ \t]+ name:bareID _ dir:direction _ net:operand _ EOL+
-					{ return ast('Pin').set({name, dir}).add(net) }
+pinDef = [ \t]+ name:bareID _ dir:direction _ net:net _ EOL+
+		{ return {t: 'Pin', name, dir, net} }
 
 direction = $( '>' / '<' / '<>' )
 
-macroRef =  '[' _ head:expr _ 
-		nets:( ',' _ c:( idChunk / macroRef )+ )* ']'
-					{ return ast('[]')
-					    .add(head)
-					    .add(nets.filter(n => asty.isA(n)));
-					}
+macroRef =  '[' _ head:expr _ ids:selectorList ']'
+		{ return {t: '[]', head, ids} }
+
+selectorList = list:( ',' _ ( macroRef / idChunk )+ )*
+		{ return list[2] }
 
 bareID = [-/#=a-zA-Z]+ [-/#= a-zA-Z0-9]*
-					{ return text().trim() }
+		{ return text().trim() }
 
-idChunk = ( '\\' EOL _ / [-/# a-zA-Z0-9=] )+
-					{ let t = text().replace(/\\[\n\r]\s*/g, '');
-					  return ast('IDchunk').set({name: t})
-					}
+idChunk = name:( '\\' EOL _ / [-/# a-zA-Z0-9=] )+
+		{ return {t: 'IDchunk', name: text().replace(/\\[\n\r]\s*/g, '')} }
 
-expr = s:sum				{ return s }
+expr = sum
 
 sum = l:product _ op:( '+' / '-' ) _ r:sum
-					{ return ast(op).add(l).add(r) }
+		{ return {t: op, l, r} }
 /	product
 
 product = l:primary _ op:('*' / '/') _ r:product
-					{ return ast(op).add(l).add(r) }
-/	p:primary			{ return p }
+		{ return {t: op, l, r} }
+/	primary
 
-primary = [0-9]+			{ return ast('#').set({value: 
-						parseInt(text(), 10)}) }
+primary = [0-9]+
+		{ return {t: '#', value: parseInt(text(), 10)} }
+/	'(' _ val:sum _ ')'
+		{ return val }
 /	macroName
-/	'(' _ val:sum _ ')'		{ return val }
 
+macroName = name:$( [a-zA-Z0-9]+ )
+		{ return {t: 'id', name} }
 
-macroName = [a-zA-Z0-9]+		{ return ast('id').set({name: text()}) }
-
-operand = '%NC%'			{ return ast('%NC%') }
-/	m:macroRef			{ return m }
-/	chunks:( macroRef / idChunk )*	{ return ast('ID').add(chunks) }
-/	[0-9]+				{ return ast('#').set({value:
-						 parseInt(text(), 10)}) }
+net = '%NC%'	{ return {t: '%NC%'} }
+/	[01]	{ return {t: '#', value: parseInt(text(), 2)} }
+/	macroRef
+/	idChunk
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
 

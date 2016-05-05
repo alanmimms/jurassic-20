@@ -1,44 +1,38 @@
 'use strict';
 
-const util = require('util');
-const fs = require('fs');
 const _ = require('lodash');
+const fs = require('fs');
+const util = require('util');
 const PEG = require('pegjs');
-const PEGUtil = require('pegjs-util');
-const ASTY = require('asty');
+
 const logic = require('./logic.js');
 
 const dumpAST = true;
 
 
-const asty = new ASTY();
-
 let parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
-//  trace: true,
+  output: 'parser',
+  trace: true,
 });
-
-parser.asty = asty;
 
 const dpa = fs.readFileSync('dpa.board', 'utf8');
 
-let result = PEGUtil.parse(parser, dpa, {
-  startRule: 'board',
-  makeAST: (line, col, offset, args) => 
-    asty.create.apply(asty, args).pos(line, col, offset),
-  asty,
-});
+let ast;
 
-//console.log('result:', util.inspect(result, {depth: 9, colors: false}));
-
-if (result.error !== null) {
-    console.log("ERROR: Parsing Failure:\n" +
-        PEGUtil.errorMessage(result.error, true).replace(/^/mg, "ERROR: "))
+try {
+  ast = parser.parse(dpa);
+} catch (e) {
+  console.log("ERROR: Parsing Failure:", e.message, 
+	      '\n       start:', e.location.start,
+	      '\n         end:', e.location.end);
   process.exit(1);
 }
 
+//console.log('ast:', util.inspect(ast, {depth: 9, colors: false}));
+
 if (dumpAST) {
   let f = fs.openSync('before.evaluation', 'w');
-  fs.writeSync(f, result.ast.dump().replace(/\n$/, ''));
+  fs.writeSync(f, util.inspect(ast, {depth: 9999}));
   fs.closeSync(f);
 }
 
@@ -46,99 +40,73 @@ if (dumpAST) {
 var macroEnv = {n: 12};
 var netRefs = {};
 
-expandMacros(result.ast);
+expandMacros(ast);
 
 
-// Under all 'Pin' nodes evaluate and expand all '[]' nodes and join
-// any adjacent IDchunks with them to form a single 'ID' node with
-// attribute 'name'.
+// Walk the entire AST. Under all 'Pin' nodes evaluate and expand all
+// '[]' nodes and join any adjacent IDchunks with them to form a
+// single 'ID' node with attribute 'name'.
 var net, dir, pin, chip, page;
 function expandMacros(ast) {
 
   if (!ast) return;
 
-  const type = ast.type();
-  const kids = ast.childs();
-
-  switch (type) {
+  switch (ast.t) {
   case 'Chip':
     chip = ast;
-    chip.logic = logic[chip.get('type')];
+    chip.logic = logic[chip.type];
 
     if (!chip.logic) {
       // Provide dummy entry just so we can go on
       chip.logic = {'<': [], '>': [], '<>': []};
-      console.log(`${page.get('name')}.${chip.get('name')} ` +
-		  `undefined logic device '${chip.get('type')}'`);
+      console.log(`${page.name}.${chipname} undefined logic device '${chip.type}'`);
     }
     
-//  console.log(`\n${page.get('name')}.${chip.get('name')}: ${chip.get('type')} ${chip.get('desc')}`);
-    kids.forEach(k => expandMacros(k));
+    //  console.log(`\n${page.name}.${chip.name}: ${chip.type} ${chip.desc}`);
+    chip.pins.forEach(k => expandMacros(k));
     break;
 
   case 'Page':
     page = ast;
-//    console.log(`\nPage ${page.get('name')}, pdfRef ${page.get('pdfRef')}`);
-    kids.forEach(k => expandMacros(k));
+    //    console.log(`\nPage ${page.name}, pdfRef ${page.pdfRef}`);
+    page.nodes.forEach(k => expandMacros(k));
     break;
 
   case 'Board':
-    kids.forEach(k => expandMacros(k));
+    ast.pages.forEach(k => expandMacros(k));
     break;
 
   case 'Pin':
     pin = ast;
     net = '';
-    dir = pin.get('dir');
-    'dir name'.split(/\s+/).forEach(p => pin[p] = pin.get(p));
 
-    kids.forEach(pinKid => {
+    switch (pin.net.t) {
+    case '[]':		// Macro
+      net += evalExpr(pin.net.head);
+      // XXX Add selector logic back here
+      break;
 
-      switch (pinKid.type()) {
-      case 'ID':
-	pinKid.childs().forEach(idKid => {
+    case 'IDchunk':	// Piece of an identifier
+      net += pin.net.name;
+      break;
 
-	  switch (idKid.type()) {
-	  case '[]':		// Macro
-	    net += evalExpr(idKid);
-	    break;
+    case '%NC%':
+      net += '%NC%';
+      break;
 
-	  case 'IDchunk':		// Piece of an identifier
-	    net += idKid.get('name');
-	    break;
+    case '#':
+      net += pin.net.value;
+      break;
 
-	  default:
-	    break;
-	  }
-	});
+    default:
+      break;
+    }
 
-	break;
+    if (!chip.logic[pin.dir] || chip.logic[dir].indexOf(pin.name) < 0)
+      console.log(`  ${chip.name} undefined pin ${pin.name} ${pin.dir} ` +
+		  `for ${chip.type}`);
 
-      case '[]':		// Macro
-	net += evalExpr(pinKid);
-	break;
-
-      case '%NC%':
-	net += '%NC%';
-	break;
-
-      default:
-	console.log(`Pin child node of unknown flavor '${pinKid.type()}' IGNORED`);
-	return;
-      }
-
-      if (!chip.logic[dir] || chip.logic[dir].indexOf(pin.name) < 0)
-	  console.log(`  ${chip.get('name')} undefined pin ${pin.name} ${dir} ` +
-		      `for ${chip.get('type')}`);
-
-      pin.net = net;
-      pin.set('net', net);
-    });
-
-    /*
-    if (chip.get('name') === 'e33' || chip.get('name') === 'e29')
-      console.log(`  ${chip.get('name')}.${pin.name} ${dir} ${net}`);
-     */
+    pin.net = net;
     
     if (!netRefs[net]) netRefs[net] = {[dir]: []};
     if (!netRefs[net][dir]) netRefs[net][dir] = {};
@@ -146,10 +114,9 @@ function expandMacros(ast) {
     break;
 
   default:
+    console.log(`Unrecognized AST node type '${ast.t}'.`);
     break;
   }
-  
-  if (type !== 'ID' && type !== '%NC%') ast.childs().forEach(k => expandMacros(k));
 }
 
 
@@ -194,29 +161,8 @@ function evalExpr(t) {
 
 if (dumpAST) {
   let f = fs.openSync('after.evaluation', 'w');
-  fs.writeSync(f, result.ast.dump().replace(/\n$/, ''));
+  fs.writeSync(f, util.inspect(ast, {depth: 9999}));
   fs.closeSync(f);
-}
-
-
-////////////////////////////////////////////////////////////////
-
-if (0) {			// Old crufty debugging shit
-  result.ast.walk((node, depth, parent, when) => {
-    let as = ' ';
-    let name = node.get('name');
-    if (name) as += `'${name}'`;
-
-    if (node.type() === 'ID') {
-      as += node.childs().map(c => c.type()).join(', ');
-    } else if (node.type() === '[]') {
-      as += node.childs().map(p => node.type()).join(', ');
-    }
-    
-    console.log(_.padStart('', depth*2) + node.type() + as);
-    return false;
-  });
-
 }
 
 
