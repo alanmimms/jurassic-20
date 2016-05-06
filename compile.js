@@ -12,7 +12,7 @@ const dumpAST = true;
 
 let parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
   output: 'parser',
-  trace: true,
+//  trace: true,
 });
 
 const dpa = fs.readFileSync('dpa.board', 'utf8');
@@ -46,7 +46,7 @@ expandMacros(ast);
 // Walk the entire AST. Under all 'Pin' nodes evaluate and expand all
 // '[]' nodes and join any adjacent IDchunks with them to form a
 // single 'ID' node with attribute 'name'.
-var net, dir, pin, chip, page;
+var net, pin, chip, page, board;
 function expandMacros(ast) {
 
   if (!ast) return;
@@ -54,7 +54,9 @@ function expandMacros(ast) {
   switch (ast.t) {
   case 'Chip':
     chip = ast;
+    chip.page = page;
     chip.logic = logic[chip.type];
+//    console.log(`Chip ${util.inspect(chip)}`);
 
     if (!chip.logic) {
       // Provide dummy entry just so we can go on
@@ -68,26 +70,29 @@ function expandMacros(ast) {
 
   case 'Page':
     page = ast;
+    page.board = board;
     //    console.log(`\nPage ${page.name}, pdfRef ${page.pdfRef}`);
     page.nodes.forEach(k => expandMacros(k));
     break;
 
   case 'Board':
+    board = ast;
     ast.pages.forEach(k => expandMacros(k));
     break;
 
   case 'Pin':
     pin = ast;
+    pin.chip = chip;
     net = '';
 
     switch (pin.net.t) {
     case '[]':		// Macro
-      net += evalExpr(pin.net.head);
-      // XXX Add selector logic back here
+      net += evalExpr(pin.net);
       break;
 
     case 'IDchunk':	// Piece of an identifier
       net += pin.net.name;
+      console.log(`IDchunk net='${net}'`);
       break;
 
     case '%NC%':
@@ -98,19 +103,24 @@ function expandMacros(ast) {
       net += pin.net.value;
       break;
 
+    case 'ID':
+      net += pin.net.chunks.map(c => evalExpr(c));
+      console.log(`ID ${util.inspect(pin.net)} net='${net}'`);
+      break;
+
     default:
       break;
     }
 
-    if (!chip.logic[pin.dir] || chip.logic[dir].indexOf(pin.name) < 0)
+    if (!chip.logic[pin.dir] || chip.logic[pin.dir].indexOf(pin.name) < 0)
       console.log(`  ${chip.name} undefined pin ${pin.name} ${pin.dir} ` +
 		  `for ${chip.type}`);
 
     pin.net = net;
     
-    if (!netRefs[net]) netRefs[net] = {[dir]: []};
-    if (!netRefs[net][dir]) netRefs[net][dir] = {};
-    netRefs[net][dir][pin] = pin;
+    if (!netRefs[net]) netRefs[net] = {[pin.dir]: []};
+    if (!netRefs[net][pin.dir]) netRefs[net][pin.dir] = {};
+    netRefs[net][pin.dir][pin] = pin;
     break;
 
   default:
@@ -125,37 +135,45 @@ function expandMacros(ast) {
 // evaluate any expression. Returns the full expansion of the
 // resulting collapsed tree.
 function evalExpr(t) {
-  let kids = t.childs();
+  let result;
 
-  switch (t.type()) {
+  switch (t.t) {
   case '[]':
 
-    if (kids.length > 1) {	// It's a selector
-      let n = +evalExpr(kids[0]);
-      return evalExpr(kids[n]);
+    if (t.ids) {		// It's a selector
+      let n = +evalExpr(t.head);
+      result = evalExpr(t.ids[n - 1]);
     } else {			// It's a simple expression macro
-      return evalExpr(kids[0]);
+      result = evalExpr(t.head);
     }
+
+    break;
 
   case '+':
   case '-':
   case '/':
   case '*':
-    return Math.trunc(eval(+evalExpr(kids[0]) + t.type() + +evalExpr(kids[1])));
+    result = Math.trunc(eval(+evalExpr(t.l) + t.t + +evalExpr(t.r)));
+    break;
 
   case 'IDchunk':
   case 'id':
-    let e = macroEnv[t.get('name')];
-    if (e === undefined) e = t.get('name');
-    return e;
+    result = macroEnv[t.name];
+    if (result === undefined) result = t.name;
+    break;
 
   case '#':
-    return t.get('value');
+    result = t.value;
+    break;
 
   default:
-    console.log(`Unhandled subtree node type in [] macro: '${t.type()}'.`);
+    console.log(`Unhandled subtree node type in [] macro: '${t.t}'.`);
+    result = '<coding error>';
     break;
   }
+
+  console.log(`evalExpr(${util.inspect(t)}) result '${result}'`);
+  return result;
 }
 
 
@@ -170,10 +188,15 @@ if (dumpAST) {
 Object.keys(netRefs)
   .filter(net => {
     if (!netRefs[net]['>']) return true;
+    if (net === '0' || net === '1' || net === '%NC%') return false;
     let nOuts = Object.keys(netRefs[net]['>']).length;
+/*
+    console.log(`  net '${net}' has ${nOuts} output pins driving it: ` +
+		util.inspect(netRefs[net]['>'], {depth: 4}));
+*/
     return (nOuts !== 1);
   })
-  .forEach(net => console.log(`${net} has zero or more than one driving pin`));
+  .forEach(net => console.log(`${net} has zero or more than one driving pin: ${netRefs[net]['>']}`));
 
 
 /*

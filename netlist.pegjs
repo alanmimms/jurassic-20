@@ -53,8 +53,8 @@ macroName = name:$( [a-zA-Z0-9]+ )
 
 net = '%NC%'	{ return {t: '%NC%'} }
 /	[01]	{ return {t: '#', value: parseInt(text(), 2)} }
-/	macroRef
-/	idChunk
+/	c:( macroRef / idChunk )+
+		{ return {t: 'ID', chunks: c} }
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
 
