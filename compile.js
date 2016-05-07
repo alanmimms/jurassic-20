@@ -22,9 +22,15 @@ let ast;
 try {
   ast = parser.parse(dpa);
 } catch (e) {
-  console.log("ERROR: Parsing Failure:", e.message, 
-	      '\n       start:', e.location.start,
-	      '\n         end:', e.location.end);
+  console.log("ERROR: Parsing Failure:", e.message);
+
+  if (e.location) {
+    console.log('       start:', e.location.start,
+		'\n         end:', e.location.end);
+  } else {
+    console.log('Exception:', util.inspect(e));
+  }
+
   process.exit(1);
 }
 
@@ -104,8 +110,7 @@ function expandMacros(ast) {
       break;
 
     case 'ID':
-      net += pin.net.chunks.map(c => evalExpr(c));
-      console.log(`ID ${util.inspect(pin.net)} net='${net}'`);
+      net += pin.net.chunks.map(c => evalExpr(c)).join('');
       break;
 
     default:
@@ -118,7 +123,13 @@ function expandMacros(ast) {
 
     pin.net = net;
     
-    if (!netRefs[net]) netRefs[net] = {[pin.dir]: []};
+    // We want netRefs to be an object whose properties are the net
+    // names. Each property value is an object whose names are the pin
+    // directions: '<', '>', and '<>'. The value of this property is
+    // an object whose properties (and, to be complete here, its
+    // values as well) are the pins attached to the net for the
+    // associated direction.
+    if (!netRefs[net]) netRefs[net] = {};
     if (!netRefs[net][pin.dir]) netRefs[net][pin.dir] = {};
     netRefs[net][pin.dir][pin] = pin;
     break;
@@ -137,14 +148,24 @@ function expandMacros(ast) {
 function evalExpr(t) {
   let result;
 
+  if (!t || !t.t) debugger;
+
   switch (t.t) {
   case '[]':
 
-    if (t.ids) {		// It's a selector
-      let n = +evalExpr(t.head);
-      result = evalExpr(t.ids[n - 1]);
-    } else {			// It's a simple expression macro
-      result = evalExpr(t.head);
+    // Two cases:
+    // 
+    // 1. t.ids is an empty array, in which case t.head is a (possibly
+    // complex) macro to be expanded.
+    //
+    // 2. t.ids is a non-empty array, in which case t.head is a simple
+    // expression macro whose value is the 1-origin member of t.ids[]
+    // to expand. Note that this t.ids[n-1] value might be a complex
+    // macro.
+    result = evalExpr(t.head);
+
+    if (t.ids.length) {		// It's a selector
+      result = evalExpr(t.ids[+result - 1]);
     }
 
     break;
@@ -153,7 +174,7 @@ function evalExpr(t) {
   case '-':
   case '/':
   case '*':
-    result = Math.trunc(eval(+evalExpr(t.l) + t.t + +evalExpr(t.r)));
+    result = Math.trunc(eval(evalExpr(t.l) + t.t + evalExpr(t.r)));
     break;
 
   case 'IDchunk':
@@ -167,12 +188,12 @@ function evalExpr(t) {
     break;
 
   default:
-    console.log(`Unhandled subtree node type in [] macro: '${t.t}'.`);
+    console.log(`Unhandled subtree node type in [] macro: '${util.inspect(t, {depth: 999})}'.`);
     result = '<coding error>';
     break;
   }
 
-  console.log(`evalExpr(${util.inspect(t)}) result '${result}'`);
+//  console.log(`evalExpr(${util.inspect(t)}) result '${result}'`);
   return result;
 }
 
@@ -186,17 +207,15 @@ if (dumpAST) {
 
 // Check each net for more than one driving pin.
 Object.keys(netRefs)
-  .filter(net => {
-    if (!netRefs[net]['>']) return true;
-    if (net === '0' || net === '1' || net === '%NC%') return false;
-    let nOuts = Object.keys(netRefs[net]['>']).length;
-/*
-    console.log(`  net '${net}' has ${nOuts} output pins driving it: ` +
-		util.inspect(netRefs[net]['>'], {depth: 4}));
-*/
-    return (nOuts !== 1);
-  })
-  .forEach(net => console.log(`${net} has zero or more than one driving pin: ${netRefs[net]['>']}`));
+  .forEach(net => {
+    if (net === '0' || net === '1' || net === '%NC%') return;
+    const driving = netRefs[net]['>'];
+    if (!driving) return;
+    const n = Object.keys(driving).length;
+    if (n === 1) return;
+    console.log(`Net '${net}' has ${n} driving pins: ` +
+		(n ? Object.keys(driving).map(d => d.chip.name + '.' + d.name) : '<none>'));
+  });
 
 
 /*
