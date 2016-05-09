@@ -515,8 +515,8 @@ e3:   10181 alu
       f4 > adx [n+0] h
       f2 > adx [n+1] h
       f1 > adx [n+2] h
-      cg > ad cg [n+0] h
-      cp > ad cp [n+0] h
+      cg > adx cg [n+0] h
+      cp > adx cp [n+0] h
 
 e4:   10181 alu
       a8 < adxa [n+3] h
@@ -673,8 +673,8 @@ e26:  10174 2x4 mix
       sel2 < cram adb sel 2 [n] h
       sel1 < cram adb sel 1 [n] h
       nen < 0
-      b0 > adb [n+0] h
-      b1 > adb [n+1] h
+      b0 > adb [n+2] h
+      b1 > adb [n+3] h
 
 e19:  10174 2x4 mix
       d00 < fm [n+4] h

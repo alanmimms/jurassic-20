@@ -17,10 +17,12 @@ let parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
 
 const dpa = fs.readFileSync('dpa.board', 'utf8');
 
-let ast;
+let fullAST;
+let net, pin, chip, page, board;
+
 
 try {
-  ast = parser.parse(dpa);
+  fullAST = parser.parse(dpa);
 } catch (e) {
   console.log("ERROR: Parsing Failure:", e.message);
 
@@ -34,11 +36,9 @@ try {
   process.exit(1);
 }
 
-//console.log('ast:', util.inspect(ast, {depth: 9, colors: false}));
-
 if (dumpAST) {
   let f = fs.openSync('before.evaluation', 'w');
-  fs.writeSync(f, util.inspect(ast, {depth: 9999}));
+  fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
   fs.closeSync(f);
 }
 
@@ -46,13 +46,12 @@ if (dumpAST) {
 var macroEnv = {n: 12};
 var netRefs = {};
 
-expandMacros(ast);
+expandMacros(fullAST);
 
 
 // Walk the entire AST. Under all 'Pin' nodes evaluate and expand all
-// '[]' nodes and join any adjacent IDchunks with them to form a
+// 'Macro' nodes and join any adjacent IDchunks with them to form a
 // single 'ID' node with attribute 'name'.
-var net, pin, chip, page, board;
 function expandMacros(ast) {
 
   if (!ast) return;
@@ -61,13 +60,14 @@ function expandMacros(ast) {
   case 'Chip':
     chip = ast;
     chip.page = page;
+    chip.board = board;
     chip.logic = logic[chip.type];
 //    console.log(`Chip ${util.inspect(chip)}`);
 
     if (!chip.logic) {
       // Provide dummy entry just so we can go on
       chip.logic = {'<': [], '>': [], '<>': []};
-      console.log(`${page.name}.${chipname} undefined logic device '${chip.type}'`);
+      console.log(`${page.name}.${chip.name} undefined logic device '${chip.type}'`);
     }
     
     //  console.log(`\n${page.name}.${chip.name}: ${chip.type} ${chip.desc}`);
@@ -78,7 +78,7 @@ function expandMacros(ast) {
     page = ast;
     page.board = board;
     //    console.log(`\nPage ${page.name}, pdfRef ${page.pdfRef}`);
-    page.nodes.forEach(k => expandMacros(k));
+    page.chips.forEach(k => expandMacros(k));
     break;
 
   case 'Board':
@@ -89,31 +89,33 @@ function expandMacros(ast) {
   case 'Pin':
     pin = ast;
     pin.chip = chip;
+    pin.fullName = pin.chip.page.name + '.' + pin.chip.name + '.' + pin.name;
+    pin.symbol = Symbol(pin.fullName);
     net = '';
 
     switch (pin.net.t) {
-    case '[]':		// Macro
+    case 'Macro':
       net += evalExpr(pin.net);
       break;
 
-    case 'IDchunk':	// Piece of an identifier
-      net += pin.net.name;
-      console.log(`IDchunk net='${net}'`);
+    case 'IDList':
+      net = pin.net.list.map(id => evalExpr(id)).join('');
       break;
 
-    case '%NC%':
+    case 'IDChunk':
+      net += pin.net.name;
+      break;
+
+    case 'NoConnect':
       net += '%NC%';
       break;
 
-    case '#':
+    case 'Value':
       net += pin.net.value;
       break;
 
-    case 'ID':
-      net += pin.net.chunks.map(c => evalExpr(c)).join('');
-      break;
-
     default:
+      console.log(`Unhandled AST type in evalExpr: ast=${util.inspect(ast, {depth: 99})}`);
       break;
     }
 
@@ -121,7 +123,8 @@ function expandMacros(ast) {
       console.log(`  ${chip.name} undefined pin ${pin.name} ${pin.dir} ` +
 		  `for ${chip.type}`);
 
-    pin.net = net;
+    pin.netName = net;
+    if (net === '') console.log(`Pin ${pin.fullName}  net=${util.inspect(pin.net, {depth: 9})}`);
     
     // We want netRefs to be an object whose properties are the net
     // names. Each property value is an object whose names are the pin
@@ -131,7 +134,7 @@ function expandMacros(ast) {
     // associated direction.
     if (!netRefs[net]) netRefs[net] = {};
     if (!netRefs[net][pin.dir]) netRefs[net][pin.dir] = {};
-    netRefs[net][pin.dir][pin] = pin;
+    netRefs[net][pin.dir][pin.fullName] = pin;
     break;
 
   default:
@@ -141,7 +144,7 @@ function expandMacros(ast) {
 }
 
 
-// For the given AST subtree evaluate and expand any macro 'id' nodes
+// For the given AST subtree evaluate and expand any macro nodes
 // with the corresponding value from 'macroEnv' and numerically
 // evaluate any expression. Returns the full expansion of the
 // resulting collapsed tree.
@@ -151,7 +154,7 @@ function evalExpr(t) {
   if (!t || !t.t) debugger;
 
   switch (t.t) {
-  case '[]':
+  case 'Macro':
 
     // Two cases:
     // 
@@ -177,18 +180,17 @@ function evalExpr(t) {
     result = Math.trunc(eval(evalExpr(t.l) + t.t + evalExpr(t.r)));
     break;
 
-  case 'IDchunk':
-  case 'id':
+  case 'IDChunk':
     result = macroEnv[t.name];
     if (result === undefined) result = t.name;
     break;
 
-  case '#':
+  case 'Value':
     result = t.value;
     break;
 
   default:
-    console.log(`Unhandled subtree node type in [] macro: '${util.inspect(t, {depth: 999})}'.`);
+    console.log(`Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.`);
     result = '<coding error>';
     break;
   }
@@ -197,34 +199,27 @@ function evalExpr(t) {
   return result;
 }
 
+// Clean up so we can't reference old junk. We keep 'board' around for now.
+page = chip = pin = net = undefined;
+
 
 if (dumpAST) {
   let f = fs.openSync('after.evaluation', 'w');
-  fs.writeSync(f, util.inspect(ast, {depth: 9999}));
+  fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
   fs.closeSync(f);
 }
 
 
-// Check each net for more than one driving pin.
-Object.keys(netRefs)
-  .forEach(net => {
+console.log(`Check nets for zero or more than one driving pin:`);
+Object.keys(netRefs).forEach(net => {
+
+    // These special nets don't need driving pins.
     if (net === '0' || net === '1' || net === '%NC%') return;
+
     const driving = netRefs[net]['>'];
     if (!driving) return;
     const n = Object.keys(driving).length;
     if (n === 1) return;
     console.log(`Net '${net}' has ${n} driving pins: ` +
-		(n ? Object.keys(driving).map(d => d.chip.name + '.' + d.name) : '<none>'));
+		(n ? Object.keys(driving).join(', ') : '<none>'));
   });
-
-
-/*
-const it = 'internal-e33-3 3';
-console.log(it + ':', require('util').inspect(netRefs[it]['>'], {depth: 1}));
- */
-
-console.log(`Check pins vs logic:`);
-
-
-
-console.log(`Unconnected node names:`);

@@ -19,8 +19,7 @@
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) +
-	'  pages=' + util.inspect(this.pages, opts);
+      return `${super.inspect(depth, opts)}(pages=${util.inspect(this.pages, opts)})`;
     }
   }
 
@@ -29,12 +28,12 @@
       super();
       this.name = name;
       this.pdfRef = pdfRef;
+      this.chips = [];
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) +
-	'  name=' + this.name +
-	'  pdfRef=' + this.pdfRef;
+      return `${super.inspect(depth, opts)}(name=${this.name}, pdfRef=${this.pdfRef},\n` +
+		`  chips=${util.inspect(this.chips, opts)})`;
     }
   }
 
@@ -44,13 +43,13 @@
       this.name = name;
       this.type = type;
       this.desc = desc;
+      this.pins = [];
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) +
-	'  name=' + this.name +
-	'  type=' + this.type +
-	'  desc=' + this.desc;
+      return `${super.inspect(depth, opts)}(` +
+		`name=${this.name}, type=${this.type}, desc=${this.desc},\n` +
+		`  pins=${util.inspect(this.pins, opts)})`;
     }
   }
 
@@ -63,10 +62,8 @@
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) +
-	'  name=' + this.name +
-	'  dir=' + this.dir +
-	'  net=' + this.net;
+      return `${super.inspect(depth, opts)}(` +
+		`name=${this.name}, dir=${this.dir}, net=${util.inspect(this.net, opts)})`;
     }
   }
 
@@ -78,8 +75,9 @@
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) + '\n  head=' + util.inspect(this.head, opts) +
-	'\n  ids=' + util.inspect(this.ids, opts);
+      return `${super.inspect(depth, opts)}(\n` +
+		`  head=${util.inspect(this.head, opts)},\n` +
+		`  ids=${util.inspect(this.ids, opts)})`;
     }
   }
 
@@ -90,7 +88,8 @@
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) + 'list=' + util.inspect(this.list, opts);
+      return `${super.inspect(depth, opts)}(\n` +
+		`  list=${util.inspect(this.list, opts)})`;
     }
   }
 
@@ -101,7 +100,8 @@
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) + 'list=' + util.inspect(this.list, opts);
+      return `${super.inspect(depth, opts)}(\n` +
+		`  list=${util.inspect(this.list, opts)})`;
     }
   }
 
@@ -112,18 +112,18 @@
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) + 'name=' + this.name;
+      return `${super.inspect(depth, opts)}(name=${this.name})`;
     }
   }
 
-  class Number extends ASTNode {
+  class Value extends ASTNode {
     constructor(value) {
       super();
       this.value = value;
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) + 'value=' + this.value;
+      return `${super.inspect(depth, opts)}(value=${this.value})`;
     }
   }
 
@@ -137,25 +137,26 @@
     }
 
     inspect(depth, opts) {
-      return super.inspect(depth, opts) + '(' + 
-	util.inspect(this.l, opts) + ', ' +
-	util.inspect(this.r, opts) + ')';
+      return `${super.inspect(depth, opts)}(\n` +
+      `  ${util.inspect(this.l, opts)},\n` +
+      `  ${util.inspect(this.r, opts)})`;
     }
   }
 }
 
+
 board = p:page+ { return new Board(p) }
 
-page = p:pageDef n:nodeDef+
-		{ p.nodes = n; return p }
+page = p:pageDef n:chipDef+
+		{ p.chips = n; return p }
 
 pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  EOL+
 		{ return new Page(name, pdfRef) }
 
-nodeDef = h:nodeHead p:pinDef+
+chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }
 
-nodeHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) EOL+
+chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) EOL+
 		{ return new Chip(name, type, desc) }
 
 pinDef = [ \t]+ name:bareID _ dir:direction _ net:net _ EOL+
@@ -189,7 +190,7 @@ product = l:primary _ op:('*' / '/') _ r:product
 /	primary
 
 primary = [0-9]+
-		{ return new Number(parseInt(text(), 10)) }
+		{ return new Value(parseInt(text(), 10)) }
 /	'(' _ val:sum _ ')'
 		{ return val }
 /	macroName
@@ -198,7 +199,7 @@ macroName = name:$( [a-zA-Z0-9]+ )
 		{ return new IDChunk(name) }
 
 net = '%NC%'	{ return new NoConnect() }
-/	[01]	{ return new Number(parseInt(text(), 2)) }
+/	[01]	{ return new Value(parseInt(text(), 2)) }
 /	c:( macroRef / idChunk )+
 		{ return new IDList(c) }
 

@@ -1,5 +1,12 @@
 'use strict';
 
+// This builds an object whose properties are the chip types - e.g., '10181' for an ALU.
+// These properties have object values of the form
+// {
+//   desc: 'short description',
+//   '<': ['input pin name1', 'input pin name 2', ...],
+//   '>': ['output pin name1', 'output pin name 2', ...],
+// )
 const _ = require('lodash');
 
 
