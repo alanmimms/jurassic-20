@@ -265,11 +265,11 @@ e30: 10164 8 mix
      b > arxm [n+5] h
 
 e45: 10174 2x4 mix
-     d00 < [(n+199)/100, adx 34 h, nq [n-2] h]
+     d00 < [(n+199)/100, adx 34 h, mq [n-2] h]
      d01 < sh [n+0] h
      d02 < ad [n+0] h
      d03 < ctl mq en h					// buffered through e38.13-9
-     d10 < [(n+199)/100, adx 35 h, nq [n-1] h]
+     d10 < [(n+199)/100, adx 35 h, mq [n-1] h]
      d11 < sh [n+1] h
      d12 < ad [n+1] h
      d13 < ctl mq en h					// buffered through e38.13-9
@@ -426,15 +426,15 @@ e29:  10105 3x2-3-2 or/nor
       a2 < internal-e33-10 [n/6+1]
       nqa > ad overflow [n] l
       qa > %NC%
-      b1 < 0
-      b2 < 0
-      b3 < 0
+      b1 < internal-dp04 fm write l-13ns delay-out	// This is on page DP04
+      b2 < internal-e29-2
+      b3 < [n/18+1, con fm write 00-17 l, con fm write 18-35 l]
       nqb > %NC%
-      qb > %NC%
-      c1 < 0
+      qb > dp04 fm write l
+      c1 < dp04 clk c h					// This is on page DP04
       c2 < 0
-      nqc > %NC%
-      qc > %NC%
+      nqc > internal-dp04 fm write l-13ns delay-in
+      qc > internal-e29-2
 
 e7:   10109 or buffer
       b1 < 0
@@ -550,7 +550,7 @@ e22:  10164 8 mix
       d5 < br [n+0] h
       d6 < br [n+0] h
       d7 < ar [n+0] h
-      sel4 < [(n+199)/100, hi, nc]
+      sel4 < [(n+199)/100, hi, %NC%]
       sel2 < cram adb sel 2 [n] h
       sel1 < cram adb sel 1 [n] h
       en < 0
@@ -565,7 +565,7 @@ e21:  10164 8 mix
       d5 < br [n+0] h
       d6 < br [n+0] h
       d7 < ar [n+1] h
-      sel4 < [(n+199)/100, hi, nc]
+      sel4 < [(n+199)/100, hi, %NC%]
       sel2 < cram adb sel 2 [n] h
       sel1 < cram adb sel 1 [n] h
       en < 0
@@ -680,7 +680,7 @@ e19:  10174 2x4 mix
       d00 < fm [n+4] h
       d01 < br [n+5] h
       d02 < br [n+4] h
-      d03 < [n/30+1, ar [n+6] n, arx 00 h]
+      d03 < [n/30+1, ar [n+6] h, arx 00 h]
       d10 < fm [n+5] h
       d11 < [n/30+1, br [n+6] a h, brx 00 h]
       d12 < br [n+5] h
@@ -735,6 +735,12 @@ e6:   10174 2x4 mix
       nen < 0
       b0 > adxb [n+4] h
       b1 > adxb [n+5] h
+
+Page: DP04, PDF18
+
+dl1: delay-line 13ns delay buffer
+     in < internal-dp04 fm write l-13ns delay-in
+     out > internal-dp04 fm write l-13ns delay-out
 
 e59: 10101 or buffer
      a1 < diag read func 12x h

@@ -9,109 +9,148 @@ const logic = require('./logic.js');
 
 const dumpAST = true;
 
+let netRefs = {};
+
 
 let parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
   output: 'parser',
 //  trace: true,
 });
 
-const dpa = fs.readFileSync('dpa.board', 'utf8');
+let boards = process.argv.slice(2).map(filename => {
+  let fullAST;
 
-let fullAST;
-let net, pin, chip, page, board;
+  try {
+    fullAST = parser.parse(fs.readFileSync('dpa.board', 'utf8'));
+  } catch (e) {
+    console.log("ERROR: Parsing Failure:", e.message);
 
+    if (e.location) {
+      console.log('       start:', e.location.start,
+		  '\n         end:', e.location.end);
+    } else {
+      console.log('Exception:', util.inspect(e));
+    }
 
-try {
-  fullAST = parser.parse(dpa);
-} catch (e) {
-  console.log("ERROR: Parsing Failure:", e.message);
-
-  if (e.location) {
-    console.log('       start:', e.location.start,
-		'\n         end:', e.location.end);
-  } else {
-    console.log('Exception:', util.inspect(e));
+    process.exit(1);
   }
 
-  process.exit(1);
-}
-
-if (dumpAST) {
-  let f = fs.openSync('before.evaluation', 'w');
-  fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
-  fs.closeSync(f);
-}
+  if (dumpAST) {
+    let f = fs.openSync('before.evaluation', 'w');
+    fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
+    fs.closeSync(f);
+  }
 
 
-var macroEnv = {n: 12};
-var netRefs = {};
+  let context = {};
+  let macroEnv = {n: 12};
 
-expandMacros(fullAST);
+  expandMacros(fullAST, macroEnv, context);
+
+
+  if (dumpAST) {
+    let f = fs.openSync('after.evaluation', 'w');
+    fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
+    fs.closeSync(f);
+  }
+
+
+  let notDriven = [];
+
+  console.log(`Check nets for zero or more than one driving pin:`);
+  Object.keys(netRefs).forEach(net => {
+
+    // These special nets don't need driving pins.
+    if (net === '0' || net === '1' || net === '%NC%') return;
+
+    const driving = netRefs[net]['>'];
+
+    if (!driving) {
+      notDriven.push(net);
+      return;
+    }
+    
+    const n = Object.keys(driving).length;
+    if (n === 1) return;
+    console.log(`Net '${net}' has ${n} driving pins: ` +
+		(n ? Object.keys(driving).join(', ') : '<none>'));
+  });
+
+  console.log('Undriven nets:');
+
+  notDriven.sort().forEach(net => {
+    console.log(`  '${net}' from ` + Object.keys(netRefs[net]['<']).join(', '));
+  });
+
+  console.log(`\nCount of undriven nets: ${notDriven.length}.`);
+});
 
 
 // Walk the entire AST. Under all 'Pin' nodes evaluate and expand all
 // 'Macro' nodes and join any adjacent IDchunks with them to form a
 // single 'ID' node with attribute 'name'.
-function expandMacros(ast) {
+function expandMacros(ast, macroEnv, cx) {
 
   if (!ast) return;
 
   switch (ast.t) {
   case 'Chip':
-    chip = ast;
-    chip.page = page;
-    chip.board = board;
-    chip.logic = logic[chip.type];
+    cx.chip = ast;
+    cx.chip.page = cx.page;
+    cx.chip.board = cx.board;
+    cx.chip.logic = logic[cx.chip.type];
 //    console.log(`Chip ${util.inspect(chip)}`);
 
-    if (!chip.logic) {
+    if (!cx.chip.logic) {
       // Provide dummy entry just so we can go on
-      chip.logic = {'<': [], '>': [], '<>': []};
-      console.log(`${page.name}.${chip.name} undefined logic device '${chip.type}'`);
+      cx.chip.logic = {'<': [], '>': [], '<>': []};
+      console.log(`${cx.page.name}.${cx.chip.name} undefined logic device '${cx.chip.type}'`);
     }
     
     //  console.log(`\n${page.name}.${chip.name}: ${chip.type} ${chip.desc}`);
-    chip.pins.forEach(k => expandMacros(k));
+    cx.chip.pins.forEach(k => expandMacros(k, macroEnv, cx));
     break;
 
   case 'Page':
-    page = ast;
-    page.board = board;
+    cx.page = ast;
+    cx.page.board = cx.board;
     //    console.log(`\nPage ${page.name}, pdfRef ${page.pdfRef}`);
-    page.chips.forEach(k => expandMacros(k));
+    cx.page.chips.forEach(k => expandMacros(k, macroEnv, cx));
     break;
 
   case 'Board':
-    board = ast;
-    ast.pages.forEach(k => expandMacros(k));
+    cx.board = ast;
+    ast.pages.forEach(k => expandMacros(k, macroEnv, cx));
     break;
 
   case 'Pin':
-    pin = ast;
-    pin.chip = chip;
-    pin.fullName = pin.chip.page.name + '.' + pin.chip.name + '.' + pin.name;
-    pin.symbol = Symbol(pin.fullName);
-    net = '';
+    cx.pin = ast;
+    cx.pin.chip = cx.chip;
+    cx.pin.fullName = cx.pin.chip.page.name + '.' + cx.pin.chip.name + '.' + cx.pin.name;
+    cx.pin.symbol = Symbol(cx.pin.fullName);
+    cx.net = '';
 
-    switch (pin.net.t) {
+    switch (cx.pin.net.t) {
     case 'Macro':
-      net += evalExpr(pin.net);
+      if (cx.pin.fullName === 'DP01.e53.d7') debugger;
+      console.log(`Macro pin.fullName=${cx.pin.fullName}`);
+      cx.net += evalExpr(cx.pin.net, macroEnv);	// Handles selectors and simple macros
       break;
 
     case 'IDList':
-      net = pin.net.list.map(id => evalExpr(id)).join('');
+      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv)).join('');
       break;
 
     case 'IDChunk':
-      net += pin.net.name;
+      cx.net += cx.pin.net.name;
       break;
 
     case 'NoConnect':
-      net += '%NC%';
+      cx.net += '%NC%';
       break;
 
     case 'Value':
-      net += pin.net.value;
+      cx.net += cx.pin.net.value;
       break;
 
     default:
@@ -119,12 +158,13 @@ function expandMacros(ast) {
       break;
     }
 
-    if (!chip.logic[pin.dir] || chip.logic[pin.dir].indexOf(pin.name) < 0)
-      console.log(`  ${chip.name} undefined pin ${pin.name} ${pin.dir} ` +
-		  `for ${chip.type}`);
+    if (!cx.chip.logic[cx.pin.dir] || cx.chip.logic[cx.pin.dir].indexOf(cx.pin.name) < 0)
+      console.log(`  ${cx.chip.name} undefined pin ${cx.pin.name} ${cx.pin.dir} ` +
+		  `for ${cx.chip.type}`);
 
-    pin.netName = net;
-    if (net === '') console.log(`Pin ${pin.fullName}  net=${util.inspect(pin.net, {depth: 9})}`);
+    cx.pin.netName = cx.net;
+    if (cx.net === '') 
+      console.log(`Pin ${cx.pin.fullName}  net=${util.inspect(cx.pin.net, {depth: 9})}`);
     
     // We want netRefs to be an object whose properties are the net
     // names. Each property value is an object whose names are the pin
@@ -132,9 +172,9 @@ function expandMacros(ast) {
     // an object whose properties (and, to be complete here, its
     // values as well) are the pins attached to the net for the
     // associated direction.
-    if (!netRefs[net]) netRefs[net] = {};
-    if (!netRefs[net][pin.dir]) netRefs[net][pin.dir] = {};
-    netRefs[net][pin.dir][pin.fullName] = pin;
+    if (!netRefs[cx.net]) netRefs[cx.net] = {};
+    if (!netRefs[cx.net][cx.pin.dir]) netRefs[cx.net][cx.pin.dir] = {};
+    netRefs[cx.net][cx.pin.dir][cx.pin.fullName] = cx.pin;
     break;
 
   default:
@@ -148,14 +188,13 @@ function expandMacros(ast) {
 // with the corresponding value from 'macroEnv' and numerically
 // evaluate any expression. Returns the full expansion of the
 // resulting collapsed tree.
-function evalExpr(t) {
+function evalExpr(t, macroEnv) {
   let result;
 
   if (!t || !t.t) debugger;
 
   switch (t.t) {
   case 'Macro':
-
     // Two cases:
     // 
     // 1. t.ids is an empty array, in which case t.head is a (possibly
@@ -165,10 +204,11 @@ function evalExpr(t) {
     // expression macro whose value is the 1-origin member of t.ids[]
     // to expand. Note that this t.ids[n-1] value might be a complex
     // macro.
-    result = evalExpr(t.head);
+    result = evalExpr(t.head, macroEnv);
 
-    if (t.ids.length) {		// It's a selector
-      result = evalExpr(t.ids[+result - 1]);
+    if (t.ids.list.length) {		// It's a selector
+      const sel = result;
+      result = evalExpr(t.ids.list[+result - 1], macroEnv);
     }
 
     break;
@@ -177,7 +217,11 @@ function evalExpr(t) {
   case '-':
   case '/':
   case '*':
-    result = Math.trunc(eval(evalExpr(t.l) + t.t + evalExpr(t.r)));
+    result = Math.trunc(eval(evalExpr(t.l, macroEnv) + t.t + evalExpr(t.r, macroEnv)));
+    break;
+
+  case 'IDList':
+    result = t.list.map(id => evalExpr(id, macroEnv)).join('');
     break;
 
   case 'IDChunk':
@@ -199,27 +243,3 @@ function evalExpr(t) {
   return result;
 }
 
-// Clean up so we can't reference old junk. We keep 'board' around for now.
-page = chip = pin = net = undefined;
-
-
-if (dumpAST) {
-  let f = fs.openSync('after.evaluation', 'w');
-  fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
-  fs.closeSync(f);
-}
-
-
-console.log(`Check nets for zero or more than one driving pin:`);
-Object.keys(netRefs).forEach(net => {
-
-    // These special nets don't need driving pins.
-    if (net === '0' || net === '1' || net === '%NC%') return;
-
-    const driving = netRefs[net]['>'];
-    if (!driving) return;
-    const n = Object.keys(driving).length;
-    if (n === 1) return;
-    console.log(`Net '${net}' has ${n} driving pins: ` +
-		(n ? Object.keys(driving).join(', ') : '<none>'));
-  });

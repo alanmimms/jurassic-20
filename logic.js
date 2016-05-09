@@ -58,6 +58,7 @@ const logic = {
   '10174': dev('2x4 mix', 'd0/4, d1/4, sel#1/2, nen', 'b/2'),
   '10181': dev('alu', 'a@4, b@4, s@4, boole, c in', 'f@4, cg, cp, c out'),
   '10210': dev('2x3 or', 'a#1/3, b#1/3', 'qa#1/3, qb#1/3'),
+  'delay-line': dev('delay buffer', 'in', 'out'),
 };
 
 if (require.main === module) console.log("logic:", require('util').inspect(logic));

@@ -173,10 +173,10 @@ selectorList = list:( ',' _ idList )*
 idList = list:( macroRef / idChunk )+
        		{ return new IDList(list) }
 
-bareID = [-/#=a-zA-Z]+ [-/#= a-zA-Z0-9]*
+bareID = [-/#=%a-zA-Z]+ [-/#=% a-zA-Z0-9]*
 		{ return text().trim() }
 
-idChunk = name:( '\\' EOL _ / [-/# a-zA-Z0-9=] )+
+idChunk = name:( '\\' EOL _ / [-/#% a-zA-Z0-9=] )+
 		{ return new IDChunk(text().replace(/\\[\n\r]\s*/g, '')) }
 
 expr = sum
