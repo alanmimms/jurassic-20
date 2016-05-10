@@ -1,5 +1,9 @@
 'use strict';
 
+// TODO: Saving ASTs to before and after files happens inside the
+// *.board loop. This needs to be done globally after all boards are
+// processed.
+
 const _ = require('lodash');
 const fs = require('fs');
 const util = require('util');
@@ -21,7 +25,8 @@ let boards = process.argv.slice(2).map(filename => {
   let fullAST;
 
   try {
-    fullAST = parser.parse(fs.readFileSync('dpa.board', 'utf8'));
+    console.log(`Compiling '${filename}'.`);
+    fullAST = parser.parse(fs.readFileSync(filename, 'utf8'));
   } catch (e) {
     console.log("ERROR: Parsing Failure:", e.message);
 
@@ -53,39 +58,39 @@ let boards = process.argv.slice(2).map(filename => {
     fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
     fs.closeSync(f);
   }
-
-
-  let notDriven = [];
-
-  console.log(`Check nets for zero or more than one driving pin:`);
-  Object.keys(netRefs).forEach(net => {
-
-    // These special nets don't need driving pins.
-    if (net === '0' || net === '1' || net === '%NC%') return;
-
-    const driving = netRefs[net]['>'];
-
-    if (!driving) {
-      notDriven.push(net);
-      return;
-    }
-    
-    const n = Object.keys(driving).length;
-    if (n === 1) return;
-    console.log(`Net '${net}' has ${n} driving pins: ` +
-		(n ? Object.keys(driving).join(', ') : '<none>'));
-  });
-
-  console.log('Undriven nets:');
-
-  notDriven.sort().forEach(net => {
-    console.log(`  '${net}' from ` + Object.keys(netRefs[net]['<']).join(', '));
-  });
-
-  console.log(`\nCount of undriven nets: ${notDriven.length}.`);
 });
 
+////////////////////////////////////////////////////////////////////////////////
+let notDriven = [];
 
+console.log(`Check nets for zero or more than one driving pin:`);
+Object.keys(netRefs).forEach(net => {
+
+  // These special nets don't need driving pins.
+  if (net === '0' || net === '1' || net === '%NC%') return;
+
+  const driving = netRefs[net]['~>'];
+
+  if (!driving) {
+    notDriven.push(net);
+    return;
+  }
+  
+  const n = Object.keys(driving).length;
+  if (n === 1) return;
+  console.log(`Net '${net}' has ${n} driving pins: ` +
+	      (n ? Object.keys(driving).join(', ') : '<none>'));
+});
+
+console.log('Undriven nets:');
+
+notDriven.sort().forEach(net => {
+  console.log(`  '${net}' from ` + Object.keys(netRefs[net]['~<']).join(', '));
+});
+
+console.log(`\nCount of undriven nets: ${notDriven.length}.`);
+
+////////////////////////////////////////////////////////////////////////////////
 // Walk the entire AST. Under all 'Pin' nodes evaluate and expand all
 // 'Macro' nodes and join any adjacent IDchunks with them to form a
 // single 'ID' node with attribute 'name'.
@@ -103,8 +108,8 @@ function expandMacros(ast, macroEnv, cx) {
 
     if (!cx.chip.logic) {
       // Provide dummy entry just so we can go on
-      cx.chip.logic = {'<': [], '>': [], '<>': []};
-      console.log(`${cx.page.name}.${cx.chip.name} undefined logic device '${cx.chip.type}'`);
+      cx.chip.logic = {'~<': [], '~>': [], '~<>': []};
+      console.log(`======> ${cx.page.name}.${cx.chip.name} undefined logic device '${cx.chip.type}'`);
     }
     
     //  console.log(`\n${page.name}.${chip.name}: ${chip.type} ${chip.desc}`);
@@ -159,7 +164,7 @@ function expandMacros(ast, macroEnv, cx) {
     }
 
     if (!cx.chip.logic[cx.pin.dir] || cx.chip.logic[cx.pin.dir].indexOf(cx.pin.name) < 0)
-      console.log(`  ${cx.chip.name} undefined pin ${cx.pin.name} ${cx.pin.dir} ` +
+      console.log(`======>  ${cx.chip.name} undefined pin ${cx.pin.name} ${cx.pin.dir} ` +
 		  `for ${cx.chip.type}`);
 
     cx.pin.netName = cx.net;
@@ -168,8 +173,8 @@ function expandMacros(ast, macroEnv, cx) {
     
     // We want netRefs to be an object whose properties are the net
     // names. Each property value is an object whose names are the pin
-    // directions: '<', '>', and '<>'. The value of this property is
-    // an object whose properties (and, to be complete here, its
+    // directions: '~<', '~>', and '~<>'. The value of this property
+    // is an object whose properties (and, to be complete here, its
     // values as well) are the pins attached to the net for the
     // associated direction.
     if (!netRefs[cx.net]) netRefs[cx.net] = {};

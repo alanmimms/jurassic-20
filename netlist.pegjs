@@ -162,7 +162,7 @@ chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) EOL
 pinDef = [ \t]+ name:bareID _ dir:direction _ net:net _ EOL+
 		{ return new Pin(name, dir, net) }
 
-direction = $( '>' / '<' / '<>' )
+direction = $( '~<>' / '~>' / '~<')
 
 macroRef =  '[' _ head:expr _ ids:selectorList ']'
 		{ return new Macro(head, ids) }
@@ -173,10 +173,14 @@ selectorList = list:( ',' _ idList )*
 idList = list:( macroRef / idChunk )+
        		{ return new IDList(list) }
 
-bareID = [-/#=%a-zA-Z]+ [-/#=% a-zA-Z0-9]*
+bareID = [-/#=%a-zA-Z]+ [-/#=%<> a-zA-Z0-9]*
 		{ return text().trim() }
 
-idChunk = name:( '\\' EOL _ / [-/#% a-zA-Z0-9=] )+
+idChunk = name:( '\\' EOL _ / [-/#%<> a-zA-Z0-9=] )+
+		{ return new IDChunk(text().replace(/\\[\n\r]\s*/g, '')) }
+
+// like idChunk but allows ',' in the identifier in non-macro context
+id = name:( '\\' EOL _ / [-/#%,<> a-zA-Z0-9=] )+
 		{ return new IDChunk(text().replace(/\\[\n\r]\s*/g, '')) }
 
 expr = sum
@@ -200,7 +204,7 @@ macroName = name:$( [a-zA-Z0-9]+ )
 
 net = '%NC%'	{ return new NoConnect() }
 /	[01]	{ return new Value(parseInt(text(), 2)) }
-/	c:( macroRef / idChunk )+
+/	c:( macroRef / id )+
 		{ return new IDList(c) }
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
