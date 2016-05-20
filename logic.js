@@ -65,6 +65,7 @@ const logic = {
   '10165': dev('pri enc', 'd/8, hold', 'any, q@3'),
   '10173': dev('2x4 mix latch', 'd0/2, d1/2, d2/2, d3/2, sel1, hold', 'b/4'),
   '10174': dev('2x4 mix', 'd0/4, d1/4, sel#1/2, nen', 'b/2'),
+  '10176': dev('6xdff', 'd0/6, clk', 'q0/6'),
   '10179': dev('carry', 'g@4, p@4, c in', 'c8 out, c2 out, g out, p out'),
   '10181': dev('alu', 'a@4, b@4, s@4, boole, c in', 'f@4, cg, cp, c out'),
   '10210': dev('2x3 or', 'a#1/3, b#1/3', 'qa#1/3, qb#1/3'),
