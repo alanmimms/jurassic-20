@@ -1,0 +1,181 @@
+Page: SCD1, PDF138
+
+e53: 10101 quad or/nor
+     a1 ~< cram scad 4 h
+     nqa ~> scd1 scad 4 l
+     b1 ~< cram scad 2 h
+     nqb ~> scd1 scad 2 l
+     abcd2 ~< 0
+     c1 ~< ar 00 d h
+     qc ~> scd1-internal-e53-9
+
+e54: 10109 dual 2/4 or/nor
+     a1 ~< scd1 scad 09 h
+     a2 ~< scd1 scad 08 h
+     a3 ~< scd1 scad 07 h
+     a4 ~< scd1 scad 06 h
+     qa ~> scd1-internal-e54-2
+     b1 ~< scd1-internal-e54-2
+     b2 ~< scd1 scad 05 h
+     b3 ~< scd1 scad 04 h
+     b4 ~< scd1 scad 03 h
+     b5 ~< scd1 scad 02 h
+     qb ~> scd1-internal-e54-15
+
+e37: 10105 2-3-2 or/nor
+     a1 ~< scd1-internal-e54-15
+     a2 ~< scd1 scad 01 h
+     a3 ~< scd1 scad 00 h
+     qa ~> -scd1 scad=0 h
+
+e67: 10118 triple 4-2 or-and
+     a1 ~< cram scad 2 h
+     a2 ~< %NC%
+     a3 ~< %NC%
+     b1 ~< -scd1 scad 4 h
+     b2 ~< %NC%
+     b3c3 ~< cram scad 1 h
+     qab ~> scd1 scad s1 h
+     c1 ~< %NC%
+     c2 ~< %NC%
+     d1 ~< -scd1 scad 4 h
+     d2 ~< %NC%
+     d3 ~< -scd1 scad 2 h
+     qcd ~> scd1 scad s0 h
+
+e71: 10118 triple 4-2 or-and
+     a1 ~< -scd1 scad 2 h
+     a2 ~< cram scad 1 h
+     a3 ~< %NC%
+     b1 ~< cram scad 4 h
+     b2 ~< %NC%
+     b3c3 ~< %NC%
+     qab ~> scd1 scad cry in h
+
+e82: 10181 ALU
+     a8 ~< %NC%
+     b8 ~< %NC%
+     a4 ~< scd1 scada 00 h
+     b4 ~< scd1 scadb 00 h
+     a2 ~< scd1 scada 00 h
+     b2 ~< scd1 scadb 00 h
+     a1 ~< scd1 scada 01 h
+     b1 ~< scd1 scadb 01 h
+     c in ~< scd1 scad cry 02 out h
+     s8 ~< cram scad 1 h
+     s4 ~< cram scad 2 h
+     s2 ~< scd1 scad s1 h
+     s1 ~< scd1 scad s0 h
+     boole ~< %NC%
+     c out ~> %NC%
+     f8 ~> %NC%
+     f4 ~> scd1 scad sign h
+     f2 ~> scd1 scad 00 h
+     f1 ~> scd1 scad 01 h
+     cg ~> %NC%
+     cp ~> %NC%
+
+e84: 10181 ALU
+     a8 ~< scd1 scada 02 h
+     b8 ~< scd1 scadb 02 h
+     a4 ~< scd1 scada 03 h
+     b4 ~< scd1 scadb 03 h
+     a2 ~< scd1 scada 04 h
+     b2 ~< scd1 scadb 04 h
+     a1 ~< scd1 scada 05 h
+     b1 ~< scd1 scadb 05 h
+     c in ~< scd1 scad cry 06 out h
+     s8 ~< cram scad 1 h
+     s4 ~< cram scad 2 h
+     s2 ~< scd1 scad s1 h
+     s1 ~< scd1 scad s0 h
+     boole ~< %NC%
+     c out ~> scd1 scad cry 02 out h
+     f8 ~> scd1 scad 02 h
+     f4 ~> scd1 scad 03 h
+     f2 ~> scd1 scad 04 h
+     f1 ~> scd1 scad 05 h
+     cg ~> %NC%
+     cp ~> %NC%
+
+e66: 10181 ALU
+     a8 ~< scd1 scada 06 h
+     b8 ~< scd1 scadb 06 h
+     a4 ~< scd1 scada 07 h
+     b4 ~< scd1 scadb 07 h
+     a2 ~< scd1 scada 08 h
+     b2 ~< scd1 scadb 08 h
+     a1 ~< scd1 scada 09 h
+     b1 ~< scd1 scadb 09 h
+     c in ~< scd1 scad cry in h
+     s8 ~< cram scad 1 h
+     s4 ~< cram scad 2 h
+     s2 ~< scd1 scad s1 h
+     s1 ~< scd1 scad s0 h
+     boole ~< %NC%
+     c out ~> scd1 scad cry 06 out h
+     f8 ~> scd1 scad 06 h
+     f4 ~> scd1 scad 07 h
+     f2 ~> scd1 scad 08 h
+     f1 ~> scd1 scad 09 h
+     cg ~> %NC%
+     cp ~> %NC%
+
+e76: 10113 quad 2 xor
+     a1 ~< scd1-internal-e53-9
+     a2 ~< ar 01 c h
+     qa ~> scd1 scada exp 02 h
+     b1 ~< scd1-internal-e53-9
+     b2 ~< ar 02 c h
+     qb ~> scd1 scada exp 03 h
+     c1 ~< scd1-internal-e53-9
+     c2 ~< ar 03 c h
+     qc ~> scd1 scada exp 04 h
+     d1 ~< scd1-internal-e53-9
+     d2 ~< ar 04 c h
+     qd ~> scd1 scada exp 05 h
+
+e51: 10113 quad 2 xor
+     a1 ~< scd1-internal-e53-9
+     a2 ~< ar 05 c h
+     qa ~> scd1 scada exp 06 h
+     b1 ~< scd1-internal-e53-9
+     b2 ~< ar 06 c h
+     qb ~> scd1 scada exp 07 h
+     c1 ~< scd1-internal-e53-9
+     c2 ~< ar 07 c h
+     qc ~> scd1 scada exp 08 h
+     d1 ~< scd1-internal-e53-9
+     d2 ~< ar 08 c h
+     qd ~> scd1 scada exp 09 h
+
+e83: 10174 2x4 mix
+     d00 ~< scd2 sc 00 h
+     d01 ~< %NC%
+     d02 ~< %NC%
+     d03 ~< %NC%
+     d10 ~< scd2 sc 01 h
+     d11 ~< %NC%
+     d12 ~< ar 00 d h
+     d13 ~< cram # 00 h
+     sel2 ~< cram scadb sel 2 h
+     sel1 ~< cram scadb sel 1 h
+     nen ~< %NC%
+     b0 ~> scd1 scadb 00 h
+     b1 ~> scd1 scadb 01 h
+
+e79: 10174 2x4 mix
+     d00 ~< scd2 sc 02 h
+     d01 ~< %NC%
+     d02 ~< ar 01 c h
+     d03 ~< cram # 01 h
+     d10 ~< scd2 sc 03 h
+     d11 ~< %NC%
+     d12 ~< ar 02 d h
+     d13 ~< cram # 02 h
+     sel2 ~< cram scadb sel 2 h
+     sel1 ~< cram scadb sel 1 h
+     nen ~< %NC%
+     b0 ~> scd1 scadb 02 h
+     b1 ~> scd1 scadb 03 h
+
