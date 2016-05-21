@@ -47,9 +47,10 @@ const dev = (desc, inputs, outputs) => ({desc, '~<': expand(inputs), '~>': expan
 const logic = {
   '10101': dev('4xor/nor', 'a1, b1, c1, d1, abcd2', 'nqa, qa, nqb, qb, nqc, qc, nqd, qd'),
   '10103': dev('4xor', 'a#1/2, b#1/2, c#1/2, d#1/2', 'qa, qb, nqc, qc, qd'),
+  '10104': dev('4xand', 'a#1/2, b#1/2, c#1/2, d#1/2', 'qa, qb, qc, qd, nqd'),
   '10105': dev('3x2-3-2 or/nor', 'a#1/2, b#1/3, c#1/2', 'nqa, qa, nqb, qb, nqc, qc'),
   '10107': dev('3x2 xor/xnor', 'a#1/2, b#1/2, c#1/2', 'nqa, qa, nqb, qb, nqc, qc'),
-  '10109': dev('2x2/4 or/nor', 'a#1/4, b#1/5', 'nqa, qa, nqb, qb'),
+  '10109': dev('2x4/5 or/nor', 'a#1/4, b#1/5', 'nqa, qa, nqb, qb'),
   '10110': dev('2x or buffer', 'a#1/3, b#1/3', 'qa#1/3, qb#1/3'),
   '10113': dev('4x xor buffer', 'a#1/2, b#1/2, c#1/2, d#1/2, ne', 'qa, qb, qc, qd'),
   '10117': dev('2x2-3 or-and/or-and', 'a#1/2, b#1/2, b3d3, c#1/3, d#1/2', 'nqab, qab, nqcd, qcd'),
