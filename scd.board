@@ -914,6 +914,11 @@ e9: 10176 hex dff
     q0 ~> scd4 tap req 2 h
     d1 ~< scd4-internal-e14-3
     q1 ~> scd4 trap cyc 2 h
+    d2 ~< scd4 trap req 1 en h
+    q2 ~> scd4 trap req 1 h
+    d3 ~< scd4-internal-e14-15
+    q3 ~< scd4 trap cyc 1 h
+
 
 e85: 10105 triple 2-3-2 or/nor
      a1 ~< scd4 trap cyc 2 h
@@ -931,6 +936,11 @@ e14: 10104 quad and
      b1 ~< scd4 trap req 2 h
      b2 ~< scd4-internal-e22-15
      qb ~> scd4-internal-e14-3
+     c1 ~< scd4 trap cyc 1 h
+     c2 ~< scd4 trap clear l
+     qc ~> scd4-internal-e14-15
+     d1 ~< scd4 trap req 1 h
+     d2 ~< scd4-internal-e22-15
 
 e38: 10104 quad and
      a1 ~< ar 10 c h
@@ -960,3 +970,9 @@ e15: 10117 dual 2-3 or-and
      nqab ~> %NC%
      qcd ~> %NC%
      nqcd ~> scd4-internal-e15-14
+
+e29: 10105 triple 3-2 or/nor
+     a1 ~< scd4 trap cyc 2 h
+     a2 ~< scd4 trap cyc 1 h
+     qa ~> scd4 trap cyc 1 or 2 h
+     nqd ~> %NC%
