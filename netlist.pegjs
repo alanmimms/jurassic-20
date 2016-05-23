@@ -150,16 +150,16 @@ board = p:page+ { return new Board(p) }
 page = p:pageDef n:chipDef+
 		{ p.chips = n; return p }
 
-pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  EOL+
+pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  (_ EOL)+
 		{ return new Page(name, pdfRef) }
 
 chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }
 
-chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) EOL+
+chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) (_ EOL)+
 		{ return new Chip(name, type, desc) }
 
-pinDef = [ \t]+ name:bareID _ dir:direction _ net:net _ EOL+
+pinDef = [ \t]+ name:bareID _ dir:direction _ net:net (_ EOL)+
 		{ return new Pin(name, dir, net) }
 
 direction = $( '~<>' / '~>' / '~<')
@@ -173,14 +173,14 @@ selectorList = list:( ',' _ idList )*
 idList = list:( macroRef / idChunk )+
        		{ return new IDList(list) }
 
-bareID = [-/#=%a-zA-Z]+ [-/#=%<> a-zA-Z0-9]*
+bareID = [-/#=%.+_&a-zA-Z]+ [-/#=%.+_&<> a-zA-Z0-9]*
 		{ return text().trim() }
 
-idChunk = name:( '\\' EOL _ / [-/#%<> a-zA-Z0-9=] )+
+idChunk = name:( '\\' EOL _ / [-/#%.+_&<> a-zA-Z0-9=] )+
 		{ return new IDChunk(text().replace(/\\[\n\r]\s*/g, '')) }
 
 // like idChunk but allows ',' in the identifier in non-macro context
-id = name:( '\\' EOL _ / [-/#%,<> a-zA-Z0-9=] )+
+id = name:( '\\' EOL _ / [-/#%,.+_&<> a-zA-Z0-9=] )+
 		{ return new IDChunk(text().replace(/\\[\n\r]\s*/g, '')) }
 
 expr = sum

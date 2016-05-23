@@ -25,10 +25,11 @@ e54: 10109 dual 2/4 or/nor
      qb ~> scd1-internal-e54-15
 
 e37: 10105 2-3-2 or/nor
-     a1 ~< scd1-internal-e54-15
-     a2 ~< scd1 scad 01 h
-     a3 ~< scd1 scad 00 h
-     qa ~> -scd1 scad=0 h
+     b1 ~< scd1-internal-e54-15
+     b2 ~< scd1 scad 01 h
+     b3 ~< scd1 scad 00 h
+     qb ~> -scd1 scad=0 h
+     nqb ~> %NC%
 
 e67: 10118 triple 4-2 or-and
      a1 ~< cram scad 2 h
@@ -53,6 +54,12 @@ e71: 10118 triple 4-2 or-and
      b2 ~< %NC%
      b3c3 ~< %NC%
      qab ~> scd1 scad cry in h
+     c1 ~< scd2 sc 04 h
+     c2 ~< %NC%
+     d1 ~< scd2 sc 05 h
+     d2 ~< scd2 sc 06 h
+     d3 ~< scd2 sc 07 h
+     qcd ~> scd2 sc 36 to 63h
 
 e82: 10181 ALU
      a8 ~< %NC%
@@ -303,14 +310,7 @@ e57: 10174 2x4 mix
 
 Page: SCD2, PDF139
 
-e71: 10118 triple 4-2 or-and
-     a1 ~< scd2 sc 05 h
-     a2 ~< scd2 sc 06 h
-     a3 ~< scd2 sc 07 h
-     b1 ~< scd2 sc 04 h
-     b2 ~< %NC%
-     b3 ~< %NC%
-     qab ~> scd2 sc 36 to 63h
+// Merged e71 pins here with half on previous page
 
 // In a 25MHz CPU, EP1 (e71.qab) and EM2 (e64.b5) are connected on the backpanel.
 
@@ -416,7 +416,7 @@ e65: 10101 quad or/nor
      a1 ~< con cond/fe shrt h
      abcd2 ~< cram fe load h
      b1 ~< scd5 reset h
-     c1 <~ scd2 fe 01 h
+     c1 ~< scd2 fe 01 h
      e1 ~< scd2 fe 05 h
      nqa ~> scd2-internal-e65-2
      nqb ~> scd2-internal-e65-3
@@ -703,7 +703,7 @@ e43: 10164 8 mix
      nen ~< con cond en 30-37 l
      b ~> scd3-internal-e43-15
 
-e36: e10117 dual 2-3 or-and
+e36: 10117 dual 2-3 or-and
      a1 ~< cram vma sel 2 a h
      a2 ~< scd3-internal-e43-15
      b1 ~< scd3-internal-e43-15
@@ -918,7 +918,10 @@ e9: 10176 hex dff
     q2 ~> scd4 trap req 1 h
     d3 ~< scd4-internal-e14-15
     q3 ~< scd4 trap cyc 1 h
-
+    d4 ~< scd4-internal-e4-3
+    q4 ~> scd4 fpd h
+    d5 ~< scd4-internal-e10-2
+    q5 ~> scd4 pcp h
 
 e85: 10105 triple 2-3-2 or/nor
      a1 ~< scd4 trap cyc 2 h
@@ -976,3 +979,59 @@ e29: 10105 triple 3-2 or/nor
      a2 ~< scd4 trap cyc 1 h
      qa ~> scd4 trap cyc 1 or 2 h
      nqd ~> %NC%
+
+e5: 10105 triple 2-3-2 or/nor
+    a1 ~< scd5 load flags h
+    a2 ~< scd5 disp/save flags h
+    a3 ~< ctl1 spec/clr fpd h
+    nqa ~> scd4 clr fpd l
+    qa ~> %NC5
+    b1 ~< scd5 load flgas l
+    b2 ~< -scd5 jfcl l
+    qb ~> scd4 load pcp h
+    nqb ~> %NC%
+    c1 ~< scd5 user a h
+    c2 ~< scd5 jfcl h
+    nqc ~> internal-scd4-e5-14
+    qc ~> internal-scd4-e5-15
+
+e4: 10104 quad and
+    a1 ~< scr4 fpd h
+    a2 ~< scd4 clr fpd l
+    qa ~> scd4-internal-e4-3
+    b1 ~< ar 04 c h
+    b2 ~< scd5 load flags h
+    qb ~> scd4-internal-e4-3
+    c1 ~< cram # 02 h
+    c2 ~< scd5 pcf+# h
+    qc ~< scd4-internal-e4-3
+
+e10: 10117 dual 2-3 or-and
+     a1 ~< scd4 pcp h
+     a2 ~< scd4 load pcp h
+     b1 ~< -scd5 load flags h
+     b2 ~< ar 00 d h
+     b3c3 ~< scd5 jfcl h
+     qa ~> scd4-internal-e10-2
+     nqa ~> %NC%
+     c1 ~< scd4-internal-e5-14
+     c2 ~< scd4 pcp h
+     d1 ~< scd4 ov h
+     d2 ~< scd4-internal-e5-2
+     qcd ~> vma held or pc 00 h
+     nqcd ~> %NC%
+
+e3: 10121 4-wide 3 or-and/nand
+    a1 ~< scd4 trap req 1 h
+    a2 ~< scd4 trap req 2 h
+    a3 ~< %NC%
+    b1 ~< %NC%
+    b2 ~< con trap en a h
+    b3c3 ~< %NC%
+    c1 ~< %NC%
+    c2 ~< con nicond trap en h
+    d1 ~< con nicond trap en h
+    d2 ~< %NC%
+    d3 ~< %NC%
+    q ~> scd4 nicond 10 h
+    nq ~> %NC%

@@ -213,6 +213,7 @@ function evalExpr(t, macroEnv) {
 
     if (t.ids.list.length) {		// It's a selector
       const sel = result;
+      console.log(`Macro t=${util.inspect(t, {depth: null})}`);
       result = evalExpr(t.ids.list[+result - 1], macroEnv);
     }
 
