@@ -134,9 +134,9 @@ e55: 10121 4-wide or-and/or-and
      a3 ~< %NC%
      b1 ~< ir 01 h
      b2 ~< %NC%
-     b3c1 ~< %NC%
-     c2 ~< ir 02 h
-     c3 ~< %NC%
+     b3c3 ~< %NC%
+     c1 ~< ir 02 h
+     c2 ~< %NC%
      d1 ~< %NC%
      d2 ~< ir en i/o, jrst h
      d3 ~< %NC%
@@ -182,9 +182,9 @@ e66: 10121 4-wide or-and/or-and
      a3 ~< BP-ER2
      b1 ~< ir 04 h
      b2 ~< BP-ES2
-     b3c1 ~< BP-ER2
-     c2 ~< ir 05 h
-     c3 ~< BP-ES2
+     b3c3 ~< BP-ER2
+     c1 ~< ir 05 h
+     c2 ~< BP-ES2
      d1 ~< ir 06 h
      d2 ~< BP-ES2
      d3 ~< BP-ER2
@@ -629,9 +629,9 @@ e45: 10121 4-wide or-and/or-and
      a3 ~< -ir #06=07 l
      b1 ~< -cram # 07 f l
      b2 ~< a>b l
-     b3c1 ~< -dram b 02 l
-     c2 ~< internal-e12-14
-     c3 ~< -cram # 08 f l
+     b3c3 ~< -dram b 02 l
+     c1 ~< internal-e12-14
+     c2 ~< -cram # 08 f l
      d1 ~< %NC%
      d2 ~< -ir #06=07 h
      d3 ~< -ad cry -02 a l
@@ -727,9 +727,9 @@ e60: 10121 4-wide or-and/or-and
      a3 ~< %NC%
      b1 ~< %NC%
      b2 ~< ir 03 h
-     b3c1 ~< %NC%
-     c2 ~< ir 05 h
-     c3 ~< %NC%
+     b3c3 ~< %NC%
+     c1 ~< ir 05 h
+     c2 ~< %NC%
      d1 ~< %NC%
      d2 ~< ir 06 h
      d3 ~< %NC%
