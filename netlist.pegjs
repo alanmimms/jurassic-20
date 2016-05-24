@@ -4,6 +4,7 @@
   class ASTNode {
     constructor(t = this.__proto__.constructor.name) {
       this.t = t;
+      this.loc = location();
     }
 
     inspect(depth, opts) {
