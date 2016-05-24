@@ -319,7 +319,7 @@ e64: 10109 4/5 or/nor
     b2 ~< scd2 sc 00 h
     b3 ~< scd2 sc 00 h
     b4 ~< scd2 sc 00 h
-    b5 ~< [A,scd2 sc 36 to 63 h,nc]
+    b5 ~< [a,scd2 sc 36 to 63 h,%NC%]
     qb ~> scd2 sc .ge. 36 h
 
 // NOTE 1: Replacement of e45 requires factory deskew adjustment
@@ -417,7 +417,7 @@ e65: 10101 quad or/nor
      abcd2 ~< cram fe load h
      b1 ~< scd5 reset h
      c1 ~< scd2 fe 01 h
-     e1 ~< scd2 fe 05 h
+     d1 ~< scd2 fe 05 h
      nqa ~> scd2-internal-e65-2
      nqb ~> scd2-internal-e65-3
      nqc ~> scd2-internal-e65-11
@@ -708,7 +708,13 @@ e36: 10117 dual 2-3 or-and
      a2 ~< scd3-internal-e43-15
      b1 ~< scd3-internal-e43-15
      b2 ~< -con pc+1 inh h
+     b3d3 ~< %NC%
      qab ~> scd3 trap mix 35 h
+     c1 ~< ar 00 d h
+     c2 ~< scd3-internal-e26-2
+     d1 ~< scd3-internal-e26-5
+     d2 ~< scd1 scad 01 h
+     qcd ~> scd3-internal-e36-2
 
 e26: 10101 quad or/nor
      a1 ~< ctl1 cond/ar_exp h
@@ -717,14 +723,6 @@ e26: 10101 quad or/nor
      qa ~> scd3-internal-e26-5
      b1 ~< ar 00 d h
      qb ~> scd3 ar 00 h
-
-e36: 10117 dual 2-3 or-and
-     a1 ~< ar 00 d h
-     a2 ~< scd3-internal-e26-2
-     qa ~> scd3-internal-e36-2
-     b1 ~< scd3-internal-e26-5
-     b2 ~< scd1 scad 01 h
-     b3 ~< %NC%
 
 e48: 10174 2x4 mix
      d00 ~< cram # 00 h
@@ -827,7 +825,7 @@ e20: 10117 dual 2-3 or-and
      qab ~> scd4-internal-e20-3
      d1 ~< %NC%
      d2 ~< scd4-internal-e30-14
-     qd ~> scd4-internal-e20-14
+     qcd ~> scd4-internal-e20-14
 
 e24: 10117 dual 2-3 or-and
      a1 ~< %NC%
@@ -861,7 +859,7 @@ e39: 10104 quad and
      qb ~> scd4-internal-e39-3
      c1 ~< scd1 scad 00 h
      c2 ~< scd5 exp test h
-     qc ~< scd4-internal-e39-15
+     qc ~> scd4-internal-e39-15
      d1 ~< cram # 05 h
      d2 ~< scd5 pcf+# h
      qd ~> scd4-internal-e39-15
@@ -877,7 +875,7 @@ e18: 10118 triple 4-2 or-and
      a3 ~< scd4-internal-e33-14
      b1 ~< %NC%
      b2 ~< ar 12 c h
-     b3 ~< -scd5 load flags a h
+     b3c3 ~< -scd5 load flags a h
      qab ~> scd4-internal-e18-2
 
 e64: 10109 dual 4/5 or/nor
@@ -892,7 +890,6 @@ e22: 10104 quad and
      a1 ~< ctl disp/nicond h
      a2 ~< con trap en a h
      qa ~> scd4-internal-e22-15
-     nqa ~> %NC%
 
 e19: 10104 quad and
      a1 ~< scd4 trap req 2 h
@@ -903,7 +900,7 @@ e19: 10104 quad and
      qb ~> scd4 trap req 2 en h
      c1 ~< cram # 03 h
      c2 ~< scd5 pcf_# h
-     qc ~< scd4 trap req 2 en h
+     qc ~> scd4 trap req 2 en h
      d1 ~< scd4-internal-e85-2
      d2 ~< con cond intstr abort h
      qd ~> scd4 trap req 2 en h
@@ -917,7 +914,7 @@ e9: 10176 hex dff
     d2 ~< scd4 trap req 1 en h
     q2 ~> scd4 trap req 1 h
     d3 ~< scd4-internal-e14-15
-    q3 ~< scd4 trap cyc 1 h
+    q3 ~> scd4 trap cyc 1 h
     d4 ~< scd4-internal-e4-3
     q4 ~> scd4 fpd h
     d5 ~< scd4-internal-e10-2
@@ -964,11 +961,11 @@ e15: 10117 dual 2-3 or-and
      a2 ~< scd5 set ad flags l
      b1 ~< %NC%
      b2 ~< scd4-internal-e15-14
-     b3c3 ~< %NC%
-     d1 ~< scd4 trap clear l
-     d2 ~< scd4-internal-e38-2
-     c1 ~< scd4 trap req 1 h
+     b3d3 ~< %NC%
+     c1 ~< scd4 trap clear l
      c2 ~< scd4-internal-e38-2
+     d1 ~< scd4 trap req 1 h
+     d2 ~< scd4-internal-e38-2
      qab ~> scd4 trap req 1 en h
      nqab ~> %NC%
      qcd ~> %NC%
@@ -978,18 +975,16 @@ e29: 10105 triple 3-2 or/nor
      a1 ~< scd4 trap cyc 2 h
      a2 ~< scd4 trap cyc 1 h
      qa ~> scd4 trap cyc 1 or 2 h
-     nqd ~> %NC%
 
 e5: 10105 triple 2-3-2 or/nor
-    a1 ~< scd5 load flags h
-    a2 ~< scd5 disp/save flags h
-    a3 ~< ctl1 spec/clr fpd h
-    nqa ~> scd4 clr fpd l
-    qa ~> %NC5
-    b1 ~< scd5 load flgas l
-    b2 ~< -scd5 jfcl l
-    qb ~> scd4 load pcp h
-    nqb ~> %NC%
+    a1 ~< scd5 load flgas l
+    a2 ~< -scd5 jfcl l
+    qa ~> scd4 load pcp h
+    b1 ~< scd5 load flags h
+    b2 ~< scd5 disp/save flags h
+    b3 ~< ctl1 spec/clr fpd h
+    qb ~> %NC%
+    nqb ~> scd4 clr fpd l
     c1 ~< scd5 user a h
     c2 ~< scd5 jfcl h
     nqc ~> internal-scd4-e5-14
@@ -1004,20 +999,20 @@ e4: 10104 quad and
     qb ~> scd4-internal-e4-3
     c1 ~< cram # 02 h
     c2 ~< scd5 pcf+# h
-    qc ~< scd4-internal-e4-3
+    qc ~> scd4-internal-e4-3
 
 e10: 10117 dual 2-3 or-and
      a1 ~< scd4 pcp h
      a2 ~< scd4 load pcp h
      b1 ~< -scd5 load flags h
      b2 ~< ar 00 d h
-     b3c3 ~< scd5 jfcl h
-     qa ~> scd4-internal-e10-2
-     nqa ~> %NC%
-     c1 ~< scd4-internal-e5-14
-     c2 ~< scd4 pcp h
-     d1 ~< scd4 ov h
-     d2 ~< scd4-internal-e5-2
+     b3d3 ~< scd5 jfcl h
+     qab ~> scd4-internal-e10-2
+     nqab ~> %NC%
+     c1 ~< scd4 ov h
+     c2 ~< scd4-internal-e5-2
+     d1 ~< scd4-internal-e5-14
+     d2 ~< scd4 pcp h
      qcd ~> vma held or pc 00 h
      nqcd ~> %NC%
 
