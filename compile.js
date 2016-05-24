@@ -48,7 +48,17 @@ let boards = process.argv.slice(2).map(filename => {
 
 
   let context = {};
-  let macroEnv = {n: 12};
+
+  // `a` appears to be a setting to allow us to emulate a KL10A CPU
+  // when a==1.
+  //
+  // `n` is the number of boards of the particular type being
+  // compiled. This will eventually be driven by per-board population
+  // values as we progress.
+  let macroEnv = {
+    n: 12, 
+    a: 2,			// KL10B 50MHz clock
+  };
 
   expandMacros(fullAST, macroEnv, context);
 
@@ -213,8 +223,15 @@ function evalExpr(t, macroEnv) {
 
     if (t.ids.list.length) {		// It's a selector
       const sel = result;
-      console.log(`Macro t=${util.inspect(t, {depth: null})}`);
-      result = evalExpr(t.ids.list[+result - 1], macroEnv);
+//      console.log(`Selector result=${result}  t=${util.inspect(t, {depth: null})}`);
+      const selected = t.ids.list[+result - 1];
+
+      if (result < 1 || selected == null) {
+	console.log(`ERROR: Selector produces undefined result at\n${util.inspect(t.loc)}`);
+	result = '%NC%';
+      } else {
+	result = evalExpr(selected, macroEnv);
+      }
     }
 
     break;
