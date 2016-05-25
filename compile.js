@@ -15,6 +15,10 @@ const dumpAST = true;
 
 let netRefs = {};
 
+console.log(`
+==== TODO: Go through schematics and find weird crosses (e.g., con1
+==== e29.nq5 and see if these really mean connect net to logic HIGH.
+`);
 
 let parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
   output: 'parser',
