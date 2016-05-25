@@ -5,9 +5,10 @@ e53: 10101 quad or/nor
      nqa ~> scd1 scad 4 l
      b1 ~< cram scad 2 h
      nqb ~> scd1 scad 2 l
-     abcd2 ~< 0
+     abcd2 ~< %NC%
      c1 ~< ar 00 d h
      qc ~> scd1-internal-e53-9
+     nqc ~> scd3 ar 00 h
      d1 ~< ar 00 d h
      qd ~> scd3 ar 00 h
 
@@ -25,11 +26,19 @@ e54: 10109 dual 2/4 or/nor
      qb ~> scd1-internal-e54-15
 
 e37: 10105 2-3-2 or/nor
+     a1 ~< ctl spec/save flags l
+     a2 ~< con pi cycle a l
+     qa ~> scd5 pi&save flags h
+     nqa ~> scd5 pi&save flags l
      b1 ~< scd1-internal-e54-15
      b2 ~< scd1 scad 01 h
      b3 ~< scd1 scad 00 h
      qb ~> -scd1 scad=0 h
      nqb ~> %NC%
+     c1 ~< -scd5 public a l
+     c2 ~< -scd5 user a l
+     qc ~> scd kernel mode h
+     nqc ~> scd5 kernel mode l
 
 e67: 10118 triple 4-2 or-and
      a1 ~< cram scad 2 h
@@ -721,8 +730,15 @@ e26: 10101 quad or/nor
      abcd2 ~< %NC%
      nqa ~> scd3-internal-e26-2
      qa ~> scd3-internal-e26-5
-     b1 ~< ar 00 d h
-     qb ~> scd3 ar 00 h
+     b1 ~< pt public h
+     nqb ~> scd5 public page l
+     qb ~> scd5 public page h
+     c1 ~< mcl6 paged fetch l
+     nqc ~> scd5 instr fetch l
+     qc ~> scd5 instr fetch h
+     d1 ~< mr reset 01 h
+     nqd ~> scd5 reset l
+     qd ~> scd5 reset h
 
 e48: 10174 2x4 mix
      d00 ~< cram # 00 h
@@ -868,6 +884,10 @@ e33: 10104 quad and
      a1 ~< cram # 06 h
      a2 ~< scd5 pcf+# h
      qa ~> scd4-internal-e33-14
+     d1 ~< con cond/pcf_#
+     d2 ~< -con pi cycle a h
+     qd ~> scd5 pcf_# h
+     nqd ~> %NC%
 
 e18: 10118 triple 4-2 or-and
      a1 ~< scd4 div chk h
@@ -975,6 +995,15 @@ e29: 10105 triple 3-2 or/nor
      a1 ~< scd4 trap cyc 2 h
      a2 ~< scd4 trap cyc 1 h
      qa ~> scd4 trap cyc 1 or 2 h
+     b1 ~< scd5 reset h
+     b2 ~< scd5-internal-e34-3
+     b3 ~< %NC%
+     nqb ~> scd5 load flags a l
+     qb ~> scd5 load flags a h
+     c1 ~< scd5 reset h
+     c2 ~< scd5-internal-e34-3
+     nqc ~> scd5 load flags l
+     qc ~> scd5 load flags h
 
 e5: 10105 triple 2-3-2 or/nor
     a1 ~< scd5 load flgas l
@@ -1000,6 +1029,11 @@ e4: 10104 quad and
     c1 ~< cram # 02 h
     c2 ~< scd5 pcf+# h
     qc ~> scd4-internal-e4-3
+    d1 ~< con cond/ad flags h
+    d2 ~< -con pi cycle a h
+    nqd ~> scd5 set ad flags l
+    qd ~> %NC%
+
 
 e10: 10117 dual 2-3 or-and
      a1 ~< scd4 pcp h
@@ -1016,17 +1050,196 @@ e10: 10117 dual 2-3 or-and
      qcd ~> vma held or pc 00 h
      nqcd ~> %NC%
 
-e3: 10121 4-wide 3 or-and/nand
-    a1 ~< scd4 trap req 1 h
-    a2 ~< scd4 trap req 2 h
-    a3 ~< %NC%
+e3:  10121 4-wide 3 or-and/nand
+     a1 ~< scd4 trap req 1 h
+     a2 ~< scd4 trap req 2 h
+     a3 ~< %NC%
+     b1 ~< %NC%
+     b2 ~< con trap en a h
+     b3c3 ~< %NC%
+     c1 ~< %NC%
+     c2 ~< con nicond trap en h
+     d1 ~< con nicond trap en h
+     d2 ~< %NC%
+     d3 ~< %NC%
+     q ~> scd4 nicond 10 h
+     nq ~> %NC%
+
+Page: SCD5, PDF142
+
+e2:  10101 quad or/nor
+     a1 ~< scd5 user l
+     abcd2 ~< %NC%
+     qa ~> scd4 user a h
+     nqa ~> scd4 user a l
+     b1 ~< scd5 user iot l
+     qb ~> scd5 user iot a h
+     nqb ~> scd user iot a l
+     c1 ~< scd5 public l
+     qc ~> scd5 public a h
+     nqc ~> scd public a l
+     d1 ~< ctl spec/save flags l
+     qd ~> scd5 disp/save flags h
+     nqd ~> %NC%
+
+e11: 10176 hex dff
+     clk ~< scd2 clk d h
+     d0 ~< scd5 user en l
+     q0 ~> scd5 user l
+     d1 ~< scd5 user iot en l
+     q1 ~> scd5 user iot l
+     d2 ~< scd5 public en l
+     q2 ~> scd5 public l
+     d3 ~< scd5 private instr en l
+     q3 ~> scd5 private instr l
+     d4 ~< scd5-internal-e22-3
+     q4 ~> scd5 adr brk inh h
+     d5 ~< scd5-internal-e21-3
+     q5 ~> scd5 adr brk cyc h
+
+e18: 10118 triple 4-2 or-and
+     a1 ~< %NC%
+     a2 ~< scd5 user l
+     a2 ~< -scd5 leave user l
+     b1 ~< scd5 ar 05 l
+     b2 ~< %NC%
+     b3c3 ~< scd5 load flags a h
+     qab ~> scd5 user en l     	   // ????
+
+e6: 10105 triple 2-3-2 or/nor
+    a1 ~< -scd5 load flags a h
+    a2 ~< scd5 ar 06 h
+    nqa ~> scd5-internal-e6-3
+    b1 ~< scd5 adr brk inh h
+    b2 ~< scd5 adr brk cyc h
+    qb ~> scd5 adr brk prevent h
+    nqb ~> scd5 adr brk prevent l
+
+e7: 10121 4-wide or-and
+    a1 ~< scd5 user iot l
+    a2 ~< -scd5 leave user l
+    a3 ~< scd5-internal-e6-3
+    b1 ~< scd5 leave user l
+    b2 ~< scd5 ar 06 l
+    b3c3 ~< scd5 load flags a l
+    c1 ~< scd5 ar 06 l
+    c2 ~< -scd5 user a l
+    d1 ~< %NC%
+    d2 ~< scd5 user l
+    d3 ~< scd5 pi&save flags l
+    nq ~> scd5 user iot en l
+    q ~> %NC%
+
+e1:  10121 4-wide or-and
+     a1 ~< scd5 public l
+     a2 ~< -scd5 leave user l
+     a3 ~< scd5 clr public h
+     b1 ~< %NC%
+     b2 ~< scd5 ar 07 l
+     b3c3 ~< scd5 load flags a l
+     c1 ~< scd5 ar 07 l
+     c2 ~< %NC%
+     d1 ~< scd5 instr fetch l
+     d2 ~< clk mb xfer l
+     d3 ~< scd5 public page l
+     q ~> %NC%
+     nq ~> scd5 public en l
+
+e16: 10121 4-wide or-and
+     a1 ~< scd5 instr fetch l
+     a2 ~< con fm xfer l
+     a3 ~< -scd5 public a l
+     b1 ~< -scd5 instr fetch l
+     b2 ~< con clr private instr h
+     b3c3 ~< scd5-internal-e6-14
+     c1 ~< con clr private instr h
+     c2 ~< scd5-internal-e21-9
+     d1 ~< scd5 instr fetch l
+     d2 ~< clk mb xfer l
+     d3 ~< -scd5 public page l
+     q ~> %NC%
+     nq ~> scd5 private instr en l
+
+e22: 10104 quad and
+     a1 ~< scd5 adr brk inh h
+     a2 ~< -scd4 trap clear h
+     qa ~> scd5-internal-e22-3
+     b1 ~< scd5 load flags a h
+     b2 ~< ar 08 c h
+     qb ~> scd5-internal-e22-3
+     c1 ~< con cond instr abort h
+     c2 ~< scd5 adr brk cyc h
+     qc ~> scd5-internal-e22-3
+
+e21: 10104 quad and
+     a1 ~< scd5 adr brk cyc h
+     a2 ~< -scd4 trap clear h
+     qa ~> scd5-internal-e21-3
+     b1 ~< scd5 adr brk inh h
+     b2 ~< ctl disp/nicond h
+     qb ~> scd5-internal-e21-3
+     c1 ~< con fm xfer l
+     c2 ~< clk mb xfer l
+     qc ~> scd5-internal-e21-9
+     d1 ~< scd5 adr brk inh h
+     d2 ~< ctl disp/nicond h
+     qd ~> scd5-internal-e21-3
+
+e8: 10117 dual 2-3 or-and
+    a1 ~< scd5 user l
+    a2 ~< scd5 user iot l
     b1 ~< %NC%
-    b2 ~< con trap en a h
-    b3c3 ~< %NC%
-    c1 ~< %NC%
-    c2 ~< con nicond trap en h
-    d1 ~< con nicond trap en h
-    d2 ~< %NC%
-    d3 ~< %NC%
-    q ~> scd4 nicond 10 h
-    nq ~> %NC%
+    b2 ~< -scd5 public a l
+    b3d3 ~< -scd5 user a l
+    qab ~> scd5 kernel/user iot h
+    c1 ~< scd5 spec/portal l
+    c2 ~< scd5 private instr l
+    d1 ~< scd5 load flags a l
+    d2 ~< scd5 ar 05 l
+    qcd ~> scd5 clr public h
+    nqcd ~> %NC%
+
+e27: 10121 4-wide or-and
+     a1 ~< scd5 disp/flag ctl l
+     a2 ~< -cram # 00 l
+     a3 ~< %NC%
+     b1 ~< %NC%
+     b2 ~< scd5 pi&save flags l
+     b3c3 ~< %NC%
+     c1 ~< scd5 reset l
+     c2 ~< %NC%
+     d1 ~< scd5 kernel mode l
+     d2 ~< -cram # 07 l
+     d3 ~< scd5 disp/flag ctl l
+     q ~> scd5 leave user h
+     nq ~> scd5 leave user l
+
+e34: 10104 quad and
+     a1 ~< ctl1 cond/ar_exp h
+     a2 ~< -con pi cycle a h
+     qa ~> scd5 exp test h
+     b1 ~< cram # 01 h
+     b2 ~< scd5 disp/flag ctl h
+     qb ~> scd5 jfcl h
+     c1 ~< cram # 04 h
+     c2 ~< scd5 disp/flag ctl h
+     qc ~> scd5-internal-e34-3
+     d1 ~< cram # 05 h
+     d2 ~< scd5 disp/flag ctl h
+     nqd ~> scd5 spec/portal l
+     qd ~> %NC%
+
+e23: 10101 aud or/nor
+     a1 ~< ar 05 c h
+     abcd2 ~< %NC%
+     nqa ~> scd5 ar 05 l
+     qa ~> %NC%
+     b1 ~< ar 06 c h
+     nqb ~> scd5 ar 06 l
+     qb ~> scd5 ar 06 h
+     c1 ~< ar 07 c h
+     nqc ~> scd5 ar 07 l
+     qc ~> %NC%
+     d1 ~< ctl1 spec/flag ctl h
+     nqd ~> scd5 disp/flag ctl l
+     qd ~> scd5 disp/flag ctl h
