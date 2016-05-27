@@ -644,14 +644,14 @@ e57: 10161 decoder
      sel1 ~< dr diag 06 h
      nen1 ~< %NC%
      nen2 ~< diag load func 06x l
-     o0 ~> dram load x,y even l
-     o1 ~> dram load x,y odd l
-     o2 ~> dram load j common l
-     o3 ~> dram load j even l
-     o4 ~> dram load j odd l
-     o5 ~> internal-e57-12
-     o6 ~> internal-e57-11
-     o7 ~> internal-e57-10
+     nq0 ~> dram load x,y even l
+     nq1 ~> dram load x,y odd l
+     nq2 ~> dram load j common l
+     nq3 ~> dram load j even l
+     nq4 ~> dram load j odd l
+     nq5 ~> internal-e57-12
+     nq6 ~> internal-e57-11
+     nq7 ~> internal-e57-10
 
 e40: 10101 quad or/nor
      a1 ~< ebus d[n+0] e h
