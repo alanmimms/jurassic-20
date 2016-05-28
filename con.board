@@ -172,3 +172,302 @@ e48: 10164 8 mix
      nen ~< con diag read l
      b ~> ebus d23 e h
 
+e56: 10164 8 mix
+     d0 ~< %NC%
+     d1 ~< %NC%
+     d2 ~< con pi cycle h
+     d3 ~< -con mem cycle h
+     d4 ~< -con fm write par h
+     d5 ~< -con mbox wait h
+     d6 ~< -con fm xfer h
+     d7 ~< -con pi dismiss h
+     sel4 ~< con diag 04 h
+     sel2 ~< con diag 05 h
+     sel1 ~< con diag 06 h
+     nen ~< con diag read l
+     b ~> ebus d24 e h
+
+e9: 10101 quad or/nor
+    a1 ~< diag 04 a h
+    abcd2 ~< %NC%
+    qa ~> con diag 04 h
+    nqa ~> %NC%
+    b1 ~< diag 05 a h
+    qb ~> con diag 05 h
+    nqb ~> %NC%
+    c1 ~< diag 06 a h
+    qc ~> con diag 06 h
+    nqc ~> %NC%
+    d1 ~< diag read func 13x l
+    qd ~> con diag read l
+    nqd ~> %NC%
+
+e18: 10101 quad or/nor
+     a1 ~< ebus d18 e h
+     abcd2 ~< %NC%
+     qa ~> con ebus 18 h
+     nqa ~> con ebus 18 l
+     b1 ~< ebus d19 e h
+     qb ~> con ebus 19 h
+     nqb ~> con ebus 19 l
+     c1 ~< ebus d20 e h
+     qc ~> con ebus 20 h
+     nqc ~> con ebus 20 l
+     d1 ~< ebus d21 e h
+     qd ~> con ebus 21 h
+     nqd ~> con ebus 21 l
+
+e30: 10101 quad or/nor
+     a1 ~< ebus d22 e h
+     abcd2 ~< %NC%
+     qa ~> con ebus 22 h
+     nqa ~> con ebus 22 l
+     b1 ~< ebus d23 e h
+     qb ~> con ebus 23 h
+     nqb ~> %NC%
+     c1 ~< mr reset 04 h
+     qc ~> con reset h
+     nqc ~> con reset l
+     d1 ~< ctl disp/nicond h
+     qd ~> con nicond h
+     nqd ~> %NC%
+
+Page: CON2, PDF149
+
+e31: 10176 hex dff
+     clk ~< con clk f h
+     d0 ~< mtr interrupt req h
+     q0 ~> con mtr int req h
+     d1 ~< pi2 ready h
+     q1 ~> con-internal-e31-3
+     d2 ~< con-internal-e33-6
+     q2 ~> con-internal-e31-4
+     d3 ~< con-internal-e24-2
+     q3 ~> con ebox spare l
+     d4 ~< con nicond h
+     q4 ~> con-internal-e31-14
+     d5 ~< con cond/load ir h
+     q5 ~> con-internal-e31-14
+
+e33: 10105 triple 2-3-2 or/nor
+     b1 ~< con # 03 l
+     b2 ~< con i/o legal l
+     b3 ~< ctl spec/flag ctl l
+     qb ~> con-internal-e33-6
+     nqb ~> %NC%
+     a1 ~< scd user a l
+     a2 ~< scd user iot a l
+     qa ~> con-internal-e33-14
+     nqa ~> %NC%
+     c1 ~< con instr go l
+     c2 ~< con-internal-e16-15
+     qc ~> con run h
+     nqc ~> con run l
+
+e32: 10117 dual 2-3 or-and
+     a1 ~< con mtr int req h
+     a2 ~< con-internal-e31-3
+     b1 ~< -con int disable h
+     b2 ~< %NC%
+     b3d3 ~< con reset h
+     qab ~> con int req h
+     nqab ~> con int req l
+     c1 ~< con diag continue l
+     c2 ~< %NC%
+     d1 ~< con-internal-e31-4
+     d2 ~< con instr go l
+     nqcd ~> con instr go l
+     qcd ~> %NC%
+
+e23: 10105 triple 2-3-2 or/nor
+     a1 ~< con cond/spec instr l
+     a2 ~< con # 06 l
+     qa ~> con cond instr abort h
+     nqa ~> %NC%
+     b1 ~< con fetch cycle h
+     b2 ~< con cond/laod ir h
+     b3 ~< con diag ir strobe h
+     nqb ~> con load ir l
+     qb ~> %NC%
+     c1 ~< con cond/load ir h
+     c2 ~< con cond/sr_# h
+     qc ~> con load access cond h
+     nqc ~> %NC%
+
+e4: 10105 triple 2-3-2 or/nor
+    a1 ~< clk page error h
+    a2 ~< con cond instr abort h
+    qa ~> con clr private instr h
+    nqa ~> %NC%
+
+e40: 10109 dual 4/5 or/nor
+     b1 ~< ir i/o legal h
+     b2 ~< con kernel mode h
+     b3 ~< con kernel cycle h
+     b4 ~< con-internal-e33-14
+     b5 ~< %NC%
+     nqb ~> con i/o legal h
+     qb ~> %NC%
+
+e34: 10101 quad or/nor
+     a1 ~< con2 spare dm1 h
+     abcd2 ~< %NC%
+     nqa ~> con-internal-e34-14
+     qa ~> %NC%
+     b1 ~< con2 spare dm2 h
+     nqb ~> con-internal-e34-15
+     qb ~> con-internal-e34-9
+     c1 ~< con-internal-e38-5
+     nqc ~> con diag set run l
+     qc ~> %NC%
+     d1 ~< con-internal-e38-4
+     nqd ~> con diag continue l
+     qd ~> %NC%
+
+e24: 10117 dual 2-3 or-and
+     a1 ~< con-internal-e34-14
+     a2 ~< con-internal-e34-15
+     b1 ~< con-internal-e34-9
+     b2 ~< con ebox spare l
+     b3d3 ~< -con reset l
+     nqab ~> con-internal-e24-2
+     qab ~> %NC%
+     c1 ~< con skip en 60-67 l
+     c2 ~< con-internal-e8-15
+     d1 ~< con skip en 70-77 l
+     d2 ~< con-internal-e28-15
+     qcd ~> con cond adr 10 h
+     nqcd ~> %NC%
+
+// NOTE 1 Replacement of E36 requires factory deskew adjustment.
+e36: 10210 dual 3 or
+     a1 ~< %NC%
+     a2 ~< %NC%
+     a3 ~< clk con delayed h
+     qa1 ~> con clk a h
+     qa2 ~> con clk b h
+     qa3 ~> con clk c h
+     b1 ~< %NC%
+     b2 ~< clk con delayed h
+     b3 ~< %NC%
+     qb1 ~> con clk d h
+     qb2 ~> con clk e h
+     qb3 ~> con clk f h
+
+e20: 10117 dual 2-3 or-and
+     a1 ~< con diag continue l
+     a2 ~< %NC%
+     qab ~> con-internal-e20-3
+     nqab ~> con-internal-e20-2
+     b1 ~< -con start l
+     b2 ~< con-internal-e20-2
+     b3d3 ~< -con reset l
+     c1 ~< con diag set run l
+     c2 ~< %NC%
+     d1 ~< -con diag clk run l
+     d2 ~< con-internal-e20-15
+     nqcd ~> con-internal-e20-15
+     qcd ~> %NC%
+
+e16: 10176 hex dff
+     clk ~< con clk d h
+     d0 ~< con-internal-e20-3
+     q1 ~> con-internal-e16-2
+     d1 ~< con-internal-e16-2
+     q1 ~> con-internal-e16-3
+     d2 ~< con-internal-e16-3
+     q2 ~> con start h
+     d3 ~< con-internal-e20-15
+     q3 ~> con-internal-e16-13
+     d4 ~< con-internal-e16-13
+     q4 ~> con-internal-e16-14
+     d5 ~< con-internal-e16-14
+     q5 ~> con-internal-e16-15
+
+e38: 10162 decoder
+     sel4 ~< ebus ds04 e h
+     sel2 ~< ebus ds05 e h
+     sel1 ~< ebus ds06 e h
+     nen1 ~< %NC%
+     nen2 ~< diag control func 01x l
+     q0 ~> con diag clk run h
+     q1 ~> con-internal-e38-5
+     q2 ~> con-internal-e38-5
+     q3 ~> %NC%
+     q4 ~> con diag ir strobe h
+     q5 ~> con diag dram strobe h
+     q6 ~> %NC%
+     q7 ~> %NC%
+
+e44: 10105 2-3-2 or/nor
+     a1 ~< con diag dram strobe h
+     a2 ~< con-internal-e31-14
+     nqa ~> con load dram l
+     qa ~> con load dram h
+
+e12: 10104 quad and
+     d1 ~< -scd user a h
+     d2 ~< -scd public a h
+     nqd ~> con kernel mode l
+     qd ~> con kernel mode h
+
+e8: 10164 8 mix
+    d0 ~< mcl vma fetch l
+    d1 ~< con kernel mode l
+    d2 ~< scd user a l
+    d3 ~< scd public a l
+    d4 ~< mbz1 rd-pse-wr ref l
+    d5 ~< con pi cycle l
+    d6 ~< -con ebus grant l
+    d7 ~< -con pi xfer l
+    sel4 ~< cram cond 03 h
+    sel2 ~< cram cond 04 h
+    sel1 ~< cram cond 05 h
+    nen ~< %NC%
+    b ~> con-internal-e8-15
+
+e28: 10164 8 mix
+    d0 ~< con int req l
+    d1 ~< -con start l
+    d2 ~< con run l
+    d3 ~< con i/o legal l
+    d4 ~< con pxct or sxct l
+    d5 ~< con ebox spare l
+    d6 ~< vma ac ref l
+    d7 ~< -con mtr int req l
+    sel4 ~< cram cond 03 h
+    sel2 ~< cram cond 04 h
+    sel1 ~< cram cond 05 h
+    nen ~< %NC%
+    b ~> con-internal-e28-15
+
+e27: 10165 pri enc
+     d0 ~< con pi cycle h
+     d1 ~< -con run h
+     d2 ~< con mtr int req h
+     d3 ~< con int req h
+     d4 ~< con ucode state 05 h
+     d5 ~< -vma ac ref h
+     d6 ~< %NC%
+     d7 ~< -con pi cycle h
+     hold ~< %NC%
+     any ~> %NC%
+     q4 ~> con-internal-e27-15
+     q2 ~> con-internal-e27-2
+     q1 ~> con-internal-e27-3
+
+e19: 10176 hex dff
+     clk ~< con clk d h
+     d0 ~< con-internal-e27-15
+     d1 ~< con-internal-e27-15
+     d2 ~< con-internal-e27-2
+     d3 ~< con-internal-e27-3
+     d4 ~< pi5 ebus cp grant h
+     d5 ~< pi2 ext tran rec h
+     q0 ~> con nicond trap en h
+     q1 ~> con nicond 07 h
+     q2 ~> con nicond 08 h
+     q3 ~> con nicond 09 h
+     q4 ~> con ebus grant h
+     q5 ~> con pi xfer h
+
