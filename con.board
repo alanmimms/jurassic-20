@@ -81,6 +81,14 @@ e63: 10101 quad or/nor
      abcd2 ~< %NC%
      nqa ~> %NC%
      qa ~> con cond/vma_# h
+     b1 ~< ebus parity active e h
+     nqb ~> con-internal-e63-2
+     c1 ~< mcl load ar h
+     nqc ~> con-internal-e63-3
+     qc ~> %NC%
+     d1 ~< mcl load arx h
+     nqd ~> con-internal-e63-14
+     qd ~> con-internal-e63-3
 
 e13: 10164 8 mix
      d0 ~< con wr even par adr h
@@ -675,5 +683,155 @@ e41: 10141 shft reg
      d2 ~< con-internal-e43-3
      d3 ~< con # 05 l
      shft 3in ~< %NC%
+     op1 ~< con load spec instr l
+     op2 ~< con load spec instr l
+     clk ~< con clk a h
+     q0 ~> con kernel cycle h
+     q1 ~> con pc+1 inh l
+     q2 ~> con pxct or sxct l
+     q3 ~> con int disable l
 
-e43:
+e43: 10105 quad or/nor
+     a1 ~< cram # 03 e h
+     a2 ~< cram # 04 e h
+     nqa ~> con-internal-e43-3
+     qa ~> %NC%
+
+e53: 10141 shft reg
+     shft 0in ~< %NC%
+     d0 ~< cram # 07 e h
+     d1 ~< con # 07 l
+     d2 ~< cram # 02 e h
+     d3 ~< cram # 08 e h
+     shft 3in ~< %NC%
+     op1 ~< con load spec instr l
+     op2 ~< con load spec instr l
+     clk ~< con clk b h
+     q0 ~> con ebox halted h
+     q1 ~> con ebox halted l
+     q2 ~> con pc+1 inh h
+     q3 ~> con spec 08 h
+
+e52: 10104 quad and
+     a1 ~< -con run l
+     a2 ~< con ebox halted l
+     qa ~> con pi disable l
+     b1 ~< con cond/ebox state l
+     b2 ~< con reset l
+     qb ~> con-internal-e52-14
+     c1 ~< con ar from mem l
+     c2 ~< con ar from ebus h
+     qc ~> con ar loaded h
+     nqc ~> con ar loaded l
+
+e46: 10117 dual 2-3 or-and
+     a1 ~< cram # 02 e h
+     a2 ~< cram # 01 e h
+     b1 ~< cram # 01 e h
+     b2 ~< con ucode state 01 h
+     b3d3 ~< %NC%
+     qab ~> con-internal-e46-2
+     nqab ~> %NC%
+     c1 ~< cram # 04 e h
+     c2 ~< cram # 03 e h
+     d1 ~< cram # 03 e h
+     d2 ~< con ucode state 03 h
+     qcd ~> con-internal-e46-15
+     nqcd ~> %NC%
+
+e49: 10117 dual 2-3 or-and
+     a1 ~< cram # 06 e h
+     a2 ~< cram # 05 e h
+     b1 ~< cram # 05 e h
+     b2 ~< con ucode state 05 h
+     b3d3 ~< %NC%
+     c1 ~< cram # 08 e h
+     c2 ~< cram # 07 e h
+     d1 ~< cram # 07 e h
+     d2 ~< con ucode state 07 h
+     qcd ~> con-internal-e49-15
+     nqcd ~> %NC%
+
+e50: 10141 shft reg
+     shft 0in ~< %NC%
+     d0 ~< con-internal-e46-2
+     d1 ~< con-internal-e46-15
+     d2 ~< con-internal-e49-2
+     d3 ~< con-internal-e49-15
+     shft 3in ~< %NC%
+     op1 ~< con-internal-e52-14
+     op2 ~< con-internal-e52-14
+     clk ~< con clk a h
+     q0 ~> con ucode state 01 h
+     q1 ~> con ucode state 03 h
+     q2 ~> con ucode state 05 h
+     q3 ~> con ucode state 07 h
+
+e54: 10121 4-wide or-and
+     a1 ~< -con wr even par data h
+     a2 ~< con ar loaded h
+     a3 ~< %NC%
+     b1 ~< -con mbox data h
+     b2 ~< con dsh bit 36 h
+     b3c3 ~< -con ar from mem h
+     c1 ~< -con fm data h
+     c2 ~< con fm bit 36 h
+     d1 ~< -con ar from ebus h
+     d2 ~< con ebus bit 36 h
+     d3 ~< %NC%
+     nqa ~> con ar 36 l
+     qa ~> con ar 36 h
+
+e42: 10117 dual 2-3 or-and
+     a1 ~< -con mbox data h
+     a2 ~< con csh bit 36 h
+     b1 ~< -con fm data h
+     b2 ~< con fm bit 36 h
+     b3d3 ~< %NC%
+     nqab ~> %NC%
+     qab ~> con arx 36 h
+
+e58: 10176 hex dff
+     d0 ~< csh par bit a h
+     d1 ~< csh par bit b h
+     d2 ~< apr fm 36 h
+     d3 ~< ebus parity e h
+     d4 ~< con fm xfer h
+     d5 ~< clk mb xfer h
+     clk ~< con clk b h
+     q0 ~> con csh bit 36 h
+     q1 ~> con csh bit 36 h
+     q2 ~> con fm bit 36 h
+     q3 ~> con ebus bit 36 h
+     q4 ~> con mbox data h
+     q5 ~> -con fm data h
+
+e59: 10105 2-3-2 or/nor
+     a1 ~< ctl ebus xfer l
+     a2 ~< con-internal-e63-2
+     qa ~> con-internal-e59-3
+     nqa ~> con-internal-e59-2
+     b1 ~< con-internal-e63-3
+     b2 ~< -clk page error l
+     b3 ~< con xfer l
+     nqb ~> con-internal-e59-7
+     qb ~> %NC%
+     c1 ~< con xfer l
+     c2 ~< con-internal-e63-14
+     nqc ~> con-internal-e59-15
+     qc ~> %NC%
+
+e60: 10176 hex dff
+     d0 ~< con-internal-e59-3
+     d1 ~< con-internal-e59-2
+     d2 ~< con-internal-e59-7
+     d3 ~< con-internal-e59-15
+     d4 ~< -con fm xfer l
+     d5 ~< -clk page error l
+     clk ~< con clk c h
+     q0 ~> con ar from ebus h
+     q1 ~> con ar from ebus l
+     q2 ~> con ar from mem l
+     q3 ~> con arx loaded l
+     q4 ~> con arx loaded l
+     q5 ~> con arx loaded l
