@@ -301,6 +301,12 @@ e4: 10105 triple 2-3-2 or/nor
     nqa ~> %NC%
 
 e40: 10109 dual 4/5 or/nor
+     a1 ~< con cond/ebus ctl h
+     a2 ~< con # 02 l
+     a3 ~< clk ebox sync a l
+     a4 ~< %NC%
+     qa ~> con ebus rel h
+     nqa ~> %NC%
      b1 ~< ir i/o legal h
      b2 ~< con kernel mode h
      b3 ~< con kernel cycle h
@@ -404,12 +410,19 @@ e44: 10105 2-3-2 or/nor
      a2 ~< con-internal-e31-14
      nqa ~> con load dram l
      qa ~> con load dram h
+     c1 ~< con # func 01x l
+     c2 ~< -ctl console control l
+     nqc ~> con-internal-e44-15
+     qc ~> %NC%
 
 e12: 10104 quad and
      d1 ~< -scd user a h
      d2 ~< -scd public a h
      nqd ~> con kernel mode l
      qd ~> con kernel mode h
+     a1 ~< con cono apr h
+     a2 ~< con ebus 19 h
+     qa ~> con-internal-e12-3
 
 e8: 10164 8 mix
     d0 ~< mcl vma fetch l
@@ -471,3 +484,196 @@ e19: 10176 hex dff
      q4 ~> con ebus grant h
      q5 ~> con pi xfer h
 
+Page: CON3, PDF150
+
+e64: 10176 hex dff
+     clk ~< con clk c h
+     d0 ~< con-internal-e12-3
+     q0 ~> con cono 200000 h
+
+e14: 10141 shft reg
+     shft 0in ~< %NC%
+     d0 ~< con ebus 18 h
+     d1 ~< -con ebus 19 h
+     d2 ~< con ebus 19 h
+     d3 ~< con ebus 20 h
+     shft 3in ~< %NC%
+     op1 ~< con cono pi l
+     op2 ~< con cono pi l
+     clk ~< con clk e h
+     q0 ~> con wr even par adr h
+     q1 ~> con wr even par data l
+     q2 ~> con wr even par data h
+     q3 ~> con wr even par dir h
+
+e1: 10101 quad or/nor
+    a1 ~< con wr even par dir h
+    abcd2 ~< %NC%
+    nqa ~> con wr even par dir l
+    qa ~> %NC%
+    b1 ~< con cache look en h
+    nqb ~> con cache look en l
+    qb ~> %NC%
+    c1 ~< con kl10 paging en h
+    nqc ~> con ki10 paging mode l
+    qc ~> con ki10 paging mode h
+    d1 ~< con trap en h
+    nqd ~> %NC%
+    qd ~> con trap en a h
+
+e6: 10141 shft reg
+    shft 0in ~< %NC%
+    d0 ~< con ebus 18 h
+    d1 ~< con ebus 19 h
+    d2 ~< con ebus 21 h
+    d3 ~< con ebus 22 h
+    shft 3in ~< %NC%
+    op1 ~< con cono pag l
+    op2 ~< con cono pag l
+    clk ~< con clk e h
+    q0 ~> con cache look en h
+    q1 ~> con cache load en h
+    q2 ~> con kl10 paging en h
+    q3 ~> con trap en h
+
+e45: 10174 2x4 mix
+     d00 ~< -con ebus 18 h
+     d01 ~< cram # 07 e h
+     d02 ~< -con # func 02x h
+     d03 ~< -con # func 02x h
+     d10 ~< -con ebus 19 h
+     d11 ~< cram # 08 e h
+     d12 ~< -con # func 02x h
+     d13 ~< -con # func 02x h
+     sel2 ~< -con # func 02x h
+     sel1 ~< cram # 06 e h
+     nen ~< -con reset l
+     b0 ~> con load ac blocks l
+     b1 ~> con load prev context h
+
+e47: 10161 decoder active low
+     sel4 ~< cram # 03 e h
+     sel2 ~< cram # 04 e h
+     sel1 ~< cram # 05 e h
+     nen1 ~< -cram # 02 e l
+     nen1 ~< con cond/diag func l
+     nq0 ~> %NC%
+     nq1 ~> con # func 01x l
+     nq2 ~> con # func 02x l
+     nq3 ~> %NC%
+     nq4 ~> con # func 04x l
+     nq5 ~> con # func 05x l
+     nq6 ~> %NC%
+     nq7 ~> %NC%
+
+e43: 10105 2-3-2 or/nor
+     b1 ~< con cond/diag func l
+     b2 ~< %NC%
+     b3 ~< con # 00 l
+     qb ~> con delay req h
+     nqb ~> %NC%
+
+e15: 10162 decoder
+     sel4 ~< cram # 06 e h
+     sel2 ~< cram # 07 e h
+     sel1 ~< cram # 08 e h
+     nen1 ~< clk ebox sync a l
+     nen2 ~< con-internal-e44-15
+     q0 ~> con spare func 010 h
+     q1 ~> con spare func 011 h
+     q2 ~> %NC%
+     q3 ~> %NC%
+     q4 ~> con-internal-e15-13
+     q5 ~> con-internal-e15-12
+     q6 ~> con-internal-e15-11
+     q7 ~> con-internal-e15-10
+
+e11: 10101 quad or/nor
+     a1 ~< con-internal-e15-13
+     nqa ~> con cono apr l
+     qa ~> con cono apr h
+     b1 ~< con-internal-e15-12
+     nqb ~> con cono pi l
+     c1 ~< con-internal-e15-11
+     nqc ~> con cono pag l
+     d1 ~< con-internal-e15-10
+     abcd2 ~< con reset h
+     nqd ~> con datao apr l
+
+e26: 10101 quad or/nor
+     a1 ~< con ebus 20 l
+     abcd2 ~< con cono apr l
+     qa ~> %NC%
+     nqa ~> con sel en l
+     b1 ~< con ebus 21 l
+     qb ~> con sel dis h
+     nqb ~> %NC%
+     c1 ~< con ebus 22 l
+     qc ~> con sel clr h
+     nqc ~> %NC%
+     d1 ~< con ebus 23 l
+     nqd ~> con sel set l
+
+e39: 10117 dual 2-3 or-and
+     a1 ~< cram # 03 e h
+     a2 ~< cram # 07 e h
+     b1 ~< cram # 07 e h
+     b2 ~< con sr 02 h
+     b3d3 ~< %NC%
+     qab ~> con-internal-e39-2
+     nqab ~> %NC%
+     c1 ~< cram # 04 e h
+     c2 ~< cram # 08 e h
+     d1 ~< cram # 08 e h
+     d2 ~< con sr 03 h
+     qcd ~> con-internal-e39-15
+     nqcd ~> %NC%
+
+e35: 10141 shft reg
+     shft 0in ~< %NC%
+     d0 ~< cram # 05 e h
+     d1 ~< cram # 06 e h
+     d2 ~< con-internal-e39-2
+     d3 ~< con-internal-e39-15
+     shft 3in ~< %NC%
+     op1 ~< con cond/sr_# l
+     op2 ~< con cond/sr_# l
+     clk ~< con clk f h
+     q0 ~> con sr 00 h
+     q1 ~> con sr 01 h
+     q2 ~> con sr 02 h
+     q3 ~> con sr 03 h
+
+e37: 10105 quad or/nor
+     a1 ~< cram # 00 e h
+     a2 ~< %NC%
+     nqa ~> con # 00 l
+     qa ~> %NC%
+     b1 ~< cram # 02 e h
+     b2 ~< %NC%
+     nqb ~> con # 02 l
+     qb ~> %NC%
+     c1 ~< cram # 03 e h
+     c2 ~< %NC%
+     nqc ~> con # 03 l
+     qc ~> %NC%
+     d1 ~< cram # 05 e h
+     d2 ~< %NC%
+     nqd ~> con # 05 l
+     qd ~> %NC%
+
+e57: 10105 quad or/nor
+     a1 ~< cram # 07 e h
+     a2 ~< %NC%
+     nqa ~> con # 07 l
+     qa ~> %NC%
+
+e41: 10141 shft reg
+     shft 0in ~< %NC%
+     d0 ~< cram # 01 e h
+     d1 ~< con # 02 l
+     d2 ~< con-internal-e43-3
+     d3 ~< con # 05 l
+     shft 3in ~< %NC%
+
+e43:
