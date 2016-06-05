@@ -53,7 +53,7 @@ const logic = {
   '10109': dev('4/5 or/nor', 'a#1/4, b#1/5', 'nqa, qa, nqb, qb'),
   '10110': dev('2x or buffer', 'a#1/3, b#1/3', 'qa#1/3, qb#1/3'),
   '10113': dev('4x xor buffer', 'a#1/2, b#1/2, c#1/2, d#1/2, ne', 'qa, qb, qc, qd'),
-  '10117': dev('2-3 or-and/or-and', 'a#1/2, b#1/2, b3d3, c#1/3, d#1/2', 'nqab, qab, nqcd, qcd'),
+  '10117': dev('2x2-3 or-and/or-and', 'a#1/2, b#1/2, b3d3, c#1/3, d#1/2', 'nqab, qab, nqcd, qcd'),
   '10118': dev('2x3 or-and', 'a#1/3, b#1/2, b3c3, c#1/2, d#1/3', 'qab, qcd'),
   '10121': dev('4-wide or-and/or-and', 'a#1/3, b#1/2, b3c3, c#1/2, d#1/3', 'nq, q'),
   '10141': dev('shft reg', 'shft 0in, d/4, shft 3in, op#1/2, clk', 'q/4'),
