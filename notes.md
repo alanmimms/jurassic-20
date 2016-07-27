@@ -9,13 +9,13 @@
   * flavor: {Simple,Inverted}
   * direction: {In,Out,InOut}
 
-* SectionType
-  * pinsType[]: PinType
+* PartSection
+  * pins[]: PinType
 
 * PartType
   * name
   * description
-  * sections[]: SectionType
+  * sections[]: PartSection
   
 * Part
   * type:PartType
