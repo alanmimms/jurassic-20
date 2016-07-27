@@ -119,7 +119,7 @@ class Schematic {
 }
 
 
-const db = [
+const parts = [
   // '10161': dev('decoder active low', 'sel@3, nen#1/2', 'nq/8'),
   new PartType('10161', 'decoder active low', [
       new PartSection([
@@ -140,5 +140,5 @@ const db = [
   ]),
 ];
 
-console.log('db:', util.inspect(db, {depth: null}));
+console.log('parts:', util.inspect(parts, {depth: null}));
 
