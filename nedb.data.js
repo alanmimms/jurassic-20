@@ -10,6 +10,13 @@ class PartType {
     this.description = description;
     this.sections = sections;
   }
+
+  inspect(depth, opts) {
+    const nl = '\n' + '  '.repeat(depth+1);
+    return `\nPartType{${this.name}: ${this.description} [${nl}` +
+      this.sections.map(s => s.inspect(depth+1, opts)).join(',' + nl) +
+  `}`;
+  }
 }
 
 
@@ -37,6 +44,13 @@ class PartSection {
 
   constructor(pins) {
     this.pins = pins;
+  }
+
+  inspect(depth, opts) {
+    const nl = '\n' + '  '.repeat(depth+1);
+    return `PartSection{${nl}` +
+      this.pins.map(p => p.inspect(depth+1, opts)).join(',' + nl) +
+      '}';
   }
 }
 
