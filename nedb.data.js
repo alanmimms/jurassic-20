@@ -3,9 +3,21 @@
 const util = require('util');
 
 
-class PartType {
+class SchemaObject {
+  constructor() {
+    SchemaObject.objects[SchemaObject.uuid] = this;
+    this.uuid = this.constructor.name + '-' + ++SchemaObject.uuid;
+  }
+}
+
+SchemaObject.objects = {};
+SchemaObject.uuid = 0;
+
+
+class PartType extends SchemaObject {
 
   constructor(name, description, sections) {
+    super();
     this.name = name;
     this.description = description;
     this.sections = sections;
@@ -13,18 +25,19 @@ class PartType {
 
   inspect(depth, opts) {
     const nl = '\n' + '  '.repeat(depth+1);
-    return `\nPartType{${this.name}: ${this.description} [${nl}` +
+    return `\n${this.uuid}{${this.name}: ${this.description} [${nl}` +
       this.sections.map(s => s.inspect(depth+1, opts)).join(',' + nl) +
   `}`;
   }
 }
 
 
-class PinType {
+class PinType extends SchemaObject {
 
   // Either call this with one string parameter in the form
   // `in!#7:name` or pass the discrete components as three parameters.
   constructor(direction, name, number) {
+    super();
 
     if (arguments.length === 1) {
       const s = direction;
@@ -39,7 +52,7 @@ class PinType {
   }
 
   inspect(depth, opts) {
-    return "PinType{" +
+    return this.uuid + "{" +
       this.direction +
       (this.flavor === 'Inverted' ? "!" : "") +
       '#' + this.number +
@@ -49,12 +62,13 @@ class PinType {
 }
 
 
-class PartSection {
+class PartSection extends SchemaObject {
 
   // Pass this an array of pins or a whitespace separated string of
   // pin specs of the form `in!#7:descr in#8:another ...`. Leading
   // whitespace and trailing whitespace are ignored.
   constructor(pins) {
+    super();
 
     if (typeof pins === 'string') {
       pins = pins.trim().split(/\s+/).map(p => new PinType(p));
@@ -65,16 +79,17 @@ class PartSection {
 
   inspect(depth, opts) {
     const nl = '\n' + '  '.repeat(depth+1);
-    return `PartSection{${nl}` +
+    return `${this.uuid}{${nl}` +
       this.pins.map(p => p.inspect(depth+1, opts)).join(',' + nl) +
       '}';
   }
 }
 
 
-class Part {
+class Part extends SchemaObject {
 
   constructor(type, ref, location, pins) {
+    super();
     this.type = type;
     this.ref = ref;
     this.location = location;
@@ -83,9 +98,10 @@ class Part {
 }
 
 
-class Pin {
+class Pin extends SchemaObject {
 
   constructor(type, part, location) {
+    super();
     this.type = type;
     this.part = part;
     this.location = location;
@@ -93,17 +109,19 @@ class Pin {
 }
 
 
-class Signal {
+class Signal extends SchemaObject {
 
   constructor(wires) {
+    super();
     this.wires = wires;
   }
 }
 
 
-class Wire {
+class Wire extends SchemaObject {
 
   constructor(from, to, signal) {
+    super();
     this.from = from;
     this.to = to;
     this.signal = signal;
@@ -111,9 +129,10 @@ class Wire {
 }
 
 
-class Page {
+class Page extends SchemaObject {
 
   constructor(pdfPage, title, pageCode, revision, parts, wires, noteBlocks) {
+    super();
     this.pdfPage = pdfPage;
     this.title = title;
     this.pageCode = pageCode;
@@ -125,9 +144,10 @@ class Page {
 }
 
 
-class Schematic {
+class Schematic extends SchemaObject {
 
   constructor(title, moduleName, revision, pages) {
+    super();
     this.title = title;
     this.moduleName = moduleName;
     this.revision = revision;
