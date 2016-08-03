@@ -288,8 +288,7 @@ out#2:q0 out#15:q1`),
 
   new PartType('10179', 'carry', [
     new PartSection(`in#11:cn in#14:p0 in#10:p1 in#12:p2 in#13:p3
-in#4:g0 in#7:g1 in#9:g2 in#3:g3 xxxxxxxx
-`),
+in#4:g0 in#7:g1 in#9:g2 in#3:g3 out#6:co2 out#3:co4 out#15:pg out#2:gg`),
   ]),
 
   new PartType('10181', '4-bit alu', [
