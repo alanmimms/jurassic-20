@@ -133,33 +133,25 @@ Wire Wire Line
 Wire Wire Line
 	2050 3700 3300 3700
 Wire Wire Line
-	3300 4200 3300 6850
-Wire Wire Line
-	3300 6850 3300 9550
+	3300 4200 3300 9550
 Wire Wire Line
 	3300 6850 2850 6850
 Wire Wire Line
 	2850 6200 3150 6200
 Wire Wire Line
-	3150 3900 3150 6200
-Wire Wire Line
-	3150 6200 3150 9250
+	3150 3900 3150 9250
 Wire Wire Line
 	3150 3900 3300 3900
 Wire Wire Line
 	2850 5550 3000 5550
 Wire Wire Line
-	3000 4000 3000 5550
-Wire Wire Line
-	3000 5550 3000 9350
+	3000 4000 3000 9350
 Wire Wire Line
 	3000 4000 3300 4000
 Wire Wire Line
 	2850 4800 2850 4800
 Wire Wire Line
-	2850 4100 2850 4800
-Wire Wire Line
-	2850 4800 2850 9450
+	2850 4100 2850 9450
 Wire Wire Line
 	2850 4100 3300 4100
 $Comp
@@ -174,21 +166,13 @@ F 3 "" H 7050 3600 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3350 3900 6450 3900
+	3350 3900 9550 3900
 Wire Wire Line
-	6450 3900 9550 3900
+	3350 4000 9550 4000
 Wire Wire Line
-	3350 4000 6450 4000
+	3350 4100 9550 4100
 Wire Wire Line
-	6450 4000 9550 4000
-Wire Wire Line
-	3350 4100 6450 4100
-Wire Wire Line
-	6450 4100 9550 4100
-Wire Wire Line
-	3350 4200 6450 4200
-Wire Wire Line
-	6450 4200 9550 4200
+	3350 4200 9550 4200
 Text GLabel 6400 3000 0    60   Input ~ 0
 armm.[n+1].h
 Text GLabel 6400 3100 0    60   Input ~ 0
@@ -544,7 +528,7 @@ ad.[n+4].h
 Text GLabel 2650 8950 0    60   Input ~ 0
 adx.[n+3].h
 Wire Wire Line
-	3550 8350 2650 8350
+	2650 8350 3550 8350
 Wire Wire Line
 	2650 8450 3550 8450
 Wire Wire Line
@@ -569,21 +553,13 @@ F 3 "" H 7300 8950 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3600 9250 6700 9250
+	3600 9250 9800 9250
 Wire Wire Line
-	6700 9250 9800 9250
+	3600 9350 9800 9350
 Wire Wire Line
-	3600 9350 6700 9350
+	3600 9450 9800 9450
 Wire Wire Line
-	6700 9350 9800 9350
-Wire Wire Line
-	3600 9450 6700 9450
-Wire Wire Line
-	6700 9450 9800 9450
-Wire Wire Line
-	3600 9550 6700 9550
-Wire Wire Line
-	6700 9550 9800 9550
+	3600 9550 9800 9550
 Text GLabel 6650 8350 0    60   Input ~ 0
 armm.[n+4].h
 Text GLabel 6650 8450 0    60   Input ~ 0
