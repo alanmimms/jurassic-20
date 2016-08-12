@@ -35,7 +35,7 @@ EELAYER 25 0
 EELAYER END
 $Descr B 17000 11000
 encoding utf-8
-Sheet 3 3
+Sheet 3 4
 Title "DATA PATH ARX & MQ Registers"
 Date "10/21/1976"
 Rev "A"
@@ -82,8 +82,8 @@ Wire Bus Line
 Wire Bus Line
 	1050 1350 1050 1500
 Wire Bus Line
-	1050 1500 900  1500
-Text HLabel 900  1500 0    60   Input ~ 0
+	1050 1500 1100 1500
+Text HLabel 1100 1500 2    60   Output ~ 0
 arxm
 Wire Wire Line
 	900  750  950  750 
@@ -97,214 +97,162 @@ Wire Wire Line
 	900  1150 950  1150
 Wire Wire Line
 	900  1250 950  1250
-Text Label 1650 750  2    60   ~ 0
+Text Label 800  2900 2    60   ~ 0
 ad.0
-Text Label 1650 850  2    60   ~ 0
+Text Label 800  3000 2    60   ~ 0
 ad.1
-Text Label 1650 950  2    60   ~ 0
+Text Label 800  3100 2    60   ~ 0
 ad.2
-Text Label 1650 1050 2    60   ~ 0
+Text Label 800  3200 2    60   ~ 0
 ad.3
-Text Label 1650 1150 2    60   ~ 0
+Text Label 800  3300 2    60   ~ 0
 ad.4
-Text Label 1650 1250 2    60   ~ 0
+Text Label 800  3400 2    60   ~ 0
 ad.5
 Entry Wire Line
-	1700 750  1800 850 
+	850  2900 950  3000
 Entry Wire Line
-	1700 850  1800 950 
+	850  3000 950  3100
 Entry Wire Line
-	1700 950  1800 1050
+	850  3100 950  3200
 Entry Wire Line
-	1700 1050 1800 1150
+	850  3200 950  3300
 Entry Wire Line
-	1700 1150 1800 1250
+	850  3300 950  3400
 Entry Wire Line
-	1700 1250 1800 1350
+	850  3400 950  3500
 Wire Bus Line
-	1800 850  1800 950 
+	950  3000 950  3100
 Wire Bus Line
-	1800 950  1800 1050
+	950  3100 950  3200
 Wire Bus Line
-	1800 1050 1800 1150
+	950  3200 950  3300
 Wire Bus Line
-	1800 1150 1800 1250
+	950  3300 950  3400
 Wire Bus Line
-	1800 1250 1800 1350
+	950  3400 950  3500
 Wire Bus Line
-	1800 1350 1800 1500
+	950  3500 950  3650
 Wire Bus Line
-	1800 1500 1650 1500
-Text HLabel 1650 1500 0    60   Input ~ 0
+	950  3650 1050 3650
+Text HLabel 1050 3650 2    60   Output ~ 0
 ad
 Wire Wire Line
-	1650 750  1700 750 
+	800  2900 850  2900
 Wire Wire Line
-	1650 850  1700 850 
+	800  3000 850  3000
 Wire Wire Line
-	1650 950  1700 950 
+	800  3100 850  3100
 Wire Wire Line
-	1650 1050 1700 1050
+	800  3200 850  3200
 Wire Wire Line
-	1650 1150 1700 1150
+	800  3300 850  3300
 Wire Wire Line
-	1650 1250 1700 1250
-Text Label 2400 750  2    60   ~ 0
-mq.0
-Text Label 2400 850  2    60   ~ 0
-mq.1
-Text Label 2400 950  2    60   ~ 0
-mq.2
-Text Label 2400 1050 2    60   ~ 0
-mq.3
-Text Label 2400 1150 2    60   ~ 0
-mq.4
-Text Label 2400 1250 2    60   ~ 0
-mq.5
-Entry Wire Line
-	2450 750  2550 850 
-Entry Wire Line
-	2450 850  2550 950 
-Entry Wire Line
-	2450 950  2550 1050
-Entry Wire Line
-	2450 1050 2550 1150
-Entry Wire Line
-	2450 1150 2550 1250
-Entry Wire Line
-	2450 1250 2550 1350
-Wire Bus Line
-	2550 1500 2400 1500
-Text HLabel 2400 1500 0    60   Input ~ 0
-mq
-Wire Wire Line
-	2400 750  2450 750 
-Wire Wire Line
-	2400 850  2450 850 
-Wire Wire Line
-	2400 950  2450 950 
-Wire Wire Line
-	2400 1050 2450 1050
-Wire Wire Line
-	2400 1150 2450 1150
-Wire Wire Line
-	2400 1250 2450 1250
-Wire Bus Line
-	2550 850  2550 950 
-Wire Bus Line
-	2550 950  2550 1050
-Wire Bus Line
-	2550 1050 2550 1150
-Wire Bus Line
-	2550 1150 2550 1250
-Wire Bus Line
-	2550 1250 2550 1350
-Wire Bus Line
-	2550 1350 2550 1500
-Text Label 3000 750  2    60   ~ 0
+	800  3400 850  3400
+Text Label 2200 1800 2    60   ~ 0
 sh.0
-Text Label 3000 850  2    60   ~ 0
+Text Label 2200 1900 2    60   ~ 0
 sh.1
-Text Label 3000 950  2    60   ~ 0
+Text Label 2200 2000 2    60   ~ 0
 sh.2
-Text Label 3000 1050 2    60   ~ 0
+Text Label 2200 2100 2    60   ~ 0
 sh.3
-Text Label 3000 1150 2    60   ~ 0
+Text Label 2200 2200 2    60   ~ 0
 sh.4
-Text Label 3000 1250 2    60   ~ 0
+Text Label 2200 2300 2    60   ~ 0
 sh.5
 Entry Wire Line
-	3050 750  3150 850 
+	2250 1800 2350 1900
 Entry Wire Line
-	3050 850  3150 950 
+	2250 1900 2350 2000
 Entry Wire Line
-	3050 950  3150 1050
+	2250 2000 2350 2100
 Entry Wire Line
-	3050 1050 3150 1150
+	2250 2100 2350 2200
 Entry Wire Line
-	3050 1150 3150 1250
+	2250 2200 2350 2300
 Entry Wire Line
-	3050 1250 3150 1350
+	2250 2300 2350 2400
 Wire Bus Line
-	3150 1500 3000 1500
-Text HLabel 3000 1500 0    60   Input ~ 0
+	2350 2550 2200 2550
+Text HLabel 2200 2550 0    60   Input ~ 0
 sh
 Wire Wire Line
-	3000 750  3050 750 
+	2200 1800 2250 1800
 Wire Wire Line
-	3000 850  3050 850 
+	2200 1900 2250 1900
 Wire Wire Line
-	3000 950  3050 950 
+	2200 2000 2250 2000
 Wire Wire Line
-	3000 1050 3050 1050
+	2200 2100 2250 2100
 Wire Wire Line
-	3000 1150 3050 1150
+	2200 2200 2250 2200
 Wire Wire Line
-	3000 1250 3050 1250
+	2200 2300 2250 2300
 Wire Bus Line
-	3150 850  3150 950 
+	2350 1900 2350 2000
 Wire Bus Line
-	3150 950  3150 1050
+	2350 2000 2350 2100
 Wire Bus Line
-	3150 1050 3150 1150
+	2350 2100 2350 2200
 Wire Bus Line
-	3150 1150 3150 1250
+	2350 2200 2350 2300
 Wire Bus Line
-	3150 1250 3150 1350
+	2350 2300 2350 2400
 Wire Bus Line
-	3150 1350 3150 1500
-Text Label 900  1800 2    60   ~ 0
+	2350 2400 2350 2550
+Text Label 1300 2900 2    60   ~ 0
 adx.0
-Text Label 900  1900 2    60   ~ 0
+Text Label 1300 3000 2    60   ~ 0
 adx.1
-Text Label 900  2000 2    60   ~ 0
+Text Label 1300 3100 2    60   ~ 0
 adx.2
-Text Label 900  2100 2    60   ~ 0
+Text Label 1300 3200 2    60   ~ 0
 adx.3
-Text Label 900  2200 2    60   ~ 0
+Text Label 1300 3300 2    60   ~ 0
 adx.4
-Text Label 900  2300 2    60   ~ 0
+Text Label 1300 3400 2    60   ~ 0
 adx.5
 Entry Wire Line
-	950  1800 1050 1900
+	1350 2900 1450 3000
 Entry Wire Line
-	950  1900 1050 2000
+	1350 3000 1450 3100
 Entry Wire Line
-	950  2000 1050 2100
+	1350 3100 1450 3200
 Entry Wire Line
-	950  2100 1050 2200
+	1350 3200 1450 3300
 Entry Wire Line
-	950  2200 1050 2300
+	1350 3300 1450 3400
 Entry Wire Line
-	950  2300 1050 2400
+	1350 3400 1450 3500
 Wire Bus Line
-	1050 1900 1050 2000
+	1450 3000 1450 3100
 Wire Bus Line
-	1050 2000 1050 2100
+	1450 3100 1450 3200
 Wire Bus Line
-	1050 2100 1050 2200
+	1450 3200 1450 3300
 Wire Bus Line
-	1050 2200 1050 2300
+	1450 3300 1450 3400
 Wire Bus Line
-	1050 2300 1050 2400
+	1450 3400 1450 3500
 Wire Bus Line
-	1050 2400 1050 2550
+	1450 3500 1450 3650
 Wire Bus Line
-	1050 2550 900  2550
-Text HLabel 900  2550 0    60   Input ~ 0
+	1450 3650 1550 3650
+Text HLabel 1550 3650 2    60   Output ~ 0
 adx
 Wire Wire Line
-	900  1800 950  1800
+	1300 2900 1350 2900
 Wire Wire Line
-	900  1900 950  1900
+	1300 3000 1350 3000
 Wire Wire Line
-	900  2000 950  2000
+	1300 3100 1350 3100
 Wire Wire Line
-	900  2100 950  2100
+	1300 3200 1350 3200
 Wire Wire Line
-	900  2200 950  2200
+	1300 3300 1350 3300
 Wire Wire Line
-	900  2300 950  2300
+	1300 3400 1350 3400
 Text Label 1750 1800 2    60   ~ 0
 cache-data.0
 Text Label 1750 1900 2    60   ~ 0
@@ -357,58 +305,58 @@ Wire Wire Line
 	1750 2200 1800 2200
 Wire Wire Line
 	1750 2300 1800 2300
-Text Label 2400 1800 2    60   ~ 0
+Text Label 1700 750  2    60   ~ 0
 mqm.0
-Text Label 2400 1900 2    60   ~ 0
+Text Label 1700 850  2    60   ~ 0
 mqm.1
-Text Label 2400 2000 2    60   ~ 0
+Text Label 1700 950  2    60   ~ 0
 mqm.2
-Text Label 2400 2100 2    60   ~ 0
+Text Label 1700 1050 2    60   ~ 0
 mqm.3
-Text Label 2400 2200 2    60   ~ 0
+Text Label 1700 1150 2    60   ~ 0
 mqm.4
-Text Label 2400 2300 2    60   ~ 0
+Text Label 1700 1250 2    60   ~ 0
 mqm.5
 Entry Wire Line
-	2450 1800 2550 1900
+	1750 750  1850 850 
 Entry Wire Line
-	2450 1900 2550 2000
+	1750 850  1850 950 
 Entry Wire Line
-	2450 2000 2550 2100
+	1750 950  1850 1050
 Entry Wire Line
-	2450 2100 2550 2200
+	1750 1050 1850 1150
 Entry Wire Line
-	2450 2200 2550 2300
+	1750 1150 1850 1250
 Entry Wire Line
-	2450 2300 2550 2400
+	1750 1250 1850 1350
 Wire Bus Line
-	2550 2550 2700 2550
-Text HLabel 2700 2550 2    60   Output ~ 0
+	1850 1500 2000 1500
+Text HLabel 2000 1500 2    60   Output ~ 0
 mqm
 Wire Wire Line
-	2400 1800 2450 1800
+	1700 750  1750 750 
 Wire Wire Line
-	2400 1900 2450 1900
+	1700 850  1750 850 
 Wire Wire Line
-	2400 2000 2450 2000
+	1700 950  1750 950 
 Wire Wire Line
-	2400 2100 2450 2100
+	1700 1050 1750 1050
 Wire Wire Line
-	2400 2200 2450 2200
+	1700 1150 1750 1150
 Wire Wire Line
-	2400 2300 2450 2300
+	1700 1250 1750 1250
 Wire Bus Line
-	2550 1900 2550 2000
+	1850 850  1850 950 
 Wire Bus Line
-	2550 2000 2550 2100
+	1850 950  1850 1050
 Wire Bus Line
-	2550 2100 2550 2200
+	1850 1050 1850 1150
 Wire Bus Line
-	2550 2200 2550 2300
+	1850 1150 1850 1250
 Wire Bus Line
-	2550 2300 2550 2400
+	1850 1250 1850 1350
 Wire Bus Line
-	2550 2400 2550 2550
+	1850 1350 1850 1500
 $Comp
 L MC10141 e25
 U 1 1 57ACA2E8
@@ -915,11 +863,11 @@ Wire Wire Line
 Wire Wire Line
 	3100 6800 5650 6800
 Wire Wire Line
-	2800 7250 3050 7250
+	3050 7250 2800 7250
 Wire Wire Line
-	3050 7250 3050 6500
+	3050 6100 3050 6500
 Wire Wire Line
-	3050 6500 3050 6100
+	3050 6500 3050 7250
 Wire Wire Line
 	3050 6100 3100 6100
 Wire Wire Line
@@ -1196,4 +1144,108 @@ Text HLabel 12200 6300 0    60   Input ~ 0
 mqm.3-5-dr
 Wire Wire Line
 	12200 6300 12300 6300
+Text Label 2450 750  2    60   ~ 0
+mq.0
+Text Label 2450 850  2    60   ~ 0
+mq.1
+Text Label 2450 950  2    60   ~ 0
+mq.2
+Text Label 2450 1050 2    60   ~ 0
+mq.3
+Text Label 2450 1150 2    60   ~ 0
+mq.4
+Text Label 2450 1250 2    60   ~ 0
+mq.5
+Entry Wire Line
+	2500 750  2600 850 
+Entry Wire Line
+	2500 850  2600 950 
+Entry Wire Line
+	2500 950  2600 1050
+Entry Wire Line
+	2500 1050 2600 1150
+Entry Wire Line
+	2500 1150 2600 1250
+Entry Wire Line
+	2500 1250 2600 1350
+Wire Bus Line
+	2600 1500 2750 1500
+Text HLabel 2750 1500 2    60   Output ~ 0
+mq
+Wire Wire Line
+	2450 750  2500 750 
+Wire Wire Line
+	2450 850  2500 850 
+Wire Wire Line
+	2450 950  2500 950 
+Wire Wire Line
+	2450 1050 2500 1050
+Wire Wire Line
+	2450 1150 2500 1150
+Wire Wire Line
+	2450 1250 2500 1250
+Wire Bus Line
+	2600 850  2600 950 
+Wire Bus Line
+	2600 950  2600 1050
+Wire Bus Line
+	2600 1050 2600 1150
+Wire Bus Line
+	2600 1150 2600 1250
+Wire Bus Line
+	2600 1250 2600 1350
+Wire Bus Line
+	2600 1350 2600 1500
+Text Label 3150 750  2    60   ~ 0
+arx.0
+Text Label 3150 850  2    60   ~ 0
+arx.1
+Text Label 3150 950  2    60   ~ 0
+arx.2
+Text Label 3150 1050 2    60   ~ 0
+arx.3
+Text Label 3150 1150 2    60   ~ 0
+arx.4
+Text Label 3150 1250 2    60   ~ 0
+arx.5
+Entry Wire Line
+	3200 750  3300 850 
+Entry Wire Line
+	3200 850  3300 950 
+Entry Wire Line
+	3200 950  3300 1050
+Entry Wire Line
+	3200 1050 3300 1150
+Entry Wire Line
+	3200 1150 3300 1250
+Entry Wire Line
+	3200 1250 3300 1350
+Wire Bus Line
+	3300 1500 3450 1500
+Text HLabel 3450 1500 2    60   Output ~ 0
+arx
+Wire Wire Line
+	3150 750  3200 750 
+Wire Wire Line
+	3150 850  3200 850 
+Wire Wire Line
+	3150 950  3200 950 
+Wire Wire Line
+	3150 1050 3200 1050
+Wire Wire Line
+	3150 1150 3200 1150
+Wire Wire Line
+	3150 1250 3200 1250
+Wire Bus Line
+	3300 850  3300 950 
+Wire Bus Line
+	3300 950  3300 1050
+Wire Bus Line
+	3300 1050 3300 1150
+Wire Bus Line
+	3300 1150 3300 1250
+Wire Bus Line
+	3300 1250 3300 1350
+Wire Bus Line
+	3300 1350 3300 1500
 $EndSCHEMATC

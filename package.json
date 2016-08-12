@@ -1,19 +1,46 @@
 {
   "name": "kl10-schematics",
-  "version": "1.0.0",
   "description": "DEC KL10 CPU schematic recapture tool",
-  "main": "compile.js",
+  "version": "0.0.0",
+  "homepage": "",
+  "main": "src/",
+  "keywords": [
+    "feathers"
+  ],
+  "license": "MIT",
+  "repository": {},
+  "author": {},
+  "contributors": [],
+  "bugs": {},
+  "engines": {
+    "node": ">= 0.12.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run jshint && npm run mocha",
+    "jshint": "jshint src/. test/. --config",
+    "start": "node src/",
+    "mocha": "mocha test/ --recursive"
   },
-  "repository": {
-    "type": "git",
-    "url": "ssh://alan@alan.thefuture.place:/home/alan/dec20-git/kl10-schematics"
-  },
-  "author": "Alan Mimms <a.mimms@f5.com>",
-  "license": "ISC",
   "dependencies": {
-    "lodash": "^4.11.1",
-    "pegjs": "^0.9.0"
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "cors": "^2.7.1",
+    "feathers": "^2.0.1",
+    "feathers-authentication": "^0.7.9",
+    "feathers-configuration": "^0.2.3",
+    "feathers-errors": "^2.4.0",
+    "feathers-hooks": "^1.5.4",
+    "feathers-nedb": "^2.4.1",
+    "feathers-rest": "^1.4.3",
+    "feathers-socketio": "^1.4.1",
+    "nedb": "^1.8.0",
+    "passport": "^0.3.2",
+    "serve-favicon": "^2.3.0",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.2",
+    "mocha": "^3.0.1",
+    "request": "^2.74.0"
   }
 }
