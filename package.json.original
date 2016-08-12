@@ -1,0 +1,25 @@
+{
+  "name": "kl10-schematics",
+  "version": "1.0.0",
+  "description": "DEC KL10 CPU schematic recapture tool",
+  "main": "compile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://alan@alan.thefuture.place:/home/alan/dec20-git/kl10-schematics"
+  },
+  "author": "Alan Mimms <a.mimms@f5.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "feathers": "^2.0.1",
+    "feathers-nedb": "^2.4.1",
+    "feathers-rest": "^1.4.3",
+    "feathers-socketio": "^1.4.1",
+    "lodash": "^4.11.1",
+    "nedb": "^1.8.0",
+    "pegjs": "^0.9.0"
+  }
+}
