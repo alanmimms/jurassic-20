@@ -35,7 +35,7 @@ EELAYER 25 0
 EELAYER END
 $Descr B 17000 11000
 encoding utf-8
-Sheet 3 4
+Sheet 3 6
 Title "DATA PATH ARX & MQ Registers"
 Date "10/21/1976"
 Rev "A"
