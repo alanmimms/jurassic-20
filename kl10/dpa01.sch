@@ -49,6 +49,8 @@ $Comp
 L MC10164 e53
 U 1 1 57A676FA
 P 3900 3600
+AR Path="/57B68864/57B6B963/57A676FA" Ref="e53"  Part="1" 
+AR Path="/57B6D511/57B6B963/57A676FA" Ref="e53"  Part="1" 
 F 0 "e53" H 3920 4350 60  0000 C CNN
 F 1 "MC10164" H 3940 2850 60  0000 C CNN
 F 2 "" H 3900 3600 60  0000 C CNN
@@ -82,6 +84,8 @@ $Comp
 L MC10164 e46
 U 1 1 57A7828A
 P 7050 3600
+AR Path="/57B68864/57B6B963/57A7828A" Ref="e46"  Part="1" 
+AR Path="/57B6D511/57B6B963/57A7828A" Ref="e46"  Part="1" 
 F 0 "e46" H 7070 4350 60  0000 C CNN
 F 1 "MC10164" H 7090 2850 60  0000 C CNN
 F 2 "" H 7050 3600 60  0000 C CNN
@@ -105,6 +109,8 @@ $Comp
 L MC10164 e47
 U 1 1 57A791AF
 P 10150 3600
+AR Path="/57B68864/57B6B963/57A791AF" Ref="e47"  Part="1" 
+AR Path="/57B6D511/57B6B963/57A791AF" Ref="e47"  Part="1" 
 F 0 "e47" H 10170 4350 60  0000 C CNN
 F 1 "MC10164" H 10190 2850 60  0000 C CNN
 F 2 "" H 10150 3600 60  0000 C CNN
@@ -122,6 +128,8 @@ $Comp
 L MC10141 e39
 U 1 1 57A7ADE0
 P 12050 1900
+AR Path="/57B68864/57B6B963/57A7ADE0" Ref="e39"  Part="1" 
+AR Path="/57B6D511/57B6B963/57A7ADE0" Ref="e39"  Part="1" 
 F 0 "e39" H 12070 2500 60  0000 C CNN
 F 1 "MC10141" H 12090 1300 60  0000 C CNN
 F 2 "" H 12050 1900 60  0000 C CNN
@@ -154,6 +162,8 @@ $Comp
 L MC10164 e41
 U 1 1 57A7DDB6
 P 4150 8950
+AR Path="/57B68864/57B6B963/57A7DDB6" Ref="e41"  Part="1" 
+AR Path="/57B6D511/57B6B963/57A7DDB6" Ref="e41"  Part="1" 
 F 0 "e41" H 4170 9700 60  0000 C CNN
 F 1 "MC10164" H 4190 8200 60  0000 C CNN
 F 2 "" H 4150 8950 60  0000 C CNN
@@ -179,6 +189,8 @@ $Comp
 L MC10164 e40
 U 1 1 57A7DDD2
 P 7300 8950
+AR Path="/57B68864/57B6B963/57A7DDD2" Ref="e40"  Part="1" 
+AR Path="/57B6D511/57B6B963/57A7DDD2" Ref="e40"  Part="1" 
 F 0 "e40" H 7320 9700 60  0000 C CNN
 F 1 "MC10164" H 7340 8200 60  0000 C CNN
 F 2 "" H 7300 8950 60  0000 C CNN
@@ -216,6 +228,8 @@ $Comp
 L MC10164 e54
 U 1 1 57A7DDF0
 P 10400 8950
+AR Path="/57B68864/57B6B963/57A7DDF0" Ref="e54"  Part="1" 
+AR Path="/57B6D511/57B6B963/57A7DDF0" Ref="e54"  Part="1" 
 F 0 "e54" H 10420 9700 60  0000 C CNN
 F 1 "MC10164" H 10440 8200 60  0000 C CNN
 F 2 "" H 10400 8950 60  0000 C CNN
@@ -247,6 +261,8 @@ $Comp
 L MC10141 e51
 U 1 1 57A7DE0C
 P 12300 7250
+AR Path="/57B68864/57B6B963/57A7DE0C" Ref="e51"  Part="1" 
+AR Path="/57B6D511/57B6B963/57A7DE0C" Ref="e51"  Part="1" 
 F 0 "e51" H 12320 7850 60  0000 C CNN
 F 1 "MC10141" H 12340 6650 60  0000 C CNN
 F 2 "" H 12300 7250 60  0000 C CNN
@@ -293,21 +309,21 @@ NoConn ~ 11700 6800
 NoConn ~ 11700 7300
 NoConn ~ 16700 3000
 Text HLabel 10250 2450 0    60   Input ~ 0
-ar-0-2-sel
+[n/6+1,ctl-ar-00-08-load l,ctl-ar-00-08-load-l,ctl-ar-09-17-load-l,ctl-arr-load-l,ctl-arr-load-l,ctl-arr-load-l]
 Text HLabel 10200 2150 0    60   Input ~ 0
 dp04-clk
 Text HLabel 10450 7850 0    60   Input ~ 0
-ar-3-5-sel
+[n/6+1,ctl-ar-00-08-load-l,ctl-ar-09-17-load-l,ctl-ar-09-17-load-l,ctl-arr-load-l,ctl-arr-load-l,ctl-arr-load-l]
 Text HLabel 10450 7500 0    60   Input ~ 0
 dp04-clk
 Text HLabel 2700 4800 0    60   Input ~ 0
-arm-sel-4
+[n/18+1,ctl-arl-sel-4,cram-arm-sel-4]
 Text HLabel 2700 5550 0    60   Input ~ 0
-arm-sel-2
+[n/18+1,ctl-arl-sel-2,ctl-arr-sel-2]
 Text HLabel 2650 6200 0    60   Input ~ 0
-arm-sel-1
+[n/18+1,ctl-arl-sel-1,ctl-arr-sel-1]
 Text HLabel 2650 6850 0    60   Input ~ 0
-arm-en
+[n/6+1,ctl-ar-00-11-clr,ctl-ar-00-11-clr,ctl-ar-12-17-clr,ctl-arr-clr,ctl-arr-clr,ctl-arr-clr]
 Wire Wire Line
 	4500 3000 4500 1650
 Wire Wire Line
@@ -689,11 +705,11 @@ adx.5
 Text Label 9700 9050 2    60   ~ 0
 ad.3
 Text HLabel 9700 8850 0    60   Input ~ 0
-arm.5-x5
+[n/30+1,ad.[n+6],adx.0]
 Text HLabel 6350 3700 0    60   Input ~ 0
-arm.1-x7
+[n/6+1,ad-ex.1,ad.5,ad.11,ad.17,ad.23,ad.29]
 Text HLabel 3250 3700 0    60   Input ~ 0
-arm.0-x7
+[n/6+1,ad-ex.2,ad.4,ad.10,ad.16,ad.22,ad.28]
 Text Label 6600 8350 2    60   ~ 0
 armm.4
 Text Label 6600 8450 2    60   ~ 0
@@ -708,8 +724,6 @@ Text Label 6600 8950 2    60   ~ 0
 adx.4
 Text Label 6600 9050 2    60   ~ 0
 ad.2
-Text HLabel 6600 8850 0    60   Input ~ 0
-arm.4-x5
 Text Label 2600 8350 2    60   ~ 0
 armm.4
 Text Label 2600 8450 2    60   ~ 0
@@ -736,4 +750,6 @@ Text HLabel 2750 2900 0    60   Input ~ 0
 ebus-d
 Text HLabel 1800 2900 0    60   Input ~ 0
 sh
+Text Label 6600 8850 2    60   ~ 0
+ad.5
 $EndSCHEMATC
