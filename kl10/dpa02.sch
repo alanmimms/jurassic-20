@@ -222,7 +222,7 @@ Text HLabel 3000 4350 0    60   Input ~ 0
 Text HLabel 3000 4450 0    60   Input ~ 0
 [n/18+1,ctl-arxl-sel-2,ctl-arxr-sel-2]
 Text HLabel 3000 4550 0    60   Input ~ 0
-cram-arxm-sel-4.[n/18+1,0,6]
+cram-arxm-sel-4-[n/18+1,00,06]
 Wire Wire Line
 	3000 4450 5400 4450
 Wire Wire Line
