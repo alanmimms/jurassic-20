@@ -45,258 +45,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Label 900  750  2    60   ~ 0
-arxm.0
-Text Label 900  850  2    60   ~ 0
-arxm.1
-Text Label 900  950  2    60   ~ 0
-arxm.2
-Text Label 900  1050 2    60   ~ 0
-arxm.3
-Text Label 900  1150 2    60   ~ 0
-arxm.4
-Text Label 900  1250 2    60   ~ 0
-arxm.5
-Entry Wire Line
-	950  750  1050 850 
-Entry Wire Line
-	950  850  1050 950 
-Entry Wire Line
-	950  950  1050 1050
-Entry Wire Line
-	950  1050 1050 1150
-Entry Wire Line
-	950  1150 1050 1250
-Entry Wire Line
-	950  1250 1050 1350
-Wire Bus Line
-	1050 850  1050 1500
-Wire Bus Line
-	1050 1500 1100 1500
-Text HLabel 1100 1500 2    60   Output ~ 0
-arxm
-Wire Wire Line
-	900  750  950  750 
-Wire Wire Line
-	900  850  950  850 
-Wire Wire Line
-	900  950  950  950 
-Wire Wire Line
-	900  1050 950  1050
-Wire Wire Line
-	900  1150 950  1150
-Wire Wire Line
-	900  1250 950  1250
-Text Label 800  2900 2    60   ~ 0
-ad.0
-Text Label 800  3000 2    60   ~ 0
-ad.1
-Text Label 800  3100 2    60   ~ 0
-ad.2
-Text Label 800  3200 2    60   ~ 0
-ad.3
-Text Label 800  3300 2    60   ~ 0
-ad.4
-Text Label 800  3400 2    60   ~ 0
-ad.5
-Entry Wire Line
-	850  2900 950  3000
-Entry Wire Line
-	850  3000 950  3100
-Entry Wire Line
-	850  3100 950  3200
-Entry Wire Line
-	850  3200 950  3300
-Entry Wire Line
-	850  3300 950  3400
-Entry Wire Line
-	850  3400 950  3500
-Wire Bus Line
-	950  3000 950  3650
-Wire Bus Line
-	950  3650 1050 3650
-Text HLabel 1050 3650 2    60   Output ~ 0
-ad
-Wire Wire Line
-	800  2900 850  2900
-Wire Wire Line
-	800  3000 850  3000
-Wire Wire Line
-	800  3100 850  3100
-Wire Wire Line
-	800  3200 850  3200
-Wire Wire Line
-	800  3300 850  3300
-Wire Wire Line
-	800  3400 850  3400
-Text Label 2200 1800 2    60   ~ 0
-sh.0
-Text Label 2200 1900 2    60   ~ 0
-sh.1
-Text Label 2200 2000 2    60   ~ 0
-sh.2
-Text Label 2200 2100 2    60   ~ 0
-sh.3
-Text Label 2200 2200 2    60   ~ 0
-sh.4
-Text Label 2200 2300 2    60   ~ 0
-sh.5
-Entry Wire Line
-	2250 1800 2350 1900
-Entry Wire Line
-	2250 1900 2350 2000
-Entry Wire Line
-	2250 2000 2350 2100
-Entry Wire Line
-	2250 2100 2350 2200
-Entry Wire Line
-	2250 2200 2350 2300
-Entry Wire Line
-	2250 2300 2350 2400
-Wire Bus Line
-	2350 2550 2200 2550
-Text HLabel 2200 2550 0    60   Input ~ 0
-sh
-Wire Wire Line
-	2200 1800 2250 1800
-Wire Wire Line
-	2200 1900 2250 1900
-Wire Wire Line
-	2200 2000 2250 2000
-Wire Wire Line
-	2200 2100 2250 2100
-Wire Wire Line
-	2200 2200 2250 2200
-Wire Wire Line
-	2200 2300 2250 2300
-Wire Bus Line
-	2350 1900 2350 2550
-Text Label 1300 2900 2    60   ~ 0
-adx.0
-Text Label 1300 3000 2    60   ~ 0
-adx.1
-Text Label 1300 3100 2    60   ~ 0
-adx.2
-Text Label 1300 3200 2    60   ~ 0
-adx.3
-Text Label 1300 3300 2    60   ~ 0
-adx.4
-Text Label 1300 3400 2    60   ~ 0
-adx.5
-Entry Wire Line
-	1350 2900 1450 3000
-Entry Wire Line
-	1350 3000 1450 3100
-Entry Wire Line
-	1350 3100 1450 3200
-Entry Wire Line
-	1350 3200 1450 3300
-Entry Wire Line
-	1350 3300 1450 3400
-Entry Wire Line
-	1350 3400 1450 3500
-Wire Bus Line
-	1450 3000 1450 3650
-Wire Bus Line
-	1450 3650 1550 3650
-Text HLabel 1550 3650 2    60   Output ~ 0
-adx
-Wire Wire Line
-	1300 2900 1350 2900
-Wire Wire Line
-	1300 3000 1350 3000
-Wire Wire Line
-	1300 3100 1350 3100
-Wire Wire Line
-	1300 3200 1350 3200
-Wire Wire Line
-	1300 3300 1350 3300
-Wire Wire Line
-	1300 3400 1350 3400
-Text Label 1750 1800 2    60   ~ 0
-cache-data.0
-Text Label 1750 1900 2    60   ~ 0
-cache-data.1
-Text Label 1750 2000 2    60   ~ 0
-cache-data.2
-Text Label 1750 2100 2    60   ~ 0
-cache-data.3
-Text Label 1750 2200 2    60   ~ 0
-cache-data.4
-Text Label 1750 2300 2    60   ~ 0
-cache-data.5
-Entry Wire Line
-	1800 1800 1900 1900
-Entry Wire Line
-	1800 1900 1900 2000
-Entry Wire Line
-	1800 2000 1900 2100
-Entry Wire Line
-	1800 2100 1900 2200
-Entry Wire Line
-	1800 2200 1900 2300
-Entry Wire Line
-	1800 2300 1900 2400
-Wire Bus Line
-	1900 1900 1900 2550
-Wire Bus Line
-	1900 2550 1750 2550
-Text HLabel 1750 2550 0    60   Input ~ 0
-cache-data
-Wire Wire Line
-	1750 1800 1800 1800
-Wire Wire Line
-	1750 1900 1800 1900
-Wire Wire Line
-	1750 2000 1800 2000
-Wire Wire Line
-	1750 2100 1800 2100
-Wire Wire Line
-	1750 2200 1800 2200
-Wire Wire Line
-	1750 2300 1800 2300
-Text Label 1700 750  2    60   ~ 0
-mqm.0
-Text Label 1700 850  2    60   ~ 0
-mqm.1
-Text Label 1700 950  2    60   ~ 0
-mqm.2
-Text Label 1700 1050 2    60   ~ 0
-mqm.3
-Text Label 1700 1150 2    60   ~ 0
-mqm.4
-Text Label 1700 1250 2    60   ~ 0
-mqm.5
-Entry Wire Line
-	1750 750  1850 850 
-Entry Wire Line
-	1750 850  1850 950 
-Entry Wire Line
-	1750 950  1850 1050
-Entry Wire Line
-	1750 1050 1850 1150
-Entry Wire Line
-	1750 1150 1850 1250
-Entry Wire Line
-	1750 1250 1850 1350
-Wire Bus Line
-	1850 1500 2000 1500
-Text HLabel 2000 1500 2    60   Output ~ 0
-mqm
-Wire Wire Line
-	1700 750  1750 750 
-Wire Wire Line
-	1700 850  1750 850 
-Wire Wire Line
-	1700 950  1750 950 
-Wire Wire Line
-	1700 1050 1750 1050
-Wire Wire Line
-	1700 1150 1750 1150
-Wire Wire Line
-	1700 1250 1750 1250
-Wire Bus Line
-	1850 850  1850 1500
 $Comp
 L MC10141 e25
 U 1 1 57ACA2E8
@@ -310,12 +58,12 @@ F 3 "" H 5450 1500 60  0000 C CNN
 	1    5450 1500
 	1    0    0    -1  
 $EndComp
-Text Label 4750 1250 2    60   ~ 0
-arxm.0
-Text Label 4750 1350 2    60   ~ 0
-arxm.1
-Text Label 4750 1450 2    60   ~ 0
-arxm.2
+Text HLabel 4750 1250 0    60   Input ~ 0
+arxm.[n+0]
+Text HLabel 4750 1350 0    60   Input ~ 0
+arxm.[n+1]
+Text HLabel 4750 1450 0    60   Input ~ 0
+arxm.[n+2]
 Wire Wire Line
 	4750 1250 4850 1250
 Wire Wire Line
@@ -328,7 +76,7 @@ NoConn ~ 4850 1050
 NoConn ~ 4850 1550
 Wire Wire Line
 	4850 1850 4850 2200
-Text HLabel 4800 1750 0    60   Input ~ 0
+Text HLabel 4800 1750 2    60   Input ~ 0
 dp04-clk
 Wire Wire Line
 	4800 1750 4850 1750
@@ -348,18 +96,18 @@ $EndComp
 Wire Wire Line
 	8050 2200 4700 2200
 Connection ~ 4850 1950
-Text HLabel 3450 2200 0    60   Input ~ 0
+Text HLabel 3450 2200 2    60   Input ~ 0
 ctl-arx-load
 Wire Wire Line
 	3450 2200 3500 2200
-Text Label 6100 1150 0    60   ~ 0
-arx.0
-Text Label 6100 1250 0    60   ~ 0
-arx.0
-Text Label 6100 1350 0    60   ~ 0
-arx.1
-Text Label 6100 1450 0    60   ~ 0
-arx.2
+Text HLabel 6100 1150 2    60   Input ~ 0
+arx.[n+0]
+Text HLabel 6100 1250 2    60   Input ~ 0
+arx.[n+0]
+Text HLabel 6100 1350 2    60   Input ~ 0
+arx.[n+1]
+Text HLabel 6100 1450 2    60   Input ~ 0
+arx.[n+2]
 Wire Wire Line
 	6050 1150 6100 1150
 Wire Wire Line
@@ -381,12 +129,12 @@ F 3 "" H 8650 1500 60  0000 C CNN
 	1    8650 1500
 	1    0    0    -1  
 $EndComp
-Text Label 7950 1250 2    60   ~ 0
-arxm.3
-Text Label 7950 1350 2    60   ~ 0
-arxm.4
-Text Label 7950 1450 2    60   ~ 0
-arxm.5
+Text HLabel 7950 1250 0    60   Input ~ 0
+arxm.[n+3]
+Text HLabel 7950 1350 0    60   Input ~ 0
+arxm.[n+4]
+Text HLabel 7950 1450 0    60   Input ~ 0
+arxm.[n+5]
 Wire Wire Line
 	7950 1250 8050 1250
 Wire Wire Line
@@ -397,19 +145,19 @@ NoConn ~ 8050 1050
 NoConn ~ 8050 1550
 Wire Wire Line
 	8050 1850 8050 2200
-Text HLabel 8000 1750 0    60   Input ~ 0
+Text HLabel 8000 1750 2    60   Input ~ 0
 dp04-clk
 Wire Wire Line
 	8000 1750 8050 1750
 Connection ~ 8050 1950
-Text Label 9300 1150 0    60   ~ 0
-arx.1
-Text Label 9300 1250 0    60   ~ 0
-arx.3
-Text Label 9300 1350 0    60   ~ 0
-arx.4
-Text Label 9300 1450 0    60   ~ 0
-arx.5
+Text HLabel 9300 1150 2    60   Input ~ 0
+arx.[n+1]
+Text HLabel 9300 1250 2    60   Input ~ 0
+arx.[n+3]
+Text HLabel 9300 1350 2    60   Input ~ 0
+arx.[n+4]
+Text HLabel 9300 1450 2    60   Input ~ 0
+arx.[n+5]
 Wire Wire Line
 	9250 1150 9300 1150
 Wire Wire Line
@@ -419,8 +167,8 @@ Wire Wire Line
 Wire Wire Line
 	9250 1450 9300 1450
 Connection ~ 4850 2200
-Text Label 7950 1150 2    60   ~ 0
-arxm.1
+Text HLabel 7950 1150 0    60   Input ~ 0
+arxm.[n+1]
 Wire Wire Line
 	8050 1150 7950 1150
 $Comp
@@ -437,18 +185,18 @@ F 3 "" H 3650 4050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 3050 3450
-Text Label 3000 3550 2    60   ~ 0
-cache-data.0
-Text Label 3000 3650 2    60   ~ 0
-ad.0
-Text Label 3000 3750 2    60   ~ 0
-mq.0
-Text Label 3000 3850 2    60   ~ 0
-sh.0
-Text Label 3000 3950 2    60   ~ 0
-adx.1
-Text Label 3000 4050 2    60   ~ 0
-adx.0
+Text HLabel 3000 3550 0    60   Input ~ 0
+cache-data.[n+0]
+Text HLabel 3000 3650 0    60   Input ~ 0
+ad.[n+0]
+Text HLabel 3000 3750 0    60   Input ~ 0
+mq.[n+0]
+Text HLabel 3000 3850 0    60   Input ~ 0
+sh.[n+0]
+Text HLabel 3000 3950 0    60   Input ~ 0
+adx.[n+1]
+Text HLabel 3000 4050 0    60   Input ~ 0
+adx.[n+0]
 Wire Wire Line
 	3000 3550 3050 3550
 Wire Wire Line
@@ -465,8 +213,8 @@ Wire Wire Line
 	3000 4150 3050 4150
 Text HLabel 3000 4150 0    60   Input ~ 0
 [(n+199)/100,ad.34,adx.[n-2]]
-Text Label 4300 3450 0    60   ~ 0
-arxm.0
+Text HLabel 4300 3450 2    60   Input ~ 0
+arxm.[n+0]
 Wire Wire Line
 	4250 3450 4300 3450
 Text HLabel 3000 4350 0    60   Input ~ 0
@@ -494,18 +242,18 @@ F 3 "" H 6000 4050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 5400 3450
-Text Label 5350 3550 2    60   ~ 0
-cache-data.1
-Text Label 5350 3650 2    60   ~ 0
-ad.1
-Text Label 5350 3750 2    60   ~ 0
-mq.1
-Text Label 5350 3850 2    60   ~ 0
-sh.1
-Text Label 5350 3950 2    60   ~ 0
-adx.2
-Text Label 5350 4050 2    60   ~ 0
-adx.1
+Text HLabel 5350 3550 0    60   Input ~ 0
+cache-data.[n+1]
+Text HLabel 5350 3650 0    60   Input ~ 0
+ad.[n+1]
+Text HLabel 5350 3750 0    60   Input ~ 0
+mq.[n+1]
+Text HLabel 5350 3850 0    60   Input ~ 0
+sh.[n+1]
+Text HLabel 5350 3950 0    60   Input ~ 0
+adx.[n+2]
+Text HLabel 5350 4050 0    60   Input ~ 0
+adx.[n+1]
 Wire Wire Line
 	5350 3550 5400 3550
 Wire Wire Line
@@ -522,8 +270,8 @@ Wire Wire Line
 	5350 4150 5400 4150
 Text HLabel 5350 4150 0    60   Input ~ 0
 [(n+199)/100,ad.35,adx.[n-1]]
-Text Label 6650 3450 0    60   ~ 0
-arxm.1
+Text HLabel 6650 3450 2    60   Input ~ 0
+arxm.[n+1]
 Wire Wire Line
 	6600 3450 6650 3450
 NoConn ~ 5400 4650
@@ -550,18 +298,18 @@ F 3 "" H 8300 4050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 7700 3450
-Text Label 7650 3550 2    60   ~ 0
-cache-data.2
-Text Label 7650 3650 2    60   ~ 0
-ad.2
-Text Label 7650 3750 2    60   ~ 0
-mq.2
-Text Label 7650 3850 2    60   ~ 0
-sh.2
-Text Label 7650 3950 2    60   ~ 0
-adx.3
-Text Label 7650 4050 2    60   ~ 0
-adx.2
+Text HLabel 7650 3550 0    60   Input ~ 0
+cache-data.[n+2]
+Text HLabel 7650 3650 0    60   Input ~ 0
+ad.[n+2]
+Text HLabel 7650 3750 0    60   Input ~ 0
+mq.[n+2]
+Text HLabel 7650 3850 0    60   Input ~ 0
+sh.[n+2]
+Text HLabel 7650 3950 0    60   Input ~ 0
+adx.[n+3]
+Text HLabel 7650 4050 0    60   Input ~ 0
+adx.[n+2]
 Wire Wire Line
 	7650 3550 7700 3550
 Wire Wire Line
@@ -574,13 +322,13 @@ Wire Wire Line
 	7650 3950 7700 3950
 Wire Wire Line
 	7650 4050 7700 4050
-Text Label 8950 3450 0    60   ~ 0
-arxm.2
+Text HLabel 8950 3450 2    60   Input ~ 0
+arxm.[n+2]
 Wire Wire Line
 	8900 3450 8950 3450
 NoConn ~ 7700 4650
-Text Label 7650 4150 2    60   ~ 0
-adx.0
+Text HLabel 7650 4150 0    60   Input ~ 0
+adx.[n+0]
 Wire Wire Line
 	7650 4150 7700 4150
 Wire Wire Line
@@ -603,18 +351,18 @@ F 3 "" H 10450 4050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 9850 3450
-Text Label 9800 3550 2    60   ~ 0
-cache-data.3
-Text Label 9800 3650 2    60   ~ 0
-ad.3
-Text Label 9800 3750 2    60   ~ 0
-mq.3
-Text Label 9800 3850 2    60   ~ 0
-sh.3
-Text Label 9800 3950 2    60   ~ 0
-adx.4
-Text Label 9800 4050 2    60   ~ 0
-adx.3
+Text HLabel 9800 3550 0    60   Input ~ 0
+cache-data.[n+3]
+Text HLabel 9800 3650 0    60   Input ~ 0
+ad.[n+3]
+Text HLabel 9800 3750 0    60   Input ~ 0
+mq.[n+3]
+Text HLabel 9800 3850 0    60   Input ~ 0
+sh.[n+3]
+Text HLabel 9800 3950 0    60   Input ~ 0
+adx.[n+4]
+Text HLabel 9800 4050 0    60   Input ~ 0
+adx.[n+3]
 Wire Wire Line
 	9800 3550 9850 3550
 Wire Wire Line
@@ -627,13 +375,13 @@ Wire Wire Line
 	9800 3950 9850 3950
 Wire Wire Line
 	9800 4050 9850 4050
-Text Label 11100 3450 0    60   ~ 0
-arxm.3
+Text HLabel 11100 3450 2    60   Input ~ 0
+arxm.[n+3]
 Wire Wire Line
 	11050 3450 11100 3450
 NoConn ~ 9850 4650
-Text Label 9800 4150 2    60   ~ 0
-adx.1
+Text HLabel 9800 4150 0    60   Input ~ 0
+adx.[n+1]
 Wire Wire Line
 	9800 4150 9850 4150
 Wire Wire Line
@@ -664,18 +412,18 @@ F 3 "" H 12700 4050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 12100 3450
-Text Label 12050 3550 2    60   ~ 0
-cache-data.4
-Text Label 12050 3650 2    60   ~ 0
-ad.4
-Text Label 12050 3750 2    60   ~ 0
-mq.4
-Text Label 12050 3850 2    60   ~ 0
-sh.4
-Text Label 12050 3950 2    60   ~ 0
-adx.5
-Text Label 12050 4050 2    60   ~ 0
-adx.4
+Text HLabel 12050 3550 0    60   Input ~ 0
+cache-data.[n+4]
+Text HLabel 12050 3650 0    60   Input ~ 0
+ad.[n+4]
+Text HLabel 12050 3750 0    60   Input ~ 0
+mq.[n+4]
+Text HLabel 12050 3850 0    60   Input ~ 0
+sh.[n+4]
+Text HLabel 12050 3950 0    60   Input ~ 0
+adx.[n+5]
+Text HLabel 12050 4050 0    60   Input ~ 0
+adx.[n+4]
 Wire Wire Line
 	12050 3550 12100 3550
 Wire Wire Line
@@ -688,13 +436,13 @@ Wire Wire Line
 	12050 3950 12100 3950
 Wire Wire Line
 	12050 4050 12100 4050
-Text Label 13350 3450 0    60   ~ 0
-arxm.4
+Text HLabel 13350 3450 2    60   Input ~ 0
+arxm.[n+4]
 Wire Wire Line
 	13300 3450 13350 3450
 NoConn ~ 12100 4650
-Text Label 12050 4150 2    60   ~ 0
-adx.2
+Text HLabel 12050 4150 0    60   Input ~ 0
+adx.[n+2]
 Wire Wire Line
 	12050 4150 12100 4150
 Connection ~ 9300 4350
@@ -720,16 +468,16 @@ F 3 "" H 14950 4050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 14350 3450
-Text Label 14300 3550 2    60   ~ 0
-cache-data.5
-Text Label 14300 3650 2    60   ~ 0
-ad.5
-Text Label 14300 3750 2    60   ~ 0
-mq.5
-Text Label 14300 3850 2    60   ~ 0
-sh.5
-Text Label 14300 4050 2    60   ~ 0
-adx.5
+Text HLabel 14300 3550 0    60   Input ~ 0
+cache-data.[n+5]
+Text HLabel 14300 3650 0    60   Input ~ 0
+ad.[n+5]
+Text HLabel 14300 3750 0    60   Input ~ 0
+mq.[n+5]
+Text HLabel 14300 3850 0    60   Input ~ 0
+sh.[n+5]
+Text HLabel 14300 4050 0    60   Input ~ 0
+adx.[n+5]
 Wire Wire Line
 	14300 3550 14350 3550
 Wire Wire Line
@@ -742,13 +490,13 @@ Wire Wire Line
 	14250 3950 14350 3950
 Wire Wire Line
 	14300 4050 14350 4050
-Text Label 15600 3450 0    60   ~ 0
-arxm.5
+Text HLabel 15600 3450 2    60   Input ~ 0
+arxm.[n+5]
 Wire Wire Line
 	15550 3450 15600 3450
 NoConn ~ 14350 4650
-Text Label 14300 4150 2    60   ~ 0
-adx.3
+Text HLabel 14300 4150 0    60   Input ~ 0
+adx.[n+3]
 Wire Wire Line
 	14300 4150 14350 4150
 Connection ~ 11550 4350
@@ -811,20 +559,20 @@ Text HLabel 2950 5800 0    60   Input ~ 0
 [(n+199)/100,adx.34,mq.[n-2]]
 Wire Wire Line
 	2950 5800 3100 5800
-Text Label 2950 5900 2    60   ~ 0
-sh.0
+Text HLabel 2950 5900 0    60   Input ~ 0
+sh.[n+0]
 Wire Wire Line
 	2950 5900 3100 5900
-Text Label 2950 6000 2    60   ~ 0
-ad.0
+Text HLabel 2950 6000 0    60   Input ~ 0
+ad.[n+0]
 Wire Wire Line
 	2950 6000 3100 6000
 Wire Wire Line
 	2950 6200 3100 6200
-Text Label 2950 6400 2    60   ~ 0
-ad.1
-Text Label 2950 6300 2    60   ~ 0
-sh.1
+Text HLabel 2950 6400 0    60   Input ~ 0
+ad.[n+1]
+Text HLabel 2950 6300 0    60   Input ~ 0
+sh.[n+1]
 Wire Wire Line
 	2950 6300 3100 6300
 Wire Wire Line
@@ -832,10 +580,10 @@ Wire Wire Line
 Wire Wire Line
 	3050 6500 5650 6500
 Connection ~ 3050 6500
-Text Label 4350 5800 0    60   ~ 0
-mqm.0
-Text Label 4350 6200 0    60   ~ 0
-mqm.1
+Text HLabel 4350 5800 2    60   Input ~ 0
+mqm.[n+0]
+Text HLabel 4350 6200 2    60   Input ~ 0
+mqm.[n+1]
 Wire Wire Line
 	4300 5800 4350 5800
 Wire Wire Line
@@ -853,26 +601,26 @@ F 3 "" H 6250 6300 60  0000 C CNN
 	1    6250 6300
 	1    0    0    -1  
 $EndComp
-Text Label 5500 5900 2    60   ~ 0
-sh.2
+Text HLabel 5500 5900 0    60   Input ~ 0
+sh.[n+2]
 Wire Wire Line
 	5500 5900 5650 5900
-Text Label 5500 6000 2    60   ~ 0
-ad.2
+Text HLabel 5500 6000 0    60   Input ~ 0
+ad.[n+2]
 Wire Wire Line
 	5500 6000 5650 6000
-Text Label 5500 6400 2    60   ~ 0
-ad.3
-Text Label 5500 6300 2    60   ~ 0
-sh.3
+Text HLabel 5500 6400 0    60   Input ~ 0
+ad.[n+3]
+Text HLabel 5500 6300 0    60   Input ~ 0
+sh.[n+3]
 Wire Wire Line
 	5500 6300 5650 6300
 Wire Wire Line
 	5500 6400 5650 6400
-Text Label 6900 5800 0    60   ~ 0
-mqm.2
-Text Label 6900 6200 0    60   ~ 0
-mqm.3
+Text HLabel 6900 5800 2    60   Input ~ 0
+mqm.[n+2]
+Text HLabel 6900 6200 2    60   Input ~ 0
+mqm.[n+3]
 Wire Wire Line
 	6850 5800 6900 5800
 Wire Wire Line
@@ -882,10 +630,10 @@ Connection ~ 3100 6600
 Connection ~ 3100 6700
 Connection ~ 3100 6500
 Connection ~ 3100 6100
-Text Label 5500 5800 2    60   ~ 0
-mq.0
-Text Label 5500 6200 2    60   ~ 0
-mq.1
+Text HLabel 5500 5800 0    60   Input ~ 0
+mq.[n+0]
+Text HLabel 5500 6200 0    60   Input ~ 0
+mq.[n+1]
 Wire Wire Line
 	5500 5800 5650 5800
 Wire Wire Line
@@ -913,34 +661,34 @@ F 3 "" H 8400 6300 60  0000 C CNN
 	1    8400 6300
 	1    0    0    -1  
 $EndComp
-Text Label 7650 5900 2    60   ~ 0
-sh.4
+Text HLabel 7650 5900 0    60   Input ~ 0
+sh.[n+4]
 Wire Wire Line
 	7650 5900 7800 5900
-Text Label 7650 6000 2    60   ~ 0
-ad.4
+Text HLabel 7650 6000 0    60   Input ~ 0
+ad.[n+4]
 Wire Wire Line
 	7650 6000 7800 6000
-Text Label 7650 6400 2    60   ~ 0
-ad.3
-Text Label 7650 6300 2    60   ~ 0
-ad.5
+Text HLabel 7650 6400 0    60   Input ~ 0
+ad.[n+3]
+Text HLabel 7650 6300 0    60   Input ~ 0
+ad.[n+5]
 Wire Wire Line
 	7650 6300 7800 6300
 Wire Wire Line
 	7650 6400 7800 6400
-Text Label 9050 5800 0    60   ~ 0
-mqm.4
-Text Label 9050 6200 0    60   ~ 0
-mqm.5
+Text HLabel 9050 5800 2    60   Input ~ 0
+mqm.[n+4]
+Text HLabel 9050 6200 2    60   Input ~ 0
+mqm.[n+5]
 Wire Wire Line
 	9000 5800 9050 5800
 Wire Wire Line
 	9000 6200 9050 6200
-Text Label 7650 5800 2    60   ~ 0
-mq.2
-Text Label 7650 6200 2    60   ~ 0
-mq.3
+Text HLabel 7650 5800 0    60   Input ~ 0
+mq.[n+2]
+Text HLabel 7650 6200 0    60   Input ~ 0
+mq.[n+3]
 Wire Wire Line
 	7650 5800 7800 5800
 Wire Wire Line
@@ -958,12 +706,12 @@ F 3 "" H 10750 6250 60  0000 C CNN
 	1    10750 6250
 	1    0    0    -1  
 $EndComp
-Text Label 11450 5900 0    60   ~ 0
-mq.0
-Text Label 11450 6000 0    60   ~ 0
-mq.1
-Text Label 11450 6100 0    60   ~ 0
-mq.2
+Text HLabel 11450 5900 2    60   Input ~ 0
+mq.[n+0]
+Text HLabel 11450 6000 2    60   Input ~ 0
+mq.[n+1]
+Text HLabel 11450 6100 2    60   Input ~ 0
+mq.[n+2]
 Wire Wire Line
 	11350 5900 11450 5900
 Wire Wire Line
@@ -971,20 +719,20 @@ Wire Wire Line
 Wire Wire Line
 	11350 6100 11450 6100
 NoConn ~ 11350 6200
-Text Label 10050 5800 2    60   ~ 0
-mqm.1
+Text HLabel 10050 5800 0    60   Input ~ 0
+mqm.[n+1]
 Wire Wire Line
 	10050 5800 10150 5800
-Text Label 10050 5900 2    60   ~ 0
-mqm.0
-Text Label 10050 6000 2    60   ~ 0
-mqm.1
-Text Label 10050 6100 2    60   ~ 0
-mqm.2
-Text Label 10050 6200 2    60   ~ 0
-mqm.3
-Text Label 10050 6300 2    60   ~ 0
-mq.4
+Text HLabel 10050 5900 0    60   Input ~ 0
+mqm.[n+0]
+Text HLabel 10050 6000 0    60   Input ~ 0
+mqm.[n+1]
+Text HLabel 10050 6100 0    60   Input ~ 0
+mqm.[n+2]
+Text HLabel 10050 6200 0    60   Input ~ 0
+mqm.[n+3]
+Text HLabel 10050 6300 0    60   Input ~ 0
+mq.[n+4]
 Text HLabel 10100 6500 0    60   Input ~ 0
 dp04-clk
 Wire Wire Line
@@ -1020,26 +768,26 @@ F 3 "" H 12900 6250 60  0000 C CNN
 	1    12900 6250
 	1    0    0    -1  
 $EndComp
-Text Label 13600 6000 0    60   ~ 0
-mq.3
-Text Label 13600 6100 0    60   ~ 0
-mq.4
+Text HLabel 13600 6000 2    60   Input ~ 0
+mq.[n+3]
+Text HLabel 13600 6100 2    60   Input ~ 0
+mq.[n+4]
 Wire Wire Line
 	13500 6000 13600 6000
 Wire Wire Line
 	13500 6100 13600 6100
-Text Label 12200 5800 2    60   ~ 0
-mqm.3
+Text HLabel 12200 5800 0    60   Input ~ 0
+mqm.[n+3]
 Wire Wire Line
 	12200 5800 12300 5800
-Text Label 12200 5900 2    60   ~ 0
-mqm.2
-Text Label 12200 6000 2    60   ~ 0
-mqm.3
-Text Label 12200 6100 2    60   ~ 0
-mqm.4
-Text Label 12200 6200 2    60   ~ 0
-mqm.5
+Text HLabel 12200 5900 0    60   Input ~ 0
+mqm.[n+2]
+Text HLabel 12200 6000 0    60   Input ~ 0
+mqm.[n+3]
+Text HLabel 12200 6100 0    60   Input ~ 0
+mqm.[n+4]
+Text HLabel 12200 6200 0    60   Input ~ 0
+mqm.[n+5]
 Wire Wire Line
 	12200 5900 12300 5900
 Wire Wire Line
@@ -1052,96 +800,12 @@ Connection ~ 10150 6500
 Connection ~ 10150 6600
 Connection ~ 10150 6700
 NoConn ~ 13500 5900
-Text Label 13600 6200 0    60   ~ 0
-mq.5
+Text HLabel 13600 6200 2    60   Input ~ 0
+mq.[n+5]
 Wire Wire Line
 	13500 6200 13600 6200
 Text HLabel 12200 6300 0    60   Input ~ 0
 [n/30+1,mq.[n+6],ad-cry-02]
 Wire Wire Line
 	12200 6300 12300 6300
-Text Label 2450 750  2    60   ~ 0
-mq.0
-Text Label 2450 850  2    60   ~ 0
-mq.1
-Text Label 2450 950  2    60   ~ 0
-mq.2
-Text Label 2450 1050 2    60   ~ 0
-mq.3
-Text Label 2450 1150 2    60   ~ 0
-mq.4
-Text Label 2450 1250 2    60   ~ 0
-mq.5
-Entry Wire Line
-	2500 750  2600 850 
-Entry Wire Line
-	2500 850  2600 950 
-Entry Wire Line
-	2500 950  2600 1050
-Entry Wire Line
-	2500 1050 2600 1150
-Entry Wire Line
-	2500 1150 2600 1250
-Entry Wire Line
-	2500 1250 2600 1350
-Wire Bus Line
-	2600 1500 2750 1500
-Text HLabel 2750 1500 2    60   Output ~ 0
-mq
-Wire Wire Line
-	2450 750  2500 750 
-Wire Wire Line
-	2450 850  2500 850 
-Wire Wire Line
-	2450 950  2500 950 
-Wire Wire Line
-	2450 1050 2500 1050
-Wire Wire Line
-	2450 1150 2500 1150
-Wire Wire Line
-	2450 1250 2500 1250
-Wire Bus Line
-	2600 850  2600 1500
-Text Label 3150 750  2    60   ~ 0
-arx.0
-Text Label 3150 850  2    60   ~ 0
-arx.1
-Text Label 3150 950  2    60   ~ 0
-arx.2
-Text Label 3150 1050 2    60   ~ 0
-arx.3
-Text Label 3150 1150 2    60   ~ 0
-arx.4
-Text Label 3150 1250 2    60   ~ 0
-arx.5
-Entry Wire Line
-	3200 750  3300 850 
-Entry Wire Line
-	3200 850  3300 950 
-Entry Wire Line
-	3200 950  3300 1050
-Entry Wire Line
-	3200 1050 3300 1150
-Entry Wire Line
-	3200 1150 3300 1250
-Entry Wire Line
-	3200 1250 3300 1350
-Wire Bus Line
-	3300 1500 3450 1500
-Text HLabel 3450 1500 2    60   Output ~ 0
-arx
-Wire Wire Line
-	3150 750  3200 750 
-Wire Wire Line
-	3150 850  3200 850 
-Wire Wire Line
-	3150 950  3200 950 
-Wire Wire Line
-	3150 1050 3200 1050
-Wire Wire Line
-	3150 1150 3200 1150
-Wire Wire Line
-	3150 1250 3200 1250
-Wire Bus Line
-	3300 850  3300 1500
 $EndSCHEMATC

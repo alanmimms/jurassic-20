@@ -51,16 +51,10 @@ U 57B6B963
 F0 "dpa01" 60
 F1 "dpa01.sch" 60
 F2 "dp04-clk" I L 2050 2650 60 
-F3 "ar" O R 3200 2650 60 
-F4 "armm" I L 2050 4500 60 
-F5 "ad" I L 2050 4400 60 
-F6 "cache-data" I L 2050 4100 60 
-F7 "ebus-d" I L 2050 4200 60 
-F8 "sh" I L 2050 4600 60 
-F9 "[n/6+1,ctl-ar-00-08-load l,ctl-ar-00-08-load-l,ctl-ar-09-17-load-l,ctl-arr-load-l,ctl-arr-load-l,ctl-arr-load-l]" I L 2050 4700 60 
-F10 "[n/6+1,ctl-ar-00-08-load-l,ctl-ar-09-17-load-l,ctl-ar-09-17-load-l,ctl-arr-load-l,ctl-arr-load-l,ctl-arr-load-l]" I L 2050 4800 60 
-F11 "[n/18+1,ctl-arl-sel-4,cram-arm-sel-4]" I L 2050 4900 60 
-F12 "[n/18+1,ctl-arl-sel-2,ctl-arr-sel-2]" I L 2050 5000 60 
+F3 "[n/6+1,ctl-ar-00-08-load l,ctl-ar-00-08-load-l,ctl-ar-09-17-load-l,ctl-arr-load-l,ctl-arr-load-l,ctl-arr-load-l]" I L 2050 4700 60 
+F4 "[n/6+1,ctl-ar-00-08-load-l,ctl-ar-09-17-load-l,ctl-ar-09-17-load-l,ctl-arr-load-l,ctl-arr-load-l,ctl-arr-load-l]" I L 2050 4800 60 
+F5 "[n/18+1,ctl-arl-sel-4,cram-arm-sel-4]" I L 2050 4900 60 
+F6 "[n/18+1,ctl-arl-sel-2,ctl-arr-sel-2]" I L 2050 5000 60 
 $EndSheet
 $Sheet
 S 5350 2550 1000 2850

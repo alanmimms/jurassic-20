@@ -332,286 +332,44 @@ Wire Wire Line
 	9700 8850 9800 8850
 Wire Wire Line
 	6600 9050 6700 9050
-Text Label 12700 1550 0    60   ~ 0
-ar.0
-Text Label 12700 1650 0    60   ~ 0
-ar.0
-Text Label 12700 1750 0    60   ~ 0
-ar.1
-Text Label 12700 1850 0    60   ~ 0
-ar.2
-Entry Wire Line
-	13050 1550 13150 1650
-Entry Wire Line
-	13050 1650 13150 1750
-Entry Wire Line
-	13050 1750 13150 1850
-Entry Wire Line
-	13050 1850 13150 1950
-Wire Bus Line
-	13150 1650 13150 2200
-Text HLabel 13200 2200 2    60   Output ~ 0
-ar
-Wire Bus Line
-	13150 2200 13200 2200
-Wire Wire Line
-	12900 7000 13200 7000
-Wire Wire Line
-	12900 7100 13200 7100
-Wire Wire Line
-	12900 7200 13200 7200
-Text Label 13000 7000 0    60   ~ 0
-ar.3
-Text Label 13000 7100 0    60   ~ 0
-ar.4
-Text Label 13000 7200 0    60   ~ 0
-ar.5
-Wire Wire Line
-	12650 1550 13050 1550
-Wire Wire Line
-	12650 1650 13050 1650
-Wire Wire Line
-	12650 1750 13050 1750
-Wire Wire Line
-	12650 1850 13050 1850
-Entry Wire Line
-	13200 7000 13300 7100
-Entry Wire Line
-	13200 7100 13300 7200
-Entry Wire Line
-	13200 7200 13300 7300
-Text HLabel 13350 7550 2    60   Output ~ 0
-ar
-Wire Bus Line
-	13300 7550 13350 7550
-Wire Bus Line
-	13300 7100 13300 7550
-Text Label 4600 3000 0    60   ~ 0
-arm.0
-Text Label 7800 3000 0    60   ~ 0
-arm.1
-Text Label 10900 3000 0    60   ~ 0
-arm.2
-Text Label 11150 8350 0    60   ~ 0
-arm.5
-Text Label 8050 8350 0    60   ~ 0
-arm.4
-Text Label 4850 8350 0    60   ~ 0
-arm.3
-Entry Wire Line
-	1050 950  1150 1050
-Entry Wire Line
-	1050 1050 1150 1150
-Entry Wire Line
-	1050 1150 1150 1250
-Entry Wire Line
-	1050 1250 1150 1350
-Entry Wire Line
-	1050 1350 1150 1450
-Entry Wire Line
-	1050 1450 1150 1550
-Wire Bus Line
-	1150 1050 1150 1800
-Text Label 1000 950  2    60   ~ 0
-armm.0
-Text Label 1000 1050 2    60   ~ 0
-armm.1
-Text Label 1000 1150 2    60   ~ 0
-armm.2
-Text Label 1000 1250 2    60   ~ 0
-armm.3
-Text Label 1000 1350 2    60   ~ 0
-armm.4
-Text Label 1000 1450 2    60   ~ 0
-armm.5
-Wire Bus Line
-	1150 1800 1050 1800
-Wire Wire Line
-	1000 950  1050 950 
-Wire Wire Line
-	1000 1050 1050 1050
-Wire Wire Line
-	1000 1150 1050 1150
-Wire Wire Line
-	1000 1250 1050 1250
-Wire Wire Line
-	1000 1350 1050 1350
-Wire Wire Line
-	1000 1450 1050 1450
-Entry Wire Line
-	1800 950  1900 1050
-Entry Wire Line
-	1800 1050 1900 1150
-Entry Wire Line
-	1800 1150 1900 1250
-Entry Wire Line
-	1800 1250 1900 1350
-Entry Wire Line
-	1800 1350 1900 1450
-Entry Wire Line
-	1800 1450 1900 1550
-Wire Bus Line
-	1900 1050 1900 1800
-Text Label 1750 950  2    60   ~ 0
-ad.0
-Text Label 1750 1050 2    60   ~ 0
-ad.1
-Text Label 1750 1150 2    60   ~ 0
-ad.2
-Text Label 1750 1250 2    60   ~ 0
-ad.3
-Text Label 1750 1350 2    60   ~ 0
-ad.4
-Text Label 1750 1450 2    60   ~ 0
-ad.5
-Wire Bus Line
-	1900 1800 1800 1800
-Wire Wire Line
-	1750 950  1800 950 
-Wire Wire Line
-	1750 1050 1800 1050
-Wire Wire Line
-	1750 1150 1800 1150
-Wire Wire Line
-	1750 1250 1800 1250
-Wire Wire Line
-	1750 1350 1800 1350
-Wire Wire Line
-	1750 1450 1800 1450
-Entry Wire Line
-	2750 950  2850 1050
-Entry Wire Line
-	2750 1050 2850 1150
-Entry Wire Line
-	2750 1150 2850 1250
-Entry Wire Line
-	2750 1250 2850 1350
-Entry Wire Line
-	2750 1350 2850 1450
-Entry Wire Line
-	2750 1450 2850 1550
-Wire Bus Line
-	2850 1050 2850 1800
-Text Label 2700 950  2    60   ~ 0
-cache-data.0
-Text Label 2700 1050 2    60   ~ 0
-cache-data.1
-Text Label 2700 1150 2    60   ~ 0
-cache-data.2
-Text Label 2700 1250 2    60   ~ 0
-cache-data.3
-Text Label 2700 1350 2    60   ~ 0
-cache-data.4
-Text Label 2700 1450 2    60   ~ 0
-cache-data.5
-Wire Bus Line
-	2850 1800 2750 1800
-Wire Wire Line
-	2700 950  2750 950 
-Wire Wire Line
-	2700 1050 2750 1050
-Wire Wire Line
-	2700 1150 2750 1150
-Wire Wire Line
-	2700 1250 2750 1250
-Wire Wire Line
-	2700 1350 2750 1350
-Wire Wire Line
-	2700 1450 2750 1450
-Entry Wire Line
-	1800 2050 1900 2150
-Entry Wire Line
-	1800 2150 1900 2250
-Entry Wire Line
-	1800 2250 1900 2350
-Entry Wire Line
-	1800 2350 1900 2450
-Entry Wire Line
-	1800 2450 1900 2550
-Entry Wire Line
-	1800 2550 1900 2650
-Wire Bus Line
-	1900 2150 1900 2900
-Text Label 1750 2050 2    60   ~ 0
-sh.0
-Text Label 1750 2150 2    60   ~ 0
-sh.1
-Text Label 1750 2250 2    60   ~ 0
-sh.2
-Text Label 1750 2350 2    60   ~ 0
-sh.3
-Text Label 1750 2450 2    60   ~ 0
-sh.4
-Text Label 1750 2550 2    60   ~ 0
-sh.5
-Wire Bus Line
-	1900 2900 1800 2900
-Wire Wire Line
-	1750 2050 1800 2050
-Wire Wire Line
-	1750 2150 1800 2150
-Wire Wire Line
-	1750 2250 1800 2250
-Wire Wire Line
-	1750 2350 1800 2350
-Wire Wire Line
-	1750 2450 1800 2450
-Wire Wire Line
-	1750 2550 1800 2550
-Entry Wire Line
-	2750 2050 2850 2150
-Entry Wire Line
-	2750 2150 2850 2250
-Entry Wire Line
-	2750 2250 2850 2350
-Entry Wire Line
-	2750 2350 2850 2450
-Entry Wire Line
-	2750 2450 2850 2550
-Entry Wire Line
-	2750 2550 2850 2650
-Wire Bus Line
-	2850 2150 2850 2900
-Text Label 2700 2050 2    60   ~ 0
-ebus-d.0
-Text Label 2700 2150 2    60   ~ 0
-ebus-d.1
-Text Label 2700 2250 2    60   ~ 0
-ebus-d.2
-Text Label 2700 2350 2    60   ~ 0
-ebus-d.3
-Text Label 2700 2450 2    60   ~ 0
-ebus-d.4
-Text Label 2700 2550 2    60   ~ 0
-ebus-d.5
-Wire Bus Line
-	2850 2900 2750 2900
-Wire Wire Line
-	2700 2050 2750 2050
-Wire Wire Line
-	2700 2150 2750 2150
-Wire Wire Line
-	2700 2250 2750 2250
-Wire Wire Line
-	2700 2350 2750 2350
-Wire Wire Line
-	2700 2450 2750 2450
-Wire Wire Line
-	2700 2550 2750 2550
-Text Label 3250 3000 2    60   ~ 0
-armm.0
-Text Label 3250 3100 2    60   ~ 0
-cache-data.0
-Text Label 3250 3200 2    60   ~ 0
-ad.0
-Text Label 3250 3300 2    60   ~ 0
-ebus-d.0
-Text Label 3250 3400 2    60   ~ 0
-sh.0
-Text Label 3250 3500 2    60   ~ 0
-ad.1
-Text Label 3250 3600 2    60   ~ 0
-adx.0
+Text HLabel 12650 1550 2    60   Input ~ 0
+ar.[n+0]
+Text HLabel 12650 1650 2    60   Input ~ 0
+ar.[n+0]
+Text HLabel 12650 1750 2    60   Input ~ 0
+ar.[n+1]
+Text HLabel 12650 1850 2    60   Input ~ 0
+ar.[n+2]
+Text HLabel 12900 7000 2    60   Input ~ 0
+ar.[n+3]
+Text HLabel 12900 7100 2    60   Input ~ 0
+ar.[n+4]
+Text HLabel 12900 7200 2    60   Input ~ 0
+ar.[n+5]
+Text HLabel 4600 3000 2    60   Input ~ 0
+arm.[n+0]
+Text HLabel 7800 3000 2    60   Input ~ 0
+arm.[n+1]
+Text HLabel 10900 3000 2    60   Input ~ 0
+arm.[n+2]
+Text HLabel 11150 8350 2    60   Input ~ 0
+arm.[n+5]
+Text HLabel 8050 8350 2    60   Input ~ 0
+arm.[n+4]
+Text HLabel 4850 8350 2    60   Input ~ 0
+arm.[n+3]
+Text HLabel 3250 3100 0    60   Input ~ 0
+cache-data.[n+0]
+Text HLabel 3250 3200 0    60   Input ~ 0
+ad.[n+0]
+Text HLabel 3250 3300 0    60   Input ~ 0
+ebus-d.[n+0]
+Text HLabel 3250 3400 0    60   Input ~ 0
+sh.[n+0]
+Text HLabel 3250 3500 0    60   Input ~ 0
+ad.[n+1]
+Text HLabel 3250 3600 0    60   Input ~ 0
+adx.[n+0]
 Wire Wire Line
 	3250 3000 3300 3000
 Wire Wire Line
@@ -628,20 +386,20 @@ Wire Wire Line
 	3250 3600 3300 3600
 Wire Wire Line
 	3250 3700 3300 3700
-Text Label 6350 3000 2    60   ~ 0
-armm.1
-Text Label 6350 3100 2    60   ~ 0
-cache-data.1
-Text Label 6350 3200 2    60   ~ 0
-ad.1
-Text Label 6350 3300 2    60   ~ 0
-ebus-d.1
-Text Label 6350 3400 2    60   ~ 0
-sh.1
-Text Label 6350 3500 2    60   ~ 0
-ad.2
-Text Label 6350 3600 2    60   ~ 0
-adx.1
+Text HLabel 6350 3000 0    60   Input ~ 0
+armm.[n+1]
+Text HLabel 6350 3100 0    60   Input ~ 0
+cache-data.[n+1]
+Text HLabel 6350 3200 0    60   Input ~ 0
+ad.[n+1]
+Text HLabel 6350 3300 0    60   Input ~ 0
+ebus-d.[n+1]
+Text HLabel 6350 3400 0    60   Input ~ 0
+sh.[n+1]
+Text HLabel 6350 3500 0    60   Input ~ 0
+ad.[n+2]
+Text HLabel 6350 3600 0    60   Input ~ 0
+adx.[n+1]
 Wire Wire Line
 	6350 3000 6450 3000
 Wire Wire Line
@@ -658,22 +416,22 @@ Wire Wire Line
 	6350 3600 6450 3600
 Wire Wire Line
 	6350 3700 6450 3700
-Text Label 9500 3000 2    60   ~ 0
-armm.2
-Text Label 9500 3100 2    60   ~ 0
-cache-data.2
-Text Label 9500 3200 2    60   ~ 0
-ad.2
-Text Label 9500 3300 2    60   ~ 0
-ebus-d.2
-Text Label 9500 3400 2    60   ~ 0
-sh.2
-Text Label 9500 3500 2    60   ~ 0
-ad.3
-Text Label 9500 3600 2    60   ~ 0
-adx.2
-Text Label 9500 3700 2    60   ~ 0
-ad.0
+Text HLabel 9500 3000 0    60   Input ~ 0
+armm.[n+[n]+2]
+Text HLabel 9500 3100 0    60   Input ~ 0
+cache-data.[n+2]
+Text HLabel 9500 3200 0    60   Input ~ 0
+ad.[n+2]
+Text HLabel 9500 3300 0    60   Input ~ 0
+ebus-d.[n+2]
+Text HLabel 9500 3400 0    60   Input ~ 0
+sh.[n+2]
+Text HLabel 9500 3500 0    60   Input ~ 0
+ad.[n+3]
+Text HLabel 9500 3600 0    60   Input ~ 0
+adx.[n+2]
+Text HLabel 9500 3700 0    60   Input ~ 0
+ad.[n+0]
 Wire Wire Line
 	9500 3000 9550 3000
 Wire Wire Line
@@ -690,66 +448,58 @@ Wire Wire Line
 	9500 3600 9550 3600
 Wire Wire Line
 	9500 3700 9550 3700
-Text Label 9700 8350 2    60   ~ 0
-armm.5
-Text Label 9700 8450 2    60   ~ 0
-cache-data.5
-Text Label 9700 8550 2    60   ~ 0
-ad.5
-Text Label 9700 8650 2    60   ~ 0
-ebus-d.5
-Text Label 9700 8750 2    60   ~ 0
-sh.5
-Text Label 9700 8950 2    60   ~ 0
-adx.5
-Text Label 9700 9050 2    60   ~ 0
-ad.3
+Text HLabel 9700 8350 0    60   Input ~ 0
+armm.[n+5]
+Text HLabel 9700 8450 0    60   Input ~ 0
+cache-data.[n+5]
+Text HLabel 9700 8550 0    60   Input ~ 0
+ad.[n+5]
+Text HLabel 9700 8650 0    60   Input ~ 0
+ebus-d.[n+5]
+Text HLabel 9700 8750 0    60   Input ~ 0
+sh.[n+5]
+Text HLabel 9700 8950 0    60   Input ~ 0
+adx.[n+5]
+Text HLabel 9700 9050 0    60   Input ~ 0
+ad.[n+3]
 Text HLabel 9700 8850 0    60   Input ~ 0
 [n/30+1,ad.[n+6],adx.0]
 Text HLabel 6350 3700 0    60   Input ~ 0
 [n/6+1,ad-ex.1,ad.5,ad.11,ad.17,ad.23,ad.29]
 Text HLabel 3250 3700 0    60   Input ~ 0
 [n/6+1,ad-ex.2,ad.4,ad.10,ad.16,ad.22,ad.28]
-Text Label 6600 8350 2    60   ~ 0
-armm.4
-Text Label 6600 8450 2    60   ~ 0
-cache-data.4
-Text Label 6600 8550 2    60   ~ 0
-ad.4
-Text Label 6600 8650 2    60   ~ 0
-ebus-d.4
-Text Label 6600 8750 2    60   ~ 0
-sh.4
-Text Label 6600 8950 2    60   ~ 0
-adx.4
-Text Label 6600 9050 2    60   ~ 0
-ad.2
-Text Label 2600 8350 2    60   ~ 0
-armm.4
-Text Label 2600 8450 2    60   ~ 0
-cache-data.3
-Text Label 2600 8550 2    60   ~ 0
-ad.3
-Text Label 2600 8650 2    60   ~ 0
-ebus-d.3
-Text Label 2600 8750 2    60   ~ 0
-sh.3
-Text Label 2600 8950 2    60   ~ 0
-adx.3
-Text Label 2600 9050 2    60   ~ 0
-ad.1
-Text Label 2600 8850 2    60   ~ 0
-ad.4
-Text HLabel 1050 1800 0    60   Input ~ 0
-armm
-Text HLabel 1800 1800 0    60   Input ~ 0
-ad
-Text HLabel 2750 1800 0    60   Input ~ 0
-cache-data
-Text HLabel 2750 2900 0    60   Input ~ 0
-ebus-d
-Text HLabel 1800 2900 0    60   Input ~ 0
-sh
-Text Label 6600 8850 2    60   ~ 0
-ad.5
+Text HLabel 6600 8350 0    60   Input ~ 0
+armm.[n+4]
+Text HLabel 6600 8450 0    60   Input ~ 0
+cache-data.[n+4]
+Text HLabel 6600 8550 0    60   Input ~ 0
+ad.[n+4]
+Text HLabel 6600 8650 0    60   Input ~ 0
+ebus-d.[n+4]
+Text HLabel 6600 8750 0    60   Input ~ 0
+sh.[n+4]
+Text HLabel 6600 8950 0    60   Input ~ 0
+adx.[n+4]
+Text HLabel 6600 9050 0    60   Input ~ 0
+ad.[n+2]
+Text HLabel 2600 8350 0    60   Input ~ 0
+armm.[n+4]
+Text HLabel 2600 8450 0    60   Input ~ 0
+cache-data.[n+3]
+Text HLabel 2600 8550 0    60   Input ~ 0
+ad.[n+3]
+Text HLabel 2600 8650 0    60   Input ~ 0
+ebus-d.[n+3]
+Text HLabel 2600 8750 0    60   Input ~ 0
+sh.[n+3]
+Text HLabel 2600 8950 0    60   Input ~ 0
+adx.[n+3]
+Text HLabel 2600 9050 0    60   Input ~ 0
+ad.[n+1]
+Text HLabel 2600 8850 0    60   Input ~ 0
+ad.[n+4]
+Text HLabel 6600 8850 0    60   Input ~ 0
+ad.[n+5]
+Text HLabel 3250 3000 0    60   Input ~ 0
+armm.[n+0]
 $EndSCHEMATC
