@@ -101,7 +101,7 @@ NoConn ~ 3350 5650
 NoConn ~ 3350 4250
 NoConn ~ 3350 3550
 Text HLabel 1900 5850 0    60   Input ~ 0
-ebus-driver-mask.[n+0]
+[n/18+1,ctl-ad-to-ebus-l,ctl-ad-to-ebus-r]
 Text HLabel 1850 3550 0    60   Input ~ 0
 diag.[n+4]
 Text HLabel 1850 4250 0    60   Input ~ 0
