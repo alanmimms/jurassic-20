@@ -140,7 +140,7 @@ ada.[n+3]
 Text HLabel 6000 2900 0    60   Input ~ 0
 ada.[n+2]
 Text HLabel 6100 3600 0    60   Input ~ 0
-ad-2-5-cin
+[n/30+1,ad-cry.[n+6],ad-cry-36]
 $Comp
 L MC10181 e3
 U 1 1 57B4BAC9
@@ -217,7 +217,7 @@ Text HLabel 11400 2800 0    60   Input ~ 0
 adxa.[n+3]
 NoConn ~ 12950 2900
 Text HLabel 11500 3600 0    60   Input ~ 0
-adx-3-5-cin
+[n/30+1,adx-cry.[n+6],ctl-adx-cry-36]
 Text HLabel 13050 3500 2    60   Input ~ 0
 adx-cry.[n+3]
 $Comp
@@ -842,7 +842,7 @@ cram-adb-sel1
 Text HLabel 1800 7950 0    60   Input ~ 0
 cram-adb-sel2
 Text HLabel 4600 6150 0    60   Input ~ 0
-adb.[n+-2]-sel4
+[(n+199)/100,HI,NC]
 Text HLabel 4600 5950 0    60   Input ~ 0
 cram-adb-sel1
 Text HLabel 4600 6050 0    60   Input ~ 0
@@ -938,11 +938,11 @@ adb.[n+4]
 Text HLabel 7900 7450 2    60   Input ~ 0
 adb.[n+5]
 Text HLabel 6700 7350 0    60   Input ~ 0
-adb.[n+4]-d03
+[n/30+1,AR.[n+6],arx.0]
 Text HLabel 6700 7550 0    60   Input ~ 0
-adb.[n+5]-d11
+[n/30+1,br.[n+6],brx.0]
 Text HLabel 6700 7750 0    60   Input ~ 0
-adb.[n+5]-d13
+[n/30+1,ar.[n+7],arx.1]
 $Comp
 L MC10174 e9
 U 1 1 57B5C580
