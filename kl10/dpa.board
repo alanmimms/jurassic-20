@@ -8,11 +8,12 @@ e53: 10164 8 mix
      d4 ~< sh [n+0] h
      d5 ~< ad [n+1] h
      d6 ~< adx [n+0] h
-     d7 ~< [n/6+1,ad-ex-02,ad-04,ad-10,ad-16,ad-22,ad-28]
-     sel4 ~< [n/18+1,ctl-arl-sel-4,cram-arm-sel-4]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1,ctl-arl-sel-2,ctl-arr-sel-2] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1,ctl-arl-sel-1,ctl-arr-sel-1]	 // buffered through e52.13-9
-     nen ~< [n/6+1,ctl-ar-00-11-clr,ctl-ar-00-11-clr,ctl-ar-12-17-clr,ctl-arr-clr,ctl-arr-clr,ctl-arr-clr]	// buffered through e52.10-11
+     d7 ~< [n/6+1, ad ex -02 h, ad 04 h, ad 10 h, ad 16 h, ad 22 h, ad 28 h]
+     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
+     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
+     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
+     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
+     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b ~> arm [n+0] h
 
 e46: 10164 8 mix
@@ -23,12 +24,12 @@ e46: 10164 8 mix
      d4 ~< sh [n+1] h
      d5 ~< ad [n+2] h
      d6 ~< adx [n+1] h
-     d7 ~< [n/6+1,ad-ex.1,ad.5,ad.11,ad.17,ad.23,ad.29]
-     sel4 ~< [n/18+1,ctl arl sel 4 h,cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1,ctl arl sel 2 h,ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,\
-     	 ctl arr clr h,ctl arr clr h,ctl arr clr h]	// buffered through e52.10-11
+     d7 ~< [n/6+1, ad ex -01 h, ad 05 h, ad 11 h, ad 17 h, ad 23 h, ad 29 h]
+     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
+     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
+     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
+     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
+     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b ~> arm [n+1] h
 
 e47: 10164 8 mix
@@ -40,11 +41,11 @@ e47: 10164 8 mix
      d5 ~< ad [n+3] h
      d6 ~< adx [n+2] h
      d7 ~< ad [n+0] h
-     sel4 ~< [n/18+1,ctl arl sel 4 h,cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1,ctl arl sel 2 h,ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,\
-     	 ctl arr clr h,ctl arr clr h,ctl arr clr h]	// buffered through e52.10-11
+     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
+     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
+     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
+     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
+     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b ~> arm [n+2] h
 
 e41: 10164 8 mix
@@ -56,11 +57,11 @@ e41: 10164 8 mix
      d5 ~< ad [n+4] h
      d6 ~< adx [n+3] h
      d7 ~< ad [n+1] h
-     sel4 ~< [n/18+1,ctl arl sel 4 h,cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1,ctl arl sel 2 h,ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,\
-     	 ctl arr clr h,ctl arr clr h,ctl arr clr h]	// buffered through e52.10-11
+     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
+     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
+     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
+     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
+     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b ~> arm [n+3] h
 
 e40: 10164 8 mix
@@ -72,11 +73,11 @@ e40: 10164 8 mix
      d5 ~< ad [n+5] h
      d6 ~< adx [n+4] h
      d7 ~< ad [n+2] h
-     sel4 ~< [n/18+1,ctl arl sel 4 h,cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1,ctl arl sel 2 h,ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,\
-     	 ctl arr clr h,ctl arr clr h,ctl arr clr h]	// buffered through e52.10-11
+     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
+     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
+     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
+     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
+     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b ~> arm [n+4] h
 
 e54: 10164 8 mix
@@ -85,14 +86,14 @@ e54: 10164 8 mix
      d2 ~< ad [n+5] h
      d3 ~< ebus d[n+5] e h
      d4 ~< sh [n+5] h
-     d5 ~< [n/30+1,ad.[n+6],adx.0]
+     d5 ~< [n/30+1, ad [n+6] h, adx 00 h]
      d6 ~< adx [n+5] h
      d7 ~< ad [n+3] h
-     sel4 ~< [n/18+1,ctl arl sel 4 h,cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1,ctl arl sel 2 h,ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,\
-     	 ctl arr clr h,ctl arr clr h,ctl arr clr h]	// buffered through e52.10-11
+     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
+     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
+     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
+     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
+     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
      b ~> arm [n+5] h
 
 e51: 10141 shft reg
@@ -102,9 +103,10 @@ e51: 10141 shft reg
      d2 ~< arm [n+4] h
      d3 ~< arm [n+5] h
      shft 3in ~< 0
-     op2 ~< [n/6+1,ctl-ar-00-08-load-l,ctl-ar-09-17-load-l,ctl-ar-09-17-load-l,ctl-arr-load-l,ctl-arr-load-l,ctl-arr-load-l]
-     op1 ~< [n/6+1,ctl ar 00-08 load l,ctl ar 09-17 load l,ctl ar 09-17 load l,\
-	  ctl arr load a l,ctl arr load a l,ctl arr load a l]
+     op2 ~< [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
+	  ctl arr load a l, ctl arr load a l, ctl arr load a l]
+     op1 ~< [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
+	  ctl arr load a l, ctl arr load a l, ctl arr load a l]
      clk ~< dp04 clk f h
      q0 ~> %NC%
      q1 ~> ar [n+3] h
@@ -146,9 +148,10 @@ e39: 10141 shft reg
      d2 ~< arm [n+1] h
      d3 ~< arm [n+2] h
      shft 3in ~< 0
-     op2 ~< [n/6+1,ctl-ar-00-08-load l,ctl-ar-00-08-load-l,ctl-ar-09-17-load-l,ctl-arr-load-l,ctl-arr-load-l,ctl-arr-load-l]
-     op1 ~< [n/6+1,ctl ar 00-08 load l,ctl ar 00-08 load l,ctl ar 09-17 load l,\
-          ctl arr load b l,ctl arr load b l,ctl arr load b l]
+     op2 ~< [n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l, \
+          ctl arr load b l, ctl arr load b l, ctl arr load b l]
+     op1 ~< [n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l, \
+          ctl arr load b l, ctl arr load b l, ctl arr load b l]
      clk ~< dp04 clk b h
      q0 ~> ar [n+0] d h
      q1 ~> ar [n+0] h
@@ -169,7 +172,7 @@ e68: 10110 or buffer
      qb2 ~> ar [n+1] b h
      qb3 ~> ar [n+1] c h
 
-Page: DP02,PDF16
+Page: DP02, PDF16
 
 e55: 10164 8 mix
      d0 ~< 0
@@ -179,10 +182,10 @@ e55: 10164 8 mix
      d4 ~< sh [n+0] h
      d5 ~< adx [n+1] h
      d6 ~< adx [n+0] h
-     d7 ~< [(n+199)/100,ad.34,adx.[n-2]]
-     sel4 ~< cram-arxm-sel-4.[n/18+1,0,6]
-     sel2 ~< [n/18+1,ctl-arxl-sel-2,ctl-arxr-sel-2] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1,ctl-arxl-sel-1,ctl-arxr-sel-1]	 // buffered through e60.13-9
+     d7 ~< [(n+199)/100, ad 34 h, adx [n-2] h]
+     sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
+     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
+     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
      nen ~< 0
      b ~> arxm [n+0] h
 
@@ -194,10 +197,10 @@ e56: 10164 8 mix
      d4 ~< sh [n+1] h
      d5 ~< adx [n+2] h
      d6 ~< adx [n+1] h
-     d7 ~< [(n+199)/100,ad.35,adx.[n-1]]
+     d7 ~< [(n+199)/100, ad 35 h, adx [n-1] h]
      sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1,ctl arxl sel 2 h,ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1,ctl arxl sel 1 h,ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
+     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
      nen ~< 0
      b ~> arxm [n+1] h
 
@@ -211,8 +214,8 @@ e49: 10164 8 mix
      d6 ~< adx [n+2] h
      d7 ~< adx [n+0] h
      sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1,ctl arxl sel 2 h,ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1,ctl arxl sel 1 h,ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
+     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
      nen ~< 0
      b ~> arxm [n+2] h
 
@@ -226,8 +229,8 @@ e42: 10164 8 mix
      d6 ~< adx [n+3] h
      d7 ~< adx [n+1] h
      sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1,ctl arxl sel 2 h,ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1,ctl arxl sel 1 h,ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
+     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
      nen ~< 0
      b ~> arxm [n+3] h
 
@@ -241,8 +244,8 @@ e31: 10164 8 mix
      d6 ~< adx [n+4] h
      d7 ~< adx [n+2] h
      sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1,ctl arxl sel 2 h,ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1,ctl arxl sel 1 h,ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
+     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
      nen ~< 0
      b ~> arxm [n+4] h
 
@@ -252,21 +255,21 @@ e30: 10164 8 mix
      d2 ~< ad [n+5] h
      d3 ~< mq [n+5] h
      d4 ~< sh [n+5] h
-     d5 ~< [n/30+1,adx.[n+6] h,mq.0]
+     d5 ~< [n/30+1, adx [n+6] h, mq 00 h]
      d6 ~< adx [n+5] h
      d7 ~< adx [n+3] h
      sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1,ctl arxl sel 2 h,ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1,ctl arxl sel 1 h,ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
+     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
      nen ~< 0
      b ~> arxm [n+5] h
 
 e45: 10174 2x4 mix
-     d00 ~< [(n+199)/100,adx.34,mq.[n-2]]
+     d00 ~< [(n+199)/100, adx 34 h, mq [n-2] h]
      d01 ~< sh [n+0] h
      d02 ~< ad [n+0] h
      d03 ~< ctl mq en h					// buffered through e38.13-9
-     d10 ~< [(n+199)/100,adx.35,mq.[n-1]]
+     d10 ~< [(n+199)/100, adx 35 h, mq [n-1] h]
      d11 ~< sh [n+1] h
      d12 ~< ad [n+1] h
      d13 ~< ctl mq en h					// buffered through e38.13-9
@@ -327,7 +330,7 @@ e15: 10141 shft reg
      d1 ~< mqm [n+3] h
      d2 ~< mqm [n+4] h
      d3 ~< mqm [n+5] h
-     shft 3in ~< [n/30+1,mq.[n+6],ad-cry-02]	// buffered through e20.10-11
+     shft 3in ~< [n/30+1, mq [n+6] h, ad cry -02 a h]	// buffered through e20.10-11
      op2 ~< ctl mq sel 2 h				// buffered through e20.4-5
      op1 ~< ctl mq sel 1 h				// buffered through e20.7-6
      q0 ~> %NC%
@@ -392,7 +395,7 @@ e11: 10101 or buffer
      nqd ~> %NC%
      qd ~> %NC%
 
-Page: DP03,PDF17
+Page: DP03, PDF17
 
 e27: 10101 4xor/nor
       a1 ~< ad [n+0] h
@@ -425,7 +428,7 @@ e29:  10105 3x2-3-2 or/nor
       qa ~> %NC%
       b1 ~< internal-dp04 fm write l-13ns delay-out	// This is on page DP04
       b2 ~< internal-e29-2
-      b3 ~< [n/18+1,con fm write 00-17 l,con fm write 18-35 l]
+      b3 ~< [n/18+1, con fm write 00-17 l, con fm write 18-35 l]
       nqb ~> %NC%
       qb ~> dp04 fm write l
       c1 ~< dp04 clk c h					// This is on page DP04
@@ -478,7 +481,7 @@ e2:   10181 alu
       b2 ~< adb [n+4] h
       a1 ~< ada [n+5] h
       b1 ~< adb [n+5] h
-      c in ~< [n/30+1,ad cry [n+6] h,ad cry 36 b h]
+      c in ~< [n/30+1, ad cry [n+6] h, ad cry 36 b h]
       s8 ~< cram ad sel 8 [n] h
       s4 ~< cram ad sel 4 [n] h
       s2 ~< cram ad sel 2 [n] h
@@ -524,7 +527,7 @@ e4:   10181 alu
       b2 ~< adb [n+4] h
       a1 ~< ada [n+5] h
       b1 ~< adb [n+5] h
-      c in ~< [n/30+1,adx cry [n+6] h,ctl adx cry 36 h]
+      c in ~< [n/30+1, adx cry [n+6] h, ctl adx cry 36 h]
       s8 ~< cram ad sel 8 [n] h
       s4 ~< cram ad sel 4 [n] h
       s2 ~< cram ad sel 2 [n] h
@@ -547,7 +550,7 @@ e22:  10164 8 mix
       d5 ~< br [n+0] h
       d6 ~< br [n+0] h
       d7 ~< ar [n+0] h
-      sel4 ~< [(n+199)/100,hi,%NC%]
+      sel4 ~< [(n+199)/100, hi, %NC%]
       sel2 ~< cram adb sel 2 [n] h
       sel1 ~< cram adb sel 1 [n] h
       nen ~< 0
@@ -562,7 +565,7 @@ e21:  10164 8 mix
       d5 ~< br [n+0] h
       d6 ~< br [n+0] h
       d7 ~< ar [n+1] h
-      sel4 ~< [(n+199)/100,hi,%NC%]
+      sel4 ~< [(n+199)/100, hi, %NC%]
       sel2 ~< cram adb sel 2 [n] h
       sel1 ~< cram adb sel 1 [n] h
       nen ~< 0
@@ -677,11 +680,11 @@ e19:  10174 2x4 mix
       d00 ~< fm [n+4] h
       d01 ~< br [n+5] h
       d02 ~< br [n+4] h
-      d03 ~< [n/30+1,ar [n+6] h,arx 00 h]
+      d03 ~< [n/30+1, ar [n+6] h, arx 00 h]
       d10 ~< fm [n+5] h
-      d11 ~< [n/30+1,br [n+6] a h,brx 00 h]
+      d11 ~< [n/30+1, br [n+6] a h, brx 00 h]
       d12 ~< br [n+5] h
-      d13 ~< [n/30+1,ar [n+7] h,arx 01 h]
+      d13 ~< [n/30+1, ar [n+7] h, arx 01 h]
       sel2 ~< cram adb sel 2 [n] h
       sel1 ~< cram adb sel 1 [n] h
       nen ~< 0
@@ -733,7 +736,7 @@ e6:   10174 2x4 mix
       b0 ~> adxb [n+4] h
       b1 ~> adxb [n+5] h
 
-Page: DP04,PDF18
+Page: DP04, PDF18
 
 dl1: delay-line 13ns delay buffer
      in ~< internal-dp04 fm write l-13ns delay-in
@@ -741,7 +744,7 @@ dl1: delay-line 13ns delay buffer
 
 e59: 10101 or buffer
      a1 ~< diag read func 12x h
-     abcd2 ~< [n/18+1,ctl ad to ebus l h,ctl ad to ebus r h]
+     abcd2 ~< [n/18+1, ctl ad to ebus l h, ctl ad to ebus r h]
      nqa ~> internal-e59-14 [n/6+1]
      qa ~> %NC%
      b1 ~< 0
