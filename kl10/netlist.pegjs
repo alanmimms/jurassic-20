@@ -55,9 +55,10 @@
   }
 
   class Pin extends ASTNode {
-    constructor(name, dir, net) {
+    constructor(name, num, dir, net) {
       super();
       this.name = name;
+      this.num = num;
       this.dir = dir;
       this.net = net;
     }
@@ -151,19 +152,22 @@ board = p:page+ { return new Board(p) }
 page = p:pageDef n:chipDef+
 		{ p.chips = n; return p }
 
-pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  (_ EOL)+
+pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  wsEOL
 		{ return new Page(name, pdfRef) }
 
 chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }
 
-chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) (_ EOL)+
+chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) wsEOL
 		{ return new Chip(name, type, desc) }
 
-pinDef = [ \t]+ name:bareID _ dir:direction _ net:net (_ EOL)+
-		{ return new Pin(name, dir, net) }
+pinDef = [ \t]+ name:bareID num:( _ '|' n:num {return n} )? _ dir:dir _ net:net wsEOL
+		{ return new Pin(name, num, dir, net) }
 
-direction = $( '~<>' / '~>' / '~<')
+num = [0-9]+
+		{ return parseInt(text(), 10) }
+
+dir =	$( '~<>' / '~>' / '~<')
 
 macroRef =  '[' _ head:expr _ ids:selectorList ']'
 		{ return new Macro(head, ids) }
@@ -207,6 +211,8 @@ net = '%NC%'	{ return new NoConnect() }
 /	[01]	{ return new Value(parseInt(text(), 2)) }
 /	c:( macroRef / id )+
 		{ return new IDList(c) }
+
+wsEOL =	(_ EOL)+
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
 
