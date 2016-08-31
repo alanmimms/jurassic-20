@@ -294,17 +294,17 @@ e37: 10105 2-3-2 or/nor
      qc ~> con-internal-e37-6
 
 e20: 10117 dual 2-3 or-and
-     a1 ~< con2 diag continue l
-     a2 ~< %NC%
+     a1|4 ~< con2 diag continue l
+     a2|5 ~< %NC%
      b1 ~< con-internal-e34-15
      b2 ~< con2 instr go l
-     b3 ~< -con1 reset l
+     b3d3|9 ~< -con1 reset l
      qab ~> con2 instr go l
      nqab ~> %NC%
      c1 ~< con2 diag continue l
      c2 ~< %NC%
-     qc ~> con-internal-e20-14
-     nqc ~> con-internal-e20-15
+     qcd ~> con-internal-e20-14
+     nqcd ~> con-internal-e20-15
 
 e28: 10117 dual 2-3 or-and
      a1 ~< con2 mtr int req h
@@ -466,16 +466,16 @@ e39: 10162 decoder
      q7 ~> %NC%
 
 e23: 10104 quad and/nand
-     a1 ~< -scd user a h
-     a2 ~< -scd public a h
-     nqa ~> con2 kernel mode l
-     qa ~> con2 kernel mode h
-     b1 ~< con3 cono apr h
-     b2 ~< con1 ebus 19 h
-     qb ~> con-internal-e23-14
-     c1 ~< con1 cond/ebox state l
-     c2 ~< con1 reset l
-     qc ~> con-internal-e23-3
+     a1|6 ~< con1 cond/ebox state l
+     a2|7 ~< con1 reset l
+     qa|3 ~> con-internal-e23-3
+     c1|10 ~< con3 cono apr h
+     c2|11 ~< con1 ebus 19 h
+     qc|14 ~> con-internal-e23-14
+     d1|12 ~< -scd user a h
+     d2|13 ~< -scd public a h
+     nqd|9 ~> con2 kernel mode l
+     qd|15 ~> con2 kernel mode h
 
 e33: 10165 pri enc
      d0 ~< con5 pi cycle h
@@ -498,7 +498,7 @@ e18: 10176 hex dff
      d2 ~< con-internal-e33-2
      d3 ~< con-internal-e33-3
      d4 ~< pi5 ebus cp grant h
-     d6 ~< pi2 ext tran rec h
+     d5 ~< pi2 ext tran rec h
      q0 ~> con nicond trap en h
      q1 ~> con nicond 07 h
      q2 ~> con nicond 08 h
@@ -814,13 +814,13 @@ e65: 10121 4-wide or-and
      q ~> con ar 36 h
 
 e66: 10117 dual 2-3 or-and
-     a1 ~< -con4 mbox data h
-     a2 ~< con4 csh bit 36 h
-     b1 ~< -con4 fm data h
-     b2 ~< con4 fm bit 36 h
-     b3c3 ~< %NC%
-     nqab ~> %NC%
-     qab ~> con arx 36 h
+     a1|4 ~< -con4 mbox data h
+     a2|5 ~< con4 csh bit 36 h
+     b1|6 ~< -con4 fm data h
+     b2|7 ~< con4 fm bit 36 h
+     b3d3|9 ~< %NC%
+     nqab|3 ~> %NC%
+     qab|2 ~> con arx 36 h
 
 e64: 10176 hex dff
      clk ~< con2 clk c h
@@ -894,10 +894,10 @@ e69: 10176 hex dff
      q5 ~> con4 ar from mem l
 
 e70: 10104 quad and/nand
-     a1 ~< con4 ar from ebus l
-     a2 ~< con4 ar from mem l
-     qa ~> con4 ar loaded h
-     nqa ~> con ar loaded l
+     d1|12 ~< con4 ar from ebus l
+     d2|13 ~< con4 ar from mem l
+     qd|9 ~> con4 ar loaded h
+     nqd|15 ~> con ar loaded l
 
 Page: CON5, PDF162
 
@@ -925,17 +925,17 @@ e60: 10105 quad or/nor
      qa ~> con5 xfer h
 
 e63: 10117 dual 2-3 or-and
-     a1 ~< con-internal-e7-7
-     a2 ~< con1 cond en 10-17 l
-     b1 ~< mcl store ar l
-     b2 ~< con mbox wait l
-     b3 ~< vma ac ref l
-     qab ~> %NC%
-     nqab ~> con fm write 00-17 l
-     c1 ~< con-internal-e7-7
-     c2 ~< con1 cond en 10-17 l
-     d1 ~< mcl store ar l
-     d2 ~< con mbox wait l
-     d3 ~< vma ac ref l
-     qcd ~> %NC%
-     nqcd ~> con fm write 18-35 l
+     a1|4 ~< con-internal-e7-7
+     a2|5 ~< con1 cond en 10-17 l
+     b1|6 ~< mcl store ar l
+     b2|7 ~< con mbox wait l
+     b3d3|9 ~< vma ac ref l
+     qab|3 ~> %NC%
+     nqab|2 ~> con fm write 00-17 l
+     c1|11 ~< con-internal-e7-7
+     c2|10 ~< con1 cond en 10-17 l
+     d1|11 ~< mcl store ar l
+     d2|10 ~< con mbox wait l
+     b3d3|9 ~< vma ac ref l
+     qcd|14 ~> %NC%
+     nqcd|15 ~> con fm write 18-35 l
