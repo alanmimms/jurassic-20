@@ -1,0 +1,68 @@
+Page: CLK1, PDF168
+
+e7168: osc60 30MHz clock
+     q|3 ~> clk-internal-30mhz
+
+e71680: osc62 31MHz clock
+     q|14 ~> clk-internal-31mhz
+
+e67: 10164 8 mix
+     d0|6 ~< clk-internal-30mhz
+     d1|5 ~< clk-internal-31mhz
+     d2|4 ~< external clk h
+     d3|3 ~< clk-internal-31mhz
+     d4|11 ~< clk-internal-30mhz
+     d5|12 ~< clk-internal-30mhz
+     d6|13 ~< clk-internal-30mhz
+     d7|14 ~< clk-internal-30mhz
+     sel4|10 ~< clk2 crobar h
+     sel2|9 ~< clk5 source sel 2 h
+     sel1|7 ~< clk5 source sel 1 h
+     nen ~< %NC%
+     b ~> clk1 main source
+
+e41: 10105 2-3-2 or/nor
+     b1|9 ~< -clk1 clk on l
+     b2|10 ~< clk5 err stop en l
+     b3|11 ~< clk3 fs error l
+     qb|6 ~> %NC%
+     nqb|7 ~> clk-internal-e41-7
+
+e27: 10109 4/5 or/nor
+     a1|4 ~< clk3 ebox clk error l
+     a2|5 ~< clk3 ebox source l
+     a3|6 ~< -clk1 clk on l
+     a4|7 ~< clk5 err stop en l
+     qa|3 ~> %NC%
+     nqa|2 ~> clk-internal-e27-2
+
+e55: 10104 4xand
+     d1|12 ~< clk-internal-e41-7
+     d2|13 ~< clk-internal-e27-2
+     qd|9 ~> clk error stop h
+     nqd|15 ~> clk1 error stop l
+
+e5: 10141 shft reg
+    shft 0in|13 ~< %NC%
+    d0|12 ~< clk5 rate sel 2 h
+    d1|11 ~< clk5 rate sel 2 h
+    d2|9 ~< clk5 rate sel 1 h
+    d3|6 ~< %NC%
+    shft 3in|5 ~< %NC%
+    op1|7 ~< -clk1 rate selected h
+    op2|10 ~< %NC%
+    clk|4 ~< clk1 main source
+
+// TODO figure out gated and divided rate clocks like `clk sbus clk h`
+// and `clk ebus clk h`.
+
+e42: 10141 shft reg
+     shft 0in|13 ~< %NC%
+     d0|12 ~< clk2 func single step l
+     d1|11 ~< clk2 func ebox ss l
+     d2|9 ~< clk-internal-e41-2
+     d3|6 ~< clk2 func ebox ss l
+     shft 3in|5 ~< clk2 crobar l
+     op1|7 ~< clk2 func gate l
+     op2|10 ~< xyzzy todo to be continued
+     xxxxxxxxxxx ..........

@@ -56,6 +56,7 @@ const logic = {
   '10117': dev('2x2-3 or-and/or-and', 'a#1/2, b#1/2, b3d3, c#1/3, d#1/2', 'nqab, qab, nqcd, qcd'),
   '10118': dev('2x3 or-and', 'a#1/3, b#1/2, b3c3, c#1/2, d#1/3', 'qab, qcd'),
   '10121': dev('4-wide or-and/or-and', 'a#1/3, b#1/2, b3c3, c#1/2, d#1/3', 'nq, q'),
+  '10131': dev('2xMSDFF', 'nen#1/2, d#1/2, r#1/2, s#1/2', 'q#1/2 nq#1/2'),
   '10141': dev('shft reg', 'shft 0in, d/4, shft 3in, op#1/2, clk', 'q/4'),
   '10144': dev('256x1 ram', 'a/8, nen#1/3, nwrite, d', 'q'),
   '10147': dev('128x1 ram', 'a/7, nen#1/2, nwrite, d', 'q'),
@@ -72,6 +73,8 @@ const logic = {
   '10181': dev('alu', 'a@4, b@4, s@4, boole, c in', 'f@4, cg, cp, c out'),
   '10210': dev('2x3 or', 'a#1/3, b#1/3', 'qa#1/3, qb#1/3'),
   'delay-line': dev('delay buffer', 'in', 'out'),
+  'osc60': dev('60MHz osc', '', 'q'),
+  'osc62': dev('62MHz osc', '', 'q'),
 };
 
 if (require.main === module) console.log("logic:", require('util').inspect(logic));
