@@ -1,68 +1,123 @@
-Page: CLK1, PDF168
+Page: CLK4, PDF171
 
-e7168: osc60 30MHz clock
-     q|3 ~> clk-internal-30mhz
+e1: 10121 4-wide or-and/or-and
+    a1|4 ~< clk4 ebox req h
+    a2|5 ~< %NC%
+    a3|6 ~< -vma1 ac ref l
+    b1|7 ~< -vma1 ac ref l
+    b2|9 ~< csh2 ebox retry req l
+    b3c3|10 ~< %NC%
+    c1|11 ~< clk3 sync en l
+    c2|12 ~< mclk mbox cyc req l
+    d1|13 ~< mclk mbox cyc req l
+    d2|14 ~< clk3 sync l
+    d3|15 ~< %NC%
+    nq ~> clk-internal-e1-2
+    q ~> %NC%
 
-e71680: osc62 31MHz clock
-     q|14 ~> clk-internal-31mhz
+e17: 10109 4/5 or/nor
+     a1|4 ~< con mbox wait l
+     a2|5 ~< clk5 mbox resp sim l
+     a3|6 ~< -clk3 ebox clk en l
+     a4|7 ~< -vma1 ac ref l
+     qa ~> %NC%
+     nqa ~> clk-internal-e1-2	// Wire-OR
 
-e67: 10164 8 mix
-     d0|6 ~< clk-internal-30mhz
-     d1|5 ~< clk-internal-31mhz
-     d2|4 ~< external clk h
-     d3|3 ~< clk-internal-31mhz
-     d4|11 ~< clk-internal-30mhz
-     d5|12 ~< clk-internal-30mhz
-     d6|13 ~< clk-internal-30mhz
-     d7|14 ~< clk-internal-30mhz
-     sel4|10 ~< clk2 crobar h
-     sel2|9 ~< clk5 source sel 2 h
-     sel1|7 ~< clk5 source sel 1 h
-     nen ~< %NC%
-     b ~> clk1 main source
+e3: 10131 2xMSDFF
+    d2|10 ~< clk-internal-e1-2
+    nen2|11 ~< clk2 mbox clk f h
+    q2|14 ~> clk4 ebox req h
+    nq2|15 ~> clk4 ebox req l
 
-e41: 10105 2-3-2 or/nor
-     b1|9 ~< -clk1 clk on l
-     b2|10 ~< clk5 err stop en l
-     b3|11 ~< clk3 fs error l
-     qb|6 ~> %NC%
-     nqb|7 ~> clk-internal-e41-7
+e4: 10117 2x2-3 or-and/or-and
+    a1|4 ~< -clk instr 1777 h
+    a2/5 ~< %NC%
+    b1|6 ~< csh6 page fail hold h
+    b2|7 ~< clk-internal-e11-2
+    b3|9 ~< %NC%
+    nqab|3 ~> clk-internal-e4-3
+    qab|2 ~> clk-internal-e4-2
+    d1|13 ~< %NC%
+    d2|12 ~< clk4 1777 en l
+    c1|11 ~< -clk3 ebox clk en l
+    c2|10 ~< clk instr 1777 l
+    qcd|14 ~> clk-internal-e4-14
+    nqcd|15 ~> clk-internal-e4-15
 
-e27: 10109 4/5 or/nor
-     a1|4 ~< clk3 ebox clk error l
-     a2|5 ~< clk3 ebox source l
-     a3|6 ~< -clk1 clk on l
-     a4|7 ~< clk5 err stop en l
+e11: 10104 4xand
+     a1|4 ~< clk4 page fail en h
+     a2|5 ~< -clk2 reset h
+     qa/2 ~> clk-internal-e11-2
+     b1|6 ~< clk3 sync en h
+     b2|7 ~< csh2 mbox resp in h
+     qb|3 ~> clk4 resp sim h
+
+e8: 10176 hex DFF
+    d0|6 ~< clk-internal-e4-3
+    clk|9 ~< clk2 mbox clk f h
+    q0|3 ~> clk4 page fail en l
+    d1|7 ~< clk-internal-e4-2
+    q1|4 ~> clk4 page fail en h
+    d2|10 ~< clk-internal-e4-14
+    q2|13 ~> clk4 instr 1777 h
+    d3|5 ~< clk-internal-e4-15
+    q3|2 ~> clk instr 1777 l
+    d5|11 ~< clk4 pf dlyd a h
+    q5|14 ~> clk4 force 1777 h
+    d6|12 ~< clk4 pf dlyd b h
+    q6|15 ~> clk sbr call h
+
+e45: 10176 hex DFF
+     clk ~< clk1 odd b h
+     d0|6 ~< clk4 page fail h
+     q0|3 ~> clk4 pf dlyd a h
+     d1|5 ~< clk4 pf dlyd a h
+     q1|2 ~> clk4 pf dlyd b h
+
+e7: 10105 2-3-2 or/nor
+    a1|4 ~< clk4 page fail en h
+    a2|5 ~< clk4 instr 1777 h
+    qa|2 ~> clk page error h
+    nqa|3 ~> %NC%
+
+e9: 10104 quad and
+    d1|12 ~< clk4 force 1777 h
+    d2|13 ~< clk sbr call h
+    qd|15 ~> clk4 1777 en h
+    nqd|9 ~> clk4 1777 en l
+
+e18: 10109 4/5 or/nor
+     a1|4 ~< con mbox wait l
+     a2|5 ~< clk5 mbox resp sim l
+     a3|6 ~< -clk3 ebox clk en l
+     a4|7 ~< -vma1 ac ref l
+     qa|3 ~> clk-internal-e18-3
+     nqa|2 ~> %NC%
+
+e32: 10176 hex DFF
+     clk ~< clk2 mbox clk d h
+     d0|6 ~< clk-internal-e18-3
+     q0|3 ~> clk4 resp mbox h
+     d1|10 ~< csh2 mbox resp in h
+     q1|13 ~> clk4 resp mbox h		// Wire-OR
+     d2|11 ~< clk3 ebox clk en l
+     q2|14 ~> clk4 ebox clk l
+
+e16: 10101 quad or/nor
+     d1|10 ~< clk4 resp mbox h
+     abcd2|12 ~< %NC%
+     nqd|14 ~> clk mb xfer l
+     qd|11 ~> clk mb xfer h
+
+e26: 10105 2-3-2 or/nor
+     c1|12 ~< con ar from ebus h
+     c2|13 ~< clk4 page fail en h
+     qc|15 ~> clk-internal-e26-15
+     nqc|14 ~> %NC%
+
+e38: 10105 2-3-2 or/nor
+     a1|4 ~< -shm1 ar par odd l
+     a2|5 ~< con ar loaded l
      qa|3 ~> %NC%
-     nqa|2 ~> clk-internal-e27-2
-
-e55: 10104 4xand
-     d1|12 ~< clk-internal-e41-7
-     d2|13 ~< clk-internal-e27-2
-     qd|9 ~> clk error stop h
-     nqd|15 ~> clk1 error stop l
-
-e5: 10141 shft reg
-    shft 0in|13 ~< %NC%
-    d0|12 ~< clk5 rate sel 2 h
-    d1|11 ~< clk5 rate sel 2 h
-    d2|9 ~< clk5 rate sel 1 h
-    d3|6 ~< %NC%
-    shft 3in|5 ~< %NC%
-    op1|7 ~< -clk1 rate selected h
-    op2|10 ~< %NC%
-    clk|4 ~< clk1 main source
-
-// TODO figure out gated and divided rate clocks like `clk sbus clk h`
-// and `clk ebus clk h`.
-
-e42: 10141 shft reg
-     shft 0in|13 ~< %NC%
-     d0|12 ~< clk2 func single step l
-     d1|11 ~< clk2 func ebox ss l
-     d2|9 ~< clk-internal-e41-2
-     d3|6 ~< clk2 func ebox ss l
-     shft 3in|5 ~< clk2 crobar l
-     op1|7 ~< clk2 func gate l
-     op2|10 ~< xyzzy todo to be continued
-     xxxxxxxxxxx ..........
+     nqa|2 ~> clk-internal-d38-2
+     finish this chip
