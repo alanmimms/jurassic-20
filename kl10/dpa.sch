@@ -1,37 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:o_ecl
-LIBS:ecl
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+EESchema Schematic File Version 4
 LIBS:kl10-cache
-EELAYER 25 0
+EELAYER 30 0
 EELAYER END
 $Descr B 17000 11000
 encoding utf-8
@@ -146,7 +115,7 @@ Wire Wire Line
 Wire Wire Line
 	1900 2650 2050 2650
 Wire Wire Line
-	1700 2250 13500 2250
+	1700 2250 1900 2250
 Wire Wire Line
 	5250 2250 5250 2650
 Wire Wire Line
@@ -473,4 +442,8 @@ Text HLabel 13200 3100 0    60   Input ~ 0
 ad
 Text HLabel 13200 3200 0    60   Input ~ 0
 adx
+Wire Wire Line
+	1900 2250 5250 2250
+Wire Wire Line
+	5250 2250 13500 2250
 $EndSCHEMATC

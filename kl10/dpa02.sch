@@ -1,37 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:o_ecl
-LIBS:ecl
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+EESchema Schematic File Version 4
 LIBS:kl10-cache
-EELAYER 25 0
+EELAYER 30 0
 EELAYER END
 $Descr B 17000 11000
 encoding utf-8
@@ -46,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L MC10141 e25
+L o_ecl:MC10141 e25
 U 1 1 57ACA2E8
 P 5450 1500
 AR Path="/57B68864/57B6B9B0/57ACA2E8" Ref="e25"  Part="1" 
@@ -75,13 +44,13 @@ Wire Wire Line
 NoConn ~ 4850 1050
 NoConn ~ 4850 1550
 Wire Wire Line
-	4850 1850 4850 2200
+	4850 1850 4850 1950
 Text HLabel 4800 1750 2    60   Input ~ 0
 dp04-clk
 Wire Wire Line
 	4800 1750 4850 1750
 $Comp
-L MC10101 e24
+L o_ecl:MC10101 e24
 U 3 1 57ACA62E
 P 4100 2300
 AR Path="/57B68864/57B6B9B0/57ACA62E" Ref="e24"  Part="3" 
@@ -94,7 +63,7 @@ F 3 "" H 4100 2300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8050 2200 4700 2200
+	8050 2200 4850 2200
 Connection ~ 4850 1950
 Text HLabel 3450 2200 2    60   Input ~ 0
 ctl-arx-load
@@ -117,7 +86,7 @@ Wire Wire Line
 Wire Wire Line
 	6050 1450 6100 1450
 $Comp
-L MC10141 e32
+L o_ecl:MC10141 e32
 U 1 1 57ACAB89
 P 8650 1500
 AR Path="/57B68864/57B6B9B0/57ACAB89" Ref="e32"  Part="1" 
@@ -144,7 +113,7 @@ Wire Wire Line
 NoConn ~ 8050 1050
 NoConn ~ 8050 1550
 Wire Wire Line
-	8050 1850 8050 2200
+	8050 1850 8050 1950
 Text HLabel 8000 1750 2    60   Input ~ 0
 dp04-clk
 Wire Wire Line
@@ -172,7 +141,7 @@ arxm.[n+1]
 Wire Wire Line
 	8050 1150 7950 1150
 $Comp
-L MC10164 e55
+L o_ecl:MC10164 e55
 U 1 1 57ACAFFC
 P 3650 4050
 AR Path="/57B68864/57B6B9B0/57ACAFFC" Ref="e55"  Part="1" 
@@ -224,12 +193,12 @@ Text HLabel 3000 4450 0    60   Input ~ 0
 Text HLabel 3000 4550 0    60   Input ~ 0
 cram-arxm-sel-4-[n/18+1,00,06]
 Wire Wire Line
-	3000 4450 5400 4450
+	3000 4450 3050 4450
 Wire Wire Line
-	3000 4550 5400 4550
+	3000 4550 3050 4550
 NoConn ~ 3050 4650
 $Comp
-L MC10164 e56
+L o_ecl:MC10164 e56
 U 1 1 57ACB70A
 P 6000 4050
 AR Path="/57B68864/57B6B9B0/57ACB70A" Ref="e56"  Part="1" 
@@ -279,13 +248,9 @@ Connection ~ 3050 4350
 Connection ~ 3050 4450
 Connection ~ 3050 4550
 Wire Wire Line
-	3000 4350 7700 4350
-Wire Wire Line
-	4900 4450 7700 4450
-Wire Wire Line
-	4900 4550 7700 4550
+	3000 4350 3050 4350
 $Comp
-L MC10164 e49
+L o_ecl:MC10164 e49
 U 1 1 57ACBC44
 P 8300 4050
 AR Path="/57B68864/57B6B9B0/57ACBC44" Ref="e49"  Part="1" 
@@ -331,14 +296,8 @@ Text HLabel 7650 4150 0    60   Input ~ 0
 adx.[n+0]
 Wire Wire Line
 	7650 4150 7700 4150
-Wire Wire Line
-	7050 4350 9850 4350
-Wire Wire Line
-	7050 4450 9850 4450
-Wire Wire Line
-	7050 4550 9850 4550
 $Comp
-L MC10164 e42
+L o_ecl:MC10164 e42
 U 1 1 57ACC128
 P 10450 4050
 AR Path="/57B68864/57B6B9B0/57ACC128" Ref="e42"  Part="1" 
@@ -384,22 +343,11 @@ Text HLabel 9800 4150 0    60   Input ~ 0
 adx.[n+1]
 Wire Wire Line
 	9800 4150 9850 4150
-Wire Wire Line
-	4900 4350 5400 4350
 Connection ~ 4900 4350
-Connection ~ 4900 4450
-Connection ~ 4900 4550
-Connection ~ 7050 4350
 Connection ~ 7050 4450
 Connection ~ 7050 4550
-Wire Wire Line
-	9300 4350 12100 4350
-Wire Wire Line
-	9300 4450 12100 4450
-Wire Wire Line
-	9300 4550 12100 4550
 $Comp
-L MC10164 e31
+L o_ecl:MC10164 e31
 U 1 1 57ACCDCD
 P 12700 4050
 AR Path="/57B68864/57B6B9B0/57ACCDCD" Ref="e31"  Part="1" 
@@ -446,16 +394,8 @@ adx.[n+2]
 Wire Wire Line
 	12050 4150 12100 4150
 Connection ~ 9300 4350
-Connection ~ 9300 4450
-Connection ~ 9300 4550
-Wire Wire Line
-	11550 4350 14350 4350
-Wire Wire Line
-	11550 4450 14350 4450
-Wire Wire Line
-	11550 4550 14350 4550
 $Comp
-L MC10164 e30
+L o_ecl:MC10164 e30
 U 1 1 57ACD533
 P 14950 4050
 AR Path="/57B68864/57B6B9B0/57ACD533" Ref="e30"  Part="1" 
@@ -499,13 +439,12 @@ Text HLabel 14300 4150 0    60   Input ~ 0
 adx.[n+3]
 Wire Wire Line
 	14300 4150 14350 4150
-Connection ~ 11550 4350
 Connection ~ 11550 4450
 Connection ~ 11550 4550
 Text HLabel 14250 3950 0    60   Input ~ 0
 [n/30+1,adx.[n+6] h,mq.0]
 $Comp
-L MC10174 e45
+L o_ecl:MC10174 e45
 U 1 1 57ACDEF5
 P 3700 6300
 AR Path="/57B68864/57B6B9B0/57ACDEF5" Ref="e45"  Part="1" 
@@ -518,7 +457,7 @@ F 3 "" H 3700 6300 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10101 e38
+L o_ecl:MC10101 e38
 U 4 1 57ACDF63
 P 2200 7150
 AR Path="/57B68864/57B6B9B0/57ACDF63" Ref="e38"  Part="4" 
@@ -533,13 +472,13 @@ $EndComp
 Wire Wire Line
 	2800 7050 2800 6800
 Wire Wire Line
-	2800 6800 5650 6800
+	2800 6800 3100 6800
 Wire Wire Line
 	3050 7250 2800 7250
 Wire Wire Line
-	3050 6100 3050 7250
+	3050 6100 3050 6500
 Wire Wire Line
-	3050 6100 5650 6100
+	3050 6100 3100 6100
 Text HLabel 1550 7050 0    60   Input ~ 0
 ctl-mqm-en
 Wire Wire Line
@@ -550,9 +489,9 @@ ctl-mqm-sel-2
 Text HLabel 2950 6600 0    60   Input ~ 0
 ctl-mqm-sel-1
 Wire Wire Line
-	2950 6700 5650 6700
+	2950 6700 3100 6700
 Wire Wire Line
-	2950 6600 5650 6600
+	2950 6600 3100 6600
 Text HLabel 2950 6200 0    60   Input ~ 0
 [(n+199)/100,adx.35,mq.[n-1]]
 Text HLabel 2950 5800 0    60   Input ~ 0
@@ -578,7 +517,7 @@ Wire Wire Line
 Wire Wire Line
 	2950 6400 3100 6400
 Wire Wire Line
-	3050 6500 5650 6500
+	3050 6500 3100 6500
 Connection ~ 3050 6500
 Text HLabel 4350 5800 2    60   Input ~ 0
 mqm.[n+0]
@@ -589,7 +528,7 @@ Wire Wire Line
 Wire Wire Line
 	4300 6200 4350 6200
 $Comp
-L MC10174 e48
+L o_ecl:MC10174 e48
 U 1 1 57ACF507
 P 6250 6300
 AR Path="/57B68864/57B6B9B0/57ACF507" Ref="e48"  Part="1" 
@@ -638,18 +577,8 @@ Wire Wire Line
 	5500 5800 5650 5800
 Wire Wire Line
 	5500 6200 5650 6200
-Wire Wire Line
-	4950 6800 7800 6800
-Wire Wire Line
-	5200 6100 7800 6100
-Wire Wire Line
-	5100 6700 7800 6700
-Wire Wire Line
-	5100 6600 7800 6600
-Wire Wire Line
-	5200 6500 7800 6500
 $Comp
-L MC10174 e35
+L o_ecl:MC10174 e35
 U 1 1 57AD0630
 P 8400 6300
 AR Path="/57B68864/57B6B9B0/57AD0630" Ref="e35"  Part="1" 
@@ -694,7 +623,7 @@ Wire Wire Line
 Wire Wire Line
 	7650 6200 7800 6200
 $Comp
-L MC10141 e13
+L o_ecl:MC10141 e13
 U 1 1 57AD0A4E
 P 10750 6250
 AR Path="/57B68864/57B6B9B0/57AD0A4E" Ref="e13"  Part="1" 
@@ -746,17 +675,17 @@ Wire Wire Line
 Wire Wire Line
 	10050 6300 10150 6300
 Wire Wire Line
-	10100 6500 12300 6500
+	10100 6500 10150 6500
 Text HLabel 10100 6600 0    60   Input ~ 0
 ctl-mq-sel-1
 Text HLabel 10100 6700 0    60   Input ~ 0
 ctl-mq-sel-2
 Wire Wire Line
-	10100 6600 12300 6600
+	10100 6600 10150 6600
 Wire Wire Line
-	10100 6700 12300 6700
+	10100 6700 10150 6700
 $Comp
-L MC10141 e15
+L o_ecl:MC10141 e15
 U 1 1 57AD1768
 P 12900 6250
 AR Path="/57B68864/57B6B9B0/57AD1768" Ref="e15"  Part="1" 
@@ -808,4 +737,34 @@ Text HLabel 12200 6300 0    60   Input ~ 0
 [n/30+1,mq.[n+6],ad-cry-02]
 Wire Wire Line
 	12200 6300 12300 6300
+Wire Wire Line
+	4850 1950 4850 2200
+Wire Wire Line
+	8050 1950 8050 2200
+Wire Wire Line
+	4850 2200 4700 2200
+Wire Wire Line
+	3050 6500 3050 7250
+Wire Wire Line
+	10150 6500 12300 6500
+Wire Wire Line
+	10150 6600 12300 6600
+Wire Wire Line
+	10150 6700 12300 6700
+Wire Wire Line
+	3100 6800 7800 6800
+Wire Wire Line
+	3100 6100 7800 6100
+Wire Wire Line
+	3100 6700 7800 6700
+Wire Wire Line
+	3100 6600 7800 6600
+Wire Wire Line
+	3100 6500 7800 6500
+Wire Wire Line
+	3050 4450 14350 4450
+Wire Wire Line
+	3050 4550 14350 4550
+Wire Wire Line
+	3050 4350 14350 4350
 $EndSCHEMATC

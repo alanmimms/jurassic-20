@@ -1,37 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:o_ecl
-LIBS:ecl
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+EESchema Schematic File Version 4
 LIBS:kl10-cache
-EELAYER 25 0
+EELAYER 30 0
 EELAYER END
 $Descr B 17000 11000
 encoding utf-8
@@ -46,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L MC10164 e53
+L o_ecl:MC10164 e53
 U 1 1 57A676FA
 P 3900 3600
 AR Path="/57B68864/57B6B963/57A676FA" Ref="e53"  Part="1" 
@@ -81,7 +50,7 @@ Wire Wire Line
 Wire Wire Line
 	2850 4100 3300 4100
 $Comp
-L MC10164 e46
+L o_ecl:MC10164 e46
 U 1 1 57A7828A
 P 7050 3600
 AR Path="/57B68864/57B6B963/57A7828A" Ref="e46"  Part="1" 
@@ -106,7 +75,7 @@ Wire Wire Line
 Wire Wire Line
 	7650 3000 7800 3000
 $Comp
-L MC10164 e47
+L o_ecl:MC10164 e47
 U 1 1 57A791AF
 P 10150 3600
 AR Path="/57B68864/57B6B963/57A791AF" Ref="e47"  Part="1" 
@@ -125,7 +94,7 @@ Connection ~ 6450 4000
 Connection ~ 6450 4100
 Connection ~ 6450 4200
 $Comp
-L MC10141 e39
+L o_ecl:MC10141 e39
 U 1 1 57A7ADE0
 P 12050 1900
 AR Path="/57B68864/57B6B963/57A7ADE0" Ref="e39"  Part="1" 
@@ -159,7 +128,7 @@ Wire Wire Line
 Wire Wire Line
 	10200 2150 11450 2150
 $Comp
-L MC10164 e41
+L o_ecl:MC10164 e41
 U 1 1 57A7DDB6
 P 4150 8950
 AR Path="/57B68864/57B6B963/57A7DDB6" Ref="e41"  Part="1" 
@@ -186,7 +155,7 @@ Wire Wire Line
 Wire Wire Line
 	2600 8950 3550 8950
 $Comp
-L MC10164 e40
+L o_ecl:MC10164 e40
 U 1 1 57A7DDD2
 P 7300 8950
 AR Path="/57B68864/57B6B963/57A7DDD2" Ref="e40"  Part="1" 
@@ -225,7 +194,7 @@ Wire Wire Line
 Wire Wire Line
 	7900 8350 8050 8350
 $Comp
-L MC10164 e54
+L o_ecl:MC10164 e54
 U 1 1 57A7DDF0
 P 10400 8950
 AR Path="/57B68864/57B6B963/57A7DDF0" Ref="e54"  Part="1" 
@@ -258,7 +227,7 @@ Connection ~ 6700 9350
 Connection ~ 6700 9450
 Connection ~ 6700 9550
 $Comp
-L MC10141 e51
+L o_ecl:MC10141 e51
 U 1 1 57A7DE0C
 P 12300 7250
 AR Path="/57B68864/57B6B963/57A7DE0C" Ref="e51"  Part="1" 

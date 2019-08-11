@@ -1,37 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:o_ecl
-LIBS:ecl
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+EESchema Schematic File Version 4
 LIBS:kl10-cache
-EELAYER 25 0
+EELAYER 30 0
 EELAYER END
 $Descr B 17000 11000
 encoding utf-8
@@ -46,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L MC10101 e59
+L o_ecl:MC10101 e59
 U 1 1 57B64287
 P 2750 3650
 AR Path="/57B68864/57B6BA75/57B64287" Ref="e59"  Part="1" 
@@ -59,7 +28,7 @@ F 3 "" H 2750 3650 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10101 e59
+L o_ecl:MC10101 e59
 U 2 1 57B6430A
 P 2750 4350
 AR Path="/57B68864/57B6BA75/57B6430A" Ref="e59"  Part="2" 
@@ -72,7 +41,7 @@ F 3 "" H 2750 4350 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10101 e59
+L o_ecl:MC10101 e59
 U 3 1 57B64349
 P 2750 5050
 AR Path="/57B68864/57B6BA75/57B64349" Ref="e59"  Part="3" 
@@ -85,7 +54,7 @@ F 3 "" H 2750 5050 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10101 e59
+L o_ecl:MC10101 e59
 U 4 1 57B6437D
 P 2750 5750
 AR Path="/57B68864/57B6BA75/57B6437D" Ref="e59"  Part="4" 
@@ -111,7 +80,7 @@ diag.[n+6]
 Text HLabel 1900 5650 0    60   Input ~ 0
 diag-read-func-12x
 $Comp
-L MC10164 e57
+L o_ecl:MC10164 e57
 U 1 1 57B65227
 P 4500 2450
 AR Path="/57B68864/57B6BA75/57B65227" Ref="e57"  Part="1" 
@@ -143,7 +112,7 @@ NoConn ~ 3350 5150
 Text HLabel 5100 1850 2    60   Input ~ 0
 ebus-d.[n+0]
 $Comp
-L MC10164 e50
+L o_ecl:MC10164 e50
 U 1 1 57B66733
 P 6350 2450
 AR Path="/57B68864/57B6BA75/57B66733" Ref="e50"  Part="1" 
@@ -174,7 +143,7 @@ ad.[n+1]
 Text HLabel 6950 1850 2    60   Input ~ 0
 ebus-d.[n+1]
 $Comp
-L MC10164 e43
+L o_ecl:MC10164 e43
 U 1 1 57B67599
 P 8200 2450
 AR Path="/57B68864/57B6BA75/57B67599" Ref="e43"  Part="1" 
@@ -205,7 +174,7 @@ ad.[n+2]
 Text HLabel 8800 1850 2    60   Input ~ 0
 ebus-d.[n+2]
 $Comp
-L MC10164 e44
+L o_ecl:MC10164 e44
 U 1 1 57B687C3
 P 10050 2450
 AR Path="/57B68864/57B6BA75/57B687C3" Ref="e44"  Part="1" 
@@ -299,7 +268,7 @@ Connection ~ 7600 2850
 Connection ~ 7600 2950
 Connection ~ 7600 3050
 $Comp
-L MC10164 e36
+L o_ecl:MC10164 e36
 U 1 1 57B68EF7
 P 11900 2450
 AR Path="/57B68864/57B6BA75/57B68EF7" Ref="e36"  Part="1" 
@@ -342,7 +311,7 @@ Wire Wire Line
 	9400 3050 13150 3050
 Connection ~ 9400 3050
 $Comp
-L MC10164 e37
+L o_ecl:MC10164 e37
 U 1 1 57B697CA
 P 13750 2450
 AR Path="/57B68864/57B6BA75/57B697CA" Ref="e37"  Part="1" 
@@ -377,7 +346,7 @@ Connection ~ 11300 2850
 Connection ~ 11300 2950
 Connection ~ 11300 3050
 $Comp
-L MC10147 e69
+L o_ecl:MC10147 e69
 U 1 1 57B6B34B
 P 5550 4800
 AR Path="/57B68864/57B6BA75/57B6B34B" Ref="e69"  Part="1" 
@@ -406,7 +375,7 @@ apr-fm-adr.[n+1]
 Text HLabel 4950 4900 0    60   Input ~ 0
 apr-fm-adr.[n+0]
 $Comp
-L MC10105 U1
+L o_ecl:MC10105 U1
 U 1 1 57B6BFA9
 P 1900 6700
 AR Path="/57B68864/57B6BA75/57B6BFA9" Ref="U1"  Part="1" 
@@ -419,7 +388,7 @@ F 3 "" H 1900 6700 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10105 U1
+L o_ecl:MC10105 U1
 U 2 1 57B6C012
 P 4250 6800
 AR Path="/57B68864/57B6BA75/57B6C012" Ref="U1"  Part="2" 
@@ -444,7 +413,7 @@ Text HLabel 4700 6200 0    60   Input ~ 0
 dp04-fm-write-l
 Connection ~ 4950 6200
 $Comp
-L DELAYLINE DL1
+L o_ecl:DELAYLINE DL1
 U 1 1 57B6D95B
 P 3100 6500
 AR Path="/57B68864/57B6BA75/57B6D95B" Ref="DL1"  Part="1" 
@@ -469,7 +438,7 @@ Wire Wire Line
 Text HLabel 3650 6900 0    60   Input ~ 0
 fm-write.0-35-l
 $Comp
-L MC10147 e70
+L o_ecl:MC10147 e70
 U 1 1 57B6DF9C
 P 7300 4800
 AR Path="/57B68864/57B6BA75/57B6DF9C" Ref="e70"  Part="1" 
@@ -504,7 +473,7 @@ Wire Wire Line
 Wire Wire Line
 	6700 6100 6700 5300
 $Comp
-L MC10147 e71
+L o_ecl:MC10147 e71
 U 1 1 57B6E4E7
 P 9050 4800
 AR Path="/57B68864/57B6BA75/57B6E4E7" Ref="e71"  Part="1" 
@@ -539,7 +508,7 @@ Connection ~ 4950 6100
 Wire Wire Line
 	6700 6100 13700 6100
 $Comp
-L MC10147 e72
+L o_ecl:MC10147 e72
 U 1 1 57B6EA16
 P 10800 4800
 AR Path="/57B68864/57B6BA75/57B6EA16" Ref="e72"  Part="1" 
@@ -570,7 +539,7 @@ apr-fm-adr.[n+0]
 Wire Wire Line
 	10200 6100 10200 5300
 $Comp
-L MC10147 e65
+L o_ecl:MC10147 e65
 U 1 1 57B6EE8E
 P 12550 4800
 AR Path="/57B68864/57B6BA75/57B6EE8E" Ref="e65"  Part="1" 
@@ -603,7 +572,7 @@ Wire Wire Line
 Connection ~ 10200 6100
 Connection ~ 8450 6100
 $Comp
-L MC10147 e58
+L o_ecl:MC10147 e58
 U 1 1 57B6F292
 P 14300 4800
 AR Path="/57B68864/57B6BA75/57B6F292" Ref="e58"  Part="1" 
@@ -635,7 +604,7 @@ Wire Wire Line
 	13700 6100 13700 5300
 Connection ~ 11950 6100
 $Comp
-L MC10160 e64
+L o_ecl:MC10160 e64
 U 1 1 57B6F81F
 P 12750 7300
 AR Path="/57B68864/57B6BA75/57B6F81F" Ref="e64"  Part="1" 
@@ -668,7 +637,7 @@ NoConn ~ 12150 7650
 NoConn ~ 12150 7750
 NoConn ~ 12150 7850
 $Comp
-L MC10101 e38
+L o_ecl:MC10101 e38
 U 1 1 57B701A9
 P 2050 9250
 AR Path="/57B68864/57B6BA75/57B701A9" Ref="e38"  Part="1" 
@@ -685,7 +654,7 @@ cram-br-load
 NoConn ~ 1450 9350
 NoConn ~ 2650 9350
 $Comp
-L MC10141 e61
+L o_ecl:MC10141 e61
 U 1 1 57B70692
 P 4150 8950
 AR Path="/57B68864/57B6BA75/57B70692" Ref="e61"  Part="1" 
@@ -732,7 +701,7 @@ br.[n+1]
 Text HLabel 4750 8900 2    60   Input ~ 0
 br.[n+2]
 $Comp
-L MC10141 e63
+L o_ecl:MC10141 e63
 U 1 1 57B71A9E
 P 5950 8950
 AR Path="/57B68864/57B6BA75/57B71A9E" Ref="e63"  Part="1" 
@@ -772,7 +741,7 @@ Wire Wire Line
 NoConn ~ 5350 8900
 NoConn ~ 6550 8900
 $Comp
-L MC10141 e8
+L o_ecl:MC10141 e8
 U 1 1 57B724AF
 P 7750 8950
 AR Path="/57B68864/57B6BA75/57B724AF" Ref="e8"  Part="1" 
@@ -810,7 +779,7 @@ NoConn ~ 7150 8900
 NoConn ~ 8350 8900
 Connection ~ 5350 9300
 $Comp
-L MC10141 e10
+L o_ecl:MC10141 e10
 U 1 1 57B72C2C
 P 9650 8950
 AR Path="/57B68864/57B6BA75/57B72C2C" Ref="e10"  Part="1" 

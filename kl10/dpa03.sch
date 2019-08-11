@@ -1,37 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:o_ecl
-LIBS:ecl
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+EESchema Schematic File Version 4
 LIBS:kl10-cache
-EELAYER 25 0
+EELAYER 30 0
 EELAYER END
 $Descr B 17000 11000
 encoding utf-8
@@ -46,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L MC10181 e1
+L o_ecl:MC10181 e1
 U 1 1 57ACC3A9
 P 4200 3400
 AR Path="/57B68864/57B6BA15/57ACC3A9" Ref="e1"  Part="1" 
@@ -97,7 +66,7 @@ ad.[n+0]
 Text HLabel 5000 2600 2    60   Input ~ 0
 ad.[n+1]
 $Comp
-L MC10181 e2
+L o_ecl:MC10181 e2
 U 1 1 57B4AC90
 P 6850 3400
 AR Path="/57B68864/57B6BA15/57B4AC90" Ref="e2"  Part="1" 
@@ -142,7 +111,7 @@ ada.[n+2]
 Text HLabel 6100 3600 0    60   Input ~ 0
 [n/30+1,ad-cry.[n+6],ad-cry-36]
 $Comp
-L MC10181 e3
+L o_ecl:MC10181 e3
 U 1 1 57B4BAC9
 P 9550 3400
 AR Path="/57B68864/57B6BA15/57B4BAC9" Ref="e3"  Part="1" 
@@ -181,7 +150,7 @@ adx-cry.[n+3]
 NoConn ~ 10250 3500
 NoConn ~ 10250 2900
 $Comp
-L MC10181 e4
+L o_ecl:MC10181 e4
 U 1 1 57B4C236
 P 12250 3400
 AR Path="/57B68864/57B6BA15/57B4C236" Ref="e4"  Part="1" 
@@ -221,7 +190,7 @@ Text HLabel 11500 3600 0    60   Input ~ 0
 Text HLabel 13050 3500 2    60   Input ~ 0
 adx-cry.[n+3]
 $Comp
-L MC10107 e33
+L o_ecl:MC10107 e33
 U 1 1 57B4D96A
 P 3450 800
 AR Path="/57B68864/57B6BA15/57B4D96A" Ref="e33"  Part="1" 
@@ -234,7 +203,7 @@ F 3 "" H 3450 800 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10105 e29
+L o_ecl:MC10105 e29
 U 3 1 57B4D989
 P 4800 1000
 AR Path="/57B68864/57B6BA15/57B4D989" Ref="e29"  Part="3" 
@@ -247,7 +216,7 @@ F 3 "" H 4800 1000 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10107 e33
+L o_ecl:MC10107 e33
 U 2 1 57B4D9BA
 P 3450 1500
 AR Path="/57B68864/57B6BA15/57B4D9BA" Ref="e33"  Part="2" 
@@ -260,7 +229,7 @@ F 3 "" H 3450 1500 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10107 e33
+L o_ecl:MC10107 e33
 U 3 1 57B4DC20
 P 4800 1700
 AR Path="/57B68864/57B6BA15/57B4DC20" Ref="e33"  Part="3" 
@@ -290,7 +259,7 @@ ad-cry.[n+1]
 Text HLabel 4200 1800 0    60   Input ~ 0
 ad-cry.[n+-2]
 $Comp
-L MC10109 e7
+L o_ecl:MC10109 e7
 U 2 1 57B515E0
 P 8850 900
 AR Path="/57B515E0" Ref="e7"  Part="2" 
@@ -305,7 +274,7 @@ F 3 "" H 8850 900 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MC10109 e7
+L o_ecl:MC10109 e7
 U 1 1 57B51998
 P 7550 1600
 AR Path="/57B51998" Ref="e7"  Part="1" 
@@ -338,7 +307,7 @@ ad.[n+5]
 Text HLabel 9400 1000 2    60   Output ~ 0
 ad.[n+0]-[n+5]=0
 $Comp
-L MC10164 e22
+L o_ecl:MC10164 e22
 U 1 1 57B53A7D
 P 3250 5650
 AR Path="/57B68864/57B6BA15/57B53A7D" Ref="e22"  Part="1" 
@@ -370,7 +339,7 @@ NoConn ~ 2650 6250
 Text HLabel 3850 5050 2    60   Input ~ 0
 adb.[n+-2]
 $Comp
-L MC10164 e21
+L o_ecl:MC10164 e21
 U 1 1 57B54C8B
 P 5200 5650
 AR Path="/57B68864/57B6BA15/57B54C8B" Ref="e21"  Part="1" 
@@ -611,7 +580,7 @@ NoConn ~ 4600 6250
 Text HLabel 5800 5050 2    60   Input ~ 0
 adb.[n+-1]
 $Comp
-L MC10174 e14
+L o_ecl:MC10174 e14
 U 1 1 57B565E8
 P 7800 5500
 AR Path="/57B68864/57B6BA15/57B565E8" Ref="e14"  Part="1" 
@@ -650,7 +619,7 @@ ada.[n+0]
 Text HLabel 8450 5400 2    60   Input ~ 0
 ada.[n+1]
 $Comp
-L MC10174 e16
+L o_ecl:MC10174 e16
 U 1 1 57B574E0
 P 10400 5500
 AR Path="/57B68864/57B6BA15/57B574E0" Ref="e16"  Part="1" 
@@ -689,7 +658,7 @@ ada.[n+2]
 Text HLabel 11050 5400 2    60   Input ~ 0
 ada.[n+3]
 $Comp
-L MC10174 e18
+L o_ecl:MC10174 e18
 U 1 1 57B57BA7
 P 13050 5500
 AR Path="/57B68864/57B6BA15/57B57BA7" Ref="e18"  Part="1" 
@@ -758,7 +727,7 @@ cram-ad-sel-4
 Text HLabel 11550 4200 0    60   Input ~ 0
 cram-ad-boole
 $Comp
-L MC10158 e17
+L o_ecl:MC10158 e17
 U 1 1 57B58502
 P 15050 3100
 AR Path="/57B68864/57B6BA15/57B58502" Ref="e17"  Part="1" 
@@ -791,7 +760,7 @@ adxa.[n+1]
 Text HLabel 15650 3250 2    60   Input ~ 0
 adxa.[n+2]
 $Comp
-L MC10158 e5
+L o_ecl:MC10158 e5
 U 1 1 57B590AD
 P 15050 1500
 AR Path="/57B68864/57B6BA15/57B590AD" Ref="e5"  Part="1" 
@@ -824,7 +793,7 @@ adxa.[n+4]
 Text HLabel 15650 1650 2    60   Input ~ 0
 adxa.[n+5]
 $Comp
-L MC10174 e23
+L o_ecl:MC10174 e23
 U 1 1 57B59E83
 P 2400 7550
 AR Path="/57B68864/57B6BA15/57B59E83" Ref="e23"  Part="1" 
@@ -868,7 +837,7 @@ adb.[n+0]
 Text HLabel 3000 7450 2    60   Input ~ 0
 adb.[n+1]
 $Comp
-L MC10174 e26
+L o_ecl:MC10174 e26
 U 1 1 57B5AE9B
 P 4800 7550
 AR Path="/57B68864/57B6BA15/57B5AE9B" Ref="e26"  Part="1" 
@@ -906,7 +875,7 @@ adb.[n+2]
 Text HLabel 5400 7450 2    60   Input ~ 0
 adb.[n+3]
 $Comp
-L MC10174 e19
+L o_ecl:MC10174 e19
 U 1 1 57B5B5EA
 P 7300 7550
 AR Path="/57B68864/57B6BA15/57B5B5EA" Ref="e19"  Part="1" 
@@ -944,7 +913,7 @@ Text HLabel 6700 7550 0    60   Input ~ 0
 Text HLabel 6700 7750 0    60   Input ~ 0
 [n/30+1,ar.[n+7],arx.1]
 $Comp
-L MC10174 e9
+L o_ecl:MC10174 e9
 U 1 1 57B5C580
 P 9650 7550
 AR Path="/57B68864/57B6BA15/57B5C580" Ref="e9"  Part="1" 
@@ -982,7 +951,7 @@ brx.[n+1]
 Text HLabel 9050 7750 0    60   Input ~ 0
 brx.[n+3]
 $Comp
-L MC10174 e12
+L o_ecl:MC10174 e12
 U 1 1 57B5CF64
 P 12050 7550
 AR Path="/57B68864/57B6BA15/57B5CF64" Ref="e12"  Part="1" 
@@ -1020,7 +989,7 @@ brx.[n+3]
 Text HLabel 11450 7750 0    60   Input ~ 0
 brx.[n+5]
 $Comp
-L MC10174 e6
+L o_ecl:MC10174 e6
 U 1 1 57B5D8E4
 P 14500 7550
 AR Path="/57B68864/57B6BA15/57B5D8E4" Ref="e6"  Part="1" 
