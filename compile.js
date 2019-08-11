@@ -15,7 +15,7 @@ const dumpAST = true;
 
 let netRefs = {};
 
-let parser = PEG.buildParser(fs.readFileSync('netlist.pegjs', 'utf8'), {
+let parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
   output: 'parser',
 //  trace: true,
 });

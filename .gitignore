@@ -31,3 +31,5 @@ lib/
 data/
 PNGs
 opencv-tests
+after.evaluation
+before.evaluation
