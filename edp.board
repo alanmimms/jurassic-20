@@ -34,9 +34,9 @@ e53: 10164 8 mix
      d6 ~< {cj2} adx [n+0] h
      d7 ~< {cp2} [n/6+1, ad ex -02 h, ad 04 h, ad 10 h, ad 16 h, ad 22 h, ad 28 h]
      sel4 ~< edp-internal-sel4
-     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
-     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
-     nen ~< edp-internal-nen	// buffered through e52.10-11
+     sel2 ~< edp-internal-sel2
+     sel1 ~< edp-internal-sel1
+     nen ~< edp-internal-nen
      b ~> arm [n+0] h
 
 e46: 10164 8 mix
@@ -48,10 +48,10 @@ e46: 10164 8 mix
      d5 ~< {dr2} ad [n+2] h
      d6 ~< adx [n+1] h
      d7 ~< {el2} [n/6+1, ad ex -01 h, ad 05 h, ad 11 h, ad 17 h, ad 23 h, ad 29 h]
-     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
-     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
-     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
-     nen ~< edp-internal-nen	// buffered through e52.10-11
+     sel4 ~< edp-internal-sel4
+     sel2 ~< edp-internal-sel2
+     sel1 ~< edp-internal-sel1
+     nen ~< edp-internal-nen
      b ~> arm [n+1] h
 
 e47: 10164 8 mix
@@ -63,10 +63,10 @@ e47: 10164 8 mix
      d5 ~< {dr1} ad [n+3] h
      d6 ~< adx [n+2] h
      d7 ~< {ep2} ad [n+0] h
-     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
-     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
-     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
-     nen ~< edp-internal-nen	// buffered through e52.10-11
+     sel4 ~< edp-internal-sel4
+     sel2 ~< edp-internal-sel2
+     sel1 ~< edp-internal-sel1
+     nen ~< edp-internal-nen
      b ~> arm [n+2] h
 
 e41: 10164 8 mix
@@ -78,10 +78,10 @@ e41: 10164 8 mix
      d5 ~< {cp1} ad [n+4] h
      d6 ~< adx [n+3] h
      d7 ~< {dl1} ad [n+1] h
-     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
-     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
-     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
-     nen ~< edp-internal-nen	// buffered through e52.10-11
+     sel4 ~< edp-internal-sel4
+     sel2 ~< edp-internal-sel2
+     sel1 ~< edp-internal-sel1
+     nen ~< edp-internal-nen
      b ~> arm [n+3] h
 
 e40: 10164 8 mix
@@ -93,10 +93,10 @@ e40: 10164 8 mix
      d5 ~< {el1} ad [n+5] h
      d6 ~< {dk1} adx [n+4] h
      d7 ~< {dr2} ad [n+2] h
-     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
-     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
-     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
-     nen ~< edp-internal-nen	// buffered through e52.10-11
+     sel4 ~< edp-internal-sel4
+     sel2 ~< edp-internal-sel2
+     sel1 ~< edp-internal-sel1
+     nen ~< edp-internal-nen
      b ~> arm [n+4] h
 
 e54: 10164 8 mix
@@ -108,10 +108,10 @@ e54: 10164 8 mix
      d5 ~< {ep1} [n/30+1, ad [n+6] h, adx 00 h]
      d6 ~< {es1} adx [n+5] h
      d7 ~< {dr1} ad [n+3] h
-     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
-     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
-     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
-     nen ~< edp-internal-nen	// buffered through e52.10-11
+     sel4 ~< edp-internal-sel4
+     sel2 ~< edp-internal-sel2
+     sel1 ~< edp-internal-sel1
+     nen ~< edp-internal-nen
      b ~> arm [n+5] h
 
 e51: 10141 shft reg
@@ -192,6 +192,20 @@ e68: 10110 or buffer
 
 Page: DP02, PDF16
 
+e60: 10101 or buffer
+     a1 ~< {ff1} cram arxm sel 4 [n/18+1,00,06] h
+     abcd2 ~< 0
+     qa ~> edp-internal-e55-sel4
+     b1 ~< {fd2} [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h]
+     nqb ~> %NC%
+     qb ~> edp-internal-e55-sel2
+     c1 ~< {fj1} [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]
+     nqc ~> %NC%
+     qc ~> edp-internal-e55-sel1
+     d1 ~< 0
+     nqd ~> %NC%
+     qd ~> %NC%
+
 e55: 10164 8 mix
      d0 ~< 0
      d1 ~< cache data [n+0] b h
@@ -201,132 +215,159 @@ e55: 10164 8 mix
      d5 ~< adx [n+1] h
      d6 ~< adx [n+0] h
      d7 ~< [(n+199)/100, ad 34 h, adx [n-2] h]
-     sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel4 ~< edp-internal-e55-sel4
+     sel2 ~< edp-internal-e55-sel2
+     sel1 ~< edp-internal-e55-sel1
      nen ~< 0
      b ~> arxm [n+0] h
 
 e56: 10164 8 mix
      d0 ~< 0
-     d1 ~< cache data [n+1] b h
-     d2 ~< ad [n+1] h
+     d1 ~< {ed2} cache data [n+1] b h
+     d2 ~< {dl1} ad [n+1] h
      d3 ~< mq [n+1] h
-     d4 ~< sh [n+1] h
+     d4 ~< {ec1} sh [n+1] h
      d5 ~< adx [n+2] h
      d6 ~< adx [n+1] h
-     d7 ~< [(n+199)/100, ad 35 h, adx [n-1] h]
-     sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
+     d7 ~< {es2} [(n+199)/100, ad 35 h, adx [n-1] h]
+     sel4 ~< edp-internal-e55-sel4
+     sel2 ~< edp-internal-e55-sel2
+     sel1 ~< edp-internal-e55-sel1
      nen ~< 0
      b ~> arxm [n+1] h
 
 e49: 10164 8 mix
      d0 ~< 0
-     d1 ~< cache data [n+2] b h
-     d2 ~< ad [n+2] h
+     d1 ~< {ee2} cache data [n+2] b h
+     d2 ~< {dr2} ad [n+2] h
      d3 ~< mq [n+2] h
-     d4 ~< sh [n+2] h
+     d4 ~< {ds1} sh [n+2] h
      d5 ~< adx [n+3] h
      d6 ~< adx [n+2] h
-     d7 ~< adx [n+0] h
-     sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
+     d7 ~< {cj2} adx [n+0] h
+     sel4 ~< edp-internal-e55-sel4
+     sel2 ~< edp-internal-e55-sel2
+     sel1 ~< edp-internal-e55-sel1
      nen ~< 0
      b ~> arxm [n+2] h
 
 e42: 10164 8 mix
      d0 ~< 0
-     d1 ~< cache data [n+3] b h
-     d2 ~< ad [n+3] h
+     d1 ~< {dd1} cache data [n+3] b h
+     d2 ~< {dr1} ad [n+3] h
      d3 ~< mq [n+3] h
-     d4 ~< sh [n+3] h
-     d5 ~< adx [n+4] h
+     d4 ~< {da1} sh [n+3] h
+     d5 ~< {dk1} adx [n+4] h
      d6 ~< adx [n+3] h
      d7 ~< adx [n+1] h
-     sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel4 ~< edp-internal-e55-sel4
+     sel2 ~< edp-internal-e55-sel2
+     sel1 ~< edp-internal-e55-sel1
      nen ~< 0
      b ~> arxm [n+3] h
 
 e31: 10164 8 mix
      d0 ~< 0
-     d1 ~< cache data [n+4] b h
-     d2 ~< ad [n+4] h
-     d3 ~< mq [n+4] h
-     d4 ~< sh [n+4] h
-     d5 ~< adx [n+5] h
-     d6 ~< adx [n+4] h
+     d1 ~< {dl2} cache data [n+4] b h
+     d2 ~< {cp1} ad [n+4] h
+     d3 ~< {cs1} mq [n+4] h
+     d4 ~< {de2} sh [n+4] h
+     d5 ~< {es1} adx [n+5] h
+     d6 ~< {dk1} adx [n+4] h
      d7 ~< adx [n+2] h
-     sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel4 ~< edp-internal-e55-sel4
+     sel2 ~< edp-internal-e55-sel2
+     sel1 ~< edp-internal-e55-sel1
      nen ~< 0
      b ~> arxm [n+4] h
 
 e30: 10164 8 mix
      d0 ~< 0
-     d1 ~< cache data [n+5] b h
-     d2 ~< ad [n+5] h
-     d3 ~< mq [n+5] h
-     d4 ~< sh [n+5] h
-     d5 ~< [n/30+1, adx [n+6] h, mq 00 h]
-     d6 ~< adx [n+5] h
+     d1 ~< {cc1} cache data [n+5] b h
+     d2 ~< {el1} ad [n+5] h
+     d3 ~< {df1} mq [n+5] h
+     d4 ~< {ca1} sh [n+5] h
+     d5 ~< {cj1} [n/30+1, adx [n+6] h, mq 00 h]
+     d6 ~< {es1} adx [n+5] h
      d7 ~< adx [n+3] h
-     sel4 ~< cram arxm sel 4 [n/18+1,00,06] h		// buffered through e60.4-5
-     sel2 ~< [n/18+1, ctl arxl sel 2 h, ctl arxr sel 2 h] 	 // buffered through e60.7-6
-     sel1 ~< [n/18+1, ctl arxl sel 1 h, ctl arxr sel 1 h]	 // buffered through e60.13-9
+     sel4 ~< edp-internal-e55-sel4
+     sel2 ~< edp-internal-e55-sel2
+     sel1 ~< edp-internal-e55-sel1
      nen ~< 0
      b ~> arxm [n+5] h
 
+e38: 10101 or buffer
+     a1 ~< {dm1} ctl mqm setl 2 h
+     abcd2 ~< 0
+     qa ~> edp-internal-e45-sel2
+     b1 ~< {dj1} ctl mqm sel 1 h
+     nqb ~> %NC%
+     qb ~> edp-internal-e45-sel1
+     c1 ~< {dn1} ctl mqm en h
+     nqc ~> edp-internal-e45-nen
+     qc ~> edp-internal-e45-d03
+     d1 ~< 0
+     nqd ~> %NC%
+     qd ~> %NC%
+
 e45: 10174 2x4 mix
-     d00 ~< [(n+199)/100, adx 34 h, mq [n-2] h]
-     d01 ~< sh [n+0] h
-     d02 ~< ad [n+0] h
-     d03 ~< ctl mq en h					// buffered through e38.13-9
+     d00 ~< {cs2} [(n+199)/100, adx 34 h, mq [n-2] h]
+     d01 ~< {ed1} sh [n+0] h
+     d02 ~< {ep2} ad [n+0] h
+     d03 ~< edp-internal-e45-d03
      d10 ~< [(n+199)/100, adx 35 h, mq [n-1] h]
      d11 ~< sh [n+1] h
      d12 ~< ad [n+1] h
-     d13 ~< ctl mq en h					// buffered through e38.13-9
-     sel2 ~< ctl mqm sel 2 h				// buffered through e38.4-5
-     sel1 ~< ctl mqm sel 1 h				// buffered through e38.7-6
-     nen ~< /ctl mqm en h				// inverted through e38.13-15
+     d13 ~< edp-internal-e45-d03
+     sel2 ~< edp-internal-e45-sel2
+     sel1 ~< edp-internal-e45-sel1
+     nen ~< edp-internal-e45-nen
      b0 ~> mqm [n+0] h
      b1 ~> mqm [n+1] h
 
 e48: 10174 2x4 mix
-     d00 ~< mq [n+0] h
-     d01 ~< sh [n+2] h
-     d02 ~< ad [n+2] h
-     d03 ~< ctl mq en h					// buffered through e38.13-9
+     d00 ~< {cd2} mq [n+0] h
+     d01 ~< {ds1} sh [n+2] h
+     d02 ~< {dr2} ad [n+2] h
+     d03 ~< edp-internal-e45-d03
      d10 ~< mq [n+1] h
-     d11 ~< sh [n+3] h
-     d12 ~< ad [n+3] h
-     d13 ~< ctl mq en h					// buffered through e38.13-9
-     sel2 ~< ctl mqm sel 2 h				// buffered through e38.4-5
-     sel1 ~< ctl mqm sel 1 h				// buffered through e38.7-6
-     nen ~< /ctl mqm en h				// inverted through e38.13-15
+     d11 ~< {da1} sh [n+3] h
+     d12 ~< {dr1} ad [n+3] h
+     d13 ~< edp-internal-e45-d03
+     sel2 ~< edp-internal-e45-sel2
+     sel1 ~< edp-internal-e45-sel1
+     nen ~< edp-internal-e45-nen
      b0 ~> mqm [n+2] h
      b1 ~> mqm [n+3] h
 
 e35: 10174 2x4 mix
      d00 ~< mq [n+2] h
-     d01 ~< sh [n+4] h
-     d02 ~< ad [n+4] h
-     d03 ~< ctl mq en h					// buffered through e38.13-9
+     d01 ~< {de2} sh [n+4] h
+     d02 ~< {cp1} ad [n+4] h
+     d03 ~< edp-internal-e45-d03
      d10 ~< mq [n+3] h
-     d11 ~< sh [n+5] h
-     d12 ~< ad [n+5] h
-     d13 ~< ctl mq en h					// buffered through e38.13-9
-     sel2 ~< ctl mqm sel 2 h				// buffered through e38.4-5
-     sel1 ~< ctl mqm sel 1 h				// buffered through e38.7-6
-     nen ~< /ctl mqm en h				// inverted through e38.13-15
+     d11 ~< {ca1} sh [n+5] h
+     d12 ~< {el1} ad [n+5] h
+     d13 ~< edp-internal-e45-d03
+     sel2 ~< edp-internal-e45-sel2
+     sel1 ~< edp-internal-e45-sel1
+     nen ~< edp-internal-e45-nen
      b0 ~> mqm [n+4] h
      b1 ~> mqm [n+5] h
 
+e20: 10101 or buffer
+     a1 ~< {bv2} ctl mq sel 2 h
+     abcd2 ~< 0
+     qa ~> edp-internal-e13-op2
+     b1 ~< {bu2} ctl mq sel 1 h
+     nqb ~> %NC%
+     qb ~> edp-internal-e13-op1
+     c1 ~< {cs1} mq [n+4] h
+     nqc ~> %NC%
+     qc ~> edp-internal-e13-s3in
+     d1 ~< {cd1} [n/30+1, mq [n+6] h, ad cry -02 a h]
+     nqd ~> %NC%
+     qd ~> edp-internal-e15-s3in
 
 e13: 10141 shft reg
      shft 0in ~< mqm [n+1] h
@@ -334,10 +375,10 @@ e13: 10141 shft reg
      d1 ~< mqm [n+1] h
      d2 ~< mqm [n+2] h
      d3 ~< mqm [n+3] h
-     shft 3in ~< mq [n+4] h				// buffered through e20.13-9
-     op2 ~< ctl mq sel 2 h				// buffered through e20.4-5
-     op1 ~< ctl mq sel 1 h				// buffered through e20.7-6
-     q0 ~> mq [n+0] h
+     shft 3in ~< edp-internal-e13-s3in
+     op2 ~< edp-internal-e13-op2
+     op1 ~< edp-internal-e13-op2
+     q0 ~> {cd2} mq [n+0] h
      q1 ~> mq [n+1] h
      q2 ~> mq [n+2] h
      q3 ~> %NC%
@@ -348,13 +389,13 @@ e15: 10141 shft reg
      d1 ~< mqm [n+3] h
      d2 ~< mqm [n+4] h
      d3 ~< mqm [n+5] h
-     shft 3in ~< [n/30+1, mq [n+6] h, ad cry -02 a h]	// buffered through e20.10-11
-     op2 ~< ctl mq sel 2 h				// buffered through e20.4-5
-     op1 ~< ctl mq sel 1 h				// buffered through e20.7-6
+     shft 3in ~< edp-internal-e15-s3in
+     op2 ~< edp-internal-e13-op2
+     op1 ~< edp-internal-e13-op2
      q0 ~> %NC%
      q1 ~> mq [n+3] h
-     q2 ~> mq [n+4] h
-     q3 ~> mq [n+5] h
+     q2 ~> {cs1} mq [n+4] h
+     q3 ~> {df1} mq [n+5] h
 
 e25: 10141 shft reg
      shft 0in ~< 0
@@ -363,25 +404,25 @@ e25: 10141 shft reg
      d2 ~< arxm [n+1] h
      d3 ~< arxm [n+2] h
      shft 3in ~< 0
-     op2 ~< /ctl arx load h				// inverted through e24.10-11
-     op1 ~< /ctl arx load h				// inverted through e24.10-11
-     q0 ~> arx [n+0] b h
-     q1 ~> arx [n+0] h
-     q2 ~> arx [n+1] h
-     q3 ~> arx [n+2] h
+     op2 ~< edp-internal-e25-op
+     op1 ~< edp-internal-e25-op
+     q0 ~> {br2} arx [n+0] b h
+     q1 ~> {ej2} arx [n+0] h
+     q2 ~> {bd2} arx [n+1] h
+     q3 ~> {dc1} arx [n+2] h
 
 e24: 10101 or buffer
-     a1 ~< arx [n+0] h
+     a1 ~< {ej2} arx [n+0] h
      abcd2 ~< 0
-     qa ~> arx [n+0] a h
-     b1 ~< arx [n+1] h
+     qa ~> {as2} arx [n+0] a h
+     b1 ~< {bd2} arx [n+1] h
      nqb ~> %NC%
-     qb ~> arx [n+1] a h
-     c1 ~< arx [n+2] h
+     qb ~> {as1} arx [n+1] a h
+     c1 ~< {dc1} arx [n+2] h
      nqc ~> %NC%
      qc ~> arx [n+2] a h
-     d1 ~< 0
-     nqd ~> %NC%
+     d1 ~< {br1} ctl arx load h
+     nqd ~> edp-internal-e25-op
      qd ~> %NC%
 
 e32: 10141 shft reg
@@ -391,22 +432,22 @@ e32: 10141 shft reg
      d2 ~< arxm [n+4] h
      d3 ~< arxm [n+5] h
      shft 3in ~< 0
-     op2 ~< /ctl arx load h				// inverted through e24.10-11
-     op1 ~< /ctl arx load h				// inverted through e24.10-11
-     q0 ~> arx [n+1] b h
-     q1 ~> arx [n+3] h
-     q2 ~> arx [n+4] h
-     q3 ~> arx [n+5] h
+     op2 ~< edp-internal-e25-op
+     op1 ~< edp-internal-e25-op
+     q0 ~> {cm2} arx [n+1] b h
+     q1 ~> {aj2} arx [n+3] h
+     q2 ~> {ac1} arx [n+4] h
+     q3 ~> {aa1} arx [n+5] h
 
 e11: 10101 or buffer
-     a1 ~< arx [n+3] h
+     a1 ~< {aj2} arx [n+3] h
      abcd2 ~< 0
      nqa ~> %NC%
      qa ~> arx [n+3] a h
-     b1 ~< arx [n+4] h
+     b1 ~< {ac1} arx [n+4] h
      nqb ~> %NC%
      qb ~> arx [n+4] a h
-     c1 ~< arx [n+5] h
+     c1 ~< {aa1} arx [n+5] h
      nqc ~> %NC%
      qc ~> arx [n+5] a h
      d1 ~< 0
@@ -416,23 +457,27 @@ e11: 10101 or buffer
 Page: DP03, PDF17
 
 e27: 10101 4xor/nor
-      a1 ~< ad [n+0] h
+      a1 ~< {ep2} ad [n+0] h
       abcd2 ~< 0
-      nqa ~> ad [n+0] a l
-      qa ~> adx [n+5] a h
-      b1 ~< ad [n+4] h
-      qb ~> ad [n+4] a h
-      c1 ~< ad [n+5] h
-      qc ~> ad [n+5] a h
-      d1 ~< adx [n+0] h
-      qd ~> adx [n+0] a h
+      nqa ~> {cn1} ad [n+0] a l
+      qa ~> {ck1} adx [n+5] a h
+      b1 ~< {cp1} ad [n+4] h
+      nqb ~> %NC%
+      qb ~> {cf2} ad [n+4] a h
+      c1 ~< {el1} ad [n+5] h
+      nqc ~> %NC%
+      qc ~> {ce1} ad [n+5] a h
+      d1 ~< {cj2} adx [n+0] h
+      qd ~> {cf1} adx [n+0] a h
+      nqd ~> %NC%
 
 e33:  10107 3x2 xor/xnor
-      a1 ~< ad ex [n-2] h
-      a2 ~< ad ex [n-1] h
+      a1 ~< {cv2} ad ex [n-2] h
+      a2 ~< {cr1} ad ex [n-1] h
+ XXX!!!! THESE NEED TO BE FIXED IN ALL INTERNAL SIGNAL NAMES
       qa ~> internal-e33-3 [n/6+1]
-      b1 ~< ad ex [n-1] h
-      b2 ~< ad [n+0] h
+      b1 ~< {cr1} ad ex [n-1] h
+      b2 ~< {ep2} ad [n+0] h
       qb ~> internal-e33-10 [n/6+1]
       c1 ~< internal-e33-10 [n/6+1]
       c2 ~< ad cry [n-2] h
