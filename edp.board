@@ -1,5 +1,29 @@
 Page: DP01, PDF15
 
+// VARIABLE   LOCATION
+// N=00       4AF53
+// N=06       4AF51
+// N=12       4AF49
+// N=18       4AF43
+// N=24       4AF41
+// N=30       4AF39
+
+e52: 10101 or buffer
+     a1 ~< {er1} [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]
+     abcd2 ~< 0
+     qa ~> edp-internal-sel4
+     b1 ~< {ek1} [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h]
+     nqb ~> %NC%
+     qb ~> edp-internal-sel2
+     c1 ~< {eh2} [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
+                  ctl arr clr h, ctl arr clr h, ctl arr clr h]
+     nqc ~> %NC%
+     qc ~> edp-internal-sel1
+     d1 ~< {en1} [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]
+     nqd ~> %NC%
+     qd ~> edp-internal-nen
+
+
 e53: 10164 8 mix
      d0 ~< {em2} armm [n+0] h
      d1 ~< {em1} cache data [n+0] b h
@@ -9,91 +33,85 @@ e53: 10164 8 mix
      d5 ~< {dl1} ad [n+1] h
      d6 ~< {cj2} adx [n+0] h
      d7 ~< {cp2} [n/6+1, ad ex -02 h, ad 04 h, ad 10 h, ad 16 h, ad 22 h, ad 28 h]
-     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
-     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
+     sel4 ~< edp-internal-sel4
+     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
+     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
+     nen ~< edp-internal-nen	// buffered through e52.10-11
      b ~> arm [n+0] h
 
 e46: 10164 8 mix
-     d0 ~< armm [n+1] h
-     d1 ~< cache data [n+1] b h
-     d2 ~< ad [n+1] h
-     d3 ~< ebus d[n+1] e h
-     d4 ~< sh [n+1] h
-     d5 ~< ad [n+2] h
+     d0 ~< {ea1} armm [n+1] h
+     d1 ~< {ed2} cache data [n+1] b h
+     d2 ~< {dl1} ad [n+1] h
+     d3 ~< {ds2} ebus d[n+1] e h
+     d4 ~< {ec1} sh [n+1] h
+     d5 ~< {dr2} ad [n+2] h
      d6 ~< adx [n+1] h
-     d7 ~< [n/6+1, ad ex -01 h, ad 05 h, ad 11 h, ad 17 h, ad 23 h, ad 29 h]
-     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
-     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
+     d7 ~< {el2} [n/6+1, ad ex -01 h, ad 05 h, ad 11 h, ad 17 h, ad 23 h, ad 29 h]
+     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
+     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
+     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
+     nen ~< edp-internal-nen	// buffered through e52.10-11
      b ~> arm [n+1] h
 
 e47: 10164 8 mix
-     d0 ~< armm [n+2] h
-     d1 ~< cache data [n+2] b h
-     d2 ~< ad [n+2] h
-     d3 ~< ebus d[n+2] e h
-     d4 ~< sh [n+2] h
-     d5 ~< ad [n+3] h
+     d0 ~< {ee1} armm [n+2] h
+     d1 ~< {ee2} cache data [n+2] b h
+     d2 ~< {dr2} ad [n+2] h
+     d3 ~< {dt2} ebus d[n+2] e h
+     d4 ~< {ds1} sh [n+2] h
+     d5 ~< {dr1} ad [n+3] h
      d6 ~< adx [n+2] h
-     d7 ~< ad [n+0] h
-     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
-     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
+     d7 ~< {ep2} ad [n+0] h
+     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
+     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
+     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
+     nen ~< edp-internal-nen	// buffered through e52.10-11
      b ~> arm [n+2] h
 
 e41: 10164 8 mix
-     d0 ~< armm [n+3] h
-     d1 ~< cache data [n+3] b h
-     d2 ~< ad [n+3] h
-     d3 ~< ebus d[n+3] e h
-     d4 ~< sh [n+3] h
-     d5 ~< ad [n+4] h
+     d0 ~< {dd2} armm [n+3] h
+     d1 ~< {dd1} cache data [n+3] b h
+     d2 ~< {dr1} ad [n+3] h
+     d3 ~< {dp1} ebus d[n+3] e h
+     d4 ~< {da1} sh [n+3] h
+     d5 ~< {cp1} ad [n+4] h
      d6 ~< adx [n+3] h
-     d7 ~< ad [n+1] h
-     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
-     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
+     d7 ~< {dl1} ad [n+1] h
+     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
+     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
+     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
+     nen ~< edp-internal-nen	// buffered through e52.10-11
      b ~> arm [n+3] h
 
 e40: 10164 8 mix
-     d0 ~< armm [n+4] h
-     d1 ~< cache data [n+4] b h
-     d2 ~< ad [n+4] h
-     d3 ~< ebus d[n+4] e h
-     d4 ~< sh [n+4] h
-     d5 ~< ad [n+5] h
-     d6 ~< adx [n+4] h
-     d7 ~< ad [n+2] h
-     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
-     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
+     d0 ~< {de1} armm [n+4] h
+     d1 ~< {dl2} cache data [n+4] b h
+     d2 ~< {cp1} ad [n+4] h
+     d3 ~< {dp2} ebus d[n+4] e h
+     d4 ~< {de2} sh [n+4] h
+     d5 ~< {el1} ad [n+5] h
+     d6 ~< {dk1} adx [n+4] h
+     d7 ~< {dr2} ad [n+2] h
+     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
+     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
+     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
+     nen ~< edp-internal-nen	// buffered through e52.10-11
      b ~> arm [n+4] h
 
 e54: 10164 8 mix
-     d0 ~< armm [n+5] h
-     d1 ~< cache data [n+5] b h
-     d2 ~< ad [n+5] h
-     d3 ~< ebus d[n+5] e h
-     d4 ~< sh [n+5] h
-     d5 ~< [n/30+1, ad [n+6] h, adx 00 h]
-     d6 ~< adx [n+5] h
-     d7 ~< ad [n+3] h
-     sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
-     sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
-     sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9
-     nen ~< [n/6+1, ctl ar 00-11 clr h, ctl ar 00-11 clr h, ctl ar 12-17 clr h, \
-     	 ctl arr clr h, ctl arr clr h, ctl arr clr h]	// buffered through e52.10-11
+     d0 ~< {ef2} armm [n+5] h
+     d1 ~< {cc1} cache data [n+5] b h
+     d2 ~< {el1} ad [n+5] h
+     d3 ~< {du2} ebus d[n+5] e h
+     d4 ~< {ca1} sh [n+5] h
+     d5 ~< {ep1} [n/30+1, ad [n+6] h, adx 00 h]
+     d6 ~< {es1} adx [n+5] h
+     d7 ~< {dr1} ad [n+3] h
+     sel4 ~< edp-internal-sel4	 // buffered through e52.4-5
+     sel2 ~< edp-internal-sel2 	 // buffered through e52.7-6
+     sel1 ~< edp-internal-sel1	 // buffered through e52.13-9
+     nen ~< edp-internal-nen	// buffered through e52.10-11
      b ~> arm [n+5] h
 
 e51: 10141 shft reg
@@ -103,10 +121,10 @@ e51: 10141 shft reg
      d2 ~< arm [n+4] h
      d3 ~< arm [n+5] h
      shft 3in ~< 0
-     op2 ~< [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
-	  ctl arr load a l, ctl arr load a l, ctl arr load a l]
-     op1 ~< [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
-	  ctl arr load a l, ctl arr load a l, ctl arr load a l]
+     op2 ~< {ek2} [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
+                   ctl arr load a l, ctl arr load a l, ctl arr load a l]
+     op1 ~< {ek2} [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
+                   ctl arr load a l, ctl arr load a l, ctl arr load a l]
      clk ~< dp04 clk f h
      q0 ~> %NC%
      q1 ~> ar [n+3] h
@@ -123,23 +141,23 @@ e28: 10110 or buffer
      b1 ~< 0
      b2 ~< 0
      b3 ~< ar [n+3] h
-     qb1 ~> ar [n+3] a h
-     qb2 ~> ar [n+3] b h
-     qb3 ~> ar [n+3] c h
+     qb1 ~> {eu2} ar [n+3] a h
+     qb2 ~> {ck2} ar [n+3] b h
+     qb3 ~> {cm1} ar [n+3] c h
 
 a62: 10110 or buffer
      a1 ~< 0
      a2 ~< 0
      a3 ~< ar [n+4] h
-     qa1 ~> ar [n+4] a h
-     qa2 ~> ar [n+4] b h
-     qa3 ~> ar [n+4] c h
+     qa1 ~> {ev2} ar [n+4] a h
+     qa2 ~> {fk1} ar [n+4] b h
+     qa3 ~> {fk2} ar [n+4] c h
      b1 ~< 0
      b2 ~< 0
      b3 ~< ar [n+5] h
-     qb1 ~> ar [n+5] a h
-     qb2 ~> ar [n+5] b h
-     qb3 ~> ar [n+5] c h
+     qb1 ~> {et2} ar [n+5] a h
+     qb2 ~> {fl2} ar [n+5] b h
+     qb3 ~> {fl1} ar [n+5] c h
 
 e39: 10141 shft reg
      shft 0in ~< 0
@@ -148,29 +166,29 @@ e39: 10141 shft reg
      d2 ~< arm [n+1] h
      d3 ~< arm [n+2] h
      shft 3in ~< 0
-     op2 ~< [n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l, \
-          ctl arr load b l, ctl arr load b l, ctl arr load b l]
-     op1 ~< [n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l, \
-          ctl arr load b l, ctl arr load b l, ctl arr load b l]
+     op2 ~< {dh2} [n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l, \
+                   ctl arr load b l, ctl arr load b l, ctl arr load b l]
+     op1 ~< {dh2} [n/6+1, ctl ar 00-08 load l, ctl ar 00-08 load l, ctl ar 09-17 load l, \
+                   ctl arr load b l, ctl arr load b l, ctl arr load b l]
      clk ~< dp04 clk b h
-     q0 ~> ar [n+0] d h
-     q1 ~> ar [n+0] h
-     q2 ~> ar [n+1] h
+     q0 ~> {dm2} ar [n+0] d h
+     q1 ~> {bk2} ar [n+0] h
+     q2 ~> {bl2} ar [n+1] h
      q3 ~> ar [n+2] h
 
 e68: 10110 or buffer
      a1 ~< 0
      a2 ~< 0
-     a3 ~< ar [n+0] h
-     qa1 ~> ar [n+0] a h
-     qa2 ~> ar [n+0] b h
-     qa3 ~> ar [n+0] c h
+     a3 ~< {bk2} ar [n+0] h
+     qa1 ~> {fj2} ar [n+0] a h
+     qa2 ~> {ft2} ar [n+0] b h
+     qa3 ~> {fs2} ar [n+0] c h
      b1 ~< 0
      b2 ~< 0
-     b3 ~< ar [n+1] h
-     qb1 ~> ar [n+1] a h
-     qb2 ~> ar [n+1] b h
-     qb3 ~> ar [n+1] c h
+     b3 ~< {bl2} ar [n+1] h
+     qb1 ~> {ff2} ar [n+1] a h
+     qb2 ~> {cl1} ar [n+1] b h
+     qb3 ~> {ch2} ar [n+1] c h
 
 Page: DP02, PDF16
 
