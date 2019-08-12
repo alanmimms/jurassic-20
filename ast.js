@@ -63,16 +63,17 @@ class Chip extends ASTNode {
 }
 
 class Pin extends ASTNode {
-  constructor(name, dir, net) {
+  constructor(name, dir, bpPin, net) {
     super();
     this.name = name;
     this.dir = dir;
+    this.bpPin = bpPin;
     this.net = net;
   }
 
   inspect(depth, opts) {
     return `${super.inspect(depth, opts)}(` +
-      `name=${this.name}, dir=${this.dir}, net=${util.inspect(this.net, opts)})`;
+      `${this.name} ${this.dir} ${this.bpPin || ' '}${util.inspect(this.net, opts)})`;
   }
 }
 

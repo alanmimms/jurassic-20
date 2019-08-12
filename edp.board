@@ -1,14 +1,14 @@
 Page: DP01, PDF15
 
 e53: 10164 8 mix
-     d0 ~< armm [n+0] h
-     d1 ~< cache data [n+0] b h
-     d2 ~< ad [n+0] h
-     d3 ~< ebus d[n+0] e h
-     d4 ~< sh [n+0] h
-     d5 ~< ad [n+1] h
-     d6 ~< adx [n+0] h
-     d7 ~< [n/6+1, ad ex -02 h, ad 04 h, ad 10 h, ad 16 h, ad 22 h, ad 28 h]
+     d0 ~< {em2} armm [n+0] h
+     d1 ~< {em1} cache data [n+0] b h
+     d2 ~< {ep2} ad [n+0] h
+     d3 ~< {dv2} ebus d[n+0] e h
+     d4 ~< {ed1} sh [n+0] h
+     d5 ~< {dl1} ad [n+1] h
+     d6 ~< {cj2} adx [n+0] h
+     d7 ~< {cp2} [n/6+1, ad ex -02 h, ad 04 h, ad 10 h, ad 16 h, ad 22 h, ad 28 h]
      sel4 ~< [n/18+1, ctl arl sel 4 h, cram arm sel 4 a h]	 // buffered through e52.4-5
      sel2 ~< [n/18+1, ctl arl sel 2 h, ctl arr sel 2 h] 	 // buffered through e52.7-6
      sel1 ~< [n/18+1, ctl arl sel 1 h, ctl arr sel 1 h]	 // buffered through e52.13-9

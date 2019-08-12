@@ -20,10 +20,12 @@ chipDef = h:chipHead p:pinDef+
 chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) (_ EOL)+
 		{ return new AST.Chip(name, type, desc) }
 
-pinDef = [ \t]+ name:bareID _ dir:direction _ net:net (_ EOL)+
-		{ return new AST.Pin(name, dir, net) }
+pinDef = [ \t]+ name:bareID _ dir:direction _ bpPin:bpPin? net:net (_ EOL)+
+		{ return new AST.Pin(name, dir, bpPin, net) }
 
-direction = $( '~<>' / '~>' / '~<')
+direction = $('~<>' / '~>' / '~<')
+
+bpPin = $('{' bareID '}') _
 
 macroRef =  '[' _ head:expr _ ids:selectorList ']'
 		{ return new AST.Macro(head, ids) }
