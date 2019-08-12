@@ -25,11 +25,7 @@ let boards = process.argv.slice(2).map(filename => {
 
   try {
     console.log(`Compiling '${filename}'.`);
-
-    fullAST = parser.parse(fs.readFileSync(filename, 'utf8'), {
-      AST: require('./ast'),
-    });
-
+    fullAST = parser.parse(fs.readFileSync(filename, 'utf8'));
   } catch (e) {
     console.log("ERROR: Parsing Failure:", e.message);
 
