@@ -70,7 +70,7 @@ let boards = process.argv.slice(2).map(filename => {
 });
 
 ////////////////////////////////////////////////////////////////////////////////
-let notDriven = [];
+const notDriven = [];
 
 console.log(`Check nets for zero or more than one driving pin:`);
 Object.keys(netRefs).forEach(net => {
@@ -78,7 +78,11 @@ Object.keys(netRefs).forEach(net => {
   // These special nets don't need driving pins.
   if (net === '0' || net === '1' || net === '%NC%') return;
 
-  const driving = netRefs[net]['~>'];
+  // There is something driving this net if there is a nonzero number
+  // of output pins attached or if any input pin exists that is also
+  // attached to a backplane pin.
+  const driving = netRefs[net]['~>'] ||
+        netRefs[net]['~<'] && Object.values(netRefs[net]['~<']).some(pin => pin.bpPin);
 
   if (!driving) {
     notDriven.push(net);
