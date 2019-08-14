@@ -22,6 +22,10 @@ function parseNetList() {
     //  trace: true,
   });
 
+  // Accumulator for nets as we expand macros from parsing board
+  // descriptions.
+  const context = {};
+
   let boards = process.argv.slice(2).map(filename => {
     let fullAST;
 
@@ -48,16 +52,12 @@ function parseNetList() {
     }
 
 
-    let context = {};
-
     // `a` appears to be a setting to allow us to emulate a KL10A CPU
     // when a==1.
     //
-    // `n` is the number of boards of the particular type being
-    // compiled. This will eventually be driven by per-board population
-    // values as we progress.
+    // `n` is the EDP module lane number: 0 6 14 22 30 36 (octal)
     let macroEnv = {
-      n: '0o6',
+      n: '0o0',
       a: '0o2',			// KL10B 50MHz clock
     };
 
@@ -117,10 +117,13 @@ function checkNetConnectivity(connectedNets) {
       const driving = pins.filter(pin => pin.dir === '~>' || pin.dir === '~<>');
 
       if (driving.length > 1) {
-        console.log(`"${netName}" is driven by ${driving.length} pins`);
-        console.log(`   ${util.inspect(driving)}`);
+        console.log(`\
+"${netName}" is driven by ${driving.length} pins:
+    ${util.inspect(driving)}`);
       } else if (driving.length === 0 && !pins.some(pin => pin.bpPin)) {
-        console.log(`"${netName}" is not driven by any pin and is not backplane connected`);
+        console.log(`\
+"${netName}" is not driven by any pin and is not backplane connected:
+    ${util.inspect(pins)}`);
       }
     }
   });
@@ -130,7 +133,8 @@ function checkNetConnectivity(connectedNets) {
 ////////////////////////////////////////////////////////////////////////////////
 // Walk the entire AST. Under all 'Pin' nodes evaluate and expand all
 // 'Macro' nodes and join any adjacent IDchunks with them to form a
-// single 'ID' node with attribute 'name'.
+// single 'ID' node with attribute 'name'. The `cx` is the context for
+// all expansion, accumulating the nets as we work through them.
 function expandMacros(ast, netRefs, macroEnv, cx) {
 
 
