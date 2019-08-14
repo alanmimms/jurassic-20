@@ -33,3 +33,5 @@ PNGs
 opencv-tests
 after.evaluation
 before.evaluation
+*~
+.*~
