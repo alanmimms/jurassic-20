@@ -13,101 +13,126 @@ const logic = require('./logic.js');
 
 const dumpAST = true;
 
-let netRefs = {};
 
-let parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
-  output: 'parser',
-//  trace: true,
-});
+function parseNetList() {
+  const netRefs = {};
 
-let boards = process.argv.slice(2).map(filename => {
-  let fullAST;
+  const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
+    output: 'parser',
+    //  trace: true,
+  });
 
-  try {
-    console.log(`Compiling '${filename}'.`);
-    fullAST = parser.parse(fs.readFileSync(filename, 'utf8'));
-  } catch (e) {
-    console.log("ERROR: Parsing Failure:", e.message);
+  let boards = process.argv.slice(2).map(filename => {
+    let fullAST;
 
-    if (e.location) {
-      console.log('       start:', e.location.start,
-		  '\n         end:', e.location.end);
-    } else {
-      console.log('Exception:', util.inspect(e));
+    try {
+      console.log(`Compiling '${filename}'.`);
+      fullAST = parser.parse(fs.readFileSync(filename, 'utf8'));
+    } catch (e) {
+      console.log("ERROR: Parsing Failure:", e.message);
+
+      if (e.location) {
+        console.log('       start:', e.location.start,
+		    '\n         end:', e.location.end);
+      } else {
+        console.log('Exception:', util.inspect(e));
+      }
+
+      process.exit(1);
     }
 
-    process.exit(1);
-  }
-
-  if (dumpAST) {
-    let f = fs.openSync('before.evaluation', 'w');
-    fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
-    fs.closeSync(f);
-  }
+    if (dumpAST) {
+      let f = fs.openSync('before.evaluation', 'w');
+      fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
+      fs.closeSync(f);
+    }
 
 
-  let context = {};
+    let context = {};
 
-  // `a` appears to be a setting to allow us to emulate a KL10A CPU
-  // when a==1.
-  //
-  // `n` is the number of boards of the particular type being
-  // compiled. This will eventually be driven by per-board population
-  // values as we progress.
-  let macroEnv = {
-    n: 12, 
-    a: 2,			// KL10B 50MHz clock
-  };
+    // `a` appears to be a setting to allow us to emulate a KL10A CPU
+    // when a==1.
+    //
+    // `n` is the number of boards of the particular type being
+    // compiled. This will eventually be driven by per-board population
+    // values as we progress.
+    let macroEnv = {
+      n: '0o6',
+      a: '0o2',			// KL10B 50MHz clock
+    };
 
-  expandMacros(fullAST, macroEnv, context);
+    expandMacros(fullAST, netRefs, macroEnv, context);
 
+    if (dumpAST) {
+      let f = fs.openSync('after.evaluation', 'w');
+      fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
+      fs.closeSync(f);
+    }
+  });
 
-  if (dumpAST) {
-    let f = fs.openSync('after.evaluation', 'w');
-    fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
-    fs.closeSync(f);
-  }
-});
+  return netRefs;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
-const notDriven = [];
-
-console.log(`Check nets for zero or more than one driving pin:`);
-Object.keys(netRefs).forEach(net => {
-
-  // These special nets don't need driving pins.
-  if (net === '0' || net === '1' || net === '%NC%') return;
-
-  // There is something driving this net if there is a nonzero number
-  // of output pins attached or if any input pin exists that is also
-  // attached to a backplane pin.
-  const driving = netRefs[net]['~>'] ||
-        netRefs[net]['~<'] && Object.values(netRefs[net]['~<']).some(pin => pin.bpPin);
-
-  if (!driving) {
-    notDriven.push(net);
-    return;
-  }
+// Walk through all net references and create an object whose property names
+// are the net names and whose property values are arrays of {pin, dir, bpPin}.
+function findConnectedNets(netRefs) {
+  const connectedNets = {};
   
-  const n = Object.keys(driving).length;
-  if (n === 1) return;
-  console.log(`Net '${net}' has ${n} driving pins: ` +
-	      (n ? Object.keys(driving).join(', ') : '<none>'));
-});
+  Object.keys(netRefs).forEach(netName => {
+    if (netName === '%NC%') return;
+    connectedNets[netName] = [];
 
-console.log('Undriven nets:');
+    Object.keys(netRefs[netName]).forEach(dir => {
 
-notDriven.sort().forEach(net => {
-  console.log(`  '${net}' from ` + Object.keys(netRefs[net]['~<']).join(', '));
-});
+      Object.values(netRefs[netName][dir]).forEach(pin => {
+        const bpPin = pin.bpPin;
+        connectedNets[netName].push({dir, pin, bpPin});
+      });
+    });
+  });
 
-console.log(`\nCount of undriven nets: ${notDriven.length}.`);
+  return connectedNets;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Complain if nets are not driven and not on the backplane connector
+// or if driven by more than one pin.
+function checkNetConnectivity(connectedNets) {
+
+  console.log(`Check nets for proper connectivity:`);
+
+  Object.keys(connectedNets).forEach(netName => {
+    if (netName === '%NC%') return;
+    if (netName === '0') return;
+    if (netName === '1') return;
+
+    const pins = connectedNets[netName];
+
+    if (pins.length === 0) {
+      console.log(`"${netName}" is not connected`);
+    } else {
+      const driving = pins.filter(pin => pin.dir === '~>' || pin.dir === '~<>');
+
+      if (driving.length > 1) {
+        console.log(`"${netName}" is driven by ${driving.length} pins`);
+        console.log(`   ${util.inspect(driving)}`);
+      } else if (driving.length === 0 && !pins.some(pin => pin.bpPin)) {
+        console.log(`"${netName}" is not driven by any pin and is not backplane connected`);
+      }
+    }
+  });
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Walk the entire AST. Under all 'Pin' nodes evaluate and expand all
 // 'Macro' nodes and join any adjacent IDchunks with them to form a
 // single 'ID' node with attribute 'name'.
-function expandMacros(ast, macroEnv, cx) {
+function expandMacros(ast, netRefs, macroEnv, cx) {
+
 
   if (!ast) return;
 
@@ -126,19 +151,19 @@ function expandMacros(ast, macroEnv, cx) {
     }
     
     //  console.log(`\n${page.name}.${chip.name}: ${chip.type} ${chip.desc}`);
-    cx.chip.pins.forEach(k => expandMacros(k, macroEnv, cx));
+    cx.chip.pins.forEach(k => expandMacros(k, netRefs, macroEnv, cx));
     break;
 
   case 'Page':
     cx.page = ast;
     cx.page.board = cx.board;
     //    console.log(`\nPage ${page.name}, pdfRef ${page.pdfRef}`);
-    cx.page.chips.forEach(k => expandMacros(k, macroEnv, cx));
+    cx.page.chips.forEach(k => expandMacros(k, netRefs, macroEnv, cx));
     break;
 
   case 'Board':
     cx.board = ast;
-    ast.pages.forEach(k => expandMacros(k, macroEnv, cx));
+    ast.pages.forEach(k => expandMacros(k, netRefs, macroEnv, cx));
     break;
 
   case 'Pin':
@@ -150,8 +175,6 @@ function expandMacros(ast, macroEnv, cx) {
 
     switch (cx.pin.net.t) {
     case 'Macro':
-      if (cx.pin.fullName === 'DP01.e53.d7') debugger;
-      console.log(`Macro pin.fullName=${cx.pin.fullName}`);
       cx.net += evalExpr(cx.pin.net, macroEnv);	// Handles selectors and simple macros
       break;
 
@@ -206,7 +229,7 @@ function expandMacros(ast, macroEnv, cx) {
 // with the corresponding value from 'macroEnv' and numerically
 // evaluate any expression. Returns the full expansion of the
 // resulting collapsed tree.
-function evalExpr(t, macroEnv) {
+function evalExpr(t, macroEnv, isMath = false) {
   let result;
 
   if (!t || !t.t) debugger;
@@ -222,7 +245,7 @@ function evalExpr(t, macroEnv) {
     // expression macro whose value is the 1-origin member of t.ids[]
     // to expand. Note that this t.ids[n-1] value might be a complex
     // macro.
-    result = evalExpr(t.head, macroEnv);
+    result = evalExpr(t.head, macroEnv, false);
 
     if (t.ids.list.length) {		// It's a selector
       const sel = result;
@@ -233,7 +256,7 @@ function evalExpr(t, macroEnv) {
 	console.log(`ERROR: Selector produces undefined result at\n${util.inspect(t.loc)}`);
 	result = '%NC%';
       } else {
-	result = evalExpr(selected, macroEnv);
+	result = evalExpr(selected, macroEnv, false);
       }
     }
 
@@ -243,11 +266,13 @@ function evalExpr(t, macroEnv) {
   case '-':
   case '/':
   case '*':
-    result = Math.trunc(eval(evalExpr(t.l, macroEnv) + t.t + evalExpr(t.r, macroEnv)));
+    const expr = evalExpr(t.l, macroEnv, true) + t.t + evalExpr(t.r, macroEnv, true);
+    result = '0o' + Math.trunc(eval(expr)).toString(8);
+//    console.log(`Eval "${expr}" = ${result}`);
     break;
 
   case 'IDList':
-    result = t.list.map(id => evalExpr(id, macroEnv)).join('');
+    result = t.list.map(id => evalExpr(id, macroEnv, false)).join('');
     break;
 
   case 'IDChunk':
@@ -256,16 +281,22 @@ function evalExpr(t, macroEnv) {
     break;
 
   case 'Value':
-    result = t.value;
+    result = `0o${t.value.toString(8)}`;
     break;
 
   default:
-    console.log(`Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.`);
+    console.log(`\
+Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.`);
     result = '<coding error>';
     break;
   }
 
 //  console.log(`evalExpr(${util.inspect(t)}) result '${result}'`);
+  if (!isMath) result = result.replace(/^0o/, '');
   return result;
 }
 
+
+const netRefs = parseNetList();
+const connectedNets = findConnectedNets(netRefs);
+checkNetConnectivity(connectedNets);
