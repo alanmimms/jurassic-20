@@ -1,0 +1,54 @@
+1. BC11A M919, BC20C M9006, BC20C M9006 (cables)
+2. BC20C M9006, BC20C M9006, spare (cables)
+3. BC20C M9006, BC20C M9006, spare (cables)
+4. TR0 E&C BUS TRAN M8516
+5. TR0 E&C BUS TRAN M8516
+6. TR0 E&C BUS TRAN M8516
+7. TR0 S BUS TRAN M8519
+8. TR0 S BUS TRAN M8519
+9. chc M8533
+10. crc M8535
+11. ccl M8536
+12. ccw M8534
+13. blank
+14. mb0 M8517
+15. mb0 M8517
+16. mb0 M8517
+17. ch0 M8549YH(no cache) / cac M8521 (cache)
+18. blank
+19. ch0 M8549YH(no cache) / cac M8521 (cache)
+20. mbz M8537
+21. mbx M8529YA
+22. mbc M8531YA
+23. csh M8513YA
+24. ch0 M8549YH(no cache) / cac M8521 (cache)
+25. ch0 M8549YH(no cache) / cac M8521 (cache)
+26. blank
+27. ch0a M8549YE(no cache) / cha M8514 (cache)
+28. ch0x M8549YF(no cache) / chx M8515 (cache)
+29. pma M8518YA
+30. pag M8520YA
+31. pic M8532
+32. clk M8526YA
+33. mtr M8538
+34. apr M8545
+35. con M8525
+36. ctl M8543
+37. blank
+38. vma M8542
+39. edp M8512
+40. crm M8548
+41. edp M8512
+42. crm M8548
+43. edp M8512
+44. crm M8548
+45. cra M8541
+46. shm M8540
+47. mcl M8544
+48. ird M8522
+49. edp M8512
+50. crm M8548
+51. edp M8512
+52. crm M8548
+53. edp M8512
+54. scd M8524
