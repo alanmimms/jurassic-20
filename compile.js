@@ -8,25 +8,37 @@ const _ = require('lodash');
 const fs = require('fs');
 const util = require('util');
 const PEG = require('pegjs');
+const CLA = require('command-line-args')
 
 const logic = require('./logic.js');
 
-const dumpAST = true;
+
+const optionDefinitions = [
+  { name: 'trace-parse', alias: 'T', type: Boolean },
+  { name: 'dump-ast', alias: 'A', type: Boolean },
+  { name: 'src', type: String, multiple: true, defaultOption: true },
+];
 
 
-function parseNetList() {
-  const netRefs = {};
+const options = CLA(optionDefinitions);
+const dumpAST = options['dump-ast'];
+const traceParse = options['trace-parse'];
+
+
+function parseBackplanes() {
 
   const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
     output: 'parser',
-    //trace: true,
+    trace: traceParse,
   });
 
-  // Accumulator for nets as we expand macros from parsing board
-  // descriptions.
-  const context = {};
+  const backplanes = options.src.map(filename => {
+    const netRefs = {};
 
-  let boards = process.argv.slice(2).map(filename => {
+    // Accumulator for nets as we expand macros from parsing board
+    // descriptions.
+    const context = {};
+
     let fullAST;
 
     try {
@@ -51,10 +63,6 @@ function parseNetList() {
       fs.closeSync(f);
     }
 
-    switch (fullAST.t) {
-    case 'Backplane':
-    }
-
     // `a` appears to be a setting to allow us to emulate a KL10A CPU
     // when a==1.
     //
@@ -71,9 +79,11 @@ function parseNetList() {
       fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
       fs.closeSync(f);
     }
+
+    return netRefs;
   });
 
-  return netRefs;
+  return backplanes;
 }
 
 
@@ -304,6 +314,10 @@ Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.
 }
 
 
-const netRefs = parseNetList();
-const connectedNets = findConnectedNets(netRefs);
-checkNetConnectivity(connectedNets);
+const backplanes = parseBackplanes();
+
+backplanes.forEach(bp => {
+  const connectedNets = findConnectedNets(bp);
+  checkNetConnectivity(connectedNets);
+});
+

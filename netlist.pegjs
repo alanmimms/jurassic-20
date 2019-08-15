@@ -11,12 +11,13 @@ compileable = (_ EOL )* b:(backplane+ / board) { return b }
 backplane = 'Backplane' _ ':' _ name:bareID _ EOL slots:slotDef+
                 { return AST('Backplane', {name, slots}) }
 
-slotDef = 'Slot' _ slot:number _ ':' _ module:slotContent
+slotDef = 'Slot' _ slot:number _ ':' _ module:slotContent blankLines
                 { return AST('Slot', {slot: +slot, module}) }
 
-slotContent = 'ignore' ( !EOL . )+ blankLines
+slotContent = 'ignore' ( !EOL . )+
                 { return AST('Empty', {}) }
-/       macros:( '{' _ m:macroDef* '}' {return m} )? _ module:bareID _ comments:( !EOL . )* blankLines
+/       macros:( '{' _ m:macroDef* '}' {return m} )? _ 
+        module:bareID _ comments:( !EOL . )*
                 { return AST('ModuleID', {macros, module, comments}) }
 
 macroDef = id:macroName _ '=' _ value:number _
