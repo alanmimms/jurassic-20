@@ -16,6 +16,7 @@ const logic = require('./logic.js');
 const optionDefinitions = [
   { name: 'trace-parse', alias: 'T', type: Boolean },
   { name: 'dump-ast', alias: 'A', type: Boolean },
+  { name: 'verbose-errors', alias: 'V', type: Boolean },
   { name: 'src', type: String, multiple: false, defaultOption: true },
 ];
 
@@ -142,13 +143,11 @@ function checkNetConnectivity(connectedNets) {
       const driving = pins.filter(pin => pin.dir === '~>' || pin.dir === '~<>');
 
       if (driving.length > 1) {
-        console.log(`\
-"${netName}" is driven by ${driving.length} pins:
-    ${util.inspect(driving)}`);
+        console.log(`"${netName}" is driven by ${driving.length} pins:`);
+        if (options['verbose-errors']) console.log(`    ${util.inspect(driving)}`);
       } else if (driving.length === 0 && !pins.some(pin => pin.bpPin)) {
-        console.log(`\
-"${netName}" is not driven by any pin and is not backplane connected:
-    ${util.inspect(pins)}`);
+        console.log(`"${netName}" is not driven by any pin and is not backplane connected:`);
+        if (options['verbose-errors']) console.log(`    ${util.inspect(pins)}`);
       }
     }
   });
