@@ -60,7 +60,7 @@ Slot 44: crm M8548
 Slot 45: cra M8541
 Slot 46: shm M8540
 Slot 47: mcl M8544
-Slot 48: ird M8522
+Slot 48: {n=0} ird M8522        // N=0 is a presumption
 Slot 49: {n=12} edp M8512
 Slot 50: crm M8548
 Slot 51: {n=6} edp M8512
