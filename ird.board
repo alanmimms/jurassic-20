@@ -1,2 +1,1050 @@
-Page: IRD1, PDF128
-// M8522 TBD
+Page: IR1, PDF128
+
+e52: 10173 4x2 mix latch
+     d00 ~< dram a00 x h
+     d01 ~< dram a00 y h
+     d10 ~< dram a01 x h
+     d11 ~< dram a01 y h
+     d20 ~< dram a02 x h
+     d21 ~< dram a02 y h
+     d30 ~< dram par x h
+     d31 ~< dram par y h
+     sel1 ~< dr adr 08 h
+     hold ~< hold dram a h
+     b0 ~> dram a 00 h
+     b1 ~> dram a 01 h
+     b2 ~> dram a 02 h
+     b3 ~> dram par h
+
+e33: 10173 4x2 mix latch
+     d00 ~< dram b00 x h
+     d01 ~< dram b00 y h
+     d10 ~< dram b01 x h
+     d11 ~< dram b01 y h
+     d20 ~< dram b02 x h
+     d21 ~< dram b02 y h
+     d30 ~< %NC%
+     d31 ~< %NC%
+     sel1 ~< dr adr 08 h
+     hold ~< hold dram c h
+     b0 ~> dram b 00 h
+     b1 ~> dram b 01 h
+     b2 ~> dram b 02 h
+     b3 ~> %NC%
+
+e51: 10173 4x2 mix latch
+     d00 ~< dram j01 h
+     d01 ~< dram j01 h
+     d10 ~< dram j02 h
+     d11 ~< dram j02 h
+     d20 ~< dram j03 h
+     d21 ~< dram j03 h
+     d30 ~< %NC%
+     d31 ~< dram j04 h
+     sel1 ~< -ir jrst h
+     hold ~< hold dram a h
+     b0 ~> dram j 01 h
+     b1 ~> dram j 02 h
+     b2 ~> dram j 03 h
+     b3 ~> dram j 04 h
+
+e63: 10173 4x2 mix latch
+     d00 ~< dram j07 h
+     d01 ~< dram j01 h
+     d10 ~< dram j08 x h
+     d11 ~< dram j08 y h
+     d20 ~< dram j09 x h
+     d21 ~< dram j09 y h
+     d30 ~< dram j10 x h
+     d31 ~< dram j10 y h
+     sel1 ~< dr adr 08 h
+     hold ~< hold dram a h
+     b0 ~> dram par j 07 h
+     b1 ~> dram par j 08 h
+     b2 ~> dram par j 09 h
+     b3 ~> dram par j 10 h
+
+e61: 10173 4x2 mix latch
+     d00 ~< ir 09 h
+     d01 ~< dram par j 07 h
+     d10 ~< ir 10 h
+     d11 ~< dram par j 08 h
+     d20 ~< ir 11 h
+     d21 ~< dram par j 09 h
+     d30 ~< ir 12 h h
+     d31 ~< dram par j 10 h
+     sel1 ~< -ir jrst h
+     hold ~< hold dram b h
+     b0 ~> dram j 07 h
+     b1 ~> dram j 08 h
+     b2 ~> dram j 09 h
+     b3 ~> dram j 10 h
+
+e77: 10173 4x2 mix latch
+     d00 ~< ir 09 h
+     d01 ~< %NC%
+     d10 ~< ir 10 h
+     d11 ~< %NC%
+     d20 ~< ir 11 h
+     d21 ~< %NC%
+     d30 ~< ir 12 h h
+     d31 ~< %NC%
+     sel1 ~< -ir en ac h
+     hold ~< hold dram b h
+     b0 ~> ir ac 09 h
+     b1 ~> ir ac 10 h
+     b2 ~> ir ac 11 h
+     b3 ~> ir ac 12 h
+
+e71: 10173 4x2 mix latch
+     d00 ~< ir 03 h
+     d01 ~< internal-e76-2
+     d10 ~< ir 04 h
+     d11 ~< internal-e76-3
+     d20 ~< ir 05 h
+     d21 ~< internal-e76-14
+     d30 ~< %NC%
+     d31 ~< %NC%
+     sel1 ~< instr 7xx h
+     hold ~< %NC%
+     b0 ~> dr adr 03 h
+     b1 ~> dr adr 04 h
+     b2 ~> dr adr 05 h
+     b3 ~> %NC%
+
+e70: 10173 4x2 mix latch
+     d00 ~< ir 06 h
+     d01 ~< ir 10 h
+     d10 ~< ir 07 h
+     d11 ~< ir 11 h
+     d20 ~< ir 08 h
+     d21 ~< ir 12 h
+     d30 ~< %NC%
+     d31 ~< %NC%
+     sel1 ~< instr 7xx h
+     hold ~< %NC%
+     b0 ~> dr adr 06 h
+     b1 ~> dr adr 07 h
+     b2 ~> dr adr 08 h
+     b3 ~> %NC%
+
+e55: 10121 4-wide or-and/or-and
+     a1 ~< ir 00 h
+     a2 ~< %NC%
+     a3 ~< %NC%
+     b1 ~< ir 01 h
+     b2 ~< %NC%
+     b3c3 ~< %NC%
+     c1 ~< ir 02 h
+     c2 ~< %NC%
+     d1 ~< %NC%
+     d2 ~< ir en i/o, jrst h
+     d3 ~< %NC%
+     nq ~> %NC%
+     q ~> instr 7xx h
+
+e76: 10103 quad or
+     a1 ~< internal-e75-2
+     a2 ~< ir 07 h
+     b1 ~< internal-e75-2
+     b2 ~< ir 08 h
+     c1 ~< internal-e75-2
+     c2 ~< ir 09 h
+     qa ~> internal-e76-2
+     qb ~> internal-e76-3
+     qc ~> internal-e76-14
+
+e41: 10210 2x3 or
+     a1 ~< -con load dram h
+     a2 ~< %NC%
+     a3 ~< clk ir delayed h
+     b1 ~< %NC%
+     b2 ~< clk ir delayed h
+     b3 ~< -con load ir h
+     qa1 ~> hold dram a h
+     qa2 ~> hold dram b h
+     qa3 ~> hold dram c h
+     qb1 ~> hold ir a h
+     qb2 ~> hold ir b h
+     qb3 ~> hold ir c h
+
+e72: 10109 2x2/4 or/nor
+     a1 ~< ir ac 09 h
+     a2 ~< ir ac 10 h
+     a3 ~< ir ac 11 h
+     a4 ~< ir ac 12 h
+     nqa ~> -ir ac=0 l
+     qa ~> -ir ac=0 h
+
+e66: 10121 4-wide or-and/or-and
+     a1 ~< ir 03 h
+     a2 ~< BP-ES2
+     a3 ~< BP-ER2
+     b1 ~< ir 04 h
+     b2 ~< BP-ES2
+     b3c3 ~< BP-ER2
+     c1 ~< ir 05 h
+     c2 ~< BP-ES2
+     d1 ~< ir 06 h
+     d2 ~< BP-ES2
+     d3 ~< BP-ER2
+     q ~> ir i/o legal h
+
+e10: 10101 quad or/nor
+     a1 ~< ir 00 h
+     nqa ~> dr adr 00 a l
+     qa ~> dr adr 00 a h
+     b1 ~< ir 01 h
+     nqb ~> dr adr 01 a l
+     qb ~> dr adr 01 a h
+     c1 ~< ir 02 h
+     nqb ~> dr adr 02 a l
+     qb ~> dr adr 02 a h
+     d1 ~< dr adr 03 h
+     abcd2 ~< %NC%
+     nqd ~> dr adr 03 a l
+     qd ~> dr adr 03 a h
+
+e15: 10101 quad or/nor
+     a1 ~< dr adr 04 h
+     nqa ~> dr adr 04 a l
+     qa ~> dr adr 04 a h
+     b1 ~< dr adr 05 h
+     nqb ~> dr adr 05 a l
+     qb ~> dr adr 05 a h
+     c1 ~< dr adr 06 h
+     nqb ~> dr adr 06 a l
+     qb ~> dr adr 06 a h
+     d1 ~< dr adr 07 h
+     abcd2 ~< %NC%
+     nqd ~> dr adr 07 a l
+     qd ~> dr adr 07 a h
+
+e59: 10173 4x2 mix latch
+     d00 ~< cache data 00 c h
+     d01 ~< ad 00 a h
+     d10 ~< cache data 01 c h
+     d11 ~< ad 01 h
+     d20 ~< cache data 02 c h
+     d21 ~< ad 02 h
+     d30 ~< %NC%
+     d31 ~< %NC%
+     sel1 ~< -clk mb xfer h
+     hold ~< hold ir c h
+     b0 ~> ir 00 h
+     b1 ~> ir 01 h
+     b2 ~> ir 02 h
+
+e74: 10173 4x2 mix latch
+     d00 ~< cache data 03 c h
+     d01 ~< ad 03 h
+     d10 ~< cache data 04 c h
+     d11 ~< ad 04 h
+     d20 ~< cache data 05 c h
+     d21 ~< ad 05 h
+     d30 ~< %NC%
+     d31 ~< %NC%
+     sel1 ~< -clk mb xfer h
+     hold ~< hold ir a h
+     b0 ~> ir 03 h
+     b1 ~> ir 04 h
+     b2 ~> ir 05 h
+
+e64: 10173 4x2 mix latch
+     d00 ~< cache data 06 c h
+     d01 ~< ad 06 a h
+     d10 ~< cache data 07 c h
+     d11 ~< ad 07 h
+     d20 ~< cache data 08 c h
+     d21 ~< ad 08 h
+     d30 ~< %NC%
+     d31 ~< %NC%
+     sel1 ~< -clk mb xfer h
+     hold ~< hold ir c h
+     b0 ~> ir 06 h
+     b1 ~> ir 07 h
+     b2 ~> ir 08 h
+
+e69: 10173 4x2 mix latch
+     d00 ~< cache data 09 c h
+     d01 ~< ad 09 h
+     d10 ~< cache data 10 c h
+     d11 ~< ad 10 h
+     d20 ~< cache data 11 c h
+     d21 ~< ad 11 h
+     d30 ~< cache data 12 c h
+     d31 ~< ad 12 a h
+     sel1 ~< -clk mb xfer h
+     hold ~< hold ir b h
+     b0 ~> ir 10 h
+     b1 ~> ir 11 h
+     b2 ~> ir 12 h
+
+Page: IR2, PDF129
+
+e4: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+0] h
+    nwrite ~< dram load x,y even l
+    q ~> dram a00 x h
+
+e9: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+0] h
+    nwrite ~< dram load x,y odd l
+    q ~> dram a00 y h
+
+e42: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+1] h
+    nwrite ~< dram load x,y even l
+    q ~> dram a01 x h
+
+e47: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+1] h
+    nwrite ~< dram load x,y odd l
+    q ~> dram a01 y h
+
+e14: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+2] h
+    nwrite ~< dram load x,y even l
+    q ~> dram a02 x h
+
+e19: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+2] h
+    nwrite ~< dram load x,y odd l
+    q ~> dram a02 y h
+
+e24: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+3] h
+    nwrite ~< dram load x,y even l
+    q ~> dram b00 x h
+
+e29: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+3] h
+    nwrite ~< dram load x,y odd l
+    q ~> dram b00 y h
+
+e34: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+4] h
+    nwrite ~< dram load x,y even l
+    q ~> dram b01 x h
+
+e37: 10144 256x1 ram
+    a0 ~< dr adr 00 a l
+    a1 ~< dr adr 01 a l
+    a2 ~< dr adr 02 a l
+    a3 ~< dr adr 03 a l
+    a4 ~< dr adr 04 a l
+    a5 ~< dr adr 05 a l
+    a6 ~< dr adr 06 a l
+    a7 ~< dr adr 07 a l
+    d ~< dr ebus [n+4] h
+    nwrite ~< dram load x,y odd l
+    q ~> dram b01 y h
+
+e43: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+5] h
+    nwrite ~< dram load x,y even l
+    q ~> dram b02 x h
+
+e48: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+5] h
+    nwrite ~< dram load x,y odd l
+    q ~> dram b02 y h
+
+e20: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+2] h
+    nwrite ~< dram load x,y odd l
+    q ~> dram j07 h
+
+e25: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+3] h
+    nwrite ~< dram load j even l
+    q ~> dram j08 x h
+
+e30: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+3] h
+    nwrite ~< dram load j odd l
+    q ~> dram j08 y h
+
+e35: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+4] h
+    nwrite ~< dram load j even l
+    q ~> dram j09 x h
+
+e38: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+4] h
+    nwrite ~< dram load j odd l
+    q ~> dram j09 y h
+
+e53: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+5] h
+    nwrite ~< dram load j even l
+    q ~> dram j10 x h
+
+e58: 10144 256x1 ram
+    a0 ~< dr adr 00 a h
+    a1 ~< dr adr 01 a h
+    a2 ~< dr adr 02 a h
+    a3 ~< dr adr 03 a h
+    a4 ~< dr adr 04 a h
+    a5 ~< dr adr 05 a h
+    a6 ~< dr adr 06 a h
+    a7 ~< dr adr 07 a h
+    d ~< dr ebus [n+5] h
+    nwrite ~< dram load j odd l
+    q ~> dram j10 y h
+
+e3: 10144 256x1 ram
+    a0 ~< ir 00 l
+    a1 ~< ir 01 l
+    a2 ~< ir 02 l
+    a3 ~< dr adr 03 h
+    a4 ~< dr adr 04 h
+    a5 ~< dr adr 05 h
+    a6 ~< dr adr 06 h
+    a7 ~< dr adr 07 h
+    d ~< dr ebus [n+0] h
+    nwrite ~< dram load j even l
+    q ~> dram par x h
+
+e8: 10144 256x1 ram
+    a0 ~< ir 00 l
+    a1 ~< ir 01 l
+    a2 ~< ir 02 l
+    a3 ~< dr adr 03 h
+    a4 ~< dr adr 04 h
+    a5 ~< dr adr 05 h
+    a6 ~< dr adr 06 h
+    a7 ~< dr adr 07 h
+    d ~< dr ebus [n+0] h
+    nwrite ~< dram load j odd l
+    q ~> dram par y h
+
+e13: 10144 256x1 ram
+    a0 ~< ir 00 l
+    a1 ~< ir 01 l
+    a2 ~< ir 02 l
+    a3 ~< dr adr 03 h
+    a4 ~< dr adr 04 h
+    a5 ~< dr adr 05 h
+    a6 ~< dr adr 06 h
+    a7 ~< dr adr 07 h
+    d ~< dr ebus [n+2] h
+    nwrite ~< dram load j common l
+    q ~> dram j01 h
+
+e18: 10144 256x1 ram
+    a0 ~< ir 00 l
+    a1 ~< ir 01 l
+    a2 ~< ir 02 l
+    a3 ~< dr adr 03 h
+    a4 ~< dr adr 04 h
+    a5 ~< dr adr 05 h
+    a6 ~< dr adr 06 h
+    a7 ~< dr adr 07 h
+    d ~< dr ebus [n+3] h
+    nwrite ~< dram load j common l
+    q ~> dram j02 h
+
+e28: 10144 256x1 ram
+    a0 ~< ir 00 l
+    a1 ~< ir 01 l
+    a2 ~< ir 02 l
+    a3 ~< dr adr 03 h
+    a4 ~< dr adr 04 h
+    a5 ~< dr adr 05 h
+    a6 ~< dr adr 06 h
+    a7 ~< dr adr 07 h
+    d ~< dr ebus [n+4] h
+    nwrite ~< dram load j common l
+    q ~> dram j03 h
+
+e23: 10144 256x1 ram
+    a0 ~< ir 00 l
+    a1 ~< ir 01 l
+    a2 ~< ir 02 l
+    a3 ~< dr adr 03 h
+    a4 ~< dr adr 04 h
+    a5 ~< dr adr 05 h
+    a6 ~< dr adr 06 h
+    a7 ~< dr adr 07 h
+    d ~< dr ebus [n+5] h
+    nwrite ~< dram load j common l
+    q ~> dram j04 h
+
+Page: IR3, PDF130
+
+e50: 10107 3x2 xor/xnor
+     a1 ~< cram # 07 f h
+     a2 ~< cram # 08 f h
+     nqa ~> -ir #06=07 l
+     qa ~>  -ir #06=07 h
+     b1 ~< ad 00 a h
+     b2 ~< ad cry -02 a h
+     nqb ~> a>b l
+     qb ~> %NC%
+     c1 ~< dram b 00 h
+     c2 ~< internal-e45-3
+     nqc ~> ir test satisfied l
+     qc ~> ir test satisfied h
+
+e45: 10121 4-wide or-and/or-and
+     a1 ~< -dram b 01 l
+     a2 ~< ad=0 l
+     a3 ~< -ir #06=07 l
+     b1 ~< -cram # 07 f l
+     b2 ~< a>b l
+     b3c3 ~< -dram b 02 l
+     c1 ~< internal-e12-14
+     c2 ~< -cram # 08 f l
+     d1 ~< %NC%
+     d2 ~< -ir #06=07 h
+     d3 ~< -ad cry -02 a l
+     nq ~> internal-e45-3
+     q ~> %NC%
+
+e57: 10161 decoder
+     sel4 ~< dr diag 04 h
+     sel2~< dr diag 05 h
+     sel1 ~< dr diag 06 h
+     nen1 ~< %NC%
+     nen2 ~< diag load func 06x l
+     nq0 ~> dram load x,y even l
+     nq1 ~> dram load x,y odd l
+     nq2 ~> dram load j common l
+     nq3 ~> dram load j even l
+     nq4 ~> dram load j odd l
+     nq5 ~> internal-e57-12
+     nq6 ~> internal-e57-11
+     nq7 ~> internal-e57-10
+
+e40: 10101 quad or/nor
+     a1 ~< ebus d[n+0] e h
+     abcd2 ~< %NC%
+     qa ~> dr ebus [n+0] h
+     b1 ~< ebus d[n+1] e h
+     qb ~> dr ebus [n+1] h
+     d1 ~< internal-e57-10
+     qd ~> internal-e40-2
+
+e68: 10117 dual 2-3 or-and/or-and
+     a1 ~< internal-e57-12
+     a2 ~< %NC%
+     b1 ~< internal-e40-2
+     b2 ~< ir en i/o, jrst h
+     b3d3 ~< %NC%
+     nqab ~> ir en i/o, jrst l
+     qab ~>  ir en i/o, jrst h
+     c1 ~< internal-e57-11
+     c2 ~< %NC%
+     d1 ~< internal-e40-2
+     d2 ~< ir en ac h
+     nqcd ~> ir en ac l
+     qcd ~>  ir en ac h
+
+e17: 10160 parity
+     d0 ~< dram a 00 h
+     d1 ~< dram a 01 h
+     d2 ~< dram a 02 h
+     d3 ~< dram b 00 h
+     d4 ~< dram b 01 h
+     d5 ~< dram b 02 h
+     d6 ~< %NC%
+     d7 ~< %NC%
+     d8 ~< %NC%
+     d9 ~< %NC%
+     d10 ~< %NC%
+     d11 ~< dram par h
+     odd ~> internal-e17-2
+
+e56: 10160 parity
+     d0 ~< internal-e17-2
+     d1 ~< dram j 01
+     d2 ~< dram j 02 h
+     d3 ~< dram j 03 h
+     d4 ~< dram j 04 h
+     d5 ~< %NC%
+     d6 ~< dram j 07 h
+     d7 ~< dram j 08 h
+     d8 ~< dram j 09 h
+     d9 ~< dram j 10 h
+     d10 ~< dram par h
+     d11 ~< %NC%
+     odd ~> dram odd parity h
+
+e65: 10109 2x2/4 or/nor
+     a1 ~< -ir 09 l
+     a2 ~< -ir 10 l
+     a3 ~< -ir 11 l
+     a4 ~< -ir 12 l
+     qa ~> internal-e65-2
+     nqa ~> %NC%
+     b1 ~< -ir 00 l
+     b2 ~< -ir 02 l
+     b3 ~< -ir 04 l
+     b4 ~< -ir 07 l
+     b5 ~< -ir 08 l
+     qb ~> internal-e65-15
+
+e60: 10121 4-wide or-and/or-and
+     a1 ~< %NC%
+     a2 ~< ir 01 h
+     a3 ~< %NC%
+     b1 ~< %NC%
+     b2 ~< ir 03 h
+     b3c3 ~< %NC%
+     c1 ~< ir 05 h
+     c2 ~< %NC%
+     d1 ~< %NC%
+     d2 ~< ir 06 h
+     d3 ~< %NC%
+     nq ~> internal-e65-15			// ?? Two pins drive this net
+
+e62: 10103 quad or
+     a1 ~< ir en i/o, jrst l
+     a2 ~< internal-e65-15
+     qa ~> ir jrst l
+     b1 ~< internal-e65-2
+     b2 ~< ir jrst l
+     qb ~> ir jrst 0, l
+     c1 ~< -ad 00-05=0 h
+     c2 ~< ad 06 a h
+     qc ~> internal-e62-14
+     d1 ~< internal-e75-15
+     d2 ~< -ad 00-05=0 h
+     qd ~> -ad=0 h
+
+e67: 10165 pri enc
+     d0 ~< %NC%
+     d1 ~< ad 00 a h
+     d2 ~< internal-e62-14
+     d3 ~< ad 07 h
+     d4 ~< ad 08 h
+     d5 ~< ad 09 h
+     d6 ~< ad 10 a h
+     d7 ~< internal-e75-15
+     hold ~< %NC%
+     any ~> %NC%
+     q1 ~> ir norm 10 h
+     q2 ~> ir norm 09 h
+     q4 ~> ir norm 08 h
+
+e75: 10109 dual 2/4 or/nor
+     a1 ~< -ir 03 l
+     a2 ~< -ir 04 l
+     a3 ~< -ir 05 l
+     a4 ~< -ir 06 l
+     qa ~> internal-e75-2
+     b1 ~< -ad 06-11=0 h
+     b2 ~< -ad 12-17=0 h
+     b3 ~< -ad 18-23=0 h
+     b4 ~< -ad 24-29=0 h
+     b5 ~< -ad 30-36=0 h
+     qb ~> internal-e75-15
+
+e54: 10101 quad or/nor
+     a1 ~< diag 04 a h
+     abcd2 ~< %NC%
+     qa ~> dr diag 04 h
+     b1 ~< diag 05 a h
+     qb ~> dr diag 05 h
+     c1 ~< diag 06 a h
+     qc ~> dr diag 06 h
+     d1 ~< diag read func 13x l
+     nqd ~> dr diag read l
+
+e46: 10101 quad or/nor
+     a1 ~< ebus d[n+2] e h
+     abcd2 ~< %NC%
+     nqa ~> %NC%
+     qa ~> dr ebus [n+2] h
+     b1 ~< ebus d[n+3] e h
+     nqb ~> %NC%
+     qb ~> dr ebus [n+3] h
+     c1 ~< ebus d[n+4] e h
+     nqc ~> %NC%
+     qc ~> dr ebus [n+4] h
+     d1 ~< ebus d[n+5] e h
+     nqd ~> %NC%
+     qd ~> dr ebus [n+5] h
+
+e36: 10164 8 mix
+     d0 ~< ir norm 08 h
+     d1 ~< dr adr 03 a h
+     d2 ~< ir en i/o, jrst h
+     d3 ~< dram a 00 h
+     d4 ~< ir test satisfied h
+     d5 ~< dram par h
+     d6 ~< -ad=0
+     d7 ~< ad cry 12 h
+     sel4 ~< dr diag 04 h
+     sel2~< dr diag 05 h
+     sel1 ~< dr diag 06 h
+     nen ~< dr diag read l
+     b ~> ebus d[n+0] e h
+
+e31: 10164 8 mix
+     d0 ~< ir norm 09 h
+     d1 ~< dr adr 04 a h
+     d2 ~< ir en ac h
+     d3 ~< dram a 01 h
+     d4 ~< -ir jrst 0, h
+     d5 ~< dram odd parity h
+     d6 ~< ir i/o legal h
+     d7 ~< ad cry 18 h
+     sel4 ~< dr diag 04 h
+     sel2~< dr diag 05 h
+     sel1 ~< dr diag 06 h
+     nen ~< dr diag read l
+     b ~> ebus d[n+1] e h
+
+e39: 10164 8 mix
+     d0 ~< ir norm 10 h
+     d1 ~< dr adr 05 a h
+     d2 ~< ir ac 09 h
+     d3 ~< dram a 02 h
+     d4 ~< dram j 01 h
+     d5 ~< dram j 07 h
+     d6 ~< -ctl inh cry 18 h
+     d7 ~< ad cry 24 h
+     sel4 ~< dr diag 04 h
+     sel2~< dr diag 05 h
+     sel1 ~< dr diag 06 h
+     nen ~< dr diag read l
+     b ~> ebus d[n+2] e h
+
+e32: 10164 8 mix
+     d0 ~< dr adr 00 a h
+     d1 ~< dr adr 06 a h
+     d2 ~< ir ac 10 h
+     d3 ~< dram b 00 h
+     d4 ~< dram j 02 h
+     d5 ~< dram j 08 h
+     d6 ~< ctl spec/gen cry 18 h
+     d7 ~< ad cry 36 h
+     sel4 ~< dr diag 04 h
+     sel2~< dr diag 05 h
+     sel1 ~< dr diag 06 h
+     nen ~< dr diag read l
+     b ~> ebus d[n+3] e h
+
+e49: 10164 8 mix
+     d0 ~< dr adr 01 a h
+     d1 ~< dr adr 07 a h
+     d2 ~< ir ac 11 h
+     d3 ~< dram b 01 h
+     d4 ~< dram j 03 h
+     d5 ~< dram j 09 h
+     d6 ~< gen cry 36 h
+     d7 ~< adx cry 12 h
+     sel4 ~< dr diag 04 h
+     sel2~< dr diag 05 h
+     sel1 ~< dr diag 06 h
+     nen ~< dr diag read l
+     b ~> ebus d[n+4] e h
+
+e44: 10164 8 mix
+     d0 ~< dr adr 02 a h
+     d1 ~< dr adr 08 a h
+     d2 ~< ir ac 12 h
+     d3 ~< dram b 02 h
+     d4 ~< dram j 04 h
+     d5 ~< dram j 10 h
+     d6 ~< ad cry -02 a h
+     d7 ~< adx cry 24 h
+     sel4 ~< dr diag 04 h
+     sel2~< dr diag 05 h
+     sel1 ~< dr diag 06 h
+     nen ~< dr diag read l
+     b ~> ebus d[n+5] e h
+
+Page: IR4, PDF131
+
+e12: 10101 quad or/nor
+     a1 ~< ad 00 a h
+     nqa ~> internal-e12-14
+     b1 ~< ad cry -02 h
+     abcd2 ~< %NC%
+     nqb ~> ad cry -02 a l
+     qb ~>  ad cry -02 a h
+
+e11: 10179 carry
+     g8 ~< ad cg 00 h
+     p8 ~< ad cp 00 h
+     g4 ~< ad cg 02 h
+     p4 ~< ad cp 02 h
+     g2 ~< ad cg 06-11 h
+     p2 ~< ad cp 06-11 h
+     g1 ~< ad cg 12-35 h
+     p1 ~< ad cp 12-35 h
+     c in ~< ad cry 36 h
+     c8 out ~> ad cry -02 h
+     c2 out ~> ad cry 06 h
+     g out ~> %NC%
+     p out ~> %NC%
+
+e7: 10179 carry
+     g8 ~< ad cg 06 h
+     p8 ~< ad cp 06 h
+     g4 ~< ad cg 06 h
+     p4 ~< %NC%
+     g2 ~< ad cg 08 h
+     p2 ~< %NC%
+     g1 ~< ad cg 08 h
+     p1 ~< ad cp 08 h
+     c in ~< %NC%
+     c8 out ~> %NC%
+     c2 out ~> %NC%
+     g out ~> ad cg 06-11 h
+     p out ~> ad cp 06-11 h
+
+e2: 10179 carry
+     g8 ~< ad cg 12 h
+     p8 ~< ad cp 12 h
+     g4 ~< ad cg 14 h
+     p4 ~< ad cp 14 h
+     g2 ~< ad cg 18-23 h
+     p2 ~< ad cp 18-23 h
+     g1 ~< ad cg 24-35 h
+     p1 ~< ad cp 24-35 h
+     c in ~< ad cry 36 h
+     c8 out ~> ad cry 12 h
+     c2 out ~> ad cry 18 h
+     g out ~> ad cg 12-35 h
+     p out ~> ad cp 12-35 h
+
+e6: 10179 carry
+     g8 ~< ctl inh cry 18 l h
+     p8 ~< ctl spec/gen crh 18 h
+     g4 ~< ctl inh cry 18 l h
+     p4 ~< %NC%
+     g2 ~< ad cg 18 h
+     p2 ~< ad cp 18 h
+     g1 ~< ad cg 20 h
+     p1 ~< ad cp 20 h
+     c in ~< %NC%
+     c8 out ~> %NC%
+     c2 out ~> %NC%
+     g out ~> ad cg 18-23 h
+     p out ~> ad cp 18-23 h
+
+e1: 10179 carry
+     g8 ~< ad cg 24 h
+     p8 ~< ad cp 24 h
+     g4 ~< ad cg 26 h
+     p4 ~< ad cp 26 h
+     g2 ~< ad cg 30 h
+     p2 ~< ad cp 30 h
+     g1 ~< ad cg 32 h
+     p1 ~< ad cp 32 h
+     c in ~< ad cry 36 h
+     g out ~> ad cg 24-35 h
+     p out ~> ad cp 24-35 h
+     c8 out ~> ad cry 24 h
+     c2 out ~> ad cry 30 h
+
+e27: 10103 quad or
+     a1 ~< ctl adx cry 36 a h
+     a2 ~< ctl ad long h
+     qa ~> gen cry 36 h
+     b1 ~< ctl ad long h
+     b2 ~< %NC%
+     qb ~> prop cry 36 h
+     c1 ~< ad cry 36 h
+     c2 ~< %NC%
+     qc ~> ad cry 36 b h
+
+e22: 10179 carry
+     g8 ~< gen cry 36 h
+     p8 ~< prop cry 36 h
+     g4 ~< adx cg 00-11 h
+     p4 ~< adx cp 00-11 h
+     g2 ~< adx cg 12-23 h
+     p2 ~< adx cp 12-23 h
+     g1 ~< adx cg 24-35 h
+     p1 ~< adx cp 24-35 h
+     c in ~< ctl adx cry 36 a h
+     g out ~> %NC%
+     p out ~> %NC%
+     c8 out ~> ad cry 36 h
+     c2 out ~> %NC%
+
+e21: 10179 carry
+     g8 ~< adx cg 00 h
+     p8 ~< adx cp 00 h
+     g4 ~< adx cg 03 h
+     p4 ~< adx cp 03 h
+     g2 ~< adx cg 06 h
+     p2 ~< adx cp 06 h
+     g1 ~< adx cg 09 h
+     p1 ~< adx cp 09 h
+     c in ~< adx cry 12 h
+     g out ~> adx cg 00-11 h
+     p out ~> adx cp 00-11 h
+     c8 out ~> %NC%
+     c2 out ~> adx cry 06 h
+
+e26: 10179 carry
+     g8 ~< adx cg 12 h
+     p8 ~< adx cp 12 h
+     g4 ~< adx cg 15 h
+     p4 ~< adx cp 15 h
+     g2 ~< adx cg 18 h
+     p2 ~< adx cp 18 h
+     g1 ~< adx cg 21 h
+     p1 ~< adx cp 21 h
+     c in ~< adx cry 24 h
+     g out ~> adx cg 12-23 h
+     p out ~> adx cp 12-23 h
+     c8 out ~> adx cry 12 h
+     c2 out ~> adx cry 18 h
+
+e16: 10179 carry
+     g8 ~< adx cg 24 h
+     p8 ~< adx cp 24 h
+     g4 ~< adx cg 27 h
+     p4 ~< adx cp 27 h
+     g2 ~< adx cg 30 h
+     p2 ~< adx cp 30 h
+     g1 ~< adx cg 33 h
+     p1 ~< adx cp 33 h
+     c in ~< ctl adx cry 36 a h
+     g out ~> adx cg 24-35 h
+     p out ~> adx cp 24-35 h
+     c8 out ~> adx cry 24 h
+     c2 out ~> adx cry 30 h
