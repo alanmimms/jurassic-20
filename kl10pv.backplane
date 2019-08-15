@@ -1,4 +1,17 @@
 // Assemble a machine from *.board files in proper location and population.
+//
+// Module utilization for CPU bay is PDF10.
+// 
+// Option wire list is PDF555.
+// * EMPTY 50Hz
+// * EMPTY Cache avail
+// * EMPTY Channel avail
+// * ASSERT KL10-PV CPU
+// * EMPTY? Master oscillator
+// * ASSERT Serial number (12 bits) = 0o1234
+//
+// CRAM names PDF398.
+
 Backplane: KL10PV
 Slot  1: ignore cables BC11A M919, BC20C M9006, BC20C M9006
 Slot  2: ignore cables BC20C M9006, BC20C M9006, spare
@@ -16,18 +29,18 @@ Slot 13: ignore blank
 Slot 14: mb0 M8517
 Slot 15: mb0 M8517
 Slot 16: mb0 M8517
-Slot 17: ch0 M8549YH(no cache) / cac M8521 (cache)
+Slot 17: ch0 M8549YH // (no cache) / cac M8521 (cache)
 Slot 18: ignore blank
-Slot 19: ch0 M8549YH(no cache) / cac M8521 (cache)
+Slot 19: ch0 M8549YH // (no cache) / cac M8521 (cache)
 Slot 20: mbz M8537
 Slot 21: mbx M8529YA
 Slot 22: mbc M8531YA
 Slot 23: csh M8513YA
-Slot 24: ch0 M8549YH(no cache) / cac M8521 (cache)
-Slot 25: ch0 M8549YH(no cache) / cac M8521 (cache)
+Slot 24: ch0 M8549YH // (no cache) / cac M8521 (cache)
+Slot 25: ch0 M8549YH // (no cache) / cac M8521 (cache)
 Slot 26: ignore blank
-Slot 27: ch0a M8549YE(no cache) / cha M8514 (cache)
-Slot 28: ch0x M8549YF(no cache) / chx M8515 (cache)
+Slot 27: ch0a M8549YE // (no cache) / cha M8514 (cache)
+Slot 28: ch0x M8549YF // (no cache) / chx M8515 (cache)
 Slot 29: pma M8518YA
 Slot 30: pag M8520YA
 Slot 31: pic M8532
@@ -54,3 +67,107 @@ Slot 51: {n=06} edp M8512
 Slot 52: crm M8548
 Slot 53: {n=00} edp M8512
 Slot 54: scd M8524
+
+////////////////////////////////////////////////////////////////
+// Bay 1 module chart PDF488
+Backplane: BAY1
+Slot 1: ignore cables BC20C M9006, BC20C M9006, spare
+Slot 2: dmc M8563
+Slot 3: M8760
+Slot 4: ma0 M8558
+Slot 5: ma0 M8558
+Slot 6: ma0 M8558
+Slot 7: ma0 M8558
+Slot 8: ma0 M8558
+Slot 9: ma0 M8558
+Slot 10: ma0 M8558
+Slot 11: ma0 M8558
+Slot 12: ignore spare
+Slot 13: M8550
+Slot 14: M8550
+Slot 15: M8551
+Slot 16: ignore cables BC11A M929, BC11A M929, spare
+
+////////////////////////////////////////////////////////////////
+// DTE20
+// Module utilization PDF403
+Backplane: DTE20
+Slot 1: ignore M920
+Slot 2: M8559
+Slot 3: M8554
+Slot 4: M8553
+Slot 5: M8552
+Slot 6: ignore spare
+Slot 7: ignore spare
+Slot 8: ignore spare
+Slot 9: ignore spare
+Slot 10: ignore cables BC11A (M929), BC20C (M9006), BC20C (M9006)
+
+////////////////////////////////////////////////////////////////
+// RH20
+// Module utilization PDF404.
+Backplane: RH20
+Slot 1: ignore cables IOC3 (M920), IOC4 (M902), INT M8554 // for DTE20#1
+
+// DTE20#1 Slot 2-3
+Slot 2: cnt M8553
+Slot 3: dps M8552
+
+// DTE20#2 Slot 4-5
+Slot 4: cnt M8553
+Slot 5: dps M8552
+
+Slot 6: int M8554 // three instances for DTE20#2, #3, and #4
+
+// DTE20#3 Slot 6-7
+Slot 7: cnt M8553
+Slot 8: dps M8552
+
+// DTE20#4 Slot 9-10
+Slot 9: cnt M8553
+Slot 10: dps M8552
+
+Slot 11: ignore blank
+Slot 12: cds M8559
+
+// RH7
+Slot 13: ebi M8555
+Slot 14: mss M8557
+Slot 15: dp M8556
+
+// RH6
+Slot 16: ebi M8555
+Slot 17: mss M8557
+Slot 18: dp M8556
+
+// RH5
+Slot 19: ebi M8555
+Slot 20: mss M8557
+Slot 21: dp M8556
+
+// RH4
+Slot 22: ebi M8555
+Slot 23: mss M8557
+Slot 24: dp M8556
+
+// RH3
+Slot 25: ebi M8555
+Slot 26: mss M8557
+Slot 27: dp M8556
+
+// RH2
+Slot 28: ebi M8555
+Slot 29: mss M8557
+Slot 30: dp M8556
+
+// RH1
+Slot 331: ebi M8555
+Slot 32: mss M8557
+Slot 33: dp M8556
+
+// RH0
+Slot 34: ebi M8555
+Slot 35: mss M8557
+Slot 36: dp M8556
+
+Slot 37: ignore cables IOC1 BC11A (M929), IOC2 BC202C (M9006), IOC2 B20C (M9006)

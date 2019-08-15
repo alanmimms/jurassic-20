@@ -25,7 +25,7 @@ macroDef = id:macroName _ '=' _ value:number _
 
 board = pages:page+ { return AST('Board', {pages}) }
 
-page = p:pageDef n:chipDef+
+page = p:pageDef n:chipDef*
 		{ p.chips = n; return p }
 
 pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  (_ EOL)+
