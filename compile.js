@@ -16,74 +16,86 @@ const logic = require('./logic.js');
 const optionDefinitions = [
   { name: 'trace-parse', alias: 'T', type: Boolean },
   { name: 'dump-ast', alias: 'A', type: Boolean },
-  { name: 'src', type: String, multiple: true, defaultOption: true },
+  { name: 'src', type: String, multiple: false, defaultOption: true },
 ];
 
 
 const options = CLA(optionDefinitions);
-const dumpAST = options['dump-ast'];
-const traceParse = options['trace-parse'];
+
+
+const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
+  output: 'parser',
+  trace: options['trace-parse'],
+});
+
+
+function parseFile(filename) {
+  let fileAST;
+
+  try {
+    fileAST = parser.parse(fs.readFileSync(filename, 'utf8'));
+  } catch (e) {
+    console.log("ERROR: Parsing Failure:", e.message);
+
+    if (e.location) {
+      console.log('       start:', e.location.start,
+		  '\n         end:', e.location.end);
+    } else {
+      console.log('Exception:', util.inspect(e));
+    }
+
+    process.exit(1);
+  }
+
+  return fileAST;
+}
+
+
+function dumpAST(ast, name, stage) {
+  if (!options['dump-ast']) return;
+
+  const f = fs.openSync(`${name}.${stage}.evaluation`, 'w');
+  fs.writeSync(f, util.inspect(ast, {depth: 9999}));
+  fs.closeSync(f);
+}
+
 
 
 function parseBackplanes() {
+  const filename = options.src;
+  const bpAST = parseFile(filename);
 
-  const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
-    output: 'parser',
-    trace: traceParse,
-  });
-
-  const backplanes = options.src.map(filename => {
+  return bpAST.map(bp => {
     const netRefs = {};
 
-    // Accumulator for nets as we expand macros from parsing board
-    // descriptions.
-    const context = {};
+    console.log(`Backplane ${bp.name}:`);
+    dumpAST(bp, bp.name, 'before');
 
-    let fullAST;
+    bp.slots.forEach(slot => {
+      const boardName = slot.board.id;
 
-    try {
-      console.log(`Compiling '${filename}'.`);
-      fullAST = parser.parse(fs.readFileSync(filename, 'utf8'));
-    } catch (e) {
-      console.log("ERROR: Parsing Failure:", e.message);
+      if (slot.board.t === 'Empty') return;
 
-      if (e.location) {
-        console.log('       start:', e.location.start,
-		    '\n         end:', e.location.end);
-      } else {
-        console.log('Exception:', util.inspect(e));
-      }
+      // `a` appears to be a setting to allow us to emulate a KL10A CPU
+      // when a==1.
+      const macroEnv = {
+        a: '0o2',			// KL10B 50MHz clock
+      };
 
-      process.exit(1);
-    }
+      const macros = slot.macros || [];
+      const macroDesc = macros.map(macro => `{${macro.id}=${macro.value}}`).join (' ');
 
-    if (dumpAST) {
-      let f = fs.openSync('before.evaluation', 'w');
-      fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
-      fs.closeSync(f);
-    }
+      macros.forEach(macro => macroEnv[macro.id] = '0o' + macro.value);
 
-    // `a` appears to be a setting to allow us to emulate a KL10A CPU
-    // when a==1.
-    //
-    // `n` is the EDP module lane number: 0 6 14 22 30 36 (octal)
-    let macroEnv = {
-      n: '0o0',
-      a: '0o2',			// KL10B 50MHz clock
-    };
+      console.log(`  Slot ${slot.n}: ${macroDesc} ${boardName}`);
 
-    expandMacros(fullAST, netRefs, macroEnv, context);
+      const boardAST = parseFile(`${boardName}.board`);
+      expandMacros(boardAST, netRefs, macroEnv);
+    });
 
-    if (dumpAST) {
-      let f = fs.openSync('after.evaluation', 'w');
-      fs.writeSync(f, util.inspect(fullAST, {depth: 9999}));
-      fs.closeSync(f);
-    }
-
+    dumpAST(netRefs, bp.name, 'after');
     return netRefs;
   });
-
-  return backplanes;
 }
 
 
@@ -148,7 +160,7 @@ function checkNetConnectivity(connectedNets) {
 // 'Macro' nodes and join any adjacent IDchunks with them to form a
 // single 'ID' node with attribute 'name'. The `cx` is the context for
 // all expansion, accumulating the nets as we work through them.
-function expandMacros(ast, netRefs, macroEnv, cx) {
+function expandMacros(ast, netRefs, macroEnv, cx = {}) {
 
 
   if (!ast) return;

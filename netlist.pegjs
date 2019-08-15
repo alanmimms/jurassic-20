@@ -8,19 +8,19 @@
 
 compileable = (_ EOL )* b:(backplane+ / board) { return b }
 
-backplane = 'Backplane' _ ':' _ name:bareID _ EOL slots:slotDef+
+backplane = 'Backplane' _ ':' _ name:simpleID _ EOL slots:slotDef+
                 { return AST('Backplane', {name, slots}) }
 
-slotDef = 'Slot' _ slot:number _ ':' _ module:slotContent blankLines
-                { return AST('Slot', {slot: +slot, module}) }
+slotDef = 'Slot' _ n:number _ ':' _ board:slotContent blankLines
+                { return AST('Slot', {n, board}) }
 
 slotContent = 'ignore' ( !EOL . )+
-                { return AST('Empty', {}) }
+                { return AST('Empty', {id: '%EMPTY%'}) }
 /       macros:( '{' _ m:macroDef* '}' {return m} )? _ 
-        module:bareID _ comments:( !EOL . )*
-                { return AST('ModuleID', {macros, module, comments}) }
+        id:simpleID _ comments:( !EOL . )*
+                { return AST('ModuleID', {macros, id, comments}) }
 
-macroDef = id:macroName _ '=' _ value:number _
+macroDef = id:simpleID _ '=' _ value:number _
                 { return AST('MacroDef', {id, value}) }
 
 
@@ -82,8 +82,10 @@ primary = number
 
 number = $([0-9]+)
 
-macroName = name:$( [a-zA-Z0-9]+ )
+macroName = name:$simpleID
 		{ return AST('IDChunk', {name}) }
+
+simpleID = $[a-zA-Z0-9]+
 
 net = '%NC%'	{ return AST('NoConnect', {}) }
 /	[01]	{ return AST('Value', {value: parseInt(text(), 2)}) }
