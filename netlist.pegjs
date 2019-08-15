@@ -1,8 +1,26 @@
 {
   function AST(t, props) {
+//    console.log(`${t}: ${require('util').inspect(props, {depth: 9})}`);
     return {t, location: location(), ...props};
   }
 }
+
+
+compileable = (_ EOL )* b:(backplane / board) { return b }
+
+backplane = 'Backplane' _ ':' _ name:bareID _ EOL slots:slotDef+
+                { return AST('Backplane', {name, slots}) }
+
+slotDef = 'Slot' _ slot:number _ ':' _ module:slotContent
+                { return AST('Slot', {slot: +slot, module}) }
+
+slotContent = 'ignore' ( !EOL . )+ EOL
+                { return AST('Empty', {}) }
+/       macros:( '{' _ m:macroDef* '}' {return m} )? _ module:bareID _ comments:( !EOL . )* EOL
+                { return AST('ModuleID', {macros, module, comments}) }
+
+macroDef = id:macroName _ '=' _ value:number _
+                { return AST('MacroDef', {id, value}) }
 
 
 board = pages:page+ { return AST('Board', {pages}) }
@@ -16,7 +34,7 @@ pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  (
 chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }
 
-chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL .)+ ) (_ EOL)+
+chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) (_ EOL)+
 		{ return AST('Chip', {name, type, desc}) }
 
 pinDef = [ \t]+ name:bareID _ dir:direction _ bpPin:bpPin? net:net (_ EOL)+
@@ -55,11 +73,13 @@ product = l:primary _ op:('*' / '/') _ r:product
 		{ return AST(op, {l, r}) }
 /	primary
 
-primary = [0-9]+
+primary = number
 		{ return AST('Value', {value: parseInt(text(), 10)}) }
 /	'(' _ val:sum _ ')'
 		{ return val }
 /	macroName
+
+number = $([0-9]+)
 
 macroName = name:$( [a-zA-Z0-9]+ )
 		{ return AST('IDChunk', {name}) }
@@ -72,4 +92,4 @@ net = '%NC%'	{ return AST('NoConnect', {}) }
 EOL "end of line" = '\r\n' / '\r' / '\n'
 
 _ "whitespace or comments"
-=	(   [ \t]+   /    '\\' EOL    /    '//' (!EOL .)*   /   '/*' (!'*/' .)* '*/'   )*
+=	(   [ \t]+   /    '\\' EOL    /    '//' ( !EOL . )*   /   '/*' ( !'*/' . )* '*/'   )*

@@ -19,7 +19,7 @@ function parseNetList() {
 
   const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
     output: 'parser',
-    //  trace: true,
+    //trace: true,
   });
 
   // Accumulator for nets as we expand macros from parsing board
@@ -51,6 +51,9 @@ function parseNetList() {
       fs.closeSync(f);
     }
 
+    switch (fullAST.t) {
+    case 'Backplane':
+    }
 
     // `a` appears to be a setting to allow us to emulate a KL10A CPU
     // when a==1.
