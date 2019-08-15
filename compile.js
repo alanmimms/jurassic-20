@@ -72,24 +72,24 @@ function parseBackplanes() {
     dumpAST(bp, bp.name, 'before');
 
     bp.slots.forEach(slot => {
-      const boardName = slot.board.id;
+      const board = slot.board;
 
-      if (slot.board.t === 'Empty') return;
+      if (board.t === 'Empty') return;
 
       // `a` appears to be a setting to allow us to emulate a KL10A CPU
       // when a==1.
       const macroEnv = {
-        a: '0o2',			// KL10B 50MHz clock
+        a: '2',			// KL10B 50MHz clock
       };
 
-      const macros = slot.macros || [];
-      const macroDesc = macros.map(macro => `{${macro.id}=${macro.value}}`).join (' ');
+      const macros = board.macros || [];
+      const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
 
-      macros.forEach(macro => macroEnv[macro.id] = '0o' + macro.value);
+      macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
-      console.log(`  Slot ${slot.n}: ${macroDesc} ${boardName}`);
+      console.log(`  Slot ${slot.n}: ${board.id} ${macroDesc}`);
 
-      const boardAST = parseFile(`${boardName}.board`);
+      const boardAST = parseFile(`${board.id}.board`);
       expandMacros(boardAST, netRefs, macroEnv);
     });
 
@@ -296,7 +296,7 @@ function evalExpr(t, macroEnv, isMath = false) {
   case '/':
   case '*':
     const expr = evalExpr(t.l, macroEnv, true) + t.t + evalExpr(t.r, macroEnv, true);
-    result = '0o' + Math.trunc(eval(expr)).toString(8);
+    result = Math.trunc(eval(expr));
 //    console.log(`Eval "${expr}" = ${result}`);
     break;
 
@@ -310,7 +310,7 @@ function evalExpr(t, macroEnv, isMath = false) {
     break;
 
   case 'Value':
-    result = `0o${t.value.toString(8)}`;
+    result = t.value;
     break;
 
   default:
@@ -321,7 +321,7 @@ Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.
   }
 
 //  console.log(`evalExpr(${util.inspect(t)}) result '${result}'`);
-  if (!isMath) result = result.replace(/^0o/, '');
+//  if (!isMath) result = result.replace(/^0o/, '');
   return result;
 }
 

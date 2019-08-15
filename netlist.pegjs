@@ -23,7 +23,6 @@ slotContent = 'ignore' ( !EOL . )+
 macroDef = id:simpleID _ '=' _ value:number _
                 { return AST('MacroDef', {id, value}) }
 
-
 board = pages:page+ { return AST('Board', {pages}) }
 
 page = p:pageDef n:chipDef*
