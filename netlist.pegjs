@@ -6,7 +6,7 @@
 }
 
 
-compileable = (_ EOL )* b:(backplane / board) { return b }
+compileable = (_ EOL )* b:(backplane+ / board) { return b }
 
 backplane = 'Backplane' _ ':' _ name:bareID _ EOL slots:slotDef+
                 { return AST('Backplane', {name, slots}) }
@@ -14,9 +14,9 @@ backplane = 'Backplane' _ ':' _ name:bareID _ EOL slots:slotDef+
 slotDef = 'Slot' _ slot:number _ ':' _ module:slotContent
                 { return AST('Slot', {slot: +slot, module}) }
 
-slotContent = 'ignore' ( !EOL . )+ EOL
+slotContent = 'ignore' ( !EOL . )+ blankLines
                 { return AST('Empty', {}) }
-/       macros:( '{' _ m:macroDef* '}' {return m} )? _ module:bareID _ comments:( !EOL . )* EOL
+/       macros:( '{' _ m:macroDef* '}' {return m} )? _ module:bareID _ comments:( !EOL . )* blankLines
                 { return AST('ModuleID', {macros, module, comments}) }
 
 macroDef = id:macroName _ '=' _ value:number _
@@ -28,16 +28,16 @@ board = pages:page+ { return AST('Board', {pages}) }
 page = p:pageDef n:chipDef*
 		{ p.chips = n; return p }
 
-pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  (_ EOL)+
+pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  blankLines
 		{ return AST('Page', {name, pdfRef}) }
 
 chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }
 
-chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) (_ EOL)+
+chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
 		{ return AST('Chip', {name, type, desc}) }
 
-pinDef = [ \t]+ name:bareID _ dir:direction _ bpPin:bpPin? net:net (_ EOL)+
+pinDef = [ \t]+ name:bareID _ dir:direction _ bpPin:bpPin? net:net blankLines
 		{ return AST('Pin', {name, dir, bpPin, net}) }
 
 direction = $('~<>' / '~>' / '~<')
@@ -90,6 +90,8 @@ net = '%NC%'	{ return AST('NoConnect', {}) }
 		{ return AST('IDList', {list}) }
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
+
+blankLines = (_ EOL)+
 
 _ "whitespace or comments"
 =	(   [ \t]+   /    '\\' EOL    /    '//' ( !EOL . )*   /   '/*' ( !'*/' . )* '*/'   )*
