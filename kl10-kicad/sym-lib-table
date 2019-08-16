@@ -1,4 +1,0 @@
-(sym_lib_table
-  (lib (name o_ecl)(type Legacy)(uri ${KIPRJMOD}/o_ecl.lib)(options "")(descr ""))
-  (lib (name ecl)(type Legacy)(uri ${KIPRJMOD}/ecl.lib)(options "")(descr ""))
-)
