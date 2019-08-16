@@ -13,11 +13,16 @@
   "engines": {
     "node": ">= 8.7.0"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "./sim.js kl10pv.backplane",
+    "test": "jest"
+  },
   "dependencies": {
     "command-line-args": "^5.1.1",
     "lodash": "^4.17.15",
     "pegjs": "^0.10.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }

@@ -1,35 +1,16 @@
 'use strict';
 
-const _ = require('lodash');
 const fs = require('fs');
 const util = require('util');
 const PEG = require('pegjs');
-const CLA = require('command-line-args')
 
 const logic = require('./logic.js');
 
-
-const optionDefinitions = [
-  { name: 'trace-parse', alias: 'T', type: Boolean },
-  { name: 'dump-ast', alias: 'A', type: Boolean },
-  { name: 'verbose-errors', alias: 'V', type: Boolean },
-  { name: 'check-nets', alias: 'C', type: Boolean },
-  { name: 'check-undriven', alias: 'U', type: Boolean },
-  { name: 'check-wire-or', alias: 'O', type: Boolean },
-  { name: 'src', type: String, multiple: false, defaultOption: true },
-];
+// Provided by caller of `compile()`.
+var options;
 
 
-const options = CLA(optionDefinitions);
-
-
-const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
-  output: 'parser',
-  trace: options['trace-parse'],
-});
-
-
-function parseFile(filename) {
+function parseFile(parser, filename) {
   let fileAST;
 
   try {
@@ -61,9 +42,9 @@ function dumpAST(ast, name, stage) {
 
 
 
-function parseBackplanes() {
+function parseBackplanes(parser) {
   const filename = options.src;
-  const bpAST = parseFile(filename);
+  const bpAST = parseFile(parser, filename);
 
   return bpAST.map(bp => {
     const nets = {bp};
@@ -89,7 +70,7 @@ function parseBackplanes() {
 
       console.log(`  Slot ${slot.n}: ${board.id} ${macroDesc}`);
 
-      const boardAST = parseFile(`boards/${board.id}.board`);
+      const boardAST = parseFile(parser, `boards/${board.id}.board`);
       expandMacros(boardAST, nets, macroEnv);
     });
 
@@ -330,8 +311,16 @@ Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.
 }
 
 
-function compile() {
-  const backplanes = parseBackplanes();
+function compile(simOptions) {
+  options = simOptions;
+
+  const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
+    output: 'parser',
+    trace: options['trace-parse'],
+  });
+
+  const backplanes = parseBackplanes(parser);
+
   const needCheck =
         options['check-nets'] || 
         options['check-wire-or'] || 
@@ -348,5 +337,3 @@ function compile() {
 
 
 module.exports.compile = compile;
-module.exports.optionDefinitions = optionDefinitions;
-module.exports.options = options;
