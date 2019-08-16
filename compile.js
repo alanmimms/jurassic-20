@@ -17,7 +17,7 @@ const optionDefinitions = [
   { name: 'trace-parse', alias: 'T', type: Boolean },
   { name: 'dump-ast', alias: 'A', type: Boolean },
   { name: 'verbose-errors', alias: 'V', type: Boolean },
-  { name: 'check-netlist', alias: 'C', type: Boolean },
+  { name: 'check-nets', alias: 'C', type: Boolean },
   { name: 'src', type: String, multiple: false, defaultOption: true },
 ];
 
@@ -330,6 +330,6 @@ const backplanes = parseBackplanes();
 
 backplanes.forEach(bp => {
   const connectedNets = findConnectedNets(bp);
-  if (options['check-netlist']) checkNetConnectivity(connectedNets);
+  if (options['check-nets']) checkNetConnectivity(connectedNets);
 });
 
