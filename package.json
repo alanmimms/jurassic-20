@@ -14,7 +14,7 @@
     "node": ">= 8.7.0"
   },
   "scripts": {
-    "build": "./sim.js kl10pv.backplane",
+    "build": "./sim kl10pv.backplane",
     "test": "jest"
   },
   "dependencies": {
