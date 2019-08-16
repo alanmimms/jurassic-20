@@ -120,7 +120,7 @@ function checkNetConnectivity(connectedNets) {
     if (pins.length === 0) {
       console.log(`WARNING NOT CONNECTED: "${netName}" is not connected`);
     } else {
-      const driving = pins.filter(pin => pin.dir === '~>' || pin.dir === '~<>');
+      const driving = pins.filter(pin => pin.dir === '~>');
 
       if (driving.length > 1) {
 
@@ -160,7 +160,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 
     if (!cx.chip.logic) {
       // Provide dummy entry just so we can go on
-      cx.chip.logic = {'~<': [], '~>': [], '~<>': []};
+      cx.chip.logic = {'~<': [], '~>': []};
       console.log(`======> ${cx.page.name}.${cx.chip.name} undefined logic device '${cx.chip.type}'`);
     }
     
@@ -223,10 +223,10 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
     
     // We want nets to be an object whose properties are the net
     // names. Each property value is an object whose names are the pin
-    // directions: '~<', '~>', and '~<>'. The value of this property
-    // is an object whose properties (and, to be complete here, its
-    // values as well) are the pins attached to the net for the
-    // associated direction.
+    // directions: '~<' and '~>'. The value of this property is an
+    // object whose properties (and, to be complete here, its values
+    // as well) are the pins attached to the net for the associated
+    // direction.
     if (!nets[cx.net]) nets[cx.net] = {};
     if (!nets[cx.net][cx.pin.dir]) nets[cx.net][cx.pin.dir] = {};
     nets[cx.net][cx.pin.dir][cx.pin.fullName] = cx.pin;

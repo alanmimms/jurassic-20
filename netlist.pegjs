@@ -40,7 +40,7 @@ chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) bl
 pinDef = [ \t]+ name:bareID _ dir:direction _ bpPin:bpPin? net:net blankLines
 		{ return AST('Pin', {name, dir, bpPin, net}) }
 
-direction = $('~<>' / '~>' / '~<')
+direction = $('~>' / '~<')
 
 bpPin = $('{' bareID '}') _
 

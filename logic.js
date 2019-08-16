@@ -41,7 +41,11 @@ const expand = s => _.flatten(
   }));
 
 
-const dev = (desc, inputs, outputs) => ({desc, '~<': expand(inputs), '~>': expand(outputs)});
+function dev(desc, inputs, outputs) {
+  return {desc,
+          '~<': expand(inputs),
+          '~>': expand(outputs)};
+}
 
 
 const logic = {
@@ -73,6 +77,7 @@ const logic = {
   '10210': dev('2x3 or', 'a#1/3, b#1/3', 'qa#1/3, qb#1/3'),
   'delay-line': dev('delay buffer', 'in', 'out'),
 };
+
 
 if (require.main === module) console.log("logic:", require('util').inspect(logic));
 
