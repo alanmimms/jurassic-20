@@ -16,7 +16,7 @@ const logic = require('./logic.js');
 const optionDefinitions = [
   { name: 'trace-parse', alias: 'T', type: Boolean },
   { name: 'dump-ast', alias: 'A', type: Boolean },
-  { name: 'verbose-errors', alias: 'V', type: Boolean },
+  { name: 'check-nets', alias: 'C', type: Boolean },
   { name: 'src', type: String, multiple: false, defaultOption: true },
 ];
 
@@ -329,6 +329,6 @@ const backplanes = parseBackplanes();
 
 backplanes.forEach(bp => {
   const connectedNets = findConnectedNets(bp);
-  checkNetConnectivity(connectedNets);
+  if (options['check-nets']) checkNetConnectivity(connectedNets);
 });
 
