@@ -1,9 +1,5 @@
 'use strict';
 
-// TODO: Saving ASTs to before and after files happens inside the
-// *.board loop. This needs to be done globally after all boards are
-// processed.
-
 const _ = require('lodash');
 const fs = require('fs');
 const util = require('util');
@@ -70,7 +66,7 @@ function parseBackplanes() {
   const bpAST = parseFile(filename);
 
   return bpAST.map(bp => {
-    const netRefs = {};
+    const nets = {bp};
 
     console.log(`Backplane ${bp.name}:`);
     dumpAST(bp, bp.name, 'before');
@@ -94,11 +90,11 @@ function parseBackplanes() {
       console.log(`  Slot ${slot.n}: ${board.id} ${macroDesc}`);
 
       const boardAST = parseFile(`boards/${board.id}.board`);
-      expandMacros(boardAST, netRefs, macroEnv);
+      expandMacros(boardAST, nets, macroEnv);
     });
 
-    dumpAST(netRefs, bp.name, 'after');
-    return netRefs;
+    dumpAST(nets, bp.name, 'after');
+    return nets;
   });
 }
 
@@ -106,16 +102,16 @@ function parseBackplanes() {
 ////////////////////////////////////////////////////////////////////////////////
 // Walk through all net references and create an object whose property names
 // are the net names and whose property values are arrays of {pin, dir, bpPin}.
-function findConnectedNets(netRefs) {
+function findConnectedNets(nets) {
   const connectedNets = {};
   
-  Object.keys(netRefs).forEach(netName => {
+  Object.keys(nets).forEach(netName => {
     if (netName === '%NC%') return;
     connectedNets[netName] = [];
 
-    Object.keys(netRefs[netName]).forEach(dir => {
+    Object.keys(nets[netName]).forEach(dir => {
 
-      Object.values(netRefs[netName][dir]).forEach(pin => {
+      Object.values(nets[netName][dir]).forEach(pin => {
         const bpPin = pin.bpPin;
         connectedNets[netName].push({dir, pin, bpPin});
       });
@@ -168,7 +164,7 @@ function checkNetConnectivity(connectedNets) {
 // 'Macro' nodes and join any adjacent IDchunks with them to form a
 // single 'ID' node with attribute 'name'. The `cx` is the context for
 // all expansion, accumulating the nets as we work through them.
-function expandMacros(ast, netRefs, macroEnv, cx = {}) {
+function expandMacros(ast, nets, macroEnv, cx = {}) {
 
 
   if (!ast) return;
@@ -188,19 +184,19 @@ function expandMacros(ast, netRefs, macroEnv, cx = {}) {
     }
     
     //  console.log(`\n${page.name}.${chip.name}: ${chip.type} ${chip.desc}`);
-    cx.chip.pins.forEach(k => expandMacros(k, netRefs, macroEnv, cx));
+    cx.chip.pins.forEach(k => expandMacros(k, nets, macroEnv, cx));
     break;
 
   case 'Page':
     cx.page = ast;
     cx.page.board = cx.board;
     //    console.log(`\nPage ${page.name}, pdfRef ${page.pdfRef}`);
-    cx.page.chips.forEach(k => expandMacros(k, netRefs, macroEnv, cx));
+    cx.page.chips.forEach(k => expandMacros(k, nets, macroEnv, cx));
     break;
 
   case 'Board':
     cx.board = ast;
-    ast.pages.forEach(k => expandMacros(k, netRefs, macroEnv, cx));
+    ast.pages.forEach(k => expandMacros(k, nets, macroEnv, cx));
     break;
 
   case 'Pin':
@@ -244,15 +240,15 @@ function expandMacros(ast, netRefs, macroEnv, cx = {}) {
     if (cx.net === '') 
       console.log(`Pin ${cx.pin.fullName}  net=${util.inspect(cx.pin.net, {depth: 9})}`);
     
-    // We want netRefs to be an object whose properties are the net
+    // We want nets to be an object whose properties are the net
     // names. Each property value is an object whose names are the pin
     // directions: '~<', '~>', and '~<>'. The value of this property
     // is an object whose properties (and, to be complete here, its
     // values as well) are the pins attached to the net for the
     // associated direction.
-    if (!netRefs[cx.net]) netRefs[cx.net] = {};
-    if (!netRefs[cx.net][cx.pin.dir]) netRefs[cx.net][cx.pin.dir] = {};
-    netRefs[cx.net][cx.pin.dir][cx.pin.fullName] = cx.pin;
+    if (!nets[cx.net]) nets[cx.net] = {};
+    if (!nets[cx.net][cx.pin.dir]) nets[cx.net][cx.pin.dir] = {};
+    nets[cx.net][cx.pin.dir][cx.pin.fullName] = cx.pin;
     break;
 
   default:
@@ -334,14 +330,23 @@ Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.
 }
 
 
-const backplanes = parseBackplanes();
-const needCheck =
-      options['check-nets'] || 
-      options['check-wire-or'] || 
-      options['check-undriven'];
+function compile() {
+  const backplanes = parseBackplanes();
+  const needCheck =
+        options['check-nets'] || 
+        options['check-wire-or'] || 
+        options['check-undriven'];
 
-backplanes.forEach(bp => {
-  const connectedNets = findConnectedNets(bp);
-  if (needCheck) checkNetConnectivity(connectedNets);
-});
+  backplanes.forEach(bp => {
+    const connectedNets = findConnectedNets(bp);
+    bp.connectedNets = connectedNets;
+    if (needCheck) checkNetConnectivity(connectedNets);
+  });
 
+  return backplanes;
+}
+
+
+module.exports.compile = compile;
+module.exports.optionDefinitions = optionDefinitions;
+module.exports.options = options;
