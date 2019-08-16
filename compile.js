@@ -18,6 +18,8 @@ const optionDefinitions = [
   { name: 'dump-ast', alias: 'A', type: Boolean },
   { name: 'verbose-errors', alias: 'V', type: Boolean },
   { name: 'check-nets', alias: 'C', type: Boolean },
+  { name: 'check-undriven', alias: 'U', type: Boolean },
+  { name: 'check-wire-or', alias: 'O', type: Boolean },
   { name: 'src', type: String, multiple: false, defaultOption: true },
 ];
 
@@ -139,16 +141,22 @@ function checkNetConnectivity(connectedNets) {
     const pins = connectedNets[netName];
 
     if (pins.length === 0) {
-      console.log(`"${netName}" is not connected`);
+      console.log(`WARNING NOT CONNECTED: "${netName}" is not connected`);
     } else {
       const driving = pins.filter(pin => pin.dir === '~>' || pin.dir === '~<>');
 
       if (driving.length > 1) {
-        console.log(`"${netName}" is driven by ${driving.length} pins:`);
-        if (options['verbose-errors']) console.log(`    ${util.inspect(driving)}`);
+
+        if (options['check-wire-or']) {
+          console.log(`WARNING WIRE-OR: "${netName}" is wire-OR driven by ${driving.length} pins:`);
+          if (options['verbose-errors']) console.log(`    ${util.inspect(driving)}`);
+        }
       } else if (driving.length === 0 && !pins.some(pin => pin.bpPin)) {
-        console.log(`"${netName}" is not driven by any pin and is not backplane connected:`);
-        if (options['verbose-errors']) console.log(`    ${util.inspect(pins)}`);
+
+        if (options['check-undriven']) {
+          console.log(`WARNING UNDRIVEN: "${netName}" is not driven by any pin and is not backplane connected:`);
+          if (options['verbose-errors']) console.log(`    ${util.inspect(pins)}`);
+        }
       }
     }
   });
@@ -327,9 +335,13 @@ Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.
 
 
 const backplanes = parseBackplanes();
+const needCheck =
+      options['check-nets'] || 
+      options['check-wire-or'] || 
+      options['check-undriven'];
 
 backplanes.forEach(bp => {
   const connectedNets = findConnectedNets(bp);
-  if (options['check-nets']) checkNetConnectivity(connectedNets);
+  if (needCheck) checkNetConnectivity(connectedNets);
 });
 
