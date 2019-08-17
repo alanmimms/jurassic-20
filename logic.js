@@ -53,6 +53,7 @@ const logic = {
     desc: '4xor/nor',
     '~<': expand('a1, b1, c1, d1, abcd2'),
     '~>': expand('nqa, qa, nqb, qb, nqc, qc, nqd, qd'),
+
     fn({i}) {
       return {
         qa: i.a1 || i.abcd2,
@@ -65,6 +66,7 @@ const logic = {
         nqd: !(i.d1 || i.abcd2),
       };
     },
+
     init() {},
   },
 
@@ -72,6 +74,7 @@ const logic = {
     desc: '4xor',
     '~<': expand('a#1/2, b#1/2, c#1/2, d#1/2'),
     '~>': expand('qa, qb, nqc, qc, qd'),
+
     fn({i}) {
       return {
         qa: i.a1 || i.a2,
@@ -81,6 +84,7 @@ const logic = {
         qd: i.d1 || i.d2,
       };
     },
+
     init() {},
   },
 
@@ -88,6 +92,7 @@ const logic = {
     desc: '4xand', 
     '~<': expand('a#1/2, b#1/2, c#1/2, d#1/2'),
     '~>': expand('qa, qb, qc, qd, nqd'),
+
     fn ({i}) {
       return {
         qa: i.a1 && i.a2,
@@ -97,6 +102,7 @@ const logic = {
         nqd: !(i.d1 && i.d2),
       };
     },
+
     init() {},
   },
 
@@ -104,6 +110,7 @@ const logic = {
     desc: '2-3-2 or/nor',
     '~<': expand('a#1/2, b#1/3, c#1/2'),
     '~>': expand('nqa, qa, nqb, qb, nqc, qc'),
+
     fn({i}) {
       return {
         qa: i.a1 || i.a2,
@@ -114,6 +121,7 @@ const logic = {
         nqc: !(i.c1 || i.c2),
       };
     },
+
     init() {},
   },
 
@@ -121,6 +129,7 @@ const logic = {
     desc: '3xxor/xnor',
     '~<': expand('a#1/2, b#1/2, c#1/2'),
     '~>': expand('nqa, qa, nqb, qb, nqc, qc'),
+
     fn({i}) {
       return {
         qa: i.a1 || i.a2,
@@ -131,6 +140,7 @@ const logic = {
         nqc: !(i.c1 || i.c2),
       };
     },
+
     init() {},
   },
 
@@ -138,6 +148,7 @@ const logic = {
     desc: '4/5 or/nor',
     '~<': expand('a#1/4, b#1/5'),
     '~>': expand('nqa, qa, nqb, qb'),
+
     fn({i}) {
       return {
         qa: i.a1 || i.a2 || i.a3 || i.a4,
@@ -153,6 +164,7 @@ const logic = {
     desc: '2x or buffer',
     '~<': expand('a#1/3, b#1/3'),
     '~>': expand('qa#1/3, qb#1/3'),
+
     fn({i}) {
       return {
         qa1: i.a1 || i.a2 || i.a3,
@@ -163,6 +175,7 @@ const logic = {
         qb3: i.b1 || i.b2 || i.b3,
       };
     },
+
     init() {},
   },
 
@@ -170,6 +183,7 @@ const logic = {
     desc: '4x xor buffer',
     '~<': expand('a#1/2, b#1/2, c#1/2, d#1/2, ne'),
     '~>': expand('qa, qb, qc, qd'),
+
     fn({i}) {
       return {
         qa: !i.ne && !!(i.a1 ^ i.a2),
@@ -178,6 +192,7 @@ const logic = {
         qd: !i.ne && !!(i.d1 ^ i.d2),
       };
     },
+
     init() {},
   },
 
@@ -185,6 +200,7 @@ const logic = {
     desc: '2x2-3 or-and/or-and',
     '~<': expand('a#1/2, b#1/2, b3d3, c#1/3, d#1/2'),
     '~>': expand('nqab, qab, nqcd, qcd'),
+
     fn({i}) {
       return {
         qab: (i.a1 || i.a2) && (i.b1 || i.b2 || i.b3d3),
@@ -193,6 +209,7 @@ const logic = {
         nqcd: !((i.c1 || i.c2) && (i.d1 || i.d2 || i.b3d3)),
       };
     },
+
     init() {},
   },
 
@@ -200,12 +217,14 @@ const logic = {
     desc: '2x3 or-and',
     '~<': expand('a#1/3, b#1/2, b3c3, c#1/2, d#1/3'),
     '~>': expand('qab, qcd'),
+
     fn({i}) {
       return {
         qab: (i.a1 || i.a2 || i.a3) && (i.b1 || i.b2 || i.b3c3),
         qcd: (i.c1 || i.c2 || i.b3c3) && (i.d1 || i.d2 || i.d3),
       };
     },
+
     init() {},
   },
 
@@ -213,6 +232,7 @@ const logic = {
     desc: '4-wide or-and/or-and',
     '~<': expand('a#1/3, b#1/2, b3c3, c#1/2, d#1/3'),
     '~>': expand('nq, q'),
+
     fn({i}) {
       return {
         qab: ((i.a1 || i.a2 || i.a3) &&
@@ -225,6 +245,7 @@ const logic = {
                 (i.d1 || i.d2 || i.d3)),
       };
     },
+
     init() {},
   },
 
@@ -232,6 +253,7 @@ const logic = {
     desc: 'shft reg',
     '~<': expand('shft 0in, d/4, shft 3in, op#1/2, clk'),
     '~>': expand('q/4'),
+
     fn({i}) {
       const op = (+i.op0 << 1) | +i.op1;
 
@@ -263,6 +285,7 @@ const logic = {
       
       return this;
     },
+
     init() {
       this.d0 = this.d1 = this.d2 = this.d3 = false;
     },
@@ -272,6 +295,7 @@ const logic = {
     desc: '256x1 ram',
     '~<': expand('a/8, nen#1/3, nwrite, d'),
     '~>': expand('q'),
+
     fn({i}) {
       const a =
             +i.a0 << 0 |
@@ -286,6 +310,7 @@ const logic = {
       const d = (!i.nwrite || i.nen1 || i.nen2 || i.nen3)? false : this.ram[a];
       return {d};
     },
+
     init() {
       for (let k = 0; k < 256; ++k) this.ram[k] = false;
     },
@@ -295,6 +320,7 @@ const logic = {
     desc: '128x1 ram',
     '~<': expand('a/7, nen#1/2, nwrite, d'),
     '~>': expand('q'),
+
     fn({i}) {
       const a =
             +i.a0 << 0 |
@@ -308,6 +334,7 @@ const logic = {
       const d = (!i.nwrite || i.nen1 || i.nen2)? false : this.ram[a];
       return {d};
     },
+
     init() {
       for (let k = 0; k < 128; ++k) this.ram[k] = false;
     },
@@ -317,6 +344,7 @@ const logic = {
     desc: '4x2 mix',
     '~<': expand('d0/2, d1/2, d2/2, d3/2, sel'),
     '~>': expand('b/4'),
+
     fn({i}) {
       const b1 = i.sel ? i.d00 : i.d01;
       const b2 = i.sel ? i.d10 : i.d11;
@@ -324,6 +352,7 @@ const logic = {
       const b4 = i.sel ? i.d30 : i.d31;
       return {b1, b2, b3, b4};
     },
+
     init() {},
   },
 
@@ -331,11 +360,13 @@ const logic = {
     desc: 'parity',
     '~<': expand('d/12'),
     '~>': expand('odd'),
+
     fn({i}) {
       return {
         odd: !!((+i.d0 + +i.d1 + +i.d2 + +i.d3 + +i.d4 + +i.d5 + +i.d6 + +i.d7) & 1),
       };
     },
+
     init() {},
   },
 
@@ -343,6 +374,7 @@ const logic = {
     desc: 'decoder active low',
     '~<': expand('sel@3, nen#1/2'),
     '~>': expand('nq/8'),
+
     fn({i}) {
       let nq = Array(8).fill(true);
 
@@ -359,6 +391,7 @@ const logic = {
         nq7: nq[7],
       };
     },
+
     init() {},
   },
 
@@ -366,6 +399,7 @@ const logic = {
     desc: 'decoder',
     '~<': expand('sel@3, nen#1/2'),
     '~>': expand('q/8'),
+
     fn({i}) {
       let q = Array(8).fill(false);
 
@@ -382,6 +416,7 @@ const logic = {
         q7: q[7],
       };
     },
+
     init() {},
   },
 
@@ -389,6 +424,7 @@ const logic = {
     desc: '8 mix',
     '~<': expand('d/8, sel@3, nen'),
     '~>': expand('b'),
+
     fn({i}) {
       let b;
 
@@ -401,6 +437,7 @@ const logic = {
       
       return {b};
     },
+
     init() {},
   },
 
@@ -408,6 +445,7 @@ const logic = {
     desc: 'pri enc',
     '~<': expand('d/8, hold'),
     '~>': expand('any, q@3'),
+
     fn({i}) {
       let k;
       let any, q1, q2, q4;
@@ -427,6 +465,7 @@ const logic = {
 
       return {any, q1, q2, q4};
     },
+
     init() {},
   },
 
@@ -434,6 +473,7 @@ const logic = {
     desc: '2x4 mix latch',
     '~<': expand('d0/2, d1/2, d2/2, d3/2, sel1, hold'),
     '~>': expand('b/4'),
+
     fn({i}) {
 
       if (!i.hold) {
@@ -453,6 +493,7 @@ const logic = {
 
       return this;
     },
+
     init() {
       this.b0 = this.b1 = this.b2 = this.b3 = false;
     },
@@ -476,6 +517,7 @@ const logic = {
 
       return {b0, b1};
     },
+
     init() {},
   },
 
@@ -510,10 +552,29 @@ const logic = {
     desc: 'carry',
     '~<': expand('g@4, p@4, c in'),
     '~>': expand('c8 out, c2 out, g out, p out'),
+
     fn({i}) {
+      const cn = i['c in'];
+      const p = i.p0 || i.p1 || i.p2 || i.p3;
+      const g = (i.g0 || i.p1 || i.p2 || i.p3) &&
+            (i.g1 || i.p2 || i.p3) && 
+            (i.g2 || i.p3) && 
+            i.g3;
+      const c2 = (cn || i.p0 || i.p1) && (i.g0 || i.p1) && i.g1;
+      const c8 = (cn || i.p0 || i.p1 || i.p2 || i.p3) && 
+            (i.g0 || i.p1 || i.p2 || i.p3) &&
+            (i.g1 || i.p2 || i.p3) && 
+            (i.g2 || i.p3) && 
+            i.g3;
+
       return {
+        'c8 out': c8,
+        'c2 out': c2,
+        'g out': g,
+        'p out': p,
       };
     },
+
     init() {},
   },
 
@@ -521,10 +582,44 @@ const logic = {
     desc: 'alu',
     '~<': expand('a@4, b@4, s@4, boole, c in'),
     '~>': expand('f@4, cg, cp, c out'),
+
     fn({i}) {
+      let f, cg, cp, c;
+      const a = +i.a0 << 0 | +i.a1 << 1 | +i.a2 << 2 | +i.a3 << 3;
+      const b = +i.b0 << 0 | +i.b1 << 1 | +i.b2 << 2 | +i.b3 << 3;
+      const s = +i.s0 << 0 | +i.s1 << 1 | +i.s2 << 2 | +i.s3 << 3;
+
+      if (i.boole) {
+        c = false;
+
+        switch (s) {
+        case 0 : f = a ^ 0xF; break;
+        case 1 : f = (a ^ 0xF) | (b ^ 0xF); break;
+        case 2 : f = (a ^ 0xF) | b; break;
+        case 3 : f = 0xF; break;
+        case 4 : f = (a ^ 0xF) & (b ^ 0xF); break;
+        case 5 : f = b ^ 0xF; break;
+        case 6 : f = (a ^ 0xF) | (b ^ 0xF) ^ 0xF; break;
+        case 7 : f = a | (b & 0xF); break;
+        case 8 : f = (a & 0xF) & b; break;
+        case 9 : f = a ^ b; break;
+        case 10 : f = b; break;
+        case 11 : f = a | b; break;
+        case 12 : f = 0; break;
+        case 13 : f = a & (b ^ 0xF); break;
+        case 14 : f = a & b; break;
+        case 15 : f = a; break;
+        }
+      } else {
+
+        switch (s) {
+        }
+      }
+      
       return {
       };
     },
+
     init() {},
   },
 
@@ -532,10 +627,12 @@ const logic = {
     desc: '2x3 or',
     '~<': expand('a#1/3, b#1/3'),
     '~>': expand('qa#1/3, qb#1/3'),
+
     fn({i}) {
       return {
       };
     },
+
     init() {},
   },
 
@@ -543,10 +640,12 @@ const logic = {
     desc: 'delay buffer',
     '~<': expand('in'),
     '~>': expand('out'),
+
     fn({i}) {
       return {
       };
     },
+
     init() {},
   },
 };
