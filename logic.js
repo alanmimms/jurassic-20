@@ -584,40 +584,59 @@ const logic = {
     '~>': expand('f@4, cg, cp, c out'),
 
     fn({i}) {
-      let f, cg, cp, c;
+      let f, cg, cp, c4;
+      const c0 = +i['c in'];
       const a = +i.a0 << 0 | +i.a1 << 1 | +i.a2 << 2 | +i.a3 << 3;
       const b = +i.b0 << 0 | +i.b1 << 1 | +i.b2 << 2 | +i.b3 << 3;
       const s = +i.s0 << 0 | +i.s1 << 1 | +i.s2 << 2 | +i.s3 << 3;
 
       if (i.boole) {
-        c = false;
+        c4 = false;
 
         switch (s) {
-        case 0 : f = a ^ 0xF; break;
-        case 1 : f = (a ^ 0xF) | (b ^ 0xF); break;
-        case 2 : f = (a ^ 0xF) | b; break;
-        case 3 : f = 0xF; break;
-        case 4 : f = (a ^ 0xF) & (b ^ 0xF); break;
-        case 5 : f = b ^ 0xF; break;
-        case 6 : f = (a ^ 0xF) | (b ^ 0xF) ^ 0xF; break;
-        case 7 : f = a | (b & 0xF); break;
-        case 8 : f = (a & 0xF) & b; break;
-        case 9 : f = a ^ b; break;
-        case 10 : f = b; break;
-        case 11 : f = a | b; break;
-        case 12 : f = 0; break;
-        case 13 : f = a & (b ^ 0xF); break;
-        case 14 : f = a & b; break;
-        case 15 : f = a; break;
+        case 0:  f = a ^ 0xF;                   break;
+        case 1:  f = (a ^ 0xF) | (b ^ 0xF);     break;
+        case 2:  f = (a ^ 0xF) | b;             break;
+        case 3:  f = 0xF;                       break;
+        case 4:  f = (a ^ 0xF) & (b ^ 0xF);     break;
+        case 5:  f = b ^ 0xF;                   break;
+        case 6:  f = a ^ b ^ 0xF;               break;
+        case 7:  f = a | (b & 0xF);             break;
+        case 8:  f = (a & 0xF) & b;             break;
+        case 9:  f = a ^ b;                     break;
+        case 10: f = b;                         break;
+        case 11: f = a | b;                     break;
+        case 12: f = 0;                         break;
+        case 13: f = a & (b ^ 0xF);             break;
+        case 14: f = a & b;                     break;
+        case 15: f = a;                         break;
         }
       } else {
 
         switch (s) {
+        case 0:  f = a;                         break;
+        case 1:  f = a + (a & (b ^ 0xF));       break;
+        case 2:  f = a + (a & (b ^ 0xF));       break;
+        case 3:  f = a + a;                     break;
+        case 4:  f = (a | b);                   break;
+        case 5:  f = a + b + (a & (b ^ 0xF));   break;
+        case 6:  f = a + b;                     break;
+        case 7:  f = (a | b) + a;               break;
+        case 8:  f = (a | (b ^ 0xF));           break;
+        case 9:  f = a - b - 1;                 break;
+        case 10: f = (a | (b ^ 0xF)) + (a & b); break;
+        case 11: f = (a | (b ^ 0xF)) + a;       break;
+        case 12: f = 0xF;                       break;
+        case 13: f = (a & (b ^ 0xF)) - 1;       break;
+        case 14: f = (a & b) - 1;               break;
+        case 15: f = a - 1;                     break;
         }
       }
-      
-      return {
-      };
+
+      f += c0;
+      c4 = f >> 4;
+      f &= 0xF;
+      return {f, cg, cp, 'c out': c4};
     },
 
     init() {},

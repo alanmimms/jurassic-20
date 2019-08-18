@@ -136,3 +136,10 @@ console.log('f=', f, '\n');
 console.log('p=', p, '\n');
 console.log('g=', g, '\n');
 console.log('cout=', cout, '\n');
+
+// From dcode.fr/boolean-expressions-calculator
+// in = (v nor b nor a) nor (u nor a nor !b)
+// g0 = a OR (b AND u) OR (NOT b AND v)
+// From 74181
+// in = (v and b and a) or (u and a and !b)
+// g0 = (a AND b AND v) OR (a AND NOT b AND u)
