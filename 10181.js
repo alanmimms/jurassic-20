@@ -1,10 +1,54 @@
 'use strict';
 
-const nor = (...a) => `!(${a.join(' | ')})`;
-const xor = (...a) => a.join(' ^ ');
-const nxor = (...a) => `!(${a.join(' ^ ')})`;
-const not = x => `!${x}`;
-const or = a => a.join(' | ');
+const symbolic = true;
+
+
+const ui = require('util').inspect;
+
+
+function or(...a) {
+  return '(' + a.join(' + ') + ')';
+}
+
+
+function nor(...a) {
+  return not(or(...a));
+}
+
+
+function xor(...a) {
+  return '(' + a.join(' ^ ') + ')';
+}
+
+
+function nxor(...a) {
+  return not(xor(...a));
+}
+
+
+function not(x) {
+  return `~(${x})`;
+}
+
+
+function bitExplode(x) {
+
+  if (symbolic) {
+    return x;
+  } else {
+    return x.split('');
+  }
+}
+
+
+function bitJoin(x) {
+
+  if (symbolic) {
+    return x;
+  } else {
+    return x.join('');
+  }
+}
 
 
 // Return x, which is the upper and y which is the lower output.
@@ -12,16 +56,6 @@ function oneBitIn(a, b, s0, s1, s2, s3) {
   const x = nor(nor(s3, b, a), nor(s2, a, not(b)));
   const y = nor(nor(s1, not(b)), nor(s0, b), not(a));
   return [x, y];
-}
-
-
-function bitExplode(x) {
-  return x.split('');
-}
-
-
-function bitJoin(x) {
-  return x.join('');
 }
 
 
@@ -86,3 +120,19 @@ function truthTable() {
     }
   }
 }
+
+
+const {f, p, g, cout} = alu({
+//  a: ['a3', 'a2', 'a1', 'a0'],
+//  b: ['b3', 'b2', 'b1', 'b0'],
+//  s: ['s3', 's2', 's1', 's0'],
+  a: ['A', 'B', 'C', 'D'],
+  b: ['E', 'F', 'G', 'H'],
+  s: ['S', 'T', 'U', 'V'],
+  m: 'm',
+  cin: 'z'});
+
+console.log('f=', f, '\n');
+console.log('p=', p, '\n');
+console.log('g=', g, '\n');
+console.log('cout=', cout, '\n');
