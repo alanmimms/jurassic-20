@@ -7,12 +7,7 @@ const ui = require('util').inspect;
 
 
 function or(...a) {
-  return '(' + a.join(' | ') + ')';
-}
-
-
-function and(...a) {
-  return '(' + a.join(' & ') + ')';
+  return '(' + a.join(' + ') + ')';
 }
 
 
@@ -56,12 +51,10 @@ function bitJoin(x) {
 }
 
 
-// Return g (upper) and p (lower) outputs.
+// Return x, which is the upper and y which is the lower output.
 function doCGbit(a, b, s0, s1, s2, s3) {
-//const g = nor(nor(s3, b, a), nor(s2, a, not(b)));
-//const p = nor(nor(s1, not(b)), nor(s0, b), not(a));
-  const g = and(or(s3, b, a), or(s2, a, not(b)));
-  const p = and(or(s1, not(b)), or(s0, b), a);
+  const g = nor(nor(s3, b, a), nor(s2, a, not(b)));
+  const p = nor(nor(s1, not(b)), nor(s0, b), not(a));
   return [g, p];
 }
 
@@ -93,7 +86,7 @@ function alu({a, b, s, m, c0}) {
                   xor(g3, p3));
 
   const p = or(p3, p2, p1, p0);
-  const gc = or(not(g3),
+  const gc = or(not(g3), 
                 nor(p3, g2), 
                 nor(p3, p2, p1), 
                 nor(p3, p2, p1, p0));
