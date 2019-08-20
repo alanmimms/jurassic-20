@@ -618,19 +618,22 @@ const logic = {
           const [b3, b2, b1, b0] = bitExplode(b);
           const [s3, s2, s1, s0] = bitExplode(s);
 
-          const s3all = (s & 8) ? 0b1111 : 0;
-          const s2all = (s & 4) ? 0b1111 : 0;
-          const s1all = (s & 2) ? 0b1111 : 0;
-          const s0all = (s & 1) ? 0b1111 : 0;
-          const mall = m ? 0b1111 : 0;
+        //const s3all = (s & 8) ? 0b1111 : 0;
+          // No need to clean to 4 bits bc AND at pt of use
+          const s3all = -((s >>> 3) & 1);
+          const s2all = -((s >>> 2) & 1);
+          const s1all = -((s >>> 1) & 1);
+          const s0all = -(s & 1);
+          const mall = -m;
           const notb = b ^ 0b1111;
-          let gg = (s3all | a | b) & (s2all | a | notb);
-          let pp = (s1all | notb) & (s0all | b) & a;
+          let gg = (s3all | a | b) & (s2all | a | notb) & 0b1111;
+          let pp = (s1all | notb) & (s0all | b) & a & 0b1111;
 
+          // XXX Not complete
           let ff = ((0b1111 ^ (mall | (gg << 1) & 0x1110 | c0)) | // nor(m,c0)...nor(m,g2)
-               
-              (pp ^ gg) ^ 0b1111                                  // xor(g0,p0)...xor(g3,p3)
-          ;
+                    (pp ^ gg) ^ 0b1111          // xor(g0,p0)...xor(g3,p3)
+                    // TODO: AND result with 0b1111 to clean high bits from `mall`
+                   );
 
           const f0 = nxor(nor(m, c0),
                           xor(g0, p0));
