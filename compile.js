@@ -70,7 +70,7 @@ function parseBackplanes(parser) {
 
       console.log(`  Slot ${slot.n}: ${board.id} ${macroDesc}`);
 
-      const boardAST = parseFile(parser, `boards/${board.id}.board`);
+      const boardAST = parseFile(parser, `board/${board.id}.board`);
       expandMacros(boardAST, nets, macroEnv);
     });
 
