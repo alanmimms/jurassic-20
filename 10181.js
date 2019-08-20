@@ -72,31 +72,32 @@ function alu({a, b, s, m, c0}) {
   const [s3, s2, s1, s0] = bitExplode(s);
 
   const [g0, p0] = doCGbit(a0, b0, s0, s1, s2, s3);
-  const f0 = nxor(nor(m, c0), xor(g0, p0));
+  const f0 = nxor(nor(m, c0),
+                  xor(g0, p0));
 
   const [g1, p1] = doCGbit(a1, b1, s0, s1, s2, s3);
   const f1 = nxor(or(nor(m, g0),
-                     nor(m, c0, p0)),
+                     nor(m, p0, c0)),
                   xor(g1, p1));
 
   const [g2, p2] = doCGbit(a2, b2, s0, s1, s2, s3);
   const f2 = nxor(or(nor(m, g1),
-                     nor(m, g0, p1),
-                     nor(m, c0, p0, p1)),
+                     nor(m, p1, g0),
+                     nor(m, p1, p0, c0)),
                   xor(g2, p2));
 
   const [g3, p3] = doCGbit(a3, b3, s0, s1, s2, s3);
   const f3 = nxor(or(nor(m, g2),
                      nor(m, p2, g1),
-                     nor(m, c0, p2, p1),
-                     nor(m, c0, p2, p1, p0)),
+                     nor(m, p2, p1, g0),
+                     nor(m, p2, p1, p0, c0)),
                   xor(g3, p3));
 
   const p = or(p3, p2, p1, p0);
   const gc = or(not(g3),
                 nor(p3, g2), 
-                nor(p3, p2, p1), 
-                nor(p3, p2, p1, p0));
+                nor(p3, p2, g1), 
+                nor(p3, p2, p1, g0));
   const g = not(gc);
   const c4 = or(gc, nor(p3, p2, p1, p0, c0));
 

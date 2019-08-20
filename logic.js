@@ -594,48 +594,99 @@ const logic = {
         c4 = false;
 
         switch (s) {
-        case 0:  f = a ^ 0xF;                   break;
-        case 1:  f = (a ^ 0xF) | (b ^ 0xF);     break;
-        case 2:  f = (a ^ 0xF) | b;             break;
-        case 3:  f = 0xF;                       break;
-        case 4:  f = (a ^ 0xF) & (b ^ 0xF);     break;
-        case 5:  f = b ^ 0xF;                   break;
-        case 6:  f = a ^ b ^ 0xF;               break;
-        case 7:  f = a | (b & 0xF);             break;
-        case 8:  f = (a & 0xF) & b;             break;
-        case 9:  f = a ^ b;                     break;
-        case 10: f = b;                         break;
-        case 11: f = a | b;                     break;
-        case 12: f = 0;                         break;
-        case 13: f = a & (b ^ 0xF);             break;
-        case 14: f = a & b;                     break;
-        case 15: f = a;                         break;
+        case 0:  f = a ^ 0b1111;                   break;
+        case 1:  f = (a ^ 0b1111) | (b ^ 0b1111);  break;
+        case 2:  f = (a ^ 0b1111) | b;             break;
+        case 3:  f = 0b1111;                       break;
+        case 4:  f = (a ^ 0b1111) & (b ^ 0b1111);  break;
+        case 5:  f = b ^ 0b1111;                   break;
+        case 6:  f = a ^ b ^ 0b1111;               break;
+        case 7:  f = a | (b & 0b1111);             break;
+        case 8:  f = (a & 0b1111) & b;             break;
+        case 9:  f = a ^ b;                        break;
+        case 10: f = b;                            break;
+        case 11: f = a | b;                        break;
+        case 12: f = 0;                            break;
+        case 13: f = a & (b ^ 0b1111);             break;
+        case 14: f = a & b;                        break;
+        case 15: f = a;                            break;
         }
       } else {
 
+        function alu({a, b, s, m, c0}) {
+          const [a3, a2, a1, a0] = bitExplode(a);
+          const [b3, b2, b1, b0] = bitExplode(b);
+          const [s3, s2, s1, s0] = bitExplode(s);
+
+          const s3all = (s & 8) ? 0b1111 : 0;
+          const s2all = (s & 4) ? 0b1111 : 0;
+          const s1all = (s & 2) ? 0b1111 : 0;
+          const s0all = (s & 1) ? 0b1111 : 0;
+          const mall = m ? 0b1111 : 0;
+          const notb = b ^ 0b1111;
+          let gg = (s3all | a | b) & (s2all | a | notb);
+          let pp = (s1all | notb) & (s0all | b) & a;
+
+          let ff = ((0b1111 ^ (mall | (gg << 1) & 0x1110 | c0)) | // nor(m,c0)...nor(m,g2)
+               
+              (pp ^ gg) ^ 0b1111                                  // xor(g0,p0)...xor(g3,p3)
+          ;
+
+          const f0 = nxor(nor(m, c0),
+                          xor(g0, p0));
+
+          const f1 = nxor(or(nor(m, g0),
+                             nor(m, p0, c0)),
+                          xor(g1, p1));
+
+          const f2 = nxor(or(nor(m, g1),
+                             nor(m, p1, g0),
+                             nor(m, p1, p0, c0)),
+                          xor(g2, p2));
+
+          const f3 = nxor(or(nor(m, g2),
+                             nor(m, p2, g1),
+                             nor(m, p2, p1, g0),
+                             nor(m, p2, p1, p0, c0)),
+                          xor(g3, p3));
+
+        //const p = or(p3, p2, p1, p0);
+          const p = +!!pp;
+          const gc = or(not(g3),
+                        nor(p3, g2), 
+                        nor(p3, p2, g1), 
+                        nor(p3, p2, p1, g0));
+          const g = not(gc);
+          const c4 = or(gc, nor(p3, p2, p1, p0, c0));
+
+          const f = bitJoin(f3, f2, f1, f0);
+
+          return {f, g, p, c4};
+        }
+
         switch (s) {
-        case 0:  f = a;                         break;
-        case 1:  f = a + (a & (b ^ 0xF));       break;
-        case 2:  f = a + (a & (b ^ 0xF));       break;
-        case 3:  f = a + a;                     break;
-        case 4:  f = (a | b);                   break;
-        case 5:  f = a + b + (a & (b ^ 0xF));   break;
-        case 6:  f = a + b;                     break;
-        case 7:  f = (a | b) + a;               break;
-        case 8:  f = (a | (b ^ 0xF));           break;
-        case 9:  f = a - b - 1;                 break;
-        case 10: f = (a | (b ^ 0xF)) + (a & b); break;
-        case 11: f = (a | (b ^ 0xF)) + a;       break;
-        case 12: f = 0xF;                       break;
-        case 13: f = (a & (b ^ 0xF)) - 1;       break;
-        case 14: f = (a & b) - 1;               break;
-        case 15: f = a - 1;                     break;
+        case 0:  f = a;                             break;
+        case 1:  f = a + (a & (b ^ 0b1111));        break;
+        case 2:  f = a + (a & (b ^ 0b1111));        break;
+        case 3:  f = a + a;                         break;
+        case 4:  f = (a | b);                       break;
+        case 5:  f = a + b + (a & (b ^ 0b1111));    break;
+        case 6:  f = a + b;                         break;
+        case 7:  f = (a | b) + a;                   break;
+        case 8:  f = (a | (b ^ 0b1111));            break;
+        case 9:  f = a - b - 1;                     break;
+        case 10: f = (a | (b ^ 0b1111)) + (a & b);  break;
+        case 11: f = (a | (b ^ 0b1111)) + a;        break;
+        case 12: f = 0b1111;                        break;
+        case 13: f = (a & (b ^ 0b1111)) - 1;        break;
+        case 14: f = (a & b) - 1;                   break;
+        case 15: f = a - 1;                         break;
         }
       }
 
       f += c0;
       c4 = f >> 4;
-      f &= 0xF;
+      f &= 0b1111;
       return {f, cg, cp, 'c out': c4};
     },
 
