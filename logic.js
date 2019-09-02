@@ -702,7 +702,15 @@ const logic = {
     '~>': expand('qa#1/3, qb#1/3'),
 
     fn({i}) {
+      const qa = i.a1 | i.a2 | i.a3;
+      const qb = i.b1 | i.b2 | i.b3;
       return {
+        qa1: qa,
+        qa2: qa,
+        qa3: qa,
+        qb1: qb,
+        qb2: qb,
+        qb3: qb,
       };
     },
 
@@ -716,6 +724,7 @@ const logic = {
 
     fn({i}) {
       return {
+        out: i.in,              // XXX needs to be actually delayed?
       };
     },
 
