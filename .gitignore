@@ -29,9 +29,9 @@ node_modules
 
 lib/
 data/
-PNGs
-opencv-tests
 after.evaluation
 before.evaluation
 *~
 .*~
+KL10PV.after.evaluation
+KL10PV.before.evaluation

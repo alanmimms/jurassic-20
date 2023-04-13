@@ -37,8 +37,8 @@ chipDef = h:chipHead p:pinDef+
 chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
 		{ return AST('Chip', {name, type, desc}) }
 
-pinDef = [ \t]+ name:bareID _ dir:direction _ bpPin:bpPin? net:net blankLines
-		{ return AST('Pin', {name, dir, bpPin, net}) }
+pinDef = [ \t]+ pin:number _ dir:direction _ bpPin:bpPin? net:net blankLines
+		{ return AST('Pin', {pin, dir, bpPin, net}) }
 
 direction = $('~>' / '~<')
 
