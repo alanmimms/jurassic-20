@@ -272,7 +272,7 @@ e34: 10176 hex dff
      3 ~> con-internal-e34-3
      12 ~< con-internal-e37-6
      15 ~> con-internal-e34-15
-     14 ~< con-internal-e28-15
+     11 ~< con-internal-e28-15
      14 ~> {dm1} con2 long en l
      7 ~< con1 nicond h
      4 ~> con2 nicond or load ir delayed h
@@ -561,7 +561,7 @@ e43: 10174 2x4 mix
 e47: 10161 decoder active low
      14 ~< {dt2} cram # 03 e h
      9 ~< {dn1} cram # 04 e h
-     5 ~< {dm1} cram # 05 e h
+     7 ~< {dm1} cram # 05 e h
      15 ~< {dl1} -cram # 02 e l
      2 ~< {ee1} con cond/diag func l
      6 ~> %NC%

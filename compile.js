@@ -213,7 +213,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
       break;
     }
 
-    if (!cx.chip.logic[cx.pin.dir] || cx.chip.logic[cx.pin.dir].indexOf(cx.pin.pin) < 0) {
+    if (!cx.chip.logic[cx.pin.dir] || !cx.chip.logic[cx.pin.dir][cx.pin.pin]) {
       console.log(`\
 ======>  ${cx.chip.name} undefined pin ${cx.pin.pin} ${cx.pin.dir} for ${cx.chip.type}`);
     }

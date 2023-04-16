@@ -15,6 +15,7 @@ const expand = s => _.flatten(
     let m;
 
     // Form 'xxx=p' where xxx is pin name and p is pin number.
+    // Syntax DOES NOT permit whitespace surrounding the '='.
     if ((m = el.match(/(?<name>[^=]+)=(?<pin>\d+)/))) {
       const {name, pin} = m.groups;
       return {name, pin};
@@ -22,7 +23,8 @@ const expand = s => _.flatten(
       console.error(`Bad pin definition syntax "${el}".`);
       return {name: '???', pin: 0};
     }
-  }));
+  }))
+      .reduce((o, e) => {o[e.pin] = e; return o}, {});
 
 
 function dev(desc, inputs, outputs) {
@@ -166,7 +168,7 @@ const logic = {
   '10113': {
     desc: '4x xor buffer',
     '~<': expand('a1=4,a2=5, b1=6,b2=7, c1=10,c2=11, d1=12,d2=13, ne=9'),
-    '~>': expand('qa, qb, qc, qd'),
+    '~>': expand('qa=2, qb=3, qc=14, qd=15'),
 
     fn({i}) {
       return {
@@ -486,7 +488,7 @@ const logic = {
 
   '10174': {
     desc: '2x4 mix',
-    '~<': expand('d00=3,d01=5,d02=4,d03=6, d10=13,d11=11,d12=12,d13=10, sel2=9,sel1=1, nen=14'),
+    '~<': expand('d00=3,d01=5,d02=4,d03=6, d10=13,d11=11,d12=12,d13=10, sel2=9,sel1=7, nen=14'),
     '~>': expand('b0=2,b1=15'),
 
     fn({i}) {
@@ -565,7 +567,7 @@ const logic = {
 
   '10181': {
     desc: 'alu',
-    '~<': expand('a8=10,a4=16,a2=18,a1=21, b8=9,b4=11,b2=19,b1=20, s8=13,s4=14,s2=17,s1=14, boole=23, c in=22'),
+    '~<': expand('a8=10,a4=16,a2=18,a1=21, b8=9,b4=11,b2=19,b1=20, s8=13,s4=15,s2=17,s1=14, boole=23, c in=22'),
     '~>': expand('f8=6,f4=7,f2=3,f1=2, cg=4, cp=8, c out=5'),
 
     fn({i}) {
@@ -704,8 +706,8 @@ const logic = {
 
   'delay-line': {
     desc: 'delay buffer',
-    '~<': expand('in'),
-    '~>': expand('out'),
+    '~<': expand('in=1'),
+    '~>': expand('out=7'),
 
     fn({i}) {
       return {
@@ -718,6 +720,7 @@ const logic = {
 };
 
 
-if (require.main === module) console.log("logic:", require('util').inspect(logic));
+if (require.main === module)
+  console.log("logic:", require('util').inspect(logic, {depth: 9, color: true}));
 
 module.exports = logic;

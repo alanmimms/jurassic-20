@@ -119,13 +119,13 @@ e51: 10141 shft reg
      13 ~< %NC%
      12 ~< %NC%
      11 ~< arm [n+3] h
-     3 ~< arm [n+4] h
+     9 ~< arm [n+4] h
      6 ~< arm [n+5] h
      5 ~< %NC%
-     2 ~< {ek2} [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
+     7 ~< {ek2} [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
                  ctl arr load a l, ctl arr load a l, ctl arr load a l]
-     1 ~< {ek2} [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
-                 ctl arr load a l, ctl arr load a l, ctl arr load a l]
+     10 ~< {ek2} [n/6+1, ctl ar 00-08 load l, ctl ar 09-17 load l, ctl ar 09-17 load l, \
+                  ctl arr load a l, ctl arr load a l, ctl arr load a l]
      4 ~< dp04 clk f h
      14 ~> %NC%
      15 ~> ar [n+3] h
@@ -383,7 +383,7 @@ e13: 10141 shft reg
      15 ~> mq [n+1] h
      2 ~> mq [n+2] h
      3 ~> %NC%
-     4 ~> dp04 clk c h
+     4 ~< dp04 clk c h
 
 e15: 10141 shft reg
      13 ~< mqm [n+3] h
@@ -398,7 +398,7 @@ e15: 10141 shft reg
      15 ~> mq [n+3] h
      2 ~> {cs1} mq [n+4] h
      3 ~> {df1} mq [n+5] h
-     4 ~> dp04 clk d h
+     4 ~< dp04 clk d h
 
 e25: 10141 shft reg
      13 ~< %NC%
@@ -413,7 +413,7 @@ e25: 10141 shft reg
      15 ~> {ej2} arx [n+0] h
      2 ~> {bd2} arx [n+1] h
      3 ~> {dc1} arx [n+2] h
-     4 ~> dp04 clk e h
+     4 ~< dp04 clk e h
 
 e24: 10101 or buffer
      4 ~< {ej2} arx [n+0] h
@@ -443,7 +443,7 @@ e32: 10141 shft reg
      15 ~> {aj2} arx [n+3] h
      2 ~> {ac1} arx [n+4] h
      3 ~> {aa1} arx [n+5] h
-     4 ~> dp04 clk f h
+     4 ~< dp04 clk f h
 
 e11: 10101 or buffer
      4 ~< {aj2} arx [n+3] h
