@@ -14,30 +14,14 @@ const expand = s => _.flatten(
   s.split(/,\s*/).map(el => {
     let m;
 
-    // Form 'xxx[#B]/N' where '[#B]' is optional base of iteration and
-    // 'N' is number of iterations.
-    // E.g., 'xyz#3/7' => xyz3 xyz4 xyz5 xyz6
-    // E.g., 'abc/3' => abc0 abc1 abc2
-    if ((m = el.match(/([^#\/]+)(?:#(\d+))?\/(\d+)/))) {
-      let b = +(m[2] || 0);
-      let rangeEnd = b + +m[3];
-      return _.range(b, rangeEnd).map(n => m[1] + n);
+    // Form 'xxx=p' where xxx is pin name and p is pin number.
+    if ((m = el.match(/(?<name>[^=]+)=(?<pin>\d+)/))) {
+      const {name, pin} = m.groups;
+      return {name, pin};
+    } else {
+      console.error(`Bad pin definition syntax "${el}".`);
+      return {name: '???', pin: 0};
     }
-
-    // Form 'xxx[#B]@N' where '[#B]' is optional base of iteration and
-    // 'N' is number of powers of 2 to produce.
-    // E.g., 'xyz#100@5' => xyz101 xyz102 xyz104 xyz108 xyz116
-    // E.g., 'abc@5' => abc1 abc2 abc4 abc8 abc16
-    if ((m = el.match(/([^#@]+)(?:#(\d+))?@(\d+)/))) {
-      let a = [];
-      let b = +(m[2] || 0);
-      let n = +m[3];
-      for (let k = 0; k < n; ++k) a.push(m[1] + (b + (1 << k)));
-      return a;
-    }
-
-    // Otherwise, it's just a name.
-    return el;
   }));
 
 
@@ -51,8 +35,8 @@ function dev(desc, inputs, outputs) {
 const logic = {
   '10101': {
     desc: '4xor/nor',
-    '~<': expand('a1, b1, c1, d1, abcd2'),
-    '~>': expand('nqa, qa, nqb, qb, nqc, qc, nqd, qd'),
+    '~<': expand('a1=4, b=7, c1=10, d1=13, abcd2=12'),
+    '~>': expand('nqa=2, qa=5, nqb=3, qb=6, nqc=14, qc=11, nqd=15, qd=9'),
 
     fn({i}) {
       return {
@@ -72,8 +56,8 @@ const logic = {
 
   '10103': {
     desc: '4xor',
-    '~<': expand('a#1/2, b#1/2, c#1/2, d#1/2'),
-    '~>': expand('qa, qb, nqc, qc, qd'),
+    '~<': expand('a1=4, a2=5, b1=6, b2=7, c1=12, c2=13, d1=10, d2=11'),
+    '~>': expand('qa=2, qb=3, qc=15, nqc=9, qd=14'),
 
     fn({i}) {
       return {
@@ -90,8 +74,8 @@ const logic = {
 
   '10104': {
     desc: '4xand', 
-    '~<': expand('a#1/2, b#1/2, c#1/2, d#1/2'),
-    '~>': expand('qa, qb, qc, qd, nqd'),
+    '~<': expand('a1=4,a2=5, b1=6,b2=7, c1=10,c2=11, d1=12,d2=13'),
+    '~>': expand('qa=2, qb=3, qc=14, qd=15, nqd=9'),
 
     fn ({i}) {
       return {
@@ -108,8 +92,8 @@ const logic = {
 
   '10105': {
     desc: '2-3-2 or/nor',
-    '~<': expand('a#1/2, b#1/3, c#1/2'),
-    '~>': expand('nqa, qa, nqb, qb, nqc, qc'),
+    '~<': expand('a1=4,a2=5, b1=9,b2=10,b3=11, c1=13,c2=12'),
+    '~>': expand('nqa=3, qa=2, nqb=6, qb=7, nqc=14, qc=15'),
 
     fn({i}) {
       return {
@@ -127,8 +111,8 @@ const logic = {
 
   '10107': {
     desc: '3xxor/xnor',
-    '~<': expand('a#1/2, b#1/2, c#1/2'),
-    '~>': expand('nqa, qa, nqb, qb, nqc, qc'),
+    '~<': expand('a1=4,a2=5, b1=9,b2=7, c1=14,c2=15'),
+    '~>': expand('nqa=2, qa=3, nqb=11, qb=10, nqc=12, qc=13'),
 
     fn({i}) {
       return {
@@ -146,8 +130,8 @@ const logic = {
 
   '10109': {
     desc: '4/5 or/nor',
-    '~<': expand('a#1/4, b#1/5'),
-    '~>': expand('nqa, qa, nqb, qb'),
+    '~<': expand('a1=4,a2=5,a3=6,a4=7, b1=9,b2=10,b3=11,b4=12,b5=13'),
+    '~>': expand('nqa=3, qa=2, nqb=14, qb=15'),
 
     fn({i}) {
       return {
@@ -162,8 +146,8 @@ const logic = {
 
   '10110': {
     desc: '2x or buffer',
-    '~<': expand('a#1/3, b#1/3'),
-    '~>': expand('qa#1/3, qb#1/3'),
+    '~<': expand('a1=5,a2=6,a3=7, b1=9,b2=10,b3=11'),
+    '~>': expand('qa1=2,qa2=3,qa3=4, qb1=12,qb2=13,qb3=14'),
 
     fn({i}) {
       return {
@@ -181,7 +165,7 @@ const logic = {
 
   '10113': {
     desc: '4x xor buffer',
-    '~<': expand('a#1/2, b#1/2, c#1/2, d#1/2, ne'),
+    '~<': expand('a1=4,a2=5, b1=6,b2=7, c1=10,c2=11, d1=12,d2=13, ne=9'),
     '~>': expand('qa, qb, qc, qd'),
 
     fn({i}) {
@@ -198,8 +182,8 @@ const logic = {
 
   '10117': {
     desc: '2x2-3 or-and/or-and',
-    '~<': expand('a#1/2, b#1/2, b3d3, c#1/3, d#1/2'),
-    '~>': expand('nqab, qab, nqcd, qcd'),
+    '~<': expand('a1=4,a2=5, b1=6,b2=7, c1=10,c2=11, d1=12,d2=13, b3d3=9'),
+    '~>': expand('nqab=3, qab=2, nqcd=14, qcd=15'),
 
     fn({i}) {
       return {
@@ -215,8 +199,8 @@ const logic = {
 
   '10118': {
     desc: '2x3 or-and',
-    '~<': expand('a#1/3, b#1/2, b3c3, c#1/2, d#1/3'),
-    '~>': expand('qab, qcd'),
+    '~<': expand('a1=3,a2=4,a3=5, b1=6,b2=7, c1=10,c2=11, d1=12,d2=13,d3=14, b3c3=9'),
+    '~>': expand('qab=2, qcd=15'),
 
     fn({i}) {
       return {
@@ -230,8 +214,8 @@ const logic = {
 
   '10121': {
     desc: '4-wide or-and/or-and',
-    '~<': expand('a#1/3, b#1/2, b3c3, c#1/2, d#1/3'),
-    '~>': expand('nq, q'),
+    '~<': expand('a1=4,a2=5,a3=6, b1=7,b2=9, c1=11,c2=12, d1=13,d2=14,d3=15, b3c3=10'),
+    '~>': expand('nq=3, q=2'),
 
     fn({i}) {
       return {
@@ -251,15 +235,15 @@ const logic = {
 
   '10141': {
     desc: 'shft reg',
-    '~<': expand('shft 0in, d/4, shft 3in, op#1/2, clk'),
-    '~>': expand('q/4'),
+    '~<': expand('shft 0in=13, d0=12,d1=11,d2=9,d3=6, shft 3in=5, op1=10,op2=7, clk=4'),
+    '~>': expand('q0=14,q1=15,q2=2,q3=3'),
 
     fn({i}) {
       const op = (+i.op0 << 1) | +i.op1;
 
       switch (op) {
       case 0:                 // Parallel load
-        this.d0 = i.do;
+        this.d0 = i.d0;
         this.d1 = i.d1;
         this.d2 = i.d2;
         this.d3 = i.d3;
@@ -293,8 +277,8 @@ const logic = {
 
   '10144': {
     desc: '256x1 ram',
-    '~<': expand('a/8, nen#1/3, nwrite, d'),
-    '~>': expand('q'),
+    '~<': expand('a0=1,a1=2,a2=3,a3=4,a4=9,a5=10,a6=11,a7=12, nen1=5,nen2=6,nen3=7, nwrite=14, d=13'),
+    '~>': expand('q=15'),
 
     fn({i}) {
       const a =
@@ -318,8 +302,8 @@ const logic = {
 
   '10147': {
     desc: '128x1 ram',
-    '~<': expand('a/7, nen#1/2, nwrite, d'),
-    '~>': expand('q'),
+    '~<': expand('a0=4,a1=3,a2=2,a3=5,a4=6,a5=7,a6=10, nen1=13,nen2=14, nwrite=12, d=11'),
+    '~>': expand('q=15'),
 
     fn({i}) {
       const a =
@@ -342,8 +326,8 @@ const logic = {
 
   '10158': {
     desc: '4x2 mix',
-    '~<': expand('d0/2, d1/2, d2/2, d3/2, sel'),
-    '~>': expand('b/4'),
+    '~<': expand('d00=6,d01=5, d10=4,d11=3, d20=13,d21=12, d30=11,d31=10, sel=9'),
+    '~>': expand('b0=1,b1=2,b2=15,b3=14'),
 
     fn({i}) {
       const b1 = i.sel ? i.d00 : i.d01;
@@ -358,12 +342,13 @@ const logic = {
 
   '10160': {
     desc: 'parity',
-    '~<': expand('d/12'),
-    '~>': expand('odd'),
+    '~<': expand('d0=3,d1=4,d2=5,d3=6,d4=7,d5=9,d6=10,d7=11,d8=12,d9=13,d10=14,d11=15'),
+    '~>': expand('odd=2'),
 
     fn({i}) {
       return {
-        odd: !!((+i.d0 + +i.d1 + +i.d2 + +i.d3 + +i.d4 + +i.d5 + +i.d6 + +i.d7) & 1),
+        odd: !!((+i.d0 + +i.d1 + +i.d2 + +i.d3 + +i.d4 + +i.d5 +
+		 +i.d6 + +i.d7 + +i.d8 + +i.d9 + +i.d10 + +i.d11) & 1),
       };
     },
 
@@ -372,8 +357,8 @@ const logic = {
 
   '10161': {
     desc: 'decoder active low',
-    '~<': expand('sel@3, nen#1/2'),
-    '~>': expand('nq/8'),
+    '~<': expand('sel4=14,sel2=9,sel1=7, nen1=15,nen2=2'),
+    '~>': expand('nq0=6,nq1=5,nq2=4,nq3=3,nq4=13,nq5=12,nq6=11,nq7=10'),
 
     fn({i}) {
       let nq = Array(8).fill(true);
@@ -397,8 +382,8 @@ const logic = {
 
   '10162': {
     desc: 'decoder',
-    '~<': expand('sel@3, nen#1/2'),
-    '~>': expand('q/8'),
+    '~<': expand('sel4=14,sel2=9,sel1=7, nen1=15,nen2=2'),
+    '~>': expand('q0=6,q1=5,q2=4,q3=3,q4=13,q5=12,q6=11,q7=10'),
 
     fn({i}) {
       let q = Array(8).fill(false);
@@ -422,8 +407,8 @@ const logic = {
 
   '10164': {
     desc: '8 mix',
-    '~<': expand('d/8, sel@3, nen'),
-    '~>': expand('b'),
+    '~<': expand('d0=6,d1=5,d2=4,d3=3,d4=11,d5=12,d6=13,d7=14, sel4=10,sel2=9,sel1=7, nen=2'),
+    '~>': expand('b=15'),
 
     fn({i}) {
       let b;
@@ -443,8 +428,8 @@ const logic = {
 
   '10165': {
     desc: 'pri enc',
-    '~<': expand('d/8, hold'),
-    '~>': expand('any, q@3'),
+    '~<': expand('d0=5,d1=7,d2=13,d3=10,d4=11,d5=12,d6=9,d7=6, hold=4'),
+    '~>': expand('any=14, q4=15,q2=2,q1=3'),
 
     fn({i}) {
       let k;
@@ -471,8 +456,8 @@ const logic = {
 
   '10173': {
     desc: '2x4 mix latch',
-    '~<': expand('d0/2, d1/2, d2/2, d3/2, sel1, hold'),
-    '~>': expand('b/4'),
+    '~<': expand('d00=5,d01=6, d10=3,d11=4, d20=12,d21=13, d30=10,d31=11, sel1=9, hold=7'),
+    '~>': expand('b0=1,b1=2,b2=15,b3=14'),
 
     fn({i}) {
 
@@ -501,8 +486,8 @@ const logic = {
 
   '10174': {
     desc: '2x4 mix',
-    '~<': expand('d0/4, d1/4, sel#1/2, nen'),
-    '~>': expand('b/2'),
+    '~<': expand('d00=3,d01=5,d02=4,d03=6, d10=13,d11=11,d12=12,d13=10, sel2=9,sel1=1, nen=14'),
+    '~>': expand('b0=2,b1=15'),
 
     fn({i}) {
       let b0, b1;
@@ -523,8 +508,8 @@ const logic = {
 
   '10176': {
     desc: '6xdff',
-    '~<': expand('d/6, clk'),
-    '~>': expand('q/6'),
+    '~<': expand('d0=5,d1=6,d2=7,d3=10,d4=11,d6=12, clk=9'),
+    '~>': expand('q0=2,q1=3,q2=4,q3=13,q4=14,q5=15'),
 
     fn({i}) {
       
@@ -549,9 +534,9 @@ const logic = {
   },
 
   '10179': {
-    desc: 'carry',
-    '~<': expand('g@4, p@4, c in'),
-    '~>': expand('c8 out, c2 out, g out, p out'),
+    desc: 'carry skipper',
+    '~<': expand('g8=5,p8=13,g4=9,p4=12, g2=7,p2=10,g1=4,p1=14, c in=11'),
+    '~>': expand('c8 out=3, c2 out=6, g out=2, p out=15'),
 
     fn({i}) {
       const cn = i['c in'];
@@ -580,8 +565,8 @@ const logic = {
 
   '10181': {
     desc: 'alu',
-    '~<': expand('a@4, b@4, s@4, boole, c in'),
-    '~>': expand('f@4, cg, cp, c out'),
+    '~<': expand('a8=10,a4=16,a2=18,a1=21, b8=9,b4=11,b2=19,b1=20, s8=13,s4=14,s2=17,s1=14, boole=23, c in=22'),
+    '~>': expand('f8=6,f4=7,f2=3,f1=2, cg=4, cp=8, c out=5'),
 
     fn({i}) {
       let f, cg, cp, c4;
@@ -698,8 +683,8 @@ const logic = {
 
   '10210': {
     desc: '2x3 or',
-    '~<': expand('a#1/3, b#1/3'),
-    '~>': expand('qa#1/3, qb#1/3'),
+    '~<': expand('a1=5,a2=6,a3=7, b1=9,b2=10,b3=11'),
+    '~>': expand('qa1=2,qa2=3,qa3=4, qb1=12,qb2=13,qb3=14'),
 
     fn({i}) {
       const qa = i.a1 | i.a2 | i.a3;

@@ -41,9 +41,9 @@ e3: 10161 decoder
      4 ~> %NC%
      3 ~> %NC%
      13 ~> %NC%
-     125 ~> con1 cond/spec instr 11
-     nq6 ~> con1 cond/sr_# 10
-     nq7 ~> {cp2} con cond/sel vma l
+     12 ~> con1 cond/spec instr l
+     11 ~> con1 cond/sr<-# 10
+     10 ~> {cp2} con cond/sel vma l
 
 e26: 10161 decoder
      14 ~< {ad2} cram cond 03 h
@@ -56,9 +56,9 @@ e26: 10161 decoder
      4 ~> {du2} con cond/ebus ctl l
      3 ~> {cp1} con1 cond/mbox ctl l
      13 ~> {ck2} con1 cond/024 l
-     125 ~> con1 cond/long en 11
-     nq6 ~> {cj1} con cond/026 10
-     nq7 ~> {cj2} con cond/027 l
+     12 ~> con1 cond/long en l
+     11 ~> {cj1} con cond/026 l
+     10 ~> {cj2} con cond/027 l
 
 e2: 10162 decoder
      14 ~< {ad2} cram cond 03 h
@@ -185,15 +185,15 @@ e5: 10101 quad or/nor
     12 ~< %NC%
     5 ~> con1 diag 04 h
     2 ~> %NC%
-    b1 ~< con3 wr even par dir h
-    nqb ~> con wr even par dir l
-    qb ~> %NC%
-    c1 ~< diag 06 a h
-    qc ~> con1 diag 06 h
-    nqc ~> %NC%
-    d1 ~< con trap en h
-    qd ~> con trap en a h
-    nqd ~> %NC%
+    10 ~< con3 wr even par dir h
+    14 ~> {af2} con wr even par dir l
+    11 ~> %NC%
+    7 ~< {at2} diag 06 a h
+    6 ~> con1 diag 06 h
+    3 ~> %NC%
+    13 ~< con trap en h
+    9 ~> {ac1} con trap en a h
+    15 ~> %NC%
 
 e13: 10101 quad or/nor
      7 ~< ebus d18 e h
@@ -217,15 +217,15 @@ e22: 10101 quad or/nor
      13 ~< ebus d21 e h
      9 ~> con ebus 21 h
      15 ~> con ebus 21 l
-     d1 ~< con-internal-e39-4
-     nqd ~> con2 diag continue l
-     qd ~> %NC%
+     4 ~< con-internal-e39-4
+     2 ~> con2 diag continue l
+     5 ~> %NC%
 
 e24: 10105 2-3-2 or/nor
-     a1 ~< con2 instr go l
-     a2 ~< con-internal-e16-15
-     qa ~> con run h
-     nqa ~> con2 run l
+     12 ~< con2 instr go l
+     13 ~< con-internal-e16-15
+     14 ~> {bs1} con run h
+     15 ~> con2 run l
      9 ~< con1 nicond h
      10 ~< con1 cond/spec instr h
      11 ~< con1 reset h
@@ -237,15 +237,15 @@ e7: 10105 2-3-2 or/nor
     13 ~< {al1} mcl load vma h
     14 ~> {an1} con vma sel 2 l
     15 ~> %NC%
-    b1 ~< -cram cond 03 l
-    b2 ~< -cram cond 04 l
-    b3 ~< -cram cond 05 l
-    qb ~> %NC%
-    nqb ~> con-internal-e7-7
-    c1 ~< con1 cond/vma inc h
-    c2 ~< mcl load vma h
-    nqc ~> {ar2} con vma sel 1 l
-    qc ~> %NC%
+    9 ~< {ad2} -cram cond 03 l
+    10 ~< {ad1} -cram cond 04 l
+    11 ~< {ae2} -cram cond 05 l
+    6 ~> %NC%
+    7 ~> con-internal-e7-7
+    12 ~< con1 cond/vma inc h
+    13 ~< {al1} mcl load vma h
+    3 ~> {ar2} con vma sel 1 l
+    2 ~> %NC%
 
 e31: 10101 quad or/nor
      10 ~< {cu2} ebus d22 e h
@@ -604,19 +604,19 @@ e15: 10162 decoder
      10 ~> con-internal-e15-10
 
 e51: 10105 2-3-2 or/nor
-     a1 ~< con3 # func 01x l
-     a2 ~< -ctl console control l
-     qa ~> %NC%
-     nqa ~> con-internal-e51-15
-     b1 ~< con fm write 18-35 l
-     b2 ~< -clk sbr call l
-     b3 ~< -con2 clk c l
-     qb ~> %NC%
-     nqb ~> con fm write par l
-     c1 ~< con1 cond/spec instr l
-     c2 ~< con3 # 00 l
-     nqc ~> con-internal-e51-3
-     qc ~> %NC%
+     12 ~< con3 # func 01x l
+     13 ~< {em2} -ctl console control l
+     14 ~> %NC%
+     15 ~> con-internal-e51-15
+     9 ~< {ed1} con fm write 18-35 l
+     10 ~< {fn1} -clk sbr call l
+     11 ~< -con2 clk c l
+     6 ~> %NC%
+     7 ~> {ff1} con fm write par l
+     4 ~< con1 cond/spec instr l
+     5 ~< con3 # 00 l
+     3 ~> con-internal-e51-3
+     2 ~> %NC%
 
 e11: 10101 quad or/nor
      4 ~< con-internal-e15-13
@@ -824,6 +824,10 @@ e66: 10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> %NC%
      2 ~> {aj2} con arx 36 h
+     12 ~< {fs2} mcl vma fetch l
+     13 ~< con5 mem cycle l
+     14 ~> con5 fetch cycle h
+     15 ~> %NC%
 
 e64: 10176 hex dff
      9 ~< con2 clk c h
@@ -897,47 +901,61 @@ e69: 10176 hex dff
      15 ~> con4 ar from mem l
 
 e70: 10104 quad and/nand
-     d1 ~< con4 ar from ebus l
-     d2 ~< con4 ar from mem l
-     qd ~> con4 ar loaded h
-     nqd ~> con ar loaded l
+     12 ~< con4 ar from ebus l
+     13 ~< con4 ar from mem l
+     9 ~> con4 ar loaded h
+     15 ~> {el2} con ar loaded l
 
 Page: CON5, PDF162
 
 e51: 10105 2-3-2 or/nor
-     a1 ~< con1 cond/spec instr l
-     a2 ~< con3 # 00 l
-     qa ~> con-internal-e51-3
-     nqa ~> %NC%
+     4 ~< con1 cond/spec instr l
+     5 ~< con3 # 00 l
+     3 ~> con-internal-e51-3
+     2 ~> %NC%
+     9 ~< {ed1} con fm write 18-35 l
+     10 ~< {fn1} -clk sbr call l
+     11 ~< -con2 clk c l
+     6 ~> %NC%
+     7 ~> {ff1} con fm write par l
 
 e57: 10176 hex dff
-     clk ~< con2 clk a h
-     d0 ~< con-internal-e51-3
-     q0 ~> con5 pi cycle in h
-     d1 ~< con-internal-e61-14
-     q1 ~> con5 pi cycle in h
-     d2 ~< mcl mbox cyc req h
-     q2 ~> con5 mem cycle in h
-     d3 ~< con-internal-e53-3
-     q3 ~> con5 mem cycle in h
+     9 ~< con2 clk a h
+     6 ~< con-internal-e51-3
+     3 ~> con5 pi cycle in h
+     5 ~< con-internal-e61-14
+     2 ~> con5 pi cycle in h
+     10 ~< {ep1} mcl mbox cyc req h
+     13 ~> con5 mem cycle in h
+     11 ~< con-internal-e53-3
+     14 ~> con5 mem cycle in h
 
 e60: 10105 quad or/nor
-     a1 ~< con fm xfer h
-     a2 ~< clk mb xfer h
-     nqa ~> con5 xfer l
-     qa ~> con5 xfer h
+     4 ~< con fm xfer h
+     5 ~< clk mb xfer h
+     3 ~> con5 xfer l
+     2 ~> con5 xfer h
+     12 ~< {fl2} cram mem 02 a l
+     13 ~< con5 mem cycle l
+     14 ~> %NC%
+     15 ~> {fh2} con mbox wait l
+     9 ~< {fl2} cram mem 02 a l
+     10 ~< con5 mem cycle l
+     11 ~< {de2} vma ac ref l
+     6 ~> {fl1} con fm xfer h
+     7 ~> {fj1} con fm xfer l
 
 e63: 10117 dual 2-3 or-and
-     a1 ~< con-internal-e7-7
-     a2 ~< con1 cond en 10-17 l
-     b1 ~< mcl store ar l
-     b2 ~< con mbox wait l
-     b3d3 ~< vma ac ref l
-     qab ~> %NC%
-     nqab ~> con fm write 00-17 l
-     c1 ~< con-internal-e7-7
-     c2 ~< con1 cond en 10-17 l
-     d1 ~< mcl store ar l
-     d2 ~< con mbox wait l
-     qcd ~> %NC%
-     nqcd ~> con fm write 18-35 l
+     4 ~< con-internal-e7-7
+     5 ~< con1 cond en 10-17 l
+     6 ~< {fr2} mcl store ar l
+     7 ~< {fh2} con mbox wait l
+     9 ~< {de2} vma ac ref l
+     3 ~> %NC%
+     2 ~> {fe1} con fm write 00-17 l
+     13 ~< con-internal-e7-7
+     12 ~< con1 cond en 10-17 l
+     11 ~< {fr2} mcl store ar l
+     10 ~< {fh2} con mbox wait l
+     14 ~> %NC%
+     15 ~> {ed1} con fm write 18-35 l

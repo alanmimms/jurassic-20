@@ -213,9 +213,10 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
       break;
     }
 
-    if (!cx.chip.logic[cx.pin.dir] || cx.chip.logic[cx.pin.dir].indexOf(cx.pin.name) < 0)
-      console.log(`======>  ${cx.chip.name} undefined pin ${cx.pin.name} ${cx.pin.dir} ` +
-		  `for ${cx.chip.type}`);
+    if (!cx.chip.logic[cx.pin.dir] || cx.chip.logic[cx.pin.dir].indexOf(cx.pin.pin) < 0) {
+      console.log(`\
+======>  ${cx.chip.name} undefined pin ${cx.pin.pin} ${cx.pin.dir} for ${cx.chip.type}`);
+    }
 
     cx.pin.netName = cx.net;
     if (cx.net === '') 
