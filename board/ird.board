@@ -709,7 +709,7 @@ e56: 10160 parity
      11 ~< dram j 08 h
      12 ~< dram j 09 h
      13 ~< dram j 10 h
-     140 ~< dram par h
+     14 ~< dram par h
      15 ~< %NC%
      2 ~> {ck2} dram odd parity h
 
