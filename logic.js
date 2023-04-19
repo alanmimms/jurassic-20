@@ -7,23 +7,20 @@
 //   '~<': ['input pin name1', 'input pin name 2', ...],
 //   '~>': ['output pin name1', 'output pin name 2', ...],
 // )
-const _ = require('lodash');
 
+const expand = s => s.split(/,\s*/).map(el => {
+  let m;
 
-const expand = s => _.flatten(
-  s.split(/,\s*/).map(el => {
-    let m;
-
-    // Form 'xxx=p' where xxx is pin name and p is pin number.
-    // Syntax DOES NOT permit whitespace surrounding the '='.
-    if ((m = el.match(/(?<name>[^=]+)=(?<pin>\d+)/))) {
-      const {name, pin} = m.groups;
-      return {name, pin};
-    } else {
-      console.error(`Bad pin definition syntax "${el}".`);
-      return {name: '???', pin: 0};
-    }
-  }))
+  // Form 'xxx=p' where xxx is pin name and p is pin number.
+  // Syntax DOES NOT permit whitespace surrounding the '='.
+  if ((m = el.match(/(?<name>[^=]+)=(?<pin>\d+)/))) {
+    const {name, pin} = m.groups;
+    return {name, pin};
+  } else {
+    console.error(`Bad pin definition syntax "${el}".`);
+    return {name: '???', pin: 0};
+  }
+})
       .reduce((o, e) => {o[e.pin] = e; return o}, {});
 
 
