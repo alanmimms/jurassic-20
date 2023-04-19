@@ -616,7 +616,7 @@ e50: 10107 3x2 xor/xnor
      7 ~< {ed2} cram # 07 f h
      9 ~< {ds1} cram # 08 f h
      11 ~> -ir #06=07 l
-     10 ~>  -ir #06=07 h
+     10 ~> -ir #06=07 h
      14 ~< ad 00 a h
      15 ~< ad cry -02 a h
      12 ~> a>b l
@@ -675,13 +675,13 @@ e68: 10117 dual 2-3 or-and/or-and
      7 ~< ir en i/o, jrst h
      9 ~< %NC%
      3 ~> ir en i/o, jrst l
-     2 ~>  ir en i/o, jrst h
+     2 ~> ir en i/o, jrst h
      12 ~< internal-e57-11
      13 ~< %NC%
      10 ~< internal-e40-2
      11 ~< ir en ac h
      14 ~> ir en ac l
-     15 ~>  ir en ac h
+     15 ~> ir en ac h
 
 e17: 10160 parity
      3 ~< dram a 00 h
