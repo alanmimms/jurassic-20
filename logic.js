@@ -323,6 +323,33 @@ const logic = {
     },
   },
 
+  '10415a': {
+    desc: '1024x1 ram',
+    '~<': expand('a0=2,a1=3,a2=4,a3=5,a4=6,a5=7,a6=9,a7=10,a8=11,a9=12, nen=14, nwrite=13, d=15'),
+    '~>': expand('q=1'),
+
+    fn({i}) {
+      const a =
+            +i.a0 << 0 |
+            +i.a1 << 1 | 
+            +i.a2 << 2 |
+            +i.a3 << 3 |
+            +i.a4 << 4 |
+            +i.a5 << 5 |
+            +i.a6 << 6 |
+            +i.a7 << 7 | 
+            +i.a8 << 8 |
+            +i.a9 << 9;
+      if (!i.nwrite && !i.nen) this.ram[a] = i.d;
+      const d = (!i.nwrite || i.nen)? false : this.ram[a];
+      return {d};
+    },
+
+    init() {
+      for (let k = 0; k < 1024; ++k) this.ram[k] = false;
+    },
+  },
+
   '10158': {
     desc: '4x2 mix',
     '~<': expand('d00=6,d01=5, d10=4,d11=3, d20=13,d21=12, d30=11,d31=10, sel=9'),

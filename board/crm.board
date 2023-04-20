@@ -342,3 +342,69 @@ e20: 10141 shft reg
      15 ~> {av2} cram [n+43] h
      2 ~> {bf1} cram [n+23] h
      3 ~> {bp2} cram [n+03] h
+
+Page: CRM4, PDF395
+e59:  10415a 1kx1 RAM
+      2 ~< cr01 adr 00 a l
+      3 ~< cr01 adr 01 a l
+      4 ~< cr01 adr 02 a l
+      5 ~< cr01 adr 03 a l
+      6 ~< cr01 adr 04 a l
+      7 ~< cr01 adr 05 a l
+      9 ~< cr01 adr 06 a l
+      10 ~< cr01 adr 07 a l
+      11 ~< cr01 adr 08 a l
+      12 ~< cr01 adr 09 a l
+      14 ~< -cr01 adr 10 a l
+      13 ~< cr02 write (00-19) l
+      15 ~< cr02 ebus [m+02] h
+      1 ~> cr04 out [n+00] h
+
+e57:  10415a 1kx1 RAM
+      2 ~< cr01 adr 00 a l
+      3 ~< cr01 adr 01 a l
+      4 ~< cr01 adr 02 a l
+      5 ~< cr01 adr 03 a l
+      6 ~< cr01 adr 04 a l
+      7 ~< cr01 adr 05 a l
+      9 ~< cr01 adr 06 a l
+      10 ~< cr01 adr 07 a l
+      11 ~< cr01 adr 08 a l
+      12 ~< cr01 adr 09 a l
+      14 ~< cr01 adr 10 a l
+      13 ~< cr02 write (00-19) l
+      15 ~< cr02 ebus [m+02] h
+      1 ~> cr04 out [n+00] h
+
+e48:  10415a 1kx1 RAM
+      2 ~< cr01 adr 00 a l
+      3 ~< cr01 adr 01 a l
+      4 ~< cr01 adr 02 a l
+      5 ~< cr01 adr 03 a l
+      6 ~< cr01 adr 04 a l
+      7 ~< cr01 adr 05 a l
+      9 ~< cr01 adr 06 a l
+      10 ~< cr01 adr 07 a l
+      11 ~< cr01 adr 08 a l
+      12 ~< cr01 adr 09 a l
+      14 ~< -cr01 adr 10 a l
+      13 ~< cr02 write (00-19) l
+      15 ~< cr02 ebus [m+03] h
+      1 ~> cr04 out [n+00] h
+
+e44:  10415a 1kx1 RAM
+      2 ~< cr01 adr 00 a l
+      3 ~< cr01 adr 01 a l
+      4 ~< cr01 adr 02 a l
+      5 ~< cr01 adr 03 a l
+      6 ~< cr01 adr 04 a l
+      7 ~< cr01 adr 05 a l
+      9 ~< cr01 adr 06 a l
+      10 ~< cr01 adr 07 a l
+      11 ~< cr01 adr 08 a l
+      12 ~< cr01 adr 09 a l
+      14 ~< cr01 adr 10 a l
+      13 ~< cr02 write (00-19) l
+      15 ~< cr02 ebus [m+03] h
+      1 ~> cr04 out [n+01] h
+
