@@ -22,12 +22,12 @@ e25: 10162 decoder
      15 ~< %NC%
      2 ~< con1 cond en 10-17 l
      6 ~> con1 cond/fm write h
-     5 ~> {cf1} con cond/pcf_# h
+     5 ~> {cf1} con cond/pcf<-# h
      4 ~> {cf2} con cond/fe shrt h
      3 ~> {ce1} con cond/ad flags h
      13 ~> con1 cond/load ir h
      12 ~> con1 cond/spec instr h
-     11 ~> con1 cond/sr_# h
+     11 ~> con1 cond/sr<-# h
      10 ~> {cd1} con cond/sel vma h
 
 e3: 10161 decoder
@@ -66,11 +66,11 @@ e2: 10162 decoder
      7 ~< {ae2} cram cond 05 h
      15 ~< %NC%
      2 ~< {cm1} con cond en 30-37 l
-     6 ~> {ct2} con cond/vma_# h
-     5 ~> con cond/vma_# h
-     4 ~> con cond/vma_# h
-     3 ~> con cond/vma_# h
-     13 ~> con cond/vma_# h
+     6 ~> {ct2} con cond/vma<-# h
+     5 ~> con cond/vma<-# h
+     4 ~> con cond/vma<-# h
+     3 ~> con cond/vma<-# h
+     13 ~> con cond/vma<-# h
      12 ~> con1 cond/vma dec h
      11 ~> con1 cond/vma inc h
      10 ~> {cn1} con cond/load vma held h
@@ -94,7 +94,7 @@ e6: 10164 8 mix
      6 ~< con3 wr even par data h
      5 ~< {ar1} con cache load en h
      4 ~< {cp2} -con cond/sel vma h
-     3 ~< {ct2} con cond/vma_#
+     3 ~< {ct2} con cond/vma<-#
      11 ~< {cn1} con cond/load vma held h
      12 ~< {et2} -con load spec instr h
      13 ~< {an1} -con vma sel 2 h
@@ -680,8 +680,8 @@ e40: 10141 shft reg
      9 ~< con-internal-e44-2
      6 ~< con-internal-e44-15
      5 ~< %NC%
-     7 ~< con1 cond/sr_# l
-     10 ~< con1 cond/sr_# l
+     7 ~< con1 cond/sr<-# l
+     10 ~< con1 cond/sr<-# l
      4 ~< con2 clk b h
      14 ~> {be1} con sr 00 h
      15 ~> {cr1} con sr 01 h

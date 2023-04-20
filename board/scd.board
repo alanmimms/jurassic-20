@@ -740,7 +740,7 @@ e36: 10117 dual 2-3 or-and
      3 ~> %NC%
 
 e26: 10101 quad or/nor
-     4 ~< {br2} ctl1 cond/ar_exp h
+     4 ~< {br2} ctl1 cond/ar<-exp h
      12 ~< %NC%
      2 ~> scd3-internal-e26-2
      5 ~> scd3-internal-e26-5
@@ -906,7 +906,7 @@ e33: 10104 quad and
      10 ~< {cu2} cram # 06 h
      11 ~< scd5 pcf+# h
      14 ~> scd4-internal-e33-14
-     12 ~< {br1} con cond/pcf_#
+     12 ~< {br1} con cond/pcf<-#
      13 ~< {bu2} -con pi cycle a h
      15 ~> scd5 pcf<-# h
      9 ~> %NC%
@@ -951,7 +951,7 @@ e19: 10104 quad and
      11 ~< scd5 load flags h
      14 ~> scd4 trap req 2 en h
      12 ~< {fe1} cram # 03 h
-     13 ~< scd5 pcf_# h
+     13 ~< scd5 pcf<-# h
      15 ~> scd4 trap req 2 en h
      6 ~< scd4-internal-e85-2
      7 ~< {er2} con cond instr abort h
