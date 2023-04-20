@@ -1,3 +1,344 @@
 Page: CRM1, PDF392
-// M8548 TBD
-// STUB
+// M8548 CRM
+//
+// 4AF52 N=00, M=06
+// 4AF50 N=04, M=12
+// 4AF44 N=08, M=18
+// 4AF42 N=12, M=24
+// 4AF40 N=16, M=30
+
+Page: CRM1, PDF392
+
+e34: 10101 quad or/nor
+     4 ~< {fj2} cra1 adr 00 [n/4+1,a,b,c,d,e] h
+     12 ~< %NC%
+     2 ~> cr01 adr 00 a l
+     5 ~> cr01 adr 00 a h
+     10 ~< {cs2} cra1 adr 01 [n/4+1,a l,b h,c l,d h, e l]
+     14 ~> cr01 adr 01 a l
+     11 ~> cr01 adr 01 a h
+     7 ~< {cm2} cra1 adr 02 [n/4+1,a l,b h,c l,d h,e l]
+     3 ~> cr01 adr 02 a l
+     6 ~> cr01 adr 02 a h
+     13 ~< {dk2} cra1 adr 10 [n/4+1,a l,b h,c l,d h,e l]
+     15 ~> cr01 adr 10 c l
+     9 ~> cr01 adr 10 c h
+
+e35: 10101 quad or/nor
+     4 ~< {fj2} cra1 adr 00 [n/4+1,a,b,c,d,e] h
+     12 ~< %NC%
+     2 ~> cr01 adr 00 b l
+     5 ~> cr01 adr 00 b h
+     10 ~< {cs2} cra1 adr 01 [n/4+1,a l,b h,c l,d h, e l]
+     14 ~> cr01 adr 01 b l
+     11 ~> cr01 adr 01 b h
+     7 ~< {cm2} cra1 adr 02 [n/4+1,a l,b h,c l,d h,e l]
+     3 ~> cr01 adr 02 b l
+     6 ~> cr01 adr 02 b h
+     13 ~< {dk2} cra1 adr 10 [n/4+1,a l,b h,c l,d h,e l]
+     15 ~> cr01 adr 10 d l
+     9 ~> cr01 adr 10 d h
+
+e27: 10101 quad or/nor
+     10 ~< {cp2} cra1 adr 03 [n/4+1,a l,b h,c l,d h,e l]
+     14 ~> cr01 adr 03 a l
+     11 ~> cr01 adr 03 a h
+     13 ~< {de2} cra1 adr 05 [n/4+1,a l,b h,c l,d h,e l]
+     15 ~> cr01 adr 05 a l
+     9 ~> cr01 adr 05 a h
+     7 ~< {cv2} cra1 adr 08 [n/4+1,a l,b h,c l,d h,e l]
+     3 ~> cr01 adr 08 a l
+     6 ~> cr01 adr 08 a h
+     4 ~< {dd2} cra1 adr 09 [n/4+1,a,b,c,d,e] h
+     2 ~> cr01 adr 09 a l
+     5 ~> cr01 adr 09 a h
+     12 ~< %NC%
+
+e28: 10101 quad or/nor
+     10 ~< {cu2} cra1 adr 03 [n/4+1,a l,b h,c l,d h,e l]
+     14 ~> cr01 adr 03 b l
+     11 ~> cr01 adr 03 b h
+     13 ~< {de2} cra1 adr 05 [n/4+1,a l,b h,c l,d h,e l]
+     15 ~> cr01 adr 05 b l
+     9 ~> cr01 adr 05 b h
+     7 ~< {cv2} cra1 adr 08 [n/4+1,a l,b h,c l,d h,e l]
+     3 ~> cr01 adr 08 b l
+     6 ~> cr01 adr 08 b h
+     4 ~< {dd2} cra1 adr 09 [n/4+1,a,b,c,d,e] h
+     2 ~> cr01 adr 09 b l
+     5 ~> cr01 adr 09 b h
+     12 ~< %NC%
+
+e30: 10101 quad or/nor
+     7 ~< {cu2} cra1 adr 04 [n/4+1,a l,b h,c l,d h,e l]
+     3 ~> cr01 adr 04 a l
+     6 ~> cr01 adr 04 a h
+     13 ~< {df2} cra1 adr 06 [n/4+1,a l,b h,c l,d h,e l]
+     15 ~> cr01 adr 06 a l
+     9 ~> cr01 adr 06 a h
+     10 ~< {dj2} cra1 adr 07 [n/4+1,a l,b h,c l,d h, e l]
+     14 ~> cr01 adr 07 a l
+     11 ~> cr01 adr 07 a h
+     4 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
+     2 ~> cr01 adr 10 a l
+     5 ~> cr01 adr 10 a h
+     12 ~< %NC%
+
+e31: 10101 quad or/nor
+     7 ~< {de2} cra1 adr 04 [n/4+1,a l,b h,c l,d h,e l]
+     3 ~> cr01 adr 04 b l
+     6 ~> cr01 adr 04 b h
+     13 ~< {df2} cra1 adr 06 [n/4+1,a l,b h,c l,d h,e l]
+     15 ~> cr01 adr 06 b l
+     9 ~> cr01 adr 06 b h
+     10 ~< {dj2} cra1 adr 07 [n/4+1,a l,b h,c l,d h, e l]
+     14 ~> cr01 adr 07 b l
+     11 ~> cr01 adr 07 b h
+     4 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
+     2 ~> cr01 adr 10 b l
+     5 ~> cr01 adr 10 b h
+
+
+Page: CRM2, PDF393
+
+e36:  10174 2x4 mix
+      6 ~< {dr2} cram [n+60] h
+      4 ~< {fp2} cram [n+40] h
+      5 ~< {es2} cram [n+20] h
+      3 ~< {ed2} cram [n+00] h
+      10 ~< cr03 par 1st h
+      12 ~< {fk2} cram [n+41] h
+      11 ~< {ep2} cram [n+21] h
+      13 ~< {dv2} cram [n+01] h
+      9 ~< {dm2} diag 05 a l
+      7 ~< {ds2} diag 06 a l
+      14 ~< {ce2} diag read func 14x l
+      2 ~> {dt2} ebus d[m+02] e h
+      15 ~> {dp1} ebus d[m+03] e h
+
+e33: 10101 quad or/nor
+     4 ~< {dt2} ebus d[m+02] e h
+     2 ~> %NC%
+     5 ~> cr02 ebus [m+02] h
+     7 ~< {dp1} ebus d[m+03] e h
+     3 ~> %NC%
+     6 ~> cr02 ebus [m+03] h
+     13 ~< {dp2} ebus d[m+04] e h
+     15 ~> %NC%
+     9 ~> cr02 ebus [m+04] h
+     10 ~< {du2} ebus d[m+05] e h
+     14 ~> %NC%
+     11 ~> cr02 ebus [m+05] h
+
+e23:  10174 2x4 mix
+      6 ~< {cf2} cram [n+62] h
+      4 ~< {ar2} cram [n+42] h
+      5 ~< {cj2} cram [n+22] h
+      3 ~< {dk2} cram [n+02] h
+      10 ~< {cd2} cram par [n] h
+      12 ~< {av2} cram [n+43] h
+      11 ~< {bf1} cram [n+23] h
+      13 ~< {bp2} cram [n+03] h
+      9 ~< {af1} diag 05 a l
+      7 ~< {aj2} diag 06 a l
+      14 ~< {ce2} diag read func 14x l
+      2 ~> {dp2} ebus d[m+04] e h
+      15 ~> {du2} ebus d[m+05] e h
+
+e1: 10161 decoder
+    14 ~< {ad1} diag 04 b l
+    9 ~< {af1} diag 05 b l
+    7 ~< {aj2} diag 06 b l
+    15 ~< %NC%
+    2 ~< {aj1} diag load func 05x l
+    10 ~> {af2} cr02 dia func 050 [n] l
+    11 ~> {ae2} cr02 dia func 051 [n] l
+    12 ~> {ae1} cr02 dia func 052 [n] l
+    13 ~> {ad2} cr02 dia func 053 [n] l
+    3 ~> cr02 write (60-79) l
+    4 ~> cr02 write (40-59) l
+    5 ~> cr02 write (20-39) l
+    6 ~> cr02 write (00-19) l
+
+Page: CRM3, PDF394
+
+e16: 10160 parity
+     3 ~< {bv2} [n/4+1,nc,nc,cram mark h,cram disp parity h, cram par 00 h]
+     4 ~< {bu2} [n/16+1,nc,cram par 04 h]
+     5 ~< {br2} [n/16+1,nc,cram par 08 h]
+     6 ~< {bs2} [n/16+1,nc,cram par 12 h]
+     7 ~< {ck2} cram [n+02] h
+     9 ~< {bp2} cram [n+03] h
+     10 ~< {bp2} cram [n+22] h
+     11 ~< {bp2} cram [n+23] h
+     12 ~< {bp2} cram [n+42] h
+     13 ~< {bp2} cram [n+43] h
+     14 ~< {bp2} cram [n+62] h
+     15 ~< cr03 par 1st h
+     2 ~> {cd2} cram par [n] h
+
+e40: 10160 parity
+     3 ~< %NC%
+     4 ~< %NC%
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     9 ~<  {ed2} cram [n+00] h
+     10 ~< {dv2} cram [n+01] h
+     11 ~< {es2} cram [n+20] h
+     12 ~< {fp2} cram [n+21] h
+     13 ~< {fk2} cram [n+40] h
+     14 ~< {dr2} cram [n+41] h
+     15 ~< {dr2} cram [n+60] h
+     2 ~> cr03 par 1st h
+
+e29: 10210 dual 3 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk crm delayed h
+     2 ~> cr03 clk a h
+     3 ~> cr03 clk b h
+     4 ~> %NC%
+     9 ~< %NC%
+     10 ~< clk crm delayed h
+     11 ~< %NC%
+     12 ~> cr03 clk c h
+     13 ~> cr03 clk d h
+     14 ~> %NC%
+
+e3: 10101 quad or/nor
+     10 ~< {al2} mr reset 01 h
+     12 ~< %NC%
+     14 ~> %NC%
+     11 ~> cr03 reset h
+     4 ~< {ar2} cram [n+42] h
+     2 ~> {am2} cram [n+42] a l
+     5 ~> {as2} cram [n+42] a h
+     7 ~< {av2} cram [n+43] h
+     3 ~> {ap2} cram [n+43] a l
+     6 ~> {au2} cram [n+43] a h
+
+e54: 10110 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< {es2} cram [n+20] h
+     2 ~> {ff2} cram [n+20] 00 h
+     3 ~> {fe2} cram [n+20] 06 h
+     4 ~> {fd2} cram [n+20] 12 h
+     9 ~< %NC%
+     10 ~< {es2} cram [n+20] h
+     11 ~< %NC%
+     12 ~> {er2} cram [n+20] 18 h
+     13 ~> {eu2} cram [n+20] 24 h
+     14 ~> {ev2} cram [n+20] 30 h
+
+e47: 10110 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< {ep2} cram [n+21] h
+     2 ~> {ek2} cram [n+21] 00 h
+     3 ~> {el2} cram [n+21] 06 h
+     4 ~> {em2} cram [n+21] 12 h
+     9 ~< %NC%
+     10 ~< {ep2} cram [n+21] h
+     11 ~< %NC%
+     12 ~> {ej2} cram [n+21] 18 h
+     13 ~> {ef2} cram [n+21] 24 h
+     14 ~> {ee2} cram [n+21] 30 h
+
+e13: 10110 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< {cj2} cram [n+22] h
+     2 ~> {bm2} cram [n+22] 00 h
+     3 ~> {bl2} cram [n+22] 06 h
+     4 ~> {dm1} cram [n+22] 12 h
+     9 ~< %NC%
+     10 ~< {cj2} cram [n+22] h
+     11 ~< %NC%
+     12 ~> {bk2} cram [n+22] 18 h
+     13 ~> {bk1} cram [n+22] 24 h
+     14 ~> {bl1} cram [n+22] 30 h
+
+e9:  10110 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< {bf1} cram [n+23] h
+     2 ~> {bj1} cram [n+23] 00 h
+     3 ~> {bj2} cram [n+23] 06 h
+     4 ~> {bf2} cram [n+23] 12 h
+     9 ~< %NC%
+     10 ~< {bf1} cram [n+23] h
+     11 ~< %NC%
+     12 ~> {bd2} cram [n+23] 18 h
+     13 ~> {be2} cram [n+23] 24 h
+     14 ~> {be1} cram [n+23] 30 h
+
+e58: 10101 quad or/nor
+     10 ~< {fp2} cram [n+40] h
+     12 ~< %NC%
+     14 ~> {fs2} cram [n+40] a l
+     11 ~> {fm2} cram [n+40] a h
+     7 ~< {fk2} cram [n+41] h
+     3 ~> {fr2} cram [n+41] a l
+     6 ~> {fl2} cram [n+41] a h
+
+e50: 10141 shft reg
+     13 ~< %NC%
+     12 ~< cr05 out [n+60] h
+     11 ~< cr05 out [n+40] h
+     9 ~< cr04 out [n+20] h
+     6 ~< cr04 out [n+00] h
+     5 ~< %NC%
+     7 ~< cr03 reset h
+     10 ~< %NC%
+     4 ~< cr03 clk a h
+     14 ~> {dr2} cram [n+60] h
+     15 ~> {fp2} cram [n+40] h
+     2 ~> {es2} cram [n+20] h
+     3 ~> {ed2} cram [n+00] h
+
+e43: 10141 shft reg
+     13 ~< %NC%
+     12 ~< cr05 out [n+41] h
+     11 ~< cr05 out [n+41] h
+     9 ~< cr04 out [n+21] h
+     6 ~< cr04 out [n+01] h
+     5 ~< %NC%
+     7 ~< cr03 reset h
+     10 ~< %NC%
+     4 ~< cr03 clk b h
+     14 ~> {dl2} cram [n+41] h
+     15 ~> {fk2} cram [n+41] h
+     2 ~> {ep2} cram [n+21] h
+     3 ~> {dv2} cram [n+01] h
+
+e6:  10141 shft reg
+     13 ~< %NC%
+     12 ~< cr05 out [n+62] h
+     11 ~< cr05 out [n+42] h
+     9 ~< cr04 out [n+22] h
+     6 ~< cr04 out [n+02] h
+     5 ~< %NC%
+     7 ~< cr03 reset h
+     10 ~< %NC%
+     4 ~< cr03 clk c h
+     14 ~> {cf2} cram [n+62] h
+     15 ~> {ar2} cram [n+42] h
+     2 ~> {cj2} cram [n+22] h
+     3 ~> {ck2} cram [n+02] h
+
+e20: 10141 shft reg
+     13 ~< %NC%
+     12 ~< cr05 out [n+43] h
+     11 ~< cr05 out [n+43] h
+     9 ~< cr04 out [n+23] h
+     6 ~< cr04 out [n+03] h
+     5 ~< %NC%
+     7 ~< cr03 reset h
+     10 ~< %NC%
+     4 ~< cr03 clk d h
+     14 ~> {cl2} cram [n+43]s h
+     15 ~> {av2} cram [n+43] h
+     2 ~> {bf1} cram [n+23] h
+     3 ~> {bp2} cram [n+03] h
