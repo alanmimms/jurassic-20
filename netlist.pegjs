@@ -53,14 +53,14 @@ selectorList = list:( ',' _ idList )*
 idList = list:( macroRef / idChunk )+
        		{ return AST('IDList', {list}) }
 
-bareID = [-/#=%.+_&a-zA-Z]+ [-/#=%.+_&<> a-zA-Z0-9]*
+bareID = [-/#=%.+_&()a-zA-Z]+ [-/#=%.+_&<> a-zA-Z0-9]*
 		{ return text().trim() }
 
-idChunk = name:( '\\' EOL _ / [-/#%.+_&<> a-zA-Z0-9=] )+
+idChunk = name:( '\\' EOL _ / [-/#%.+_&<> ()a-zA-Z0-9=] )+
 		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
 
 // like idChunk but allows ',' in the identifier in non-macro context
-id = name:( '\\' EOL _ / [-/#%,.+_&<> a-zA-Z0-9=] )+
+id = name:( '\\' EOL _ / [-/#%,.+_&<> ()a-zA-Z0-9=] )+
 		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
 
 expr = sum
