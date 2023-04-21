@@ -299,6 +299,32 @@ const logic = {
     },
   },
 
+  '10145': {
+    desc: '16x4 ram',
+    '~<': expand('d0=5,d1=4,d2=11,d3=12, a0=10,a1=9,a2=7,a3=6, nen=3, nwrite=13'),
+    '~>': expand('q0=2,q1=1,q2=15,q3=14'),
+
+    fn({i}) {
+      const a =
+            +i.a0 << 0 |
+            +i.a1 << 1 | 
+            +i.a2 << 2 |
+            +i.a3 << 3;
+      if (!i.nwrite && !i.nen) this.ram[a] = (i.d0 << 0) | (i.d1 << 1) | (i.d2 << 2) | (i.d3 << 3);
+      const d = (!i.nwrite || i.nen)? false : this.ram[a];
+      return {
+	d0: !!(d & 1),
+	d1: !!(d & 2),
+	d2: !!(d & 4),
+	d3: !!(d & 8),
+      };
+    },
+
+    init() {
+      for (let k = 0; k < 64; ++k) this.ram[k] = 0;
+    },
+  },
+
   '10147': {
     desc: '128x1 ram',
     '~<': expand('a0=4,a1=3,a2=2,a3=5,a4=6,a5=7,a6=10, nen1=13,nen2=14, nwrite=12, d=11'),
