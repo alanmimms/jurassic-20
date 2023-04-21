@@ -810,7 +810,7 @@ Page: DP04, PDF18
 
 dl1: delay-line 13ns delay buffer
      1 ~< internal-[n]-dp04 fm write l-13ns delay-in
-     7 ~> internal-[n]-dp04 fm write l-13ns delay-out
+     2 ~> internal-[n]-dp04 fm write l-13ns delay-out
 
 e59: 10101 or buffer
      10 ~< {ef1} diag read func 12x h

@@ -731,7 +731,7 @@ const logic = {
   'delay-line': {
     desc: 'delay buffer',
     '~<': expand('in=1'),
-    '~>': expand('out=7'),
+    '~>': expand('out=2'),
 
     fn({i}) {
       return {
