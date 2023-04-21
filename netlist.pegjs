@@ -8,8 +8,11 @@
 
 compileable = (_ EOL )* b:(backplane+ / board) { return b }
 
-backplane = 'Backplane' _ ':' _ name:simpleID _ EOL slots:slotDef+
-                { return AST('Backplane', {name, slots}) }
+backplane = 'Backplane' _ ':' _
+	macros:( '{' _ m:macroDef* '}' _ {return m} )?
+	name:simpleID _ EOL
+	slots:slotDef+
+                { return AST('Backplane', {name, macros, slots}) }
 
 slotDef = 'Slot' _ n:number _ ':' _ board:slotContent blankLines
                 { return AST('Slot', {n, board}) }

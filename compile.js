@@ -52,19 +52,20 @@ function parseBackplanes(parser) {
     console.log(`Backplane ${bp.name}:`);
     dumpAST(bp, bp.name, 'before');
 
+    const bpMacros = bp.macros || [];
+    const bpMacroDesc = bpMacros.map(macro => `${macro.id}=${macro.value}`).join (' ');
+    const bpMacroEnv = {};
+
+    bpMacros.forEach(macro => bpMacroEnv[macro.id] = macro.value);
+
     bp.slots.forEach(slot => {
       const board = slot.board;
 
       if (board.t === 'Empty') return;
 
-      // `a` appears to be a setting to allow us to emulate a KL10A CPU
-      // when a==1.
-      const macroEnv = {
-        a: '2',			// KL10B 50MHz clock
-      };
-
       const macros = board.macros || [];
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
+      const macroEnv = {...bpMacroEnv};
 
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
@@ -268,7 +269,7 @@ function evalExpr(t, macroEnv, isMath = false) {
       const selected = t.ids.list[+result - 1];
 
       if (result < 1 || selected == null) {
-	console.log(`ERROR: Selector produces undefined result at\n${util.inspect(t.loc)}`);
+	console.log(`ERROR: Selector produces undefined result t=\n${util.inspect(t, {depth:99})}`);
 	result = '%NC%';
       } else {
 	result = evalExpr(selected, macroEnv, false);
