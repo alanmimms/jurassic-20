@@ -2,20 +2,23 @@
 
 'use strict';
 
-const CLA = require('command-line-args')
+const util = require('util');
+const CMDR = require('commander').program;
 const COMPILE = require('./compile');
 
 
-const optionDefinitions = [
-  { name: 'trace-parse', alias: 'T', type: Boolean },
-  { name: 'dump-ast', alias: 'A', type: Boolean },
-  { name: 'verbose-errors', alias: 'V', type: Boolean },
-  { name: 'check-nets', alias: 'C', type: Boolean },
-  { name: 'check-undriven', alias: 'U', type: Boolean },
-  { name: 'check-wire-or', alias: 'O', type: Boolean },
-  { name: 'src', type: String, multiple: false, defaultOption: true },
-];
 
-
-const options = CLA(optionDefinitions);
-const backplanes = COMPILE.compile(options);
+CMDR
+  .option('-t, --trace-parse', `Print trace while parsing netlist`)
+  .option('-a, --dump-ast', `Dump AST after parsing`)
+  .option('-v, --verbose-errors', `Give more info for errors`)
+  .option('-n, --check-nets', `Verify netlist`)
+  .option('-u, --check-undriven', `Show list of undriven nets`)
+  .option('-o, --check-wire-or', `Show list of wire-ORed nets`)
+  .argument('<src>', `Source file to start parsing`)
+  .action((src, options) => {
+    options.src = src;
+    const backplanes = COMPILE.compile(options);
+    console.log(`[done]`);
+  })
+  .parse();

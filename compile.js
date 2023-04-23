@@ -33,7 +33,7 @@ function parseFile(parser, filename) {
 
 
 function dumpAST(ast, name, stage) {
-  if (!options['dump-ast']) return;
+  if (!options.dumpAst) return;
 
   const f = fs.openSync(`${name}.${stage}.evaluation`, 'w');
   fs.writeSync(f, util.inspect(ast, {depth: 9999}));
