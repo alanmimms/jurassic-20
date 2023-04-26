@@ -1,3 +1,529 @@
+// M8543
+
+// MQ CONTROL
+//
+//           	  CRAM   COND  MQM  MQM   MQ
+// MQ FUNC   	 MQ SEL  MQ #  EN   SEL   SEL
+// -------   	 ------  ----  ---  ---   ---
+// HOLD      	    0      -    0    00    11
+// 0         	    0     #3    0    00    00
+// SH LEFT   	    0     #1    0    00    10
+// SH RIGHT  	    0     #2    0    00    01
+//
+// SH        	    1      -    1    01    00
+// AD        	    1     #3    1    10    00
+// SH RIGHT *2	    1     #1    1    00    00
+// 1         	    1     #2    1    11    00
+//
+// DIV (SH LEFT)    0      -    0    00    10
+// MUL (SH RIGHT*2) 1      -    1    00    00
+// RESET (1)        -      -    1    11    00
+// CLR              0      -    0    00    00
+
 Page: CTL1, PDF364
-// M8543 TBD
-// STUB
+
+e62:  10162 decoder
+      14 ~< {df2} cra3 disp 02 h
+      9 ~< {de2} cra3 disp 03 h
+      7 ~< {dj2} cra3 disp 04 h
+      15 ~< -ctl1 disp en 00 l
+      2 ~< -ctl1 disp en 01 l
+      6 ~> %NC%
+      5 ~> %NC%
+      4 ~> ctl1 disp/aread h
+      3 ~> ctl1 disp/return h
+      13 ~> %NC%
+      12 ~> %NC%
+      11 ~> {bj1} ctl disp/nicond h
+      10 ~> %NC%
+
+e25: 10162 decoder
+      14 ~< {df2} cra3 disp 02 h
+      9 ~< {de2} cra3 disp 03 h
+      7 ~< {dj2} cra3 disp 04 h
+      15 ~< ctl1 disp en 00 l
+      2 ~< ctl1 disp en 01 l
+      6 ~> ctl1 disp/mul h
+      5 ~> ctl1 disp/div h
+      4 ~> %NC%
+      3 ~> %NC%
+      13 ~> %NC%
+      12 ~> ctl1 disp/norm h
+      11 ~> ctl disp/ea mod h
+      10 ~> %NC%
+
+e23: 10162 decoder
+      14 ~< {df2} cra3 disp 02 h
+      9 ~< {de2} cra3 disp 03 h
+      7 ~< {dj2} cra3 disp 04 h
+      15 ~< -ctl1 disp en 00 l
+      2 ~< ctl1 disp en 01 l
+      6 ~> %NC%
+      5 ~> ctl1 spec/inh cry 18 h
+      4 ~> ctl1 spec/mq shift h
+      3 ~> {cl2} ctl1 spec/scm alt h
+      13 ~> {cm1} ctl1 spec/clr fpd h
+      12 ~> ctl1 spec/load pc h
+      11 ~> ctl1 spec/xcry ar0 h
+      10 ~> ctl1 spec/gen cry 18 h
+
+e26: 10162 decoder
+      14 ~< {df2} cra3 disp 02 h
+      9 ~< {de2} cra3 disp 03 h
+      7 ~< {dj2} cra3 disp 04 h
+      15 ~< ctl1 disp en 00 l
+      2 ~< -ctl1 disp en 01 l
+      6 ~> ctl1 spec/stack update h
+      5 ~> ctl1 spec/sbr call h
+      4 ~> ctl1 spec/arl ind h
+      3 ~> %NC%
+      13 ~> {ck2} ctl1 spec/flag ctl h
+      12 ~> ctl1 spec/save flags h
+      11 ~> {cl1} ctl1 spec/sp mem cycle h
+      10 ~> ctl1 spec/ad long h
+
+e21: 10161 decoder
+      14 ~< {df2} cra3 disp 02 h
+      9 ~< {de2} cra3 disp 03 h
+      7 ~< {dj2} cra3 disp 04 h
+      15 ~< ctl1 disp en 00 l
+      2 ~< -ctl1 disp en 01 l
+      6 ~> %NC%
+      5 ~> %NC%
+      4 ~> %NC%
+      3 ~> ctl1 spec/mtr ctl l
+      13 ~> {cu2} ctl spec/flag ctl l
+      12 ~> {cr2} ctl spec/save flags l
+      11 ~> %NC%
+      10 ~> %NC%
+
+e22: 10164 8 mixer
+     6 ~< {cl2} ctl1 spec/scm alt h
+     5 ~< {cm1} ctl1 spec/clr fpd h
+     4 ~< {cm2} ctl gen cry 18 h
+     3 ~< ctl1 spec/stack update h
+     11 ~< {ck2} ctl1 spec/flag ctl h
+     12 ~< {cl1} ctl1 spec/sp mem cycle h
+     13 ~< {bl2} ctl ad long h
+     14 ~< {bl1} -ctl inh cry 18 h
+     10 ~< ctl3 ds 04 h
+     9 ~< ctl3 ds 05 h
+     7 ~< ctl3 ds 06 h
+     2 ~< ctl3 diag read l
+     15 ~> {dr2} ebus d24 e h
+
+e18: 10164 8 mixer
+     6 ~< {cr2} -ctl spec/save flags h
+     5 ~< {da1} -ctl1 spec mtr ctl h
+     4 ~< {dc1} ctl1 cond/ar<-exp h
+     3 ~< {cs2} -ctl1 disp ret h
+     11 ~< {cp2} -ctl1 load pc h
+     12 ~< {bt2} ctl adx cry 36 h
+     13 ~< {bs2} adl adx cry 36 a h
+     14 ~< {bs1} diag mem reset h
+     10 ~< ctl3 ds 04 h
+     9 ~< ctl3 ds 05 h
+     7 ~< ctl3 ds 06 h
+     2 ~< ctl3 diag read l
+     15 ~> {ds1} ebus d25 e h
+
+e42: 10164 8 mixer
+     6 ~< {ec1} ctl arl sel 2 h
+     5 ~< {ee1} ctl arl sel 1 h
+     4 ~< {ea1} ctl arr sel 2 h
+     3 ~< {ef2} ctl arr sel 1 h
+     11 ~< {fd2} ctl arxl sel 2 h
+     12 ~< -ctl2 arxl sel 1 h
+     13 ~< {fd1} ctl arxr sel 2 h
+     14 ~< -ctl2 arxr sel 1 h
+     10 ~< ctl3 ds 04 h
+     9 ~< ctl3 ds 05 h
+     7 ~< ctl3 ds 06 h
+     2 ~< ctl3 diag read l
+     15 ~> {ds2} ebus d26 e h
+
+e34: 10164 8 mixer
+     6 ~< {ed1} -ctl arr load a h
+     5 ~< {dk2} -ctl arr load b h
+     4 ~< {dk1} ctl mqm sel 2 h
+     3 ~< {dl2} ctl mqm sel 1 h
+     11 ~< {bv2} ctl mq sel 2 h
+     12 ~< {bu2} ctl mq sel 1 h
+     13 ~< {bh2} ctl mqm en h
+     14 ~< {df1} -ctl3 diag ld ebus reg h
+     10 ~< ctl3 ds 04 h
+     9 ~< ctl3 ds 05 h
+     7 ~< ctl3 ds 06 h
+     2 ~< ctl3 diag read l
+     15 ~> {dt2} ebus d27 e h
+
+e41: 10164 8 mixer
+     6 ~< {dm1} -ctl ar 00-08 load h
+     5 ~< {ee2} -ctl ar 09-17 load h
+     4 ~< {dn1} ctl arx load h
+     3 ~< {ed2} ctl arl sel 4 h
+     11 ~< {ef1} ctl ar 00-11 clr h
+     12 ~< {ej1} ctl ar 12-17 clr h
+     13 ~< {ej2} ctl arr clr h
+     14 ~< {em2} -ctl2 spec call h
+     10 ~< ctl3 ds 04 h
+     9 ~< ctl3 ds 05 h
+     7 ~< ctl3 ds 06 h
+     2 ~< ctl3 diag read l
+     15 ~> {du2} ebus d28 e h
+
+e30: 10101 quad or/nor
+     10 ~< {et2} cra3 disp 00 h
+     12 ~< %NC%
+     14 ~> ctl1 disp en 00 l
+     11 ~> ctl1 disp en 00 h
+     13 ~< {es1} cra3 disp 01 h
+     15 ~> ctl1 disp en 01 l
+     9 ~> ctl1 disp en 01 h
+     4 ~< {ep2} mr reset 04 h
+     2 ~> %NC%
+     5 ~> ctl1 reset h
+
+e28: 10109 4/5 or/nor
+     9 ~< ctl1 disp/mul
+     10 ~< ctl1 disp/div h
+     11 ~< ctl1 disp/norm h
+     12 ~< ctl1 spec/ad long h
+     13 ~< ctl1 spec/mq shift h
+     14 ~> %NC%
+     15 ~> {bl2} ctl ad long h
+
+e20: 10101 quad or/nor
+     4 ~< {af1} -clk sbr call l
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> -ctl1 disp ret h
+     7 ~< ctl1 disp/return h
+     3 ~> -ctl1 disp ret h
+     6 ~> %NC%
+
+e16: 10105 quad or buffer
+     4 ~< ctl1 spec/mtr ctl l
+     5 ~< {aa1} -apr2 clk c l
+     3 ~> %NC%
+     2 ~> {da1} ctl1 spec mtr ctl l
+
+e12: 10117 dual 2-3 or-and
+     4 ~< ctl1 spec/gen cry 18 h
+     5 ~< ctl1 spec/stack update h
+     6 ~< ctl1 spec/gen cry 18 h
+     7 ~< {cn1} mcl4 short stack h
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> {cm2} ctl gen cry 18 h
+     13 ~< {aa1} -apr2 clk c l
+     12 ~< ctl1-internal-e12-15
+     11 ~< ctl1-internal-e16-14
+     10 ~< {af1} -clk sbr call l
+     9 ~< %NC%
+     14 ~> %NC%
+     15 ~> ctl1-internal-e12-15
+
+e3:  10105 or buffer
+     4 ~< {bh2} -con pi cycle b l
+     5 ~< ctl1-internal-e12-15
+     3 ~> %NC%
+     2 ~> {cp2} ctl1 load pc l
+
+e8:  10113 quad 2 xor
+     5 ~< {bd2} cram ad cry h
+     4 ~< ctl1-internal-e7-2
+     7 ~< {bd2} cram ad cry h
+     6 ~< ctl1-internal-e7-2
+     9 ~< ctl1 pi cycle save flags h
+     2 ~> {bs2} ctl adx cry 36 a h
+     3 ~> {bt2} ctl adx cry 36 h
+
+e7:  10104 quad and
+     4 ~< {er1} ar 00 c h
+     5 ~< ctl1 spec/xcry ar0 h
+     2 ~> ctl1-internal-e7-2
+     6 ~< {dp2} cram # 05 c h
+     7 ~< ctl2 cond/reg ctl h
+     3 ~> {dc1} ctl1 cond/ar<-exp h
+
+e19: 10104 quad and
+     10 ~< {es2} con pc+1 inh h
+     11 ~< ctl1 spec/save flags h
+     14 ~> ctl1 pi cycle save flags h
+     6 ~< {bm1} cram # 08 c h
+     7 ~< ctl2 cond/reg ctl h
+     3 ~> ctl1 reg ctl # 08 h
+     4 ~< ctl1 reg ctl # 02 l
+     5 ~< ctl2-internal-e43-14
+     2 ~> {bk2} ctl arr load b l
+
+e11: 10121 4-wide or-and
+     4 ~< ctl1 spec/inh cry 18 h
+     5 ~< ctl1 spec/save flags h
+     6 ~< ctl1 spec/stack update h
+     10 ~< ctl1-internal-e10-2
+     11 ~< ctl1 spec/inh cry 18 h
+     12 ~< ctl1 spec/save flags h
+     13 ~< ctl1 spec/inh cry 18 h
+     14 ~< ctl1 spec/save flags h
+     15 ~< {cn1} mcl2 short stack h
+
+e27: 10104 quad and
+     4 ~< {er2} cram # 00 c h
+     5 ~< ctl2 cond/reg ctl h
+     2 ~> ctl1 reg ctl # 00 h
+     12 ~< {dp1} cram # 02 c h
+     13 ~< ctl2 cond/reg ctl h
+     9 ~> ctl1 reg ctl # 02 l
+     15 ~> %NC%
+     6 ~< {dl1} cram #07 c h
+     7 ~< ctl2 cond/reg ctl h
+     3 ~> ctl1 reg ctl # 07 h
+     10 ~< ctl2-internal-e43-14
+     11 ~< ctl1 reg ctl # 02 l
+     14 ~> {ed1} ctl arr load a l
+
+e38: 10104 quad and
+     6 ~< {ep1} cram # 01 c h
+     7 ~< ctl2 cond/reg ctl h
+     3 ~> ctl1 reg ctl # 01 h
+     10 ~< ctl2 arl ind h
+     11 ~< {ep1} cram # 01 c h
+     14 ~> ctl2-internal-e38-14
+     4 ~< ctl1 disp/aread h
+     5 ~< -ctl2 ar 00-11 clr h
+     2 ~> ctl2 36 bit ea h
+
+Page: CTL2, PDF365
+
+e43: 10109 4/5 or/nor
+     9 ~< {em1} cram arm sel 4 h
+     10 ~< {ea1} ctl arr sel 2 h
+     11 ~< {ef2} ctl arr sel 1 h
+     12 ~< {ej2} ctl arr clr h
+     13 ~< ctl2 cond/arr load h
+     14 ~> ctl2-internal-e43-14
+     15 ~> %NC%
+
+e44: 10105 or buffer
+     9 ~< ctl2 cond/arlr load h
+     10 ~< ctl1 reg ctl # 01 h
+     11 ~< ctl2-internal-e43-2
+     6 ~> {ee2} ctl ar 09-17 load l
+     7 ~> %NC%
+     4 ~< {fj2} cram arm sel 1 h
+     5 ~< ctl3 diag ar load h
+     3 ~> %NC%
+     2 ~> ctl2-internal-e44-2
+
+e45: 10109 4/5 or/nor
+     4 ~< ctl2-internal-e43-2
+     5 ~< ctl2 cond/arll load h
+     6 ~< ctl1 reg ctl # 00 h
+     7 ~< ctl2-internal-e38-14
+     3 ~> {dm1} ctl ar 00-08 load l
+     2 ~> %NC%
+     9 ~< {eu2} cram arxml sel 4 h
+     10 ~< {fd1} ctl arxr sel 2 h
+     11 ~< {fa1} ctl arxr sel 1 h
+     12 ~< ctl2 arx clr h
+     13 ~< ctl1 reset h
+     14 ~> %NC%
+     15 ~> {dn1} ctl arx load h
+
+e49: 10101 quad or/nor
+     4 ~< {fk2} -arx 18 b l
+     12 ~< %NC%
+     2 ~> ctl2-internal-e49-2
+     5 ~> %NC%
+
+e51: 10104 quad and
+     10 ~< ctl2-internal-e49-2
+     11 ~< ctl1 disp/ea mod h
+     14 ~> ctl2-internal-e51-14
+     4 ~< {fv2} con fm xfer h
+     5 ~< {fl1} mcl load ar h
+     6 ~< {fv2} con fm xfer h
+     7 ~< {fu2} mcl load arx h
+     3 ~> ctl2-internal-e51-3
+     12 ~< {ev2} cram arm sel 2 h
+     13 ~< {fh2} cram arm sel 1 h
+     9 ~> ctl2-internal-e51-9
+     15 ~> %NC%
+
+e33: 10158 4x2 mixer
+     5 ~< %NC%
+     6 ~< {dp1} cram # 02 c h
+     3 ~< ctl2 cond/arx clr h
+     4 ~< {dr1} cram # 03 c h
+     12 ~< ctl2 cond/ar clr h
+     13 ~< {ek2} cram # 04 c h
+     10 ~< ctl2 cond/ar clr h
+     11 ~< {dp2} cram # 05 c h
+     9 ~< ctl2 arl ind h
+     1 ~> ctl2 mq clr h
+     2 ~> ctl2 arx clr h
+     15 ~> ctl2-internal-e33-15
+     14 ~> ctl2-internal-e33-14
+
+e64: 10109 4/5 or/nor
+     9 ~< {fs1} mcl5 23 bit ea h
+     10 ~< ctl1 reset h
+     11 ~< {fs2} mcl5 18 bit ea h
+     12 ~< ctl2-internal-e33-15
+     13 ~< ctl2-internal-e51-14
+     14 ~> ctl2 ar 00-11 clr l
+     15 ~> {ef1} ctl ar 00-11 clr h
+     4 ~< ctl2-internal-e51-14
+     5 ~< ctl2-internal-e51-14
+     6 ~< {fs2} mcl5 18 bit ea h
+     7 ~< ctl1 reset h
+     3 ~> %NC%
+     2 ~> {ej1} ctl ar 12-17 clr h
+
+e31: 10105 or buffer
+     4 ~< ctl2-internal-e33-14
+     5 ~< ctl1 reset h
+     3 ~> %NC%
+     2 ~> {ej2} ctl arr clr h
+     9 ~< {ac1} mcl1 mem/arl ind h
+     10 ~< ctl1 spec/arl ind h
+     11 ~< ctl2 cond/arl ind h
+     6 ~> %NC%
+     7 ~> ctl2 arl ind h
+
+e39: 10158 4x2 mixer
+     5 ~< ctl1 spec/sbr call h
+     6 ~< {er2} cram # 00 c h
+     3 ~< {em1} cram arm sel 4 h
+     4 ~< {en1} cram # 06 c h
+     12 ~< {ev2} cram arm sel 2 h
+     13 ~< {dl1} cram # 07 c h
+     10 ~< {fh2} cram arm sel 1 h
+     11 ~< {bm1} cram # 08 c h
+     9 ~< ctl2 arl ind h
+     1 ~> ctl2-internal-e39-1
+     2 ~> {ed2} ctl arl sel 4 h
+     15 ~> ctl2 arl ind sel 2 h
+     14 ~> ctl2 arl ind sel 1 h
+
+e35: 10105 or buffer
+     4 ~< {af1} clk sbr call h
+     5 ~< ctl2-internal-e39-1
+     3 ~> {em2} ctl2 spec call l
+     2 ~> %NC%
+     9 ~< {em1} -cram arm sel 4 l
+     10 ~< {ba1} -apr3 cono or datao l
+     11 ~< ctl2-internal-e51-9
+     6 ~> {dd2} ctl2 ebus xfer h
+     7 ~> {de1} ctl ebus xfer l
+     12 ~< {ff1} cram mq sel h
+     13 ~< ctl1 reset h
+     14 ~> ctl2-internal-d35-14
+     15 ~> {dh2} ctl mqm en h
+
+e40: 10109 4/5 or/nor
+     9 ~< ctl2 arl ind sel 2 h
+     10 ~< ctl2 36 bit ea h
+     11 ~< ctl3 diag ar load h
+     12 ~< ctl2-internal-e51-2
+     13 ~< ctl1 disp/ea mod h
+     14 ~> %NC%
+     15 ~> {e1} ctl arl sel 2 h
+     4 ~< {ev2} cram arm sel 2 h
+     5 ~< ctl1 disp/aread h
+     6 ~< ctl3 diag ar load h
+     7 ~< ctl2-internal-e51-2
+     3 ~> %NC%
+     2 ~> {ea1} ctl arr sel 2 h
+
+e47: 10105 or buffer
+     9 ~< {fm2} cram arxm sel 2 h
+     10 ~< %NC%
+     11 ~< ctl2-internal-e51-3
+     6 ~> %NC%
+     7 ~> {fd2} ctl arxl sel 2 h
+     4 ~< {fm2} cram arxm sel 2 h
+     5 ~< ctl2-internal-e51-3
+     3 ~> %NC%
+     2 ~> {fd1} ctl arxr sel 2 h
+     12 ~< ctl2 arl ind sel 1 h
+     13 ~< ctl3 diag ar load h
+     14 ~> %NC%
+     15 ~> ctl2-internal-e47-15
+
+e29: 10162 decoder
+     14 ~< {bd1} cram cond 03 a l
+     9 ~< {be1} cram cond 04 a l
+     7 ~< {bf2} cram cond 05 a l
+     15 ~< {bc1} con cond en 00-07 l
+     2 ~< %NC%
+     10 ~> %NC%
+     11 ~> ctl2 cond/arll load h
+     12 ~> ctl2 cond/arlr load h
+     13 ~> ctl2 cond/arr load h
+     3 ~> ctl2 cond/ar clr h
+     4 ~> ctl2 cond/arx clr h
+     5 ~> ctl2 cond/arl ind h
+     6 ~> clt2 cond/reg ctl h
+
+e50: 10117 dual 2-3 or-and
+     4 ~< {fl1} mcl load ar h
+     5 ~< ctl2-internal-e47-15
+     6 ~< ctl2-internal-e47-15
+     7 ~< {fl2} clk4 resp mbox h
+     9 ~< {fk1} clk resp sim h
+     3 ~> %NC%
+     2 ~> {ee1} ctl arl sel 1 h
+     12 ~< {fl1} mcl load ar h
+     13 ~< ctl2-internal-e44-2
+     10 ~< ctl2-internal-e44-2
+     11 ~< {fl2} clk4 resp mbox h
+     14 ~> %NC%
+     15 ~> {ee1} ctl arr sel 1 h
+
+e53: 10117 dual 2-3 or-and
+     4 ~< {fu2} mcl load arx h
+     5 ~< {ft2} cram arxm sel 1 h
+     6 ~< {ft2} cram arxm sel 1 h
+     7 ~< {fl2} clk4 resp mbox h
+     9 ~< {fk1} clk resp sim h
+     3 ~> ctl2 arxl sel 1 l
+     2 ~> {fc1} ctl arxl sel 1 h
+     12 ~< {fu2} mcl load arx h
+     13 ~< {ft2} cram arxm sel 1 h
+     10 ~< {ft2} cram arxm sel 1 h
+     11 ~< {fl2} clk4 resp mbox h
+     14 ~> ctl2 arxr sel 1 l
+     15 ~> {fa1} ctl arxr sel 1 h
+
+e32: 10109 4/5 or/nor
+     4 ~< ctl1 reset h
+     5 ~< ctl1 reg ctl # 07 h
+     6 ~< %NC%
+     7 ~< ctl2 mq clr h
+     3 ~> ctl2-internal-e32-3
+     2 ~> ctl2-internal-e32-2
+     9 ~< ctl2 mq clr h
+     10 ~< ctl1 reg ctl # 08 h
+     11 ~< ctl1 spec/mq shift h
+     12 ~< ctl1 disp/mul h
+     13 ~< ctl1 disp/div h
+     14 ~> ctl2-internal-e32-14
+     15 ~> %NC%
+
+e36: 10158 4x2 mixer
+     6 ~< %NC%
+     5 ~< %NC%
+     4 ~< %NC%
+     3 ~< ctl2-internal-e32-14
+     13 ~< ctl2-internal-e32-3
+     12 ~< %NC%
+     11 ~< ctl2-internal-e32-14
+     10 ~< %NC%
+     9 ~< ctl2-internal-e35-14
+     1 ~> {dk1} ctl mqm sel 2 h
+     2 ~> {dl2} ctl mqm sel 1 h
+     15 ~> {bv2} ctl mq sel 2 h
+     14 ~> {bu2} ctl mq sel 1 h
