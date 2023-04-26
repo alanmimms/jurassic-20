@@ -1,7 +1,13 @@
 {
+  const util = require('util');
+
   function AST(t, props) {
 //    console.log(`${t}: ${require('util').inspect(props, {depth: 9})}`);
-    return {t, location: location(), ...props};
+    const loc = location();
+    loc[util.inspect.custom] = function() {
+      return `@${this.start.line}:${this.start.column}:${this.start.offset}..${this.end.line}:${this.end.column}:${this.end.offset}`;
+    }
+    return {t, location: loc, ...props};
   }
 }
 
@@ -20,7 +26,7 @@ slotDef = 'Slot' _ n:number _ ':' _ board:slotContent blankLines
 slotContent = 'ignore' ( !EOL . )+
                 { return AST('Empty', {id: '%EMPTY%'}) }
 /       macros:( '{' _ m:macroDef* '}' {return m} )? _ 
-        id:simpleID _ comments:( !EOL . )*
+        id:simpleID _ comments:$( !EOL . )*
                 { return AST('ModuleID', {macros, id, comments}) }
 
 macroDef = id:simpleID _ '=' _ value:number _
