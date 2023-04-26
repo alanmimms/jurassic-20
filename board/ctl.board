@@ -183,6 +183,9 @@ e30: 10101 quad or/nor
      4 ~< {ep2} mr reset 04 h
      2 ~> %NC%
      5 ~> ctl1 reset h
+     7 ~< ctl3-internal-e37-4
+     3 ~> {df1} ctl3 diag ld ebus reg l
+     6 ~> {fp1} ctl3 diag ld ebus reg h
 
 e28: 10109 4/5 or/nor
      9 ~< ctl1 disp/mul
@@ -201,12 +204,20 @@ e20: 10101 quad or/nor
      7 ~< ctl1 disp/return h
      3 ~> -ctl1 disp ret h
      6 ~> %NC%
+     10 ~< {bn1} [b,nc,diag read func 10x] l
+     14 ~> %NC%
+     11 ~> ctl3 diag read l
 
 e16: 10105 quad or buffer
      4 ~< ctl1 spec/mtr ctl l
      5 ~< {aa1} -apr2 clk c l
      3 ~> %NC%
      2 ~> {da1} ctl1 spec mtr ctl l
+     9 ~< {dd1} con cond/diag func l
+     10 ~< %NC%
+     11 ~< {aa1} -apr2 clk c l
+     6 ~> %NC%
+     7 ~> ctl3-internal-e16-7
 
 e12: 10117 dual 2-3 or-and
      4 ~< ctl1 spec/gen cry 18 h
@@ -229,6 +240,15 @@ e3:  10105 or buffer
      5 ~< ctl1-internal-e12-15
      3 ~> %NC%
      2 ~> {cp2} ctl1 load pc l
+     9 ~< {ce2} ebus ds00 e h
+     10 ~< %NC%
+     11 ~< {cd2} ebus ds01 e h
+     6 ~> ctl3 console control l
+     7 ~> {dj1} ctl console control h
+     12 ~< {bk2} shm1 ar par odd a l
+     13 ~< ctl3 ad to ebus l l
+     14 ~> {bm2} ctl ebus parity out e h
+     15 ~> %NC%
 
 e8:  10113 quad 2 xor
      5 ~< {bd2} cram ad cry h
@@ -246,6 +266,10 @@ e7:  10104 quad and
      6 ~< {dp2} cram # 05 c h
      7 ~< ctl2 cond/reg ctl h
      3 ~> {dc1} ctl1 cond/ar<-exp h
+     12 ~< {cd1} ebus ds02 e h
+     13 ~< {cc1} ebus ds02 e h
+     9 ~> ctl3-internal-e7-9
+     15 ~> %NC%
 
 e19: 10104 quad and
      10 ~< {es2} con pc+1 inh h
@@ -257,6 +281,10 @@ e19: 10104 quad and
      4 ~< ctl1 reg ctl # 02 l
      5 ~< ctl2-internal-e43-14
      2 ~> {bk2} ctl arr load b l
+     12 ~< -ctl3 ds 00 h
+     13 ~< {cd2} ebus ds01 e h
+     9 ~> ctl3-internal-e19-9
+     15 ~> %NC%
 
 e11: 10121 4-wide or-and
      4 ~< ctl1 spec/inh cry 18 h
@@ -268,6 +296,21 @@ e11: 10121 4-wide or-and
      13 ~< ctl1 spec/inh cry 18 h
      14 ~< ctl1 spec/save flags h
      15 ~< {cn1} mcl2 short stack h
+
+e10: 10101 quad or/nor
+     4 ~< {bd2} -cram ad cry l
+     12 ~< %NC%
+     2 ~> ctl1-internal-e10-2
+     5 ~> %NC%
+     10 ~< {bj2} ebus ds strobe e h
+     14 ~> ctl3 diag strobe l
+     11 ~> %NC%
+     13 ~< ctl3 ds 00 h
+     15 ~> ctl3 ds 00 l
+     9 ~> %NC%
+     7 ~< ctl3 ds 04 h
+     3 ~> {fe1} diag 04 a l
+     6 ~> {bp2} diag 04 a h
 
 e27: 10104 quad and
      4 ~< {er2} cram # 00 c h
@@ -294,6 +337,10 @@ e38: 10104 quad and
      4 ~< ctl1 disp/aread h
      5 ~< -ctl2 ar 00-11 clr h
      2 ~> ctl2 36 bit ea h
+     12 ~< {el2} pi5 gate ttl to ecl l
+     13 ~< {el1} apr3 coni or datai l
+     9 ~> %NC%
+     15 ~> ctl3-internal-e38-15
 
 Page: CTL2, PDF365
 
@@ -337,6 +384,15 @@ e49: 10101 quad or/nor
      12 ~< %NC%
      2 ~> ctl2-internal-e49-2
      5 ~> %NC%
+     7 ~< {fj2} ctl3 diag spare l
+     3 ~> {fj1} ctl3 diag spare h
+     6 ~> %NC%
+     13 ~< ctl3-internal-e37-4
+     15 ~> {fr2} ctl3 diag force extend l
+     9 ~> {fr1} ctl3 diag force extend h
+     10 ~< ctl3-internal-e37-4
+     14 ~> {fn1} ctl3 diag diag 04 l
+     11 ~> {fm1} ctl3 diag diag 04 h
 
 e51: 10104 quad and
      10 ~< ctl2-internal-e49-2
@@ -527,3 +583,164 @@ e36: 10158 4x2 mixer
      2 ~> {dl2} ctl mqm sel 1 h
      15 ~> {bv2} ctl mq sel 2 h
      14 ~> {bu2} ctl mq sel 1 h
+
+Page: CTL3, PDF366
+e6:  10161 decoder
+     14 ~< {cd2} ebus ds01 e h
+     9 ~< {cd1} ebus ds02 e h
+     7 ~< {cc1} ebus ds03 e h
+     15 ~< {ce2} -ebus ds00 e l
+     2 ~< ctl3 diag strobe l
+     6 ~> {at2} ctl3 diag ctl func 00x l
+     5 ~> {av2} diag control func 01x l
+     4 ~> %NC%
+     3 ~> %NC%
+     13 ~> {ap2} ctl3 diag ld func 04x l
+     12 ~> {ap1} diag load func 05x l
+     11 ~> {ar1} diag load func 06x l
+     10 ~> ctl3 diag load func 07x l
+
+e1:  10161 decoder
+     14 ~< {ca1} ebus ds04 e h
+     9 ~< {ae2} ebus ds05 e h
+     7 ~< {aj2} ebus ds06 e h
+     15 ~< %NC%
+     2 ~< ctl3 diag load func 07x l
+     6 ~> {ak1} diag load func 070 l
+     5 ~> {ah2} diag load func 071 l
+     4 ~> {aj1} ctl3 diag ld func 072 l
+     3 ~> {af2} ctl3 diag ld func 073 l
+     13 ~> {ae1} ctl3 diag sync func 074 l
+     12 ~> {ad2} ctl3 diag ld func 075 l
+     11 ~> ctl3 diag load func 076 l
+     10 ~> ctl3-internal-e5-10
+
+e5:  10101 quad or/nor
+     13 ~< ctl3-internal-e5-10
+     12 ~< %NC%
+     15 ~> {be2} ctl3 diag clk edp h
+     9 ~> %NC%
+     4 ~< ctl3 ds 04 h
+     2 ~> {as1} diag 04 b l
+     5 ~> {as2} diag 04 b h
+     10 ~< ctl3 ds 05 h
+     14 ~> {al1} diag 05 b l
+     11 ~> {al2} diag 05 b h
+     7 ~< ctl3 ds 06 h
+     3 ~> {ak2} diag 06 b l
+     6 ~> {am2} diag 06 b h
+
+e17: 10161 decoder
+     14 ~< ctl3 ds 01 h
+     9 ~< ctl3 ds 02 h
+     7 ~< ctl3 ds 03 h
+     15 ~< ctl3 ds 00 l
+     2 ~< ctl3 read strobe l
+     6 ~> {cj2} diag read func 10x l
+     5 ~> {ck1} ctl3 diag rd func 11x l
+     4 ~> ctl3 diag read func 12x l
+     3 ~> {ch2} diag read func 13x l
+     13 ~> {cj1} diag read func 14x l
+     12 ~> {cf2} diag read func 15x l
+     11 ~> {ce1} diag read func 16x l
+     10 ~> {cf1} diag read func 17x l
+
+e9:  10101 quad or/nor
+     13 ~< ctl3 diag read func 12x l
+     12 ~< %NC%
+     15 ~> {bf1} diag read func 12x h
+     9 ~> %NC%
+     10 ~< ctl3 ds 05 h
+     14 ~> {fe2} diag 05 a l
+     11 ~> {bp1} diag 05 a h
+     7 ~< ctl3 ds 06 h
+     3 ~> {ff2} diag 06 a l
+     6 ~> {cr1} diag 06 a h
+     4 ~< {br1} ctl ad to ebus l h
+     2 ~> %NC%
+     5 ~> {br2} ctl ad to ebus r h
+
+e14: 10158 4x2 mixer
+     5 ~< ctl3-internal-e16-7
+     6 ~< ctl3 diag strobe l
+     3 ~< {dp1} cram # 02 c h
+     4 ~< {ce2} ebus ds00 e h
+     12 ~< {dr1} cram # 03 c h
+     13 ~< {cd2} ebus ds01 e h
+     10 ~< {ek2} cram # 04 c h
+     11 ~< {cd1} ebus ds02 e h
+     9 ~< {dj1} ctl console control h
+     1 ~> ctl3 read strobe h
+     2 ~> ctl3 ds 00 h
+     15 ~> ctl3 ds 01 h
+     14 ~> ctl3 ds 02 h
+
+e13: 10158 4x2 mixer
+     5 ~< {dp2} cram # 05 c h
+     6 ~< {cc1} ebus ds03 e h
+     3 ~< {en1} cram # 06 c h
+     4 ~< {ca1} ebus ds04 e h
+     12 ~< {dl1} cram # 07 c h
+     13 ~< {ae2} ebus ds05 e h
+     10 ~< {bm1} cram # 08 c h
+     11 ~< {aj2} ebus ds06 e h
+     9 ~< {dj1} ctl console control h
+     1 ~> ctl3 ds 03 h
+     2 ~> ctl3 ds 04 h
+     15 ~> ctl3 ds 05 h
+     14 ~> ctl3 ds 06 h
+
+e4:  10117 dual 2-3 or-and
+     4 ~< -ctl3 console control h
+     5 ~< %NC%
+     6 ~< {ba1} apr3 cono or datao h
+     7 ~< ctl3-internal-e15-3
+     9 ~< %NC%
+     3 ~> ctl3 ad to ebus l l
+     2 ~> {br1} ctl ad to ebus l h
+
+e15: 10109 4/5 or/nor
+     4 ~< {dd1} con cond/diag func l
+     5 ~< {dp1} -cram # 02 c l
+     6 ~< {aa1} -apr2 clk c l
+     7 ~< %NC%
+     3 ~> ctl3-internal-e15-3
+     2 ~> %NC%
+     9 ~< ctl3-internal-e19-9
+     10 ~< ctl3-internal-e7-9
+     11 ~< {fe1} diag 04 a l
+     12 ~< {fe2} diag 05 a l
+     13 ~< {ff2} diag 06 a l
+     14 ~> ctl3 diag ar load h
+     15 ~> %NC%
+
+e2:  10117 dual 2-3 or-and
+     4 ~< ctl3-internal-e38-15
+     5 ~< {dj1} -ctl console control l
+     6 ~< {ce2} -ebus ds00 e l
+     7 ~< ctl3 console control l
+     9 ~< %NC%
+     3 ~> {bk1} ctl ebus t to e en h
+     2 ~> %NC%
+     13 ~< {an1} -apr ebus return l
+     12 ~< {bk1} ctl ebus t to e en h
+     11 ~< {bk1} ctl ebus t to e en h
+     10 ~< ctl3 console control l
+     9 ~< %NC%
+     14 ~> {am1} ctl ebus e to t en h
+     15 ~> %NC%
+
+e37: 10176 hex dff
+     5 ~< {dr2} ebus d24 e h
+     6 ~< {ds1} ebus d25 e h
+     7 ~< {ds2} ebus d26 e h
+     10 ~< {dt2} ebus d27 e h
+     11 ~< {du2} ebus d28 e h
+     12 ~< %NC%
+     9 ~< -ctl3 diag load func 076 h
+     2 ~> {bs1} diag mem reset h
+     3 ~> {fp2} diag channel clk stop h
+     4 ~> ctl3-internal-e37-4
+     13 ~> ctl3-internal-e37-13
+     14 ~> ctl3-internal-e37-14
+     15 ~> %NC%
