@@ -206,6 +206,10 @@ e29: 10210 dual 3 or buffer
      13 ~> cr03 clk d h
      14 ~> %NC%
 
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk con [n] h
+     2 ~> clk crm delayed h
+
 e3: 10101 quad or/nor
      10 ~< {al2} mr reset 01 h
      12 ~< %NC%

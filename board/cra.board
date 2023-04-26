@@ -590,6 +590,10 @@ e41: 10210 10210 dual 3 or buffer
      13 ~> cra3 clk e h
      14 ~> cra3 clk f h
 
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk cra h
+     2 ~> clk3 cra delayed h
+
 e48: 10160 parity
      3 ~< cra3 call, reset h
      4 ~< {dm2} cra3 disp 00 h

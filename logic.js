@@ -767,6 +767,23 @@ const logic = {
 
     init() {},
   },
+
+  'oscillator': {
+    desc: 'clock oscillator',
+    '~>': expand('out=1'),
+
+    fn({i}) {
+      this.v = !this.v;
+
+      return {
+        out: this.v,
+      };
+    },
+
+    init() {
+      this.v = true;
+    },
+  },
 };
 
 

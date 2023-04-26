@@ -351,6 +351,10 @@ e45: 10210 dual 3 or buffer
     13 ~> %NC%
     14 ~> scd2 clk f h
 
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk scd h
+     2 ~> clk scd delayed h
+
 e78: 10176 hex d ff
     5 ~< %NC%
     6 ~< scd2 scm 00 h

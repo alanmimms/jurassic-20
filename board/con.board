@@ -377,6 +377,10 @@ e32: 10210 dual 3 or
      13 ~> con2 clk e h
      12 ~> con2 clk f h
 
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk con h
+     2 ~> con2 clk delayed h
+
 e16: 10176 hex dff
      9 ~< con2 clk e h
      6 ~< con-internal-e20-14

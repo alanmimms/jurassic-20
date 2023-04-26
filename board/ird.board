@@ -168,6 +168,10 @@ e41: 10210 2x3 or
      13 ~> hold ir b h
      14 ~> hold ir c h
 
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk ir h
+     2 ~> clk ir delayed h
+
 e72: 10109 2x2/4 or/nor
      4 ~< ir ac 09 h
      5 ~< ir ac 10 h
