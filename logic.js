@@ -232,6 +232,54 @@ const logic = {
     init() {},
   },
 
+  '10131': {
+    desc: 'dual d ms ff',
+    '~<': expand('d1=7,nce1=6,s1=5,r1=4, d1=10,nce2=11,s2=12,r2=13, cc=9'),
+    '~>': expand('q1=2,nq1=3, q2=15,nq2=14'),
+
+    fn({i}) {
+
+      // First half
+      if (i.r1) {
+	this.q1 = false;
+      } else if (i.s1) {
+	this.q1 = true;
+      }
+
+      // State changes on positive going clock edge
+      const clk1 = !i.nce1 | i.cc;
+      if (clk1 && !this.clk1) this.q1 = i.d1;
+      this.clk1 = clk1;
+
+      // Second half
+      if (i.r2) {
+	this.q2 = false;
+      } else if (i.s2) {
+	this.q2 = true;
+      }
+
+      // State changes on positive going clock edge
+      const clk2 = !i.nce2 | i.cc;
+      if (clk2 && !this.clk2) this.q2 = i.d2;
+      this.clk2 = clk2;
+
+      // Make q/nq relationship be invariant
+      this.nq1 = !this.q1;
+      this.nq2 = !this.q2;
+      return this;
+    },
+
+    init() {
+      this.q1 = false;
+      this.nq1 = true;
+      this.clk1 = false;
+
+      this.q2 = false;
+      this.nq2 = true;
+      this.clk2 = false;
+    },
+  },
+
   '10141': {
     desc: 'shft reg',
     '~<': expand('shft 0in=13, d0=12,d1=11,d2=9,d3=6, shft 3in=5, op1=10,op2=7, clk=4'),
