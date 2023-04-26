@@ -318,7 +318,7 @@ function compile(simOptions) {
 
   const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
     output: 'parser',
-    trace: options['trace-parse'],
+    trace: options.traceParse,
   });
 
   const backplanes = parseBackplanes(parser);
