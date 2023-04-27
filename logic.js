@@ -280,6 +280,60 @@ const logic = {
     },
   },
 
+  '10136': {
+    desc: 'binary counter',
+    '~<': expand('d8=5,d4=6,d2=11,d1=12,cryIn=10,sel2=7,sel1=9,clk=13'),
+    '~>': expand('cryOut=4,q8=3,q4=2,q2=15,q1=14'),
+
+    fn({i}) {
+
+      // Only operate on clock edges
+      if (i.clk === this.prevClk) return this;
+
+      this.prevClk = i.clk;
+
+      if (!i.sel2 && !i.sel1) {		// LOAD
+	this.v8 = i.d8;
+	this.v4 = i.d4;
+	this.v2 = i.d2;
+	this.v1 = i.d1;
+	this.cryOut = true;
+      } else if (!i.sel2 && i.sel1) {	// +1
+
+	if (i.cryIn) {
+	  let v = (+i.d8 << 3) | (+i.d4 << 2) | (+i.d2 << 1) | +i.d1;
+	  v = (v + 1) & 0xF;
+	  if (v === 0xF) this.cryOut = true;
+	}
+      } else if (i.sel2 && !i.sel1) {	// -1
+
+	if (i.cryIn) {
+	  let v = (+i.d8 << 3) | (+i.d4 << 2) | (+i.d2 << 1) | +i.d1;
+	  v = (v - 1) & 0xF;
+	  if (v === 0) this.cryOut = true;
+
+	  this.v8 = !!((v >> 3) & 1);
+	  this.v4 = !!((v >> 2) & 1);
+	  this.v2 = !!((v >> 1) & 1);
+	  this.v1 = !!(v & 1);
+	}
+      } else {				// HOLD
+	this.cryOut = false;
+      }
+
+      return this;
+    },
+
+    init() {
+      this.prevClk = false;
+      this.q8 = false;
+      this.q4 = false;
+      this.q2 = false;
+      this.q1 = false;
+      this.cryOut = false;
+    },
+  },
+
   '10141': {
     desc: 'shft reg',
     '~<': expand('shft 0in=13, d0=12,d1=11,d2=9,d3=6, shft 3in=5, op1=10,op2=7, clk=4'),
