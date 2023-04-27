@@ -816,6 +816,47 @@ const logic = {
     init() {},
   },
 
+  'tapped-delay-20-2': {
+    desc: 'tapped delay 20ns 2ns/tap',
+    '~<': expand('in=3'),
+    '~>': expand('t1=4,t2=5,t3=6,t4=7,t5=8,t6=9,t7=10,t8=11,t9=12, out=13'),
+
+    fn({i}) {
+      return {
+	t1: i.in,
+	t2: i.in,
+	t3: i.in,
+	t4: i.in,
+	t5: i.in,
+	t6: i.in,
+	t7: i.in,
+	t8: i.in,
+	t9: i.in,
+        out: i.in,              // XXX needs to be actually delayed?
+      };
+    },
+
+    init() {},
+  },
+
+  'tapped-delay-50-10': {
+    desc: 'tapped delay 50ns 10ns/tap',
+    '~<': expand('in=1'),
+    '~>': expand('t1=2,t2=3,t3=5,t4=6, out=7'),
+
+    fn({i}) {
+      return {
+	t1: i.in,
+	t2: i.in,
+	t3: i.in,
+	t4: i.in,
+        out: i.in,              // XXX needs to be actually delayed?
+      };
+    },
+
+    init() {},
+  },
+
   'oscillator': {
     desc: 'clock oscillator',
     '~>': expand('out=1'),
