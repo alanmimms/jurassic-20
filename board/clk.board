@@ -64,6 +64,13 @@ e27: 10109 4/5 or/nor
      7 ~< clk5 err stop en l
      3 ~> %NC%
      2 ~> clk1-internal-e27-2
+     9 ~< clk3-internal-e17-3
+     10 ~< clk3 sync l
+     11 ~< -clk3 error hold a l
+     12 ~< -clk3 error hold b l
+     13 ~< -clk5 ebox ctl dis l
+     14 ~> clk3-internal-e27-14
+     15 ~> %NC%
 
 e55: 10104 quad and/nand
      12 ~< clk1-internal-e41-7
@@ -466,3 +473,247 @@ e37: 10141 shift reg
      15 ~> clk2 burst l
      2 ~> clk2 ebox ss l
      3 ~> %NC%
+
+Page: CLK3, PDF170
+
+e65: 10105 2-3-2 or/nor
+     9 ~< {fj1} -dram odd parity l
+     10 ~< {fk1} -con load dram l
+     11 ~< clk5 dram par check l
+     6 ~> clk3 error hold a h
+     7 ~> clk3-internal-e65-7
+     4 ~< {fl1} -cram par 16 l
+     5 ~< clk5 cram par check l
+     3 ~> clk3 error hold a h
+     2 ~> clk3-internal-e65-2
+     12 ~< {ej2} -apr3 fm odd parity l
+     13 ~< clk5 fm par check l
+     14 ~> clk3 error hold a h
+     15 ~> clk3-internal-e65-15
+
+e58: 10176 hex d ff
+     5 ~< clk3-intenral-e65-7
+     6 ~< clk3-internal-e65-2
+     7 ~< clk3-internal-e65-15
+     10 ~< clk3 ebox src en l
+     11 ~< -clk3 error hold b l
+     12 ~< clk3 error hold a h
+     9 ~< clk1 odd c h
+     2 ~> clk3-internal-e58-2
+     3 ~> clk3-internal-e58-3
+     4 ~> clk3-internal-e58-4
+     13 ~> clk3 ebox source l
+     14 ~> clk3 fs error h
+     15 ~> clk3 ebox clk error h
+
+e53: 10101 quad or/nor
+     13 ~< clk3-internal-e58-2
+     12 ~< %NC%
+     15 ~> clk3 dram par err h
+     9 ~> %NC%
+     4 ~< clk3-internal-e58-3
+     2 ~> clk3 cram par err h
+     5 ~> %NC%
+     10 ~< clk3-internal-e58-2
+     14 ~> clk3 fm par err h
+     11 ~> %NC%
+     7 ~< clk3 error h
+     3 ~> clk3 error l
+     6 ~> %NC%
+
+e44: 10101 quad or/nor
+     4 ~< clk3 ebox clk error h
+     12 ~< %NC%
+     2 ~> clk3 ebox clk error l
+     5 ~> %NC%
+
+e45: 10176 hex d ff
+     9 ~< clk1 odd b h
+     7 ~< clk3 error hold b h
+     4 ~> clk3 error h
+     10 ~< clk3 error hold a h
+     13 ~> clk3 error h
+     11 ~< clk3 error hold b l
+     14 ~> clk3 fs error l
+
+e57: 10109 4/5 or/nor
+     4 ~< {em1} clk3 fs en a h
+     5 ~< {el1} clk3 fs en b h
+     6 ~< {el2} clk3 fs en c h
+     7 ~< {ek1} clk3 fs en d h
+     3 ~> clk3-internal-e57-3
+     2 ~> %NC%
+     9 ~< clk3-internal-e57-3
+     10 ~< {ej1} clk3 fs en e l
+     11 ~< {ej2} clk3 fs en f l
+     12 ~< {ek2} clk3 fs en g l
+     13 ~< clk5 fs check l
+     14 ~> clk3 error hold b h
+     15 ~> clk3 error hold b l
+
+e25: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     7 ~< clk3 ebox clk en l
+     9 ~< %NC%
+     13 ~< clk2 mbox clk e h
+     4 ~> clk3-internal-e25-4
+     3 ~> clk3-internal-e25-3
+     2 ~> clk3-internal-e25-3
+     15 ~> clk3-internal-e25-15
+     14 ~> clk3-internal-e25-14
+
+e26: 10105 2-3-2 or/nor
+     9 ~< {da1} -cram t 00 l
+     10 ~< %NC%
+     11 ~< {cv2} -cram t 01 l
+     6 ~> %NC%
+     7 ~> clk3-internal-e26-7
+
+e31: 10164 8 mixer
+     6 ~< clk3-internal-e26-7
+     5 ~< -cram t 00 l
+     4 ~< -cram t 01 l
+     3 ~< {cu2} -con delay req l
+     11 ~< clk3-internal-e25-4
+     12 ~< clk3-internal-e25-4
+     13 ~< clk3-internal-e25-4
+     14 ~< clk3-internal-e25-4
+     10 ~< clk3-internal-e25-3
+     9 ~< clk3-internal-e25-15
+     7 ~< clk3-internal-e25-14
+     2 ~< clk2 sync hold h
+     15 ~> clk3-internal-e31-15
+
+e2:  10117 dual 2-3 or-and
+     4 ~< clk3-internal-e31-15
+     5 ~< -clk3 ebox clk en l
+     6 ~< clk2 ebox ss l
+     7 ~< -clk3 ebox clk en l
+     9 ~< %NC%
+     3 ~> clk3 sync en h
+     2 ~> clk3 sync en l
+
+e10: 10176 hex d ff
+     5 ~< clk3 sync en l
+     6 ~< clk3 sync en l
+     7 ~< clk3 sync en l
+     10 ~< clk3 sync en l
+     11 ~< clk3 sync en l
+     12 ~< clk3 sync en h
+     9 ~< clk2 mbox clk e h
+     2 ~> {av2} clk ebox sync a l
+     3 ~> {ba1} clk3 ebox sync b l
+     4 ~> {bc1} clk3 ebox sync c l
+     13 ~> {au2} clk3 ebox sync d l
+     14 ~> clk3 sync l
+     15 ~> clk3 sync h
+
+e26: 10105 2-3-2 or/nor
+     4 ~< clk3 sync l
+     5 ~< clk3-internal-e17-3
+
+e22: 10109 4/5 or/nor
+     9 ~< clk3-internal-e17-3
+     10 ~< clk3 sync l
+     11 ~< -clk3 error hold a l
+     12 ~< -clk3 error hold b l
+     13 ~< -clk5 ebox crm dis l
+
+e18: 10109 4/5 or/nor
+     9 ~< clk3-internal-e17-3
+     10 ~< clk3 sync l
+     11 ~< -clk3 error hold a l
+     12 ~< -clk3 error hold b l
+     13 ~< -clk5 ebox edp dis l
+     14 ~> clk3-internal-e18-14
+     15 ~> %NC%
+
+e17: 10109 4/5 or/nor
+     4 ~< {cn1} -con mbox wait h
+     5 ~< {am2} clk4 resp mbox h
+     6 ~< {al2} vma1 ac ref h
+     7 ~< clk3-internal-e11-9
+     3 ~> clk3-internal-e17-3
+     2 ~> %NC%
+
+e11: 10104 quad and/nand
+     12 ~< clk2 ebox ss l
+     13 ~< clk2 reset l
+     9 ~> clk3-internal-e11-9
+     15 ~> %NC%
+
+e7:  10105 2-3-2 or/nor
+     12 ~< clk4 1777 en h
+     13 ~< clk3 ebox src en h
+     14 ~> clk3 ebox clk en l
+     15 ~> clk3 ebox clk en h
+
+e12: 10141 shift reg
+     13 ~< clk4 pf dlyd a h
+     12 ~< clk3-internal-e22-14
+     11 ~< clk3-internal-e18-14
+     9 ~< clk3-internal-e27-14
+     6 ~< clk3 ebox src en h
+     5 ~< %NC%
+     7 ~< clk4 page fail h
+     10 ~< clk4 pf dlyd a h
+     4 ~< clk1 odd a h
+     14 ~> clk3-internal-e12-14
+     15 ~> clk3-internal-e12-15
+     2 ~> clk3-internal-e12-2
+     3 ~> clk3 ebox source h
+
+dlpcb2: delay-line PCB 3.0ns
+     1 ~< clk3-internal-e12-14
+     2 ~> clk3-internal-dlpcb2-2
+
+dlpcb3: delay-line PCB 3.0ns
+     1 ~< clk3-internal-e12-15
+     2 ~> clk3-internal-dlpcb3-2
+
+dlpcb4: delay-line PCB 3.0ns
+     1 ~< clk3-internal-e12-2
+     2 ~> clk3-internal-dlpcb4-2
+
+e6: 10210 or buffer
+    5 ~< %NC%
+    6 ~< %NC%
+    7 ~< clk3-internal-dlpcb2-2
+    2 ~> {as2} clk crm 00 h
+    3 ~> {ar2} clk crm 04 h
+    4 ~> {ap2} clk cra h
+    11 ~< %NC%
+    10 ~< clk3-internal-dlpcb2-2
+    9 ~< %NC%
+    14 ~> {af2} clk crm 08 h
+    13 ~> {ae2} clk crm 12 h
+    12 ~> {ad2} clk crm 16 h
+
+e20: 10210 or buffer
+     5 ~< %NC%
+     6 ~< {bj2} ctl3 diag clk edp h
+     7 ~< clk3-internal-dlpcb3-2
+     2 ~> {bs2} clk edp 30 h
+     3 ~> {br2} clk edp 24 h
+     4 ~> {bp2} clk edp 18 h
+     11 ~< %NC%
+     10 ~< clk3-internal-dlpcb3-2
+     9 ~< {bj2} ctl3 diag clk edp h
+     14 ~> {bf2} clk edp 12 h
+     13 ~> {be2} clk edp 06 h
+     12 ~> {bd2} clk edp 00 h
+
+e34: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk3-internal-dlpcb4-2
+     2 ~> {cs2} clk3 apr h
+     3 ~> {ck2} clk con h
+     4 ~> {cj2} clk3 vma h
+     11 ~< %NC%
+     10 ~< clk3-internal-dlpcb4-2
+     9 ~< {cd2} clk3 scd h
