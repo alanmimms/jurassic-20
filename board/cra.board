@@ -394,7 +394,7 @@ e26: 10164 mixer
      2 ~< cra3 disp en 30-37 l
      15 ~> cra1-internal-e26-15
 
-e40: 10109 10109 4/5 or/nor
+e40: 10109 4/5 or/nor
      9 ~< cr1-internal-e33-6
      10 ~< %NC%
      11 ~< cra1-internal-e22-15
