@@ -53,20 +53,21 @@ direction = $('~>' / '~<')
 
 bpPin = $('{' bareID '}') _
 
-macroRef =  '[' _ head:expr _ ids:selectorList ']'
+macroRef =  '[' head:expr ids:selectorList ']'
 		{ return AST('Macro', {head, ids}) }
 
-selectorList = list:( ',' _ idList )*
-		{ return AST('SelectorList', {list: list.map(e => e[2])}) }
+selectorList = list:( ',' id:idList {return id} )*
+		{ /* console.error('list', util.inspect(list)); */
+		  return AST('SelectorList', {list}); }
 
-idList = list:( macroRef / idChunk )+
+idList = list:( macroRef / idChunk )*
        		{ return AST('IDList', {list}) }
 
 bareID = [-/#=%.+_&()a-zA-Z]+ [-/#=%.+_&<> a-zA-Z0-9]*
 		{ return text().trim() }
 
-idChunk = name:( '\\' EOL _ / [-/#%.+_&<> ()a-zA-Z0-9=] )+
-		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
+idChunk = name:$[-/#%.+_&<> ()a-zA-Z0-9=]+
+		{ return AST('IDChunk', {name}) }
 
 // like idChunk but allows ',' in the identifier in non-macro context
 id = name:( '\\' EOL _ / [-/#%,.+_&<> ()a-zA-Z0-9=] )+
