@@ -14,7 +14,7 @@ e34: 10101 quad or/nor
      12 ~< %NC%
      2 ~> cr01 adr 00 a l
      5 ~> cr01 adr 00 a h
-     10 ~< {cs2} cra1 adr 01 [n/4+1,a l,b h,c l,d h, e l]
+     10 ~< {cs2} cra1 adr 01 [n/4+1,a l,b h,c l,d h,e l]
      14 ~> cr01 adr 01 a l
      11 ~> cr01 adr 01 a h
      7 ~< {cm2} cra1 adr 02 [n/4+1,a l,b h,c l,d h,e l]
@@ -29,7 +29,7 @@ e35: 10101 quad or/nor
      12 ~< %NC%
      2 ~> cr01 adr 00 b l
      5 ~> cr01 adr 00 b h
-     10 ~< {cs2} cra1 adr 01 [n/4+1,a l,b h,c l,d h, e l]
+     10 ~< {cs2} cra1 adr 01 [n/4+1,a l,b h,c l,d h,e l]
      14 ~> cr01 adr 01 b l
      11 ~> cr01 adr 01 b h
      7 ~< {cm2} cra1 adr 02 [n/4+1,a l,b h,c l,d h,e l]
@@ -76,7 +76,7 @@ e30: 10101 quad or/nor
      13 ~< {df2} cra1 adr 06 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 06 a l
      9 ~> cr01 adr 06 a h
-     10 ~< {dj2} cra1 adr 07 [n/4+1,a l,b h,c l,d h, e l]
+     10 ~< {dj2} cra1 adr 07 [n/4+1,a l,b h,c l,d h,e l]
      14 ~> cr01 adr 07 a l
      11 ~> cr01 adr 07 a h
      4 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
@@ -91,7 +91,7 @@ e31: 10101 quad or/nor
      13 ~< {df2} cra1 adr 06 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 06 b l
      9 ~> cr01 adr 06 b h
-     10 ~< {dj2} cra1 adr 07 [n/4+1,a l,b h,c l,d h, e l]
+     10 ~< {dj2} cra1 adr 07 [n/4+1,a l,b h,c l,d h,e l]
      14 ~> cr01 adr 07 b l
      11 ~> cr01 adr 07 b h
      4 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
@@ -163,7 +163,7 @@ e1: 10161 decoder
 Page: CRM3, PDF394
 
 e16: 10160 parity
-     3 ~< {bv2} [n/4+1,nc,nc,cram mark h,cram disp parity h, cram par 00 h]
+     3 ~< {bv2} [n/4+1,nc,nc,cram mark h,cram disp parity h,cram par 00 h]
      4 ~< {bu2} [n/16+1,nc,cram par 04 h]
      5 ~< {br2} [n/16+1,nc,cram par 08 h]
      6 ~< {bs2} [n/16+1,nc,cram par 12 h]
