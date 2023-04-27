@@ -1,3 +1,468 @@
-Page: CLK1, PDF168
 // M8526 TBD
-// STUB
+Page: CLK1, PDF168
+
+osc60: oscillator 60MHz
+      1 ~> clk1-internal-osc60-1
+
+osc62: oscillator 62MHz
+      1 ~> clk1-internal-osc62-1
+
+e68:  10131 dual dff
+      7 ~< clk1-internal-e68-3
+      6 ~< clk1-internal-osc60-1
+      2 ~> clk1-internal-e68-2
+      3 ~> clk1-internal-e68-3
+      10 ~< clk1-internal-e68-3
+      11 ~< clk1-internal-osc62-1
+      15 ~> clk1-internal-e68-15
+      14 ~> clk1-internal-e68-14
+
+e67: 10164 8 mixer
+     6 ~< clk1-internal-e68-2
+     5 ~< clk1-internal-e68-15
+     4 ~< {fv2} external clk h
+     3 ~< clk1-internal-e68-15
+     11 ~< clk1-internal-e68-2
+     12 ~< clk1-internal-e68-2
+     13 ~< clk1-internal-e68-2
+     14 ~< clk1-internal-e68-2
+     10 ~< clk2 crobar h
+     9 ~< clk5 source sel 2 h
+     7 ~< clk5 source sel 1 h
+     2 ~< %NC%
+     15 ~> clk1-internal-e67-15
+
+e40: 10210 or buffer
+     11 ~< clk1-internal-e67-15
+     10 ~< %NC%
+     9 ~< %NC%
+     14 ~> clk1 main source a h
+     13 ~> clk1 main source b h
+     12 ~> clk1 main source c h
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk1 clk delayed h
+     2 ~> clk2 mbox clk d h
+     3 ~> clk2 mbox clk e h
+     4 ~> clk2 mbox clk f h
+
+e41: 10105 2-3-2 or/nor
+     9 ~< -clk1 clk on l
+     10 ~< clk5 err stop en l
+     11 ~< clk3 fs error l
+     6 ~> %NC%
+     7 ~> clk1-internal-e41-7
+     4 ~< clk2 func ebox ss l
+     5 ~< -clk3 sync l
+     3 ~> %NC%
+     2 ~> clk1-internal-e41-2
+
+e27: 10109 4/5 or/nor
+     4 ~< clk3 ebox clk error l
+     5 ~< clk3 ebox source l
+     6 ~< -clk1 clk on l
+     7 ~< clk5 err stop en l
+     3 ~> %NC%
+     2 ~> clk1-internal-e27-2
+
+e55: 10104 quad and/nand
+     12 ~< clk1-internal-e41-7
+     13 ~< clk1-internal-e27-2
+     9 ~> {bj1} clk error stop h
+     15 ~> clk1 error stop l
+
+e56: 10131 dual ms d ff
+     7 ~< clk1 gated en h
+     6 ~< clk1 main source c h
+     9 ~< %NC%
+     5 ~< %NC%
+     5 ~< %NC%
+     2 ~> clk1-internal-e56-2
+     3 ~> %NC%
+
+dl5001: delay-line 5.0ns
+     1 ~< clk1 main source c h
+     2 ~> clk1-internal-dl5001-2
+
+e51: 10104 quad and/nand
+     4 ~< clk1-internal-dl5001-2
+     5 ~< clk1-internal-e56-2
+     2 ~> clk1 gated h
+
+dl1: tapped-delay-20-2 20ns 2ns/tap
+     3 ~< clk1 gated h
+     4 ~> clk1-internal-dl1-4
+     5 ~> clk1-internal-dl1-5
+     6 ~> clk1-internal-dl1-6
+     7 ~> clk1-internal-dl1-7
+     8 ~> clk1-internal-dl1-8
+     9 ~> clk1-internal-dl1-9
+     10 ~> clk1-internal-dl1-10
+     11 ~> clk1-internal-dl1-11
+     12 ~> clk1-internal-dl1-12
+     13 ~> clk1 ebus clk source h
+
+e73: 10101 quad or/nor
+     7 ~< clk1-internal-dl1-8
+     12 ~< %NC%
+     3 ~> clk1-internal-e73-3
+     6 ~> %NC%
+     13 ~< clk1-internal-dl2-3
+     15 ~> clk1-internal-e73-15
+     9 ~> %NC%
+     4 ~< clk1-internal-dl3-7
+     2 ~> %NC%
+     5 ~> clk1-internal-e73-5
+
+dl2: tapped-delay-50-10 50ns 10ns/tap
+     1 ~< clk1-internal-e73-3
+     2 ~> clk1-internal-dl2-2
+     2 ~> clk1-internal-dl2-3
+     2 ~> clk1-internal-dl2-5
+     2 ~> clk1-internal-dl2-6
+     7 ~> clk1-internal-dl2-7
+
+dl3: tapped-delay-50-10 50ns 10ns/tap
+     1 ~< clk1-internal-e73-15
+     2 ~> clk1-internal-dl3-2
+     2 ~> clk1-internal-dl3-3
+     2 ~> clk1-internal-dl3-5
+     2 ~> clk1-internal-dl3-6
+     7 ~> clk1-internal-dl3-7
+
+dlpcb2501: delay-line 2.5ns
+     1 ~< clk1-internal-e73-5
+     2 ~> clk1 source delayed h
+
+e63: 10117 dual 2-3 or-and
+     13 ~< -clk1 error stop h
+     12 ~< {ec1} deskew clk h
+     11 ~< {ec1} deskew clk h
+     10 ~< clk1 source delayed h
+     9 ~< %NC%
+     14 ~> %NC%
+     15 ~> clk1 clk on h
+     4 ~< clk2 func gate l
+     5 ~< %NC%
+     6 ~< clk1 rate selected l
+     7 ~< %NC%
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> clk1-internal-e63-2
+
+dlpcb2651: delay-line 2.65ns
+     1 ~< clk1 clk on h
+     2 ~> clk1-internal-dlpcb2651-2
+
+e59: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk1 clk on h
+     2 ~> clk1 odd a h
+     3 ~> clk1 odd b h
+     4 ~> clk1 odd c h
+     11 ~< %NC%
+     10 ~< clk1-internal-dlpcb2651-2
+     9 ~< %NC%
+     14 ~> clk1 mbox a h
+     13 ~> clk1 mbox b h
+     12 ~> clk1 mbox c h
+
+e5:  10141 shift reg
+     13 ~< %NC%
+     12 ~< clk5 rate sel 2 h
+     11 ~< clk5 rate sel 2 h
+     9 ~< clk5 rate sel 1 h
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< -clk1 rate selected h
+     10 ~< %NC%
+     4 ~< clk1 main source b h
+     14 ~> clk1 rate selected l
+     15 ~> %NC%
+     2 ~> clk1 rate selected l
+     3 ~> %NC%
+
+e66: 10131 dual ms d ff
+     7 ~< clk1-internal-e70-15
+     6 ~< clk1 ebus clk source h
+     9 ~< %NC%
+     5 ~< %NC%
+     4 ~< %NC%
+     2 ~> {bk1} clk ebus clk h
+     3 ~> %NC%
+     10 ~< %NC%
+     11 ~< -clk2 func set reset h
+     9 ~< %NC%
+     12 ~< clk2 func clr reset h
+     13 ~< clk2 crobar h
+     15 ~> clk2 reset l
+     14 ~> clk2 reset h
+
+e70: 10131 dual ms d ff
+     10 ~< clk1-internal-e70-3
+     11 ~< %NC%
+     9 ~< clk1 gated h
+     12 ~< %NC%
+     13 ~< clk2 func clr reset h
+     15 ~> clk1-internal-e70-15
+     14 ~> %NC%
+     7 ~< clk1-internal-e70-15
+     6 ~< %NC%
+     9 ~< clk1 gated h
+     4 ~< clk2 func clr reset h
+     2 ~> {ca1} clk sbus clk h
+     3 ~> clk1-internal-e70-3
+
+e42: 10141 shfit reg
+     13 ~< %NC%
+     12 ~< clk2 func single step l
+     11 ~< clk2 func ebox ss l
+     9 ~< clk1-internal-e41-2
+     6 ~< clk2 func ebox ss l
+     5 ~< clk2 crobar l
+     7 ~< clk2 func gate l
+     10 ~< clk1-internal-e63-2
+     4 ~< clk1 main source a h
+     14 ~> clk1-internal-e42-14
+     15 ~> %NC%
+     2 ~> %NC%
+     3 ~> %NC%
+
+e29: 10121 4-wide or-and
+     4 ~< clk2 go l
+     5 ~< %NC%
+     6 ~< clk1 rate selected l
+     7 ~< -clk5 burst cnt=0 l
+     9 ~< clk2 burst l
+     10 ~< clk1 rate selected l
+     11 ~< clk1-internal-e42-14
+     12 ~< %NC%
+     13 ~< clk2 func cond ss l
+     14 ~< clk4 ebox clk l
+     15 ~< %NC%
+     3 ~> clk1 gated en h
+     2 ~> %NC%
+
+e48: 10210 or buffer
+     11 ~< %NC%
+     10 ~< clk1-internal-dl3001-2
+     9 ~< {du2} diag channel clk stop h
+     14 ~> {df2} clk ccl h
+     13 ~> {de2} clk crc h
+     12 ~> {dd2} clk1 chc h
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk1-internal-dl3001-2
+     2 ~> {ds2} clk mb 06 h
+     3 ~> {dr2} clk mb 12 h
+     4 ~> {dp2} clk ccw h
+
+e61: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk1-internal-dl3002-2
+     2 ~> {es2} clk1 mbc h
+     3 ~> {er2} clk1 mbx h
+     4 ~> {ep2} clk mbz h
+     11 ~< %NC%
+     10 ~< clk1-internal-dl3002-2
+     9 ~< %NC%
+     14 ~> {ef2} clk1 mbox 13 a h
+     13 ~> {ee2} clk1 mbox 14 a h
+     12 ~> {ed2} clk mb 00 h
+
+e72: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk1-internal-dl3003-2
+     2 ~> {fs2} clk1 mtr h
+     3 ~> {fr2} clk1 clk[b, out,] h
+     4 ~> {fp2} clk pi h
+     11 ~< %NC%
+     10 ~< clk1-internal-dl3003-2
+     9 ~< %NC%
+     14 ~> {ff2} clk1 pma h
+     13 ~> {fe2} clk chx h
+     12 ~> {fd2} clk1 csh h
+
+dl3001: delay-line 3.0ns
+     1 ~< clk1 mbox a h
+     2 ~> clk1-internal-dl3001-2
+
+dl3002: delay-line 3.0ns
+     1 ~< clk1 mbox b h
+     2 ~> clk1-internal-dl3002-2
+
+dl3003: delay-line 3.0ns
+     1 ~< clk1 mbox c h
+     2 ~> clk1-internal-dl3003-2
+
+Page: CLK2, PDF169
+
+e64: 10141 shift reg
+     13 ~< %NC%
+     12 ~< clk2-internal-e64-14
+     11 ~< clk2-internal-e64-15
+     9 ~< clk2 15 mhz free h
+     6 ~< clk2 hi
+     5 ~< {fm2} synchronize clk h
+     7 ~< clk2 16 mhz free h
+     10 ~< %NC%
+     4 ~< clk1 main source c h
+     14 ~> clk2-internal-e64-14
+     15 ~> clk2-internal-e64-15
+     2 ~> clk2-internal-e64-2
+     3 ~> clk2 16 mhz free h
+
+e62: 10101 quad or/nor
+     10 ~< clk2-internal-e64-14
+     12 ~< %NC%
+     14 ~> clk2-internal-e62-14
+     11 ~> %NC%
+     13 ~< {fh2} crobar e h
+     15 ~> clk2 crobar l
+     9 ~> clk2 crobar h
+     7 ~< clk2 func clr reset l
+     3 ~> clk2 func clr reset h
+     6 ~> %NC%
+     4 ~< %NC%
+     2 ~> clk2 hi
+     5 ~> %NC%
+
+e60: 10176 hex d ff
+     5 ~< clk2-internal-e62-14
+     6 ~< clk2-internal-e64-15
+     7 ~< clk2-internal-e64-2
+     10 ~< clk2 16 mhz free h
+     11 ~< %NC%
+     12 ~< %NC%
+     9 ~< clk1 main source c h
+     2 ~> clk2 func gate l
+     3 ~> clk2 func gate l
+     4 ~> clk2 func gate l
+     13 ~> {fj2} clk 10/11 clk h
+     14 ~> %NC%
+     15 ~> %NC%
+
+e32: 10176 hex d ff
+     5 ~< clk4 ebox clk l
+     9 ~< clk2 mbox clk d h
+     2 ~> clk2-internal-e32-2
+
+e43: 10105 2-3-2 or/nor
+     4 ~< {dm1} apr5 pt dir wr l
+     5 ~< clk2-internal-e32-2
+     12 ~< {dj2} apr5 pt wr l
+     13 ~< clk2-internal-e32-2
+     3 ~> %NC%
+     2 ~> {dn1} clk2 pt dir wr l
+     14 ~> %NC%
+     15 ~> {dl2} clk2 pt wr l
+     9 ~< clk2-internal-e52-4
+     10 ~< clk2 crobar h
+     11 ~< {dh2} con cono 200000 h
+     6 ~> %NC%
+     7 ~> clk2-internal-e43-7
+
+e16: 10101 quad or/nor
+     7 ~< clk3 sync h
+     12 ~< %NC%
+     2 ~> %NC%
+     6 ~> clk2 sync hold h
+
+e69: 10110 or buffer
+     7 ~< clk2 reset h
+     2 ~> {fc1} mr reset 01 h
+     3 ~> {fa1} mr reset 02 h
+     4 ~> clk2 sync hold h
+     11 ~< %NC%
+     10 ~< %NC%
+     9 ~< %NC%
+     14 ~> {et2} mr reset 04 h
+     13 ~> {eu2} mr reset 05 h
+     12 ~> {em2} mr reset 06 h
+
+dlpcb1: delay-line PCB
+     1 ~< {cr2} clk1 clk h
+     2 ~> clk1 clk delayed h
+
+e52: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     7 ~< %NC%
+     9 ~< clk2-internal-e43-7
+     13 ~< clk2 16 mhz free h
+     4 ~> clk2-internal-e52-4
+     3 ~> {dt2} clk ebus reset e h
+     2 ~> %NC%
+     15 ~> %NC%
+     14 ~> %NC%
+
+e46: 10161 decoder
+     14 ~< clk5 diag 04 h
+     9 ~< clk5 diag 05 h
+     7 ~< clk5 diag 06 h
+     15 ~< clk2 func gate l
+     2 ~< {fk2} ctl3 diag ctl func 00x l
+     6 ~> %NC%
+     5 ~> clk2 func start l
+     4 ~> clk2 func single step l
+     3 ~> clk2 func ebox ss l
+     13 ~> clk2 func cond ss l
+     12 ~> clk2 func burst l
+     11 ~> clk2 func clr reset l
+     10 ~> clk2 func set reset l
+
+e50: 10161 decoder
+     14 ~< clk5 diag 04 h
+     9 ~< clk5 diag 05 h
+     7 ~< clk5 diag 06 h
+     15 ~< clk2 func gate l
+     2 ~< {fm1} ctl3 diag ld func 04x l
+     6 ~> %NC%
+     5 ~> %NC%
+     4 ~> clk2 func 042 l
+     3 ~> clk2 func 043 l
+     13 ~> clk2-internal-e50-13
+     12 ~> clk2-internal-e50-12
+     11 ~> clk2-internal-e50-11
+     10 ~> clk2-internal-e50-10
+
+e55: 10104 quad and/nand
+     4 ~< clk2-internal-e50-13
+     5 ~< clk2 crobar l
+     2 ~> clk2 func 044 l
+     6 ~< clk2-internal-e50-12
+     7 ~< clk2 crobar l
+     3 ~> clk2 func 045 l
+     10 ~< clk2-internal-e50-10
+     11 ~< clk2 crobar l
+     14 ~> clk2 func 047 l
+
+e51: 10104 quad and/nand
+     10 ~< clk2-internal-e50-11
+     11 ~< clk2 crobar l
+     14 ~> clk2 func 046 l
+     12 ~< clk2 func gate l
+     13 ~< clk2 crobar l
+     9 ~> %NC%
+     15 ~> clk2-internal-e51-15
+
+e37: 10141 shift reg
+     13 ~< %NC%
+     12 ~< clk2 func start l
+     11 ~< clk2 func burst l
+     9 ~< clk2 func ebox ss l
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< clk2-internal-e51-15
+     10 ~< clk2-internal-e51-15
+     4 ~< clk1 main source a h
+     14 ~> clk2 go l
+     15 ~> clk2 burst l
+     2 ~> clk2 ebox ss l
+     3 ~> %NC%
