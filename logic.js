@@ -927,6 +927,21 @@ const logic = {
       this.v = true;
     },
   },
+
+  'wire': {
+    desc: 'just a wire',
+    '~<': expand('in=1'),
+    '~>': expand('out=2'),
+
+    fn({i}) {
+
+      return {
+        out: i.in
+      };
+    },
+
+    init() {},
+  },
 };
 
 
