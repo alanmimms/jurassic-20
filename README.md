@@ -17,3 +17,7 @@ expect it to entertain me for years.
 
 We'll see.
 
+
+# TODO
+* Check signal names on each backplane pin for multiple names per pin.
+* Check signal names for typos by eyeing a list.
