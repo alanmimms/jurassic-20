@@ -161,6 +161,12 @@ e27: 10109 4/5 or/nor
      10 ~< vma1 local l
      14 ~> {bm1} vma1 ac ref h
      15 ~> {ar2} vma ac ref l
+     4 ~< vma4-internal-e24-3
+     5 ~< -vma4 prev sec 13 l
+     6 ~< -vma4 prev sec 14 l
+     7 ~< -vma4 prev sec 15 l
+     3 ~> %NC%
+     2 ~> {ej2} vma4 pcs section 0 l
 
 e15: 10109 4/5 or/nor
      13 ~< vma1 misc=0 l
@@ -203,6 +209,12 @@ e83: 10101 quad or/nor
      7 ~< %NC%
      3 ~> vma1 hi
      6 ~> %NC%
+     10 ~< {ff1} mcl5 vmax en l
+     14 ~> %NC%
+     11 ~> vma4 vmax en l
+     13 ~< {fr2} -con cond/vma<-# l
+     15 ~> %NC%
+     9 ~> vma4 vmax en l
 
 e37: 10109 4/5 or/nor
      4 ~< -vma1 vma section 0,1 l
@@ -211,6 +223,13 @@ e37: 10109 4/5 or/nor
      7 ~< vma1 20=27=0 l
      3 ~> %NC%
      2 ~> {as1} vma1 local ac address l
+     9 ~< vma3 match 28-31 l
+     10 ~< vma3 match 13-19 l
+     11 ~< vma3 match 20-23 l
+     12 ~< vma3 match 24-27 l
+     13 ~< vm3 match 32-35 l
+     14 ~> %NC%
+     15 ~> {bk2} vma3 match 13-35 l
 
 e7:  10109 4/5 or/nor
      4 ~< -vma2 vma 13 l
@@ -270,3 +289,939 @@ e78: 10101 quad or/nor
      13 ~< {du2} vma2 vma 35 h
      15 ~> %NC%
      9 ~> {fd2} vma1 vma 35 b h
+
+Page: VMA2, PDF355
+
+e2:  10101 quad or/nor
+     4 ~< vma2 vma 13 h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {cf1} vma2 vma 13 a h
+     7 ~< {cc1} vma2 vma 18 h
+     3 ~> %NC%
+     6 ~> {ae2} vma 18 a h
+     10 ~< {ce1} vma2 vma 19 h
+     14 ~> %NC%
+     11 ~> {af1} vma 19 a h
+     13 ~< {bs2} vma2 vma 20 h
+     15 ~> %NC%
+     9 ~> {ck2} vma 20 a h
+
+e3:  10101 quad or/nor
+     4 ~< vma2 vma 14 h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {cd2} vma2 vma 14 a h
+     10 ~< vma2 vma 15 h
+     14 ~> %NC%
+     11 ~> {ca1} vma2 vma 15 a h
+     13 ~< vma2 vma 16 h
+     15 ~> %NC%
+     9 ~> {bu2} vma2 vma 16 a h
+     7 ~< {aj1} vma2 vma 17 h
+     3 ~> %NC%
+     6 ~> {aa1} vma2 vma 17 a h
+
+e31: 10101 quad or/nor
+     7 ~< {bp1} vma2 vma 21 h
+     12 ~< %NC%
+     3 ~> %NC%
+     6 ~> {bj1} vma2 vma 21 a h
+     4 ~< {br1} vma2 vma 22 h
+     2 ~> %NC%
+     5 ~> {cl1} vma2 vma 22 a h
+     10 ~< {bn1} vma2 vma 23 h
+     14 ~> %NC%
+     11 ~> {cp2} vma2 vma 23 a h
+     13 ~< {cf2} vma2 vma 24 h
+     15 ~> %NC%
+     9 ~> {df2} vma2 vma 24 a h
+
+e41: 10101 quad or/nor
+     7 ~< {ce2} vma2 vma 25 h
+     12 ~< %NC%
+     3 ~> %NC%
+     6 ~> {dh2} vma2 vma 25 a h
+     4 ~< {cd1} vma2 vma 26 h
+     2 ~> %NC%
+     5 ~> {dv2} vma2 vma 26 a h
+     10 ~< {dl2} vma2 vma 27 h
+     14 ~> %NC%
+     11 ~> vma2 vma 27 a h
+     13 ~< {dm2} vma2 vma 28 h
+     15 ~> %NC%
+     9 ~> vma2 vma 28 a h
+
+e74: 10101 quad or/nor
+     7 ~< {dn1} vma2 vma 29 h
+     12 ~< %NC%
+     3 ~> %NC%
+     6 ~> vma2 vma 29 a h
+     10 ~< {dp1} vma2 vma 30 h
+     14 ~> %NC%
+     11 ~> vma2 vma 30 a h
+     13 ~< {dr2} vma2 vma 31 h
+     15 ~> %NC%
+     9 ~> vma2 vma 31 a h
+
+e63: 10101 quad or/nor
+     4 ~< {ea1} vma2 vma 32 h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> vma2 vma 32 a h
+     7 ~< {dt2} vma2 vma 33 h
+     3 ~> %NC%
+     6 ~> vma2 vma 33 a h
+     10 ~< {ds2} vma2 vma 34 h
+     14 ~> %NC%
+     11 ~> vma2 vma 34 a h
+     13 ~< {du2} vma2 vma 35 h
+     15 ~> %NC%
+     9 ~> vma2 vma 35 a h
+
+e11: 10136 binary counter
+     5 ~< vma4 vma 12 in h
+     6 ~< {bk1} vma4 vma 13 in h
+     11 ~< {bh2} vma4 vma 14 in h
+     12 ~< {bf1} vma4 vma 15 in h
+     10 ~< vma2 cry 16 l
+     7 ~< {bl2} -con vma sel 2 h
+     9 ~< {bj2} -con vma sel 1 h
+     13 ~< vma1 clk e h
+     4 ~> %NC%
+     3 ~> {fe2} vma2 vma 12 h
+     2 ~> vma2 vma 13 h
+     15 ~> vma2 vma 14 h
+     14 ~> vma2 vma 15 h
+
+e6:  10136 binary counter
+     5 ~< {be1} vma4 vma 16 in h
+     5 ~< {fd1} vma4 vma 17 in h
+     11 ~< vma2-internal-e10-15
+     12 ~< vma2-internal-e10-14
+     10 ~< vma2 cry 20 l
+     7 ~< {bl2} -con vma sel 2 h
+     9 ~< {bj2} -con vma sel 1 h
+     13 ~< vma1 clk e h
+     4 ~> vma2 cry 16 l
+     3 ~> vma2 vma 16 h
+     2 ~> {aj1} vma2 vma 17 h
+     15 ~> {cc1} vma2 vma 18 h
+     14 ~> {ce1} vma2 vma 19 h
+
+e21: 10136 binary counter
+     5 ~< vma2-internal-e20-1
+     6 ~< vma2-internal-e20-2
+     11 ~< vma2-internal-e20-15
+     12 ~< vma2-internal-e20-14
+     10 ~< vma2 cry 24 l
+     7 ~< {bl2} -con vma sel 2 h
+     9 ~< {bj2} -con vma sel 1 h
+     13 ~< vma1 clk e h
+     4 ~> vma2 cry 20 l
+     3 ~> {bs2} vma2 vma 20 h
+     2 ~> {bp1} vma2 vma 21 h
+     15 ~> {br1} vma2 vma 22 h
+     14 ~> {bn1} vma2 vma 23 h
+
+e25: 10136 binary counter
+     5 ~< vma2-internal-e43-1
+     6 ~< vma2-internal-e43-2
+     11 ~< vma2-internal-e43-15
+     12 ~< vma2-internal-e43-14
+     10 ~< vma2 cry 28 l
+     7 ~< {bl2} -con vma sel 2 h
+     9 ~< {bj2} -con vma sel 1 h
+     13 ~< vma1 clk d h
+     4 ~> vma2 cry 24 l
+     3 ~> {cf2} vma2 vma 24 h
+     2 ~> {ce2} vma2 vma 25 h
+     15 ~> {cd1} vma2 vma 26 h
+     14 ~> {dl2} vma2 vma 27 h
+
+e64: 10136 binary counter
+     5 ~< vma2-internal-e80-1
+     6 ~< vma2-internal-e80-2
+     11 ~< vma2-internal-e80-15
+     12 ~< vma2-internal-e80-14
+     10 ~< vma2 cry 32 l
+     7 ~< {bl2} -con vma sel 2 h
+     9 ~< {bj2} -con vma sel 1 h
+     13 ~< vma1 clk c h
+     4 ~> vma2 cry 28 l
+     3 ~> {dm2} vma2 vma 28 h
+     2 ~> {dn1} vma2 vma 29 h
+     15 ~> {dp1} vma2 vma 30 h
+     14 ~> {dr2} vma2 vma 31 h
+
+e58: 10136 binary counter
+     5 ~< vma2-internal-e53-1
+     6 ~< vma2-internal-e53-2
+     11 ~< vma2-internal-e53-15
+     12 ~< vma2-internal-e53-14
+     10 ~< %NC%
+     7 ~< {bl2} -con vma sel 2 h
+     9 ~< {bj2} -con vma sel 1 h
+     13 ~< vma1 clk c h
+     4 ~> vma2 cry 32 l
+     3 ~> {ea1} vma2 vma 32 h
+     2 ~> {dt2} vma2 vma 33 h
+     15 ~> {ds2} vma2 vma 34 h
+     14 ~> {du2} vma2 vma 35 h
+
+e10: 10158 4x2 mixer
+     5 ~< %NC%
+     6 ~< %NC%
+     3 ~< %NC%
+     4 ~< %NC%
+     12 ~< vma1 ad 18 h
+     13 ~< {at2} ad 18 a h
+     10 ~< vma1 ad 19 h
+     11 ~< {ar1} ad 19 h
+     9 ~< {bc1} mcl4 vma<-ad h
+     1 ~> %NC%
+     2 ~> %NC%
+     15 ~> vma2-internal-e10-15
+     14 ~> vma2-internal-e10-14
+
+e20: 10158 4x2 mixer
+     5 ~< vma1 ad 20 h
+     6 ~< {bd2} ad 20 h
+     3 ~< vma1 ad 21 h
+     4 ~< {bd1} ad 21 h
+     12 ~< vma1 ad 22 h
+     13 ~< {av2} ad 22 a h
+     10 ~< vma1 ad 23 h
+     11 ~< {ba1} ad 23 a h
+     1 ~> vma2-internal-e20-1
+     2 ~> vma2-internal-e20-2
+     15 ~> vma2-internal-e20-15
+     14 ~> vma2-internal-e20-14
+
+e43: 10158 4x2 mixer
+     5 ~< vma1 ad 24 h
+     6 ~< {br2} ad 24 h
+     3 ~< vma1 ad 25 h
+     4 ~< {bm2} ad 25 h
+     12 ~< vma1 ad 26 h
+     13 ~< {bs1} ad 26 a h
+     10 ~< vma1 ad 27 h
+     11 ~< {bp2} ad 27 a h
+     1 ~> vma2-internal-e43-1
+     2 ~> vma2-internal-e43-2
+     15 ~> vma2-internal-e43-15
+     14 ~> vma2-internal-e43-14
+
+e80: 10158 4x2 mixer
+     5 ~< vma1 ad 28 h
+     6 ~< {et2} ad 28 h
+     3 ~< vma1 ad 29 h
+     4 ~< {es2} ad 29 h
+     12 ~< vma1 ad 30 h
+     13 ~< {ep2} ad 30 a h
+     10 ~< vma1 ad 31 h
+     11 ~< {er2} ad 31 a h
+     1 ~> vma2-internal-e80-1
+     2 ~> vma2-internal-e80-2
+     15 ~> vma2-internal-e80-15
+     14 ~> vma2-internal-e80-14
+
+e53: 10158 4x2 mixer
+     5 ~< vma1 ad 32 h
+     6 ~< {dk1} ad 32 h
+     3 ~< vma1 ad 33 h
+     4 ~< {dl1} ad 33 h
+     12 ~< vma1 ad 34 h
+     13 ~< {dk2} ad 34 a h
+     10 ~< vma1 ad 35 h
+     11 ~< {dm1} ad 35 a h
+     1 ~> vma2-internal-e53-1
+     2 ~> vma2-internal-e53-2
+     15 ~> vma2-internal-e53-15
+     14 ~> vma2-internal-e53-14
+
+Page: VMA3, PDF356
+
+e42: 10113 quad 2 xor
+     7 ~< vma3 match 16-19 l
+     6 ~< %NC%
+     9 ~< %NC%
+     3 ~> vma3 match 13-19 l
+     4 ~< vma3 adr brk 13 h
+     5 ~< {cf1} vma2 vma 13 a h
+     2 ~> vma3 match 13-19 l
+     13 ~< vma3 adr brk 14 h
+     12 ~< {cd2} vma2 vma 14 a h
+     15 ~> vma3 match 13-19 l
+     11 ~< vma3 adr brk 15 h
+     10 ~< {ca1} vma2 vma 15 a h
+     14 ~> vma3 match 13-19 l
+
+e23: 10113 quad 2 xor
+     7 ~< vma3 adr brk 16 h
+     6 ~< {bu2} vma2 vma 16 a h
+     9 ~< %NC%
+     3 ~> vma3 match 16-19 l 
+     4 ~< vma3 adr brk 17 h
+     5 ~< {aa1} vma2 vma 17 a h
+     2 ~> vma3 match 16-19 l
+     13 ~< vma3 adr brk 18 h
+     12 ~< {ae2} vma 18 a h
+     15 ~> vma3 match 16-19 l
+     11 ~< vma3 adr brk 19 h
+     10 ~< {af1} vma 19 a h
+     14 ~> vma3 match 16-19 l
+
+e39: 10113 quad 2 xor
+     7 ~< vma3 adr brk 20 h
+     6 ~< {ck2} vma 20 a h
+     9 ~< %NC%
+     3 ~> vma3 match 20-23 l
+     4 ~< vma3 adr brk 21 h
+     5 ~< {bj1} vma2 vma 21 a h
+     2 ~> vma3 match 20-23 l
+     13 ~< vma3 adr brk 22 h
+     12 ~< {cl1} vma2 vma 22 a h
+     15 ~> vma3 match 20-23 l
+     11 ~< vma3 adr brk 23 h
+     10 ~< {cp2} vma2 vma 23 a h
+     14 ~> vma3 match 20-23 l
+
+e55: 10113 quad 2 xor
+     7 ~< vma3 adr brk 24 h
+     6 ~< {df2} vma2 vma 24 a h
+     9 ~< %NC%
+     3 ~> vma3 match 24-27 l
+     4 ~< vma3 adr brk 25 h
+     5 ~< {dh2} vma2 vma 25 a h
+     2 ~> vma3 match 24-27 l
+     13 ~< vma3 adr brk 26 h
+     12 ~< {dv2} vma2 vma 26 a h
+     15 ~> vma3 match 24-27 l
+     11 ~< vma3 adr brk 27 h
+     10 ~< vma2 vma 27 a h
+     14 ~> vma3 match 24-27 l
+
+e77: 10113 quad 2 xor
+     7 ~< vma3 adr brk 28 h
+     6 ~< vma2 vma 27 a h
+     9 ~< %NC%
+     3 ~> vma3 match 27-31 l
+     4 ~< vma3 adr brk 29 h
+     5 ~< vma2 vma 29 a h
+     2 ~> vma3 match 27-31 l
+     13 ~< vma3 adr brk 30 h
+     12 ~< vma2 vma 30 a h
+     15 ~> vma3 match 27-31 l
+     11 ~< vma3 adr brk 31 h
+     10 ~< vma2 vma 31 a h
+     14 ~> vma3 match 27-31 l
+
+e65: 10113 quad 2 xor
+     7 ~< vma3 adr brk 32 h
+     6 ~< vma2 vma 32 a h
+     9 ~< %NC%
+     3 ~> vma3 match 32-35 l
+     4 ~< vma3 adr brk 33 h
+     5 ~< vma2 vma 33 a h
+     2 ~> vma3 match 32-35 l
+     13 ~< vma3 adr brk 34 h
+     12 ~< vma2 vma 34 a h
+     15 ~> vma3 match 32-35 l
+     11 ~< vma3 adr brk 35 h
+     10 ~< vma2 vma 35 a h
+     14 ~> vma3 match 32-35 l
+
+e47: 10141 shift register
+     13 ~< %NC%
+     12 ~< %NC%
+     11 ~< {cj1} ad 13 h
+     9 ~< {ch2} ad 14 h
+     6 ~< {cj2} ad 15 h
+     5 ~< %NC%
+     7 ~< {dd1} con datao apr l
+     10 ~< {dd1} con datao apr l
+     4 ~< vma1 clk a h
+     14 ~> %NC%
+     15 ~> vma3 adr brk 13 h
+     2 ~> vma3 adr brk 14 h
+     3 ~> vma3 adr brk 15 h
+
+e16: 10141 shift register
+     13 ~< %NC%
+     12 ~< {cm1} ad 16 a h
+     11 ~< {au2} ad 17 a h
+     9 ~< {at2} ad 18 a h
+     6 ~< {ar1} ad 19 h
+     5 ~< %NC%
+     7 ~< vma5 datao apr l
+     10 ~< vma5 datao apr l
+     4 ~< vma1 clk e h
+     14 ~> vma3 adr brk 16 h
+     15 ~> vma3 adr brk 17 h
+     2 ~> vma3 adr brk 18 h
+     3 ~> vma3 adr brk 19 h
+
+e29: 10141 shift register
+     13 ~< %NC%
+     12 ~< {bd2} ad 20 h
+     11 ~< {bd1} ad 21 h
+     9 ~< {av2} ad 22 a h
+     6 ~< {ba1} ad 23 a h
+     5 ~< %NC%
+     7 ~< vma5 datao apr l
+     10 ~< vma5 datao apr l
+     4 ~< vma1 clk f h
+     14 ~> vma3 adr brk 20 h
+     15 ~> vma3 adr brk 21 h
+     2 ~> vma3 adr brk 22 h
+     3 ~> vma3 adr brk 23 h
+
+e44: 10141 shift register
+     13 ~< %NC%
+     12 ~< {br2} ad 24 a h
+     11 ~< {bm2} ad 25 h
+     9 ~< {bs1} ad 26 a h
+     6 ~< {bp2} ad 27 a h
+     5 ~< %NC%
+     7 ~< vma5 datao apr l
+     10 ~< vma5 datao apr l
+     4 ~< vma1 clk c h
+     14 ~> vma3 adr brk 24 h
+     15 ~> vma3 adr brk 25 h
+     2 ~> vma3 adr brk 26 h
+     3 ~> vma3 adr brk 27 h
+
+e82: 10141 shift register
+     13 ~< %NC%
+     12 ~< {et2} ad 28 a h
+     11 ~< {es2} ad 29 a h
+     9 ~< {ep2} ad 30 a h
+     6 ~< {er2} ad 31 h
+     5 ~< %NC%
+     7 ~< vma5 datao apr l
+     10 ~< vma5 datao apr l
+     4 ~< vma1 clk a h
+     14 ~> vma3 adr brk 28 h
+     15 ~> vma3 adr brk 29 h
+     2 ~> vma3 adr brk 30 h
+     3 ~> vma3 adr brk 31 h
+
+e54: 10141 shift register
+     13 ~< %NC%
+     12 ~< {et2} ad 32 h
+     11 ~< {es2} ad 33 h
+     9 ~< {ep2} ad 34 a h
+     6 ~< {er2} ad 35 a h
+     5 ~< %NC%
+     7 ~< vma5 datao apr l
+     10 ~< vma5 datao apr l
+     4 ~< vma1 clk c h
+     14 ~> vma3 adr brk 32 h
+     15 ~> vma3 adr brk 33 h
+     2 ~> vma3 adr brk 34 h
+     3 ~> vma3 adr brk 35 h
+
+e8:  10141 shift register
+     13 ~< %NC%
+     12 ~< {bv2} vma1 vma section 0 l
+     11 ~< {cf1} vma2 vma 13 a h
+     9 ~< {cd2} vma2 vma 14 a h
+     6 ~< {ca1} vma2 vma 15 a h
+     5 ~< %NC%
+     7 ~< {de1} ctl1 load pc l
+     10 ~< {de1} ctl1 load pc l
+     4 ~< vma1 clk f h
+     14 ~> {el2} vma3 pc section 0 l
+     15 ~> vma3 pc 13 h
+     2 ~> vma3 pc 14 h
+     3 ~> vma3 pc 15 h
+
+e14: 10141 shift register
+     13 ~< %NC%
+     12 ~< {bu2} vma2 vma 16 a h
+     11 ~< {aa1} vma2 vma 17 a h
+     9 ~< {ae2} vma 18 a h
+     6 ~< {af1} vma 19 a h
+     5 ~< %NC%
+     7 ~< vma5 load pc l
+     10 ~< vma5 load pc l
+     4 ~< vma1 clk f h
+     14 ~> vma3 pc 16 h
+     15 ~> vma3 pc 17 h
+     2 ~> vma3 pc 18 h
+     3 ~> vma3 pc 19 h
+
+e36: 10141 shift register
+     13 ~< %NC%
+     12 ~< {ck2} vma2 vma 20 a h
+     11 ~< {bj1} vma2 vma 21 a h
+     9 ~< {cl1} vma 22 a h
+     6 ~< {cp2} vma 23 a h
+     5 ~< %NC%
+     7 ~< vma5 load pc l
+     10 ~< vma5 load pc l
+     4 ~< vma1 clk d h
+     14 ~> vma3 pc 20 h
+     15 ~> vma3 pc 21 h
+     2 ~> vma3 pc 22 h
+     3 ~> vma3 pc 23 h
+
+e49: 10141 shift register
+     13 ~< %NC%
+     12 ~< {df2} vma2 vma 24 a h
+     11 ~< {dh2} vma2 vma 25 a h
+     9 ~< {dv2} vma2 vma 26 a h
+     6 ~< vma2 vma 27 a h
+     5 ~< %NC%
+     7 ~< vma5 load pc l
+     10 ~< vma5 load pc l
+     4 ~< vma1 clk c h
+     14 ~> vma3 pc 24 h
+     15 ~> vma3 pc 25 h
+     2 ~> vma3 pc 26 h
+     3 ~> vma3 pc 27 h
+
+e72: 10141 shift register
+     13 ~< %NC%
+     12 ~< vma2 vma 28 a h
+     11 ~< vma2 vma 29 a h
+     9 ~< vma2 vma 30 a h
+     6 ~< vma2 vma 31 a h
+     5 ~< %NC%
+     7 ~< vma5 load pc l
+     10 ~< vma5 load pc l
+     4 ~< vma1 clk a h
+     14 ~> vma3 pc 28 h
+     15 ~> vma3 pc 29 h
+     2 ~> vma3 pc 30 h
+     3 ~> vma3 pc 31 h
+
+e70: 10141 shift register
+     13 ~< %NC%
+     12 ~< vma2 vma 32 a h
+     11 ~< vma2 vma 33 a h
+     9 ~< vma2 vma 34 a h
+     6 ~< vma2 vma 35 a h
+     5 ~< %NC%
+     7 ~< vma5 load pc l
+     10 ~< vma5 load pc l
+     4 ~< vma1 clk b h
+     14 ~> vma3 pc 32 h
+     15 ~> vma3 pc 33 h
+     2 ~> vma3 pc 34 h
+     3 ~> vma3 pc 35 h
+
+Page: VMA4, PDF357
+
+e13: 10158 4x2 mixer
+     5 ~< %NC%
+     6 ~< %NC%
+     3 ~< vma3 pc 13 h
+     4 ~< vma4 held 13 h
+     12 ~< vma3 pc 14 h
+     13 ~< vma4 held 14 h
+     10 ~< vma3 pc 15 h
+     11 ~< vma4 held 15 h
+     9 ~< {ac1} con cond/sel vma h
+     1 ~> %NC%
+     2~> {ak1} vma held or pc 13 h
+     15 ~> {ak2} vma held or pc 14 h
+     14 ~> {aj2} vma held or pc 15 h
+
+e4:  10158 4x2 mixer
+     5 ~< vma3 pc 16 h
+     6 ~< vma4 held 16 h
+     3 ~< vma3 pc 17 h
+     4 ~< vma4 held 17 h
+     12 ~< vma3 pc 18 h
+     13 ~< vm4 held 18 h
+     10 ~< vma3 pc 19 h
+     11 ~< vma4 held 19 h
+     9 ~< {ac1} con cond/sel vma h
+     1 ~> {ah2} vma held or pc 16 h
+     2 ~> {ae1} vma held or pc 17 h
+     15 ~> {ad1} vma held or pc 18 h
+     14 ~> {ad2} vma held or pc 19 h
+
+e40: 10158 4x2 mixer
+     5 ~< vma3 pc 20 h
+     6 ~< vm4 held 20 h
+     3 ~< vma3 pc 21 h
+     4 ~< vma4 held 21 h
+     12 ~< vma3 pc 22 h
+     13 ~< vma4 held 22 h
+     10 ~< vma3 pc 23 h
+     11 ~< vma4 held 23 h
+     9 ~< {ac1} con cond/sel vma h
+     1 ~> {ct2} vma held or pc 20 h
+     2 ~> {cu2} vma held or pc 21 h
+     15 ~> {cm2} vma held or pc 22 h
+     14 ~> {cs2} vma held or pc 23 h
+
+e57: 10158 4x2 mixer
+     5 ~< vma3 pc 24 h
+     6 ~< vma4 held 24 h
+     3 ~< vma3 pc 25 h
+     4 ~< vma4 held 25 h
+     12 ~< vma3 pc 26 h
+     13 ~< vma4 held 26 h
+     10 ~< vma3 pc 27 h
+     11 ~< vma4 held 27 h
+     9 ~< {ac1} con cond/sel vma h
+     1 ~> {dj1} vma held or pc 24 h
+     2 ~> {dj2} vma held or pc 25 h
+     15 ~> {df1} vma held or pc 26 h
+     14 ~> {de2} vma held or pc 27 h
+
+e66: 10158 4x2 mixer
+     5 ~< vma3 pc 28 h
+     6 ~< vma4 held 28 h
+     3 ~< vma3 pc 29 h
+     4 ~< vma4 held 29 h
+     12 ~< vma3 pc 30 h
+     13 ~< vma4 held 30 h
+     10 ~< vma3 pc 31 h
+     11 ~< vma4 held 31 h
+     9 ~< {ac1} con cond/sel vma h
+     1 ~> {ee2} vma held or pc 28 h
+     2 ~> {ee1} vma held or pc 29 h
+     15 ~> {ed2} vma held or pc 30 h
+     14 ~> {ec1} vma held or pc 31 h
+
+e81: 10158 4x2 mixer
+     5 ~< vma3 pc 32 h
+     6 ~< vma4 held 32 h
+     3 ~< vma3 pc 33 h
+     4 ~< vma4 held 33 h
+     12 ~< vma3 pc 34 h
+     13 ~< vma4 held 34 h
+     10 ~< vma3 pc 35 h
+     11 ~< vma4 held 35 h
+     9 ~< {ac1} con cond/sel vma h
+     1 ~> {fk2} vma held or pc 32 h
+     2 ~> {fl2} vma held or pc 33 h
+     15 ~> {fk1} vma held or pc 34 h
+     14 ~> {fj1} vma held or pc 35 h
+
+e18: 10141 shift register
+     13 ~< %NC%
+     12 ~< %NC%
+     11 ~< {cf1} vma2 vma 13 a h
+     9 ~< {cd2} vma2 vma 14 a h
+     6 ~< {ca1} vma2 vma 15 a h
+     5 ~< %NC%
+     7 ~< {dc1} mcl1 load vma held l
+     10 ~< {dc1} mcl1 load vma held l
+     4 ~< vma1 clk f h
+     14 ~> %NC%
+     15 ~> vma4 held 13 h
+     2 ~> vma4 held 14 h
+     3 ~> vma4 held 15 h
+
+e5:  10141 shift register
+     13 ~< %NC%
+     12 ~< {bu2} vma2 vma 16 a h
+     11 ~< {aa1} vma2 vma 17 a h
+     9 ~< {ae2} vma 18 a h
+     6 ~< {af1} vma 19 a h
+     5 ~< %NC%
+     7 ~< vma5 load vma held l
+     10 ~< vma5 load vma held l
+     4 ~< vma1 clk f h
+     14 ~> vma4 held 16 h
+     15 ~> vma4 held 17 h
+     2 ~> vma4 held 18 h
+     3 ~> vma4 held 19 h
+
+e30: 10141 shift register
+     13 ~< %NC%
+     12 ~< {ck2} vma 20 a h
+     11 ~< {bj1} vma2 vma 21 a h
+     9 ~< {cl1} vma2 vma 22 a h
+     6 ~< {cp2} vma2 vma 23 a h
+     5 ~< %NC%
+     7 ~< vma5 load vma held l
+     10 ~< vma5 load vma held l
+     4 ~< vma1 clk d h
+     14 ~> vma4 held 20 h
+     15 ~> vma4 held 21 h
+     2 ~> vma4 held 22 h
+     3 ~> vma4 held 23 h
+
+e56: 10141 shift register
+     13 ~< %NC%
+     12 ~< {df2} vma2 vma 24 a h
+     11 ~< {dh2} vma2 vma 25 a h
+     9 ~< {dv2} vma2 vma 26 a h
+     6 ~< vma2 vma 27 a h
+     5 ~< %NC%
+     7 ~< vma5 load vma held l
+     10 ~< vma5 load vma held l
+     4 ~< vma1 clk b h
+     14 ~> vma4 held 24 h
+     15 ~> vma4 held 25 h
+     2 ~> vma4 held 26 h
+     3 ~> vma4 held 27 h
+
+e67: 10141 shift register
+     13 ~< %NC%
+     12 ~< vma2 vma 28 a h
+     11 ~< vma2 vma 29 a h
+     9 ~< vma2 vma 30 a h
+     6 ~< vma2 vma 31 a h
+     5 ~< %NC%
+     7 ~< vma5 load vma held l
+     10 ~< vma5 load vma held l
+     4 ~< vma1 clk a h
+     14 ~> vma4 held 28 h
+     15 ~> vma4 held 29 h
+     2 ~> vma4 held 30 h
+     3 ~> vma4 held 31 h
+
+e75: 10141 shift register
+     13 ~< %NC%
+     12 ~< vma2 vma 32 a h
+     11 ~< vma2 vma 33 a h
+     9 ~< vma2 vma 34 a h
+     6 ~< vma2 vma 35 a h
+     5 ~< %NC%
+     7 ~< vma5 load vma held l
+     10 ~< vma5 load vma held l
+     4 ~< vma1 clk b h
+     14 ~> vma4 held 32 h
+     15 ~> vma4 held 33 h
+     2 ~> vma4 held 34 h
+     3 ~> vma4 held 35 h
+
+e12: 10174 2x4 mixer
+     3 ~< {fe2} vma2 vma 12 h
+     5 ~< %NC%
+     4 ~< %NC%
+     6 ~< %NC%
+     2 ~> vma4 vma 12 in h
+     13 ~< {cf1} vma2 vma 13 a h
+     11 ~< vma3 pc 13 h
+     12 ~< vma4 prev sec 13 h
+     10 ~< {cj1} ad 13 h
+     15 ~> {bk1} ^armm 13 h
+     9 ~< {am1} mcl4 vmax sel 2 h
+     7 ~< {ap1} mcl4 vmax sel 1 h
+     14 ~< vma4 vmax en l
+
+w1:  wire just a wire
+     1 ~< {bk1} ^armm 13 h
+     2 ~> vma4 vma 13 in h
+
+e17: 10174 2x4 mixer
+     3 ~< {cd2} vma2 vma 14 a h
+     5 ~< vma3 pc 14 h
+     4 ~< vma4 prev sec 14 h
+     6 ~< {ch2} ad 14 h
+     2 ~> {bh2} ^armm 14 h
+     13 ~< {ca1} vma2 vma 15 a h
+     11 ~< vma3 pc 15 h
+     12 ~< vma4 prev sec 15 h
+     10 ~< {cj2} ad 15 h
+     15 ~> {bf1} ^armm 15 h
+     9 ~< {am1} mcl4 vmax sel 2 h
+     7 ~< {ap1} mcl4 vmax sel 1 h
+     14 ~< vma4 vmax en l
+
+w2: wire just a wire
+    1 ~< {bh2} ^armm 14 h
+    2 ~> vma4 vma 14 in h
+
+w3: wire just a wire
+    1 ~< {bf1} ^armm 15 h
+    2 ~> vma4 vma 15 in h
+
+e19: 10174 2x4 mixer
+     3 ~< {bu2} vma2 vma 16 a h
+     5 ~< vma3 pc 16 h
+     4 ~< vma4 prev sec 16 h
+     6 ~< {cm1} ad 16 a h
+     2 ~> {be1} ^armm 16 h
+     13 ~< {aa1} vma2 vma 17 a h
+     11 ~< vma3 pc 17 h
+     12 ~< vma4 prev sec 17 h
+     10 ~< {au2} ad 17 a h
+     15 ~> {fd1} ^armm 17 h
+     9 ~< {am1} mcl4 vmax sel 2 h
+     7 ~< {ap1} mcl4 vmax sel 1 h
+     14 ~< vma4 vmax en l
+
+w4: wire just a wire
+    1 ~< {be1} ^armm 16 h
+    2 ~> vma4 vma 16 in h
+
+w5: wire just a wire
+    1 ~< {fd1} ^armm 17 h
+    2 ~> vma4 vma 17 in h
+
+e32: 10141 shift register
+     13 ~< %NC%
+     12 ~< %NC%
+     11 ~< {cj1} ad 13 h
+     9 ~< {ch2} ad 14 h
+     6 ~< {cj2} ad 15 h
+     5 ~< %NC%
+     7 ~< {ck1} con load prev context l
+     10 ~< {ck1} con load prev context l
+     4 ~< vma1 clk d h
+     14 ~> %NC%
+     15 ~> vma4 prev sec 13 h
+     2 ~> vma4 prev sec 14 h
+     3 ~> vma4 prev sec 15 h
+
+e24: 10141 shift register
+     13 ~< %NC%
+     12 ~< {cm1} ad 16 a h
+     11 ~< {cj1} ad 17 a h
+     9 ~< {cj1} ad 17 a h
+     6 ~< {cm1} ad 16 a h
+     5 ~< %NC%
+     7 ~< {ck1} con load prev context l
+     10 ~< {ck1} con load prev context l
+     4 ~< vma1 clk f h
+     14 ~> vma4 prev sec 16 h
+     15 ~> vma4 prev sec 17 h
+     2 ~> vma4 prev sec 16,17 h
+     3 ~> vma4-internal-e24-3
+
+Page: VMA5, PDF358
+
+e33: 10164 8 mixer
+     6 ~< vma3 pc 15 h
+     5 ~< vma3 pc 14 h
+     4 ~< vma3 pc 13 h
+     3 ~< -vma1 misc=0 h
+     11 ~< vma4 held 15 h
+     12 ~< vma4 held 14 h
+     13 ~< vma4 held 13 h
+     14 ~< {da1} -vma1 ac ref a h
+     10 ~< vma5 diag 04 h
+     9 ~< vma5 diag 05 h
+     7 ~< vma5 diag 06 h
+     2 ~< vma5 read vma a l
+     15 ~> {bl1} ebus d13 e h
+
+e38: 10164 8 mixer
+     6 ~< vma3 adr brk 15 h
+     5 ~< vma3 adr brk 14 h
+     4 ~< vma3 adr brk 13 h
+     3 ~< {as1} -vma1 loca ac address h
+     11 ~< {ca1} vma2 vma 15 a h
+     12 ~< {cd2} vma2 vma 14 a h
+     13 ~< {cf1} vma2 vma 13 a h
+     14 ~< {bk2} -vma3 match 13-35 h
+     10 ~< vma5 diag 04 h
+     9 ~< vma5 diag 05 h
+     7 ~< vma5 diag 06 h
+     2 ~< vma5 read vma a l
+     15 ~> {bt2} ebus d15 e h
+
+e9:  10164 8 mixer
+     6 ~< vma3 pc 19 h
+     5 ~< vma3 pc 18 h
+     4 ~< vma3 pc 17 h
+     3 ~< vma3 pc 16 h
+     11 ~< vma4 held 19 h
+     12 ~< vma4 held 18 h
+     13 ~< vma4 held 17 h
+     14 ~< vma4 held 16 h
+     10 ~< vma5 diag 04 h
+     9 ~< vma5 diag 05 h
+     7 ~< vma5 diag 06 h
+     2 ~< vma5 read vma a l
+     15 ~> {af2} ebus d17 e h
+
+e28: 10164 8 mixer
+     6 ~< vma3 adr brk 19 h
+     5 ~< vma3 adr brk 18 h
+     4 ~< vma3 adr brk 17 h
+     3 ~< vma3 adr brk 16 h
+     11 ~< {af1} vma4 19 h
+     12 ~< {ae2} vma4 18 h
+     13 ~< {aa1} vma4 17 h
+     14 ~< {bu2} vma4 16 h
+     10 ~< vma5 diag 04 h
+     9 ~< vma5 diag 05 h
+     7 ~< vma5 diag 06 h
+     2 ~< vma5 read vma a l
+     15 ~> {be2} ebus d19 e h
+
+e35: 10164 8 mixer
+     6 ~< vma3 pc 23 h
+     5 ~< vma3 pc 22 h
+     4 ~< vma3 pc 21 h
+     3 ~< vma3 pc 20 h
+     11 ~< vma4 held 23 h
+     12 ~< vma4 held 22 h
+     13 ~< vma4 held 21 h
+     14 ~< vma4 held 20 h
+     10 ~< vma5 diag 04 h
+     9 ~< vma5 diag 05 h
+     7 ~< vma5 diag 06 h
+     2 ~< vma5 read vma a l
+     15 ~> {cs1} ebus d21 e h
+
+e34: 10164 8 mixer
+     6 ~< vma3 adr brk 23 h
+     5 ~< vma3 adr brk 22 h
+     4 ~< vma3 adr brk 21 h
+     3 ~< vma3 adr brk 20 h
+     11 ~< {cp2} vma2 vma 23 a h
+     12 ~< {cl1} vma2 vma 22 a h
+     13 ~< {bj1} vma2 vma 21 a h
+     14 ~< {ck2} vma 20 a h
+     10 ~< vma5 diag 04 h
+     9 ~< vma5 diag 05 h
+     7 ~< vma5 diag 06 h
+     2 ~< vma5 read vma a l
+     15 ~> {bf2} ebus d23 e h
+
+e51: 10101 quad or/nor
+     4 ~< {cp1} diag 04 b h
+     12 ~< %NC%
+     2 ~> vma5 diag 04 l
+     5 ~> vma5 diag 04 h
+     10 ~< {cn1} diag read func 15x l
+     14 ~> %NC%
+     11 ~> vma5 read vma l
+     7 ~< {de1} ctl1 load pc l
+     3 ~> %NC%
+     6 ~> vma5 load pc l
+     13 ~< {dc1} mcl1 load vma held l
+     15 ~> %NC%
+     9 ~> vma5 load vma held l
+
+e46: 10101 quad or/nor
+     7 ~< {cr1} diag 05 b h
+     12 ~< %NC%
+     3 ~> vma5 diag 05 l
+     6 ~> vma5 diag 05 h
+     4 ~< {cl2} diag 06 b h
+     2 ~> vma5 diag 06 l
+     5 ~> vma5 diag 06 h
+     10 ~< {dd1} con datao apr l
+     14 ~> %NC%
+     11 ~> vma5 datao apr l
+     13 ~< vma5 read vma l
+     15 ~> %NC%
+     9 ~> vma5 read vma a l
+
+e22: 10164 8 mixer
+     14 ~< {bv2} -vma1 vma section 0 h
+     13 ~< {el2} -vma3 pc section 0 h
+     12 ~< {ej2} -vma4 pcs section 0 h
+     11 ~< vma4 prev sec 17 h
+     3 ~< vma4 prev sec 16 h
+     4 ~< vma4 prev sec 15 h
+     5 ~< vma4 prev sec 14 h
+     6 ~< vma4 prev sec 13 h
+     10 ~< vma5 diag 04 l
+     9 ~< vma5 diag 05 l
+     7 ~< vma5 diag 06 l
+     2 ~< vma5 read vma a l
+     15 ~> {ed1} ebus d11 e h
