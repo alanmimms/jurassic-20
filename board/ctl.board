@@ -486,7 +486,7 @@ e40: 10109 4/5 or/nor
      12 ~< ctl2-internal-e51-2
      13 ~< ctl1 disp/ea mod h
      14 ~> %NC%
-     15 ~> {e1} ctl arl sel 2 h
+     15 ~> {ec1} ctl arl sel 2 h
      4 ~< {ev2} cram arm sel 2 h
      5 ~< ctl1 disp/aread h
      6 ~< ctl3 diag ar load h
