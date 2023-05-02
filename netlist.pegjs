@@ -46,12 +46,14 @@ chipDef = h:chipHead p:pinDef+
 chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
 		{ return AST('Chip', {name, type, desc}) }
 
-pinDef = [ \t]+ pin:number _ dir:direction _ bpPin:bpPin? net:net blankLines
-		{ return AST('Pin', {pin, dir, bpPin, net}) }
+pinDef = [ \t]+ pin:number _ dir:direction _ bpPin:$bpPin? net:net blankLines
+		{ return AST('Pin', {pin, dir, bpPin: bpPin ? bpPin.trim() : null, net}) }
 
 direction = $('~>' / '~<')
 
-bpPin = $('{' bareID '}') _
+bpPin = $('{' bpPinID '}') _
+
+bpPinID = $( [abcdef] [abcdefhjklmnprstuv] [12] )
 
 macroRef =  '[' head:expr ids:selectorList ']'
 		{ return AST('Macro', {head, ids}) }
