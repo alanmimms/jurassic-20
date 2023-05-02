@@ -11,6 +11,7 @@ const COMPILE = require('./compile');
 CMDR
   .option('-t, --trace-parse', `Print trace while parsing netlist`)
   .option('-a, --dump-ast', `Dump AST after parsing`)
+  .option('-s, --dump-signals', `Dump signals list after parsing`)
   .option('-v, --verbose-errors', `Give more info for errors`)
   .option('-n, --check-nets', `Verify netlist`)
   .option('-u, --check-undriven', `Show list of undriven nets`)
