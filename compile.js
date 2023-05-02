@@ -82,8 +82,9 @@ function parseBackplanes(parser) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Walk through all net references and create an object whose property names
-// are the net names and whose property values are arrays of {pin, dir, bpPin}.
+// Walk through all net references and create: {
+//   netName1: [{pin, dir, bpPin},  ... ],  ...
+// }
 function findConnectedNets(nets) {
   const connectedNets = {};
   
@@ -95,6 +96,16 @@ function findConnectedNets(nets) {
 
       Object.values(nets[netName][dir]).forEach(pin => {
         const bpPin = pin.bpPin;
+
+	if (bpPin) {
+
+	  if (connectedNets[netName].bpPin && connectedNets[netName].bpPin != bpPin) {
+	    console.error(`Net '${netName}' connected to both ${bpPin} (${pin.fullName}) and ${connectedNets[netName].bpPin} (${connectedNets[netName].map(p => p.pin.fullName).join(',')})`);
+	  }
+
+	  connectedNets[netName].bpPin = bpPin;
+	}
+
         connectedNets[netName].push({dir, pin, bpPin});
       });
     });
@@ -125,15 +136,15 @@ function checkNetConnectivity(connectedNets) {
 
       if (driving.length > 1) {
 
-        if (options['check-wire-or']) {
+        if (options.checkWireOr) {
           console.log(`WARNING WIRE-OR: "${netName}" is wire-OR driven by ${driving.length} pins:`);
-          if (options['verbose-errors']) console.log(`    ${util.inspect(driving)}`);
+          if (options.verboseErrors) console.log(`    ${util.inspect(driving)}`);
         }
       } else if (driving.length === 0 && !pins.some(pin => pin.bpPin)) {
 
-        if (options['check-undriven']) {
+        if (options.checkUndriven) {
           console.log(`WARNING UNDRIVEN: "${netName}" is not driven by any pin and is not backplane connected:`);
-          if (options['verbose-errors']) console.log(`    ${util.inspect(pins)}`);
+          if (options.verboseErrors) console.log(`    ${util.inspect(pins)}`);
         }
       }
     }
@@ -157,7 +168,6 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
     cx.chip.page = cx.page;
     cx.chip.board = cx.board;
     cx.chip.logic = logic[cx.chip.type];
-//    console.log(`Chip ${util.inspect(chip)}`);
 
     if (!cx.chip.logic) {
       // Provide dummy entry just so we can go on
@@ -165,14 +175,12 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
       console.log(`======> ${cx.page.name}.${cx.chip.name} undefined logic device '${cx.chip.type}'`);
     }
     
-    //  console.log(`\n${page.name}.${chip.name}: ${chip.type} ${chip.desc}`);
     cx.chip.pins.forEach(k => expandMacros(k, nets, macroEnv, cx));
     break;
 
   case 'Page':
     cx.page = ast;
     cx.page.board = cx.board;
-    //    console.log(`\nPage ${page.name}, pdfRef ${page.pdfRef}`);
     cx.page.chips.forEach(k => expandMacros(k, nets, macroEnv, cx));
     break;
 
@@ -184,7 +192,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
   case 'Pin':
     cx.pin = ast;
     cx.pin.chip = cx.chip;
-    cx.pin.fullName = cx.pin.chip.page.name + '.' + cx.pin.chip.name + '.' + cx.pin.name;
+    cx.pin.fullName = cx.pin.chip.page.name + '.' + cx.pin.chip.name + '.' + cx.pin.pin;
     cx.pin.symbol = Symbol(cx.pin.fullName);
     cx.net = '';
 
@@ -265,7 +273,6 @@ function evalExpr(t, macroEnv, isMath = false) {
 
     if (t.ids.list.length) {		// It's a selector
       const sel = result;
-//      console.log(`Selector result=${result}  t=${util.inspect(t, {depth: null})}`);
       const selected = t.ids.list[+result - 1];
 
       if (result < 1 || selected == null) {
@@ -284,7 +291,6 @@ function evalExpr(t, macroEnv, isMath = false) {
   case '*':
     const expr = evalExpr(t.l, macroEnv, true) + t.t + evalExpr(t.r, macroEnv, true);
     result = Math.trunc(eval(expr));
-//    console.log(`Eval "${expr}" = ${result}`);
     break;
 
   case 'IDList':
@@ -307,9 +313,18 @@ Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.
     break;
   }
 
-//  console.log(`evalExpr(${util.inspect(t)}) result '${result}'`);
-//  if (!isMath) result = result.replace(/^0o/, '');
   return result;
+}
+
+
+// bp.connectedNets = { netName1: [{pin, dir, bpPin},  ... ],  ... }
+function dumpSignals(bp) {
+  fs.writeFileSync('symbols.dump',
+		   Object.entries(bp.connectedNets)
+		   .filter(([net, pind]) => pind)
+		   .sort((a, b) => ("" + a).localeCompare(b, undefined, {numeric: true}))
+		   .map(([net, pind]) => `\
+${net}: ${pind.map(({pin, dir, bpPin}) => `${pin.fullName}${dir}${bpPin}`).join(', ')}`).join('\n'));
 }
 
 
@@ -324,14 +339,14 @@ function compile(simOptions) {
   const backplanes = parseBackplanes(parser);
 
   const needCheck =
-        options['check-nets'] || 
-        options['check-wire-or'] || 
-        options['check-undriven'];
+        options.checkNets || 
+        options.checkWireOr || 
+        options.checkUndriven;
 
   backplanes.forEach(bp => {
-    const connectedNets = findConnectedNets(bp);
-    bp.connectedNets = connectedNets;
-    if (needCheck) checkNetConnectivity(connectedNets);
+    bp.connectedNets = findConnectedNets(bp);
+    if (needCheck) checkNetConnectivity(bp.connectedNets);
+    if (options.dumpSignals) dumpSignals(bp);
   });
 
   return backplanes;
