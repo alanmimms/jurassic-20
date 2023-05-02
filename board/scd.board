@@ -585,7 +585,7 @@ e17: 10164 8 mix
 e12: 10164 8 mix
      14 ~< {ap2} scd4 fpd h
      13 ~< {as2} scd4 div chk h
-     12 ~< {ar2} -ad cry -02 a
+     12 ~< {ar2} -ad cry -02 a h
      11 ~< {am2} scd4 nicond 10 h
      3 ~< scd5 public page h
      4 ~< -scd5 private instr en h
