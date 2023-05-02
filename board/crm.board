@@ -134,7 +134,7 @@ e23:  10174 2x4 mix
       6 ~< {cf2} cram [n+62] h
       4 ~< {ar2} cram [n+42] h
       5 ~< {cj2} cram [n+22] h
-      3 ~< {dk2} cram [n+02] h
+      3 ~< {ck2} cram [n+02] h
       10 ~< {cd2} cram par [n] h
       12 ~< {av2} cram [n+43] h
       11 ~< {bf1} cram [n+23] h
@@ -169,11 +169,11 @@ e16: 10160 parity
      6 ~< {bs2} [n/16+1,nc,cram par 12 h]
      7 ~< {ck2} cram [n+02] h
      9 ~< {bp2} cram [n+03] h
-     10 ~< {bp2} cram [n+22] h
-     11 ~< {bp2} cram [n+23] h
-     12 ~< {bp2} cram [n+42] h
-     13 ~< {bp2} cram [n+43] h
-     14 ~< {bp2} cram [n+62] h
+     10 ~< {cj2} cram [n+22] h
+     11 ~< {bf1} cram [n+23] h
+     12 ~< {ar2} cram [n+42] h
+     13 ~< {av2} cram [n+43] h
+     14 ~< {cf2} cram [n+62] h
      15 ~< cr03 par 1st h
      2 ~> {cd2} cram par [n] h
 
@@ -186,9 +186,9 @@ e40: 10160 parity
      9 ~<  {ed2} cram [n+00] h
      10 ~< {dv2} cram [n+01] h
      11 ~< {es2} cram [n+20] h
-     12 ~< {fp2} cram [n+21] h
-     13 ~< {fk2} cram [n+40] h
-     14 ~< {dr2} cram [n+41] h
+     12 ~< {ep2} cram [n+21] h
+     13 ~< {fp2} cram [n+40] h
+     14 ~< {fk2} cram [n+41] h
      15 ~< {dr2} cram [n+60] h
      2 ~> cr03 par 1st h
 
@@ -312,7 +312,7 @@ e43: 10141 shft reg
      7 ~< cr03 reset h
      10 ~< %NC%
      4 ~< cr03 clk b h
-     14 ~> {dl2} cram [n+41] h
+     14 ~> {dl2} cram [n+41]s h
      15 ~> {fk2} cram [n+41] h
      2 ~> {ep2} cram [n+21] h
      3 ~> {dv2} cram [n+01] h

@@ -293,13 +293,13 @@ e80: 10174 2x4 mix
 
 e62: 10174 2x4 mix
      3 ~< scd2 fe 06 h
-     5 ~< {dm1} ar 02 d h
+     5 ~< {fr2} ar 02 d h
      4 ~< scd1 scada exp 06 h
-     6 ~< {fe1} cram # 05 h
+     6 ~< {dd2} cram # 05 h
      13 ~< scd2 fe 07 h
-     11 ~< {fu2} ar 03 c h
+     11 ~< {ff1} ar 03 c h
      12 ~< scd1 scada exp 07 h
-     10 ~< {fl2} cram # 06 h
+     10 ~< {cu2} cram # 06 h
      9 ~< {fj1} cram scada sel 2 h
      7 ~< {fl1} cram scada sel 1 h
      14 ~< {fk1} cram scada en l
@@ -312,7 +312,7 @@ e57: 10174 2x4 mix
      4 ~< scd1 scada exp 08 h
      6 ~< {dr1} cram # 07 h
      13 ~< scd2 fe 09 h
-     11 ~< {dk2} ar 05 c h
+     11 ~< {dh2} ar 05 c h
      12 ~< scd1 scada exp 09 h
      10 ~< {cp1} cram # 08 h
      9 ~< {fj1} cram scada sel 2 h
