@@ -38,7 +38,7 @@ e72: 10162 decoder
      15 ~< %NC%
      2 ~< mcl1 mem 00 l
      6 ~> mcl1 mem/ad func h
-     5 ~> mcl1-internal-e62-5
+     5 ~> mcl1-internal-e72-5
      4 ~> mcl1 mem/load ar h
      3 ~> mcl1 mem/load arx h
      13 ~> mcl1 mem/rw cycle h
@@ -90,7 +90,7 @@ e75: 10105 2-3-2 or/nor
      4 ~< mcl1 mem/rw cycle h
      5 ~< mcl1 mem/rpw cycle h
      3 ~> %NC%
-     2 ~> Mcl1 rw or rpw cycle h
+     2 ~> mcl1 rw or rpw cycle h
      12 ~< mcl1 mem/restore vma h
      13 ~< mcl1 mem/ad func h
      14 ~> mcl1 load ad func l

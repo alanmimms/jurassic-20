@@ -79,7 +79,7 @@ e85: 10181 ALU
      17 ~< {fr2} con cond/vma<-# h
      14 ~< %NC%
      23 ~< vma1 spec/vma<-# h
-     5 ~> vma1 ad cry 28
+     5 ~> vma1 ad cry 28 h
      6 ~> vma1 ad 28 h
      7 ~> vma1 ad 29 h
      3 ~> vma1 ad 30 h
@@ -220,14 +220,14 @@ e37: 10109 4/5 or/nor
      4 ~< -vma1 vma section 0,1 l
      5 ~< vma1 local l
      6 ~< vma1 misc=0 l
-     7 ~< vma1 20=27=0 l
+     7 ~< vma1 20-27=0 l
      3 ~> %NC%
      2 ~> {as1} vma1 local ac address l
      9 ~< vma3 match 28-31 l
      10 ~< vma3 match 13-19 l
      11 ~< vma3 match 20-23 l
      12 ~< vma3 match 24-27 l
-     13 ~< vm3 match 32-35 l
+     13 ~< vma3 match 32-35 l
      14 ~> %NC%
      15 ~> {bk2} vma3 match 13-35 l
 
@@ -561,7 +561,7 @@ e23: 10113 quad 2 xor
      7 ~< vma3 adr brk 16 h
      6 ~< {bu2} vma2 vma 16 a h
      9 ~< %NC%
-     3 ~> vma3 match 16-19 l 
+     3 ~> vma3 match 16-19 l
      4 ~< vma3 adr brk 17 h
      5 ~< {aa1} vma2 vma 17 a h
      2 ~> vma3 match 16-19 l
@@ -604,18 +604,18 @@ e55: 10113 quad 2 xor
 
 e77: 10113 quad 2 xor
      7 ~< vma3 adr brk 28 h
-     6 ~< vma2 vma 27 a h
+     6 ~< vma2 vma 28 a h
      9 ~< %NC%
-     3 ~> vma3 match 27-31 l
+     3 ~> vma3 match 28-31 l
      4 ~< vma3 adr brk 29 h
      5 ~< vma2 vma 29 a h
-     2 ~> vma3 match 27-31 l
+     2 ~> vma3 match 28-31 l
      13 ~< vma3 adr brk 30 h
      12 ~< vma2 vma 30 a h
-     15 ~> vma3 match 27-31 l
+     15 ~> vma3 match 28-31 l
      11 ~< vma3 adr brk 31 h
      10 ~< vma2 vma 31 a h
-     14 ~> vma3 match 27-31 l
+     14 ~> vma3 match 28-31 l
 
 e65: 10113 quad 2 xor
      7 ~< vma3 adr brk 32 h
@@ -835,7 +835,7 @@ e4:  10158 4x2 mixer
      3 ~< vma3 pc 17 h
      4 ~< vma4 held 17 h
      12 ~< vma3 pc 18 h
-     13 ~< vm4 held 18 h
+     13 ~< vma4 held 18 h
      10 ~< vma3 pc 19 h
      11 ~< vma4 held 19 h
      9 ~< {ac1} con cond/sel vma h
@@ -846,7 +846,7 @@ e4:  10158 4x2 mixer
 
 e40: 10158 4x2 mixer
      5 ~< vma3 pc 20 h
-     6 ~< vm4 held 20 h
+     6 ~< vma4 held 20 h
      3 ~< vma3 pc 21 h
      4 ~< vma4 held 21 h
      12 ~< vma3 pc 22 h

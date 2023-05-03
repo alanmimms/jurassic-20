@@ -1143,7 +1143,7 @@ e18: 10118 triple 4-2 or-and
      10 ~< scd5 ar 05 l
      11 ~< %NC%
      9 ~< scd5 load flags a h
-     15 ~> scd5 user en l     	   // ???? scan problem ????
+     15 ~> scd5 user en l
 
 e6: 10105 triple 2-3-2 or/nor
     4 ~< -scd5 load flags a h
