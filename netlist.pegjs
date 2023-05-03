@@ -23,10 +23,8 @@ backplane = 'Backplane' _ ':' _
 slotDef = 'Slot' _ n:number _ ':' _ board:slotContent blankLines
                 { return AST('Slot', {n, board, bpPins: {}}) }
 
-slotContent = 'ignore' ( !EOL . )+
-                { return AST('Empty', {id: '%EMPTY%'}) }
-/       macros:( '{' _ m:macroDef* '}' {return m} )? _ 
-        id:simpleID _ comments:$( !EOL . )*
+slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
+	id:simpleID _ comments:$( !EOL . )*
                 { return AST('ModuleID', {macros, id, comments}) }
 
 macroDef = id:simpleID _ '=' _ value:number _
