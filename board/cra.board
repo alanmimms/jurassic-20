@@ -542,7 +542,7 @@ e38: 10101 quad or/nor
      12 ~< %NC%
      2 ~> %NC%
      5 ~> cra4 reset h
-     7 ~< {dk2} ebus d00 e h
+     7 ~< {dk2} ebus d0 e h
      3 ~> %NC%
      6 ~> cra5 ebus 00 h
 
@@ -918,7 +918,7 @@ e49: 10101 quad or/nor
      4 ~< {ds1} diag 05 a l
      2 ~> %NC%
      5 ~> cra5 diag read l
-     13 ~< {ea1} ebus d05 e h
+     13 ~< {ea1} ebus d5 e h
      15 ~> %NC%
      9 ~> cra5 ebus 05 h
 
@@ -1128,7 +1128,7 @@ e50: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {dk2} ebus d00 e h
+     15 ~> {dk2} ebus d0 e h
 
 e64: 10164 8 mixer
      14 ~< -cra3 disp en 00-03 h
@@ -1143,20 +1143,20 @@ e64: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {dj2} ebus d01 e h
+     15 ~> {dj2} ebus d1 e h
 
 e46: 10101 quad or/nor
-     13 ~< {dj2} ebus d01 e h
+     13 ~< {dj2} ebus d1 e h
      12 ~< %NC%
      15 ~> %NC%
      9 ~> cra5 ebus 01 h
-     7 ~< {df1} ebus d02 e h
+     7 ~< {df1} ebus d2 e h
      3 ~> %NC%
      6 ~> cra5 ebus 02 h
-     4 ~< {ed1} ebus d03 e h
+     4 ~< {ed1} ebus d3 e h
      2 ~> %NC%
      5 ~> cra5 ebus 03 h
-     10 ~< {ec1} ebus d04 e h
+     10 ~< {ec1} ebus d4 e h
      14 ~> %NC%
      11 ~> cra5 ebus 04 h
 
@@ -1173,7 +1173,7 @@ e80: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {df1} ebus d02 e h
+     15 ~> {df1} ebus d2 e h
 
 e70: 10164 8 mixer
      14 ~< cra4 stack adr 04 h
@@ -1188,7 +1188,7 @@ e70: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {ed1} ebus d03 e h
+     15 ~> {ed1} ebus d3 e h
 
 e79: 10164 8 mixer
      14 ~< cra4 stack adr 02 h
@@ -1203,7 +1203,7 @@ e79: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {ed1} ebus d04 e h
+     15 ~> {ed1} ebus d4 e h
 
 e75: 10164 8 mixer
      14 ~< cra4 stack adr 01 h
@@ -1218,4 +1218,4 @@ e75: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {ea1} ebus d05 e h
+     15 ~> {ea1} ebus d5 e h
