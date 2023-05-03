@@ -454,7 +454,7 @@ e31: 10164 8 mixer
      15 ~> cra1-internal-e31-15
 
 e36: 10164 8 mixer
-     6 ~< {ct2} [b,cra2 spare h,nc]
+     6 ~< {ct2} [b,cra2 spare h,%NC%]
      5 ~< {cu2} -shm1 ar par odd b h
      4 ~< {bv2} br 00 a h
      3 ~< {cv2} arx 00 b h
