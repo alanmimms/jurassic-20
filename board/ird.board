@@ -298,7 +298,7 @@ e4: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+0] h
+    13 ~< dr ebus [n+00] h
     14 ~< dram load x,y even l
     15 ~> dram a00 x h
 
@@ -311,7 +311,7 @@ e9: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+0] h
+    13 ~< dr ebus [n+00] h
     14 ~< dram load x,y odd l
     15 ~> dram a00 y h
 
@@ -324,7 +324,7 @@ e42: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+1] h
+    13 ~< dr ebus [n+01] h
     14 ~< dram load x,y even l
     15 ~> dram a01 x h
 
@@ -337,7 +337,7 @@ e47: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+1] h
+    13 ~< dr ebus [n+01] h
     14 ~< dram load x,y odd l
     15 ~> dram a01 y h
 
@@ -350,7 +350,7 @@ e14: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+2] h
+    13 ~< dr ebus [n+02] h
     14 ~< dram load x,y even l
     15 ~> dram a02 x h
 
@@ -363,7 +363,7 @@ e19: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+2] h
+    13 ~< dr ebus [n+02] h
     14 ~< dram load x,y odd l
     15 ~> dram a02 y h
 
@@ -376,7 +376,7 @@ e24: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+3] h
+    13 ~< dr ebus [n+03] h
     14 ~< dram load x,y even l
     15 ~> dram b00 x h
 
@@ -389,7 +389,7 @@ e29: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+3] h
+    13 ~< dr ebus [n+03] h
     14 ~< dram load x,y odd l
     15 ~> dram b00 y h
 
@@ -402,7 +402,7 @@ e34: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+4] h
+    13 ~< dr ebus [n+04] h
     14 ~< dram load x,y even l
     15 ~> dram b01 x h
 
@@ -415,7 +415,7 @@ e37: 10144 256x1 ram
     10 ~< dr adr 05 a l
     11 ~< dr adr 06 a l
     12 ~< dr adr 07 a l
-    13 ~< dr ebus [n+4] h
+    13 ~< dr ebus [n+04] h
     14 ~< dram load x,y odd l
     15 ~> dram b01 y h
 
@@ -428,7 +428,7 @@ e43: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+5] h
+    13 ~< dr ebus [n+05] h
     14 ~< dram load x,y even l
     15 ~> dram b02 x h
 
@@ -441,7 +441,7 @@ e48: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+5] h
+    13 ~< dr ebus [n+05] h
     14 ~< dram load x,y odd l
     15 ~> dram b02 y h
 
@@ -454,7 +454,7 @@ e20: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+2] h
+    13 ~< dr ebus [n+02] h
     14 ~< dram load x,y odd l
     15 ~> dram j07 h
 
@@ -467,7 +467,7 @@ e25: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+3] h
+    13 ~< dr ebus [n+03] h
     14 ~< dram load j even l
     15 ~> dram j08 x h
 
@@ -480,7 +480,7 @@ e30: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+3] h
+    13 ~< dr ebus [n+03] h
     14 ~< dram load j odd l
     15 ~> dram j08 y h
 
@@ -493,7 +493,7 @@ e35: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+4] h
+    13 ~< dr ebus [n+04] h
     14 ~< dram load j even l
     15 ~> dram j09 x h
 
@@ -506,7 +506,7 @@ e38: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+4] h
+    13 ~< dr ebus [n+04] h
     14 ~< dram load j odd l
     15 ~> dram j09 y h
 
@@ -519,7 +519,7 @@ e53: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+5] h
+    13 ~< dr ebus [n+05] h
     14 ~< dram load j even l
     15 ~> dram j10 x h
 
@@ -532,7 +532,7 @@ e58: 10144 256x1 ram
     10 ~< dr adr 05 a h
     11 ~< dr adr 06 a h
     12 ~< dr adr 07 a h
-    13 ~< dr ebus [n+5] h
+    13 ~< dr ebus [n+05] h
     14 ~< dram load j odd l
     15 ~> dram j10 y h
 
@@ -545,7 +545,7 @@ e3: 10144 256x1 ram
     10 ~< dr adr 05 h
     11 ~< dr adr 06 h
     12 ~< dr adr 07 h
-    13 ~< dr ebus [n+0] h
+    13 ~< dr ebus [n+00] h
     14 ~< dram load j even l
     15 ~> dram par x h
 
@@ -558,7 +558,7 @@ e8: 10144 256x1 ram
     10 ~< dr adr 05 h
     11 ~< dr adr 06 h
     12 ~< dr adr 07 h
-    13 ~< dr ebus [n+0] h
+    13 ~< dr ebus [n+00] h
     14 ~< dram load j odd l
     15 ~> dram par y h
 
@@ -571,7 +571,7 @@ e13: 10144 256x1 ram
     10 ~< dr adr 05 h
     11 ~< dr adr 06 h
     12 ~< dr adr 07 h
-    13 ~< dr ebus [n+2] h
+    13 ~< dr ebus [n+02] h
     14 ~< dram load j common l
     15 ~> dram j01 h
 
@@ -584,7 +584,7 @@ e18: 10144 256x1 ram
     10 ~< dr adr 05 h
     11 ~< dr adr 06 h
     12 ~< dr adr 07 h
-    13 ~< dr ebus [n+3] h
+    13 ~< dr ebus [n+03] h
     14 ~< dram load j common l
     15 ~> dram j02 h
 
@@ -597,7 +597,7 @@ e28: 10144 256x1 ram
     10 ~< dr adr 05 h
     11 ~< dr adr 06 h
     12 ~< dr adr 07 h
-    13 ~< dr ebus [n+4] h
+    13 ~< dr ebus [n+04] h
     14 ~< dram load j common l
     15 ~> dram j03 h
 
@@ -610,7 +610,7 @@ e23: 10144 256x1 ram
     10 ~< dr adr 05 h
     11 ~< dr adr 06 h
     12 ~< dr adr 07 h
-    13 ~< dr ebus [n+5] h
+    13 ~< dr ebus [n+05] h
     14 ~< dram load j common l
     15 ~> dram j04 h
 
@@ -661,12 +661,12 @@ e57: 10161 decoder
      10 ~> internal-e57-10
 
 e40: 10101 quad or/nor
-     10 ~< ebus d[n+0] e h
+     10 ~< ebus d[n+00] e h
      12 ~< %NC%
-     11 ~> dr ebus [n+0] h
+     11 ~> dr ebus [n+00] h
      14 ~> %NC%
-     13 ~< ebus d[n+1] e h
-     9 ~> dr ebus [n+1] h
+     13 ~< ebus d[n+01] e h
+     9 ~> dr ebus [n+01] h
      15 ~> %NC%
      4 ~< internal-e57-10
      2 ~> internal-e40-2
@@ -808,19 +808,19 @@ e54: 10101 quad or/nor
      15 ~> %NC%
 
 e46: 10101 quad or/nor
-     4 ~< ebus d[n+2] e h
+     4 ~< ebus d[n+02] e h
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> dr ebus [n+2] h
-     7 ~< ebus d[n+3] e h
+     5 ~> dr ebus [n+02] h
+     7 ~< ebus d[n+03] e h
      3 ~> %NC%
-     6 ~> dr ebus [n+3] h
-     10 ~< ebus d[n+4] e h
+     6 ~> dr ebus [n+03] h
+     10 ~< ebus d[n+04] e h
      14 ~> %NC%
-     11 ~> dr ebus [n+4] h
-     13 ~< ebus d[n+5] e h
+     11 ~> dr ebus [n+04] h
+     13 ~< ebus d[n+05] e h
      15 ~> %NC%
-     9 ~> dr ebus [n+5] h
+     9 ~> dr ebus [n+05] h
 
 e36: 10164 8 mix
      6 ~< ir norm 08 h
@@ -835,7 +835,7 @@ e36: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {dd1} ebus d[n+0] e h
+     15 ~> {dd1} ebus d[n+00] e h
 
 e31: 10164 8 mix
      6 ~< ir norm 09 h
@@ -850,7 +850,7 @@ e31: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {de2} ebus d[n+1] e h
+     15 ~> {de2} ebus d[n+01] e h
 
 e39: 10164 8 mix
      6 ~< ir norm 10 h
@@ -865,7 +865,7 @@ e39: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {cu2} ebus d[n+2] e h
+     15 ~> {cu2} ebus d[n+02] e h
 
 e32: 10164 8 mix
      6 ~< dr adr 00 a h
@@ -880,7 +880,7 @@ e32: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {cv2} ebus d[n+3] e h
+     15 ~> {cv2} ebus d[n+03] e h
 
 e49: 10164 8 mix
      6 ~< dr adr 01 a h
@@ -895,7 +895,7 @@ e49: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {dj1} ebus d[n+4] e h
+     15 ~> {dj1} ebus d[n+04] e h
 
 e44: 10164 8 mix
      6 ~< dr adr 02 a h
@@ -910,7 +910,7 @@ e44: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {cs2} ebus d[n+5] e h
+     15 ~> {cs2} ebus d[n+05] e h
 
 Page: IR4, PDF131
 

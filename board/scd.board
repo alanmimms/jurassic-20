@@ -535,7 +535,7 @@ e13: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {ce1} ebus d2 e h
+     15 ~> {ce1} ebus d02 e h
 
 e28: 10164 8 mix
      14 ~< scd4 trap cyc 2 h
@@ -550,7 +550,7 @@ e28: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {cf1} ebus d3 e h
+     15 ~> {cf1} ebus d03 e h
 
 e31: 10164 8 mix
      14 ~< scd4 trap cyc 1 h
@@ -565,7 +565,7 @@ e31: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {cd1} ebus d4 e h
+     15 ~> {cd1} ebus d04 e h
 
 e17: 10164 8 mix
      14 ~< {bc1} scd4 trap req 1 h
@@ -580,7 +580,7 @@ e17: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {cc1} ebus d5 e h
+     15 ~> {cc1} ebus d05 e h
 
 e12: 10164 8 mix
      14 ~< {ap2} scd4 fpd h
@@ -595,7 +595,7 @@ e12: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {ca1} ebus d6 e h
+     15 ~> {ca1} ebus d06 e h
 
 e63: 10164 8 mix
      14 ~< {er1} scd2 sc 05 h
@@ -610,7 +610,7 @@ e63: 10164 8 mix
      9 ~< scd3 diag 05 h
      7 ~< scd3 diag 06 h
      2 ~< scd3 diag en l
-     15 ~> {ea1} ebus d7 e h
+     15 ~> {ea1} ebus d07 e h
 
 e58: 10174 2x4 mix
      3 ~< {dk2} scd2 sc 07 h
@@ -624,8 +624,8 @@ e58: 10174 2x4 mix
      9 ~< scd3 diag 05 h
      7 ~< scd3 diag 06 h
      14 ~< scd3 diag en l
-     2 ~> {dv2} ebus d9 e h
-     15 ~> {dt2} ebus d8 e h
+     2 ~> {dv2} ebus d09 e h
+     15 ~> {dt2} ebus d08 e h
 
 e59: 10174 2x4 mix
      3 ~< {ef2} scd2 sc 09 h

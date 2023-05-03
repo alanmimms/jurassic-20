@@ -73,7 +73,7 @@ e41: 10164 8 mix
      6 ~< {dd2} armm [n+03] h
      5 ~< {dd1} cache data [n+03] b h
      4 ~< {dr1} ad [n+03] h
-     3 ~< {dp1} ebus d[n+003] e h
+     3 ~< {dp1} ebus d[n+03] e h
      11 ~< {da1} sh [n+03] h
      12 ~< {cp1} ad [n+04] h
      13 ~< adx [n+03] h
