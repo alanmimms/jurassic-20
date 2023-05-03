@@ -47,8 +47,6 @@ function parseBackplanes(parser) {
   const bpAST = parseFile(parser, filename);
 
   return bpAST.map(bp => {
-    const nets = {bp};
-
     console.log(`Backplane ${bp.name}:`);
     dumpAST(bp, bp.name, 'before');
 
@@ -58,10 +56,10 @@ function parseBackplanes(parser) {
 
     bpMacros.forEach(macro => bpMacroEnv[macro.id] = macro.value);
 
+    // For each slot, (re)parse the board definition and expand its
+    // macros for the slot (and backplane, and CPU type) specifics.
     bp.slots.forEach(slot => {
       const board = slot.board;
-
-      if (board.nodeType === 'Empty') return;
 
       const macros = board.macros || [];
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
@@ -72,11 +70,11 @@ function parseBackplanes(parser) {
       console.log(`  Slot ${slot.n}: ${board.id} ${macroDesc}`);
 
       const boardAST = parseFile(parser, `board/${board.id}.board`);
-      expandMacros(boardAST, nets, macroEnv);
+      expandMacros(boardAST, bp, macroEnv);
       slot.board = {... board, ... boardAST};
     });
 
-    dumpAST(nets, bp.name, 'after');
+    dumpAST(bp, bp.name, 'after');
     return bp;
   });
 }
@@ -87,22 +85,26 @@ function parseBackplanes(parser) {
 //   netName1: [{pin, dir, bpPin},  ... ],  ...
 // }
 function gatherNetByName(bp) {
-  const netByName = {};
+  bp.netByName = {};
   
-  Object.keys(bp).forEach(netName => {
-    if (netName === '%NC%') return;
-    netByName[netName] = [];
+  bp.slots
+    .filter(slot => slot.board && slot.board.pages)
+    .forEach(slot => {
 
-    Object.keys(bp[netName]).forEach(dir => {
+      slot.board.pages.forEach(page => {
 
-      Object.values(bp[netName][dir]).forEach(pin => {
-        const bpPin = pin.bpPin;
-        netByName[netName].push({dir, pin, bpPin});
+	page.chips.forEach(chip => {
+
+	  chip.pins
+	    .forEach(pin => {
+	      if (!bp.netByName[pin.netName]) bp.netByName[pin.netName] = [];
+	      bp.netByName[pin.netName].push(pin);
+	    });
+	});
       });
     });
-  });
 
-  return netByName;
+  return bp.netByName;
 }
 
 
@@ -312,8 +314,9 @@ function evalExpr(t, macroEnv, isMath = false) {
   case '-':
   case '/':
   case '*':
-    const expr = evalExpr(t.l, macroEnv, true) + t.nodeType + evalExpr(t.r, macroEnv, true);
-    result = Math.trunc(eval(expr));
+    const L = evalExpr(t.l, macroEnv, true);
+    const R = evalExpr(t.r, macroEnv, true);
+    result = Math.trunc(eval(`${L}${t.nodeType}${R}`));
     break;
 
   case 'IDList':
@@ -344,14 +347,15 @@ Unhandled subtree node type in ${t.nodeType} macro: '${util.inspect(t, {depth: 9
 function dumpSignals(bp) {
   fs.writeFileSync('symbols.dump',
 		   Object.entries(bp.netByName)
-		   .filter(([net, pind]) => pind)
-		   .sort((a, b) => ("" + a).localeCompare(b, undefined, {numeric: true}))
-		   .map(([net, pind]) => `\
-${net}: ${pind.map(({pin, dir, bpPin}) => `${pin.fullName}${dir}${bpPin}`).join(', ')}`).join('\n'));
+		   .filter(([net, pinList]) => pinList)
+		   .sort((a, b) => ("" + a[0]).localeCompare(b[0], undefined, {numeric: true}))
+		   .map(([net, pinList]) => `\
+${net}: ${pinList.map(({pin, dir, bpPin}) => `${pin.fullName}${dir}${bpPin}`).join(', ')}`).join('\n'));
 }
 
 
 function compile(simOptions) {
+  const backplanes = {};
   options = simOptions;
 
   const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
@@ -359,15 +363,16 @@ function compile(simOptions) {
     trace: options.traceParse,
   });
 
-  const backplanes = parseBackplanes(parser);
+  const bpAST = parseBackplanes(parser);
 
   const needCheck =
         options.checkNets || 
         options.checkWireOr || 
         options.checkUndriven;
 
-  backplanes.forEach(bp => {
-    bp.netByName = gatherNetByName(bp);
+  bpAST.forEach(bp => {
+    backplanes[bp.name] = bp;
+    gatherNetByName(bp);
     defineBackplanePins(bp);
     if (needCheck) checkNetConnectivity(bp.netByName);
     if (options.dumpSignals) dumpSignals(bp);
