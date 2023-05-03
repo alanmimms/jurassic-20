@@ -1,13 +1,13 @@
 {
   const util = require('util');
 
-  function AST(t, props) {
-//    console.log(`${t}: ${require('util').inspect(props, {depth: 9})}`);
+  function AST(nodeType, props) {
+//    console.log(`${nodeType}: ${require('util').inspect(props, {depth: 9})}`);
     const loc = location();
     loc[util.inspect.custom] = function() {
       return `@${this.start.line}:${this.start.column}:${this.start.offset}..${this.end.line}:${this.end.column}:${this.end.offset}`;
     }
-    return {t, location: loc, ...props};
+    return {nodeType, location: loc, ...props};
   }
 }
 
@@ -21,7 +21,7 @@ backplane = 'Backplane' _ ':' _
                 { return AST('Backplane', {name, macros, slots}) }
 
 slotDef = 'Slot' _ n:number _ ':' _ board:slotContent blankLines
-                { return AST('Slot', {n, board}) }
+                { return AST('Slot', {n, board, bpPins: {}}) }
 
 slotContent = 'ignore' ( !EOL . )+
                 { return AST('Empty', {id: '%EMPTY%'}) }
