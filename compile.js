@@ -227,7 +227,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
       break;
 
     case 'IDList':
-      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv)).join('');
+      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv)).join('').trim();
       break;
 
     case 'IDChunk':
@@ -325,7 +325,7 @@ function evalExpr(t, macroEnv) {
     break;
 
   case 'IDList':
-    result = t.list.map(id => evalExpr(id, macroEnv)).join('');
+    result = t.list.map(id => evalExpr(id, macroEnv)).join('').trim();
     break;
 
   case 'IDChunk':
