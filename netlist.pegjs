@@ -83,8 +83,8 @@ product = l:primary _ op:('*' / '/') _ r:product
 		{ return AST(op, {l, r}) }
 /	primary
 
-primary = number
-		{ return AST('Value', {value: parseInt(text(), 10)}) }
+primary = value:$number
+		{ return AST('Value', {value}) }
 /	'(' _ val:sum _ ')'
 		{ return val }
 /	macroName
