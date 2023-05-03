@@ -64,22 +64,22 @@ idList = list:( macroRef / idChunk )*
        		{ return AST('IDList', {list}) }
 
 bareID = [-/#=%.+_&()a-zA-Z^]+ [-/#=%.+_&<> a-zA-Z0-9^]*
-		{ return text().trim() }
+		{ return text() }
 
 idChunk = name:$[-/#%.+_&<> ()a-zA-Z0-9=]+
 		{ return AST('IDChunk', {name}) }
 
 // like idChunk but allows ',' in the identifier in non-macro context
 id = name:( '\\' EOL _ / [-/#%,.+_&<> ()a-zA-Z0-9=^] )+
-		{ return AST('IDChunk', {name: text().trim().replace(/\\[\n\r]\s*/g, '')}) }
+		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
 
 expr = sum
 
-sum = l:product _ op:( '+' / '-' ) _ r:sum
+sum = l:product _ op:$[-+] _ r:sum
 		{ return AST(op, {l, r}) }
 /	product
 
-product = l:primary _ op:('*' / '/') _ r:product
+product = l:primary _ op:$[*/] _ r:product
 		{ return AST(op, {l, r}) }
 /	primary
 
