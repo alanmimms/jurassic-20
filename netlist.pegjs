@@ -71,7 +71,7 @@ idChunk = name:$[-/#%.+_&<> ()a-zA-Z0-9=]+
 
 // like idChunk but allows ',' in the identifier in non-macro context
 id = name:( '\\' EOL _ / [-/#%,.+_&<> ()a-zA-Z0-9=^] )+
-		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
+		{ return AST('IDChunk', {name: text().trim().replace(/\\[\n\r]\s*/g, '')}) }
 
 expr = sum
 
