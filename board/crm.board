@@ -163,10 +163,10 @@ e1: 10161 decoder
 Page: CRM3, PDF394
 
 e16: 10160 parity
-     3 ~< {bv2} [n/4+1,nc,nc,cram mark h,cram disp parity h,cram par 00 h]
-     4 ~< {bu2} [n/16+1,nc,cram par 04 h]
-     5 ~< {br2} [n/16+1,nc,cram par 08 h]
-     6 ~< {bs2} [n/16+1,nc,cram par 12 h]
+     3 ~< {bv2} [n/4+1,%NC%,%NC%,cram mark h,cram disp parity h,cram par 00 h]
+     4 ~< {bu2} [n/16+1,%NC%,cram par 04 h]
+     5 ~< {br2} [n/16+1,%NC%,cram par 08 h]
+     6 ~< {bs2} [n/16+1,%NC%,cram par 12 h]
      7 ~< {ck2} cram [n+02] h
      9 ~< {bp2} cram [n+03] h
      10 ~< {cj2} cram [n+22] h
