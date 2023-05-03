@@ -11,17 +11,17 @@ Page: DP01,PDF15
 e52: 10101 or buffer
      4 ~< {er1} [n/18+1,ctl arl sel 4 h,cram arm sel 4 a h]
      12 ~< %NC%
-     5 ~> edp-[n]-internal-sel4
+     5 ~> edp-[n]-sel4
      2 ~> %NC%
      7 ~< {ek1} [n/18+1,ctl arl sel 2 h,ctl arr sel 2 h]
      3 ~> %NC%
-     6 ~> edp-[n]-internal-sel2
+     6 ~> edp-[n]-sel2
      13 ~< {eh2} [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,ctl arr clr h,ctl arr clr h,ctl arr clr h]
      15 ~> %NC%
-     9 ~> edp-[n]-internal-sel1
+     9 ~> edp-[n]-sel1
      10 ~< {en1} [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]
      14 ~> %NC%
-     11 ~> edp-[n]-internal-nen
+     11 ~> edp-[n]-nen
 
 
 e53: 10164 8 mix
@@ -33,10 +33,10 @@ e53: 10164 8 mix
      12 ~< {dl1} ad [n+01] h
      13 ~< {cj2} adx [n+00] h
      14 ~< {cp2} [n/6+1,ad ex -02 h,ad 04 h,ad 10 h,ad 16 h,ad 22 h,ad 28 h]
-     10 ~< edp-[n]-internal-sel4
-     9 ~< edp-[n]-internal-sel2
-     7 ~< edp-[n]-internal-sel1
-     2 ~< edp-[n]-internal-nen
+     10 ~< edp-[n]-sel4
+     9 ~< edp-[n]-sel2
+     7 ~< edp-[n]-sel1
+     2 ~< edp-[n]-nen
      15 ~> arm [n+00] h
 
 e46: 10164 8 mix
@@ -48,10 +48,10 @@ e46: 10164 8 mix
      12 ~< {dr2} ad [n+02] h
      13 ~< adx [n+01] h
      14 ~< {el2} [n/6+1,ad ex -01 h,ad 05 h,ad 11 h,ad 17 h,ad 23 h,ad 29 h]
-     10 ~< edp-[n]-internal-sel4
-     9 ~< edp-[n]-internal-sel2
-     7 ~< edp-[n]-internal-sel1
-     2 ~< edp-[n]-internal-nen
+     10 ~< edp-[n]-sel4
+     9 ~< edp-[n]-sel2
+     7 ~< edp-[n]-sel1
+     2 ~< edp-[n]-nen
      15 ~> arm [n+01] h
 
 e47: 10164 8 mix
@@ -63,10 +63,10 @@ e47: 10164 8 mix
      12 ~< {dr1} ad [n+03] h
      13 ~< adx [n+02] h
      14 ~< {ep2} ad [n+00] h
-     10 ~< edp-[n]-internal-sel4
-     9 ~< edp-[n]-internal-sel2
-     7 ~< edp-[n]-internal-sel1
-     2 ~< edp-[n]-internal-nen
+     10 ~< edp-[n]-sel4
+     9 ~< edp-[n]-sel2
+     7 ~< edp-[n]-sel1
+     2 ~< edp-[n]-nen
      15 ~> arm [n+02] h
 
 e41: 10164 8 mix
@@ -78,10 +78,10 @@ e41: 10164 8 mix
      12 ~< {cp1} ad [n+04] h
      13 ~< adx [n+03] h
      14 ~< {dl1} ad [n+01] h
-     10 ~< edp-[n]-internal-sel4
-     9 ~< edp-[n]-internal-sel2
-     7 ~< edp-[n]-internal-sel1
-     2 ~< edp-[n]-internal-nen
+     10 ~< edp-[n]-sel4
+     9 ~< edp-[n]-sel2
+     7 ~< edp-[n]-sel1
+     2 ~< edp-[n]-nen
      15 ~> arm [n+03] h
 
 e40: 10164 8 mix
@@ -93,10 +93,10 @@ e40: 10164 8 mix
      12 ~< {el1} ad [n+05] h
      13 ~< {dk1} adx [n+04] h
      14 ~< {dr2} ad [n+02] h
-     10 ~< edp-[n]-internal-sel4
-     9 ~< edp-[n]-internal-sel2
-     7 ~< edp-[n]-internal-sel1
-     2 ~< edp-[n]-internal-nen
+     10 ~< edp-[n]-sel4
+     9 ~< edp-[n]-sel2
+     7 ~< edp-[n]-sel1
+     2 ~< edp-[n]-nen
      15 ~> arm [n+04] h
 
 e54: 10164 8 mix
@@ -108,10 +108,10 @@ e54: 10164 8 mix
      12 ~< {ep1} [n/30+1,adxyzzy [n+06] plugh,adx 00 h]
      13 ~< {es1} adx [n+05] h
      14 ~< {dr1} ad [n+03] h
-     10 ~< edp-[n]-internal-sel4
-     9 ~< edp-[n]-internal-sel2
-     7 ~< edp-[n]-internal-sel1
-     2 ~< edp-[n]-internal-nen
+     10 ~< edp-[n]-sel4
+     9 ~< edp-[n]-sel2
+     7 ~< edp-[n]-sel1
+     2 ~< edp-[n]-nen
      15 ~> arm [n+05] h
 
 e51: 10141 shft reg
@@ -191,14 +191,14 @@ Page: DP02,PDF16
 e60: 10101 or buffer
      4 ~< {ff1} cram arxm sel 4 [n/18+1,00,06] h
      12 ~< %NC%
-     5 ~> edp-[n]-internal-e55-sel4
+     5 ~> edp-[n]-e55-sel4
      2 ~> %NC%
      7 ~< {fd2} [n/18+1,ctl arxl sel 2 h,ctl arxr sel 2 h]
      3 ~> %NC%
-     6 ~> edp-[n]-internal-e55-sel2
+     6 ~> edp-[n]-e55-sel2
      13 ~< {fj1} [n/18+1,ctl arxl sel 1 h,ctl arxr sel 1 h]
      15 ~> %NC%
-     9 ~> edp-[n]-internal-e55-sel1
+     9 ~> edp-[n]-e55-sel1
 
 e55: 10164 8 mix
      6 ~< %NC%
@@ -209,9 +209,9 @@ e55: 10164 8 mix
      12 ~< adx [n+01] h
      13 ~< adx [n+00] h
      14 ~< [(n+199)/100,ad 34 h,adx [n-2] h]
-     10 ~< edp-[n]-internal-e55-sel4
-     9 ~< edp-[n]-internal-e55-sel2
-     7 ~< edp-[n]-internal-e55-sel1
+     10 ~< edp-[n]-e55-sel4
+     9 ~< edp-[n]-e55-sel2
+     7 ~< edp-[n]-e55-sel1
      2 ~< %NC%
      15 ~> arxm [n+00] h
 
@@ -224,9 +224,9 @@ e56: 10164 8 mix
      12 ~< adx [n+02] h
      13 ~< adx [n+01] h
      14 ~< {es2} [(n+199)/100,ad 35 h,adx [n-1] h]
-     10 ~< edp-[n]-internal-e55-sel4
-     9 ~< edp-[n]-internal-e55-sel2
-     7 ~< edp-[n]-internal-e55-sel1
+     10 ~< edp-[n]-e55-sel4
+     9 ~< edp-[n]-e55-sel2
+     7 ~< edp-[n]-e55-sel1
      2 ~< %NC%
      15 ~> arxm [n+01] h
 
@@ -239,9 +239,9 @@ e49: 10164 8 mix
      12 ~< adx [n+03] h
      13 ~< adx [n+02] h
      14 ~< {cj2} adx [n+00] h
-     10 ~< edp-[n]-internal-e55-sel4
-     9 ~< edp-[n]-internal-e55-sel2
-     7 ~< edp-[n]-internal-e55-sel1
+     10 ~< edp-[n]-e55-sel4
+     9 ~< edp-[n]-e55-sel2
+     7 ~< edp-[n]-e55-sel1
      2 ~< %NC%
      15 ~> arxm [n+02] h
 
@@ -254,9 +254,9 @@ e42: 10164 8 mix
      12 ~< {dk1} adx [n+04] h
      13 ~< adx [n+03] h
      14 ~< adx [n+01] h
-     10 ~< edp-[n]-internal-e55-sel4
-     9 ~< edp-[n]-internal-e55-sel2
-     7 ~< edp-[n]-internal-e55-sel1
+     10 ~< edp-[n]-e55-sel4
+     9 ~< edp-[n]-e55-sel2
+     7 ~< edp-[n]-e55-sel1
      2 ~< %NC%
      15 ~> arxm [n+03] h
 
@@ -269,9 +269,9 @@ e31: 10164 8 mix
      12 ~< {es1} adx [n+05] h
      13 ~< {dk1} adx [n+04] h
      14 ~< adx [n+02] h
-     10 ~< edp-[n]-internal-e55-sel4
-     9 ~< edp-[n]-internal-e55-sel2
-     7 ~< edp-[n]-internal-e55-sel1
+     10 ~< edp-[n]-e55-sel4
+     9 ~< edp-[n]-e55-sel2
+     7 ~< edp-[n]-e55-sel1
      2 ~< %NC%
      15 ~> arxm [n+04] h
 
@@ -284,9 +284,9 @@ e30: 10164 8 mix
      12 ~< {cj1} [n/30+1,adx [n+06] h,mq 00 h]
      13 ~< {es1} adx [n+05] h
      14 ~< adx [n+03] h
-     10 ~< edp-[n]-internal-e55-sel4
-     9 ~< edp-[n]-internal-e55-sel2
-     7 ~< edp-[n]-internal-e55-sel1
+     10 ~< edp-[n]-e55-sel4
+     9 ~< edp-[n]-e55-sel2
+     7 ~< edp-[n]-e55-sel1
      2 ~< %NC%
      15 ~> arxm [n+05] h
 
@@ -294,13 +294,13 @@ e38: 10101 or buffer
      4 ~< {dm1} ctl mqm setl 2 h
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> edp-[n]-internal-e45-sel2
+     5 ~> edp-[n]-e45-sel2
      7 ~< {dj1} ctl mqm sel 1 h
      3 ~> %NC%
-     6 ~> edp-[n]-internal-e45-sel1
+     6 ~> edp-[n]-e45-sel1
      13 ~< {dn1} ctl mqm en h
-     15 ~> edp-[n]-internal-e45-nen
-     9 ~> edp-[n]-internal-e45-d03
+     15 ~> edp-[n]-e45-nen
+     9 ~> edp-[n]-e45-d03
      10 ~< {dj2} cram br load a h
      14 ~> internal-edp-[n]-e61-op
      11 ~> %NC%
@@ -309,14 +309,14 @@ e45: 10174 2x4 mix
      3 ~< {cs2} [(n+199)/100,adx 34 h,mq [n-2] h]
      5 ~< {ed1} sh [n+00] h
      4 ~< {ep2} ad [n+00] h
-     6 ~< edp-[n]-internal-e45-d03
+     6 ~< edp-[n]-e45-d03
      13 ~< [(n+199)/100,adx 35 h,mq [n-1] h]
      11 ~< sh [n+01] h
      12 ~< ad [n+01] h
-     10 ~< edp-[n]-internal-e45-d03
-     9 ~< edp-[n]-internal-e45-sel2
-     7 ~< edp-[n]-internal-e45-sel1
-     14 ~< edp-[n]-internal-e45-nen
+     10 ~< edp-[n]-e45-d03
+     9 ~< edp-[n]-e45-sel2
+     7 ~< edp-[n]-e45-sel1
+     14 ~< edp-[n]-e45-nen
      2 ~> mqm [n+00] h
      15 ~> mqm [n+01] h
 
@@ -324,14 +324,14 @@ e48: 10174 2x4 mix
      3 ~< {cd2} mq [n+00] h
      5 ~< {ds1} sh [n+02] h
      4 ~< {dr2} ad [n+02] h
-     6 ~< edp-[n]-internal-e45-d03
+     6 ~< edp-[n]-e45-d03
      13 ~< mq [n+01] h
      11 ~< {da1} sh [n+03] h
      12 ~< {dr1} ad [n+03] h
-     10 ~< edp-[n]-internal-e45-d03
-     9 ~< edp-[n]-internal-e45-sel2
-     7 ~< edp-[n]-internal-e45-sel1
-     14 ~< edp-[n]-internal-e45-nen
+     10 ~< edp-[n]-e45-d03
+     9 ~< edp-[n]-e45-sel2
+     7 ~< edp-[n]-e45-sel1
+     14 ~< edp-[n]-e45-nen
      2 ~> mqm [n+02] h
      15 ~> mqm [n+03] h
 
@@ -339,31 +339,31 @@ e35: 10174 2x4 mix
      3 ~< mq [n+02] h
      5 ~< {de2} sh [n+04] h
      4 ~< {cp1} ad [n+04] h
-     6 ~< edp-[n]-internal-e45-d03
+     6 ~< edp-[n]-e45-d03
      13 ~< mq [n+03] h
      11 ~< {ca1} sh [n+05] h
      12 ~< {el1} ad [n+05] h
-     10 ~< edp-[n]-internal-e45-d03
-     9 ~< edp-[n]-internal-e45-sel2
-     7 ~< edp-[n]-internal-e45-sel1
-     14 ~< edp-[n]-internal-e45-nen
+     10 ~< edp-[n]-e45-d03
+     9 ~< edp-[n]-e45-sel2
+     7 ~< edp-[n]-e45-sel1
+     14 ~< edp-[n]-e45-nen
      2 ~> mqm [n+04] h
      15 ~> mqm [n+05] h
 
 e20: 10101 or buffer
      4 ~< {bv2} ctl mq sel 2 h
      12 ~< %NC%
-     5 ~> edp-[n]-internal-e13-op2
+     5 ~> edp-[n]-e13-op2
      2 ~> %NC%
      7 ~< {bu2} ctl mq sel 1 h
      3 ~> %NC%
-     6 ~> edp-[n]-internal-e13-op1
+     6 ~> edp-[n]-e13-op1
      13 ~< {cs1} mq [n+04] h
      15 ~> %NC%
-     9 ~> edp-[n]-internal-e13-s3in
+     9 ~> edp-[n]-e13-s3in
      10 ~< {cd1} [n/30+1,mq [n+06] h,ad cry -02 a h]
      14 ~> %NC%
-     11 ~> edp-[n]-internal-e15-s3in
+     11 ~> edp-[n]-e15-s3in
 
 e13: 10141 shft reg
      13 ~< mqm [n+01] h
@@ -371,9 +371,9 @@ e13: 10141 shft reg
      11 ~< mqm [n+01] h
      9 ~< mqm [n+02] h
      6 ~< mqm [n+03] h
-     5 ~< edp-[n]-internal-e13-s3in
-     7 ~< edp-[n]-internal-e13-op2
-     10 ~< edp-[n]-internal-e13-op2
+     5 ~< edp-[n]-e13-s3in
+     7 ~< edp-[n]-e13-op2
+     10 ~< edp-[n]-e13-op2
      14 ~> {cd2} mq [n+00] h
      15 ~> mq [n+01] h
      2 ~> mq [n+02] h
@@ -386,9 +386,9 @@ e15: 10141 shft reg
      11 ~< mqm [n+03] h
      9 ~< mqm [n+04] h
      6 ~< mqm [n+05] h
-     5 ~< edp-[n]-internal-e15-s3in
-     7 ~< edp-[n]-internal-e13-op2
-     10 ~< edp-[n]-internal-e13-op2
+     5 ~< edp-[n]-e15-s3in
+     7 ~< edp-[n]-e13-op2
+     10 ~< edp-[n]-e13-op2
      14 ~> %NC%
      15 ~> mq [n+03] h
      2 ~> {cs1} mq [n+04] h
@@ -402,8 +402,8 @@ e25: 10141 shft reg
      9 ~< arxm [n+01] h
      6 ~< arxm [n+02] h
      5 ~< %NC%
-     7 ~< edp-[n]-internal-e25-op
-     10 ~< edp-[n]-internal-e25-op
+     7 ~< edp-[n]-e25-op
+     10 ~< edp-[n]-e25-op
      14 ~> {br2} arx [n+00] b h
      15 ~> {ej2} arx [n+00] h
      2 ~> {bd2} arx [n+01] h
@@ -422,7 +422,7 @@ e24: 10101 or buffer
      15 ~> %NC%
      9 ~> arx [n+02] a h
      10 ~< {br1} ctl arx load h
-     14 ~> edp-[n]-internal-e25-op
+     14 ~> edp-[n]-e25-op
      11 ~> %NC%
 
 e32: 10141 shft reg
@@ -432,8 +432,8 @@ e32: 10141 shft reg
      9 ~< arxm [n+04] h
      6 ~< arxm [n+05] h
      5 ~< %NC%
-     7 ~< edp-[n]-internal-e25-op
-     10 ~< edp-[n]-internal-e25-op
+     7 ~< edp-[n]-e25-op
+     10 ~< edp-[n]-e25-op
      14 ~> {cm2} arx [n+01] b h
      15 ~> {aj2} arx [n+03] h
      2 ~> {ac1} arx [n+04] h

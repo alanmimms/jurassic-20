@@ -8,7 +8,7 @@ e53: 10101 quad or/nor
      3 ~> scd1 scad 2 l
      12 ~< %NC%
      13 ~< {dm1} ar 00 d h
-     9 ~> scd1-internal-e53-9
+     9 ~> scd1-e53-9
      15 ~> scd3 ar 00 h
      13 ~< {dm1} ar 00 d h
      9 ~> scd3 ar 00 h
@@ -19,22 +19,22 @@ e54: 10109 dual 2/4 or/nor
      5 ~< scd1 scad 08 h
      6 ~< scd1 scad 07 h
      7 ~< scd1 scad 06 h
-     2 ~> scd1-internal-e54-2
+     2 ~> scd1-e54-2
      3 ~> %NC%
-     9 ~< scd1-internal-e54-2
+     9 ~< scd1-e54-2
      10 ~< scd1 scad 05 h
      11 ~< scd1 scad 04 h
      12 ~< scd1 scad 03 h
      13 ~< scd1 scad 02 h
      14 ~> %NC%
-     15 ~> scd1-internal-e54-15
+     15 ~> scd1-e54-15
 
 e37: 10105 2-3-2 or/nor
      4 ~< {ae2} ctl spec/save flags l
      5 ~< {bu2} con pi cycle a l
      3 ~> scd5 pi&save flags h
      2 ~> scd5 pi&save flags l
-     9 ~< scd1-internal-e54-15
+     9 ~< scd1-e54-15
      10 ~< scd1 scad 01 h
      11 ~< scd1 scad 00 h
      7 ~> {bt2} -scd1 scad=0 h
@@ -144,30 +144,30 @@ e66: 10181 ALU
      8 ~> %NC%
 
 e76: 10113 quad 2 xor
-     7 ~< scd1-internal-e53-9
+     7 ~< scd1-e53-9
      6 ~< {fu2} ar 01 c h
      3 ~> scd1 scada exp 02 h
-     4 ~< scd1-internal-e53-9
+     4 ~< scd1-e53-9
      5 ~< {fr2} ar 02 c h
      2 ~> scd1 scada exp 03 h
-     13 ~< scd1-internal-e53-9
+     13 ~< scd1-e53-9
      12 ~< {ff1} ar 03 c h
      15 ~> scd1 scada exp 04 h
-     11 ~< scd1-internal-e53-9
+     11 ~< scd1-e53-9
      10 ~< {fk2} ar 04 c h
      14 ~> scd1 scada exp 05 h
 
 e51: 10113 quad 2 xor
-     7 ~< scd1-internal-e53-9
+     7 ~< scd1-e53-9
      6 ~< {dh2} ar 05 c h
      3 ~> scd1 scada exp 06 h
-     4 ~< scd1-internal-e53-9
+     4 ~< scd1-e53-9
      5 ~< {dl1} ar 06 c h
      2 ~> scd1 scada exp 07 h
-     13 ~< scd1-internal-e53-9
+     13 ~< scd1-e53-9
      12 ~< {ev2} ar 07 c h
      15 ~> scd1 scada exp 08 h
-     11 ~< scd1-internal-e53-9
+     11 ~< scd1-e53-9
      10 ~< {de2} ar 08 c h
      14 ~> scd1 scada exp 09 h
 
@@ -392,8 +392,8 @@ e68: 10141 shft reg
      9 ~< scd1 scad 00 h
      6 ~< scd1 scad 01 h
      5 ~< %NC%
-     7 ~< scd2-internal-e65-2
-     10 ~< scd2-internal-e65-3
+     7 ~< scd2-e65-2
+     10 ~< scd2-e65-3
      4 ~< scd2 clk c h
      14 ~> {ek1} scd2 fe sign h
      15 ~> %NC%
@@ -401,14 +401,14 @@ e68: 10141 shft reg
      3 ~> scd2 fe 01 h
 
 e69: 10141 shft reg
-     13 ~< scd2-internal-e65-11
+     13 ~< scd2-e65-11
      12 ~< scd1 scad 02 h
      11 ~< scd1 scad 03 h
      9 ~< scd1 scad 04 h
      6 ~< scd1 scad 05 h
      5 ~< %NC%
-     7 ~< scd2-internal-e65-2
-     10 ~< scd2-internal-e65-3
+     7 ~< scd2-e65-2
+     10 ~< scd2-e65-3
      4 ~< scd2 clk b h
      14 ~> scd2 fe 02 h
      15 ~> scd2 fe 03 h
@@ -416,14 +416,14 @@ e69: 10141 shft reg
      3 ~> scd2 fe 05 h
 
 e55: 10141 shft reg
-     13 ~< scd2-internal-e65-9
+     13 ~< scd2-e65-9
      12 ~< scd1 scad 06 h
      11 ~< scd1 scad 07 h
      9 ~< scd1 scad 08 h
      6 ~< scd1 scad 09 h
      5 ~< %NC%
-     7 ~< scd2-internal-e65-2
-     10 ~< scd2-internal-e65-3
+     7 ~< scd2-e65-2
+     10 ~< scd2-e65-3
      4 ~< scd2 clk b h
      14 ~> scd2 fe 06 h
      15 ~> scd2 fe 07 h
@@ -436,13 +436,13 @@ e65: 10101 quad or/nor
      7 ~< scd5 reset h
      10 ~< scd2 fe 01 h
      13 ~< scd2 fe 05 h
-     2 ~> scd2-internal-e65-2
+     2 ~> scd2-e65-2
      5 ~> %NC%
-     3 ~> scd2-internal-e65-3
+     3 ~> scd2-e65-3
      6 ~> %NC%
-     11 ~> scd2-internal-e65-11
+     11 ~> scd2-e65-11
      14 ~> %NC%
-     9 ~> scd2-internal-e65-9
+     9 ~> scd2-e65-9
      15 ~> %NC%
 
 e72: 10174 2x4 mix
@@ -662,7 +662,7 @@ e47: 10164 8 mix
      5 ~< {dd2} cram # 05 h
      4 ~< {dd2} cram # 05 h
      9 ~< {ee1} ar 32 c h
-     11 ~< scd3-internal-e40-2
+     11 ~< scd3-e40-2
      12 ~< %NC%
      13 ~< %NC%
      14 ~< %NC%
@@ -675,13 +675,13 @@ e47: 10164 8 mix
 e40: 10101 quad or/nor
      4 ~< {cl1} pi2 pi4 a l
      12 ~< %NC%
-     2 ~> scd3-internal-e40-2
+     2 ~> scd3-e40-2
      5 ~> %NC%
      7 ~< {cm2} pi2 pi2 a l
-     3 ~> scd3-internal-e40-3
+     3 ~> scd3-e40-3
      6 ~> %NC%
      13 ~< {ck2} pi2 pi1 a l
-     15 ~> scd3-internal-e40-15
+     15 ~> scd3-e40-15
      9 ~> %NC%
 
 e44: 10164 8 mix
@@ -689,7 +689,7 @@ e44: 10164 8 mix
      5 ~< {cu2} cram # 06 h
      4 ~< {cr1} scd5 user a h
      3 ~< {cv2} ar 33 c h
-     11 ~< scd3-internal-e40-3
+     11 ~< scd3-e40-3
      12 ~< %NC%
      13 ~< %NC%
      14 ~< %NC%
@@ -704,7 +704,7 @@ e42: 10164 8 mix
      5 ~< scd4 trap cyc 2 h
      4 ~< {dp2} scd5 public a h
      3 ~< {ef1} ar 34 c h
-     11 ~< scd3-internal-e40-15
+     11 ~< scd3-e40-15
      12 ~< %NC%
      13 ~< %NC%
      14 ~< %NC%
@@ -727,27 +727,27 @@ e43: 10164 8 mix
      9 ~< {ed1} cram cond 04 a h
      7 ~< {ct2} cram cond 05 a h
      2 ~< {cs2} con cond en 30-37 l
-     15 ~> scd3-internal-e43-15
+     15 ~> scd3-e43-15
 
 e36: 10117 dual 2-3 or-and
      13 ~< {cj2} cram vma sel 2 a h
-     12 ~< scd3-internal-e43-15
-     11 ~< scd3-internal-e43-15
+     12 ~< scd3-e43-15
+     11 ~< scd3-e43-15
      10 ~< {ch2} -con pc+1 inh h
      9 ~< %NC%
      15 ~> {cd2} scd3 trap mix 35 h
      4 ~< {dm1} ar 00 d h
-     5 ~< scd3-internal-e26-2
-     6 ~< scd3-internal-e26-5
+     5 ~< scd3-e26-2
+     6 ~< scd3-e26-5
      7 ~< scd1 scad 01 h
-     2 ~> scd3-internal-e36-2
+     2 ~> scd3-e36-2
      3 ~> %NC%
 
 e26: 10101 quad or/nor
      4 ~< {br2} ctl1 cond/ar<-exp h
      12 ~< %NC%
-     2 ~> scd3-internal-e26-2
-     5 ~> scd3-internal-e26-5
+     2 ~> scd3-e26-2
+     5 ~> scd3-e26-5
      7 ~< {bp2} pt public h
      3 ~> scd5 public page l
      6 ~> scd5 public page h
@@ -761,7 +761,7 @@ e26: 10101 quad or/nor
 e48: 10174 2x4 mix
      3 ~< {es1} cram # 00 h
      5 ~< scd3 ar 00 h
-     4 ~< scd3-internal-e36-2
+     4 ~< scd3-e36-2
      6 ~< scd1 scad 04 h
      13 ~< {ft2} cram # 01 h
      11 ~< scd3 ar 00 h
@@ -837,79 +837,79 @@ Page: SCD4, PDF141
 
 e25: 10176 hex dff
      9 ~< scd2 clk f h
-     5 ~< scd4-internal-e20-3
+     5 ~< scd4-e20-3
      2 ~> scd4 ov h
-     6 ~< scd4-internal-e20-14
+     6 ~< scd4-e20-14
      3 ~> {bk2} scd4 cry0 h
-     7 ~< scd4-internal-e24-3
+     7 ~< scd4-e24-3
      4 ~> {bs1} scd4 cry1 h
-     10 ~< scd4-internal-e35-2
+     10 ~< scd4-e35-2
      13 ~> {bk1} scd4 fov h
-     11 ~< scd4-internal-e35-15
+     11 ~< scd4-e35-15
      14 ~> {bs2} scd4 fxu h
-     12 ~< scd4-internal-e18-2
+     12 ~< scd4-e18-2
      15 ~> {as2} scd4 div chk h
 
 e20: 10117 dual 2-3 or-and
      4 ~< %NC%
-     5 ~< scd4-internal-e30-3
+     5 ~< scd4-e30-3
      2 ~> %NC%
      3 ~> {bd1} ad overflow 00 l
      9 ~< scd5 set ad flags l
-     3 ~> scd4-internal-e20-3
+     3 ~> scd4-e20-3
      12 ~< %NC%
-     13 ~< scd4-internal-e30-14
+     13 ~< scd4-e30-14
      10 ~< %NC%
      11 ~< {ar2} ad cry -02 a l
-     14 ~> scd4-internal-e20-14
+     14 ~> scd4-e20-14
 
 e24: 10117 dual 2-3 or-and
      4 ~< %NC%
-     5 ~< scd4-internal-e24-14
+     5 ~< scd4-e24-14
      6 ~< {bd2} ad cry 01 l
      7 ~< scd5 set ad flags l
      9 ~< %NC%
-     3 ~> scd4-internal-e24-3
+     3 ~> scd4-e24-3
 
 e35: 10118 triple 4-2 or-and
      3 ~< {bk1} scd4 fov h
      4 ~< scd5 load flags a h
-     5 ~< scd4-internal-e39-3
+     5 ~< scd4-e39-3
      6 ~< %NC%
      7 ~< {ff1} ar 03 c h
      9 ~< -scd5 load flags h
-     2 ~> scd4-internal-e35-2
+     2 ~> scd4-e35-2
      10 ~< %NC%
      11 ~< {dm2} ar 11 c h
      12 ~< scd4 fxu h
      13 ~< scd5 load flags a h
-     14 ~< scd4-internal-e39-15
-     15 ~> scd4-internal-e35-15
+     14 ~< scd4-e39-15
+     15 ~> scd4-e35-15
 
 e39: 10104 quad and
      4 ~< scd1 scad 01 h
      5 ~< scd5 exp test h
-     2 ~> scd4-internal-e39-3
+     2 ~> scd4-e39-3
      6 ~< {ft2} cram # 01 h
      7 ~< scd5 pcf<-# h
-     3 ~> scd4-internal-e39-3
+     3 ~> scd4-e39-3
      10 ~< scd1 scad 00 h
      11 ~< scd5 exp test h
-     14 ~> scd4-internal-e39-15
+     14 ~> scd4-e39-15
      12 ~< {dd2} cram # 05 h
      13 ~< scd5 pcf<-# h
-     15 ~> scd4-internal-e39-15
+     15 ~> scd4-e39-15
 
 e33: 10104 quad and
      4 ~< scd1 scad 01 h
      5 ~< scd5 exp test h
-     2 ~> scd4-internal-e33-23
+     2 ~> scd4-e33-23
      6 ~< {es1} cram # 00 h
      7 ~< scd5 pcf<-# h
-     3 ~> scd4-internal-e33-23
+     3 ~> scd4-e33-23
      10 ~< {cu2} cram # 06 h
      11 ~< scd5 pcf+# h
-     14 ~> scd4-internal-e33-14
+     14 ~> scd4-e33-14
      12 ~< {br1} con cond/pcf<-#
      13 ~< {bu2} -con pi cycle a h
      15 ~> scd5 pcf<-# h
@@ -918,20 +918,20 @@ e33: 10104 quad and
 e30: 10117 dual 2-3 or-and
      4 ~< -scd5 load flags h
      5 ~< {dm1} ar 00 d h
-     6 ~< scd4-internal-e33-23
+     6 ~< scd4-e33-23
      7 ~< scd4 ov h
      9 ~< scd5 load flags a h
-     3 ~> scd4-internal-e30-3
+     3 ~> scd4-e30-3
      2 ~> %NC%
 
 e18: 10118 triple 4-2 or-and
      3 ~< {as2} scd4 div chk h
      4 ~< scd5 load flags a h
-     5 ~< scd4-internal-e33-14
+     5 ~< scd4-e33-14
      6 ~< %NC%
      7 ~< ar 12 c h
      9 ~< -scd5 load flags a h
-     2 ~> scd4-internal-e18-2
+     2 ~> scd4-e18-2
 
 e64: 10109 dual 4/5 or/nor
      4 ~< {er2} con cond instr abort h
@@ -944,7 +944,7 @@ e64: 10109 dual 4/5 or/nor
 e22: 10104 quad and
      12 ~< {et2} ctl disp/nicond h
      13 ~< con trap en a h
-     15 ~> scd4-internal-e22-15
+     15 ~> scd4-e22-15
      9 ~> %NC%
 
 e19: 10104 quad and
@@ -957,7 +957,7 @@ e19: 10104 quad and
      12 ~< {fe1} cram # 03 h
      13 ~< scd5 pcf<-# h
      15 ~> scd4 trap req 2 en h
-     6 ~< scd4-internal-e85-2
+     6 ~< scd4-e85-2
      7 ~< {er2} con cond instr abort h
      3 ~> scd4 trap req 2 en h
 
@@ -965,68 +965,68 @@ e9: 10176 hex dff
     9 ~< scd2 clk f h
     5 ~< scd4 trap req 2 en h
     2 ~> scd4 tap req 2 h
-    6 ~< scd4-internal-e14-3
+    6 ~< scd4-e14-3
     3 ~> scd4 trap cyc 2 h
     7 ~< scd4 trap req 1 en h
     4 ~> {bc1} scd4 trap req 1 h
-    10 ~< scd4-internal-e14-15
+    10 ~< scd4-e14-15
     13 ~> scd4 trap cyc 1 h
-    11 ~< scd4-internal-e4-3
+    11 ~< scd4-e4-3
     14 ~> {ap2} scd4 fpd h
-    12 ~< scd4-internal-e10-2
+    12 ~< scd4-e10-2
     15 ~> {ak2} scd4 pcp h
 
 e85: 10105 triple 2-3-2 or/nor
      4 ~< scd4 trap cyc 2 h
      5 ~< {ad1} scd4 trap req 2 h
-     2 ~> scd4-internal-e85-2
+     2 ~> scd4-e85-2
      12 ~< {bc1} scd4 trap req 1 h
      13 ~< scd4 trap cyc 1 h
-     15 ~> scd4-internal-e84-15
+     15 ~> scd4-e84-15
      14 ~> %NC%
 
 e14: 10104 quad and
      4 ~< scd4 trap cyc 2 h
      5 ~< scd4 trap req 2 en h
-     2 ~> scd4-internal-e14-3
+     2 ~> scd4-e14-3
      6 ~< {ad1} scd4 trap req 2 h
-     7 ~< scd4-internal-e22-15
-     3 ~> scd4-internal-e14-3
+     7 ~< scd4-e22-15
+     3 ~> scd4-e14-3
      10 ~< scd4 trap cyc 1 h
      11 ~< scd4 trap clear l
-     14 ~> scd4-internal-e14-15
+     14 ~> scd4-e14-15
      12 ~< {bc1} scd4 trap req 1 h
-     13 ~< scd4-internal-e22-15
-     15 ~> scd4-internal-e14-15
+     13 ~< scd4-e22-15
+     15 ~> scd4-e14-15
 
 e38: 10104 quad and
      6 ~< {ds1} ar 10 c h
      7 ~< scd5 load flags h
-     3 ~> scd4-internal-e38-2
+     3 ~> scd4-e38-2
      10 ~< scd1 scad 01 h
      11 ~< scd5 exp test h
-     14 ~> scd4-internal-e38-2
+     14 ~> scd4-e38-2
      12 ~< {fl2} cram # 04 h
      13 ~< scd5 pcf+# h
-     15 ~> scd4-internal-e38-2
-     4 ~< scd4-internal-e85-15
+     15 ~> scd4-e38-2
+     4 ~< scd4-e85-15
      5 ~< {er2} con cond instr abort h
-     2 ~> scd4-internal-e38-2
+     2 ~> scd4-e38-2
 
 e15: 10117 dual 2-3 or-and
      4 ~< {bd1} ad overflow 00 l
      5 ~< scd5 set ad flags l
      6 ~< %NC%
-     7 ~< scd4-internal-e15-14
+     7 ~< scd4-e15-14
      9 ~< %NC%
      12 ~< scd4 trap clear l
-     13 ~< scd4-internal-e38-2
+     13 ~< scd4-e38-2
      10 ~< {bc1} scd4 trap req 1 h
-     11 ~< scd4-internal-e38-2
+     11 ~< scd4-e38-2
      3 ~> scd4 trap req 1 en h
      2 ~> %NC%
      15 ~> %NC%
-     14 ~> scd4-internal-e15-14
+     14 ~> scd4-e15-14
 
 e29: 10105 triple 3-2 or/nor
      4 ~< scd4 trap cyc 2 h
@@ -1035,11 +1035,11 @@ e29: 10105 triple 3-2 or/nor
      2 ~> scd4 trap cyc 1 or 2 h
      9 ~< scd5 reset h
      10 ~< %NC%
-     11 ~< scd5-internal-e34-3
+     11 ~< scd5-e34-3
      6 ~> scd5 load flags a l
      7 ~> scd5 load flags a h
      12 ~< scd5 reset h
-     13 ~< scd5-internal-e34-3
+     13 ~< scd5-e34-3
      14 ~> scd5 load flags l
      15 ~> scd5 load flags h
 
@@ -1061,13 +1061,13 @@ e5: 10105 triple 2-3-2 or/nor
 e4: 10104 quad and
     4 ~< {ap2} scr4 fpd h
     5 ~< scd4 clr fpd l
-    2 ~> scd4-internal-e4-3
+    2 ~> scd4-e4-3
     6 ~< {fk2} ar 04 c h
     7 ~< scd5 load flags h
-    3 ~> scd4-internal-e4-3
+    3 ~> scd4-e4-3
     10 ~< {fp2} cram # 02 h
     11 ~< scd5 pcf+# h
-    14 ~> scd4-internal-e4-3
+    14 ~> scd4-e4-3
     12 ~< {ac1} con cond/ad flags h
     13 ~< {bu2} -con pi cycle a h
     9 ~> scd5 set ad flags l
@@ -1080,12 +1080,12 @@ e10: 10117 dual 2-3 or-and
      6 ~< -scd5 load flags h
      7 ~< ar 00 d h
      9 ~< scd5 jfcl h
-     2 ~> scd4-internal-e10-2
+     2 ~> scd4-e10-2
      3 ~> %NC%
      12 ~< scd4 ov h
-     13 ~< scd4-internal-e5-14
+     13 ~< scd4-e5-14
      15 ~> {al2} vma held or pc 00 h
-     10 ~< scd4-internal-e5-15
+     10 ~< scd4-e5-15
      11 ~< {ak2} scd4 pcp h
      14 ~> %NC%
 
@@ -1131,9 +1131,9 @@ e11: 10176 hex dff
      4 ~> scd5 public l
      10 ~< scd5 private instr en l
      13 ~> {ah2} scd5 private instr l
-     11 ~< scd5-internal-e22-3
+     11 ~< scd5-e22-3
      14 ~> {bj1} scd5 adr brk inh h
-     12 ~< scd5-internal-e21-3
+     12 ~< scd5-e21-3
      15 ~> scd5 adr brk cyc h
 
 e18: 10118 triple 4-2 or-and
@@ -1148,7 +1148,7 @@ e18: 10118 triple 4-2 or-and
 e6: 10105 triple 2-3-2 or/nor
     4 ~< -scd5 load flags a h
     5 ~< scd5 ar 06 h
-    3 ~> scd5-internal-e6-3
+    3 ~> scd5-e6-3
     2 ~> %NC%
     9 ~< {bj1} scd5 adr brk inh h
     10 ~< %NC%
@@ -1157,13 +1157,13 @@ e6: 10105 triple 2-3-2 or/nor
     7 ~> {au2} scd5 adr brk prevent h
     12 ~< scd5 load flags a l
     13 ~< scd5 ar 07 l
-    14 ~> scd5-internal-e6-14
+    14 ~> scd5-e6-14
     15 ~> %NC%
 
 e7: 10121 4-wide or-and
     4 ~< scd5 user iot l
     5 ~< -scd5 leave user l
-    6 ~< scd5-internal-e6-3
+    6 ~< scd5-e6-3
     7 ~< scd5 leave user l
     9 ~< scd5 ar 06 l
     10 ~< scd5 load flags a l
@@ -1196,9 +1196,9 @@ e16: 10121 4-wide or-and
      6 ~< -scd5 public a l
      7 ~< -scd5 instr fetch l
      9 ~< {ba1} con clr private instr h
-     10 ~< scd5-internal-e6-14
+     10 ~< scd5-e6-14
      11 ~< {ba1} con clr private instr h
-     12 ~< scd5-internal-e21-9
+     12 ~< scd5-e21-9
      13 ~< scd5 instr fetch l
      14 ~< {af2} clk mb xfer l
      15 ~< -scd5 public page l
@@ -1208,27 +1208,27 @@ e16: 10121 4-wide or-and
 e22: 10104 quad and
      4 ~< {bj1} scd5 adr brk inh h
      5 ~< -scd4 trap clear h
-     2 ~> scd5-internal-e22-3
+     2 ~> scd5-e22-3
      6 ~< scd5 load flags a h
      7 ~< {de2} ar 08 c h
-     3 ~> scd5-internal-e22-3
+     3 ~> scd5-e22-3
      10 ~< {er2} con cond instr abort h
      11 ~< scd5 adr brk cyc h
-     14 ~> scd5-internal-e22-3
+     14 ~> scd5-e22-3
 
 e21: 10104 quad and
      4 ~< scd5 adr brk cyc h
      5 ~< -scd4 trap clear h
-     2 ~> scd5-internal-e21-3
+     2 ~> scd5-e21-3
      6 ~< {bj1} scd5 adr brk inh h
      7 ~< {et2} ctl disp/nicond h
-     3 ~> scd5-internal-e21-3
+     3 ~> scd5-e21-3
      12 ~< con fm xfer l
      13 ~< clk mb xfer l
-     9 ~> scd5-internal-e21-9
+     9 ~> scd5-e21-9
      10 ~< {ah2} scd5 private instr l
      11 ~< scd5 reset l
-     14 ~> scd5-internal-e21-14
+     14 ~> scd5-e21-14
 
 e8: 10117 dual 2-3 or-and
     4 ~< scd5 user l
@@ -1268,7 +1268,7 @@ e34: 10104 quad and
      2 ~> scd5 jfcl h
      6 ~< {fl2} cram # 04 h
      7 ~< scd5 disp/flag ctl h
-     3 ~> scd5-internal-e34-3
+     3 ~> scd5-e34-3
      12 ~< {dd2} cram # 05 h
      13 ~< scd5 disp/flag ctl h
      9 ~> scd5 spec/portal l

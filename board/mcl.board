@@ -38,7 +38,7 @@ e72: 10162 decoder
      15 ~< %NC%
      2 ~< mcl1 mem 00 l
      6 ~> mcl1 mem/ad func h
-     5 ~> mcl1-internal-e72-5
+     5 ~> mcl1-e72-5
      4 ~> mcl1 mem/load ar h
      3 ~> mcl1 mem/load arx h
      13 ~> mcl1 mem/rw cycle h
@@ -47,7 +47,7 @@ e72: 10162 decoder
      10 ~> mcl1 mem/uncond fetch h
 
 e74: 10101 quad or/nor
-     13 ~< mcl1-internal-e72-5
+     13 ~< mcl1-e72-5
      12 ~< %NC%
      15 ~> mcl1 mem/ea calc l
      9 ~> mcl1 mem/ea calc h

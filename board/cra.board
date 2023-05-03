@@ -5,74 +5,74 @@ e73: 10101 quad or/nor
      13 ~< {fj1} cram j01 h
      12 ~< {bf2} clk4 force 1777 h
      15 ~> %NC%
-     9 ~> cra1-internal-e73-9
+     9 ~> cra1-e73-9
      4 ~< {fk1} cram j02 h
      2 ~> %NC%
-     5 ~> cra1-internal-e73-5
+     5 ~> cra1-e73-5
      7 ~< {fe2} cram j03 h
      3 ~> %NC%
-     6 ~> cra1-internal-e73-6
+     6 ~> cra1-e73-6
      10 ~< {fe1} cram j04 h
      14 ~> %NC%
-     11 ~> cra1-internal-e73-11
+     11 ~> cra1-e73-11
 
 e69: 10101 quad or/nor
-     4 ~< cra1-internal-e73-9
-     12 ~< cra1-internal-e54-2
+     4 ~< cra1-e73-9
+     12 ~< cra1-e54-2
      2 ~> {fd1} cra1 adr 01 a l
      5 ~> {fd2} cra1 adr 01 b h
-     7 ~< cra1-internal-e73-9
+     7 ~< cra1-e73-9
      3 ~> {fd1} cra1 adr 01 c l
      6 ~> {fd2} cra1 adr 01 d h
-     10 ~< cra1-internal-e73-9
+     10 ~< cra1-e73-9
      14 ~> {et2} cra1 adr 01 e l
      11 ~> cra1 adr 01 f h
-     13 ~< cra1-internal-e73-9
+     13 ~< cra1-e73-9
      15 ~> cra1 adr 01 l
      9 ~> cra1 adr 01 h
 
 e63: 10101 quad or/nor
-     4 ~< cra1-internal-e73-5
-     12 ~< cra1-internal-e54-15
+     4 ~< cra1-e73-5
+     12 ~< cra1-e54-15
      2 ~> {el1} cra1 adr 02 a l
      5 ~> {ek1} cra1 adr 02 b h
-     7 ~< cra1-internal-e73-5
+     7 ~< cra1-e73-5
      3 ~> {el2} cra1 adr 02 c l
      6 ~> {ek2} cra1 adr 02 d h
-     10 ~< cra1-internal-e73-5
+     10 ~< cra1-e73-5
      14 ~> {ef2} cra1 adr 02 e l
      11 ~> cra1 adr 02 f h
-     13 ~< cra1-internal-e73-5
+     13 ~< cra1-e73-5
      15 ~> cra1 adr 02 l
      9 ~> cra1 adr 02 h
 
 e78: 10101 quad or/nor
-     4 ~< cra1-internal-e73-6
-     12 ~< cra1-internal-e54-15
+     4 ~< cra1-e73-6
+     12 ~< cra1-e54-15
      2 ~> {fp1} cra1 adr 03 a l
      5 ~> {fs1} cra1 adr 03 b h
-     7 ~< cra1-internal-e73-6
+     7 ~< cra1-e73-6
      3 ~> {ft2} cra1 adr 03 c l
      6 ~> {fr1} cra1 adr 03 d h
-     10 ~< cra1-internal-e73-6
+     10 ~< cra1-e73-6
      14 ~> {fn1} cra1 adr 03 e l
      11 ~> cra1 adr 03 f h
-     13 ~< cra1-internal-e73-6
+     13 ~< cra1-e73-6
      15 ~> cra1 adr 03 l
      9 ~> cra1 adr 03 h
 
 e74: 10101 quad or/nor
-     4 ~< cra1-internal-e73-11
-     12 ~< cra1-internal-e55-15
+     4 ~< cra1-e73-11
+     12 ~< cra1-e55-15
      2 ~> {fl1} cra1 adr 04 a l
      5 ~> {fl2} cra1 adr 04 b h
-     7 ~< cra1-internal-e73-11
+     7 ~< cra1-e73-11
      3 ~> {fh2} cra1 adr 04 c l
      6 ~> {fk2} cra1 adr 04 d h
-     10 ~< cra1-internal-e73-11
+     10 ~< cra1-e73-11
      14 ~> {ff2} cra1 adr 04 e l
      11 ~> cra1 adr 04 f h
-     13 ~< cra1-internal-e73-11
+     13 ~< cra1-e73-11
      15 ~> cra1 adr 04 l
      9 ~> cra1 adr 04 h
 
@@ -80,72 +80,72 @@ e21: 10101 quad or/nor
      13 ~< {be1} cram j05 h
      12 ~< {bf2} clk4 force 1777 h
      15 ~> %NC%
-     9 ~> cra1-internal-e21-9
+     9 ~> cra1-e21-9
      4 ~< {bd2} cram j06 h
      2 ~> %NC%
-     5 ~> cra1-internal-e21-5
+     5 ~> cra1-e21-5
      10 ~< {av2} cram j07 h
      14 ~> %NC%
-     11 ~> cra1-internal-e21-11
+     11 ~> cra1-e21-11
      7 ~< {ba1} cram j08 h
      3 ~> %NC%
-     2 ~> cra1-internal-e21-6
+     2 ~> cra1-e21-6
 
 e77: 10101 quad or/nor
-     4 ~< cra1-internal-e21-9
-     12 ~< cra1-internal-e59-2
+     4 ~< cra1-e21-9
+     12 ~< cra1-e59-2
      2 ~> {fr2} cra1 adr 05 a l
      5 ~> {fu2} cra1 adr 05 b h
-     7 ~< cra1-internal-e21-9
+     7 ~< cra1-e21-9
      3 ~> {fp2} cra1 adr 05 c l
      6 ~> {fs2} cra1 adr 05 d h
-     10 ~< cra1-internal-e21-9
+     10 ~< cra1-e21-9
      14 ~> {fm2} cra1 adr 05 e l
      11 ~> cra1 adr 05 f h
-     13 ~< cra1-internal-e21-9
+     13 ~< cra1-e21-9
      15 ~> cra1 adr 05 l
      9 ~> cra1 adr 05 h
 
 e68: 10101 quad or/nor
-     4 ~< cra1-internal-e21-5
-     12 ~< cra1-internal-e59-15
+     4 ~< cra1-e21-5
+     12 ~< cra1-e59-15
      2 ~> {em1} cra1 adr 06 a l
      5 ~> {ep1} cra1 adr 06 b h
-     7 ~< cra1-internal-e21-5
+     7 ~< cra1-e21-5
      3 ~> {en1} cra1 adr 06 c l
      6 ~> {er1} cra1 adr 06 d h
-     10 ~< cra1-internal-e21-5
+     10 ~< cra1-e21-5
      14 ~> {ep2} cra1 adr 06 e l
      11 ~> cra1 adr 06 f h
-     13 ~< cra1-internal-e21-5
+     13 ~< cra1-e21-5
      15 ~> cra1 adr 06 l
      9 ~> cra1 adr 06 h
 
 e44: 10110 or buffer
      5 ~< {cr2} cram j00 h
      6 ~< %NC%
-     7 ~< cra1-internal-e51-2
+     7 ~< cra1-e51-2
      11 ~< {cr2} cram j00 h
      10 ~< %NC%
-     9 ~< cra1-internal-e51-2
+     9 ~< cra1-e51-2
 
 e28: 10105 2-3-2 or/nor
      12 ~< {dr2} cram j00 h
-     13 ~< cra1-internal-e51-2
+     13 ~< cra1-e51-2
      14 ~> cra1 adr 00 l
      15 ~> cra1 adr 00 h
-     9 ~< cra1-internal-e21-11
-     10 ~< cra1-internal-e1-15
-     11 ~< cra1-internal-e32-15
+     9 ~< cra1-e21-11
+     10 ~< cra1-e1-15
+     11 ~< cra1-e32-15
      6 ~> cra2 adr 07 l
      7 ~> cra2 adr 07 h
      4 ~< cra4 call, reset, 1777 h
      5 ~< ret and -1777 h
-     3 ~> cra4-internal-e28-3
+     3 ~> cra4-e28-3
      2 ~> %NC%
 
 e31: 10101 quad or/nor
-     13 ~< cra1-internal-e51-15
+     13 ~< cra1-e51-15
      12 ~< %NC%
      15 ~> cra1 ret l
      9 ~> %NC%
@@ -162,8 +162,8 @@ e51: 10174 2x4 mixer
      9 ~< cra3 disp 03 b h
      7 ~< cra3 disp 04 b h
      14 ~< cra3 disp en 00-03 l
-     2 ~> cra1-internal-e51-2
-     15 ~> cra1-internal-e51-15
+     2 ~> cra1-e51-2
+     15 ~> cra1-e51-15
 
 e54: 10174 2x4 mixer
      3 ~< cra3 diag adr 01 h
@@ -177,8 +177,8 @@ e54: 10174 2x4 mixer
      9 ~< cra3 disp 03 b h
      7 ~< cra3 disp 04 b h
      14 ~< cra3 disp en 00-03 l
-     2 ~> cra1-internal-e54-2
-     15 ~> cra1-internal-e54-15
+     2 ~> cra1-e54-2
+     15 ~> cra1-e54-15
 
 e55: 10174 2x4 mixer
      3 ~< cra3 diag adr 03 h
@@ -192,8 +192,8 @@ e55: 10174 2x4 mixer
      9 ~< cra3 disp 03 b h
      7 ~< cra3 disp 04 b h
      14 ~< cra3 disp en 00-03 l
-     2 ~> cra1-internal-e55-2
-     15 ~> cra1-internal-e55-15
+     2 ~> cra1-e55-2
+     15 ~> cra1-e55-15
 
 e59: 10174 2x4 mixer
      3 ~< cra3 diag adr 05 h
@@ -207,19 +207,19 @@ e59: 10174 2x4 mixer
      9 ~< cra3 disp 03 b h
      7 ~< cra3 disp 04 b h
      14 ~< cra3 disp en 00-03 l
-     2 ~> cra1-internal-e59-2
-     15 ~> cra1-internal-e59-15
+     2 ~> cra1-e59-2
+     15 ~> cra1-e59-15
 
 e27: 10110 or buffer
-     5 ~< cra1-internal-e21-11
-     6 ~< cra1-internal-e1-15
-     7 ~< cra1-internal-e32-15
+     5 ~< cra1-e21-11
+     6 ~< cra1-e1-15
+     7 ~< cra1-e32-15
      2 ~> {cd1} cra2 adr 07 a h
      3 ~> {ce1} cra2 adr 07 b h
      4 ~> {cc1} cra2 adr 07 c h
-     11 ~< cra1-internal-e21-11
-     10 ~< cra1-internal-e1-15
-     9 ~< cra1-internal-e32-15
+     11 ~< cra1-e21-11
+     10 ~< cra1-e1-15
+     9 ~< cra1-e32-15
      12 ~> {cd2} cra2 adr 07 d h
      13 ~> {ca1} cra2 adr 07 e h
      14 ~> cra2 adr 07 f h
@@ -237,7 +237,7 @@ e1:  10164 8 mixer
      9 ~< cra3 disp 03 a h
      7 ~< cra3 disp 04 a h
      2 ~< cra3 disp en 00-07 l
-     15 ~> cra1-internal-e1-15
+     15 ~> cra1-e1-15
 
 e32: 10164 8 mixer
      6 ~< %NC%
@@ -246,7 +246,7 @@ e32: 10164 8 mixer
      3 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     13 ~< cra1-internal-e8-2
+     13 ~< cra1-e8-2
      14 ~< {ff1} ea type 07
      10 ~< cra3 disp 02 b h
      9 ~< cra3 disp 03 c h
@@ -257,31 +257,31 @@ e8:  10105 2-3-2 or/nor
      4 ~< {cv2} arx 00 b h
      5 ~< {br2} -con2 long en h
      3 ~> %NC%
-     2 ~> cra1-internal-e8-2
-     9 ~< cra1-internal-e33-5
-     10 ~< cra1-internal-e6-15
-     11 ~< cra1-internal-e26-15
+     2 ~> cra1-e8-2
+     9 ~< cra1-e33-5
+     10 ~< cra1-e6-15
+     11 ~< cra1-e26-15
      6 ~> cra2 adr 09 l
      7 ~> cra2 adr 09 h
 
 e11: 10110 or buffer
-     5 ~< cra1-internal-e21-6
-     6 ~< cra1-internal-e2-15
-     7 ~< cra1-internal-e16-15
+     5 ~< cra1-e21-6
+     6 ~< cra1-e2-15
+     7 ~< cra1-e16-15
      2 ~> {au2} cra2 adr 08 a h
      3 ~> {as2} cra2 adr 08 b h
      4 ~> {ar2} cra2 adr 08 c h
-     11 ~< cra1-internal-e21-6
-     10 ~< cra1-internal-e2-15
-     9 ~< cra1-internal-e16-15
+     11 ~< cra1-e21-6
+     10 ~< cra1-e2-15
+     9 ~< cra1-e16-15
      12 ~> {ar1} cra2 adr 08 d h
      13 ~> {as1} cra2 adr 08 e h
      14 ~> cra2 adr 08 f h
 
 e12: 10105 2-3-2 or/nor
-     9 ~< cra1-internal-e21-6
-     10 ~< cra1-internal-e2-15
-     11 ~< cra1-internal-e16-15
+     9 ~< cra1-e21-6
+     10 ~< cra1-e2-15
+     11 ~< cra1-e16-15
      6 ~> cra2 adr 08 l
      7 ~> cra2 adr 08 h
      4 ~< {bj2} dram a 01 h
@@ -306,7 +306,7 @@ e2:  10164 8 mixer
      9 ~< cra3 disp 03 a h
      7 ~< cra3 disp 04 a h
      2 ~< cra3 disp en 00-07 l
-     15 ~> cra1-internal-e2-15
+     15 ~> cra1-e2-15
 
 e16: 10164 mixer
      6 ~< {bf1} scd2 fe sign h
@@ -338,10 +338,10 @@ e33: 10101 quad or/nor
      4 ~< {ae2} cram j09 h
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> cra1-internal-e33-5
+     5 ~> cra1-e33-5
      7 ~< {af1} cram j10 h
      3 ~> %NC%
-     6 ~> cra1-internal-e33-6
+     6 ~> cra1-e33-6
      10 ~< cra3 call, reset h
      12 ~< {bf2} clk4 force 1777 h
      14 ~> cra4 call, reset, 1777 l
@@ -351,15 +351,15 @@ e33: 10101 quad or/nor
      9 ~> cra4 ret and -1777 l
 
 e7:  10110 or buffer
-     5 ~< cra1-internal-e33-5
-     6 ~< cra1-internal-e6-15
-     7 ~< cra1-internal-e26-15
+     5 ~< cra1-e33-5
+     6 ~< cra1-e6-15
+     7 ~< cra1-e26-15
      2 ~> {am1} cra2 adr 09 a h
      3 ~> {al2} cra2 adr 09 b h
      4 ~> {al1} cra2 adr 09 c h
-     11 ~< cra1-internal-e33-5
-     10 ~< cra1-internal-e6-15
-     9 ~< cra1-internal-e26-15
+     11 ~< cra1-e33-5
+     10 ~< cra1-e6-15
+     9 ~< cra1-e26-15
      12 ~> {ak2} cra2 adr 09 d h
      13 ~> {aj2} cra2 adr 09 e h
      14 ~> cra2 adr 09 f h
@@ -377,7 +377,7 @@ e6:  10164 8 mixer
      9 ~< cra3 disp 03 a h
      7 ~< cra3 disp 04 a h
      2 ~< cra3 disp en 00-07 l
-     15 ~> cra1-internal-e6-15
+     15 ~> cra1-e6-15
 
 e26: 10164 mixer
      6 ~< {bl1} mq 34 h
@@ -392,33 +392,33 @@ e26: 10164 mixer
      9 ~< cra3 disp 03 c h
      7 ~< cra3 disp 04 c h
      2 ~< cra3 disp en 30-37 l
-     15 ~> cra1-internal-e26-15
+     15 ~> cra1-e26-15
 
 e40: 10109 4/5 or/nor
-     9 ~< cr1-internal-e33-6
+     9 ~< cr1-e33-6
      10 ~< %NC%
-     11 ~< cra1-internal-e22-15
-     12 ~< cra1-internal-e31-15
-     13 ~< cra1-internal-e36-15
+     11 ~< cra1-e22-15
+     12 ~< cra1-e31-15
+     13 ~< cra1-e36-15
      14 ~> %NC%
-     15 ~> cra1-internal-e40-15
+     15 ~> cra1-e40-15
      4 ~< {de2} con cond adr 10 h
-     5 ~< cra1-internal-e40-15
-     6 ~< cra1-internal-e39-15
+     5 ~< cra1-e40-15
+     6 ~< cra1-e39-15
      7 ~< %NC%
      3 ~> cra2 adr 10 l
      2 ~> cra2 adr 10 h
 
 e58: 10110 or buffer
      5 ~< {de2} con cond adr 10 h
-     6 ~< cra1-internal-e40-15
-     7 ~< cra1-internal-e39-15
+     6 ~< cra1-e40-15
+     7 ~< cra1-e39-15
      2 ~> {ej1} cra2 adr 10 a h
      3 ~> {ej2} cra2 adr 10 b h
      4 ~> {eh2} cra2 adr 10 c h
      11 ~< {de2} con cond adr 10 h
-     10 ~< cra1-internal-e40-15
-     9 ~< cra1-internal-e39-15
+     10 ~< cra1-e40-15
+     9 ~< cra1-e39-15
      12 ~> {ee2} cra2 adr 10 d h
      13 ~> {ed2} cra2 adr 10 e h
      14 ~> cra2 adr 10 f h
@@ -436,7 +436,7 @@ e22: 10164 8 mixer
      9 ~< cra3 disp 03 c h
      7 ~< cra3 disp 04 c h
      2 ~< cra3 disp en 00-07 l
-     15 ~> cra1-internal-e22-15
+     15 ~> cra1-e22-15
 
 e31: 10164 8 mixer
      6 ~< {cl2} mq 35 h
@@ -451,7 +451,7 @@ e31: 10164 8 mixer
      9 ~< cra3 disp 03 c h
      7 ~< cra3 disp 04 c h
      2 ~< cra3 disp en 30-37 l
-     15 ~> cra1-internal-e31-15
+     15 ~> cra1-e31-15
 
 e36: 10164 8 mixer
      6 ~< {ct2} [b,cra2 spare h,%NC%]
@@ -466,7 +466,7 @@ e36: 10164 8 mixer
      9 ~< {cp1} cram cond 04s h
      7 ~< {cn1} cram cond 05s h
      2 ~< {cr1} con skip en 40-47 l
-     15 ~> cra1-internal-e36-15
+     15 ~> cra1-e36-15
 
 e39: 10164 8 mixer
      6 ~< {dd2} mcl6 pc section 0 h
@@ -481,7 +481,7 @@ e39: 10164 8 mixer
      9 ~< {cp1} cram cond 04s h
      7 ~< {cn1} cram cond 05s h
      2 ~< {dd1} con skip en 50-57 l
-     15 ~> cra1-internal-e39-15
+     15 ~> cra1-e39-15
 
 Page: CRA3, PDF345
 
@@ -735,23 +735,23 @@ e61: 10113 quad 2 xor
      3 ~> cra4 stack adr y h
      12 ~< cra4 stack adr e h
      13 ~< %NC%
-     15 ~> cra4-internal-e61-15
+     15 ~> cra4-e61-15
      5 ~< cra4 stack adr d h
      4 ~< %NC%
-     2 ~> cra4-internal-e61-2
+     2 ~> cra4-e61-2
      10 ~< cra4 stack adr f h
      11 ~< cra4 stack adr e h
      14 ~> cra4 stack adr z h
 
 e56: 10141 shft reg
      13 ~< cra4 stack adr y h
-     12 ~< cra4-internal-e8-15
-     11 ~< cra4-internal-e8-15
-     9 ~< cra4-internal-e8-15
-     6 ~< cra4-internal-e8-15
-     5 ~< cra4-internal-e61-15
+     12 ~< cra4-e8-15
+     11 ~< cra4-e8-15
+     9 ~< cra4-e8-15
+     6 ~< cra4-e8-15
+     5 ~< cra4-e61-15
      7 ~< cra4 call, reset, 1777 l
-     10 ~< cra4-internal-e8-14
+     10 ~< cra4-e8-14
      4 ~< cra3 clk f h
      14 ~> cra4 stack adr a h
      15 ~> cra4 stack adr b h
@@ -759,14 +759,14 @@ e56: 10141 shft reg
      3 ~> cra4 stack adr d h
 
 e57: 10141 shft reg
-     13 ~< cra4-internal-e61-2
+     13 ~< cra4-e61-2
      12 ~< %NC%
      11 ~< %NC%
      9 ~< %NC%
      6 ~< %NC%
-     5 ~< cra4-internal-e61-14
+     5 ~< cra4-e61-14
      7 ~< cra4 call, reset, 1777 l
-     10 ~< cra4-internal-e8-14
+     10 ~< cra4-e8-14
      4 ~< cra3 clk f h
      14 ~> cra4 stack adr e h
      15 ~> cra4 stack adr f h
@@ -784,7 +784,7 @@ e52: 10101 quad or/nor
      10 ~< cra3 clk f h
      14 ~> cra4 stack write l
      11 ~> cra4 sel call h
-     13 ~< cra4-internal-dl1-2
+     13 ~< cra4-dl1-2
      15 ~> cra4 sel call h
      9 ~> %NC%
 
@@ -808,10 +808,10 @@ e67: 10145 16x4 RAM
      4 ~< cra3 loc 00 h
      11 ~< cra3 loc 01 h
      12 ~< cra3 loc 02 h
-     10 ~< cra4-internal-e62-1
-     9 ~< cra4-internal-e62-2
-     7 ~< cra4-internal-e62-15
-     6 ~< cra4-internal-e62-14
+     10 ~< cra4-e62-1
+     9 ~< cra4-e62-2
+     7 ~< cra4-e62-15
+     6 ~< cra4-e62-14
      3 ~< %NC%
      13 ~< cra4 stack write l
      2 ~> cra4 stack adr 10 h
@@ -824,10 +824,10 @@ e72: 10145 16x4 RAM
      4 ~< cra3 loc 04 h
      11 ~< cra3 loc 05 h
      12 ~< cra3 loc 06 h
-     10 ~< cra4-internal-e62-1
-     9 ~< cra4-internal-e62-2
-     7 ~< cra4-internal-e62-15
-     6 ~< cra4-internal-e62-14
+     10 ~< cra4-e62-1
+     9 ~< cra4-e62-2
+     7 ~< cra4-e62-15
+     6 ~< cra4-e62-14
      3 ~< %NC%
      13 ~< cra4 stack write l
      2 ~> cra4 stack adr 10 h
@@ -840,10 +840,10 @@ e76: 10145 16x4 RAM
      4 ~< cra3 loc 08 h
      11 ~< cra3 loc 09 h
      12 ~< cra3 loc 10 h
-     10 ~< cra4-internal-e62-1
-     9 ~< cra4-internal-e62-2
-     7 ~< cra4-internal-e62-15
-     6 ~< cra4-internal-e62-14
+     10 ~< cra4-e62-1
+     9 ~< cra4-e62-2
+     7 ~< cra4-e62-15
+     6 ~< cra4-e62-14
      3 ~< %NC%
      13 ~< cra4 stack write l
      2 ~> cra4 stack adr 10 h
@@ -854,12 +854,12 @@ e76: 10145 16x4 RAM
 e66: 10141 shft reg
      13 ~< %NC%
      12 ~< %NC%
-     11 ~< cra4-internal-e67-1
-     9 ~< cra4-internal-e67-15
-     6 ~< cra4-internal-e67-14
+     11 ~< cra4-e67-1
+     9 ~< cra4-e67-15
+     6 ~< cra4-e67-14
      5 ~< %NC%
-     7 ~< cra4-internal-e28-3
-     10 ~< cra4-internal-e28-3
+     7 ~< cra4-e28-3
+     10 ~< cra4-e28-3
      4 ~< cra3 clk b h
      14 ~> %NC%
      15 ~> cra4 sbr ret 00 h
@@ -868,13 +868,13 @@ e66: 10141 shft reg
 
 e71: 10141 shft reg
      13 ~< %NC%
-     12 ~< cra4-internal-e72-2
-     11 ~< cra4-internal-e72-1
-     9 ~< cra4-internal-e72-15
-     6 ~< cra4-internal-e72-14
+     12 ~< cra4-e72-2
+     11 ~< cra4-e72-1
+     9 ~< cra4-e72-15
+     6 ~< cra4-e72-14
      5 ~< %NC%
-     7 ~< cra4-internal-e28-3
-     10 ~< cra4-internal-e28-3
+     7 ~< cra4-e28-3
+     10 ~< cra4-e28-3
      4 ~< cra3 clk b h
      14 ~> cra4 sbr ret 03 h
      15 ~> cra4 sbr ret 04 h
@@ -883,13 +883,13 @@ e71: 10141 shft reg
 
 e81: 10141 shft reg
      13 ~< %NC%
-     12 ~< cra4-internal-e76-2
-     11 ~< cra4-internal-e76-1
-     9 ~< cra4-internal-e76-15
-     6 ~< cra4-internal-e76-14
+     12 ~< cra4-e76-2
+     11 ~< cra4-e76-1
+     9 ~< cra4-e76-15
+     6 ~< cra4-e76-14
      5 ~< %NC%
-     7 ~< cra4-internal-e28-3
-     10 ~< cra4-internal-e28-3
+     7 ~< cra4-e28-3
+     10 ~< cra4-e28-3
      4 ~< cra3 clk b h
      14 ~> cra4 sbr ret 07 h
      15 ~> cra4 sbr ret 08 h
@@ -902,10 +902,10 @@ e34: 10101 quad or/nor
      4 ~< {at2} cr02 dia func 053 08 l
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> cra5-internal-e34-5
+     5 ~> cra5-e34-5
      7 ~< {at2} cr02 dia func 053 08 l
      3 ~> %NC%
-     6 ~> cra5-internal-e34-6
+     6 ~> cra5-e34-6
 
 e49: 10101 quad or/nor
      7 ~< {dv2} diag 04 a l
@@ -934,7 +934,7 @@ e9:  10415a 1kx1 RAM
      11 ~< cra1 adr 08 h
      12 ~< cra1 adr 09 h
      14 ~< -cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 00 h
      1 ~> cra5 out 80 h
 
@@ -950,7 +950,7 @@ e4:  10415a 1kx1 RAM
      11 ~< cra1 adr 08 h
      12 ~< cra1 adr 09 h
      14 ~< cra2 adr 10 h
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 00 h
      1 ~> cra5 out 80 h
 
@@ -966,7 +966,7 @@ e29: 10415a 1kx1 RAM
      11 ~< cra1 adr 08 h
      12 ~< cra1 adr 09 h
      14 ~< -cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 01 h
      1 ~> cra5 out 81 h
 
@@ -982,7 +982,7 @@ e24: 10415a 1kx1 RAM
      11 ~< cra1 adr 08 h
      12 ~< cra1 adr 09 h
      14 ~< cra2 adr 10 h
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 01 h
      1 ~> cra5 out 81 h
 
@@ -998,7 +998,7 @@ e14: 10415a 1kx1 RAM
      11 ~< cra1 adr 08 h
      12 ~< cra1 adr 09 h
      14 ~< -cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 02 h
      1 ~> cra5 out 82 h
 
@@ -1014,7 +1014,7 @@ e19: 10415a 1kx1 RAM
      11 ~< cra1 adr 08 h
      12 ~< cra1 adr 09 h
      14 ~< cra2 adr 10 h
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 02 h
      1 ~> cra5 out 82 h
 
@@ -1031,7 +1031,7 @@ e25: 10415a 1kx1 RAM
      11 ~< cra1 adr 08 l
      12 ~< cra1 adr 09 l
      14 ~< -cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 03 h
      1 ~> cra5 out 83 h
 
@@ -1047,7 +1047,7 @@ e30:  10415a 1kx1 RAM
      11 ~< cra1 adr 08 l
      12 ~< cra1 adr 09 l
      14 ~< cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 03 h
      1 ~> cra5 out 83 h
 
@@ -1063,7 +1063,7 @@ e10: 10415a 1kx1 RAM
      11 ~< cra1 adr 08 l
      12 ~< cra1 adr 09 l
      14 ~< -cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 04 h
      1 ~> cra5 out 84 h
 
@@ -1079,7 +1079,7 @@ e5:  10415a 1kx1 RAM
      11 ~< cra1 adr 08 l
      12 ~< cra1 adr 09 l
      14 ~< cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 04 h
      1 ~> cra5 out 84 h
 
@@ -1095,7 +1095,7 @@ e15: 10415a 1kx1 RAM
      11 ~< cra1 adr 08 l
      12 ~< cra1 adr 09 l
      14 ~< -cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h
 
@@ -1111,7 +1111,7 @@ e20: 10415a 1kx1 RAM
      11 ~< cra1 adr 08 l
      12 ~< cra1 adr 09 l
      14 ~< cra2 adr 10 l
-     13 ~< cra5-internal-e34-5
+     13 ~< cra5-e34-5
      14 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h
 

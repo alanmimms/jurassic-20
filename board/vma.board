@@ -161,7 +161,7 @@ e27: 10109 4/5 or/nor
      10 ~< vma1 local l
      14 ~> {bm1} vma1 ac ref h
      15 ~> {ar2} vma ac ref l
-     4 ~< vma4-internal-e24-3
+     4 ~< vma4-e24-3
      5 ~< -vma4 prev sec 13 l
      6 ~< -vma4 prev sec 14 l
      7 ~< -vma4 prev sec 15 l
@@ -397,8 +397,8 @@ e11: 10136 binary counter
 e6:  10136 binary counter
      5 ~< {be1} vma4 vma 16 in h
      5 ~< {fd1} vma4 vma 17 in h
-     11 ~< vma2-internal-e10-15
-     12 ~< vma2-internal-e10-14
+     11 ~< vma2-e10-15
+     12 ~< vma2-e10-14
      10 ~< vma2 cry 20 l
      7 ~< {bl2} -con vma sel 2 h
      9 ~< {bj2} -con vma sel 1 h
@@ -410,10 +410,10 @@ e6:  10136 binary counter
      14 ~> {ce1} vma2 vma 19 h
 
 e21: 10136 binary counter
-     5 ~< vma2-internal-e20-1
-     6 ~< vma2-internal-e20-2
-     11 ~< vma2-internal-e20-15
-     12 ~< vma2-internal-e20-14
+     5 ~< vma2-e20-1
+     6 ~< vma2-e20-2
+     11 ~< vma2-e20-15
+     12 ~< vma2-e20-14
      10 ~< vma2 cry 24 l
      7 ~< {bl2} -con vma sel 2 h
      9 ~< {bj2} -con vma sel 1 h
@@ -425,10 +425,10 @@ e21: 10136 binary counter
      14 ~> {bn1} vma2 vma 23 h
 
 e25: 10136 binary counter
-     5 ~< vma2-internal-e43-1
-     6 ~< vma2-internal-e43-2
-     11 ~< vma2-internal-e43-15
-     12 ~< vma2-internal-e43-14
+     5 ~< vma2-e43-1
+     6 ~< vma2-e43-2
+     11 ~< vma2-e43-15
+     12 ~< vma2-e43-14
      10 ~< vma2 cry 28 l
      7 ~< {bl2} -con vma sel 2 h
      9 ~< {bj2} -con vma sel 1 h
@@ -440,10 +440,10 @@ e25: 10136 binary counter
      14 ~> {dl2} vma2 vma 27 h
 
 e64: 10136 binary counter
-     5 ~< vma2-internal-e80-1
-     6 ~< vma2-internal-e80-2
-     11 ~< vma2-internal-e80-15
-     12 ~< vma2-internal-e80-14
+     5 ~< vma2-e80-1
+     6 ~< vma2-e80-2
+     11 ~< vma2-e80-15
+     12 ~< vma2-e80-14
      10 ~< vma2 cry 32 l
      7 ~< {bl2} -con vma sel 2 h
      9 ~< {bj2} -con vma sel 1 h
@@ -455,10 +455,10 @@ e64: 10136 binary counter
      14 ~> {dr2} vma2 vma 31 h
 
 e58: 10136 binary counter
-     5 ~< vma2-internal-e53-1
-     6 ~< vma2-internal-e53-2
-     11 ~< vma2-internal-e53-15
-     12 ~< vma2-internal-e53-14
+     5 ~< vma2-e53-1
+     6 ~< vma2-e53-2
+     11 ~< vma2-e53-15
+     12 ~< vma2-e53-14
      10 ~< %NC%
      7 ~< {bl2} -con vma sel 2 h
      9 ~< {bj2} -con vma sel 1 h
@@ -481,8 +481,8 @@ e10: 10158 4x2 mixer
      9 ~< {bc1} mcl4 vma<-ad h
      1 ~> %NC%
      2 ~> %NC%
-     15 ~> vma2-internal-e10-15
-     14 ~> vma2-internal-e10-14
+     15 ~> vma2-e10-15
+     14 ~> vma2-e10-14
 
 e20: 10158 4x2 mixer
      5 ~< vma1 ad 20 h
@@ -493,10 +493,10 @@ e20: 10158 4x2 mixer
      13 ~< {av2} ad 22 a h
      10 ~< vma1 ad 23 h
      11 ~< {ba1} ad 23 a h
-     1 ~> vma2-internal-e20-1
-     2 ~> vma2-internal-e20-2
-     15 ~> vma2-internal-e20-15
-     14 ~> vma2-internal-e20-14
+     1 ~> vma2-e20-1
+     2 ~> vma2-e20-2
+     15 ~> vma2-e20-15
+     14 ~> vma2-e20-14
 
 e43: 10158 4x2 mixer
      5 ~< vma1 ad 24 h
@@ -507,10 +507,10 @@ e43: 10158 4x2 mixer
      13 ~< {bs1} ad 26 a h
      10 ~< vma1 ad 27 h
      11 ~< {bp2} ad 27 a h
-     1 ~> vma2-internal-e43-1
-     2 ~> vma2-internal-e43-2
-     15 ~> vma2-internal-e43-15
-     14 ~> vma2-internal-e43-14
+     1 ~> vma2-e43-1
+     2 ~> vma2-e43-2
+     15 ~> vma2-e43-15
+     14 ~> vma2-e43-14
 
 e80: 10158 4x2 mixer
      5 ~< vma1 ad 28 h
@@ -521,10 +521,10 @@ e80: 10158 4x2 mixer
      13 ~< {ep2} ad 30 a h
      10 ~< vma1 ad 31 h
      11 ~< {er2} ad 31 a h
-     1 ~> vma2-internal-e80-1
-     2 ~> vma2-internal-e80-2
-     15 ~> vma2-internal-e80-15
-     14 ~> vma2-internal-e80-14
+     1 ~> vma2-e80-1
+     2 ~> vma2-e80-2
+     15 ~> vma2-e80-15
+     14 ~> vma2-e80-14
 
 e53: 10158 4x2 mixer
      5 ~< vma1 ad 32 h
@@ -535,10 +535,10 @@ e53: 10158 4x2 mixer
      13 ~< {dk2} ad 34 a h
      10 ~< vma1 ad 35 h
      11 ~< {dm1} ad 35 a h
-     1 ~> vma2-internal-e53-1
-     2 ~> vma2-internal-e53-2
-     15 ~> vma2-internal-e53-15
-     14 ~> vma2-internal-e53-14
+     1 ~> vma2-e53-1
+     2 ~> vma2-e53-2
+     15 ~> vma2-e53-15
+     14 ~> vma2-e53-14
 
 Page: VMA3, PDF356
 
@@ -1087,7 +1087,7 @@ e24: 10141 shift register
      14 ~> vma4 prev sec 16 h
      15 ~> vma4 prev sec 17 h
      2 ~> vma4 prev sec 16,17 h
-     3 ~> vma4-internal-e24-3
+     3 ~> vma4-e24-3
 
 Page: VMA5, PDF358
 

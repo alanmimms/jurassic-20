@@ -217,13 +217,13 @@ e22: 10101 quad or/nor
      13 ~< ebus d21 e h
      9 ~> con ebus 21 h
      15 ~> con ebus 21 l
-     4 ~< con-internal-e39-4
+     4 ~< con-e39-4
      2 ~> con2 diag continue l
      5 ~> %NC%
 
 e24: 10105 2-3-2 or/nor
      12 ~< con2 instr go l
-     13 ~< con-internal-e16-15
+     13 ~< con-e16-15
      14 ~> {bs1} con run h
      15 ~> con2 run l
      9 ~< con1 nicond h
@@ -241,7 +241,7 @@ e7: 10105 2-3-2 or/nor
     10 ~< {ad1} -cram cond 04 l
     11 ~< {ae2} -cram cond 05 l
     6 ~> %NC%
-    7 ~> con-internal-e7-7
+    7 ~> con-e7-7
     12 ~< con1 cond/vma inc h
     13 ~< {al1} mcl load vma h
     3 ~> {ar2} con vma sel 1 l
@@ -269,10 +269,10 @@ e34: 10176 hex dff
      5 ~< {dk2} mtr interrupt req h
      2 ~> con2 mtr int req h
      6 ~< {dj1} pi2 ready h
-     3 ~> con-internal-e34-3
-     12 ~< con-internal-e37-6
-     15 ~> con-internal-e34-15
-     11 ~< con-internal-e28-15
+     3 ~> con-e34-3
+     12 ~< con-e37-6
+     15 ~> con-e34-15
+     11 ~< con-e28-15
      14 ~> {dm1} con2 long en l
      7 ~< con1 nicond h
      4 ~> con2 nicond or load ir delayed h
@@ -282,18 +282,18 @@ e34: 10176 hex dff
 e37: 10105 2-3-2 or/nor
      4 ~< {dl2} scd user a l
      5 ~< {dl1} scd user iot a l
-     3 ~> con-internal-e37-3
+     3 ~> con-e37-3
      2 ~> %NC%
      9 ~< con3 # 03 l
      10 ~< con2 i/o legal l
      11 ~< {fd1} ctl spec/flag ctl l
-     6 ~> con-internal-e37-6
+     6 ~> con-e37-6
      7 ~> %NC%
 
 e20: 10117 dual 2-3 or-and
      4 ~< con2 diag continue l
      5 ~< %NC%
-     6 ~< con-internal-e34-15
+     6 ~< con-e34-15
      7 ~< con2 instr go l
      9 ~< -con1 reset l
      2 ~> con2 instr go l
@@ -301,13 +301,13 @@ e20: 10117 dual 2-3 or-and
      13 ~< con2 diag continue l
      12 ~< %NC%
      11 ~< -con2 start l
-     10 ~< con-internal-e20-15
-     14 ~> con-internal-e20-14
-     15 ~> con-internal-e20-15
+     10 ~< con-e20-15
+     14 ~> con-e20-14
+     15 ~> con-e20-15
 
 e28: 10117 dual 2-3 or-and
      4 ~< con2 mtr int req h
-     5 ~< con-internal-e34-3
+     5 ~< con-e34-3
      6 ~< -con4 int disable h
      7 ~< %NC%
      9 ~< con1 reset h
@@ -353,12 +353,12 @@ e53: 10109 4/5 or/nor
      5 ~< -con5 xfer l
      6 ~< {ap1} -clk page error l
      7 ~< -con1 reset l
-     3 ~> con-internal-e53-3
+     3 ~> con-e53-3
      2 ~> %NC%
      9 ~< {ds1} ir i/o legal h
      10 ~< con2 kernel mode h
      11 ~< con4 kernel cycle h
-     12 ~< con-internal-e37-3
+     12 ~< con-e37-3
      13 ~< %NC%
      14 ~> con2 i/o legal l
      15 ~> %NC%
@@ -383,31 +383,31 @@ dl1: delay-line (PCB wired)
 
 e16: 10176 hex dff
      9 ~< con2 clk e h
-     6 ~< con-internal-e20-14
-     2 ~> con-internal-e16-2
-     6 ~< con-internal-e16-2
-     3 ~> con-internal-e16-3
-     7 ~< con-internal-e16-3
+     6 ~< con-e20-14
+     2 ~> con-e16-2
+     6 ~< con-e16-2
+     3 ~> con-e16-3
+     7 ~< con-e16-3
      4 ~> con2 start h
-     10 ~< con-internal-e12-15
-     13 ~> con-internal-e16-13
-     11 ~< con-internal-e16-13
-     14 ~> con-internal-e16-14
-     12 ~< con-internal-e16-14
-     15 ~> con-internal-e16-15
+     10 ~< con-e12-15
+     13 ~> con-e16-13
+     11 ~< con-e16-13
+     14 ~> con-e16-14
+     12 ~< con-e16-14
+     15 ~> con-e16-15
 
 e12: 10117 2-3 or-and
      13 ~< con2 diag set run l
      12 ~< %NC%
      11 ~< -con2 diag clr run l
-     10 ~< con-internal-e12-15
+     10 ~< con-e12-15
      9 ~< -con1 reset l
      14 ~> %NC%
-     15 ~> con-internal-e12-15
+     15 ~> con-e12-15
      4 ~< con1 skip en 60-67 l
-     5 ~< con-internal-e19-15
+     5 ~< con-e19-15
      6 ~< con1 skip en 70-77 l
-     7 ~< con-internal-e27-15
+     7 ~< con-e27-15
      3 ~> {bm2} con cond adr 10 h
      2 ~> %NC%
 
@@ -424,7 +424,7 @@ e19: 10164 8 mix
      9 ~< {ad1} cram cond 04 h
      7 ~< {ae2} cram cond 05 h
      2 ~< %NC%
-     15 ~> con-internal-e19-15
+     15 ~> con-e19-15
 
 e27: 10164 8 mix
      6 ~< con2 int req l
@@ -439,10 +439,10 @@ e27: 10164 8 mix
      9 ~< {ad1} cram cond 04 h
      7 ~< {ae2} cram cond 05 h
      2 ~< %NC%
-     15 ~> con-internal-e27-15
+     15 ~> con-e27-15
 
 e1: 10101 quad or/nor
-    4 ~< con-internal-e39-5
+    4 ~< con-e39-5
     12 ~< %NC%
     2 ~> con2 diag set run l
     5 ~> %NC%
@@ -460,8 +460,8 @@ e39: 10162 decoder
      15 ~< %NC%
      2 ~< {ds2} diag control func 01x l
      6 ~> con2 diag clr run h
-     5 ~> con-internal-e39-5
-     4 ~> con-internal-e39-4
+     5 ~> con-e39-5
+     4 ~> con-e39-4
      3 ~> %NC%
      13 ~> con2 diag ir strobe h
      12 ~> con2 diag dram strobe h
@@ -471,10 +471,10 @@ e39: 10162 decoder
 e23: 10104 quad and/nand
      10 ~< con3 cono apr h
      11 ~< con1 ebus 19 h
-     14 ~> con-internal-e23-14
+     14 ~> con-e23-14
      6 ~< con1 cond/ebox state l
      7 ~< con1 reset l
-     3 ~> con-internal-e23-3
+     3 ~> con-e23-3
      12 ~< -scd user a h
      13 ~< -scd public a h
      9 ~> con2 kernel mode l
@@ -491,16 +491,16 @@ e33: 10165 pri enc
      6 ~< -con5 pi cycle h
      14 ~> %NC%
      4 ~< %NC%
-     15 ~> con-internal-e33-15
-     2 ~> con-internal-e33-2
-     3 ~> con-internal-e33-3
+     15 ~> con-e33-15
+     2 ~> con-e33-2
+     3 ~> con-e33-3
 
 e18: 10176 hex dff
      9 ~< con2 clk f h
-     5 ~< con-internal-e33-15
-     6 ~< con-internal-e33-15
-     7 ~< con-internal-e33-2
-     10 ~< con-internal-e33-3
+     5 ~< con-e33-15
+     6 ~< con-e33-15
+     7 ~< con-e33-2
+     10 ~< con-e33-3
      11 ~< {bv2} pi5 ebus cp grant h
      12 ~< {bu2} pi2 ext tran rec h
      2 ~> {bj2} con nicond trap en h
@@ -514,7 +514,7 @@ Page: CON3, PDF160
 
 e57: 10176 hex dff
      9 ~< con2 clk a h
-     12 ~< con-internal-e23-14
+     12 ~< con-e23-14
      15 ~> {fv2} con cono 200000 h
 
 e14: 10141 shft reg
@@ -590,28 +590,28 @@ e59: 10105 2-3-2 or/nor
      4 ~< {fd1} ctl spec/flag ctl h
      5 ~< con3 # 02 l
      3 ~> con5 clr pi cycle h
-     2 ~> con-internal-e59-2
+     2 ~> con-e59-2
 
 e15: 10162 decoder
      14 ~< {dk1} cram # 06 e h
      9 ~< {bc1} cram # 07 e h
      7 ~< {dp1} cram # 08 e h
      15 ~< %NC%
-     2 ~< con-internal-e51-15
+     2 ~< con-e51-15
      6 ~> {be2} con3 # func 010 h
      5 ~> {bd1} con3 # func 011 h
      4 ~> %NC%
      3 ~> %NC%
-     13 ~> con-internal-e15-13
-     12 ~> con-internal-e15-12
-     11 ~> con-internal-e15-11
-     10 ~> con-internal-e15-10
+     13 ~> con-e15-13
+     12 ~> con-e15-12
+     11 ~> con-e15-11
+     10 ~> con-e15-10
 
 e51: 10105 2-3-2 or/nor
      12 ~< con3 # func 01x l
      13 ~< {em2} -ctl console control l
      14 ~> %NC%
-     15 ~> con-internal-e51-15
+     15 ~> con-e51-15
      9 ~< {ed1} con fm write 18-35 l
      10 ~< {fn1} -clk sbr call l
      11 ~< -con2 clk c l
@@ -619,21 +619,21 @@ e51: 10105 2-3-2 or/nor
      7 ~> {ff1} con fm write par l
      4 ~< con1 cond/spec instr l
      5 ~< con3 # 00 l
-     3 ~> con-internal-e51-3
+     3 ~> con-e51-3
      2 ~> %NC%
 
 e11: 10101 quad or/nor
-     4 ~< con-internal-e15-13
+     4 ~< con-e15-13
      12 ~< con1 reset h
      2 ~> con3 cono apr a l
      5 ~> con3 cono apr h
-     7 ~< con-internal-e15-12
-     3 ~> con-internal-e11-3
+     7 ~< con-e15-12
+     3 ~> con-e11-3
      6 ~> %NC%
-     13 ~< con-internal-e15-11
+     13 ~< con-e15-11
      15 ~> con3 cono pag l
      9 ~> %NC%
-     10 ~< con-internal-e15-10
+     10 ~< con-e15-10
      14 ~> {as2} con datao apr l
      11 ~> %NC%
 
@@ -642,7 +642,7 @@ e30: 10105 2-3-2 or/nor
      5 ~< con3 cono apr a l
      3 ~> %NC%
      2 ~> {dd1} con cono apr l
-     12 ~< con-internal-e11-3
+     12 ~< con-e11-3
      13 ~< clk ebox sync a l
      14 ~> %NC%
      15 ~> {aj1} con cono pi l
@@ -669,20 +669,20 @@ e44: 10117 dual 2-3 or-and
      7 ~< {ds1} con sr 02 h
      9 ~< %NC%
      3 ~> %NC%
-     2 ~> con-internal-e44-2
+     2 ~> con-e44-2
      12 ~< {dn1} cram # 04 e h
      13 ~< {dp1} cram # 08 e h
      10 ~< {dp1} cram # 08 e h
      11 ~< {cs2} con sr 03 h
      14 ~> %NC%
-     15 ~> con-internal-e44-15
+     15 ~> con-e44-15
 
 e40: 10141 shft reg
      13 ~< %NC%
      12 ~< {em1} cram # 05 e h
      11 ~< {dk1} cram # 06 e h
-     9 ~< con-internal-e44-2
-     6 ~< con-internal-e44-15
+     9 ~< con-e44-2
+     6 ~< con-e44-15
      5 ~< %NC%
      7 ~< con1 cond/sr<-# l
      10 ~< con1 cond/sr<-# l
@@ -751,14 +751,14 @@ e45: 10117 dual 2-3-2 or-and
      11 ~< {ea1} cram # 01 e h
      10 ~< {ef2} con ucode state 01 h
      9 ~< %NC%
-     15 ~> con-internal-e45-15
+     15 ~> con-e45-15
      14 ~> %NC%
      4 ~< {dp1} cram # 08 e h
      5 ~< {bc1} cram # 07 e h
      6 ~< {bc1} cram # 07 e h
      7 ~< {ed2} con ucode state 07 h
      3 ~> %NC%
-     2 ~> con-internal-e45-2
+     2 ~> con-e45-2
 
 e46: 10117 dual 2-3-2 or-and
      4 ~< {dn1} cram # 04 e h
@@ -766,24 +766,24 @@ e46: 10117 dual 2-3-2 or-and
      6 ~< {dt2} cram # 03 e h
      7 ~< {ef2} con ucode state 03 h
      9 ~< %NC%
-     2 ~> con-internal-e46-2
+     2 ~> con-e46-2
      3 ~> %NC%
      13 ~< {dk1} cram # 06 e h
      12 ~< {em1} cram # 05 e h
      11 ~< {em1} cram # 05 e h
      10 ~< con4 ucode state 05 h
      14 ~> %NC%
-     15 ~> con-internal-e46-15
+     15 ~> con-e46-15
 
 e50: 10141 shft reg
      13 ~< %NC%
-     12 ~< con-internal-e45-15
-     11 ~< con-internal-e46-2
-     9 ~< con-internal-e46-15
-     6 ~< con-internal-e45-2
+     12 ~< con-e45-15
+     11 ~< con-e46-2
+     9 ~< con-e46-15
+     6 ~< con-e45-2
      5 ~< %NC%
-     7 ~< con-internal-e23-3
-     10 ~< con-internal-e23-3
+     7 ~< con-e23-3
+     10 ~< con-e23-3
      4 ~< con2 clk d h
      14 ~> {ef2} con ucode state 01 h
      15 ~> {ee2} con ucode state 03 h
@@ -851,13 +851,13 @@ e64: 10176 hex dff
 e67: 10101 quad or/nor
      10 ~< {fu2} ebus parity active e h
      12 ~< %NC%
-     14 ~> con-internal-e67-14
+     14 ~> con-e67-14
      11 ~> %NC%
      7 ~< {ft2} mcl load ar h
      3 ~> con4 load ar en l
      6 ~> %NC%
      4 ~< mcl load arx h
-     2 ~> con-internal-e67-2
+     2 ~> con-e67-2
      5 ~> con4 load ar en l
      13 ~< con5 pi cycle in h
      15 ~> con5 pi cycle l
@@ -865,10 +865,10 @@ e67: 10101 quad or/nor
 
 e68: 10105 2-3-2 or/nor
      4 ~< {fm1} ctl ebus xfer l
-     5 ~< con-internal-e67-14
-     3 ~> con-internal-e68-3
-     2 ~> con-internal-e68-2
-     9 ~< con-internal-e59-2
+     5 ~< con-e67-14
+     3 ~> con-e68-3
+     2 ~> con-e68-2
+     9 ~< con-e59-2
      10 ~< -con5 pi cycle l
      11 ~< {ba1} clk ebox sync a l
      6 ~> %NC%
@@ -878,21 +878,21 @@ e61: 10109 4/5 or/nor
      4 ~< con5 xfer l
      5 ~< {fl1} -con fm xfer l
      6 ~< {ap1} -clk page error l
-     7 ~< con-internal-e67-2
+     7 ~< con-e67-2
      3 ~> %NC%
-     2 ~> con-internal-e61-2
+     2 ~> con-e61-2
      9 ~< {ff2} -mcl skip satisfied l
      10 ~< -con5 clr pi cycle l
      11 ~< -con1 reset l
      12 ~< con5 pi cycle l
      13 ~< %NC%
-     14 ~> con-internal-e61-14
+     14 ~> con-e61-14
      15 ~> %NC%
 
 e69: 10176 hex dff
-     5 ~< con-internal-e68-3
-     6 ~< con-internal-e68-2
-     7 ~< con-internal-e61-2
+     5 ~< con-e68-3
+     6 ~< con-e68-2
+     7 ~< con-e61-2
      10 ~< con4 load ar en l
      11 ~< con5 xfer l
      12 ~< {ap1} -clk page error l
@@ -915,7 +915,7 @@ Page: CON5, PDF162
 e51: 10105 2-3-2 or/nor
      4 ~< con1 cond/spec instr l
      5 ~< con3 # 00 l
-     3 ~> con-internal-e51-3
+     3 ~> con-e51-3
      2 ~> %NC%
      9 ~< {ed1} con fm write 18-35 l
      10 ~< {fn1} -clk sbr call l
@@ -925,13 +925,13 @@ e51: 10105 2-3-2 or/nor
 
 e57: 10176 hex dff
      9 ~< con2 clk a h
-     6 ~< con-internal-e51-3
+     6 ~< con-e51-3
      3 ~> con5 pi cycle in h
-     5 ~< con-internal-e61-14
+     5 ~< con-e61-14
      2 ~> con5 pi cycle in h
      10 ~< {ep1} mcl mbox cyc req h
      13 ~> con5 mem cycle in h
-     11 ~< con-internal-e53-3
+     11 ~< con-e53-3
      14 ~> con5 mem cycle in h
 
 e60: 10105 quad or/nor
@@ -950,14 +950,14 @@ e60: 10105 quad or/nor
      7 ~> {fj1} con fm xfer l
 
 e63: 10117 dual 2-3 or-and
-     4 ~< con-internal-e7-7
+     4 ~< con-e7-7
      5 ~< con1 cond en 10-17 l
      6 ~< {fr2} mcl store ar l
      7 ~< {fh2} con mbox wait l
      9 ~< {de2} vma ac ref l
      3 ~> %NC%
      2 ~> {fe1} con fm write 00-17 l
-     13 ~< con-internal-e7-7
+     13 ~< con-e7-7
      12 ~< con1 cond en 10-17 l
      11 ~< {fr2} mcl store ar l
      10 ~< {fh2} con mbox wait l
