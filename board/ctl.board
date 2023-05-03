@@ -204,7 +204,7 @@ e20: 10101 quad or/nor
      7 ~< ctl1 disp/return h
      3 ~> -ctl1 disp ret h
      6 ~> %NC%
-     10 ~< {bn1} [b,nc,diag read func 10x] l
+     10 ~< {bn1} [b,%NC%,diag read func 10x] l
      14 ~> %NC%
      11 ~> ctl3 diag read l
 
