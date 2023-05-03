@@ -278,7 +278,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 // with the corresponding value from 'macroEnv' and numerically
 // evaluate any expression. Returns the full expansion of the
 // resulting collapsed tree.
-function evalExpr(t, macroEnv, isMath = false) {
+function evalExpr(t, macroEnv) {
   let result;
 
   if (!t || !t.nodeType) debugger;
@@ -294,7 +294,7 @@ function evalExpr(t, macroEnv, isMath = false) {
     // expression macro whose value is the 1-origin member of t.ids[]
     // to expand. Note that this t.ids[n-1] value might be a complex
     // macro.
-    result = evalExpr(t.head, macroEnv, false);
+    result = evalExpr(t.head, macroEnv);
 
     if (t.ids.list.length) {		// It's a selector
       const sel = result;
@@ -304,7 +304,7 @@ function evalExpr(t, macroEnv, isMath = false) {
 	console.log(`ERROR: Selector produces undefined result t=\n${util.inspect(t, {depth:99})}`);
 	result = '%NC%';
       } else {
-	result = evalExpr(selected, macroEnv, false);
+	result = evalExpr(selected, macroEnv);
       }
     }
 
@@ -314,13 +314,18 @@ function evalExpr(t, macroEnv, isMath = false) {
   case '-':
   case '/':
   case '*':
-    const L = evalExpr(t.l, macroEnv, true);
-    const R = evalExpr(t.r, macroEnv, true);
-    result = Math.trunc(eval(`${L}${t.nodeType}${R}`));
+    // This is complicated by the need to keep the values as strings
+    // and to evaluate to the number ofdigits which is the max of
+    // the length of each of the operands.
+    const L = evalExpr(t.l, macroEnv);
+    const R = evalExpr(t.r, macroEnv);
+    const digits = Math.max(L.length, R.length);
+    const resultStr = Math.trunc(eval(`${parseInt(L, 10)} ${t.nodeType} ${parseInt(R, 10)}`));
+    result = String(resultStr).padStart(digits, '0');
     break;
 
   case 'IDList':
-    result = t.list.map(id => evalExpr(id, macroEnv, false)).join('');
+    result = t.list.map(id => evalExpr(id, macroEnv)).join('');
     break;
 
   case 'IDChunk':
