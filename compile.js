@@ -61,7 +61,7 @@ function parseBackplanes(parser) {
     bp.slots.forEach(slot => {
       const board = slot.board;
 
-      if (board.t === 'Empty') return;
+      if (board.nodeType === 'Empty') return;
 
       const macros = board.macros || [];
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
@@ -73,10 +73,11 @@ function parseBackplanes(parser) {
 
       const boardAST = parseFile(parser, `board/${board.id}.board`);
       expandMacros(boardAST, nets, macroEnv);
+      slot.board = {... board, ... boardAST};
     });
 
     dumpAST(nets, bp.name, 'after');
-    return nets;
+    return bp;
   });
 }
 
@@ -85,49 +86,71 @@ function parseBackplanes(parser) {
 // Walk through all net references and create: {
 //   netName1: [{pin, dir, bpPin},  ... ],  ...
 // }
-function findConnectedNets(nets) {
-  const connectedNets = {};
+function gatherNetByName(bp) {
+  const netByName = {};
   
-  Object.keys(nets).forEach(netName => {
+  Object.keys(bp).forEach(netName => {
     if (netName === '%NC%') return;
-    connectedNets[netName] = [];
+    netByName[netName] = [];
 
-    Object.keys(nets[netName]).forEach(dir => {
+    Object.keys(bp[netName]).forEach(dir => {
 
-      Object.values(nets[netName][dir]).forEach(pin => {
+      Object.values(bp[netName][dir]).forEach(pin => {
         const bpPin = pin.bpPin;
-
-	if (bpPin) {
-
-	  if (connectedNets[netName].bpPin && connectedNets[netName].bpPin != bpPin) {
-	    console.error(`Net '${netName}' connected to both ${bpPin} (${pin.fullName}) and ${connectedNets[netName].bpPin} (${connectedNets[netName].map(p => p.pin.fullName).join(',')})`);
-	  }
-
-	  connectedNets[netName].bpPin = bpPin;
-	}
-
-        connectedNets[netName].push({dir, pin, bpPin});
+        netByName[netName].push({dir, pin, bpPin});
       });
     });
   });
 
-  return connectedNets;
+  return netByName;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Find all backplane pins in any given slot with more than one net name attached.
+function defineBackplanePins(bp) {
+
+  bp.slots
+    .filter(slot => slot.board && slot.board.pages)
+    .forEach(slot => {
+      const board = slot.board;
+
+      board.pages.forEach(page => {
+
+	page.chips.forEach(chip => {
+
+	  chip.pins
+	    .filter(pin => pin.bpPin)
+	    .forEach(pin => {
+	      const bpPin = pin.bpPin;
+	      const slotPin = slot.bpPins[bpPin];
+
+	      if (slotPin && slotPin.netName && slotPin.name != pin.netName) {
+		console.error(`\
+Pin '${bpPin}' connected to "${pin.netName}" and "${slotPin.name}"`);
+	      }
+
+	      slot.bpPins[bpPin] = pin.netName;
+	    });
+	});
+    });
+  });
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
 // Complain if nets are not driven and not on the backplane connector
 // or if driven by more than one pin.
-function checkNetConnectivity(connectedNets) {
+function checkNetConnectivity(netByName) {
 
   console.log(`Check nets for proper connectivity:`);
 
-  Object.keys(connectedNets).forEach(netName => {
+  Object.keys(netByName).forEach(netName => {
     if (netName === '%NC%') return;
     if (netName === '0') return;
     if (netName === '1') return;
 
-    const pins = connectedNets[netName];
+    const pins = netByName[netName];
 
     if (pins.length === 0) {
       console.log(`WARNING NOT CONNECTED: "${netName}" is not connected`);
@@ -162,7 +185,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 
   if (!ast) return;
 
-  switch (ast.t) {
+  switch (ast.nodeType) {
   case 'Chip':
     cx.chip = ast;
     cx.chip.page = cx.page;
@@ -196,7 +219,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
     cx.pin.symbol = Symbol(cx.pin.fullName);
     cx.net = '';
 
-    switch (cx.pin.net.t) {
+    switch (cx.pin.net.nodeType) {
     case 'Macro':
       cx.net += evalExpr(cx.pin.net, macroEnv);	// Handles selectors and simple macros
       break;
@@ -243,7 +266,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
     break;
 
   default:
-    console.log(`Unrecognized AST node type '${ast.t}'.`);
+    console.log(`Unrecognized AST node type '${ast.nodeType}'.`);
     break;
   }
 }
@@ -256,9 +279,9 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 function evalExpr(t, macroEnv, isMath = false) {
   let result;
 
-  if (!t || !t.t) debugger;
+  if (!t || !t.nodeType) debugger;
 
-  switch (t.t) {
+  switch (t.nodeType) {
   case 'Macro':
     // Two cases:
     // 
@@ -289,7 +312,7 @@ function evalExpr(t, macroEnv, isMath = false) {
   case '-':
   case '/':
   case '*':
-    const expr = evalExpr(t.l, macroEnv, true) + t.t + evalExpr(t.r, macroEnv, true);
+    const expr = evalExpr(t.l, macroEnv, true) + t.nodeType + evalExpr(t.r, macroEnv, true);
     result = Math.trunc(eval(expr));
     break;
 
@@ -308,7 +331,7 @@ function evalExpr(t, macroEnv, isMath = false) {
 
   default:
     console.log(`\
-Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.`);
+Unhandled subtree node type in ${t.nodeType} macro: '${util.inspect(t, {depth: 999})}'.`);
     result = '<coding error>';
     break;
   }
@@ -317,10 +340,10 @@ Unhandled subtree node type in ${t.t} macro: '${util.inspect(t, {depth: 999})}'.
 }
 
 
-// bp.connectedNets = { netName1: [{pin, dir, bpPin},  ... ],  ... }
+// bp.netByName = { netName1: [{pin, dir, bpPin},  ... ],  ... }
 function dumpSignals(bp) {
   fs.writeFileSync('symbols.dump',
-		   Object.entries(bp.connectedNets)
+		   Object.entries(bp.netByName)
 		   .filter(([net, pind]) => pind)
 		   .sort((a, b) => ("" + a).localeCompare(b, undefined, {numeric: true}))
 		   .map(([net, pind]) => `\
@@ -344,8 +367,9 @@ function compile(simOptions) {
         options.checkUndriven;
 
   backplanes.forEach(bp => {
-    bp.connectedNets = findConnectedNets(bp);
-    if (needCheck) checkNetConnectivity(bp.connectedNets);
+    bp.netByName = gatherNetByName(bp);
+    defineBackplanePins(bp);
+    if (needCheck) checkNetConnectivity(bp.netByName);
     if (options.dumpSignals) dumpSignals(bp);
   });
 
