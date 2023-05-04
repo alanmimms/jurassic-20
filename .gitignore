@@ -36,3 +36,5 @@ before.evaluation
 KL10PV.after.evaluation
 KL10PV.before.evaluation
 symbols.dump
+cpu.after.evaluation
+cpu.before.evaluation
