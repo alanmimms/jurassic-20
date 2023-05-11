@@ -44,39 +44,38 @@ function dumpAST(ast, name, stage) {
 
 function parseBackplanes(parser) {
   const filename = options.src;
-  const bpAST = parseFile(parser, filename);
+  const bp = parseFile(parser, filename)[0];
 
-  return bpAST.map(bp => {
-    console.log(`Backplane ${bp.name}:`);
-    dumpAST(bp, bp.name, 'before');
+  console.log(`Backplane ${bp.name}:`);
+  dumpAST(bp, bp.name, 'before');
 
-    const bpMacros = bp.macros || [];
-    const bpMacroDesc = bpMacros.map(macro => `${macro.id}=${macro.value}`).join (' ');
-    const bpMacroEnv = {};
+  const bpMacros = bp.macros || [];
+  const bpMacroDesc = bpMacros.map(macro => `${macro.id}=${macro.value}`).join (' ');
+  const bpMacroEnv = {};
 
-    bpMacros.forEach(macro => bpMacroEnv[macro.id] = macro.value);
+  bpMacros.forEach(macro => bpMacroEnv[macro.id] = macro.value);
 
-    // For each slot, (re)parse the board definition and expand its
-    // macros for the slot (and backplane, and CPU type) specifics.
-    bp.slots.forEach(slot => {
-      const board = slot.board;
+  // For each slot, (re)parse the board definition and expand its
+  // macros for the slot (and backplane, and CPU type) specifics.
+  bp.slots.forEach(slot => {
+    const board = slot.board;
 
-      const macros = board.macros || [];
-      const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
-      const macroEnv = {...bpMacroEnv};
+    const macros = board.macros || [];
+    const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
+    const macroEnv = {...bpMacroEnv};
 
-      macros.forEach(macro => macroEnv[macro.id] = macro.value);
+    macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
-      console.log(`  Slot ${slot.n}: ${board.id} ${macroDesc}`);
+    console.log(`  Slot ${slot.n}: ${board.id} ${macroDesc}`);
 
-      const boardAST = parseFile(parser, `board/${board.id}.board`);
-      expandMacros(boardAST, bp, macroEnv);
-      slot.board = {... board, ... boardAST};
-    });
-
-    dumpAST(bp, bp.name, 'after');
-    return bp;
+    const boardAST = parseFile(parser, `board/${board.id}.board`);
+    expandMacros(boardAST, bp, macroEnv);
+    slot.board = {... board, ... boardAST};
   });
+
+  dumpAST(bp, bp.name, 'after');
+
+  return bp;
 }
 
 
@@ -363,27 +362,75 @@ function compile(simOptions) {
   const backplanes = {};
   options = simOptions;
 
+  const needCheck =
+        options.checkNets ||
+        options.checkWireOr ||
+        options.checkUndriven;
+
   const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
     output: 'parser',
     trace: options.traceParse,
   });
 
+  // Parse the backplane definition and collapse the board page
+  // substructure into a list of chips on the board.
   const bpAST = parseBackplanes(parser);
+  const bp = {};
 
-  const needCheck =
-        options.checkNets || 
-        options.checkWireOr || 
-        options.checkUndriven;
+  bp.slots = bpAST.slots.reduce((slots, slot) => {
+    const board = {
+      id: slot.board.id,
+      macros: slot.board.macros,
+      comments: slot.board.comments,
+      location: slot.board.location,
+    };
+    
+    board.chips = slot.board.pages.reduce((chips, page) => {
 
-  bpAST.forEach(bp => {
-    backplanes[bp.name] = bp;
-    gatherNetByName(bp);
-    defineBackplanePins(bp);
-    if (needCheck) checkNetConnectivity(bp.netByName);
+      page.chips.forEach(astChip => {
+
+	if (chips[astChip.name]) {
+	  console.error(`\
+${slot.board.id}.${astChip.name} defined \
+${util.inspect(astChip.location)} and previously \
+${util.inspect(chips[astChip.name].location)}`);
+	}
+
+	chips[astChip.name] = {
+	  type: astChip.type,
+	  desc: astChip.desc,
+	  location: astChip.location,
+	  pins: astChip.pins,
+	  page: page.name,
+	  pdfRef: page.pdfRef,
+
+	  pins: astChip.pins.map(pin => ({
+	    pin: pin.pin,
+	    dir: pin.dir,
+	    bpPin: pin.bpPin,
+	    location: pin.location,
+	    fullName: pin.fullName,
+	    net: pin.netName,
+	  })),
+	};
+      });
+
+      return chips;
+    }, {});
+
+    return slots.concat(board);
+  }, []);
+
+  if (false) {
+    gatherNetByName(backplane);
+    defineBackplanePins(backplane);
+    if (needCheck) checkNetConnectivity(backplane.netByName);
     if (options.dumpSignals) dumpSignals(bp);
-  });
+  }
 
-  return backplanes;
+  fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
+
+  return bp;
 }
 
 
