@@ -144,11 +144,17 @@ e28: 10105 2-3-2 or/nor
      3 ~> cra4-e28-3
      2 ~> %NC%
 
-e31: 10101 quad or/nor
+e34: 10101 quad or/nor
      13 ~< cra1-e51-15
      12 ~< %NC%
      15 ~> cra1 ret l
      9 ~> %NC%
+     4 ~< {at2} cr02 dia func 053 08 l
+     2 ~> %NC%
+     5 ~> cra5-e34-5
+     7 ~< {at2} cr02 dia func 053 08 l
+     3 ~> %NC%
+     6 ~> cra5-e34-6
 
 e51: 10174 2x4 mixer
      3 ~< cra3 diag adr 00 h
@@ -897,15 +903,6 @@ e81: 10141 shft reg
      3 ~> cra4 sbr ret 10 h
 
 Page: CRA5, PDF347
-
-e34: 10101 quad or/nor
-     4 ~< {at2} cr02 dia func 053 08 l
-     12 ~< %NC%
-     2 ~> %NC%
-     5 ~> cra5-e34-5
-     7 ~< {at2} cr02 dia func 053 08 l
-     3 ~> %NC%
-     6 ~> cra5-e34-6
 
 e49: 10101 quad or/nor
      7 ~< {dv2} diag 04 a l

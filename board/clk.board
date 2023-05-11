@@ -81,6 +81,15 @@ e55: 10104 quad and/nand
      13 ~< clk1-e27-2
      9 ~> {bj1} clk error stop h
      15 ~> clk1 error stop l
+     4 ~< clk2-e50-13
+     5 ~< clk2 crobar l
+     2 ~> clk2 func 044 l
+     6 ~< clk2-e50-12
+     7 ~< clk2 crobar l
+     3 ~> clk2 func 045 l
+     10 ~< clk2-e50-10
+     11 ~< clk2 crobar l
+     14 ~> clk2 func 047 l
 
 e56: 10131 dual ms d ff
      7 ~< clk1 gated en h
@@ -99,6 +108,13 @@ e51: 10104 quad and/nand
      4 ~< clk1-dl5001-2
      5 ~< clk1-e56-2
      2 ~> clk1 gated h
+     10 ~< clk2-e50-11
+     11 ~< clk2 crobar l
+     14 ~> clk2 func 046 l
+     12 ~< clk2 func gate l
+     13 ~< clk2 crobar l
+     9 ~> %NC%
+     15 ~> clk2-e51-15
 
 dl1: tapped-delay-20-2 20ns 2ns/tap
      3 ~< clk1 gated h
@@ -427,7 +443,7 @@ e52: 10136 binary counter
      15 ~> %NC%
      14 ~> %NC%
 
-e46: 10161 decoder
+e47: 10161 decoder
      14 ~< clk5 diag 04 h
      9 ~< clk5 diag 05 h
      7 ~< clk5 diag 06 h
@@ -456,26 +472,6 @@ e50: 10161 decoder
      12 ~> clk2-e50-12
      11 ~> clk2-e50-11
      10 ~> clk2-e50-10
-
-e55: 10104 quad and/nand
-     4 ~< clk2-e50-13
-     5 ~< clk2 crobar l
-     2 ~> clk2 func 044 l
-     6 ~< clk2-e50-12
-     7 ~< clk2 crobar l
-     3 ~> clk2 func 045 l
-     10 ~< clk2-e50-10
-     11 ~< clk2 crobar l
-     14 ~> clk2 func 047 l
-
-e51: 10104 quad and/nand
-     10 ~< clk2-e50-11
-     11 ~< clk2 crobar l
-     14 ~> clk2 func 046 l
-     12 ~< clk2 func gate l
-     13 ~< clk2 crobar l
-     9 ~> %NC%
-     15 ~> clk2-e51-15
 
 e37: 10141 shift reg
      13 ~< %NC%
@@ -608,6 +604,8 @@ e26: 10105 2-3-2 or/nor
      13 ~< clk4 page fail en h
      14 ~> %NC%
      15 ~> clk4-e26-15
+     4 ~< clk3 sync l
+     5 ~< clk3-e17-3
 
 e31: 10164 8 mixer
      6 ~< clk3-e26-7
@@ -648,10 +646,6 @@ e10: 10176 hex d ff
      14 ~> clk3 sync l
      15 ~> clk3 sync h
 
-e26: 10105 2-3-2 or/nor
-     4 ~< clk3 sync l
-     5 ~< clk3-e17-3
-
 e22: 10109 4/5 or/nor
      9 ~< clk3-e17-3
      10 ~< clk3 sync l
@@ -681,6 +675,13 @@ e17: 10109 4/5 or/nor
      7 ~< clk3-e11-9
      3 ~> clk3-e17-3
      2 ~> %NC%
+     9 ~< -clk4 page fail en l
+     10 ~< {bk2} -csh4 ebox t0 in l
+     11 ~< -clk5 mbox cycle dis l
+     12 ~< -clk2 reset l
+     13 ~< -clk4 force 1777 l
+     14 ~> %NC%
+     15 ~> clk4-e1-2
 
 e11: 10104 quad and/nand
      12 ~< clk2 ebox ss l
@@ -791,15 +792,6 @@ e1:  10121 4-wide or-and
      15 ~< %NC%
      3 ~> %NC%
      2 ~> clk4-e1-2
-
-e17: 10109 4/5 or/nor
-     9 ~< -clk4 page fail en l
-     10 ~< {bk2} -csh4 ebox t0 in l
-     11 ~< -clk5 mbox cycle dis l
-     12 ~< -clk2 reset l
-     13 ~< -clk4 force 1777 l
-     14 ~> %NC%
-     15 ~> clk4-e1-2
 
 e3:  10131 dual ms d ff
      10 ~< clk4-e1-2

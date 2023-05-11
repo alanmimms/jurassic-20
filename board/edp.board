@@ -1052,7 +1052,7 @@ e34: 10210 or buffer
      13 ~> dp04 clk e h
      14 ~> dp04 clk f h
 
-dl1: delay-line (PCB wired)
+dl2: delay-line (PCB wired)
      1 ~< {cr2} clk edp [n] h
      2 ~> clk edp [n] delayed h
 

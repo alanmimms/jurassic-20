@@ -516,6 +516,14 @@ e57: 10176 hex dff
      9 ~< con2 clk a h
      12 ~< con-e23-14
      15 ~> {fv2} con cono 200000 h
+     6 ~< con-e51-3
+     3 ~> con5 pi cycle in h
+     5 ~< con-e61-14
+     2 ~> con5 pi cycle in h
+     10 ~< {ep1} mcl mbox cyc req h
+     13 ~> con5 mem cycle in h
+     11 ~< con-e53-3
+     14 ~> con5 mem cycle in h
 
 e14: 10141 shft reg
      13 ~< %NC%
@@ -911,28 +919,6 @@ e70: 10104 quad and/nand
      15 ~> {el2} con ar loaded l
 
 Page: CON5, PDF162
-
-e51: 10105 2-3-2 or/nor
-     4 ~< con1 cond/spec instr l
-     5 ~< con3 # 00 l
-     3 ~> con-e51-3
-     2 ~> %NC%
-     9 ~< {ed1} con fm write 18-35 l
-     10 ~< {fn1} -clk sbr call l
-     11 ~< -con2 clk c l
-     6 ~> %NC%
-     7 ~> {ff1} con fm write par l
-
-e57: 10176 hex dff
-     9 ~< con2 clk a h
-     6 ~< con-e51-3
-     3 ~> con5 pi cycle in h
-     5 ~< con-e61-14
-     2 ~> con5 pi cycle in h
-     10 ~< {ep1} mcl mbox cyc req h
-     13 ~> con5 mem cycle in h
-     11 ~< con-e53-3
-     14 ~> con5 mem cycle in h
 
 e60: 10105 quad or/nor
      4 ~< con fm xfer h

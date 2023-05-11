@@ -335,6 +335,12 @@ e64: 10109 4/5 or/nor
     13 ~< {ep1} [a,scd2 sc 36 to 63 h,%NC%]
     14 ~> %NC%
     15 ~> {el2} scd2 sc .ge. 36 h
+    4 ~< {er2} con cond instr abort h
+    5 ~< scd5 pi&save flags h
+    6 ~< {et2} ctl disp/nicond h
+    7 ~< scd5 load flags h
+    3 ~> scd4 trap clear l
+    2 ~> %NC%
 
 // NOTE 1: Replacement of e45 requires factory deskew adjustment
 e45: 10210 dual 3 or buffer
@@ -932,20 +938,28 @@ e18: 10118 triple 4-2 or-and
      7 ~< ar 12 c h
      9 ~< -scd5 load flags a h
      2 ~> scd4-e18-2
-
-e64: 10109 dual 4/5 or/nor
-     4 ~< {er2} con cond instr abort h
-     5 ~< scd5 pi&save flags h
-     6 ~< {et2} ctl disp/nicond h
-     7 ~< scd5 load flags h
-     3 ~> scd4 trap clear l
-     2 ~> %NC%
+     12 ~< %NC%
+     13 ~< scd5 user l
+     14 ~< -scd5 leave user l
+     10 ~< scd5 ar 05 l
+     11 ~< %NC%
+     9 ~< scd5 load flags a h
+     15 ~> scd5 user en l
 
 e22: 10104 quad and
      12 ~< {et2} ctl disp/nicond h
      13 ~< con trap en a h
      15 ~> scd4-e22-15
      9 ~> %NC%
+     4 ~< {bj1} scd5 adr brk inh h
+     5 ~< -scd4 trap clear h
+     2 ~> scd5-e22-3
+     6 ~< scd5 load flags a h
+     7 ~< {de2} ar 08 c h
+     3 ~> scd5-e22-3
+     10 ~< {er2} con cond instr abort h
+     11 ~< scd5 adr brk cyc h
+     14 ~> scd5-e22-3
 
 e19: 10104 quad and
      4 ~< {ad1} scd4 trap req 2 h
@@ -1136,15 +1150,6 @@ e11: 10176 hex dff
      12 ~< scd5-e21-3
      15 ~> scd5 adr brk cyc h
 
-e18: 10118 triple 4-2 or-and
-     12 ~< %NC%
-     13 ~< scd5 user l
-     14 ~< -scd5 leave user l
-     10 ~< scd5 ar 05 l
-     11 ~< %NC%
-     9 ~< scd5 load flags a h
-     15 ~> scd5 user en l
-
 e6: 10105 triple 2-3-2 or/nor
     4 ~< -scd5 load flags a h
     5 ~< scd5 ar 06 h
@@ -1204,17 +1209,6 @@ e16: 10121 4-wide or-and
      15 ~< -scd5 public page l
      3 ~> %NC%
      2 ~> scd5 private instr en l
-
-e22: 10104 quad and
-     4 ~< {bj1} scd5 adr brk inh h
-     5 ~< -scd4 trap clear h
-     2 ~> scd5-e22-3
-     6 ~< scd5 load flags a h
-     7 ~< {de2} ar 08 c h
-     3 ~> scd5-e22-3
-     10 ~< {er2} con cond instr abort h
-     11 ~< scd5 adr brk cyc h
-     14 ~> scd5-e22-3
 
 e21: 10104 quad and
      4 ~< scd5 adr brk cyc h
