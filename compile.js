@@ -377,14 +377,24 @@ function compile(simOptions) {
   const bpAST = parseBackplanes(parser);
   const bp = {};
 
-  bp.slots = bpAST.slots.reduce((slots, slot) => {
+  bp.slots = bpAST.slots.reduce((slots, slot, slotNumber) => {
+
     const board = {
+      slotNumber,
       id: slot.board.id,
-      macros: slot.board.macros,
       comments: slot.board.comments,
       location: slot.board.location,
+
+      macros: (slot.board.macros || []).reduce((macros, mac) =>
+	macros.concat(`${mac.id}=${mac.value}`),
+	[]),
+
     };
-    
+
+    function astDirToDir(d) {
+      return (d == '~<') ? 'in' : (d == '~>') ? 'out' : d;
+    }
+
     board.chips = slot.board.pages.reduce((chips, page) => {
 
       page.chips.forEach(astChip => {
@@ -399,19 +409,26 @@ ${util.inspect(chips[astChip.name].location)}`);
 	chips[astChip.name] = {
 	  type: astChip.type,
 	  desc: astChip.desc,
-	  location: astChip.location,
-	  pins: astChip.pins,
 	  page: page.name,
 	  pdfRef: page.pdfRef,
+	  location: astChip.location,
+	  pins: astChip.pins,
 
-	  pins: astChip.pins.map(pin => ({
+	  pins: astChip.pins.map(pin => {
+	    let result = {
 	    pin: pin.pin,
-	    dir: pin.dir,
-	    bpPin: pin.bpPin,
-	    location: pin.location,
+	    dir: astDirToDir(pin.dir),
 	    fullName: pin.fullName,
 	    net: pin.netName,
-	  })),
+	    location: pin.location,
+	    };
+
+	    if (pin.bpPin) {
+	      result.bpPin = `${slot.board.id}.${pin.bpPin.replace(/[{}]/g, '')}[${slotNumber}]`;
+	    }
+
+	    return result;
+	  }),
 	};
       });
 
