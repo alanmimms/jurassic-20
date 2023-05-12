@@ -322,7 +322,7 @@ e29: 10105 2-3-2 or/nor
      4 ~< con2 diag dram strobe h
      5 ~< con2 nicond or load ir delayed h
      3 ~> {eu2} con load dram l
-     2 ~> {bp2} con load access cond h
+     2 ~> {br2} con load dram h
      9 ~< con5 fetch cycle h
      10 ~< con1 cond/load ir h
      11 ~< con2 diag ir strobe h
