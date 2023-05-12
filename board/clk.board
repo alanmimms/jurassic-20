@@ -781,8 +781,8 @@ Page: CLK4, PDF171
 e1:  10121 4-wide or-and
      4 ~< {bm1} clk4 ebox req h
      5 ~< %NC%
-     6 ~< {al2} -vm1 ac ref l
-     7 ~< {al2} -vm1 ac ref l
+     6 ~< {al2} -vma1 ac ref l
+     7 ~< {al2} -vma1 ac ref l
      9 ~< {ac1} csh2 ebox retry req l
      10 ~< %NC%
      11 ~< clk3 sync en l
