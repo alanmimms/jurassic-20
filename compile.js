@@ -118,7 +118,7 @@ function defineBackplanePins(bp) {
       chip.pins.forEach(pin => {
 
 	if (pin.bpPin) {
-	  all[pin.bpPin] = (all[pin.bpPin] || []).concat(`${pin.dir}:${pin.net}`);
+	  all[pin.bpPin] = (all[pin.bpPin] || []).concat(`${pin.dir} ${pin.net}`);
 	}
       });
 
@@ -129,7 +129,24 @@ function defineBackplanePins(bp) {
 
   
   fs.writeFileSync('bp.nets',
-		   Object.entries(bp.allPins).map(([pin, nets]) => `${pin}: '${nets.join("','")}'`).join("\n"));
+		   Object.keys(bp.allPins)
+		   .sort(slotPinSort)
+		   .map((pin) => `\
+${pin}:
+  ${bp.allPins[pin].join("\n  ")}`).join("\n"));
+
+
+  // Sort e.g., "edp.aa1[38]" so the slot number
+  // "38" is primary, module "edp" is next,
+  // pin "aa1" is last.
+  function slotPinSort(a, b) {
+    const [aModule, aPin, aSlot] = a.split(/[\[\].]/);
+    const [bModule, bPin, bSlot] = b.split(/[\[\].]/);
+
+    return aSlot > bSlot ? 1 : aSlot < bSlot ? -1 :
+      aModule > bModule ? 1 : aModule < aModule ? -1 :
+      aPin > bPin ? 1 : aPin < bPin ? -1 : 0;
+  }
 }
 
 
@@ -386,7 +403,7 @@ function compile(simOptions) {
     };
 
     function astDirToDir(d) {
-      return (d == '~<') ? 'in' : (d == '~>') ? 'out' : d;
+      return (d == '~<') ? '<' : (d == '~>') ? '>' : `???${d}`;
     }
 
     board.chips = slot.board.pages.reduce((chips, page) => {
