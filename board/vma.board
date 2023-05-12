@@ -244,7 +244,7 @@ e7:  10109 4/5 or/nor
      10 ~< -vma2 vma 16 l
      9 ~< {aj1} -vma2 vma 17 l
      14 ~> %NC%
-     15 ~> {bv2} vma1 vma section 0,1 l
+     15 ~> {bv2} vma1 vma section 0 l
 
 e68: 10158 4x2 mixer
      5 ~< %NC%
@@ -500,13 +500,13 @@ e20: 10158 4x2 mixer
 
 e43: 10158 4x2 mixer
      5 ~< vma1 ad 24 h
-     6 ~< {br2} ad 24 h
+     6 ~< {br2} ad 24 a h
      3 ~< vma1 ad 25 h
      4 ~< {bm2} ad 25 h
      12 ~< vma1 ad 26 h
-     13 ~< {bs1} ad 26 a h
+     13 ~< {bs1} ad 26 h
      10 ~< vma1 ad 27 h
-     11 ~< {bp2} ad 27 a h
+     11 ~< {bp2} ad 27 h
      1 ~> vma2-e43-1
      2 ~> vma2-e43-2
      15 ~> vma2-e43-15
@@ -514,13 +514,13 @@ e43: 10158 4x2 mixer
 
 e80: 10158 4x2 mixer
      5 ~< vma1 ad 28 h
-     6 ~< {et2} ad 28 h
+     6 ~< {et2} ad 28 a h
      3 ~< vma1 ad 29 h
-     4 ~< {es2} ad 29 h
+     4 ~< {es2} ad 29 a h
      12 ~< vma1 ad 30 h
      13 ~< {ep2} ad 30 a h
      10 ~< vma1 ad 31 h
-     11 ~< {er2} ad 31 a h
+     11 ~< {er2} ad 31 h
      1 ~> vma2-e80-1
      2 ~> vma2-e80-2
      15 ~> vma2-e80-15
@@ -709,10 +709,10 @@ e82: 10141 shift register
 
 e54: 10141 shift register
      13 ~< %NC%
-     12 ~< {et2} ad 32 h
-     11 ~< {es2} ad 33 h
-     9 ~< {ep2} ad 34 a h
-     6 ~< {er2} ad 35 a h
+     12 ~< {dk1} ad 32 h
+     11 ~< {dl1} ad 33 h
+     9 ~< {dk2} ad 34 a h
+     6 ~< {dm1} ad 35 a h
      5 ~< %NC%
      7 ~< vma5 datao apr l
      10 ~< vma5 datao apr l
@@ -754,10 +754,10 @@ e14: 10141 shift register
 
 e36: 10141 shift register
      13 ~< %NC%
-     12 ~< {ck2} vma2 vma 20 a h
+     12 ~< {ck2} vma 20 a h
      11 ~< {bj1} vma2 vma 21 a h
-     9 ~< {cl1} vma 22 a h
-     6 ~< {cp2} vma 23 a h
+     9 ~< {cl1} vma2 vma 22 a h
+     6 ~< {cp2} vma2 vma 23 a h
      5 ~< %NC%
      7 ~< vma5 load pc l
      10 ~< vma5 load pc l
@@ -1077,8 +1077,8 @@ e32: 10141 shift register
 e24: 10141 shift register
      13 ~< %NC%
      12 ~< {cm1} ad 16 a h
-     11 ~< {cj1} ad 17 a h
-     9 ~< {cj1} ad 17 a h
+     11 ~< {au2} ad 17 a h
+     9 ~< {au2} ad 17 a h
      6 ~< {cm1} ad 16 a h
      5 ~< %NC%
      7 ~< {ck1} con load prev context l
@@ -1141,10 +1141,10 @@ e28: 10164 8 mixer
      5 ~< vma3 adr brk 18 h
      4 ~< vma3 adr brk 17 h
      3 ~< vma3 adr brk 16 h
-     11 ~< {af1} vma4 19 h
-     12 ~< {ae2} vma4 18 h
-     13 ~< {aa1} vma4 17 h
-     14 ~< {bu2} vma4 16 h
+     11 ~< {af1} vma 19 a h
+     12 ~< {ae2} vma 18 a h
+     13 ~< {aa1} vma2 vma 17 a h
+     14 ~< {bu2} vma2 vma 16 a h
      10 ~< vma5 diag 04 h
      9 ~< vma5 diag 05 h
      7 ~< vma5 diag 06 h

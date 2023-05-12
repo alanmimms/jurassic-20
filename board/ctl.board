@@ -204,7 +204,7 @@ e20: 10101 quad or/nor
      7 ~< ctl1 disp/return h
      3 ~> -ctl1 disp ret h
      6 ~> %NC%
-     10 ~< {bn1} [b,%NC%,diag read func 10x] l
+     10 ~< {bn1} [b,%NC%,diag read func 10x l]
      14 ~> %NC%
      11 ~> ctl3 diag read l
 
@@ -267,7 +267,7 @@ e7:  10104 quad and
      7 ~< ctl2 cond/reg ctl h
      3 ~> {dc1} ctl1 cond/ar<-exp h
      12 ~< {cd1} ebus ds02 e h
-     13 ~< {cc1} ebus ds02 e h
+     13 ~< {cc1} ebus ds03 e h
      9 ~> ctl3-e7-9
      15 ~> %NC%
 
@@ -280,7 +280,7 @@ e19: 10104 quad and
      3 ~> ctl1 reg ctl # 08 h
      4 ~< ctl1 reg ctl # 02 l
      5 ~< ctl2-e43-14
-     2 ~> {bk2} ctl arr load b l
+     2 ~> {dk2} ctl arr load b l
      12 ~< -ctl3 ds 00 h
      13 ~< {cd2} ebus ds01 e h
      9 ~> ctl3-e19-9
@@ -320,7 +320,7 @@ e27: 10104 quad and
      13 ~< ctl2 cond/reg ctl h
      9 ~> ctl1 reg ctl # 02 l
      15 ~> %NC%
-     6 ~< {dl1} cram #07 c h
+     6 ~< {dl1} cram # 07 c h
      7 ~< ctl2 cond/reg ctl h
      3 ~> ctl1 reg ctl # 07 h
      10 ~< ctl2-e43-14
@@ -359,7 +359,7 @@ e44: 10105 or buffer
      11 ~< ctl2-e43-2
      6 ~> {ee2} ctl ar 09-17 load l
      7 ~> %NC%
-     4 ~< {fj2} cram arm sel 1 h
+     4 ~< {fh2} cram arm sel 1 h
      5 ~< ctl3 diag ar load h
      3 ~> %NC%
      2 ~> ctl2-e44-2

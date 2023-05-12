@@ -94,7 +94,7 @@ e6: 10164 8 mix
      6 ~< con3 wr even par data h
      5 ~< {ar1} con cache load en h
      4 ~< {cp2} -con cond/sel vma h
-     3 ~< {ct2} con cond/vma<-#
+     3 ~< {ct2} con cond/vma<-# h
      11 ~< {cn1} con cond/load vma held h
      12 ~< {et2} -con load spec instr h
      13 ~< {an1} -con vma sel 2 h
@@ -573,7 +573,7 @@ e43: 10174 2x4 mix
 e47: 10161 decoder active low
      14 ~< {dt2} cram # 03 e h
      9 ~< {dn1} cram # 04 e h
-     7 ~< {dm1} cram # 05 e h
+     7 ~< {em1} cram # 05 e h
      15 ~< {dl1} -cram # 02 e l
      2 ~< {ee1} con cond/diag func l
      6 ~> %NC%
@@ -674,7 +674,7 @@ e44: 10117 dual 2-3 or-and
      4 ~< {dt2} cram # 03 e h
      5 ~< {bc1} cram # 07 e h
      6 ~< {bc1} cram # 07 e h
-     7 ~< {ds1} con sr 02 h
+     7 ~< {cs1} con sr 02 h
      9 ~< %NC%
      3 ~> %NC%
      2 ~> con-e44-2
@@ -713,7 +713,7 @@ e55: 10101 quad or/nor
      6 ~> {ep2} con pi cycle b h
 
 e42: 10101 quad or/nor
-     7 ~< {ec1} cram # 02 e h
+     7 ~< {el1} cram # 02 e h
      12 ~< %NC%
      3 ~> con3 # 02 l
      6 ~> %NC%
@@ -772,7 +772,7 @@ e46: 10117 dual 2-3-2 or-and
      4 ~< {dn1} cram # 04 e h
      5 ~< {dt2} cram # 03 e h
      6 ~< {dt2} cram # 03 e h
-     7 ~< {ef2} con ucode state 03 h
+     7 ~< {ee2} con ucode state 03 h
      9 ~< %NC%
      2 ~> con-e46-2
      3 ~> %NC%
@@ -844,7 +844,7 @@ e66: 10117 dual 2-3 or-and
 e64: 10176 hex dff
      9 ~< con2 clk c h
      5 ~< {fr1} csh par bit a h
-     6 ~< {fp2} csh pa bit b h
+     6 ~< {fp2} csh par bit b h
      7 ~< {fp1} apr fm 36 h
      10 ~< {fm2} ebus parity e h
      11 ~< {fl1} con fm xfer h
