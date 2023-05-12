@@ -407,7 +407,7 @@ function compile(simOptions) {
     };
 
     function astDirToDir(d) {
-      return (d == '~<') ? '<' : (d == '~>') ? '>' : `???${d}`;
+      return (d == '~<') ? 'I' : (d == '~>') ? 'D' : `???${d}`;
     }
 
     board.chips = slot.board.pages.reduce((chips, page) => {
