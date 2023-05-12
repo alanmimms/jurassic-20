@@ -108,34 +108,28 @@ function gatherNetByName(bp) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Find all backplane pins in any given slot with more than one net name attached.
+// Find all backplane pins and their net names and dump them.
 function defineBackplanePins(bp) {
 
-  bp.slots
-    .filter(slot => slot.board && slot.board.pages)
-    .forEach(slot => {
-      const board = slot.board;
+  bp.allPins = bp.slots.reduce((all, slot) => {
 
-      board.pages.forEach(page => {
+    Object.values(slot.chips).forEach(chip => {
 
-	page.chips.forEach(chip => {
+      chip.pins.forEach(pin => {
 
-	  chip.pins
-	    .filter(pin => pin.bpPin)
-	    .forEach(pin => {
-	      const bpPin = pin.bpPin;
-	      const slotPin = slot.bpPins[bpPin];
+	if (pin.bpPin) {
+	  all[pin.bpPin] = (all[pin.bpPin] || []).concat(`${pin.dir}:${pin.net}`);
+	}
+      });
 
-	      if (slotPin && slotPin.netName && slotPin.name != pin.netName) {
-		console.error(`\
-Pin '${bpPin}' connected to "${pin.netName}" and "${slotPin.name}"`);
-	      }
-
-	      slot.bpPins[bpPin] = pin.netName;
-	    });
-	});
     });
-  });
+
+    return all;
+  }, {});
+
+  
+  fs.writeFileSync('bp.nets',
+		   Object.entries(bp.allPins).map(([pin, nets]) => `${pin}: '${nets.join("','")}'`).join("\n"));
 }
 
 
@@ -440,13 +434,13 @@ ${util.inspect(chips[astChip.name].location)}`);
 
   if (false) {
     gatherNetByName(backplane);
-    defineBackplanePins(backplane);
     if (needCheck) checkNetConnectivity(backplane.netByName);
     if (options.dumpSignals) dumpSignals(bp);
   }
 
   fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
 
+  if (options.dumpBackplane) defineBackplanePins(bp);
   return bp;
 }
 
