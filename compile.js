@@ -1,5 +1,8 @@
 'use strict';
 
+// TODO:
+// * '-con2 long en h' is the same signal as 'con2 long en l'. They should be connected in same net.
+
 const fs = require('fs');
 const util = require('util');
 const PEG = require('pegjs');
@@ -118,7 +121,8 @@ function defineBackplanePins(bp) {
       chip.pins.forEach(pin => {
 
 	if (pin.bpPin) {
-	  all[pin.bpPin] = (all[pin.bpPin] || []).concat(`${pin.dir} ${pin.net}`);
+	  all[pin.bpPin] = (all[pin.bpPin] || [])
+	    .concat(`${pin.dir} ${pin.net.padEnd(32)}${pin.fullName}`);
 	}
       });
 
@@ -435,6 +439,7 @@ ${util.inspect(chips[astChip.name].location)}`);
 	    };
 
 	    if (pin.bpPin) {
+	      // Define backplane pin as <board>.<pin>[<slot#>]. Leave off "{}" from pin.
 	      result.bpPin = `${slot.board.id}.${pin.bpPin.replace(/[{}]/g, '')}[${slotNumber}]`;
 	    }
 
