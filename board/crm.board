@@ -20,7 +20,7 @@ e34: 10101 quad or/nor
      7 ~< {cm2} cra1 adr 02 [n/4+1,a l,b h,c l,d h,e l]
      3 ~> cr01 adr 02 a l
      6 ~> cr01 adr 02 a h
-     13 ~< {dk2} cra1 adr 10 [n/4+1,a l,b h,c l,d h,e l]
+     13 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
      15 ~> cr01 adr 10 c l
      9 ~> cr01 adr 10 c h
 
@@ -35,7 +35,7 @@ e35: 10101 quad or/nor
      7 ~< {cm2} cra1 adr 02 [n/4+1,a l,b h,c l,d h,e l]
      3 ~> cr01 adr 02 b l
      6 ~> cr01 adr 02 b h
-     13 ~< {dk2} cra1 adr 10 [n/4+1,a l,b h,c l,d h,e l]
+     13 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
      15 ~> cr01 adr 10 d l
      9 ~> cr01 adr 10 d h
 
@@ -46,7 +46,7 @@ e27: 10101 quad or/nor
      13 ~< {de2} cra1 adr 05 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 05 a l
      9 ~> cr01 adr 05 a h
-     7 ~< {cv2} cra1 adr 08 [n/4+1,a l,b h,c l,d h,e l]
+     7 ~< {cv2} cra1 adr 08 [n/4+1,a,b,c,d,e] h
      3 ~> cr01 adr 08 a l
      6 ~> cr01 adr 08 a h
      4 ~< {dd2} cra1 adr 09 [n/4+1,a,b,c,d,e] h
@@ -55,13 +55,13 @@ e27: 10101 quad or/nor
      12 ~< %NC%
 
 e28: 10101 quad or/nor
-     10 ~< {cu2} cra1 adr 03 [n/4+1,a l,b h,c l,d h,e l]
+     10 ~< {cp2} cra1 adr 03 [n/4+1,a l,b h,c l,d h,e l]
      14 ~> cr01 adr 03 b l
      11 ~> cr01 adr 03 b h
      13 ~< {de2} cra1 adr 05 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 05 b l
      9 ~> cr01 adr 05 b h
-     7 ~< {cv2} cra1 adr 08 [n/4+1,a l,b h,c l,d h,e l]
+     7 ~< {cv2} cra1 adr 08 [n/4+1,a,b,c,d,e] h
      3 ~> cr01 adr 08 b l
      6 ~> cr01 adr 08 b h
      4 ~< {dd2} cra1 adr 09 [n/4+1,a,b,c,d,e] h
@@ -76,7 +76,7 @@ e30: 10101 quad or/nor
      13 ~< {df2} cra1 adr 06 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 06 a l
      9 ~> cr01 adr 06 a h
-     10 ~< {dj2} cra1 adr 07 [n/4+1,a l,b h,c l,d h,e l]
+     10 ~< {dj2} cra1 adr 07 [n/4+1,a,b,c,d,e] h
      14 ~> cr01 adr 07 a l
      11 ~> cr01 adr 07 a h
      4 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
@@ -85,13 +85,13 @@ e30: 10101 quad or/nor
      12 ~< %NC%
 
 e31: 10101 quad or/nor
-     7 ~< {de2} cra1 adr 04 [n/4+1,a l,b h,c l,d h,e l]
+     7 ~< {cu2} cra1 adr 04 [n/4+1,a l,b h,c l,d h,e l]
      3 ~> cr01 adr 04 b l
      6 ~> cr01 adr 04 b h
      13 ~< {df2} cra1 adr 06 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 06 b l
      9 ~> cr01 adr 06 b h
-     10 ~< {dj2} cra1 adr 07 [n/4+1,a l,b h,c l,d h,e l]
+     10 ~< {dj2} cra1 adr 07 [n/4+1,a,b,c,d,e] h
      14 ~> cr01 adr 07 b l
      11 ~> cr01 adr 07 b h
      4 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
@@ -139,8 +139,8 @@ e23:  10174 2x4 mix
       12 ~< {av2} cram [n+43] h
       11 ~< {bf1} cram [n+23] h
       13 ~< {bp2} cram [n+03] h
-      9 ~< {af1} diag 05 a l
-      7 ~< {aj2} diag 06 a l
+      9 ~< {af1} diag 05 b l
+      7 ~< {aj2} diag 06 b l
       14 ~< {ce2} diag read func 14x l
       2 ~> {dp2} ebus d[m+04] e h
       15 ~> {du2} ebus d[m+05] e h
@@ -207,7 +207,7 @@ e29: 10210 dual 3 or buffer
      14 ~> %NC%
 
 dl1: delay-line (PCB wired)
-     1 ~< {cr2} clk con [n] h
+     1 ~< {cr2} clk crm [n] h
      2 ~> clk crm delayed h
 
 e3: 10101 quad or/nor
