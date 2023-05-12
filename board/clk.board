@@ -500,7 +500,7 @@ e65: 10105 2-3-2 or/nor
      5 ~< clk5 cram par check l
      3 ~> clk3 error hold a h
      2 ~> clk3-e65-2
-     12 ~< {ej2} -apr3 fm odd parity l
+     12 ~< {eh2} -apr3 fm odd parity l
      13 ~< clk5 fm par check l
      14 ~> clk3 error hold a h
      15 ~> clk3-e65-15
