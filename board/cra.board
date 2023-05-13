@@ -22,8 +22,8 @@ e69: 10101 quad or/nor
      2 ~> {fd1} cra1 adr 01 a l
      5 ~> {fd2} cra1 adr 01 b h
      7 ~< cra1-e73-9
-     3 ~> {fd1} cra1 adr 01 c l
-     6 ~> {fd2} cra1 adr 01 d h
+     3 ~> {fa1} cra1 adr 01 c l
+     6 ~> {fc1} cra1 adr 01 d h
      10 ~< cra1-e73-9
      14 ~> {et2} cra1 adr 01 e l
      11 ~> cra1 adr 01 f h
@@ -122,10 +122,10 @@ e68: 10101 quad or/nor
      9 ~> cra1 adr 06 h
 
 e44: 10110 or buffer
-     5 ~< {cr2} cram j00 h
+     5 ~< {dr2} cram j00 h
      6 ~< %NC%
      7 ~< cra1-e51-2
-     11 ~< {cr2} cram j00 h
+     11 ~< {dr2} cram j00 h
      10 ~< %NC%
      9 ~< cra1-e51-2
 
@@ -291,10 +291,10 @@ e12: 10105 2-3-2 or/nor
      6 ~> cra2 adr 08 l
      7 ~> cra2 adr 08 h
      4 ~< {bj2} dram a 01 h
-     5 ~< {dm1} dram a 00 h
+     5 ~< {bm1} dram a 00 h
      3 ~> cra3 a .ge. 3 l
      2 ~> %NC%
-     12 ~< {dm1} dram a 00 h
+     12 ~< {bm1} dram a 00 h
      13 ~< {bk2} dram a 02 h
      14 ~> cra3 a .ge. 3 l
      15 ~> %NC%
@@ -333,7 +333,7 @@ e18: 10101 quad or/nor
      12 ~< %NC%
      14 ~> cra2 short indir word h
      11 ~> %NC%
-     13 ~< {br2} long en h
+     13 ~< {br2} -con2 long en h
      15 ~> %NC%
      9 ~> cra2 short indir word h
      4 ~< {bn1} diag read func 14x l
@@ -372,13 +372,13 @@ e7:  10110 or buffer
 
 e6:  10164 8 mixer
      6 ~< cra3 diag adr 09 h
-     5 ~< {bm2} dram j 09 h
+     5 ~< {bj1} dram j 09 h
      4 ~< cra3 aread 09 h
      3 ~< cra4 sbr ret 09 h
-     11 ~< {ah2} clk4 pf disp 09 h
-     12 ~< {ak1} con sr 02 h
-     13 ~< {af2} con nicond 09 h
-     14 ~< {aj1} shm4 sh 02 a h
+     11 ~< {ap1} clk4 pf disp 09 h
+     12 ~< {an1} con sr 02 h
+     13 ~< {am2} con nicond 09 h
+     14 ~< {ap2} shm4 sh 02 a h
      10 ~< cra3 disp 02 a h
      9 ~< cra3 disp 03 a h
      7 ~< cra3 disp 04 a h
@@ -448,7 +448,7 @@ e31: 10164 8 mixer
      6 ~< {cl2} mq 35 h
      5 ~< {cf1} ad cry -02 h
      4 ~< {ce2} ad 00 h
-     3 ~< {bh2} dram b 02 h
+     3 ~< {cl1} dram b 02 h
      11 ~< {cf2} scd1 scad sign h
      12 ~< {ck2} ir norm 10 h
      13 ~< {cj1} shm1 indexed h
@@ -637,7 +637,7 @@ e37: 10176 hex dff
      10 ~< cra5 ebus 03 h
      11 ~< cra5 ebus 04 h
      12 ~< cra5 ebus 05 h
-     9 ~< {ee1} -cr02 dia func 051 08 h
+     9 ~< {ck1} -cr02 dia func 051 08 h
      2 ~> cra3 diag adr 05 h
      3 ~> cra3 diag adr 06 h
      4 ~> cra3 diag adr 07 h
@@ -664,11 +664,11 @@ e17: 10158 4x2 mix
      6 ~< {ae1} dram j 07 h
      5 ~< %NC%
      4 ~< {bm2} dram j 08 h
-     3 ~< {bm1} dram j 00 h
+     3 ~< {bm1} dram a 00 h
      13 ~< {bj1} dram j 09 h
-     12 ~< {bj2} dram j 01 h
+     12 ~< {bj2} dram a 01 h
      11 ~< {bk1} dram j 10 h
-     10 ~< {bk2} dram j 02 h
+     10 ~< {bk2} dram a 02 h
      9 ~< cra3 a .ge. 3 l
      1 ~> cra3 aread 07 h
      2 ~> cra3 aread 08 h
@@ -1189,7 +1189,7 @@ e70: 10164 8 mixer
 
 e79: 10164 8 mixer
      14 ~< cra4 stack adr 02 h
-     13 ~< {ef1} cra3 disp 03 h
+     13 ~< {em2} cra3 disp 03 h
      12 ~< cra4 sbr ret 09 h
      11 ~< cra4 sbr ret 03 h
      3 ~< cra2 adr 09 f h
@@ -1200,7 +1200,7 @@ e79: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {ed1} ebus d04 e h
+     15 ~> {ec1} ebus d04 e h
 
 e75: 10164 8 mixer
      14 ~< cra4 stack adr 01 h
