@@ -563,7 +563,7 @@ e31: 10164 8 mix
      13 ~< {bs1} scd4 cry1 h
      12 ~< {bs2} scd4 fxu h
      11 ~< {bt2} -scd1 scad=0 h
-     3 ~< {bu2} -con pi cycle a
+     3 ~< {bu2} -con pi cycle a h
      4 ~< {bv2} scd kernel mode h
      5 ~< {cj1} scd3 trap mix 33 h
      6 ~< {cd2} scd3 trap mix 35 h
@@ -604,14 +604,14 @@ e12: 10164 8 mix
      15 ~> {ca1} ebus d06 e h
 
 e63: 10164 8 mix
-     14 ~< {er1} scd2 sc 05 h
-     13 ~< scd2 sc 00 h
-     12 ~< scd2 fe 05 h
-     11 ~< {ej1} scd2 fe 00 h
-     3 ~< {ek1} scd2 sc sign h
-     4 ~< {el2} scd2 fe sign h
-     5 ~< scd2 sc .ge. 36 h
-     6 ~< -scd4 trap clear h
+     14 ~< -scd4 trap clear h
+     13 ~< {el2} scd2 sc .ge. 36 h
+     12 ~< {ek1} scd2 fe sign h
+     11 ~< {ej1} scd2 sc sign h
+     3 ~< scd2 fe 00 h
+     4 ~< scd2 fe 05 h
+     5 ~< scd2 sc 00 h
+     6 ~< {er1} scd2 sc 05 h
      10 ~< scd3 diag 04 h
      9 ~< scd3 diag 05 h
      7 ~< scd3 diag 06 h
@@ -1123,8 +1123,8 @@ Page: SCD5, PDF142
 e2:  10101 quad or/nor
      4 ~< scd5 user l
      12 ~< %NC%
-     2 ~> {cr1} scd4 user a h
-     5 ~> {at2} scd4 user a l
+     2 ~> {cr1} scd5 user a h
+     5 ~> {at2} scd user a l
      7 ~< scd5 user iot l
      3 ~> {be2} scd5 user iot a h
      6 ~> {af1} scd user iot a l
