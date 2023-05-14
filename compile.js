@@ -113,39 +113,64 @@ function gatherNetByName(bp) {
 ////////////////////////////////////////////////////////////////////////////////
 // Find all backplane pins and their net names and dump them.
 function defineBackplanePins(bp) {
+  bp.allNets = {};
+  bp.allPins = {};
 
-  bp.allPins = bp.slots.reduce((all, slot) => {
+  bp.slots.forEach(slot => {
 
     Object.values(slot.chips).forEach(chip => {
 
       chip.pins.forEach(pin => {
+	if (!bp.allNets[pin.net]) bp.allNets[pin.net] = {};
 
-	if (pin.bpPin) {
-	  all[pin.bpPin] = (all[pin.bpPin] || [])
-	    .concat(`${pin.dir} ${pin.net.padEnd(32)}${pin.fullName}`);
-	}
+	const net = {
+	  pin: pin.pin,
+	  dir: pin.dir,
+	  fullName: pin.fullName,
+	  slotNumber: slot.slotNumber,
+	  net: pin.net,
+	  module: slot.id,
+	};
+
+	bp.allNets[pin.net][pin.fullName] = net;
+	if (pin.bpPin) bp.allPins[pin.bpPin] = net;
       });
-
     });
-
-    return all;
-  }, {});
+  });
 
   
-  fs.writeFileSync('bp.nets',
+/*
+  fs.writeFileSync('bp.pins',
 		   Object.keys(bp.allPins)
 		   .sort(slotPinSort)
-		   .map((pin) => `\
-${pin}:
-  ${bp.allPins[pin].join("\n  ")}`).join("\n"));
+		   .map(bpPin => `\
+${bpPin}:
+  ${Object.values(bp.allPins[bpPin]).map(pin => `${pin.dir} ${pin.net.padEnd(32)}${pin.fullName}`)
+		   .join("\n  ")}`)
+		   .join("\n"));
+*/
+
+  fs.writeFileSync('bp.nets',
+		   Object.keys(bp.allNets)
+		   .sort()
+		   .map(netName => `\
+${netName}:
+  ${Object.keys(bp.allNets[netName]).map(pinName => {
+    const pin = bp.allPins[netName][pinName];
+    return `${pin.dir} ${pin.fullName}`;
+  })
+		   .join("\n  ")}`)
+		   .join("\n"));
 
 
   // Sort e.g., "edp.aa1[38]" so the slot number
   // "38" is primary, module "edp" is next,
   // pin "aa1" is last.
   function slotPinSort(a, b) {
-    const [aModule, aPin, aSlot] = a.split(/[\[\].]/);
-    const [bModule, bPin, bSlot] = b.split(/[\[\].]/);
+    a = bp.allPins[a];
+    b = bp.allPins[b];
+    const [aModule, aPin, aSlot] = [a.module, a.pin, a.slotNumber];
+    const [bModule, bPin, bSlot] = [b.module, b.pin, b.slotNumber];
 
     return aSlot > bSlot ? 1 : aSlot < bSlot ? -1 :
       aModule > bModule ? 1 : aModule < aModule ? -1 :
@@ -430,12 +455,14 @@ ${util.inspect(chips[astChip.name].location)}`);
 	  pins: astChip.pins,
 
 	  pins: astChip.pins.map(pin => {
+
 	    let result = {
-	    pin: pin.pin,
-	    dir: astDirToDir(pin.dir),
-	    fullName: pin.fullName,
-	    net: pin.netName,
-	    location: pin.location,
+	      pin: pin.pin,
+	      dir: astDirToDir(pin.dir),
+	      fullName: pin.fullName,
+	      net: pin.netName,
+	      canonicalNet: canonicalize(pin.netName),
+	      location: pin.location,
 	    };
 
 	    if (pin.bpPin) {
@@ -466,5 +493,22 @@ ${util.inspect(chips[astChip.name].location)}`);
   return bp;
 }
 
+
+// Convert a net name of the form '- xyz l' to 'xyz h' or '- xyz h' to 'xyz l'.
+function canonicalize(net) {
+
+  if (net.slice(0, 2) == '- ') {
+    const lastChars = net.slice(-2);
+
+    if (lastChar == ' h') {		// Switch to 'l'
+      return `${net.slice(2, -2)} l`;
+    } else if (lastChar == ' l') {	// Switch to 'h'
+      return `${net.slice(2, -2)} h`;
+    }
+  }
+
+  // If not negated net name just return as-is.
+  return net;
+}
 
 module.exports.compile = compile;
