@@ -1,3 +1,176 @@
 Page: APR1, PDF382
 // M8545 TBD
-// STUB
+
+e25: 10176 hex dff
+     9 ~< apr2 clk d h
+     6 ~< apr1-internal-e42-15
+     3 ~> apr1 sbus err int en l
+     11 ~< apr1-internal-e20-2
+     14 ~> apr1 i/o pf err int en l
+     12 ~< apr1-internal-e20-15
+     15 ~> apr1 mb par err int en l
+     5 ~< apr1-internal-e30-2
+     2 ~> apr1 i/o pf err l
+     7 ~< apr1-internal-e28-11
+     4 ~< apr1 sweep busy l
+
+e42: 10117 dual 2-3 or-and
+     13 ~< {ek2} con sel en l
+     12 ~< apr1 ebus 06 l
+     11 ~< apr1 sbus err int en l
+     10 ~< apr1-internal-e43-2
+     9 ~< -apr5 reset a l
+     14 ~> apr1 sbus err en in h
+     15 ~> apr1-internal-e42-15
+
+e43: 10104 quad and/nand
+     4 ~< {ej2} con sel dis h
+     5 ~< apr1 ebus 06 h
+     2 ~> apr1-internal-e43-2
+     12 ~< {ej2} con sel dis h
+     13 ~< apr1 ebus 08 h
+     9 ~> %NC%
+     15 ~< apr1-internal-e43-15
+     10 ~< {ej2} con sel dis h
+     11 ~< apr1 ebus 09 h
+     14 ~> apr1-internal-e43-14
+
+e57: 10176 hex dff
+     9 ~< apr2 clk a h
+     6 ~< apr1-internal-e56-2
+     3 ~> apr1 nxm err int en l
+     11 ~< apr1-internal-e48-2
+     14 ~> {bs2} apr sbus err l
+     5 ~< apr1-internal-e58-2
+     2 ~> {bs1} apr nxm err l
+
+e56: 10117 dual 2-3 or-and
+     4 ~< {ek2} con sel en l
+     5 ~< apr1 ebus 07 l
+     6 ~< apr1 nxm err int en l
+     7 ~< apr1-internal-e62-15
+     9 ~< -apr5 reset a l
+     3 ~> apr1 nxm err en in h
+     2 ~> apr1-internal-e56-2
+
+e62: 10104 quad and/nand
+     12 ~< {ej2} con sel dis h
+     13 ~< apr1 ebus 07 h
+     9 ~> %NC%
+     15 ~> apr1-internal-e62-15
+
+e20: 10117 dual 2-3 or-and
+     4 ~< {ek2} con sel en l
+     5 ~< apr1 ebus 08 l
+     6 ~< apr1 i/o pf err int en l
+     9 ~< -apr5 reset b l
+     3 ~> apr1 i/o pf err en in h
+     2 ~> apr1-internal-e20-2
+     12 ~< {ek2} con sel en l
+     13 ~< apr1 ebus 09 l
+     10 ~< apr1 mb par err int en l
+     11 ~< apr1-internal-e43-14
+     9 ~< -apr5 reset b l
+     14 ~> apr1 mb par err en in h
+     15 ~> apr1-internal-e20-15
+
+e48: 10121 4-wide or-and
+     4 ~< {du2} con sel set l
+     5 ~< apr1 ebus 06 l
+     6 ~< %NC%
+     7 ~< {dt2} -con sel clr l
+     9 ~< {bs2} apr sbus err l
+     10 ~< -apr5 reset b l
+     11 ~< {bs2} apr sbus err l
+     12 ~< -apr1 ebus 06 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< {el1} mbox sbus err l
+     3 ~> apr1 sbus err in h
+     2 ~> apr1-internal-e48-2
+
+e58: 10121 4-wide or-and
+     4 ~< {du2} con sel set l
+     5 ~< apr1 ebus 07 l
+     6 ~< %NC%
+     7 ~< {dt2} -con sel clr l
+     9 ~< {bs1} apr nxm err l
+     10 ~< -apr5 reset b l
+     11 ~< {bs1} apr nxm err l
+     12 ~< -apr1 ebus 07 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< {el2} mbox nxm err l
+     3 ~> apr1 nxm err in h
+     2 ~> apr1-internal-e58-2
+
+e30: 10121 4-wide or-and
+     4 ~< {du2} con sel set l
+     5 ~< apr1 ebus 08 l
+     6 ~< %NC%
+     7 ~< {dt2} -con sel clr l
+     9 ~< apr1 i/o pf err l
+     10 ~< -apr5 reset b l
+     11 ~< apr1 i/o pf err l
+     12 ~< -apr1 ebus 08 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< apr5 set i/o pf err l
+     3 ~> apr1 i/o pf err in h
+     2 ~> apr1-internal-e30-2
+
+e47: 10176 hex dff
+     9 ~< apr2 clk b h
+     11 ~< apr1-internal-e38-2
+     14 ~> {fa1} apr mb par err l
+
+e38: 10121 4-wide or-and
+     4 ~< {du2} con sel set l
+     5 ~< apr1 ebus 09 l
+     6 ~< %NC%
+     7 ~< {dt2} -con sel clr l
+     9 ~< {fa1} apr mb par err l
+     10 ~< -apr5 reset b l
+     11 ~< {fa1} apr mb par err l
+     12 ~< -apr1 ebus 09 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< {fc1} mbox mb par err l
+     3 ~> apr1 mb par err in h
+     2 ~> apr1-internal-e38-2
+
+e28: 10101 quad or/nor
+     10 ~< {em2} mbx1 cca req l
+     12 ~< %NC%
+     14 ~> apr1 sweep busy en h
+     11 ~> apr1-internal-e28-11
+     4 ~< {cm2} ebus d06 e h
+     2 ~> apr1 ebus 06 l
+     5 ~> apr1 ebus 06 h
+     13 ~< {cp2} ebus d08 e h
+     15 ~> apr1 ebus 08 l
+     9 ~> apr1 ebus 08 h
+     7 ~< {ds1} ebus d11 e h
+     3 ~> apr1 ebus 11 l
+     6 ~> apr1 ebus 11 h
+
+e35: 10101 quad or/nor
+     4 ~< {cp1} ebus d07 e h
+     12 ~< %NC%
+     2 ~> apr1 ebus 07 l
+     5 ~> apr1 ebus 07 h
+     13 ~< {cr1} ebus d10 e h
+     15 ~> apr1 ebus 10 l
+     9 ~> apr1 ebus 10 h
+     10 ~< {cs1} ebus d12 e h
+     14 ~> apr1 ebus 12 l
+     11 ~> apr1 ebus 12 h
+     7 ~< {cs2} ebus d13 e h
+     3 ~> apr1 ebus 13 l
+     6 ~> apr1 ebus 13 h
+
+e15: 10101 quad or/nor
+     4 ~< {cl2} ebus d09 e h
+     12 ~< %NC%
+     2 ~> apr1 ebus 09 l
+     5 ~> apr1 ebus 09 h
