@@ -281,3 +281,937 @@ e85: 10109 4/5 or/nor
      15 ~> %NC%
 
 Page: SHM2, PDF335
+
+e52: 10174 2x4 mixer
+     3 ~< {ej2} ar 00 b h
+     5 ~< {ef2} ar 16 b h
+     4 ~< {el1} ar 32 b h
+     6 ~< %NC%
+     13 ~< {ef2} ar 16 b h
+     11 ~< {el1} ar 32 b h
+     12 ~< {ek1} arx 12 a h
+     10 ~< {el1} ar 32 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 00a h
+     15 ~> shm2 sh 16a h
+
+e47: 10174 2x4 mixer
+     3 ~< {em1} ar 01 b h
+     5 ~< {dp2} ar 17 b h
+     4 ~< {eu2} ar 33 b h
+     6 ~< %NC%
+     13 ~< {dp2} ar 17 b h
+     11 ~< {eu2} ar 33 b h
+     12 ~< {eh2} arx 13 a h
+     10 ~< {eu2} ar 33 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 01a h
+     15 ~> shm2 sh 17a h
+
+e62: 10174 2x4 mixer
+     3 ~< {es1} ar 02 b h
+     5 ~< {es2} ar 18 b h
+     4 ~< {fm1} ar 34 b h
+     6 ~< %NC%
+     13 ~< {es2} ar 18 b h
+     11 ~< {fm1} ar 34 b h
+     12 ~< {dv2} arx 14 a h
+     10 ~< {fm1} ar 34 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 02a h
+     15 ~> shm2 sh 18a h
+
+e72: 10174 2x4 mixer
+     3 ~< {er2} ar 03 b h
+     5 ~< {fp2} ar 19 b h
+     4 ~< {fd1} ar 35 b h
+     6 ~< %NC%
+     13 ~< {fp2} ar 19 b h
+     11 ~< {fd1} ar 35 b h
+     12 ~< {ff1} arx 15 a h
+     10 ~< {fd1} ar 35 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 03a h
+     15 ~> shm2 sh 19a h
+
+e59: 10174 2x4 mixer
+     3 ~< {ek2} ar 04 b h
+     5 ~< {ee2} ar 20 b h
+     4 ~< {du2} arx 00 a h
+     6 ~< {ee2} ar 20 b h
+     13 ~< {ee2} ar 19 b h
+     11 ~< {du2} arx 00 a h
+     12 ~< {ds2} arx 16 h
+     10 ~< {ej2} ar 00 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 04a h
+     15 ~> shm2 sh 20a h
+
+e63: 10174 2x4 mixer
+     3 ~< {ep1} ar 05 b h
+     5 ~< {er1} ar 21 b h
+     4 ~< {dm2} arx 01 a h
+     6 ~< {er1} ar 21 b h
+     13 ~< {er1} ar 21 b h
+     11 ~< {dm2} arx 01 a h
+     12 ~< {dr2} arx 17 h
+     10 ~< {em1} ar 01 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 05a h
+     15 ~> shm2 sh 21a h
+
+e73: 10174 2x4 mixer
+     3 ~< {ev2} ar 06 b h
+     5 ~< {fm2} ar 22 b h
+     4 ~< {cr1} arx 02 h
+     6 ~< {fm2} ar 22 b h
+     13 ~< {fm2} ar 22 b h
+     11 ~< {cr1} arx 02 h
+     12 ~< {dl2} arx 18 a h
+     10 ~< {es1} ar 02 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 06a h
+     15 ~> shm2 sh 22a h
+
+e78: 10174 2x4 mixer
+     3 ~< {fr2} ar 07 b h
+     5 ~< {fs1} ar 23 b h
+     4 ~< {cm2} arx 03 h
+     6 ~< {fs1} ar 23 b h
+     13 ~< {fs1} ar 23 b h
+     11 ~< {cm2} arx 03 h
+     12 ~< {cp1} arx 19 a h
+     10 ~< {er2} ar 03 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 07a h
+     15 ~> shm2 sh 23a h
+
+e54: 10174 2x4 mixer
+     3 ~< {ep2} ar 080 b h
+     5 ~< {fj2} ar 24 b h
+     4 ~< {dl1} arx 04 h
+     6 ~< {fj2} ar 24 b h
+     13 ~< {fj2} ar 24 b h
+     11 ~< {dl1} arx 04 h
+     12 ~< {cm1} arx 20 h
+     10 ~< {ek2} ar 04 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 08a h
+     15 ~> shm2 sh 24a h
+
+e64: 10174 2x4 mixer
+     3 ~< {em2} ar 09 b h
+     5 ~< {el2} ar 25 b h
+     4 ~< {cl1} arx 05 h
+     6 ~< {el2} ar 25 b h
+     13 ~< {el2} ar 25 b h
+     11 ~< {cl1} arx 05 h
+     12 ~< {ck2} arx 21 h
+     10 ~< {ep1} ar 05 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 09a h
+     15 ~> shm2 sh 25a h
+
+e69: 10174 2x4 mixer
+     3 ~< {ff2} ar 10 b h
+     5 ~< {fr1} ar 26 b h
+     4 ~< {cj2} arx 06 a h
+     6 ~< {fr1} ar 26 b h
+     13 ~< {fr1} ar 26 b h
+     11 ~< {cj2} arx 06 a h
+     12 ~< {cf1} arx 22 h
+     10 ~< {ev2} ar 06 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 10a h
+     15 ~> shm2 sh 26a h
+
+e79: 10174 2x4 mixer
+     3 ~< {fu2} ar 11 b h
+     5 ~< {fs2} ar 27 b h
+     4 ~< {cj1} arx 07 a h
+     6 ~< {fs2} ar 27 b h
+     13 ~< {fs2} ar 27 b h
+     11 ~< {cj1} arx 07 a h
+     12 ~< {ck1} arx 23 h
+     10 ~< {fr2} ar 07 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 11a h
+     15 ~> shm2 sh 27a h
+
+e60: 10174 2x4 mixer
+     3 ~< {ej1} ar 12 b h
+     5 ~< {fk2} ar 28 b h
+     4 ~< {ce1} arx 08 h
+     6 ~< {fk2} ar 28 b h
+     13 ~< {fk2} ar 28 b h
+     11 ~< {ce1} arx 08 h
+     12 ~< {cf2} arx 24 a h
+     10 ~< {ep2} ar 08 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 12a h
+     15 ~> shm2 sh 28a h
+
+e65: 10174 2x4 mixer
+     3 ~< {ee1} ar 13 b h
+     5 ~< {fl2} ar 29 b h
+     4 ~< {ce2} arx 09 h
+     6 ~< {fl2} ar 29 b h
+     13 ~< {fl2} ar 29 b h
+     11 ~< {ce2} arx 09 h
+     12 ~< {cd1} arx 25 a h
+     10 ~< {em2} ar 09 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 13a h
+     15 ~> shm2 sh 29a h
+
+e70: 10174 2x4 mixer
+     3 ~< {fk1} ar 14 b h
+     5 ~< {fp1} ar 30 b h
+     4 ~< {cd2} arx 10 h
+     6 ~< {fp1} ar 30 b h
+     13 ~< {fp1} ar 30 b h
+     11 ~< {cd2} arx 10 h
+     12 ~< {dd2} arx 26 h
+     10 ~< {ff2} ar 10 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 14a h
+     15 ~> shm2 sh 30a h
+
+e80: 10174 2x4 mixer
+     3 ~< {fj1} ar 15 b h
+     5 ~< {fv2} ar 31 b h
+     4 ~< {df2} arx 11 h
+     6 ~< {fv2} ar 31 b h
+     13 ~< {fv2} ar 31 b h
+     11 ~< {df2} arx 11 h
+     12 ~< {de2} arx 27 h
+     10 ~< {fu2} ar 11 b h
+     9 ~< shm1 shift 32 a h
+     7 ~< shm1 shift 16 a h
+     14 ~< %NC%
+     2 ~> shm2 sh 15a h
+     15 ~> shm2 sh 31a h
+
+e61: 10174 2x4 mixer
+     3 ~< {el1} ar32 b h
+     5 ~< {ek1} arx 12 a h
+     4 ~< {fd2} arx 28 h
+     6 ~< {ej1} ar 12 b h
+     13 ~< {eu2} ar 33 b h
+     11 ~< {eh2} arx 13 a h
+     12 ~< {fa1} arx 29 h
+     10 ~< {ee1} ar 13 b h
+     9 ~< shm1 shift 32 c h
+     7 ~< shm1 shift 16 c h
+     14 ~< %NC%
+     2 ~> shm2 sh 32a h
+     15 ~> shm2 sh 33a h
+
+e76: 10174 2x4 mixer
+     3 ~< {fm1} ar 34 b h
+     5 ~< {dv2} arx 14 h
+     4 ~< {fl1} arx 30 a h
+     6 ~< {fk1} ar 14 b h
+     13 ~< {fd1} ar 35 b h
+     11 ~< {ff1} arx 15 h
+     12 ~< {fe1} arx 31 a h
+     10 ~< {fj1} ar 15 b h
+     9 ~< shm1 shift 32 c h
+     7 ~< shm1 shift 16 c h
+     14 ~< %NC%
+     2 ~> shm2 sh 34a h
+     15 ~> shm2 sh 35a h
+
+e58: 10174 2x4 mixer
+     3 ~< {du2} arx 00 a h
+     5 ~< {ds2} arx 16 h
+     4 ~< {ed2} arx 32 h
+     6 ~< {ef2} ar 16 b h
+     13 ~< {dm2} arx 01 a h
+     11 ~< {dr2} arx 17 h
+     12 ~< {dp1} arx 33 h
+     10 ~< {dp2} ar 17 b h
+     9 ~< shm1 shift 32 c h
+     7 ~< shm1 shift 16 c h
+     14 ~< %NC%
+     2 ~> shm2 sh 36a h
+     15 ~> shm2 sh 37a h
+
+e48: 10174 2x4 mixer
+     3 ~< {cr1} arx 02 h
+     5 ~< {dl2} arx 18 a h
+     4 ~< {dj2} arx 34 h
+     6 ~< %NC%
+     13 ~< {cm2} arx 03 h
+     11 ~< {cp1} arx 19 a h
+     12 ~< {dk2} arx 35 h
+     10 ~< %NC%
+     9 ~< shm1 shift 32 c h
+     7 ~< shm1 shift 16 c h
+     14 ~< %NC%
+     2 ~> shm2 sh 38a h
+     15 ~> shm2 sh 39a h
+
+e39: 10158 4x2 mixer
+     5 ~< {dl1} arx 04 h
+     6 ~< {cm1} arx 20 h
+     3 ~< {cl1} arx 05 h
+     4 ~< {ck2} arx 21 h
+     12 ~< {cj2} arx 06 a
+     13 ~< {cf1} arx 22 h
+     10 ~< {cj1} arx 07 a h
+     11 ~< {ck1} arx 23 h
+     9 ~< shm1 shift 16 c h
+     1 ~> shm2 sh 40a h
+     2 ~> shm2 sh 41a h
+     15 ~> shm2 sh 42a h
+     14 ~> shm2 sh 43a h
+
+e50: 10158 4x2 mixer
+     5 ~< {ce1} arx 08 h
+     6 ~< {cf2} arx 24 a h
+     3 ~< {ce2} arx 09 h
+     4 ~< {cd1} arx 25 a h
+     12 ~< {cd2} arx 10 h
+     13 ~< {dd2} arx 26 h
+     10 ~< {df2} arx 11 h
+     11 ~< {de2} arx 27 h
+     9 ~< shm1 shift 16 c h
+     1 ~> shm2 sh 44a h
+     2 ~> shm2 sh 45a h
+     15 ~> shm2 sh 46a h
+     14 ~> shm2 sh 47a h
+
+e66: 10158 4x2 mixer
+     5 ~< {ek1} arx 12 a h
+     6 ~< {fd2} arx 28 h
+     3 ~< {eh2} arx 13 a h
+     4 ~< {fa1} arx 29 h
+     12 ~< {dv2} arx 14 h
+     13 ~< {fl1} arx 30 a h
+     10 ~< %NC%
+     11 ~< %NC%
+     9 ~< shm1 shift 16 c h
+     1 ~> shm2 sh 48a h
+     2 ~> shm2 sh 49a h
+     15 ~> shm2 sh 50a h
+     14 ~> %NC%
+
+Page: SHM3, PDF336
+
+e31: 10174 2x4 mixer
+     3 ~< shm2 sh 00a h
+     5 ~< shm2 sh 04a h
+     4 ~< shm2 sh 08a h
+     6 ~< shm2 sh 12a h
+     13 ~< shm2 sh 04a h
+     11 ~< shm2 sh 08a h
+     12 ~< shm2 sh 12a h
+     10 ~< shm2 sh 16a h
+     9 ~< shm1 shift 08 a h
+     7 ~< shm1 shift 04 a h
+     14 ~< %NC%
+     2 ~> shm3 sh 00b h
+     15 ~> shm3 sh 04b h
+
+e21: 10174 2x4 mixer
+     3 ~< shm2 sh 01a h
+     5 ~< shm2 sh 05a h
+     4 ~< shm2 sh 09a h
+     6 ~< shm2 sh 13a h
+     13 ~< shm2 sh 05a h
+     11 ~< shm2 sh 09a h
+     12 ~< shm2 sh 13a h
+     10 ~< shm2 sh 17a h
+     9 ~< shm1 shift 08 a h
+     7 ~< shm1 shift 04 a h
+     14 ~< %NC%
+     2 ~> shm3 sh 01b h
+     15 ~> shm3 sh 05b h
+
+e42: 10174 2x4 mixer
+     3 ~< shm2 sh 02a h
+     5 ~< shm2 sh 06a h
+     4 ~< shm2 sh 10a h
+     6 ~< shm2 sh 14a h
+     13 ~< shm2 sh 06a h
+     11 ~< shm2 sh 10a h
+     12 ~< shm2 sh 14a h
+     10 ~< shm2 sh 18a h
+     9 ~< shm1 shift 08 a h
+     7 ~< shm1 shift 04 a h
+     14 ~< %NC%
+     2 ~> shm3 sh 02b h
+     15 ~> shm3 sh 06b h
+
+e43: 10174 2x4 mixer
+     3 ~< shm2 sh 03a h
+     5 ~< shm2 sh 07a h
+     4 ~< shm2 sh 11a h
+     6 ~< shm2 sh 15a h
+     13 ~< shm2 sh 07a h
+     11 ~< shm2 sh 11a h
+     12 ~< shm2 sh 15a h
+     10 ~< shm2 sh 19a h
+     9 ~< shm1 shift 08 a h
+     7 ~< shm1 shift 04 a h
+     14 ~< %NC%
+     2 ~> shm3 sh 03b h
+     15 ~> shm3 sh 07b h
+
+e22: 10174 2x4 mixer
+     3 ~< shm2 sh 08a h
+     5 ~< shm2 sh 12a h
+     4 ~< shm2 sh 16a h
+     6 ~< shm2 sh 20a h
+     13 ~< shm2 sh 12a h
+     11 ~< shm2 sh 16a h
+     12 ~< shm2 sh 20a h
+     10 ~< shm2 sh 24a h
+     9 ~< shm1 shift 08 a h
+     7 ~< shm1 shift 04 a h
+     14 ~< %NC%
+     2 ~> shm3 sh 08b h
+     15 ~> shm3 sh 12b h
+
+e26: 10174 2x4 mixer
+     3 ~< shm2 sh 09a h
+     5 ~< shm2 sh 13a h
+     4 ~< shm2 sh 17a h
+     6 ~< shm2 sh 21a h
+     13 ~< shm2 sh 13a h
+     11 ~< shm2 sh 17a h
+     12 ~< shm2 sh 21a h
+     10 ~< shm2 sh 25a h
+     9 ~< shm1 shift 08 a h
+     7 ~< shm1 shift 04 a h
+     14 ~< %NC%
+     2 ~> shm3 sh 09b h
+     15 ~> shm3 sh 13b h
+
+e32: 10174 2x4 mixer
+     3 ~< shm2 sh 10a h
+     5 ~< shm2 sh 14a h
+     4 ~< shm2 sh 18a h
+     6 ~< shm2 sh 22a h
+     13 ~< shm2 sh 14a h
+     11 ~< shm2 sh 18a h
+     12 ~< shm2 sh 22a h
+     10 ~< shm2 sh 26a h
+     9 ~< shm1 shift 08 a h
+     7 ~< shm1 shift 04 a h
+     14 ~< %NC%
+     2 ~> shm3 sh 10b h
+     15 ~> shm3 sh 14b h
+
+e38: 10174 2x4 mixer
+     3 ~< shm2 sh 11a h
+     5 ~< shm2 sh 15a h
+     4 ~< shm2 sh 19a h
+     6 ~< shm2 sh 23a h
+     13 ~< shm2 sh 15a h
+     11 ~< shm2 sh 19a h
+     12 ~< shm2 sh 23a h
+     10 ~< shm2 sh 27a h
+     9 ~< shm1 shift 08 b h
+     7 ~< shm1 shift 04 b h
+     14 ~< %NC%
+     2 ~> shm3 sh 11b h
+     15 ~> shm3 sh 15b h
+
+e23: 10174 2x4 mixer
+     3 ~< shm2 sh 16a h
+     5 ~< shm2 sh 20a h
+     4 ~< shm2 sh 24a h
+     6 ~< shm2 sh 28a h
+     13 ~< shm2 sh 20a h
+     11 ~< shm2 sh 24a h
+     12 ~< shm2 sh 28a h
+     10 ~< shm2 sh 32a h
+     9 ~< shm1 shift 08 b h
+     7 ~< shm1 shift 04 b h
+     14 ~< %NC%
+     2 ~> shm3 sh 16b h
+     15 ~> shm3 sh 20b h
+
+e27: 10174 2x4 mixer
+     3 ~< shm2 sh 17a h
+     5 ~< shm2 sh 21a h
+     4 ~< shm2 sh 25a h
+     6 ~< shm2 sh 29a h
+     13 ~< shm2 sh 21a h
+     11 ~< shm2 sh 25a h
+     12 ~< shm2 sh 29a h
+     10 ~< shm2 sh 33a h
+     9 ~< shm1 shift 08 b h
+     7 ~< shm1 shift 04 b h
+     14 ~< %NC%
+     2 ~> shm3 sh 17b h
+     15 ~> shm3 sh 21b h
+
+e28: 10174 2x4 mixer
+     3 ~< shm2 sh 18a h
+     5 ~< shm2 sh 22a h
+     4 ~< shm2 sh 26a h
+     6 ~< shm2 sh 30a h
+     13 ~< shm2 sh 22a h
+     11 ~< shm2 sh 26a h
+     12 ~< shm2 sh 30a h
+     10 ~< shm2 sh 34a h
+     9 ~< shm1 shift 08 b h
+     7 ~< shm1 shift 04 b h
+     14 ~< %NC%
+     2 ~> shm3 sh 18b h
+     15 ~> shm3 sh 22b h
+
+e33: 10174 2x4 mixer
+     3 ~< shm2 sh 19a h
+     5 ~< shm2 sh 23a h
+     4 ~< shm2 sh 27a h
+     6 ~< shm2 sh 31a h
+     13 ~< shm2 sh 23a h
+     11 ~< shm2 sh 27a h
+     12 ~< shm2 sh 31a h
+     10 ~< shm2 sh 35a h
+     9 ~< shm1 shift 08 b h
+     7 ~< shm1 shift 04 b h
+     14 ~< %NC%
+     2 ~> shm3 sh 19b h
+     15 ~> shm3 sh 23b h
+
+e30: 10174 2x4 mixer
+     3 ~< shm2 sh 24a h
+     5 ~< shm2 sh 28a h
+     4 ~< shm2 sh 32a h
+     6 ~< shm2 sh 36a h
+     13 ~< shm2 sh 28a h
+     11 ~< shm2 sh 32a h
+     12 ~< shm2 sh 36a h
+     10 ~< shm2 sh 40a h
+     9 ~< shm1 shift 08 b h
+     7 ~< shm1 shift 04 b h
+     14 ~< %NC%
+     2 ~> shm3 sh 24b h
+     15 ~> shm3 sh 28b h
+
+e29: 10174 2x4 mixer
+     3 ~< shm2 sh 25a h
+     5 ~< shm2 sh 29a h
+     4 ~< shm2 sh 33a h
+     6 ~< shm2 sh 37a h
+     13 ~< shm2 sh 29a h
+     11 ~< shm2 sh 33a h
+     12 ~< shm2 sh 37a h
+     10 ~< shm2 sh 41a h
+     9 ~< shm1 shift 08 b h
+     7 ~< shm1 shift 04 b h
+     14 ~< %NC%
+     2 ~> shm3 sh 25b h
+     15 ~> shm3 sh 29b h
+
+e35: 10174 2x4 mixer
+     3 ~< shm2 sh 26a h
+     5 ~< shm2 sh 30a h
+     4 ~< shm2 sh 34a h
+     6 ~< shm2 sh 38a h
+     13 ~< shm2 sh 30a h
+     11 ~< shm2 sh 34a h
+     12 ~< shm2 sh 38a h
+     10 ~< shm2 sh 42a h
+     9 ~< shm1 shift 08 c h
+     7 ~< shm1 shift 04 c h
+     14 ~< %NC%
+     2 ~> shm3 sh 26b h
+     15 ~> shm3 sh 30b h
+
+e40: 10174 2x4 mixer
+     3 ~< shm2 sh 27a h
+     5 ~< shm2 sh 31a h
+     4 ~< shm2 sh 35a h
+     6 ~< shm2 sh 39a h
+     13 ~< shm2 sh 31a h
+     11 ~< shm2 sh 35a h
+     12 ~< shm2 sh 39a h
+     10 ~< shm2 sh 43a h
+     9 ~< shm1 shift 08 c h
+     7 ~< shm1 shift 04 c h
+     14 ~< %NC%
+     2 ~> shm3 sh 27b h
+     15 ~> shm3 sh 31b h
+
+e25: 10174 2x4 mixer
+     3 ~< shm2 sh 32a h
+     5 ~< shm2 sh 36a h
+     4 ~< shm2 sh 40a h
+     6 ~< shm2 sh 44a h
+     13 ~< shm2 sh 36a h
+     11 ~< shm2 sh 40a h
+     12 ~< shm2 sh 44a h
+     10 ~< shm2 sh 48a h
+     9 ~< shm1 shift 08 c h
+     7 ~< shm1 shift 04 c h
+     14 ~< %NC%
+     2 ~> shm3 sh 32b h
+     15 ~> shm3 sh 36b h
+
+e24: 10174 2x4 mixer
+     3 ~< shm2 sh 33a h
+     5 ~< shm2 sh 37a h
+     4 ~< shm2 sh 41a h
+     6 ~< shm2 sh 45a h
+     13 ~< shm2 sh 37a h
+     11 ~< shm2 sh 41a h
+     12 ~< shm2 sh 45a h
+     10 ~< shm2 sh 49a h
+     9 ~< shm1 shift 08 c h
+     7 ~< shm1 shift 04 c h
+     14 ~< %NC%
+     2 ~> shm3 sh 33b h
+     15 ~> shm3 sh 37b h
+
+e34: 10174 2x4 mixer
+     3 ~< shm2 sh 34a h
+     5 ~< shm2 sh 38a h
+     4 ~< shm2 sh 42a h
+     6 ~< shm2 sh 46a h
+     13 ~< shm2 sh 38a h
+     11 ~< shm2 sh 42a h
+     12 ~< shm2 sh 46a h
+     10 ~< shm2 sh 50a h
+     9 ~< shm1 shift 08 c h
+     7 ~< shm1 shift 04 c h
+     14 ~< %NC%
+     2 ~> shm3 sh 34b h
+     15 ~> shm3 sh 38b h
+
+e45: 10174 2x4 mixer
+     3 ~< shm2 sh 35a h
+     5 ~< shm2 sh 39a h
+     4 ~< shm2 sh 43a h
+     6 ~< shm2 sh 47a h
+     13 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     9 ~< shm1 shift 08 c h
+     7 ~< shm1 shift 04 c h
+     14 ~< %NC%
+     2 ~> shm3 sh 35b h
+     15 ~> %NC%
+
+Page: SHM4, PDF337
+
+e11: 10174 2x4 mixer
+     3 ~< shm3 sh 00b h
+     5 ~< shm3 sh 01b h
+     4 ~< shm3 sh 02b h
+     6 ~< shm3 sh 03b h
+     13 ~< shm3 sh 01b h
+     11 ~< shm3 sh 02b h
+     12 ~< shm3 sh 03b h
+     10 ~< shm3 sh 04b h
+     9 ~< shm1 shift 02 a h
+     7 ~< shm1 shift 01 a h
+     14 ~< %NC%
+     2 ~> {bl1} sh 00 h
+     15 ~> {bk1} sh 01 h
+
+e6:  10174 2x4 mixer
+     3 ~< shm3 sh 02b h
+     5 ~< shm3 sh 03b h
+     4 ~< shm3 sh 04b h
+     6 ~< shm3 sh 05b h
+     13 ~< shm3 sh 03b h
+     11 ~< shm3 sh 04b h
+     12 ~< shm3 sh 05b h
+     10 ~< shm3 sh 06b h
+     9 ~< shm1 shift 02 a h
+     7 ~< shm1 shift 01 a h
+     14 ~< %NC%
+     2 ~> {bj1} sh 02 h
+     15 ~> {bf1} sh 03 h
+
+e1:  10174 2x4 mixer
+     3 ~< shm3 sh 04b h
+     5 ~< shm3 sh 05b h
+     4 ~< shm3 sh 06b h
+     6 ~< shm3 sh 07b h
+     13 ~< shm3 sh 05b h
+     11 ~< shm3 sh 06b h
+     12 ~< shm3 sh 07b h
+     10 ~< shm3 sh 08b h
+     9 ~< shm1 shift 02 a h
+     7 ~< shm1 shift 01 a h
+     14 ~< %NC%
+     2 ~> {af2} sh 04 h
+     15 ~> {ae2} sh 05 h
+
+e2:  10174 2x4 mixer
+     3 ~< shm3 sh 06b h
+     5 ~< shm3 sh 07b h
+     4 ~< shm3 sh 08b h
+     6 ~< shm3 sh 09b h
+     13 ~< shm3 sh 07b h
+     11 ~< shm3 sh 08b h
+     12 ~< shm3 sh 09b h
+     10 ~< shm3 sh 10b h
+     9 ~< shm1 shift 02 a h
+     7 ~< shm1 shift 01 a h
+     14 ~< %NC%
+     2 ~> {af1} sh 06 h
+     15 ~> {ae1} sh 07 h
+
+e7:  10174 2x4 mixer
+     3 ~< shm3 sh 08b h
+     5 ~< shm3 sh 09b h
+     4 ~< shm3 sh 10b h
+     6 ~< shm3 sh 11b h
+     13 ~< shm3 sh 09b h
+     11 ~< shm3 sh 10b h
+     12 ~< shm3 sh 11b h
+     10 ~< shm3 sh 12b h
+     9 ~< shm1 shift 02 a h
+     7 ~< shm1 shift 01 a h
+     14 ~< %NC%
+     2 ~> {am2} sh 08 h
+     15 ~> {am1} sh 09 h
+
+e12: 10174 2x4 mixer
+     3 ~< shm3 sh 10b h
+     5 ~< shm3 sh 11b h
+     4 ~< shm3 sh 12b h
+     6 ~< shm3 sh 13b h
+     13 ~< shm3 sh 11b h
+     11 ~< shm3 sh 12b h
+     12 ~< shm3 sh 13b h
+     10 ~< shm3 sh 14b h
+     9 ~< shm1 shift 02 a h
+     7 ~< shm1 shift 01 a h
+     14 ~< %NC%
+     2 ~> {ba1} sh 10 h
+     15 ~> {av2} sh 11 h
+
+e17: 10174 2x4 mixer
+     3 ~< shm3 sh 12b h
+     5 ~< shm3 sh 13b h
+     4 ~< shm3 sh 14b h
+     6 ~< shm3 sh 15b h
+     13 ~< shm3 sh 13b h
+     11 ~< shm3 sh 14b h
+     12 ~< shm3 sh 15b h
+     10 ~< shm3 sh 16b h
+     9 ~< shm1 shift 02 b h
+     7 ~< shm1 shift 01 b h
+     14 ~< %NC%
+     2 ~> {bk2} sh 12 h
+     15 ~> {bf2} sh 13 h
+
+e13: 10174 2x4 mixer
+     3 ~< shm3 sh 14b h
+     5 ~< shm3 sh 15b h
+     4 ~< shm3 sh 16b h
+     6 ~< shm3 sh 17b h
+     13 ~< shm3 sh 15b h
+     11 ~< shm3 sh 16b h
+     12 ~< shm3 sh 17b h
+     10 ~< shm3 sh 18b h
+     9 ~< shm1 shift 02 b h
+     7 ~< shm1 shift 01 b h
+     14 ~< %NC%
+     2 ~> {bd2} sh 14 h
+     15 ~> {as2} sh 15 h
+
+e8:  10174 2x4 mixer
+     3 ~< shm3 sh 16b h
+     5 ~< shm3 sh 17b h
+     4 ~< shm3 sh 18b h
+     6 ~< shm3 sh 19b h
+     13 ~< shm3 sh 17b h
+     11 ~< shm3 sh 18b h
+     12 ~< shm3 sh 19b h
+     10 ~< shm3 sh 20b h
+     9 ~< shm1 shift 02 b h
+     7 ~< shm1 shift 01 b h
+     14 ~< %NC%
+     2 ~> {ap2} sh 16 h
+     15 ~> {al1} sh 17 h
+
+e3:  10174 2x4 mixer
+     3 ~< shm3 sh 18b h
+     5 ~< shm3 sh 19b h
+     4 ~< shm3 sh 20b h
+     6 ~< shm3 sh 21b h
+     13 ~< shm3 sh 19b h
+     11 ~< shm3 sh 20b h
+     12 ~< shm3 sh 21b h
+     10 ~< shm3 sh 22b h
+     9 ~< shm1 shift 02 b h
+     7 ~< shm1 shift 01 b h
+     14 ~< %NC%
+     2 ~> {aj2} sh 18 h
+     15 ~> {ad2} sh 19 h
+
+e4:  10174 2x4 mixer
+     3 ~< shm3 sh 20b h
+     5 ~< shm3 sh 21b h
+     4 ~< shm3 sh 22b h
+     6 ~< shm3 sh 23b h
+     13 ~< shm3 sh 21b h
+     11 ~< shm3 sh 22b h
+     12 ~< shm3 sh 23b h
+     10 ~< shm3 sh 24b h
+     9 ~< shm1 shift 02 b h
+     7 ~< shm1 shift 01 b h
+     14 ~< %NC%
+     2 ~> {aj1} sh 20 h
+     15 ~> {ad1} sh 21 h
+
+e5:  10174 2x4 mixer
+     3 ~< shm3 sh 22b h
+     5 ~< shm3 sh 23b h
+     4 ~< shm3 sh 24b h
+     6 ~< shm3 sh 25b h
+     13 ~< shm3 sh 23b h
+     11 ~< shm3 sh 24b h
+     12 ~< shm3 sh 25b h
+     10 ~< shm3 sh 26b h
+     9 ~< shm1 shift 02 b h
+     7 ~< shm1 shift 01 b h
+     14 ~< %NC%
+     2 ~> {ak2} sh 22 h
+     15 ~> {aa1} sh 23 h
+
+e10: 10174 2x4 mixer
+     3 ~< shm3 sh 24b h
+     5 ~< shm3 sh 25b h
+     4 ~< shm3 sh 26b h
+     6 ~< shm3 sh 27b h
+     13 ~< shm3 sh 25b h
+     11 ~< shm3 sh 26b h
+     12 ~< shm3 sh 27b h
+     10 ~< shm3 sh 28b h
+     9 ~< shm1 shift 02 c h
+     7 ~< shm1 shift 01 c h
+     14 ~< %NC%
+     2 ~> {ar2} sh 24 h
+     15 ~> {ak1} sh 25 h
+
+e15: 10174 2x4 mixer
+     3 ~< shm3 sh 26b h
+     5 ~< shm3 sh 27b h
+     4 ~< shm3 sh 28b h
+     6 ~< shm3 sh 29b h
+     13 ~< shm3 sh 27b h
+     11 ~< shm3 sh 28b h
+     12 ~< shm3 sh 29b h
+     10 ~< shm3 sh 30b h
+     9 ~< shm1 shift 02 c h
+     7 ~< shm1 shift 01 c h
+     14 ~< %NC%
+     2 ~> {au2} sh 26 h
+     15 ~> {ar1} sh 27 h
+
+e20: 10174 2x4 mixer
+     3 ~< shm3 sh 28b h
+     5 ~< shm3 sh 29b h
+     4 ~< shm3 sh 30b h
+     6 ~< shm3 sh 31b h
+     13 ~< shm3 sh 29b h
+     11 ~< shm3 sh 30b h
+     12 ~< shm3 sh 31b h
+     10 ~< shm3 sh 32b h
+     9 ~< shm1 shift 02 c h
+     7 ~< shm1 shift 01 c h
+     14 ~< %NC%
+     2 ~> {bp2} sh 28 h
+     15 ~> {bl2} sh 29 h
+
+e19: 10174 2x4 mixer
+     3 ~< shm3 sh 30b h
+     5 ~< shm3 sh 31b h
+     4 ~< shm3 sh 32b h
+     6 ~< shm3 sh 33b h
+     13 ~< shm3 sh 31b h
+     11 ~< shm3 sh 32b h
+     12 ~< shm3 sh 33b h
+     10 ~< shm3 sh 34b h
+     9 ~< shm1 shift 02 c h
+     7 ~< shm1 shift 01 c h
+     14 ~< %NC%
+     2 ~> {bm2} sh 30 h
+     15 ~> {bj2} sh 31 h
+
+e14: 10174 2x4 mixer
+     3 ~< shm3 sh 32b h
+     5 ~< shm3 sh 33b h
+     4 ~< shm3 sh 34b h
+     6 ~< shm3 sh 35b h
+     13 ~< shm3 sh 33b h
+     11 ~< shm3 sh 34b h
+     12 ~< shm3 sh 35b h
+     10 ~< shm3 sh 36b h
+     9 ~< shm1 shift 02 c h
+     7 ~< shm1 shift 01 c h
+     14 ~< %NC%
+     2 ~> {be2} sh 32 h
+     15 ~> {as1} sh 33 h
+
+e9:  10174 2x4 mixer
+     3 ~< shm3 sh 34b h
+     5 ~< shm3 sh 35b h
+     4 ~< shm3 sh 36b h
+     6 ~< shm3 sh 37b h
+     13 ~< shm3 sh 35b h
+     11 ~< shm3 sh 36b h
+     12 ~< shm3 sh 37b h
+     10 ~< shm3 sh 38b h
+     9 ~< shm1 shift 02 c h
+     7 ~< shm1 shift 01 c h
+     14 ~< %NC%
+     2 ~> {ap1} sh 34 h
+     15 ~> {al2} sh 35 h
+
+e16: 10104 quad and/nand
+     4 ~< {bl1} sh 00 h
+     5 ~< {bl1} sh 00 h
+     2 ~> {bp1} shm4 sh 00 a h
+     6 ~< {bk1} sh 01 h
+     7 ~< {bk1} sh 01 h
+     3 ~> {bm1} shm4 sh 01 a h
+     10 ~< {bj1} sh 02 h
+     11 ~< {bj1} sh 02 h
+     14 ~> {be1} shm4 sh 02 a h
+     12 ~< {bf1} sh 03 h
+     13 ~< {bf1} sh 03 h
+     9 ~> %NC%
+     15 ~> {bd1} shm4 sh 03 a h
