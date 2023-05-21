@@ -133,7 +133,7 @@ function defineBackplanePins(bp) {
 	};
 
 	bp.allNets[pin.net][pin.fullName] = net;
-	if (pin.bpPin) bp.allPins[pin.bpPin] = net;
+	bp.allPins[pin.fullName] = pin;
       });
     });
   });
@@ -152,12 +152,12 @@ ${bpPin}:
 
   fs.writeFileSync('bp.nets',
 		   Object.keys(bp.allNets)
-		   .sort()
+		   .sort(canonicalNetNameSort)
 		   .map(netName => `\
 ${netName}:
-  ${Object.keys(bp.allNets[netName]).map(pinName => {
-    const pin = bp.allPins[netName][pinName];
-    return `${pin.dir} ${pin.fullName}`;
+  ${Object.keys(bp.allNets[netName]).map(pinFullName => {
+    const pin = bp.allPins[pinFullName];
+    return `${pin.dir} ${pinFullName}`;
   })
 		   .join("\n  ")}`)
 		   .join("\n"));
@@ -176,6 +176,30 @@ ${netName}:
       aModule > bModule ? 1 : aModule < aModule ? -1 :
       aPin > bPin ? 1 : aPin < bPin ? -1 : 0;
   }
+
+
+  function canonicalNetNameSort(a, b) {
+    a = canonicalize(a).replace(/^[^a-zA-Z]/g, '');
+    b = canonicalize(b).replace(/^[^a-zA-Z]/g, '');
+    return a > b ? 1 : a < b ? -1 : 0;
+  }
+
+
+  function testCanonicalNameSort() {
+    test1('-apr2 clk c l', 'apr2 a h', 1);
+    test1('-apr2 clk c l', 'apr2 d h', -1);
+    test1('apr2 clk c l', '-apr2 d l', -1);
+    test1('apr2 clk c l', '-apr2 a l', 1);
+
+    function test1(a, b, sb) {
+
+      if (canonicalNetNameSort(a, b) != sb) {
+	console.error(`ERROR: canonicalNetNameSort('${a}', '${b}') != '${sb}' is ${canonicalNetNameSort(a, b)}`);
+      }
+    }
+  }
+
+  testCanonicalNameSort();
 }
 
 
@@ -497,18 +521,33 @@ ${util.inspect(chips[astChip.name].location)}`);
 // Convert a net name of the form '- xyz l' to 'xyz h' or '- xyz h' to 'xyz l'.
 function canonicalize(net) {
 
-  if (net.slice(0, 2) == '- ') {
+  if (net.slice(0, 1) == '-') {
     const lastChars = net.slice(-2);
 
-    if (lastChar == ' h') {		// Switch to 'l'
-      return `${net.slice(2, -2)} l`;
-    } else if (lastChar == ' l') {	// Switch to 'h'
-      return `${net.slice(2, -2)} h`;
+    if (lastChars == ' h') {		// Switch to 'l'
+      return `${net.slice(1, -2)} l`;
+    } else if (lastChars == ' l') {	// Switch to 'h'
+      return `${net.slice(1, -2)} h`;
     }
   }
 
   // If not negated net name just return as-is.
   return net;
 }
+
+
+function testCanonicalize() {
+  test1('-ctl2 ar 00-11 clr h', 'ctl2 ar 00-11 clr l');
+  test1('ctl2 ar 00-11 clr h', 'ctl2 ar 00-11 clr h');
+  test1('ctl2 ar 00-11 clr l', 'ctl2 ar 00-11 clr l');
+  test1('-ctl2 ar 00-11 clr FOO', '-ctl2 ar 00-11 clr FOO');
+  test1('-ctl2 ar 00-11 clr l', 'ctl2 ar 00-11 clr h');
+
+  function test1(a, sb) {
+    if (canonicalize(a) != sb) console.error(`ERROR: canonicalize('${a}') != '${sb}' is '${canonicalize(a)}'`);
+  }
+}
+
+testCanonicalize();
 
 module.exports.compile = compile;
