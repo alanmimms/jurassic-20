@@ -111,8 +111,8 @@ function gatherNetByName(bp) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Find all backplane pins and their net names and dump them.
-function defineBackplanePins(bp) {
+// Define connections between pins and nets, including those on backplane.
+function definePinsAndNets(bp) {
   bp.allNets = {};
   bp.allPins = {};
 
@@ -137,69 +137,6 @@ function defineBackplanePins(bp) {
       });
     });
   });
-
-  
-/*
-  fs.writeFileSync('bp.pins',
-		   Object.keys(bp.allPins)
-		   .sort(slotPinSort)
-		   .map(bpPin => `\
-${bpPin}:
-  ${Object.values(bp.allPins[bpPin]).map(pin => `${pin.dir} ${pin.net.padEnd(32)}${pin.fullName}`)
-		   .join("\n  ")}`)
-		   .join("\n"));
-*/
-
-  fs.writeFileSync('bp.nets',
-		   Object.keys(bp.allNets)
-		   .sort(canonicalNetNameSort)
-		   .map(netName => `\
-${netName}:
-  ${Object.keys(bp.allNets[netName]).map(pinFullName => {
-    const pin = bp.allPins[pinFullName];
-    return `${pin.dir} ${pinFullName}`;
-  })
-		   .join("\n  ")}`)
-		   .join("\n"));
-
-
-  // Sort e.g., "edp.aa1[38]" so the slot number
-  // "38" is primary, module "edp" is next,
-  // pin "aa1" is last.
-  function slotPinSort(a, b) {
-    a = bp.allPins[a];
-    b = bp.allPins[b];
-    const [aModule, aPin, aSlot] = [a.module, a.pin, a.slotNumber];
-    const [bModule, bPin, bSlot] = [b.module, b.pin, b.slotNumber];
-
-    return aSlot > bSlot ? 1 : aSlot < bSlot ? -1 :
-      aModule > bModule ? 1 : aModule < aModule ? -1 :
-      aPin > bPin ? 1 : aPin < bPin ? -1 : 0;
-  }
-
-
-  function canonicalNetNameSort(a, b) {
-    a = canonicalize(a).replace(/^[^a-zA-Z]/g, '');
-    b = canonicalize(b).replace(/^[^a-zA-Z]/g, '');
-    return a > b ? 1 : a < b ? -1 : 0;
-  }
-
-
-  function testCanonicalNameSort() {
-    test1('-apr2 clk c l', 'apr2 a h', 1);
-    test1('-apr2 clk c l', 'apr2 d h', -1);
-    test1('apr2 clk c l', '-apr2 d l', -1);
-    test1('apr2 clk c l', '-apr2 a l', 1);
-
-    function test1(a, b, sb) {
-
-      if (canonicalNetNameSort(a, b) != sb) {
-	console.error(`ERROR: canonicalNetNameSort('${a}', '${b}') != '${sb}' is ${canonicalNetNameSort(a, b)}`);
-      }
-    }
-  }
-
-  testCanonicalNameSort();
 }
 
 
@@ -513,8 +450,75 @@ ${util.inspect(chips[astChip.name].location)}`);
 
   fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
 
-  if (options.dumpBackplane) defineBackplanePins(bp);
+  definePinsAndNets(bp);
+  if (options.dumpBackplane) dumpBackplane(bp);
+  
   return bp;
+}
+
+
+function dumpPins(bp) {
+  fs.writeFileSync('bp.pins',
+		   Object.keys(bp.allPins)
+		   .sort(slotPinSort)
+		   .map(bpPin => `\
+${bpPin}:
+  ${Object.values(bp.allPins[bpPin]).map(pin => `${pin.dir} ${pin.net.padEnd(32)}${pin.fullName}`)
+		   .join("\n  ")}`)
+		   .join("\n"));
+}
+
+
+function dumpBackplane(bp) {
+  fs.writeFileSync('bp.nets',
+		   Object.keys(bp.allNets)
+		   .sort(canonicalNetNameSort)
+		   .map(netName => `\
+${netName}:
+  ${Object.keys(bp.allNets[netName]).map(pinFullName => {
+    const pin = bp.allPins[pinFullName];
+    return `${pin.dir} ${pinFullName}`;
+  })
+		   .join("\n  ")}`)
+		   .join("\n"));
+
+  // Sort e.g., "edp.aa1[38]" so the slot number
+  // "38" is primary, module "edp" is next,
+  // pin "aa1" is last.
+  function slotPinSort(a, b) {
+    a = bp.allPins[a];
+    b = bp.allPins[b];
+    const [aModule, aPin, aSlot] = [a.module, a.pin, a.slotNumber];
+    const [bModule, bPin, bSlot] = [b.module, b.pin, b.slotNumber];
+
+    return aSlot > bSlot ? 1 : aSlot < bSlot ? -1 :
+      aModule > bModule ? 1 : aModule < aModule ? -1 :
+      aPin > bPin ? 1 : aPin < bPin ? -1 : 0;
+  }
+
+
+  function canonicalNetNameSort(a, b) {
+    a = canonicalize(a).replace(/^[^a-zA-Z]/g, '');
+    b = canonicalize(b).replace(/^[^a-zA-Z]/g, '');
+    return a > b ? 1 : a < b ? -1 : 0;
+  }
+
+
+  function testCanonicalNameSort() {
+    test1('-apr2 clk c l', 'apr2 a h', 1);
+    test1('-apr2 clk c l', 'apr2 d h', -1);
+    test1('apr2 clk c l', '-apr2 d l', -1);
+    test1('apr2 clk c l', '-apr2 a l', 1);
+
+    function test1(a, b, sb) {
+
+      if (canonicalNetNameSort(a, b) != sb) {
+	console.error(`ERROR: canonicalNetNameSort('${a}', '${b}') != '${sb}' is ${canonicalNetNameSort(a, b)}`);
+      }
+    }
+  }
+
+  testCanonicalNameSort();
 }
 
 
