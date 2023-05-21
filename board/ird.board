@@ -182,16 +182,16 @@ e72: 10109 2x2/4 or/nor
 
 e66: 10121 4-wide or-and/or-and
      4 ~< ir 03 h
-     5 ~< {es2} BP-ES2
-     6 ~< {er2} BP-ER2
+     5 ~< {es2} bp-only-es2
+     6 ~< {er2} bp-only-er2
      7 ~< ir 04 h
-     9 ~< BP-ES2
-     10 ~< BP-ER2
+     9 ~< bp-only-es2
+     10 ~< bp-only-er2
      11 ~< ir 05 h
-     12 ~< BP-ES2
+     12 ~< bp-only-es2
      13 ~< ir 06 h
-     14 ~< BP-ES2
-     15 ~< BP-ER2
+     14 ~< bp-only-es2
+     15 ~< bp-only-er2
      2 ~> {ck1} ir i/o legal h
      3 ~> %NC%
 
