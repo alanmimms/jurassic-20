@@ -1,3 +1,283 @@
 Page: SHM1, PDF334
 // M8540 TBD
-// STUB
+
+// CRAM Shift Field
+//
+// CRAM    FUNC      SIGNALS
+//  00     SHIFT
+//  01       AR    SHIFT INH
+//  10      ARX    SHIFT INH, SHIFT 36
+//  11    AR SWAP  SHIFT INH, SHIFT 50
+
+e46: 10104 quad and/nand
+     6 ~< {dm1} scd2 sc 04 h
+     7 ~< shm1 shift inh l
+     3 ~> shm1-internal-e46-3
+     4 ~< {dk1} scd2 sc 05 h
+     5 ~< shm1 shift inh l
+     2 ~> shm1-internal-e46-2
+     12 ~< {dj1} scd2 sc 06 h
+     13 ~< shm1 shift inh l
+     9 ~> %NC%
+     15 ~> shm1-internal-e46-15
+     10 ~< {df1} scd2 sc 07 h
+     11 ~< shm1 shift inh l
+     14 ~> shm1-internal-e46-14
+
+e36: 10104 quad and/nand
+     6 ~< {cp2} scd2 sc 08 h
+     7 ~< shm1 shift inh l
+     3 ~> shm1-internal-e36-3
+     10 ~< {cs2} scd2 sc 09 h
+     11 ~< shm1 shift inh l
+     14 ~> shm1-internal-e36-14
+     4 ~< {da1} cram sh-armm sel 2 a h
+     5 ~< {de1} cram sh-armm sel 1 a h
+     2 ~> shm1 shift 50 h
+     12 ~< shm1 ar par odd h
+     13 ~< shm1 ar par odd h
+     9 ~> {cu2} shm1 ar par odd a l
+     15 ~> {cs1} sh ar par odd a h
+
+e41: 10109 4/5 or/nor
+     9 ~< {da1} cram sh-armm sel 2 a h
+     10 ~< {de1} cram sh-armm sel 1 a h
+     11 ~< {dd1} scd2 sc .ge. 36 h
+     12 ~< {ch2} scd2 sc 36 to 63 h
+     13 ~< %NC%
+     14 ~> shm1 shift inh l
+     15 ~> %NC%
+     4 ~< shm1 shift inh l
+     5 ~< {de1} -cram sh-armm sel 1 a l
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> shm1 shift 36 h
+     2 ~> %NC%
+
+e49: 10110 or buffer
+     11 ~< shm1-internal-e46-3
+     10 ~< shm1 shift 36 h
+     9 ~< shm1 shift 50 h
+     14 ~> shm1 shift 32 a h
+     13 ~> shm1 shift 32 b h
+     12 ~> shm1 shift 32 c h
+     5 ~< shm1-internal-e46-2
+     6 ~< %NC%
+     7 ~< shm1 shift 50 h
+     2 ~> shm1 shift 16 a h
+     3 ~> shm1 shift 16 b h
+     4 ~> shm1 shift 16 c h
+
+e37: 10110 or buffer
+     11 ~< shm1-internal-e46-15
+     10 ~< %NC%
+     9 ~< %NC%
+     14 ~> shm1 shift 08 a h
+     13 ~> shm1 shift 08 b h
+     12 ~> shm1 shift 08 c h
+     5 ~< shm1-internal-e46-14
+     6 ~< shm1 shift 36 h
+     7 ~< %NC%
+     2 ~> shm1 shift 04 a h
+     3 ~> shm1 shift 04 b h
+     4 ~> shm1 shift 04 c h
+
+e18: 10110 or buffer
+     5 ~< shm1-internal-e36-3
+     6 ~< %NC%
+     7 ~< shm1 shift 50 h
+     2 ~> shm1 shift 02 a h
+     3 ~> shm1 shift 02 b h
+     4 ~> shm1 shift 02 c h
+     9 ~< shm1-internal-e36-14
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~> shm1 shift 01 a h
+     13 ~> shm1 shift 01 b h
+     14 ~> shm1 shift 01 c h
+
+e53: 10160 parity
+     3 ~< {du2} arx 00 a h
+     4 ~< {ds2} arx 16 h
+     5 ~< {ed2} arx 32 h
+     6 ~< {dm2} arx 01 a h
+     7 ~< {dr2} arx 17 h
+     9 ~< {dp1} arx 33 h
+     10 ~< {cr1} arx 02 h
+     11 ~< {dl2} arx 18 a h
+     12 ~< {dj2} arx 34 h
+     13 ~< {cm2} arx 03 h
+     14 ~< {cp1} arx 19 a h
+     15 ~< {dk2} arx 35 h
+     2 ~> shm1 arx par a h
+
+e44: 10160 parity
+     3 ~< {dl1} arx 04 h
+     4 ~< {cm1} arx 20 h
+     5 ~< {cl1} arx 05 h
+     6 ~< {ck2} arx 21 h
+     7 ~< {cj2} arx 06 a h
+     9 ~< {cf1} arx 22 h
+     10 ~< {cj1} arx 07 a h
+     11 ~< {ck1} arx 23 h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< %NC%
+     2 ~> shm1 arx par b h
+
+e55: 10160 parity
+     3 ~< {ce1} arx 08 h
+     4 ~< {cf2} arx 24 a h
+     5 ~< {ce2} arx 09 h
+     6 ~< {cd1} arx 25 a h
+     7 ~< {cd2} arx 10 h
+     9 ~< {dd2} arx 26 h
+     10 ~< {df2} arx 11 h
+     11 ~< {de2} arx 27 h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< %NC%
+     2 ~> shm1 arx par c h
+
+e67: 10160 parity
+     3 ~< {ej2} ar 00 b h
+     4 ~< {ef2} ar 16 b h
+     5 ~< {el1} ar 32 b h
+     6 ~< {em1} ar 01 b h
+     7 ~< {dp2} ar 17 b h
+     9 ~< {eu2} ar 33 b h
+     10 ~< {es1} ar 02 b h
+     11 ~< {es2} ar 18 b h
+     12 ~< {fm1} ar 34 b h
+     13 ~< {er2} ar 03 b h
+     14 ~< {fp2} ar 19 b h
+     15 ~< {fd1} ar 35 b h
+     2 ~> shm1 ar par a h
+
+e68: 10160 parity
+     3 ~< {ek2} ar 04 b h
+     4 ~< {ee2} ar 20 b h
+     5 ~< {ep1} ar 05 b h
+     6 ~< {er1} ar 21 b h
+     7 ~< {ev2} ar 06 b h
+     9 ~< {fm2} ar 22 b h
+     10 ~< {fr2} ar 07 b h
+     11 ~< {fs1} ar 23 b h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< %NC%
+     2 ~> shm1 ar par b h
+
+e74: 10160 parity
+     3 ~< {ep2} ar 08 b h
+     4 ~< {fj2} ar 24 b h
+     5 ~< {em2} ar 09 b h
+     6 ~< {el2} ar 25 b h
+     7 ~< {ff2} ar 10 b h
+     9 ~< {fr1} ar 26 b h
+     10 ~< {fu2} ar 11 b h
+     11 ~< {fs2} ar 27 b h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< %NC%
+     2 ~> shm1 ar par c h
+
+e71: 10160 parity
+     3 ~< {ek1} arx 12 a h
+     4 ~< {fd2} arx 28 h
+     5 ~< {eh2} arx 13 a h
+     6 ~< {fa1} arx 29 h
+     7 ~< {dv2} arx 14 h
+     9 ~< {fl1} arx 30 a h
+     10 ~< {ff1} arx 15 h
+     11 ~< {fe1} arx 31 a h
+     12 ~< shm1 arx par a h
+     13 ~< shm1 arx par b h
+     14 ~< shm1 arx par c h
+     15 ~< {fn1} con arx 36 h
+     2 ~> {fe2} shm1 arx par odd h
+
+e75: 10160 parity
+     3 ~< {ej1} ar 12 b h
+     4 ~< {fk2} ar 28 b h
+     5 ~< {ee1} ar 13 b h
+     6 ~< {fl2} ar 29 b h
+     7 ~< {fk1} ar 14 b h
+     9 ~< {fp1} ar 30 b h
+     10 ~< {fj1} ar 15 b h
+     11 ~< {fv2} ar 31 b h
+     12 ~< shm1 ar par a h
+     13 ~< shm1 ar par b h
+     14 ~< shm1 ar par c h
+     15 ~< {et2} con ar 36 h
+     2 ~> {cv2} shm1 ar par odd h
+
+e57: 10105 2-3-2 or/nor
+     12 ~< shm1 ar par odd h
+     13 ~< %NC%
+     14 ~> {ea1} shm1 ar par odd b l
+     15 ~> {ed1} shm1 ar par odd b h
+     4 ~< shm1-internal-e85-14
+     5 ~< {ej2} -ar 00 b l
+     3 ~> {dc1} shm1 ar extended h
+     2 ~> %NC%
+
+e51: 10158 4x2 mixer
+     5 ~< {cr1} arx 02 h
+     6 ~< {dv2} arx 14 h
+     3 ~< {cm2} arx 03 h
+     4 ~< {ff1} arx 15 h
+     12 ~< {dl1} arx 04 h
+     13 ~< {ds2} arx 16 h
+     10 ~< {cl1} arx 05 h
+     11 ~< {dr2} arx 17 h
+     9 ~< shm1 instr format h
+     1 ~> {dr1} shm1 indexed h
+     2 ~> {dr1} shm1 indexed h
+     15 ~> {dr1} shm1 indexed h
+     14 ~> {dr1} shm1 indexed h
+
+e56: 10158 4x2 mixer
+     5 ~< {cr1} arx 02 h
+     6 ~< {dv2} arx 14 h
+     3 ~< {cm2} arx 03 h
+     4 ~< {ff1} arx 15 h
+     12 ~< {dl1} arx 04 h
+     13 ~< {ds2} arx 16 h
+     10 ~< {cl1} arx 05 h
+     11 ~< {dr2} arx 17 h
+     9 ~< shm1 instr format h
+     1 ~> {dt2} shm1 xr 10 h
+     2 ~> {ec1} shm1 xr 04 h
+     15 ~> {dh2} shm1 xr 02 h
+     14 ~> {ds1} shm1 xr 01 h
+
+e77: 10109 4/5 or/nor
+     4 ~< {ef2} ar 16 b h
+     5 ~< {dp2} ar 17 b h
+     6 ~< {ev2} ar 06 b h
+     7 ~< {fr2} ar 07 b h
+     3 ~> %NC%
+     2 ~> shm1-internal-e77-2
+     9 ~< {ep2} ar 08 b h
+     10 ~< {em2} ar 09 b h
+     11 ~< {ff2} ar 10 b h
+     12 ~< {fu2} ar 11 b h
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> shm1-internal-e77-2
+
+e85: 10109 4/5 or/nor
+     9 ~< shm1-internal-e77-2
+     10 ~< {ej1} ar 12 b h
+     11 ~< {ee1} ar 13 b h
+     12 ~< {fk1} ar 14 b h
+     13 ~< {fj1} ar 15 b h
+     14 ~> shm1-internal-e85-14
+     15 ~> %NC%
+
+Page: SHM2, PDF335
