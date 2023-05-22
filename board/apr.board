@@ -12,7 +12,9 @@ e25: 10176 hex dff
      5 ~< apr1-internal-e30-2
      2 ~> apr1 i/o pf err l
      7 ~< apr1-internal-e28-11
-     4 ~< apr1 sweep busy l
+     4 ~> apr1 sweep busy l
+     10 ~< apr2-internal-e32-7
+     13 ~> {cj1} apr any ebox err flg h
 
 e42: 10117 dual 2-3 or-and
      13 ~< {ek2} con sel en l
@@ -22,6 +24,13 @@ e42: 10117 dual 2-3 or-and
      9 ~< -apr5 reset a l
      14 ~> apr1 sbus err en in h
      15 ~> apr1-internal-e42-15
+     4 ~< {ek2} con sel en l
+     5 ~< apr1 ebus 10 l
+     6 ~< apr2 c dir p err int en l
+     7 ~< apr2-internal-e43-3
+     9 ~< -apr5 reset a l
+     3 ~> apr2 c dir p err en in h
+     2 ~> apr2-internal-e42-2
 
 e43: 10104 quad and/nand
      4 ~< {ej2} con sel dis h
@@ -30,10 +39,13 @@ e43: 10104 quad and/nand
      12 ~< {ej2} con sel dis h
      13 ~< apr1 ebus 08 h
      9 ~> %NC%
-     15 ~< apr1-internal-e43-15
+     15 ~> apr1-internal-e43-15
      10 ~< {ej2} con sel dis h
      11 ~< apr1 ebus 09 h
      14 ~> apr1-internal-e43-14
+     6 ~< {ej2} con sel dis h
+     7 ~< apr1 ebus 10 h
+     3 ~> apr2-internal-e43-3
 
 e57: 10176 hex dff
      9 ~< apr2 clk a h
@@ -43,6 +55,12 @@ e57: 10176 hex dff
      14 ~> {bs2} apr sbus err l
      5 ~< apr1-internal-e58-2
      2 ~> {bs1} apr nxm err l
+     7 ~< apr2-internal-e56-15
+     4 ~> apr2 s adr p err int en l
+     10 ~< apr2-internal-e62-2
+     13 ~> apr2 pwr fail int en l
+     12 ~< apr2-internal-e53-2
+     15 ~> apr2 pwr fail l
 
 e56: 10117 dual 2-3 or-and
      4 ~< {ek2} con sel en l
@@ -52,12 +70,25 @@ e56: 10117 dual 2-3 or-and
      9 ~< -apr5 reset a l
      3 ~> apr1 nxm err en in h
      2 ~> apr1-internal-e56-2
+     12 ~< {ek2} con sel en l
+     13 ~< apr1 ebus 11 l
+     10 ~< apr2 s adr p err int en l
+     11 ~< apr2-internal-e62-3
+     9 ~< -apr5 reset a l
+     14 ~> apr2 s adr p err en in h
+     15 ~> apr2-internal-e56-15
 
 e62: 10104 quad and/nand
      12 ~< {ej2} con sel dis h
      13 ~< apr1 ebus 07 h
      9 ~> %NC%
      15 ~> apr1-internal-e62-15
+     10 ~< {ej2} con sel dis h
+     11 ~< apr1 ebus 12 h
+     14 ~> apr2-internal-e62-14
+     4 ~< {ej2} con sel dis h
+     5 ~< apr1 ebus 13 h
+     2 ~> apr2-internal-e62-2
 
 e20: 10117 dual 2-3 or-and
      4 ~< {ek2} con sel en l
@@ -123,6 +154,15 @@ e47: 10176 hex dff
      9 ~< apr2 clk b h
      11 ~< apr1-internal-e38-2
      14 ~> {fa1} apr mb par err l
+     6 ~< apr2-internal-e42-2
+     5 ~< apr2-internal-e52-15
+     2 ~> apr2 sweep done int en l
+     7 ~< apr2-internal-e45-2
+     4 ~> apr2 c dir p err l
+     10 ~< apr2-internal-e46-2
+     13 ~> {ae2} apr s adr p err l
+     12 ~< apr2-internal-e41-2
+     15 ~> apr2 sweep done l
 
 e38: 10121 4-wide or-and
      4 ~< {du2} con sel set l
@@ -174,3 +214,313 @@ e15: 10101 quad or/nor
      12 ~< %NC%
      2 ~> apr1 ebus 09 l
      5 ~> apr1 ebus 09 h
+     13 ~< {ep2} cram # 02 d h
+     15 ~> apr3 # 02 l
+     9 ~> %NC%
+     7 ~< {ar2} cram # 04 d h
+     3 ~> apr3 # 04 l
+     6 ~> %NC%
+     10 ~< {as1} cram # 05 d h
+     14 ~> apr3 # 05 l
+     11 ~> %NC%
+
+Page: APR2, PDF383
+
+e52: 10117 dual 2-3 or-and
+     4 ~< {ek2} con sel en l
+     5 ~< apr1 ebus 12 l
+     6 ~< apr2 pwr fail int en l
+     7 ~< apr2-internal-e62-14
+     9 ~< -apr5 reset a l
+     3 ~> apr2 pwr fail en in h
+     2 ~> apr2-internal-e52-2
+     12 ~< {ek2} con sel en l
+     13 ~< apr1 ebus 13 l
+     10 ~< apr2 sweep done int en l
+     11 ~< apr2-internal-e62-2
+     9 ~< -apr5 reset a l
+     14 ~> apr2 sweep done en in h
+     15 ~> apr2-internal-e52-15
+
+e45: 10121 4-wide or-nor
+     4 ~< {du2} con sel set l
+     5 ~< apr1 ebus 10 l
+     6 ~< %NC%
+     7 ~< {dt2} -con sel clr l
+     9 ~< apr2 c dir p err l
+     10 ~< -apr5 reset a l
+     11 ~< apr2 c dir p err l
+     12 ~< -apr1 ebus 10 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< {dr2} mbx5 csh adr par err l
+
+e50: 10101 quad or/nor
+     13 ~< apr2 c dir p err l
+     12 ~< %NC%
+     15 ~> {ep1} apr2 c dir p err h
+     9 ~> %NC%
+
+e46: 10121 4-wide or-and
+     4 ~< {du2} con sel set l
+     5 ~< apr1 ebus 11 l
+     6 ~< %NC%
+     7 ~< {dt2} -con sel clr l
+     9 ~< {ae2} apr s adr p err l
+     10 ~< -apr5 reset a l
+     11 ~< {ae2} apr s adr p err l
+     12 ~< -apr1 ebus 11 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< {ae1} mbox adr par err l
+     3 ~> apr2 s adr p err in h
+     2 ~> apr2-internal-e46-2
+
+e53: 10121 4-wide or-and
+     4 ~< {du2} con sel set l
+     5 ~< apr1 ebus 12 l
+     6 ~< %NC%
+     7 ~< {dt2} -con sel clr l
+     9 ~< apr2 pwr fail l
+     10 ~< -apr5 reset b l
+     11 ~< apr2 pwr fail l
+     12 ~< -apr1 ebus 12 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< apr2-internal-e66-15
+     3 ~> apr2 pwr fail in h
+     2 ~> apr2-internal-e53-2
+
+e66: 10101 quad or/nor
+     13 ~< {en1} pwr warn e h
+     12 ~< %NC%
+     15 ~> apr2-internal-e66-15
+     9 ~> %NC%
+
+e41: 10121 4-wide or-and
+     4 ~< {du2} con sel set l
+     5 ~< apr1 ebus 13 l
+     6 ~< %NC%
+     7 ~< {dt2} -con sel clr l
+     9 ~< apr2 sweep done l
+     10 ~< -apr5 reset a l
+     11 ~< apr2 sweep done l
+     12 ~< -apr1 ebus 13 l
+     13 ~< %NC%
+     14 ~< apr1 sweep busy l
+     15 ~< -apr1 sweep busy en l
+     3 ~> apr2 sweep done in h
+     2 ~> apr2-internal-e41-2
+
+e3:  10104 quad and/nand
+     10 ~< {ae2} -apr s adr p err h
+     11 ~< {ad2} con wr even par adr h
+     14 ~> apr2-internal-e3-14
+     12 ~< {ae1} -mbox adr par err h
+     13 ~< apr2-internal-e3-14
+     9 ~> {ch2} apr2 wr bad adr par l
+     15 ~> %NC%
+     4 ~< {bk1} con cond/ebus ctl l
+     5 ~< apr5 reset a l
+     2 ~> apr3-internal-e3-2
+
+e32: 10105 2-3-2 or/nor
+     9 ~< apr1 nxm err in h
+     10 ~< apr1 mb par err in h
+     11 ~< apr2 s adr p err in h
+     6 ~> %NC%
+     7 ~> apr2-internal-e32-7
+
+e33: 10121 4-wide or-and
+     4 ~< {bs2} apr sbus err l
+     5 ~< apr1 sbus err int en l
+     6 ~< %NC%
+     7 ~< {bs1} apr nxm err l
+     9 ~< apr1 nxm err int en l
+     10 ~< %NC%
+     11 ~< apr1 i/o pf err l
+     12 ~< apr1 i/o pf err int en l
+     13 ~< {fa1} apr mb par err l
+     14 ~< apr1 mb par err int en l
+     15 ~< %NC%
+     3 ~> apr2-internal-e33-3
+     2 ~> %NC%
+
+e51: 10121 4-wide or-and
+     4 ~< apr2 c dir p er l
+     5 ~< apr2 c dir p err int en l
+     6 ~< %NC%
+     7 ~< {ae2} apr s adr p err l
+     9 ~< apr2 s adr p err int en l
+     10 ~< %NC%
+     11 ~< apr2 pwr fail l
+     12 ~< apr2 pwr fail int en l
+     13 ~< apr2 sweep done l
+     14 ~< apr2 sweep done int en l
+     15 ~< %NC%
+     3 ~> apr2-internal-e51-3
+     2 ~> %NC%
+
+e27: 10105 2-3-2 or/nor
+     4 ~< apr2-internal-e33-3
+     5 ~< apr2-internal-e51-3
+     3 ~> {cl1} apr apr interrupt l
+     2 ~> apr2 apr interrupt h
+
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk3 apr h
+     2 ~> clk3 apr delayed h
+
+e36: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk3 apr delayed h
+     2 ~> apr2 clk a h
+     3 ~> apr2 clk b h
+     4 ~> apr2 clk c h
+     11 ~< %NC%
+     10 ~< clk3 apr delayed h
+     9 ~< %NC%
+     14 ~> apr2 clk d h
+     13 ~> apr2 clk e h
+     12 ~> apr2 clk f h
+
+Page: APR3, PDF384
+
+e9:  10101 quad or/nor
+     10 ~< {an1} cram # 01 d h
+     12 ~< %NC%
+     14 ~> apr3 # 01 l
+     11 ~> %NC%
+
+e14: 10141 shift register
+     13 ~< %NC%
+     12 ~< {aa1} cram # 00 d h
+     11 ~< apr3 # 01 l
+     9 ~< {ap1} cram # 03 d h
+     6 ~< {ar2} cram # 04 d h
+     5 ~< %NC%
+     7 ~< apr3-internal-e3-2
+     10 ~< apr3-internal-e3-2
+     4 ~< apr2 clk e h
+     14 ~> {bp2} apr ebus return h
+     15 ~> {be2} apr ebus req l
+     2 ~> {bp1} apr ebus demand h
+     3 ~> apr3-internal-e14-3
+
+// NOTE 1: Microcode timing restriction:
+//         The microinstruction following
+//	   "COND/EBUS CTL" and "CRAM # 04" MUST
+//	   hold "CRAM # 05" unchanged. If # 05
+// 	   is zero, then # 06, # 07, and # 08
+//	   must also be held unchanged.
+e2:  10173 4x2 mixer latch
+     5 ~< {aj1} cram # 06 d h
+     6 ~< {aj1} cram # 06 d h
+     3 ~< {ak2} cram # 07 d h
+     4 ~< {ba1} -apr4 ac 10 h
+     12 ~< {am1} cram # 08 d h
+     13 ~< apr4 f02 en h
+     10 ~< %NC%
+     11 ~< %NC%
+     9 ~< {as1} cram # 05 d h
+     7 ~< apr3-internal-e14-3
+     1 ~> apr3-internal-e2-1
+     2 ~> apr3-internal-e2-2
+     15 ~> apr3-internal-e2-15
+     14 ~> %NC%
+
+e12: 10104 quad and/nand
+     6 ~< apr3-internal-e2-1
+     7 ~< apr3-internal-e14-3
+     3 ~> {cf1} apr ebox disable cs h
+     4 ~< apr3-internal-e2-2
+     5 ~< apr3-internal-e14-3
+     2 ~> {bv2} apr ebus f01 e h
+     12 ~< apr3-internal-e2-15
+     13 ~< apr3-internal-e14-3
+     9 ~> {bj2} apr3 coni or datai l
+     15 ~> {bu2} apr ebox send f02 h
+     10 ~< {bj2} apr3 coni or datai l
+     11 ~< apr3-internal-e14-3
+     14 ~> {bm1} apr3 cono or datao h
+
+e31: 10147 128x1 RAM
+     4 ~< {be1} apr fm block 4 h
+     3 ~< {br1} apr fm block 2 h
+     2 ~< {cf2} apr fm block 1 h
+     5 ~< {bt2} apr fm adr 10 h
+     6 ~< {ca1} apr fm adr 4 h
+     7 ~< {av2} apr fm adr 2 h
+     10 ~< {cv2} apr fm adr 1 h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< apr3-internal-e27-7
+     11 ~< {er1} shm1 ar extended h
+     15 ~> {ce2} apr3 fm extended h
+
+e44: 10113 quad 2 xor
+     10 ~< {er1} shm1 ar extended h
+     11 ~< {eu2} shm1 ar par odd b h
+     9 ~< %NC%
+     14 ~> apr3-internal-e44-14
+
+e26: 10147 128x1 RAM
+     4 ~< {be1} apr fm block 4 h
+     3 ~< {br1} apr fm block 2 h
+     2 ~< {cf2} apr fm block 1 h
+     5 ~< {bt2} apr fm adr 10 h
+     6 ~< {ca1} apr fm adr 4 h
+     7 ~< {av2} apr fm adr 2 h
+     10 ~< {cv2} apr fm adr 1 h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< apr3-internal-e27-7
+     11 ~< apr3-internal-e44-14
+     15 ~> apr3-internal-e26-15
+
+e23: 10113 quad 2 xor
+     12 ~< {ce2} apr3 fm extended h
+     13 ~< apr3-internal-e26-15
+     9 ~< %NC%
+     15 ~> {de2} apr fm 36 h
+
+e64: 10160 parity
+     3 ~< %NC%
+     4 ~< {fl2} edp fm parity 00-05 h
+     5 ~< {fk2} edp fm parity 06-11 h
+     6 ~< {fj2} edp fm parity 12-17 h
+     7 ~< {ff2} edp fm parity 18-23 h
+     9 ~< {ff1} edp fm parity 24-29 h
+     10 ~< {fe2} edp fm parity 30-35 h
+     11 ~< %NC%
+     12 ~< {de2} apr fm 36 h
+     13 ~< %NC%
+     14 ~< %NC%
+     14 ~< %NC%
+     2 ~> apr3-internal-e64-2
+
+e69: 10105 2-3-2 or/nor
+     9 ~< {fr2} cram adb sel 2 h
+     10 ~< {fs2} cram adb sel 1 h
+     11 ~< apr3-internal-e64-2
+     6 ~> %NC%
+     7 ~> {dd1} apr3 fm odd parity h
+
+e40: 10141 shift register
+     13 ~< %NC%
+     12 ~< apr1 ebus 09 h
+     11 ~< apr1 ebus 10 h
+     9 ~< apr1 ebus 11 h
+     6 ~< apr1 ebus 12 h
+     5 ~< %NC%
+     7 ~< {dk2} con datao apr l
+     10 ~< {dk2} con datao apr l
+     4 ~< apr2 clk b h
+     14 ~> {br2} apr3 fetch comp h
+     15 ~> {cj2} apr3 read comp h
+     2 ~> {ck1} apr3 write comp h
+     3 ~> {ce1} apr3 user comp h
+
+Page: APR4, PDF385
+
