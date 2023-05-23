@@ -2,6 +2,7 @@
 
 // TODO:
 // * '-con2 long en h' is the same signal as 'con2 long en l'. They should be connected in same net.
+// * Need dump of nets and their backplane slot/pin fullname and chip pin fullname.
 
 const fs = require('fs');
 const util = require('util');
