@@ -54,6 +54,12 @@ e74: 10101 quad or/nor
      7 ~< {ev2} cram mem 00 h
      3 ~> mcl1 mem 00 a l
      6 ~> %NC%
+     10 ~< {cs1} cram # 01 b h
+     14 ~> mcl5 # 01 l
+     11 ~> %NC%
+     4 ~< {fr2} ad 07 h
+     2 ~> mcl6 ad 07 l
+     6 ~> %NC%
 
 e7:  10101 quad or/nor
      13 ~< {df2} diag 04 a h
@@ -63,18 +69,42 @@ e7:  10101 quad or/nor
      10 ~< {dd2} diag 06 a h
      14 ~> %NC%
      11 ~> mcl1 ds 06 h
+     7 ~< mcl2-internal-e13-2
+     3 ~> {at2} mcl2 vma pause l
+     6 ~> {bh2} mcl2 vma pause h
+     4 ~< mcl2-internal-e13-3
+     2 ~> {ap2} mcl2 vma write l
+     5 ~> mcl2 vma write h
 
 e19: 10101 quad or/nor
      10 ~< {de2} diag 05 a h
      12 ~< %NC%
      14 ~> %NC%
      11 ~> mcl1 ds 05 h
+     13 ~< {dr2} scd4 pcp h
+     15 ~> mcl2-internal-e19-15
+     9 ~> %NC%
+     4 ~< {dr1} ad 05 a h
+     2 ~> mcl6 ad 05 l
+     5 ~> %NC%
+     7 ~< {bv2} scd5 user iot a h
+     3 ~> mcl6 user iot l
+     6 ~> %NC%
 
 e44: 10101 quad or/nor
      10 ~< {ef1} diag read func 10x l
      12 ~< %NC%
      14 ~> %NC%
      11 ~> mcl1 diag read l
+     4 ~< {cr1} cram # 00 b h
+     2 ~> mcl5 # 00 l
+     5 ~> %NC%
+     13 ~< {ft2} cram # 08 h
+     15 ~> mcl5 # 08 l
+     9 ~> %NC%
+     7 ~< {ee2} mr reset 04 h
+     3 ~> mcl5 reset l
+     6 ~> mcl5 reset h
 
 e63: 10105 2-3-2 or/nor
      12 ~< mcl1 mem/aread l
@@ -85,6 +115,11 @@ e63: 10105 2-3-2 or/nor
      5 ~< {fj2} cram mem 02 h
      3 ~> {ar1} mcl1 load vma held l
      2 ~> %NC%
+     9 ~< mcl5-internal-e79-3
+     10 ~< mcl5-internal-e79-11
+     11 ~< %NC%
+     6 ~> %NC%
+     7 ~> mcl5-internal-e63-7
 
 e75: 10105 2-3-2 or/nor
      4 ~< mcl1 mem/rw cycle h
@@ -95,12 +130,26 @@ e75: 10105 2-3-2 or/nor
      13 ~< mcl1 mem/ad func h
      14 ~> mcl1 load ad func l
      15 ~> mcl1 load ad func h
+     9 ~< mcl1 mem/aread l
+     10 ~< {fm2} -dram a 00 l
+     11 ~< {fm1} -dram a 01 l
+     6 ~> {cj1} mcl5 18 bit ea h
+     7 ~> %NC%
 
 e29: 10105 2-3-2 or/nor
      4 ~< mcl5 # 02 l
      5 ~< mcl1 mem/cond fetch l
      3 ~> %NC%
      2 ~> mcl1 mem/cond jump l
+     9 ~< mcl5 spec/sp mem cycle l
+     10 ~< -mcl2 user en l
+     11 ~< mcl5 # 05 l
+     6 ~> mcl3 ept en h
+     7 ~> %NC%
+     12 ~< {ec1} -ctl3 diag force extend l
+     13 ~< {el1} vma3 pc section 0 l
+     14 ~> {ek1} mcl6 pc section 0 h
+     15 ~> mcl6 pc section 0 l
 
 e59: 10117 dual 2-3 or-and
      4 ~< mcl5 bwrite 01 h
@@ -110,6 +159,13 @@ e59: 10117 dual 2-3 or-and
      9 ~< mcl5 reset h
      3 ~> {as1} mcl1 req en l
      2 ~> %NC%
+     13 ~< mcl5 spec/sp mem cycle h
+     12 ~< mcl5 reset h
+     11 ~< {cp2} cram # 03 b h
+     10 ~< %NC%
+     9 ~< mcl5 reset h
+     14 ~> %NC%
+     15 ~> {bm1} mcl5 vmax en l
 
 e6:  10164 8 mixer
      6 ~< {be2} vma held or pc 01 h
@@ -201,4 +257,913 @@ e27: 10164 8 mixer
      2 ~< mcl1 diag read l
      15 ~> {da1} ebus d23 e h
 
-// this is not complete yet
+Page: MCL2, PDF372
+
+e71: 10104 quad and/nand
+     4 ~< {cr1} cram # 00 b h
+     5 ~< mcl1 mem/ea calc h
+     2 ~> mcl2-internal-e71-2
+     10 ~< {cs1} cram # 01 b h
+     11 ~< mcl1 mem/ea calc h
+     14 ~> mcl2-internal-e71-14
+     6 ~< {fs1} ad 01 h
+     7 ~< mcl1 mem/ad func h
+     3 ~> mcl2-internal-e71-2
+     12 ~< {fr1} ad 02 h
+     13 ~< mcl1 mem/ad func h
+     9 ~> %NC%
+     15 ~> mcl2-internal-e71-14
+
+e76: 10104 quad and/nand
+     4 ~< {cp1} cram # 02 b h
+     5 ~< mcl1 mem/ea calc h
+     2 ~> mcl2-internal-e76-2
+     10 ~< {cp2} cram # 03 b h
+     11 ~< mcl1 mem/ea calc h
+     14 ~> mcl2-internal-e76-14
+     6 ~< {fp1} ad 03 h
+     7 ~< mcl1 mem/ea calc h
+     3 ~> mcl2-internal-e76-2
+     12 ~< {fs2} ad 04 a h
+     13 ~< mcl1 mem/ea calc h
+     15 ~> mcl2-internal-e76-15
+
+e73: 10109 4/5 or/nor
+     4 ~< mcl2-internal-e71-2
+     5 ~< mcl5 aread 1xx h
+     6 ~< mcl2 mem/load ar h
+     7 ~< mcl1 rw or rpw cycle h
+     3 ~> %NC%
+     2 ~> mcl2-internal-e73-2
+     9 ~< mcl5 write 01 h
+     10 ~< %NC%
+     11 ~< mcl1 mem/reg func h
+     12 ~< {fv2} mcl skip satisfied h
+     13 ~< mcl5 fetch en in h
+     14 ~> mcl5-internal-e73-14
+     15 ~> %NC%
+
+e67: 10109 4/5 or/nor
+     4 ~< mcl2-internal-e71-14
+     5 ~< mcl5 fetch en h
+     6 ~< mcl1 mem/load arx h
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> mcl2-internal-e67-2
+     9 ~< mcl5-internal-e62-3
+     10 ~< {fv2} mcl skip satisfied h
+     11 ~< mcl5 aread 001 h
+     12 ~< mcl6 ad func 09 h
+     13 ~< mcl1 mem/uncond fetch h
+     14 ~> mcl5 fetch en l
+     15 ~> mcl5 fetch en h
+
+e77: 10109 4/5 or/nor
+     4 ~< mcl2-internal-e76-2
+     5 ~< mcl5 aread x11 h
+     6 ~< mcl1 mem/rpw cycle h
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> mcl2-internal-e77-2
+     9 ~< mcl2-internal-e76-14
+     10 ~< mcl5 aread 3,6,7 h
+     11 ~< mcl1 mem/b write h
+     12 ~< mcl1 rw or rpw cycle h
+     13 ~< mcl1 mem/write h
+     14 ~> %NC%
+     15 ~> mcl2-internal-e77-15
+
+e13: 10141 shift register
+     13 ~< %NC%
+     12 ~< mcl2-internal-e73-2
+     11 ~< mcl2-internal-e67-2
+     9 ~< mcl2-internal-e77-2
+     6 ~< mcl2-internal-e77-15
+     5 ~< %NC%
+     7 ~< {as1} mcl1 req en l
+     10 ~< {as1} mcl1 req en l
+     4 ~< mcl5 clk d h
+     14 ~> {bc1} mcl load ar h
+     15 ~> {ba1} mcl load arx h
+     2 ~> mcl2-internal-e13-2
+     3 ~> mcl2-internal-e13-3
+
+e3:  10105 2-3-2 or/nor
+     12 ~< {bc1} mcl load ar h
+     13 ~< {ba1} mcl load arx h
+     14 ~> {ar2} mcl2 vma read l
+     15 ~> mcl2 vma read h
+     9 ~< {bc1} mcl load ar h
+     10 ~< {ba1} mcl load arx h
+     11 ~< mcl2-internal-e13-3
+     6 ~> {bf2} mcl2 vma read or write l
+     7 ~> %NC%
+
+e2:  10109 4/5 or/nor
+     4 ~< mcl2-internal-e13-2
+     5 ~< {bc1} -mcl load ar l
+     6 ~< {ba1} -mcl load arx l
+     7 ~< {ap2} mcl2 vma write l
+     3 ~> %NC%
+     2 ~> {av2} mcl store ar l
+     9 ~< mcl3 ept en h
+     10 ~< mcl3 upt en h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> mcl6-internal-e2-15
+
+e40: 10104 quad and/nand
+     10 ~< -mcl4 kernel cycle l
+     11 ~< mcl5 fetch en l
+     14 ~> mcl2-internal-e40-14
+     12 ~< mcl5 spec/sp mem cycle l
+     13 ~< mcl4 load vma l
+     9 ~> %NC%
+     15 ~> {ck2} mcl4 load vma context l
+     4 ~< mcl1 mem/reg func h
+     5 ~< {cp2} cram # 03 b h
+     2 ~> mcl6-internal-e40-2
+     6 ~< mcl1 load ad func h
+     7 ~< {fe2} ad 10 a h
+     3 ~> mcl6-internal-e40-2
+
+e20: 10121 4-wide or-and
+     4 ~< mcl4 vma prev en l
+     5 ~< mcl6 user iot l
+     6 ~< %NC%
+     7 ~< mc6 user l
+     9 ~< mcl2-internal-e40-14
+     10 ~< -mcl3 spec/exec l
+     11 ~< mcl4 spec/sp mem cycle l
+     12 ~< mcl5 # 01 l
+     13 ~< %NC%
+     14 ~< mcl1 load ad func l
+     15 ~< mcl6 ad 05 l
+     3 ~> mcl2 user en h
+     2 ~> mcl2 user en l
+
+e15: 10121 4-wide or-and
+     4 ~< {dk1} -mcl4 vma prev en l
+     5 ~< mcl2-internal-e40-14
+     6 ~< mcl5 public l
+     7 ~< mcl2-internal-e19-15
+     9 ~< {bu2} -scd5 user a l
+     10 ~< mcl4 vma prev en l
+     11 ~< mcl6 user l
+     12 ~< mcl6 public l
+     13 ~< %NC%
+     14 ~< mcl1 load ad func l
+     15 ~< {au2} ad 06 a l
+     3 ~> %NC%
+     2 ~> mcl2 public en l
+
+e14: 10141 shift register
+     13 ~< %NC%
+     12 ~< mcl2 user en l
+     11 ~< mcl2 public en l
+     9 ~< mcl4 vma prev en l
+     6 ~< mcl4 vma ext en l
+     5 ~< %NC%
+     7 ~< {ck2} mcl4 load vma context l
+     10 ~< {ck2} mcl4 load vma context l
+     4 ~< mcl5 clk f h
+     14 ~> {af2} mcl2 vma exec h
+     15 ~> mcl2-internal-e14-15
+     2 ~> mcl2-internal-e14-2
+     3 ~> {an1} mcl2 vma extended l
+
+e9:  10101 quad or/nor
+     4 ~< {af2} mcl2 vma exec h
+     12 ~< -mcl6 reg func l
+     2 ~> {am1} mcl vma user h
+     5 ~> {aj2} mcl2 vma user l
+     7 ~< mcl2-internal-e14-15
+     3 ~> mcl2 vma public h
+     6 ~> mcl2 vma public l
+     10 ~< mcl2-internal-e14-2
+     14 ~> mcl2 vma previous h
+     11 ~> mcl2 vma previous l
+     13 ~< {an1} mcl2 vma extended l
+     15 ~> mcl2 vma extended a h
+     9 ~> mcl2 vma extended a l
+
+Page: MCL3, PDF373
+
+e34: 10105 2-3-2 or/nor
+     9 ~< mcl5 spec/sp mem cycle l
+     10 ~< mcl2 user en l
+     11 ~< mcl5 # 04 l
+     6 ~> mcl3 upt en h
+     7 ~> %NC%
+     12 ~< mcl5 skip satisfied l
+     13 ~< {dp1} -con pi cycle a l
+     14 ~> {cn1} mcl4 vma inc h
+     15 ~> %NC%
+     4 ~< {ct2} mcl6 vma ept h
+     5 ~< {ak1} mcl6 vma upt h
+     3 ~> %NC%
+     2 ~> {aj1} mcl6 page uebr ref h
+
+e24: 10105 2-3-2 or/nor
+     4 ~< mcl5 spec/sp mem cycle l
+     5 ~< mcl5 # 02 l
+     3 ~> mcl3 spec/exec h
+     2 ~> %NC%
+     9 ~< {ae2} -scd5 adr brk prevent l
+     10 ~< -mcl6 map func l
+     11 ~< -mcl6 reg func l
+     6 ~> mcl3-internal-e24-6
+     7 ~> %NC%
+     12 ~< {ec1} -ctl3 diag force extend l
+     13 ~< {ej1} vma4 pcs section 0 l
+     14 ~> %NC%
+     15 ~> mcl6 pcs section 0 l
+
+e1:  10104 quad and/nand
+     12 ~< {al2} apr3 fetch comp h
+     13 ~< {bd1} mcl6 vma fetch h
+     9 ~> %NC%
+     15 ~> mcl3-internal-e1-15
+     4 ~< {al1} apr3 write comp h
+     5 ~< mcl2 vma write h
+     2 ~> mcl3-internal-e1-15
+     6 ~< {ac1} apr3 read comp h
+     7 ~< mcl3-internal-e1-14
+     3 ~> mcl3-internal-e1-3
+     10 ~< {aa1} -mcl vma fetch h
+     11 ~< mcl2 vma read h
+     14 ~> mcl3-internal-e1-14
+
+e5:  10121 4-wide or-and
+     4 ~< mcl3-internal-e1-15
+     5 ~< mcl3-internal-e1-3
+     6 ~< %NC%
+     7 ~< {aj2} -mcl2 vma user h
+     9 ~< mcl3 user comp h
+     10 ~< %NC%
+     11 ~< {am1} mcl vma user h
+     12 ~< -mcl3 user comp h
+     13 ~< mcl3-internal-e24-6
+     14 ~< %NC%
+     15 ~< %NC%
+     3 ~> mcl3-internal-e5-3
+     2 ~> %NC%
+
+e23: 10117 dual 2-3 or-and
+     13 ~< {ae1} vma3 match 13-35 l
+     12 ~< mcl3-internal-e5-3
+     11 ~< mcl5 vma adr err l
+     10 ~< %NC%
+     9 ~< -mcl5 reset l
+     14 ~> {be1} mcl3 page address cond h
+     15 ~> %NC%
+     4 ~< -mcl1 mem/cond jump h
+     5 ~< {dl1} -ir test satisfied h
+     6 ~< {eh2} cram vma sel 2 h
+     7 ~< {ef2} cram vma sel 1 h
+     9 ~< mcl5 reset h
+     3 ~> mcl4 load vma l
+     2 ~> {ej2} mcl load vma h
+
+e4:  10121 4-wide or-and
+     4 ~< {ae1} vma3 match 13-35 l
+     5 ~< mcl3-internal-e5-3
+     6 ~< mcl6 ebox paging en l
+     7 ~< {ad1} scd5 private instr l
+     9 ~< mcl6 public l
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< mcl5 vma adr err l
+     13 ~< mcl5 vma adr err l
+     14 ~< %NC%
+     15 ~< %NC%
+     3 ~> {af1} mcl3 page ill entry h
+     2 ~> {ad2} mcl3 page ill entry l
+
+e10: 10101 quad or/nor
+     13 ~< {ak2} apr3 user comp h
+     12 ~< %NC%
+     15 ~> mcl3 user comp l
+     9 ~> mcl3 user comp h
+     7 ~< {bu2} scd5 user a h
+     3 ~> mcl6 user l
+     6 ~> %NC%
+     4 ~< {bt2} scd5 public a h
+     2 ~> mcl6 public l
+     5 ~> %NC%
+
+e18: 10105 2-3-2 or/nor
+     9 ~< mcl2 vma public l
+     10 ~< mcl6 ebox paging en l
+     11 ~< {bd1} -mcl6 vma fetch l
+     6 ~> {ah2} mcl3 page test private h
+     7 ~> %NC%
+     12 ~< mcl5-internal-e54-2
+     13 ~< {am2} vma2 vma 12 h
+     14 ~> mcl5 vma adr err l
+     15 ~> {ch2} mcl5 vma adr err h
+     4 ~< mcl6 ebox paging en l
+     5 ~< -mcl6 reg func l
+     3 ~> %NC%
+     2 ~> {cc1} mcl6 ebox may be paged
+
+// These loads must be
+// more than 4 inches
+// from their sources.
+
+e12: 10141 shift register
+     13 ~< %NC%
+     12 ~< {bc1} mcl load ar h
+     11 ~< {ba1} mcl load arx h
+     9 ~< {bh2} mcl2 vma pause h
+     6 ~< mcl2 vma write h
+     5 ~< %NC%
+     7 ~< {ar1} mcl1 load vma held l
+     10 ~< {ar1} mcl1 load vma held l
+     4 ~< mcl5 clk d h
+     14 ~> mcl3-internal-e12-14
+     15 ~> mcl3-internal-e12-15
+     2 ~> mcl3-internal-e12-2
+     3 ~> mcl3-internal-e12-3
+
+e21: 10158 4x2 mixer
+     6 ~< {bm2} scd4 cry0 h
+     5 ~< mcl3-internal-e12-14
+     4 ~< {bl2} scd4 cry1 h
+     3 ~< mcl3-internal-e12-15
+     13 ~< {bk2} scd4 fov h
+     12 ~< mcl3-internal-e12-2
+     11 ~< {bj2} scd4 fpd h
+     10 ~< mcl3-internal-e12-3
+     9 ~< {ce1} con cond/sel vma l
+     1 ~> {be2} vma held or pc 01 h
+     2 ~> {bk1} vma held or pc 02 h
+     15 ~> {bj1} vma held or pc 03 h
+     14 ~> {br1} vma held or pc 04 h
+
+e8:  10141 shift register
+     13 ~< %NC%
+     12 ~< {am1} mcl vma user h
+     11 ~< mcl2 vma public h
+     9 ~< mcl2 vma previous h
+     6 ~< mcl2 vma extended a h
+     5 ~< %NC%
+     7 ~< {ar1} mcl1 load vma held l
+     10 ~< {ar1} mcl1 load vma held l
+     4 ~< mcl5 clk f h
+     14 ~> mcl3-internal-e8-14
+     15 ~> mcl3-internal-e8-15
+     2 ~> mcl3-internal-e8-2
+     3 ~> mcl3-internal-e8-3
+
+e17: 10158 4x2 mixer
+     6 ~< {bu2} scd4 cry0 h
+     5 ~< mcl3-internal-e8-14
+     4 ~< {bv2} scd4 cry1 h
+     3 ~< mcl3-internal-e8-15
+     13 ~< {bt2} scd4 fov h
+     12 ~< mcl3-internal-e8-2
+     11 ~< {bs1} scd4 fpd h
+     10 ~< mcl3-internal-e8-3
+     9 ~< {ce1} con cond/sel vma l
+     1 ~> {cl1} vma held or pc 05 h
+     2 ~> {cf1} vma held or pc 06 h
+     15 ~> {bd2} vma held or pc 07 h
+     14 ~> {bl1} vma held or pc 08 h
+
+e32: 10141 shift register
+     13 ~< %NC%
+     12 ~< {bd1} mcl6 vma fetch h
+     11 ~< {dl2} mcl6 ebox map h
+     9 ~< {ca1} -mcl6 ebox cache h
+     6 ~< {cc1} -mcl6 ebox may be paged h
+     5 ~< %NC%
+     7 ~< {ar1} mcl1 load vma held l
+     10 ~< {ar1} mcl1 load vma held l
+     4 ~< mcl5 clk e h
+     14 ~> mcl3-internal-e32-14
+     15 ~> mcl3-internal-e32-15
+     2 ~> mcl3-internal-e32-2
+     3 ~> mcl3-internal-e32-3
+
+e31: 10158 4x2 mixer
+     6 ~< {cs2} scd4 trape req 2 h
+     5 ~< mcl3-internal-e32-14
+     4 ~< {dh2} scd4 trap req 1 h
+     3 ~< mcl3-internal-e32-15
+     13 ~< {cf2} scd4 fxu h
+     12 ~< mcl3-internal-e32-2
+     11 ~< {cd1} scd4 div chk h
+     10 ~< mcl3-internal-e32-3
+     9 ~< {ce1} con cond/sel vma l
+     1 ~> {bf1} vma held or pc 09 h
+     2 ~> {bp2} vma held or pc 10 h
+     15 ~> {cm2} vma held or pc 11 h
+     14 ~> {ce2} vma held or pc 12 h
+
+Page: MCL4, PDF374
+
+e45: 10141 shift register
+     13 ~< %NC%
+     12 ~< {cr1} cram # 00 b h
+     11 ~< {cs1} cram # 01 b h
+     9 ~< {cp1} cram # 02 b h
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< mcl4-internal-e55-3
+     10 ~< mcl4-internal-e55-3
+     4 ~< mcl5 clk c h
+     14 ~> mcl4 sr 00 h
+     15 ~> mcl4 sr 01 h
+     2 ~> mcl4 sr 02 h
+     3 ~> %NC%
+
+e55: 10109 4/5 or/nor
+     4 ~< {dm1} con load access cond h
+     5 ~< mcl1 mem/aread h
+     6 ~< mcl5 reset h
+     7 ~< %NC%
+     3 ~> mcl4-internal-e55-3
+     2 ~> %NC%
+     9 ~< mcl4-internal-e46-3
+     10 ~< mcl1 mem/reg func h
+     11 ~< mcl1 load ad func h
+     12 ~< mcl4 vma/ad h
+     13 ~< mcl4-internal-e57-14
+     14 ~> mcl4 vma long en l
+     15 ~> mcl4 vma long en h
+
+e57: 10105 2-3-2 or/nor
+     4 ~< mcl4 vma/ad l
+     5 ~< -mcl4 sr 00 l
+     3 ~> mcl4-internal-e457-3
+     2 ~> %NC%
+     12 ~< mcl1 mem/ea calc l
+     13 ~< mcl5 # 07 l
+     14 ~> mcl4-internal-e57-14
+     15 ~> %NC%
+     9 ~< mcl1 mem/aread l
+     10 ~< %NC%
+     11 ~< -mcl5 ad long en l
+     6 ~> {cl2} mcl5 23 bit ea h
+     7 ~> %NC%
+
+e46: 10121 4-wide or-and
+     4 ~< mcl5 ad long en l
+     5 ~< %NC%
+     6 ~< mcl1 mem/ea calc l
+     7 ~< mcl5 ea extended l
+     9 ~< mcl5 # 07 l
+     10 ~< mcl1 mem/ea calc l
+     11 ~< {dk2} -mcl4 short stack l
+     12 ~< mcl5 # 08 l
+     13 ~< mcl5 ad long en l
+     14 ~< mcl1 aread ea l
+     15 ~< %NC%
+     3 ~> mcl4-internal-e46-3
+     2 ~> %NC%
+
+e56: 10109 4/5 or/nor
+     4 ~< mcl4-internal-e57-3
+     5 ~< mcl6 ad func 08 h
+     6 ~< mcl4-internal-e46-3
+     7 ~< %NC%
+     3 ~> mcl4 vma ext en l
+     2 ~> %NC%
+     9 ~< mcl1 mem/ea calc h
+     10 ~< mcl1 load ad func h
+     11 ~< mcl4 vma/ad h
+     12 ~< mcl5 reset h
+     13 ~< mcl1 aread ea h
+     14 ~> %NC%
+     15 ~> {cm1} mcl4 vma<-ad h
+
+e25: 10121 4-wide or-and
+     4 ~< {dk1} -mcl4 vma prev en l
+     5 ~< mcl6 vma section 0 l
+     6 ~< %NC%
+     7 ~< mcl2 vma previous l
+     9 ~< mcl6 vma section 0 l
+     10 ~< mcl4 vma prev en l
+     11 ~< -mcl2 vma previous l
+     12 ~< mcl6 pcs section 0 l
+     13 ~< {el2} -apr3 fm extended l
+     14 ~< %NC%
+     15 ~< %NC%
+     3 ~> mcl4 xr short h
+     2 ~> %NC%
+
+e30: 10121 4-wide or-and
+     4 ~< {el2} -apr3 fm extended l
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< mcl6 pc section 0 l
+     9 ~< -mcl4 pxct b12 l
+     10 ~< %NC%
+     11 ~< mcl4 pxct b12 l
+     12 ~< mcl6 pcs section 0 l
+     13 ~< {el2} -apr3 fm extended l
+     14 ~< %NC%
+     15 ~< %NC%
+     3 ~> {dk2} mcl4 short stack h
+     2 ~> %NC%
+
+e47: 10164 8 mixer
+     6 ~< %NC%
+     5 ~< %NC%
+     4 ~< %NC%
+     3 ~< mcl4 pxct b11 h
+     11 ~< mcl4 pxct b19 h
+     12 ~< mcl4 pxct b11 h
+     13 ~< mcl4 pxct b12 h
+     14 ~< mcl4 pxct b11 h
+     10 ~< mcl4 pxct b09 h
+     9 ~< mcl4 sr 01 h
+     7 ~< mcl4 sr 02 h
+     2 ~< %NC%
+     15 ~> {bs2} mcl4 xr previous h
+
+e28: 10101 quad or/nor
+     4 ~< {bs2} mcl4 xr previous h
+     12 ~< %NC%
+     2 ~> mcl4 xr previous l
+     5 ~> %NC%
+     7 ~< {cp1} cram # 02 b h
+     3 ~> mcl5 # 02 l
+     6 ~> %NC%
+     10 ~< {cv2} cram # 05 b h
+     14 ~> mcl5 # 05 l
+     11 ~> %NC%
+     13 ~< mcl6 map func h
+     15 ~> {cd2} mcl6 ebox map l
+     9 ~> {dl2} mcl6 ebox map h
+
+e43: 10121 4-wide or-and
+     4 ~< mcl4 vma prev en l
+     5 ~< -mcl2 vma previous l
+     6 ~< %NC%
+     7 ~< {ed1} cram sh-armm sel 2 a l
+     9 ~< {ej2} -mcl load vma l
+     10 ~< %NC%
+     11 ~< mcl4 vma long en l
+     12 ~< %NC%
+     13 ~< mcl4 pxct b12 l
+     14 ~< mcl5 # 08 l
+     15 ~< mcl1 mem/ea calc l
+     3 ~> {bn1} mcl4 vmax sel 2 h
+     2 ~> %NC%
+
+e42: 10121 4-wide or-and
+     4 ~< mcl1 mem/ea calc l
+     5 ~< mcl5 # 08 l
+     6 ~< -mcl4 pxct b12 l
+     7 ~< %NC%
+     9 ~< mcl4 vma long en l
+     10 ~< %NC%
+     11 ~< {ej2} -mcl load vma l
+     12 ~< {dm2} cram sh-armm sel 1 a l
+     13 ~< mcl4 load vma l
+     14 ~< -mcl1 mem/aread l
+     15 ~< -mcl1 mem/ea calc l
+     3 ~> mcl4-internal-e42-3
+     2 ~> %NC%
+
+e35: 10105 2-3-2 or/nor
+     12 ~< mcl5 aread 001 h
+     13 ~< mcl4-internal-e42-3
+     14 ~> %NC%
+     15 ~> {bp2} mcl4 vmax sel 1 h
+     9 ~< mcl1 mem/cond fetch l
+     10 ~< mcl5 # 01 l
+     11 ~< {dl1} ir test satisfied l
+     6 ~> {fv2} mcl skip satisfied h
+     7 ~> mcl5 skip satisfied l
+     4 ~< mcl5 # 08 l
+     5 ~< mel5 spec/sp mem cycle l
+     3 ~> mcl6 phys ref h
+     2 ~> %NC%
+
+e61: 10104 quad and/nand
+     12 ~< {eh2} cram vma sel 2 h
+     13 ~< {ef2} cram vma sel 1 h
+     9 ~> mcl4 vma/ad l
+     15 ~> mcl4 vma/ad h
+     6 ~< mcl5 a=001 h
+     7 ~< mcl1 mem/aread h
+     3 ~> mcl5 aread 001 h
+     10 ~< {dp2} ad 08 h
+     11 ~< mcl1 load ad func h
+     14 ~> mcl6 ad func 08 h
+     4 ~< {fp2} ad 09 h
+     5 ~< mcl1 load ad func h
+     2 ~> mcl6 ad func 09 h
+
+e48: 10174 2x4 mixer
+     3 ~< mcl5 reset l
+     5 ~< mcl4 pxct b10 l
+     4 ~< mcl4 pxct b11 l
+     6 ~< mcl4 pxct b12 l
+     13 ~< mcl4 pxct b09 l
+     11 ~< mcl4 pxct b11 l
+     12 ~< mcl4 pxct b12 l
+     10 ~< mcl4 pxct b12 l
+     9 ~< mcl4 sr 01 h
+     7 ~< mcl4 sr 02 h
+     14 ~< %NC%
+     2 ~> mcl4-internal-e48-2
+     15 ~> mcl4-internal-e48-15
+
+e53: 10121 4-wide or-and
+     4 ~< mcl4-internal-e48-2
+     5 ~< mcl4 vma/ad l
+     6 ~< %NC%
+     7 ~< mcl1 aread ea l
+     9 ~< mcl4 pxct b10 l
+     10 ~< %NC%
+     11 ~< mcl6 ad 07 l
+     12 ~< mcl1 load ad func l
+     13 ~< %NC%
+     14 ~< mcl1 mem/ea calc l
+     15 ~< mcl4-internal-e38-2
+     3 ~> {dk1} mcl4 vma prev en h
+     2 ~> mcl4 vma prev en l
+
+e37: 10141 shift register
+     13 ~< %NC%
+     12 ~< %NC%
+     11 ~< %NC%
+     9 ~< mcl5 # 04 l
+     6 ~< {cs1} cram # 01 b h
+     5 ~< %NC%
+     7 ~< {du2} con load spec instr l
+     10 ~< {du2} con load spec instr l
+     4 ~< mcl5 clk e h
+     14 ~> %NC%
+     15 ~> %NC%
+     2 ~> mcl4 pxct l
+     3 ~> mcl4 kernel cycle h
+
+e50: 10141 shift register
+     13 ~< %NC%
+     12 ~< {ea1} apr4 ac 09 l
+     11 ~< {ds1} apr4 ac 10 l
+     9 ~< {dt2} apr4 ac 11 l
+     6 ~< {dv2} apr4 ac 12 l
+     5 ~< %NC%
+     7 ~< {du2} con load spec instr l
+     10 ~< {du2} con load spec instr l
+     4 ~< mcl5 clk c h
+     14 ~> mcl4-internal-e50-14
+     15 ~> mcl4-internal-e50-15
+     2 ~> mcl4-internal-e50-2
+     3 ~> mcl4-internal-e50-3
+
+e52: 10101 quad or/nor
+     4 ~< mcl4-internal-e50-14
+     12 ~< mcl4 pxct l
+     2 ~> mcl4 pxct b09 h
+     3 ~> mcl4 pxct b09 l
+     7 ~< mcl4-internal-e50-15
+     3 ~> %NC%
+     6 ~> mcl4 pxct b10 l
+     10 ~< mcl4-internal-e50-2
+     14 ~> mcl4 pxct b11 h
+     11 ~> mcl4 pxct b11 l
+     13 ~< mcl4-internal-e50-3
+     15 ~> mcl4 pxct b12 h
+     9 ~> mcl4 pxct b12 l
+
+Page: MCL5, PDF375
+
+e60: 10121 4-wide or-and
+     4 ~< %NC%
+     5 ~< %NC%
+     6 ~< -mcl1 load ad func h
+     7 ~< %NC%
+     9 ~< -mcl1 mem/reg func h
+     10 ~< %NC%
+     11 ~< mcl4 vma long en h
+     12 ~< %NC%
+     13 ~< {ep1} -ad 06-11=0 h
+     14 ~< {fn1} ad 12 a h
+     15 ~< %NC%
+     3 ~> %NC%
+     2 ~> mcl5-internal-e60-2
+
+e54: 10141 shift register
+     13 ~< %NC%
+     12 ~< %NC%
+     11 ~< mcl5-internal-e60-2
+     9 ~< mcl5-internal-e60-2
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< mcl4 load vma l
+     10 ~< mcl4 load vma l
+     4 ~< mcl5 clk a h
+     14 ~> %NC%
+     15 ~> {ee1} mcl5 adr err h
+     2 ~> mcl5-internal-e54-2
+     3 ~> %NC%
+
+e58: 10141 shift register
+     13 ~< %NC%
+     12 ~< mcl4 vma prev en l
+     11 ~< mcl4 vma ext en l
+     9 ~< %NC%
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< mcl1 mem/aread l
+     10 ~< mcl1 mem/aread l
+     4 ~< mcl5 clk a h
+     14 ~> mcl5 ea previous l
+     15 ~> mcl5 ea extended l
+     2 ~> %NC%
+     3 ~> %NC%
+
+e68: 10117 dual 2-3 or-and
+     4 ~< {dm2} cram sh-armm sel 1 a l
+     5 ~< %NC%
+     6 ~< {ed1} cram sh-armm sel 2 a l
+     7 ~< -mcl4 xr short l
+     9 ~< %NC%
+     3 ~> mcl5 ad long en h
+     2 ~> mcl5 ad long en l
+
+e65: 10104 quad and/nand
+     10 ~< -mcl6 reg func l
+     11 ~< {et2} clk3 ebox sync b
+     14 ~> mcl5-internal-e65-14
+     12 ~< {fl2} con trap en h
+     13 ~< {fl2} con trap en h
+     9 ~> mcl6-internal-e65-9
+     15 ~> %NC%
+     4 ~< mcl5 spec/sp mem cycle h
+     5 ~< {ft2} cram # 08 b h
+     2 ~> mcl6-internal-e65-9
+     6 ~< mcl1 load ad func h
+     7 ~< {fn1} ad 12 a h
+     3 ~> mcl6-internal-e65-9
+
+e78: 10104 quad and/nand
+     6 ~< mcl1 mem/b write h
+     7 ~< {fl1} dram b 01 h
+     3 ~> mcl5 write 01 h
+     12 ~< mcl5-internal-e79-3
+     13 ~< mcl1 mem/aread h
+     9 ~> %NC%
+     15 ~> mcl5 aread x11 h
+     4 ~< mcl5-internal-e63-7
+     5 ~< mcl1 mem/aread h
+     2 ~> mcl5 aread 3,6,7 h
+     10 ~< {fm2} dram a 00 h
+     11 ~< mcl1 mem/aread h
+     14 ~> mcl5 aread 1xx h
+
+e66: 10121 4-wide or-and
+     4 ~< mcl1 mem 00 a l
+     5 ~< mcl5-internal-e65-14
+     6 ~< %NC%
+     7 ~< mcl1 mem/aread l
+     9 ~< -mcl5 a=0x0 l
+     10 ~< mcl5-internal-e65-14
+     11 ~< mcl1 mem/cond fetch l
+     12 ~< {dp1} -con pi cycle a l
+     13 ~< {et2} clk3 ebox sync b l
+     14 ~< %NC%
+     15 ~< mcl5-internal-e73-14
+     3 ~> {ck1} mcl mbox cyc req h
+     2 ~> {eu2} mcl5 mbox cyc req l
+
+e62: 10121 4-wide or-and
+     4 ~< {ds2} ir jrst 0, l
+     5 ~< mcl1 mem/read l
+     6 ~< %NC%
+     7 ~< %NC%
+     9 ~< mcl1 mem/cond fetch l
+     10 ~< mcl5 # 00 l
+     11 ~< mcl5 spec/sp mem cycle l
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< mcl1 mem/cond fetch l
+     15 ~< {dp1} -con pi cycle a l
+     3 ~> mcl5 fetch en in h
+     2 ~> %NC%
+
+e79: 10162 decoder
+     14 ~< {fm2} dram a 00 h
+     9 ~< {fm1} dram a 01 h
+     7 ~< {fu2} dram a 02 h
+     15 ~< %NC%
+     2 ~< %NC%
+     6 ~> mcl5 a=0x0 h
+     5 ~> mcl5 a=001 h
+     4 ~> mcl5 a=0x0 h
+     3 ~> mcl5-internal-e79-3
+     13 ~> %NC%
+     12 ~> %NC%
+     11 ~> mcl5-internal-e79-11
+     10 ~> mcl5-internal-e79-3
+
+e39: 10101 quad or/nor
+     10 ~< {dn1} cram # 04 b h
+     12 ~< %NC%
+     14 ~> mcl5 # 04 l
+     11 ~> %NC%
+     13 ~< {ff2} cram # 07 b h
+     15 ~> mcl5 # 07 l
+     9 ~> %NC%
+
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk3 mcl h
+     2 ~> clk3 mcl delayed h
+
+e41: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk3 mcl delayed h
+     2 ~> mcl5 clk a h
+     3 ~> mcl5 clk b h
+     4 ~> mcl5 clk c h
+     9 ~< %NC%
+     10 ~< clk3 mcl delayed h
+     11 ~< %NC%
+     12 ~> mcl5 clk d h
+     13 ~> mcl5 clk e h
+     14 ~> mcl5 clk f h
+
+Page: MCL6, PDF376
+
+e22: 10105 2-3-2 or/nor
+     12 ~< {ec1} -ctl3 diag force extend l
+     13 ~< {bp1} vma1 vma section 0 l
+     14 ~> {cj2} mcl vma section 0 h
+     15 ~> mcl6 vma section 0 l
+     4 ~< mcl6-internal-e33-14
+     5 ~< -mcl6 reg func l
+     3 ~> %NC%
+     2 ~> {ca1} mcl6 ebox cache l
+     9 ~< {aa1} mcl vma fetch l
+     10 ~< {aj1} -mcl6 page uebr ref l
+     11 ~< {cc1} mcl6 ebox may be paged l
+     6 ~> %NC%
+     7 ~> {ap1} mcl6 page fetch l
+
+e49: 10104 quad and/nand
+     12 ~< {fd2} con cache load en h
+     13 ~< {fd2} con cache load en h
+     9 ~> mcl6-internal-e49-9
+     4 ~< mcl5 spec/sp mem cycle h
+     5 ~< {ff2} cram # 07 b h
+     2 ~> mcl6-internal-e49-9
+     6 ~< mcl1 load ad func h
+     7 ~< {fh2} ad 11 a h
+     3 ~> mcl6-internal-e49-9
+     10 ~< mcl1 mem/reg func h
+     11 ~< {cr1} cram # 00 b h
+     14 ~> mcl6-internal-e49-14
+
+e33: 10141 shift register
+     13 ~< %NC%
+     12 ~< mcl6-internal-e49-9
+     11 ~< mcl6-internal-e65-9
+     9 ~< mcl3 ept en h
+     6 ~< mcl3 upt en h
+     5 ~< %NC%
+     7 ~< {ck2} mcl4 load vma context l
+     10 ~< {ck2} mcl4 load vma context l
+     4 ~< mcl5 clk e h
+     14 ~> mcl6-internal-e33-14
+     15 ~> mcl6 ebox paging en l
+     2 ~> {ct2} mcl6 vma ept h
+     3 ~> {ak1} mcl6 vma upt h
+
+e51: 10141 shift register
+     13 ~< %NC%
+     12 ~< mcl6-internal-e40-2
+     11 ~< mcl6-internal-e49-14
+     9 ~< mcl5 fetch en h
+     6 ~< mcl5 fetch en l
+     5 ~< %NC%
+     7 ~< {as1} mcl1 req en l
+     10 ~< {as1} mcl1 req en l
+     4 ~< mcl5 clk c h
+     14 ~> mcl6 map func h
+     15 ~> mcl6 reg func h
+     2 ~> {bd1} mcl6 vma fetch h
+     3 ~> {aa1} mcl vma fetch l
+
+e80: 10141 shift register
+     13 ~< %NC%
+     12 ~< mcl6-internal-e2-15
+     11 ~< %NC%
+     9 ~< %NC%
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< {as1} mcl1 req en l
+     10 ~< {as1} mcl1 req en l
+     4 ~< mcl5 clk f h
+     14 ~> {cu2} mcl6 page uebr ref a h
+     15 ~> %NC%
+     2 ~> %NC%
+     3 ~> %NC%
