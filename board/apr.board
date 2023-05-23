@@ -260,6 +260,15 @@ e50: 10101 quad or/nor
      12 ~< %NC%
      15 ~> {ep1} apr2 c dir p err h
      9 ~> %NC%
+     10 ~< {ed1} ir ac 09 h
+     14 ~> {ef1} apr4 ac 09 l
+     11 ~> apr4 ac 09 h
+     4 ~< {ec1} Ir ac 10 h
+     2 ~> {ba1} apr4 ac 10 l
+     5 ~> apr4 ac 10 h
+     7 ~< {ea1} Ir ac 11 h
+     3 ~> {fd1} apr4 ac 11 l
+     6 ~> apr4 ac 11 h
 
 e46: 10121 4-wide or-and
      4 ~< {du2} con sel set l
@@ -296,6 +305,16 @@ e66: 10101 quad or/nor
      12 ~< %NC%
      15 ~> apr2-internal-e66-15
      9 ~> %NC%
+     7 ~< apr4 ac+1 11 h
+     12 ~< %NC%
+     3 ~> apr4 ac+3 11 h
+     6 ~> %NC%
+     10 ~< {dv2} ir ac 12 h
+     14 ~> {ft2} apr4 ac 12 l
+     11 ~> apr4 ac 12 h
+     4 ~< apr5 reset a h
+     2 ~> %NC%
+     5 ~> apr5 reset b h
 
 e41: 10121 4-wide or-and
      4 ~< {du2} con sel set l
@@ -330,6 +349,14 @@ e32: 10105 2-3-2 or/nor
      11 ~< apr2 s adr p err in h
      6 ~> %NC%
      7 ~> apr2-internal-e32-7
+     4 ~< {ba1} apr4 ac 10 l
+     5 ~< -apr4 ac+3 10 l
+     3 ~> apr4 ac 5,6,7 h
+     2 ~> apr4 ac 5,6,7 l
+     12 ~< apr6-internal-e6-3
+     13 ~< %NC%
+     14 ~> {cn1} apr ebox sbus diag l
+     15 ~> {cu2} apr6 ebox sbus diag h
 
 e33: 10121 4-wide or-and
      4 ~< {bs2} apr sbus err l
@@ -392,6 +419,9 @@ e9:  10101 quad or/nor
      12 ~< %NC%
      14 ~> apr3 # 01 l
      11 ~> %NC%
+     13 ~< {ah2} mr reset 02 h
+     15 ~> apr5 reset a l
+     9 ~> apr5 reset a h
 
 e14: 10141 shift register
      13 ~< %NC%
@@ -464,6 +494,16 @@ e44: 10113 quad 2 xor
      11 ~< {eu2} shm1 ar par odd b h
      9 ~< %NC%
      14 ~> apr3-internal-e44-14
+     7 ~< {ef1} apr4 ac 09 l
+     6 ~< apr4 ac 7 l
+     9 ~< %NC%
+     3 ~> apr4 ac+1 09 h
+     5 ~< apr4 ac 09 h
+     4 ~< apr4 ac 6,7 h
+     2 ~> apr4 ac+2 09 h
+     12 ~< {ef1} apr4 ac 09 l
+     13 ~< apr4 ac 5,6,7 l
+     15 ~> apr4 ac+3 09 h
 
 e26: 10147 128x1 RAM
      4 ~< {be1} apr fm block 4 h
@@ -484,6 +524,12 @@ e23: 10113 quad 2 xor
      13 ~< apr3-internal-e26-15
      9 ~< %NC%
      15 ~> {de2} apr fm 36 h
+     5 ~< {aj1} cram # 06 d h
+     4 ~< -apr5 reset a h
+     2 ~> -apr6 # 06 h
+     7 ~< -apr5 reset a h
+     6 ~< {ak2} cram # 07 d h
+     3 ~> -apr6 # 07 h
 
 e64: 10160 parity
      3 ~< %NC%
@@ -506,6 +552,14 @@ e69: 10105 2-3-2 or/nor
      11 ~< apr3-internal-e64-2
      6 ~> %NC%
      7 ~> {dd1} apr3 fm odd parity h
+     4 ~< apr4 ac 5,6,7 h
+     5 ~< apr4 ac 0,1 h
+     3 ~> %NC%
+     2 ~> apr4 f02 en h
+     12 ~< -apr4 ac 10 l
+     13 ~< -apr4 ac 11 l
+     14 ~> apr4 ac 0,1 h
+     15 ~> %NC%
 
 e40: 10141 shift register
      13 ~< %NC%
@@ -523,4 +577,531 @@ e40: 10141 shift register
      3 ~> {ce1} apr3 user comp h
 
 Page: APR4, PDF385
+
+e49: 10164 8 mixer
+     6 ~< apr4 ac 09 h
+     5 ~< apr4 ac+1 09 h
+     4 ~< {ej1} shm1 xr 10 h
+     3 ~< {eh2} vma1 vma 32 b h
+     11 ~< apr4 ac+2 09 h
+     12 ~< apr4 ac+3 09 h
+     13 ~< apr4 ac+# 09 h
+     14 ~< {as1} cram # 05 d h
+     10 ~< {ed2} cram fm adr sel 4 h
+     9 ~< {ee1} cram fm adr sel 2s h
+     7 ~< {ef2} cram fm adr sel 1 h
+     2 ~< %NC%
+     15 ~> {bt2} apr fm adr 10 h
+
+e54: 10164 8 mixer
+     6 ~< apr4 ac 10 h
+     5 ~< apr4 ac+1 10 h
+     4 ~< {et2} shm1 xr 04 h
+     3 ~< {es1} vma1 vma 33 b h
+     11 ~< apr4 ac+2 10 h
+     12 ~< apr4 ac+3 10 h
+     13 ~< apr4 ac+# 10 h
+     14 ~< {aj1} cram # 06 d h
+     10 ~< {ed2} cram fm adr sel 4 h
+     9 ~< {ee1} cram fm adr sel 2s h
+     7 ~< {ef2} cram fm adr sel 1 h
+     2 ~< %NC%
+     15 ~> {ca1} apr fm adr 4 h
+
+e65: 10164 8 mixer
+     6 ~< apr4 ac 11 h
+     5 ~< apr4 ac+1 11 h
+     4 ~< {fp2} shm1 xr 02 h
+     3 ~< {fp1} vma1 vma 34 b h
+     11 ~< {fd1} apr4 ac+2 11 h
+     12 ~< apr4 ac+3 11 h
+     13 ~< apr4 ac+# 11 h
+     14 ~< {ak2} cram # 07 d h
+     10 ~< {ed2} cram fm adr sel 4 h
+     9 ~< {ee1} cram fm adr sel 2s h
+     7 ~< {ef2} cram fm adr sel 1 h
+     2 ~< %NC%
+     15 ~> {av2} apr fm adr 2 h
+
+e59: 10164 8 mixer
+     6 ~< apr4 ac 12 h
+     5 ~< {ft2} apr4 ac+1 12 h
+     4 ~< {fu2} shm1 xr 01 h
+     3 ~< {fv2} vma1 vma 35 b h
+     11 ~< apr4 ac+2 12 h
+     12 ~< {ft2} apr4 ac+3 12 h
+     13 ~< apr4 ac+# 12 h
+     14 ~< {am1} cram # 08 d h
+     10 ~< {ed2} cram fm adr sel 4 h
+     9 ~< {ee1} cram fm adr sel 2s h
+     7 ~< {ef2} cram fm adr sel 1 h
+     2 ~< %NC%
+     15 ~> {cv2} apr fm adr 1 h
+
+e70: 10113 quad xor
+     12 ~< apr4 ac 10 h
+     13 ~< apr4 ac 3,7 h
+     9 ~< %NC%
+     15 ~> apr4 ac+1 10 h
+     5 ~< apr4 ac 11 h
+     4 ~< apr4 ac 12 h
+     2 ~> apr4 ac+1 11 h
+     7 ~< apr4 ac 10 h
+     6 ~< apr4 ac 11 h
+     3 ~> apr4 ac+2 10 h
+     10 ~< apr4 ac+1 10 h
+     11 ~< apr4 ac+1 11 h
+     14 ~> apr4 ac+3 10 h
+
+w1:  wire just a wire
+     1 ~< {ft2} -apr4 ac 12 h
+     2 ~> apr4 ac+1 12 h
+
+w2:  wire just a wire
+     1 ~< {fd1} -apr4 ac 11 h
+     2 ~> apr4 ac+2 11 h
+
+w3:  wire just a wire
+     1 ~< apr4 ac 12 h
+     2 ~> apr4 ac+2 12 h
+
+w4:  wire just a wire
+     1 ~< {ft2} -apr4 ac 12 h
+     2 ~> apr4 ac+3 12 h
+
+e55: 10105 quad 2-3-2 or/nor
+     4 ~< {ba1} apr4 ac 10 l
+     5 ~< {fd1} apr4 ac 11 l
+     3 ~> apr4 ac 6,7 h
+     2 ~> apr4 ac 7 l
+     12 ~< {fd1} apr4 ac 11 l
+     13 ~< {ft2} apr4 ac 12 l
+     14 ~> apr4 ac 3,7 h
+     15 ~> apr4 ac 7 l
+
+e61: 10181 ALU
+     10 ~< apr4 ac 09 h
+     9 ~< {as1} cram # 05 d h
+     16 ~< apr4 ac 10 h
+     11 ~< {aj1} cram # 06 d h
+     18 ~< apr4 ac 11 h
+     19 ~< {ak2} cram # 07 d h
+     21 ~< apr4 ac 12 h
+     20 ~< {am1} cram # 08 d h
+     22 ~< %NC%
+     13 ~< {an1} cram # 01 d h
+     15 ~< {ep2} cram # 02 d h
+     17 ~< {ap1} cram # 03 d h
+     14 ~< {ar2} cram # 04 d h
+     23 ~< {aa1} cram # 00 d h
+     5 ~> %NC%
+     6 ~> apr4 ac+# 09 h
+     7 ~> apr4 ac+# 10 h
+     3 ~> apr4 ac+# 11 h
+     2 ~> apr4 ac+# 12 h
+
+Page: APR5, PDF386
+
+e67: 10158 4x2 mixer
+     5 ~< %NC%
+     6 ~< %NC%
+     3 ~< apr5 current block 4 h
+     4 ~< apr5 prev block 4 h
+     12 ~< apr5 current block 2 h
+     13 ~< apr5 prev block 2 h
+     10 ~< apr5 current block 1 h
+     11 ~< apr5 prev block 1 h
+     9 ~< {fm1} mcl4 xr previous h
+     1 ~> %NC%
+     2 ~> apr5 xr block 4 h
+     15 ~> apr5 xr block 2 h
+     14 ~> apr5 xr block 1 h
+
+e73: 10164 8 mixer
+     6 ~< apr5 current block 4 h
+     5 ~< apr5 current block 4 h
+     4 ~< apr5 xr block 4 h
+     3 ~< apr5 vma block 4 h
+     11 ~< apr5 current block 4 h
+     12 ~< apr5 current block 4 h
+     13 ~< apr5 current block 4 h
+     14 ~< {ep2} cram # 02 d h
+     10 ~< {ed2} cram fm adr sel 4 h
+     9 ~< {ee1} cram fm adr sel 2s h
+     7 ~< {ef2} cram fm adr sel 1 h
+     2 ~< %NC%
+     15 ~> {be1} apr fm block 4 h
+
+e72: 10164 8 mixer
+     6 ~< apr5 current block 2 h
+     5 ~< apr5 current block 2 h
+     4 ~< apr5 xr block 2 h
+     3 ~< apr5 vma block 2 h
+     11 ~< apr5 current block 2 h
+     12 ~< apr5 current block 2 h
+     13 ~< apr5 current block 2 h
+     14 ~< {ap1} cram # 03 d h
+     10 ~< {ed2} cram fm adr sel 4 h
+     9 ~< {ee1} cram fm adr sel 2s h
+     7 ~< {ef2} cram fm adr sel 1 h
+     2 ~< %NC%
+     15 ~> {br1} apr fm block 2 h
+
+e71: 10164 8 mixer
+     6 ~< apr5 current block 1 h
+     5 ~< apr5 current block 1 h
+     4 ~< apr5 xr block 1 h
+     3 ~< apr5 vma block 1 h
+     11 ~< apr5 current block 1 h
+     12 ~< apr5 current block 1 h
+     13 ~< apr5 current block 1 h
+     14 ~< {ap1} cram # 04 d h
+     10 ~< {ed2} cram fm adr sel 4 h
+     9 ~< {ee1} cram fm adr sel 2s h
+     7 ~< {ef2} cram fm adr sel 1 h
+     2 ~< %NC%
+     15 ~> {cf2} apr fm block 1 h
+
+e68: 10141 shift register
+     13 ~< %NC%
+     12 ~< apr1 ebus 06 h
+     11 ~< apr1 ebus 07 h
+     9 ~< apr1 ebus 08 h
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< {er1} con load ac blocks l
+     10 ~< {er1} con load ac blocks l
+     4 ~< apr2 clk a h
+     14 ~> apr5 current block 4 h
+     15 ~> apr5 current block 2 h
+     2 ~> apr5 current block 1 h
+     3 ~> %NC%
+
+e63: 10141 shift register
+     13 ~< %NC%
+     12 ~< apr1 ebus 09 h
+     11 ~< apr1 ebus 10 h
+     9 ~< apr1 ebus 11 h
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< {er1} con load ac blocks l
+     10 ~< {er1} con load ac blocks l
+     4 ~< apr2 clk a h
+     14 ~> apr5 prev block 4 h
+     15 ~> apr5 prev block 2 h
+     2 ~> apr5 prev block 1 h
+     3 ~> %NC%
+
+e8:  10141 shift register
+     13 ~< %NC%
+     12 ~< {ap1} cram # 03 d h
+     11 ~< {aj1} cram # 06 d h
+     9 ~< {ak2} cram # 07 d h
+     6 ~< {am1} cram # 08 d h
+     5 ~< %NC%
+     7 ~< apr5-internal-e3-3
+     10 ~< apr5-internal-e3-3
+     4 ~< apr2 clk f h
+     14 ~> {bh2} apr mbox ctl 03 h
+     15 ~> apr5-internal-e8-15
+     2 ~> {bj1} apr5 wr pt sel 0 h
+     3 ~> apr5-internal-e8-3
+
+e24: 10158 4x2 mixer
+     5 ~< %NC%
+     6 ~< %NC%
+     3 ~< apr5 current block 4 h
+     4 ~< apr5 prev block 4 h
+     12 ~< apr5 current block 2 h
+     13 ~< apr5 prev block 2 h
+     10 ~< apr5 current block 1 h
+     11 ~< apr5 prev block 1 h
+     9 ~< {am2} mcl4 vma prev en h
+     1 ~> %NC%
+     2 ~> apr5-internal-e24-2
+     15 ~> apr5-internal-e24-15
+     14 ~> apr5-internal-e24-14
+
+e29: 10141 shift register
+     13 ~< %NC%
+     12 ~< %NC%
+     11 ~< apr5-internal-e24-2
+     9 ~< apr5-internal-e24-15
+     6 ~< apr5-internal-e24-14
+     5 ~< %NC%
+     7 ~< {af2} mcl4 load vma context l
+     10 ~< {af2} mcl4 load vma context l
+     4 ~< apr2 clk e h
+     14 ~> %NC%
+     15 ~> apr5 vma block 4 h
+     2 ~> apr5 vma block 2 h
+     3 ~> apr5 vma block 1 h
+
+e10: 10101 quad or/nor
+     4 ~< apr3 # 01 l
+     12 ~< {af1} con cond/mbox ctl l
+     2 ~> %NC%
+     5 ~> {bd1} apr5 set page fail l
+     7 ~< apr3 # 02 l
+     3 ~> %NC%
+     6 ~> apr5 set i/o pf err l
+     10 ~< apr3 # 04 l
+     14 ~> %NC%
+     11 ~> {bd2} apr5 pt dir wr l
+     13 ~< apr3 # 05 l
+     15 ~> %NC%
+     9 ~> {bc1} apr5 pt wr l
+
+Page: APR6, PDF387
+
+e22: 10164 8 mixer
+     6 ~< apr2 s adr p err in h
+     5 ~< apr5 prev block 1 h
+     4 ~< apr2 s adr p err en in h
+     3 ~< {ck1} apr3 write comp h
+     11 ~< {bt2} apr fm adr 10 h
+     12 ~< {ch2} -apr2 wr bad adr par h
+     13 ~< {cj1} apr any ebox err flg h
+     14 ~< {ck2} -con fm write par h
+     10 ~< apr6 ds 04 h
+     9 ~< apr6 ds 05 h
+     7 ~< apr6 ds 06 h
+     2 ~< apr6 read 110-117 l
+     15 ~> {ds1} ebus d11 e h
+
+e21: 10164 8 mixer
+     6 ~< apr2 pwr fail in h
+     5 ~< {er1} shm1 ar extended h
+     4 ~< apr2 pwr fail en in h
+     3 ~< {ce1} apr3 user comp h
+     11 ~< {ca1} apr fm adr 4 h
+     12 ~< {cc1} apr6 ebox cca h
+     13 ~< {cd2} apr6 ebox ubr h
+     14 ~< {cd1} apr6 ebox ebr h
+     10 ~< apr6 ds 04 h
+     9 ~< apr6 ds 05 h
+     7 ~< apr6 ds 06 h
+     2 ~< apr6 read 110-117 l
+     15 ~> {cs1} ebus d12 e h
+
+e11: 10164 8 mixer
+     6 ~< apr2 sweep done in h
+     5 ~< {ce2} apr3 fm extended h
+     4 ~< apr2 sweep done en h
+     3 ~< %NC%
+     11 ~< {av2} apr fm adr 2 h
+     12 ~< {au2} apr ebox era h
+     13 ~< {at2} apr en refill ram wr h
+     14 ~< {as2} apr ebox spare h
+     10 ~< apr6 ds 04 h
+     9 ~< apr6 ds 05 h
+     7 ~< apr6 ds 06 h
+     2 ~< apr6 read 110-117 l
+     15 ~> {cs2} ebus d13 e h
+
+e34: 10174 2x4 mixer
+     3 ~< apr2 apr interrupt h
+     5 ~< apr4 ac+# 09 h
+     4 ~< {cv2} apr fm adr 1 h
+     6 ~< {cu2} apr6 ebox sbus diag h
+     13 ~< {ct2} pi3 apr pia 04 h
+     11 ~< apr4 ac+# 10 h
+     12 ~< apr4 f02 en h
+     10 ~< {aj2} -mcl1 mem/reg func h
+     9 ~< apr6 ds 04 h
+     7 ~< apr6 ds 06 h
+     14 ~< -apr6 ds 05 l
+     2 ~> {dk1} ebus d14 e h
+     15 ~> {dl1} ebus d15 e h
+
+e39: 10174 2x4 mixer
+     3 ~< {dh2} pi3 apr pia 02 h
+     5 ~< apr4 ac+# 11 h
+     4 ~< {de2} apr fm 36 h
+     6 ~< {dd2} -apr6 ebox load reg h
+     13 ~< {da1} pi3 apr pia 01 h
+     11 ~< apr4 ac+# 12 h
+     12 ~< {dd1} apr3 fm odd parity h
+     10 ~< {dc1} -apr6 ebox read reg h
+     9 ~< apr6 ds 04 h
+     7 ~< apr6 ds 06 h
+     14 ~< -apr6 ds 05 l
+     2 ~> {dl2} ebus d16 e h
+     15 ~> {dp1} ebus d17 e h
+
+e37: 10174 2x4 mixer
+     3 ~< apr1 sweep busy en h
+     5 ~< %NC%
+     4 ~< %NC%
+     6 ~< %NC%
+     13 ~< apr1 sbus err in h
+     11 ~< apr5 current block 4 h
+     12 ~< apr1 sbus err en in h
+     10 ~< %NC%
+     9 ~< apr6 ds 05 h
+     7 ~< apr6 ds 06 h
+     4 ~< -apr6 ds 04 l
+     2 ~> {cm1} ebus d01 e h
+     15 ~> {cm2} ebus d06 e h
+
+e13: 10164 8 mixer
+     6 ~< apr1 nxm err in h
+     5 ~< apr5 current block 2 h
+     4 ~< apr1 nxm err en in h
+     3 ~< %NC%
+     11 ~< {bh2} apr mbox ctl 03 h
+     12 ~< {bf2} apr mbox ctl 06 h
+     13 ~< {bj1} apr5 wr pt sel 0 h
+     14 ~< {bf1} apr5 wr pt sel 1 h
+     10 ~< apr6 ds 05 h
+     9 ~< apr6 ds 05 h
+     7 ~< apr6 ds 06 h
+     2 ~< apr6 read 110-117 l
+     15 ~> {cp1} ebus d07 e h
+
+e19: 10164 8 mixer
+     6 ~< apr1 i/o pf err in h
+     5 ~< apr5 current block 1 h
+     4 ~< apr1 i/o pf err en in h
+     3 ~< %NC%
+     11 ~< {be1} apr fm block 4 h
+     12 ~< {bd1} -apr5 set page fail h
+     13 ~< {bd2} -apr5 pt dir wr h
+     14 ~< {bc1} -apr5 pt wr h
+     10 ~< apr6 ds 05 h
+     9 ~< apr6 ds 05 h
+     7 ~< apr6 ds 06 h
+     2 ~< apr6 read 110-117 l
+     15 ~> {cp2} ebus d08 e h
+
+e18: 10164 8 mixer
+     6 ~< apr1 mb par err in h
+     5 ~< apr5 prev block 4 h
+     4 ~< apr1 mb par err en in h
+     3 ~< {br2} apr3 fetch comp h
+     11 ~< {br1} apr fm block 2 h
+     12 ~< {bp2} apr ebus return h
+     13 ~< {be2} -apr ebus req h
+     14 ~< {bp1} apr ebus demand h
+     10 ~< apr6 ds 05 h
+     9 ~< apr6 ds 05 h
+     7 ~< apr6 ds 06 h
+     2 ~< apr6 read 110-117 l
+     15 ~> {cl2} ebus d09 e h
+
+e17: 10164 8 mixer
+     6 ~< apr2 c dir p err in h
+     5 ~< apr5 prev block 2 h
+     4 ~< apr2 c dir p err en in h
+     3 ~< {cj2} apr3 read comp h
+     11 ~< {cf2} apr fm block 1 h
+     12 ~< {cf1} apr ebox disable cs h
+     13 ~< {bv2} apr ebus f01 e h
+     14 ~< {bu2} apr ebox send f02 h
+     10 ~< apr6 ds 05 h
+     9 ~< apr6 ds 05 h
+     7 ~< apr6 ds 06 h
+     2 ~< apr6 read 110-117 l
+     15 ~> {cr1} ebus d10 e h
+
+e16: 10101 quad or/nor
+     4 ~< {bl2} -diag 04 b l
+     12 ~< {bn1} ctl3 diag rd func 11x l
+     2 ~> %NC%
+     5 ~> -apr6 ds 04 l
+     7 ~< {bm2} -diag 05 b l
+     3 ~> %NC%
+     6 ~> -apr6 ds 05 l
+     10 ~< {bl1} -diag 06 b l
+     14 ~> %NC%
+     11 ~> -apr6 ds 06 l
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> apr6 read 110-117 l
+
+e4:  10141 shift register
+     13 ~< %NC%
+     12 ~< apr3 # 01 l
+     11 ~< apr3 # 02 l
+     9 ~< {aj2} mcl1 mem/reg func l
+     6 ~< {aj2} mcl1 mem/reg func l
+     5 ~< %NC%
+     7 ~< {ak1} mcl1 req en l
+     10 ~< {ak1} mcl1 req en l
+     4 ~< apr2 clk e h
+     14 ~> apr6-internal-e4-14
+     15 ~> apr6-internal-e4-15
+     2 ~> apr6 reg func en l
+     3 ~> apr6 reg func en b l
+
+e5:  10105 quad 2-3-2 or/nor
+     4 ~< apr6-internal-e4-14
+     5 ~< apr6 reg func en l
+     3 ~> %NC%
+     2 ~> {dd2} apr6 ebox load reg l
+     12 ~< apr6-internal-e4-15
+     13 ~< apr6 reg func en l
+     14 ~> apr6-internal-e5-14
+     15 ~> %NC%
+     9 ~< apr6-internal-e5-14
+     10 ~< %NC%
+     11 ~< {ar1} mcl6 ebox map h
+     6 ~> {dc1} apr6 ebox read reg l
+     7 ~> {ap2} apr6 ebox read reg h
+
+e7:  10141 shift register
+     13 ~< %NC%
+     12 ~< apr6 # 07 l
+     11 ~< apr6 # 06 l
+     9 ~< {ak2} -cram # 07 d l
+     6 ~< {am1} -cram # 08 d l
+     5 ~< %NC%
+     7 ~< {ak1} mcl1 req en l
+     10 ~< {ak1} mcl1 req en l
+     4 ~< apr2 clk f h
+     14 ~> apr6-internal-e7-14
+     15 ~> apr6-internal-e7-15
+     2 ~> apr6-internal-e7-2
+     3 ~> apr6-internal-e7-3
+
+e6:  10162 decoder
+     14 ~< apr6-internal-e7-15
+     9 ~< apr6-internal-e7-2
+     7 ~< apr6-internal-e7-3
+     15 ~< %NC%
+     2 ~< apr6 reg func en l
+     10 ~> {cd1} apr6 ebox ebr h
+     11 ~> {cd2} apr6 ebox ubr h
+     12 ~> {as2} apr6 ebox spare h
+     13 ~> %NC%
+     3 ~> apr6-internal-e6-3
+     4 ~> %NC%
+     5 ~> {at2} apr en refill ram wr h
+     6 ~> %NC%
+
+//   CRAM #       OUTPUTS
+// 06  07  08   10162   10109
+//     0          -       -
+//     1        SPARE
+//     2         UBR
+//     3         EBR
+//     4                 ERA [time critical]
+//     5        REFILL
+//     6                 CCA [time critical]
+//     7         SBUS
+
+e1:  10109 4/5 or/nor
+     9 ~< %NC%
+     10 ~< apr6-internal-e7-3
+     11 ~< apr6-internal-e7-14
+     12 ~< apr6-internal-e7-15
+     13 ~< apr6 reg func en b l
+     14 ~> {cc1} apr6 ebox cca h
+     15 ~> {ac1} apr6 ebox cca l
+     4 ~< apr6 reg func en b l
+     5 ~< apr6-internal-e7-15
+     6 ~< apr6-internal-e7-2
+     7 ~< apr6-internal-e7-3
+     3 ~> {au2} apr ebox era h
+     2 ~> {ad1} apr6 ebox era l
 
