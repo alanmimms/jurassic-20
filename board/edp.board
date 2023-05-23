@@ -105,7 +105,7 @@ e54: 10164 8 mix
      4 ~< {el1} ad [n+05] h
      3 ~< {du2} ebus d[n+05] e h
      11 ~< {ca1} sh [n+05] h
-     12 ~< {ep1} [n/30+1,adxyzzy [n+06] plugh,adx 00 h]
+     12 ~< {ep1} [n/30+1,ad [n+06] plugh,adx 00 h]
      13 ~< {es1} adx [n+05] h
      14 ~< {dr1} ad [n+03] h
      10 ~< edp-[n]-sel4
