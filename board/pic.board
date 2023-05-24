@@ -983,7 +983,7 @@ e53: 10101 quad or/nor
      5 ~> pi4 iob 15 h
      7 ~< {dv2} ebus d16 e h
      3 ~> pi4 iob 16 l
-     6 ~> Pi4 iob 16 h
+     6 ~> pi4 iob 16 h
      13 ~< {dt2} ebus d17 e h
      15 ~> pi4 iob 17 l
      9 ~> pi4 iob 17 h
