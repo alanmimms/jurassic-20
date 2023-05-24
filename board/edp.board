@@ -220,7 +220,7 @@ e55: 10164 8 mix
      11 ~< sh [n+00] h
      12 ~< adx [n+01] h
      13 ~< adx [n+00] h
-     14 ~< [(n+199)/100,ad 34 h,adx [n-2] h]
+     14 ~< [(n+199)/100,ad 34 h,adx [n-02] h]
      10 ~< edp-[n]-e55-sel4
      9 ~< edp-[n]-e55-sel2
      7 ~< edp-[n]-e55-sel1
@@ -235,7 +235,7 @@ e56: 10164 8 mix
      11 ~< {ec1} sh [n+01] h
      12 ~< adx [n+02] h
      13 ~< adx [n+01] h
-     14 ~< {es2} [(n+199)/100,ad 35 h,adx [n-1] h]
+     14 ~< {es2} [(n+199)/100,ad 35 h,adx [n-01] h]
      10 ~< edp-[n]-e55-sel4
      9 ~< edp-[n]-e55-sel2
      7 ~< edp-[n]-e55-sel1
@@ -318,11 +318,11 @@ e38: 10101 or buffer
      11 ~> %NC%
 
 e45: 10174 2x4 mix
-     3 ~< {cs2} [(n+199)/100,adx 34 h,mq [n-2] h]
+     3 ~< {cs2} [(n+199)/100,adx 34 h,mq [n-02] h]
      5 ~< {ed1} sh [n+00] h
      4 ~< {ep2} ad [n+00] h
      6 ~< edp-[n]-e45-d03
-     13 ~< [(n+199)/100,adx 35 h,mq [n-1] h]
+     13 ~< [(n+199)/100,adx 35 h,mq [n-01] h]
      11 ~< sh [n+01] h
      12 ~< ad [n+01] h
      10 ~< edp-[n]-e45-d03
@@ -485,14 +485,14 @@ e27: 10101 4xor/nor
       6 ~> %NC%
 
 e33:  10107 3x2 xor/xnor
-      4 ~< {cv2} ad ex [n-2] h
-      5 ~< {cr1} ad ex [n-1] h
+      4 ~< {cv2} ad ex [n-02] h
+      5 ~< {cr1} ad ex [n-01] h
       12 ~> internal-edp-[n]-e33-3 [n/6+1]
-      9 ~< {cr1} ad ex [n-1] h
+      9 ~< {cr1} ad ex [n-01] h
       7 ~< {ep2} ad [n+00] h
       10 ~> internal-edp-[n]-e33-10 [n/6+1]
       14 ~< internal-edp-[n]-e33-10 [n/6+1]
-      15 ~< ad cry [n-2] h
+      15 ~< ad cry [n-02] h
       12 ~> {ct2} ad cry [n+01] l
       13 ~> {cu2} ad cry [n+01] h
 
@@ -528,9 +528,9 @@ e7:   10109 or buffer
 
 e1:   10181 alu
       10 ~< ada [n+00] h
-      9 ~< adb [n-2] h
+      9 ~< adb [n-02] h
       16 ~< ada [n+00] h
-      11 ~< adb [n-1] h
+      11 ~< adb [n-01] h
       18 ~< ada [n+00] h
       19 ~< adb [n+00] h
       21 ~< ada [n+01] h
@@ -541,9 +541,9 @@ e1:   10181 alu
       17 ~< {ah2} cram ad sel 2 [n] h
       14 ~< {ad2} cram ad sel 1 [n] h
       23 ~< {an1} cram ad boole [n] h
-      5 ~> ad cry [n-2] h
-      6 ~> {cv2} ad ex [n-2] h
-      7 ~> {cr1} ad ex [n-1] h
+      5 ~> ad cry [n-02] h
+      6 ~> {cv2} ad ex [n-02] h
+      7 ~> {cr1} ad ex [n-01] h
       3 ~> {ep2} ad [n+00] h
       2 ~> {dl1} ad [n+01] h
       4 ~> {am1} ad cg [n+00] h
@@ -631,7 +631,7 @@ e22:  10164 8 mix
       9 ~< {bs1} cram adb sel 2 [n] h
       7 ~< {bt2} cram adb sel 1 [n] h
       2 ~< %NC%
-      15 ~> adb [n-2] h
+      15 ~> adb [n-02] h
 
 e21:  10164 8 mix
       6 ~< fm [n+00] h
@@ -646,7 +646,7 @@ e21:  10164 8 mix
       9 ~< {bs1} cram adb sel 2 [n] h
       7 ~< {bt2} cram adb sel 1 [n] h
       2 ~< %NC%
-      15 ~> adb [n-1] h
+      15 ~> adb [n-01] h
 
 e14:  10174 2x4 mix
       3 ~< {bk2} ar [n+00] h

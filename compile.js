@@ -3,6 +3,7 @@
 // TODO:
 // * '-con2 long en h' is the same signal as 'con2 long en l'. They should be connected in same net.
 // * Need dump of nets and their backplane slot/pin fullname and chip pin fullname.
+// * Join nets with same canonical name into a single fully connected net.
 
 const fs = require('fs');
 const util = require('util');
@@ -320,9 +321,9 @@ function evalExpr(t, macroEnv) {
     // the length of each of the operands.
     const L = evalExpr(t.l, macroEnv);
     const R = evalExpr(t.r, macroEnv);
-    const digits = Math.max(L.length, R.length);
     const resultStr = Math.trunc(eval(`${parseInt(L, 10)} ${t.nodeType} ${parseInt(R, 10)}`));
-    result = String(resultStr).padStart(digits, '0');
+    const digits = Math.max(L.length, R.length);
+    result = padValueToDigits(resultStr, digits)
     break;
 
   case 'IDList':
@@ -549,10 +550,45 @@ function testCanonicalize() {
   test1('-ctl2 ar 00-11 clr l', 'ctl2 ar 00-11 clr h');
 
   function test1(a, sb) {
-    if (canonicalize(a) != sb) console.error(`ERROR: canonicalize('${a}') != '${sb}' is '${canonicalize(a)}'`);
+
+    if (canonicalize(a) != sb) {
+      console.error(`ERROR: canonicalize('${a}') != '${sb}' is '${canonicalize(a)}'`);
+    }
   }
 }
 
 testCanonicalize();
+
+
+function padValueToDigits(v, digits) {
+
+  if (v < 0) {
+    return '-' + String(-v).padStart(digits, '0');
+  } else {
+    return String(v).padStart(digits, '0');
+  }
+}
+
+
+function testPadValueToDigits() {
+  test1(123, 4, '0123');
+  test1(123, 5, '00123');
+  test1(123, 3, '123');
+  test1(-123, 4, '-0123');
+  test1(-123, 5, '-00123');
+  test1(-123, 3, '-123');
+  test1(0, 4, '0000');
+  test1(0, 1, '0');
+
+  function test1(v, d, sb) {
+
+    if (padValueToDigits(v, d) !== sb) {
+      console.error(`ERROR: padValueToDigits(${v}, ${digits}) != '${sb}' is '${padValueToDigits(v, d)}'`);
+    }
+  }
+}
+
+testPadValueToDigits();
+
 
 module.exports.compile = compile;
