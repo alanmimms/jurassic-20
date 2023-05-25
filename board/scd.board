@@ -1069,8 +1069,8 @@ e5: 10105 triple 2-3-2 or/nor
     7 ~> %NC%
     13 ~< {cr1} scd5 user a h
     12 ~< scd5 jfcl h
-    14 ~> internal-scd4-e5-14
-    15 ~> internal-scd4-e5-15
+    14 ~> scd4-e5-14
+    15 ~> scd4-e5-15
 
 e4: 10104 quad and
     4 ~< {ap2} scr4 fpd h

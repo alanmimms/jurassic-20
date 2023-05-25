@@ -12,25 +12,25 @@ Page: SHM1, PDF334
 e46: 10104 quad and/nand
      6 ~< {dm1} scd2 sc 04 h
      7 ~< shm1 shift inh l
-     3 ~> shm1-internal-e46-3
+     3 ~> shm1-e46-3
      4 ~< {dk1} scd2 sc 05 h
      5 ~< shm1 shift inh l
-     2 ~> shm1-internal-e46-2
+     2 ~> shm1-e46-2
      12 ~< {dj1} scd2 sc 06 h
      13 ~< shm1 shift inh l
      9 ~> %NC%
-     15 ~> shm1-internal-e46-15
+     15 ~> shm1-e46-15
      10 ~< {df1} scd2 sc 07 h
      11 ~< shm1 shift inh l
-     14 ~> shm1-internal-e46-14
+     14 ~> shm1-e46-14
 
 e36: 10104 quad and/nand
      6 ~< {cp2} scd2 sc 08 h
      7 ~< shm1 shift inh l
-     3 ~> shm1-internal-e36-3
+     3 ~> shm1-e36-3
      10 ~< {cs2} scd2 sc 09 h
      11 ~< shm1 shift inh l
-     14 ~> shm1-internal-e36-14
+     14 ~> shm1-e36-14
      4 ~< {da1} cram sh-armm sel 2 a h
      5 ~< {de1} cram sh-armm sel 1 a h
      2 ~> shm1 shift 50 h
@@ -55,13 +55,13 @@ e41: 10109 4/5 or/nor
      2 ~> %NC%
 
 e49: 10110 or buffer
-     11 ~< shm1-internal-e46-3
+     11 ~< shm1-e46-3
      10 ~< shm1 shift 36 h
      9 ~< shm1 shift 50 h
      14 ~> shm1 shift 32 a h
      13 ~> shm1 shift 32 b h
      12 ~> shm1 shift 32 c h
-     5 ~< shm1-internal-e46-2
+     5 ~< shm1-e46-2
      6 ~< %NC%
      7 ~< shm1 shift 50 h
      2 ~> shm1 shift 16 a h
@@ -69,13 +69,13 @@ e49: 10110 or buffer
      4 ~> shm1 shift 16 c h
 
 e37: 10110 or buffer
-     11 ~< shm1-internal-e46-15
+     11 ~< shm1-e46-15
      10 ~< %NC%
      9 ~< %NC%
      14 ~> shm1 shift 08 a h
      13 ~> shm1 shift 08 b h
      12 ~> shm1 shift 08 c h
-     5 ~< shm1-internal-e46-14
+     5 ~< shm1-e46-14
      6 ~< shm1 shift 36 h
      7 ~< %NC%
      2 ~> shm1 shift 04 a h
@@ -83,13 +83,13 @@ e37: 10110 or buffer
      4 ~> shm1 shift 04 c h
 
 e18: 10110 or buffer
-     5 ~< shm1-internal-e36-3
+     5 ~< shm1-e36-3
      6 ~< %NC%
      7 ~< shm1 shift 50 h
      2 ~> shm1 shift 02 a h
      3 ~> shm1 shift 02 b h
      4 ~> shm1 shift 02 c h
-     9 ~< shm1-internal-e36-14
+     9 ~< shm1-e36-14
      10 ~< %NC%
      11 ~< %NC%
      12 ~> shm1 shift 01 a h
@@ -221,7 +221,7 @@ e57: 10105 2-3-2 or/nor
      13 ~< %NC%
      14 ~> {ea1} shm1 ar par odd b l
      15 ~> {ed1} shm1 ar par odd b h
-     4 ~< shm1-internal-e85-14
+     4 ~< shm1-e85-14
      5 ~< {ej2} -ar 00 b l
      3 ~> {dc1} shm1 ar extended h
      2 ~> %NC%
@@ -262,22 +262,22 @@ e77: 10109 4/5 or/nor
      6 ~< {ev2} ar 06 b h
      7 ~< {fr2} ar 07 b h
      3 ~> %NC%
-     2 ~> shm1-internal-e77-2
+     2 ~> shm1-e77-2
      9 ~< {ep2} ar 08 b h
      10 ~< {em2} ar 09 b h
      11 ~< {ff2} ar 10 b h
      12 ~< {fu2} ar 11 b h
      13 ~< %NC%
      14 ~> %NC%
-     15 ~> shm1-internal-e77-2
+     15 ~> shm1-e77-2
 
 e85: 10109 4/5 or/nor
-     9 ~< shm1-internal-e77-2
+     9 ~< shm1-e77-2
      10 ~< {ej1} ar 12 b h
      11 ~< {ee1} ar 13 b h
      12 ~< {fk1} ar 14 b h
      13 ~< {fj1} ar 15 b h
-     14 ~> shm1-internal-e85-14
+     14 ~> shm1-e85-14
      15 ~> %NC%
 
 Page: SHM2, PDF335
@@ -587,7 +587,7 @@ e39: 10158 4x2 mixer
      6 ~< {cm1} arx 20 h
      3 ~< {cl1} arx 05 h
      4 ~< {ck2} arx 21 h
-     12 ~< {cj2} arx 06 a
+     12 ~< {cj2} arx 06 a h
      13 ~< {cf1} arx 22 h
      10 ~< {cj1} arx 07 a h
      11 ~< {ck1} arx 23 h

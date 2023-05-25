@@ -98,11 +98,11 @@ e77: 10173 4x2 mix latch
 
 e71: 10173 4x2 mix latch
      5 ~< ir 03 h
-     6 ~< internal-e76-2
+     6 ~< ird-e76-2
      3 ~< ir 04 h
-     4 ~< internal-e76-3
+     4 ~< ird-e76-3
      12 ~< ir 05 h
-     13 ~< internal-e76-14
+     13 ~< ird-e76-14
      10 ~< %NC%
      11 ~< %NC%
      9 ~< instr 7xx h
@@ -144,15 +144,15 @@ e55: 10121 4-wide or-and/or-and
      2 ~> instr 7xx h
 
 e76: 10103 quad or
-     4 ~< internal-e75-2
+     4 ~< ird-e75-2
      5 ~< ir 07 h
-     2 ~> internal-e76-2
-     6 ~< internal-e75-2
+     2 ~> ird-e76-2
+     6 ~< ird-e75-2
      7 ~< ir 08 h
-     3 ~> internal-e76-3
-     10 ~< internal-e75-2
+     3 ~> ird-e76-3
+     10 ~< ird-e75-2
      11 ~< ir 09 h
-     14 ~> internal-e76-14
+     14 ~> ird-e76-14
 
 e41: 10210 2x3 or
      5 ~< {df2} -con load dram h
@@ -626,7 +626,7 @@ e50: 10107 3x2 xor/xnor
      12 ~> a>b l
      13 ~> %NC%
      4 ~< dram b 00 h
-     5 ~< internal-e45-3
+     5 ~< ird-e45-3
      2 ~> {ee2} ir test satisfied l
      3 ~> {cr1} ir test satisfied h
 
@@ -637,12 +637,12 @@ e45: 10121 4-wide or-and/or-and
      7 ~< -cram # 07 f l
      9 ~< a>b l
      10 ~< -dram b 02 l
-     11 ~< internal-e12-14
+     11 ~< ird-e12-14
      12 ~< -cram # 08 f l
      13 ~< %NC%
      14 ~< -ir #06=07 h
      15 ~< -ad cry -02 a l
-     3 ~> internal-e45-3
+     3 ~> ird-e45-3
      2 ~> %NC%
 
 e57: 10161 decoder
@@ -656,9 +656,9 @@ e57: 10161 decoder
      4 ~> dram load j common l
      3 ~> dram load j even l
      13 ~> dram load j odd l
-     12 ~> internal-e57-12
-     11 ~> internal-e57-11
-     10 ~> internal-e57-10
+     12 ~> ird-e57-12
+     11 ~> ird-e57-11
+     10 ~> ird-e57-10
 
 e40: 10101 quad or/nor
      10 ~< ebus d[n+00] e h
@@ -668,21 +668,21 @@ e40: 10101 quad or/nor
      13 ~< ebus d[n+01] e h
      9 ~> dr ebus [n+01] h
      15 ~> %NC%
-     4 ~< internal-e57-10
-     2 ~> internal-e40-2
+     4 ~< ird-e57-10
+     2 ~> ird-e40-2
      5 ~> %NC%
 
 e68: 10117 dual 2-3 or-and/or-and
-     4 ~< internal-e57-12
+     4 ~< ird-e57-12
      5 ~< %NC%
-     6 ~< internal-e40-2
+     6 ~< ird-e40-2
      7 ~< ir en i/o, jrst h
      9 ~< %NC%
      3 ~> ir en i/o, jrst l
      2 ~> ir en i/o, jrst h
-     12 ~< internal-e57-11
+     12 ~< ird-e57-11
      13 ~< %NC%
-     10 ~< internal-e40-2
+     10 ~< ird-e40-2
      11 ~< ir en ac h
      14 ~> ir en ac l
      15 ~> ir en ac h
@@ -700,10 +700,10 @@ e17: 10160 parity
      13 ~< %NC%
      14 ~< %NC%
      15 ~< dram par h
-     2 ~> internal-e17-2
+     2 ~> ird-e17-2
 
 e56: 10160 parity
-     3 ~< internal-e17-2
+     3 ~< ird-e17-2
      4 ~< dram j 01
      5 ~< dram j 02 h
      6 ~< dram j 03 h
@@ -722,14 +722,14 @@ e65: 10109 2x2/4 or/nor
      5 ~< -ir 10 l
      6 ~< -ir 11 l
      7 ~< -ir 12 l
-     2 ~> internal-e65-2
+     2 ~> ird-e65-2
      3 ~> %NC%
      9 ~< -ir 00 l
      10 ~< -ir 02 l
      11 ~< -ir 04 l
      12 ~< -ir 07 l
      13 ~< -ir 08 l
-     15 ~> internal-e65-15
+     15 ~> ird-e65-15
      14 ~> %NC%
 
 e60: 10121 4-wide or-and/or-and
@@ -744,33 +744,33 @@ e60: 10121 4-wide or-and/or-and
      13 ~< %NC%
      14 ~< ir 06 h
      15 ~< %NC%
-     3 ~> internal-e65-15
+     3 ~> ird-e65-15
      2 ~> %NC%
 
 e62: 10103 quad or
      6 ~< ir en i/o, jrst l
-     7 ~< internal-e65-15
+     7 ~< ird-e65-15
      3 ~> ir jrst l
-     12 ~< internal-e65-2
+     12 ~< ird-e65-2
      13 ~< ir jrst l
      15 ~> {cj1} ir jrst 0, l
      9 ~> %NC%
      10 ~< -ad 00-05=0 h
      11 ~< ad 06 a h
-     14 ~> internal-e62-14
-     4 ~< internal-e75-15
+     14 ~> ird-e62-14
+     4 ~< ird-e75-15
      5 ~< -ad 00-05=0 h
      2 ~> {cp2} -ad=0 h
 
 e67: 10165 pri enc
      5 ~< %NC%
      7 ~< ad 00 a h
-     13 ~< internal-e62-14
+     13 ~< ird-e62-14
      10 ~< ad 07 h
      11 ~< ad 08 h
      12 ~< ad 09 h
      9 ~< ad 10 a h
-     6 ~< internal-e75-15
+     6 ~< ird-e75-15
      4 ~< %NC%
      14 ~> %NC%
      15 ~> {cs1} ir norm 10 h
@@ -782,14 +782,14 @@ e75: 10109 dual 2/4 or/nor
      5 ~< -ir 04 l
      6 ~< -ir 05 l
      7 ~< -ir 06 l
-     2 ~> internal-e75-2
+     2 ~> ird-e75-2
      3 ~> %NC%
      9 ~< {fm2} -ad 06-11=0 h
      10 ~< {fn1} -ad 12-17=0 h
      11 ~< {fm1} -ad 18-23=0 h
      12 ~< {fl2} -ad 24-29=0 h
      13 ~< {fl1} -ad 30-36=0 h
-     15 ~> internal-e75-15
+     15 ~> ird-e75-15
      14 ~> %NC%
 
 e54: 10101 quad or/nor
@@ -829,7 +829,7 @@ e36: 10164 8 mix
      3 ~< dram a 00 h
      11 ~< ir test satisfied h
      12 ~< dram par h
-     13 ~< -ad=0
+     13 ~< -ad=0 h
      14 ~< ad cry 12 h
      10 ~< dr diag 04 h
      9 ~< dr diag 05 h
@@ -916,7 +916,7 @@ Page: IR4, PDF131
 
 e12: 10101 quad or/nor
      10 ~< ad 00 a h
-     14 ~> internal-e12-14
+     14 ~> ird-e12-14
      11 ~> %NC%
      7 ~< {ca1} ad cry -02 h
      12 ~< %NC%

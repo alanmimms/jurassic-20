@@ -4,29 +4,29 @@ Page: PIC1, PDF199
 e66: 10101 quad or/nor
      4 ~< pi4 iob 11 l
      12 ~< pi4 on clr l
-     2 ~> pi1-internal-e66-2
+     2 ~> pi1-e66-2
      5 ~> %NC%
      7 ~< pi4 iob 12 l
-     3 ~> pi1-internal-e66-3
+     3 ~> pi1-e66-3
      6 ~> %NC%
      10 ~< pi4 iob 13 l
-     14 ~> pi1-internal-e66-14
+     14 ~> pi1-e66-14
      11 ~> %NC%
      13 ~< pi4 iob 14 l
-     15 ~> pi1-internal-e66-15
+     15 ~> pi1-e66-15
      9 ~> %NC%
 
 e62: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 11 l
-     6 ~< pi1-internal-e66-2
+     6 ~< pi1-e66-2
      9 ~< -pi4 sys clr l
      7 ~< pi1 on 1 l
      3 ~> pi1 on 1 h
      2 ~> pi1 on 1 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 11 l
-     10 ~< pi1-internal-e61-2
+     10 ~< pi1-e61-2
      9 ~< -pi4 sys clr l
      11 ~< pi1 gen 1 l
      14 ~> pi1 gen 1 h
@@ -35,16 +35,16 @@ e62: 10117 dual 2-3 or-and
 e61: 10101 quad or/nor
      4 ~< pi4 iob 11 l
      12 ~< pi4 gen clr l
-     2 ~> pi1-internal-e61-2
+     2 ~> pi1-e61-2
      5 ~> %NC%
      7 ~< pi4 iob 12 l
-     3 ~> pi1-internal-e61-3
+     3 ~> pi1-e61-3
      6 ~> %NC%
      10 ~< pi4 iob 13 l
-     14 ~> pi1-internal-e61-14
+     14 ~> pi1-e61-14
      11 ~> %NC%
      13 ~< pi4 iob 14 l
-     15 ~> pi1-internal-e61-15
+     15 ~> pi1-e61-15
      9 ~> %NC%
 
 e57: 10117 dual 2-3 or-and
@@ -66,14 +66,14 @@ e57: 10117 dual 2-3 or-and
 e67: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 12 l
-     6 ~< pi1-internal-e66-3
+     6 ~< pi1-e66-3
      9 ~< -pi4 sys clr l
      7 ~< pi1 on 2 l
      3 ~> pi1 on 2 h
      2 ~> pi1 on 2 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 12 l
-     10 ~< pi1-internal-e61-3
+     10 ~< pi1-e61-3
      9 ~< -pi4 sys clr l
      11 ~< pi1 gen 2 l
      14 ~> pi1 gen 2 h
@@ -82,14 +82,14 @@ e67: 10117 dual 2-3 or-and
 e71: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 13 l
-     6 ~< pi1-internal-e66-14
+     6 ~< pi1-e66-14
      9 ~< -pi4 sys clr l
      7 ~< pi1 on 3 l
      3 ~> pi1 on 3 h
      2 ~> pi1 on 3 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 13 l
-     10 ~< pi1-internal-e61-14
+     10 ~< pi1-e61-14
      9 ~< -pi4 sys clr l
      11 ~< pi1 gen 3 l
      14 ~> pi1 gen 3 h
@@ -114,14 +114,14 @@ e72: 10117 dual 2-3 or-and
 e70: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 14 l
-     6 ~< pi1-internal-e66-15
+     6 ~< pi1-e66-15
      9 ~< -pi4 sys clr b l
      7 ~< pi1 on 4 l
      3 ~> pi1 on 4 h
      2 ~> pi1 on 4 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 14 l
-     10 ~< pi1-internal-e61-15
+     10 ~< pi1-e61-15
      9 ~< -pi4 sys clr b l
      11 ~< pi1 gen 4 l
      14 ~> pi1 gen 4 h
@@ -130,25 +130,25 @@ e70: 10117 dual 2-3 or-and
 e58: 10101 quad or/nor
      4 ~< pi4 iob 15 l
      12 ~< pi4 on clr l
-     2 ~> pi1-internal-e58-2
+     2 ~> pi1-e58-2
      5 ~> %NC%
      7 ~< pi4 iob 16 l
-     3 ~> pi1-internal-e58-3
+     3 ~> pi1-e58-3
      6 ~> %NC%
      10 ~< pi4 iob 17 l
-     14 ~> pi1-internal-e58-14
+     14 ~> pi1-e58-14
 
 e69: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 15 l
-     6 ~< pi1-internal-e58-2
+     6 ~< pi1-e58-2
      9 ~< -pi4 sys clr b l
      7 ~< pi1 on 5 l
      3 ~> pi1 on 5 h
      2 ~> pi1 on 5 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 15 l
-     10 ~< pi1-internal-e63-2
+     10 ~< pi1-e63-2
      11 ~< pi1 gen 5 l
      14 ~> pi1 gen 5 h
      15 ~> pi1 gen 5 l
@@ -156,14 +156,14 @@ e69: 10117 dual 2-3 or-and
 e63: 10101 quad or/nor
      4 ~< pi4 iob 15 l
      12 ~< pi4 gen clr l
-     2 ~> pi1-internal-e63-2
+     2 ~> pi1-e63-2
      5 ~> %NC%
      7 ~< pi4 iob 16 l
-     3 ~> pi1-internal-e63-3
+     3 ~> pi1-e63-3
      6 ~> %NC%
      12 ~< pi4 gen set l
      13 ~< pi4 iob 17 l
-     10 ~< pi1-internal-e63-14
+     10 ~< pi1-e63-14
      9 ~> -pi4 sys clr b l
      11 ~> pi1 gen 7 l
      14 ~> pi1 gen 7 h
@@ -188,14 +188,14 @@ e73: 10117 dual 2-3 or-and
 e68: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 16 l
-     6 ~< pi1-internal-e58-3
+     6 ~< pi1-e58-3
      9 ~< -pi4 sys clr b l
      7 ~< pi1 on 6 l
      3 ~> pi1 on 6 h
      2 ~> pi1 on 6 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 16 l
-     10 ~< pi1-internal-e63-3
+     10 ~< pi1-e63-3
      9 ~< -pi4 sys clr b l
      11 ~< pi1 gen 6 l
      14 ~> pi1 gen 6 h
@@ -204,7 +204,7 @@ e68: 10117 dual 2-3 or-and
 e64: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 17 l
-     6 ~< pi1-internal-e58-14
+     6 ~< pi1-e58-14
      9 ~< -pi4 sys clr b l
      7 ~< pi1 on 7 l
      3 ~> pi1 on 7 h
@@ -236,8 +236,8 @@ e81: 10104 quad and/nand
      10 ~< pi1 pih3 h
      11 ~< -pi2 pi3 clr h
      14 ~> pi2 pi3 req set h
-     12 ~< pic4-internal-e17-15
-     13 ~< pic4-internal-e56-14
+     12 ~< pic4-e17-15
+     13 ~< pic4-e56-14
      9 ~> {fc1} ebus f02 e h
      15 ~> %NC%
 
@@ -401,25 +401,25 @@ e78: 10165 priority encoder
 e49: 10103 quad or
      6 ~< pic1 pih4 h
      7 ~< pic2 pi4 l
-     3 ~> pic2-internal-e49-3
+     3 ~> pic2-e49-3
      10 ~< pic2 phy no. 08 h
      11 ~< {cs1} apr ebox disable cs h
-     14 ~> pic2-internal-e49-14
+     14 ~> pic2-e49-14
      4 ~< pic2 phy no. 08 h
-     5 ~< pic2-internal-e35-14
+     5 ~< pic2-e35-14
      2 ~> pic2 phy force h
      12 ~< {cs1} -apr ebox disable cs l
-     13 ~< pic2-internal-e35-14
+     13 ~< pic2-e35-14
      9 ~> pic2 sel phy 8 h
      15 ~> %NC%
 
 // Why is e77 very clearly defined on multiple pages of this module?
 e77z: 10165 priority encoder
-     5 ~< pic2-internal-e49-3
+     5 ~< pic2-e49-3
      14 ~> pic2 pi4 l
-     15 ~> pic2-internal-e78-15
-     2 ~> pic2-internal-e78-2
-     3 ~> pic2-internal-e78-3
+     15 ~> pic2-e78-15
+     2 ~> pic2-e78-2
+     3 ~> pic2-e78-3
      7 ~< pi1 pir4 h
      14 ~> %NC%
      15 ~> pic2 pi2 h
@@ -430,7 +430,7 @@ e77z: 10165 priority encoder
      4 ~< %NC%
 
 e35: 10165 priority encoder
-     5 ~< pic2-internal-e49-14
+     5 ~< pic2-e49-14
      7 ~< pic2 phy no. 01 h
      13 ~< pic2 phy no. 02 h
      10 ~< pic2 phy no. 03 h
@@ -438,10 +438,10 @@ e35: 10165 priority encoder
      12 ~< pic2 phy no. 05 h
      9 ~< pic2 phy no. 06 h
      6 ~< pic2 phy no. 07 h
-     14 ~> pic2-internal-e35-14
+     14 ~> pic2-e35-14
      15 ~> pic2 sel phy 4 h
      2 ~> pic2 sel phy 2 h
-     3 ~> pic2 sel phy 1
+     3 ~> pic2 sel phy 1 h
 
 e40: 10165 priority encoder
      5 ~< pic2 phy force h
@@ -455,7 +455,7 @@ e40: 10165 priority encoder
      14 ~> %NC%
      15 ~> pic2 sel phy 4 h
      2 ~> pic2 sel phy 2 h
-     3 ~> pic2 sel phy 1
+     3 ~> pic2 sel phy 1 h
 
 e2:  10141 shift register
      13 ~< pic5 cyc start h
@@ -491,7 +491,7 @@ e21: 10101 quad or/nor
      7 ~< {bl1} diag 06 b h
      3 ~> %NC%
      6 ~> pi4 diag 06 h
-     13 ~< pic5-internal-e19-2
+     13 ~< pic5-e19-2
      15 ~> pic5 bus en l
      9 ~> %NC%
 
@@ -516,14 +516,14 @@ e14: 10104 quad and/nand
      3 ~> {ca1} pi2 ready h
      4 ~< pic2 disable rdy on halt l
      5 ~< {at2} -con pi cycle b h
-     2 ~> pic2-internal-e14-2
+     2 ~> pic2-e14-2
      12 ~< {df2} ebus d07 e h
-     13 ~< pic4-internal-e4-3
+     13 ~< pic4-e4-3
      9 ~> pi4 on set l
      15 ~> %NC%
      10 ~< {bn1} ebus demand e h
      11 ~< -pic2 tran rec h
-     14 ~> pic5-internal-e14-14
+     14 ~> pic5-e14-14
 
 // Why is e82 very clearly defined on multiple pages of this module?
 e82z: 10165 priority encoder
@@ -579,10 +579,10 @@ e18: 10103 quad or
      2 ~> pic2 ebus return h
      6 ~< pic2 tim2 h
      7 ~< pic2 tim6 h
-     3 ~> pic2-internal-e18-3
+     3 ~> pic2-e18-3
      10 ~< pi5 ebus pi grant h
      11 ~< {cs1} apr ebox disable cs h
-     14 ~> pic4-internal-e18-14
+     14 ~> pic4-e18-14
      12 ~< {ba1} ebus pi02 e h
      13 ~< pi3 pi02 h
      9 ~> pi4 io req2 l
@@ -597,11 +597,11 @@ e9:  10104 quad and/nand
      11 ~< -pic5 cyc start h
      14 ~> pic2 state hold h
      6 ~< pic2 tim6 h
-     7 ~< pic2-internal-e14-2
+     7 ~< pic2-e14-2
      3 ~> pic2 state hold h
      4 ~< pic2 tim5 h
      5 ~< -pic2 tran rec h
-     2 ~> pic2-internal-e9-2
+     2 ~> pic2-e9-2
 
 e24: 10103 quad or
      6 ~< pic5 pi disable l
@@ -609,10 +609,10 @@ e24: 10103 quad or
      3 ~> pic2 disable rdy on halt l
      4 ~< pi4 cono dly l
      5 ~< {be2} -ctl console control l
-     2 ~> pic4-internal-e24-2
+     2 ~> pic4-e24-2
      12 ~< {be2} -ctl console control l
      13 ~< {fr2} con cono pi l
-     9 ~> pic4-internal-e24-9
+     9 ~> pic4-e24-9
      15 ~> %NC%
 
 e7:  10105 2-3-2 or/nor
@@ -623,12 +623,12 @@ e7:  10105 2-3-2 or/nor
      4 ~< {ar1} ebus xfer e h
      5 ~< pic5 xfer force h
      3 ~> %NC%
-     2 ~> pic2-internal-e7-2
-     9 ~< pic2-internal-e18-3
+     2 ~> pic2-e7-2
+     9 ~< pic2-e18-3
      10 ~< pic5 cyc start h
      11 ~< pic2 tim3 h
      6 ~> %NC%
-     7 ~> pic2-internal-e7-7
+     7 ~> pic2-e7-7
 
 e17: 10118 triple 4-2 or-and
      9 ~< %NC%
@@ -637,23 +637,23 @@ e17: 10118 triple 4-2 or-and
      5 ~< pic2 tim2 h
      4 ~< pic2 tim 5,6 h
      3 ~< pic2 tim6 h
-     2 ~> pic2-internal-e17-2
-     12 ~< pic4-internal-e17-15
+     2 ~> pic2-e17-2
+     12 ~< pic4-e17-15
      13 ~< -pi4 mr reset l
      14 ~< -pi2 comp l
      10 ~< pi2 tim4 l
      11 ~< %NC%
      9 ~< %NC%
-     15 ~> pic4-internal-e17-15
+     15 ~> pic4-e17-15
 
 e8:  10103 quad or
-     4 ~< pic2-internal-e17-2
+     4 ~< pic2-e17-2
      5 ~< {am2} apr ebus demand h
      2 ~> {bn1} ebus demand e h
      6 ~< pic2 tim1 h
-     7 ~< pic2-internal-e18-3
-     3 ~> pic2-internal-e8-3
-     10 ~< pic2-internal-e15-15
+     7 ~< pic2-e18-3
+     3 ~> pic2-e8-3
+     10 ~< pic2-e15-15
      11 ~< pic2 tim6 h
      14 ~> pic2 timer done h
      12 ~< {aj1} ebus pi01 e h
@@ -730,7 +730,7 @@ e3:  10141 shift register
      11 ~< %NC%
      9 ~< %NC%
      6 ~< %NC%
-     5 ~< pic2-internal-e7-2
+     5 ~< pic2-e7-2
      7 ~< -pic2 ebus return h
      10 ~< %NC%
      4 ~< pic2 clk e h
@@ -747,31 +747,31 @@ e4:  10101 quad or/nor
      14 ~> pic2 tran rec l
      11 ~> {aa1} pi2 ext tran rec h
      4 ~< -pi3 dk20 phy no. h
-     15 ~> pic2-internal-e4-15
+     15 ~> pic2-e4-15
      9 ~> %NC%
      4 ~< -pi3 dk20 phy no. h
      2 ~> pi3 dk20 phy no. h
      5 ~> %NC%
-     7 ~< pic4-internal-e4-7
-     3 ~> pic4-internal-e4-3
+     7 ~< pic4-e4-7
+     3 ~> pic4-e4-3
      6 ~> %NC%
 
 e46: 10105 2-3-2 or/nor
      9 ~< pic2 timer done h
      10 ~< pic2 ebus return h
      11 ~< pic5 cyc start h
-     6 ~> pic2-internal-e46-6
+     6 ~> pic2-e46-6
      7 ~> %NC%
 
 e10: 10136 binary counter
-     5 ~< pic2-internal-e8-3
-     6 ~< pic2-internal-e7-7
+     5 ~< pic2-e8-3
+     6 ~< pic2-e7-7
      11 ~< pic2 tim5 h
-     12 ~< pic2-internal-e4-15
-     10 ~< pic2-internal-e9-2
-     7 ~< pic2-internal-e46-6
+     12 ~< pic2-e4-15
+     10 ~< pic2-e9-2
+     7 ~< pic2-e46-6
      13 ~< pic2 clk f h
-     4 ~> pic2-internal-e10-4
+     4 ~> pic2-e10-4
      3 ~> %NC%
      2 ~> %NC%
      15 ~> %NC%
@@ -782,13 +782,13 @@ e15: 10136 binary counter
      6 ~< %NC%
      11 ~< pic2 tim7 h
      12 ~< -pic2 tim1 h
-     10 ~< pic2-internal-e10-4
-     7 ~< pic2-internal-e46-6
+     10 ~< pic2-e10-4
+     7 ~< pic2-e46-6
      13 ~< pic2 clk f h
      4 ~> %NC%
      3 ~> %NC%
      2 ~> %NC%
-     15 ~> pic2-internal-e15-15
+     15 ~> pic2-e15-15
      14 ~> %NC%
 
 Page: PIC3, PDF201
@@ -847,10 +847,10 @@ e43: 10104 quad and/nand
      14 ~> {de1} pi3 mtr honor h
      6 ~< {df1} -con cono apr h
      7 ~< -pi4 mr reset h
-     3 ~> pic3-internal-e43-3
+     3 ~> pic3-e43-3
      4 ~< {dj2} -mtr cono mtr. h
      5 ~< -pi4 mr reset h
-     2 ~> pic3-internal-e43-2
+     2 ~> pic3-e43-2
 
 e54: 10141 shift register
      13 ~< %NC%
@@ -860,7 +860,7 @@ e54: 10141 shift register
      6 ~< %NC%
      5 ~< %NC%
      7 ~< {df1} -con cono apr h
-     10 ~< pic3-internal-e43-3
+     10 ~< pic3-e43-3
      4 ~< pi2 clk c h
      14 ~> {dk1} pi3 apr pia 04 h
      15 ~> {dk2} pi3 apr pia 02 h
@@ -876,7 +876,7 @@ e49z: 10141 shift register
      6 ~< %NC%
      5 ~< %NC%
      7 ~< {dj2} -mtr cono mtr. h
-     10 ~< pic3-internal-e43-2
+     10 ~< pic3-e43-2
      4 ~< pi2 clk c h
      14 ~> {dj1} pi3 mtr pia 04 h
      15 ~> {cu2} pi3 mtr pia 02 h
@@ -909,7 +909,7 @@ e56: 10101 quad or/nor
      15 ~> pi4 sys clr a l
      9 ~> pi4 sys clr b h
      10 ~< {dr2} apr ebox send f02 h
-     14 ~> pic4-internal-e56-14
+     14 ~> pic4-e56-14
      11 ~> %NC%
 
 Page: PIC4, PDF202
@@ -923,7 +923,7 @@ e23: 10158 4x2 mixer
      13 ~< pi2 sel phy 2 h
      10 ~< {bf2} ir 06 h
      11 ~< pi2 sel phy 1 h
-     9 ~< pic4-internal-e18-14
+     9 ~< pic4-e18-14
      1 ~> {ce1} ebus cs00 e h
      2 ~> {bs2} ebus cs01 e h
      15 ~> {bp2} ebus cs02 e h
@@ -938,7 +938,7 @@ e36: 10158 4x2 mixer
      13 ~< pi2 pi1 h
      10 ~< %NC%
      11 ~< pi5 ebus pi grant h
-     9 ~< pic4-internal-e18-14
+     9 ~< pic4-e18-14
      1 ~> {ch2} ebus cs04 e h
      2 ~> {cc1} ebus cs05 e h
      15 ~> {br1} ebus cs06 e h
@@ -946,20 +946,20 @@ e36: 10158 4x2 mixer
 
 e26: 10104 quad and/nand
      6 ~< {cd1} ebus d05 e h
-     7 ~< pic4-internal-e24-9
-     3 ~> pic4-internal-e26-3
+     7 ~< pic4-e24-9
+     3 ~> pic4-e26-3
      10 ~< {da1} ebus d09 e h
-     11 ~< pic4-internal-e4-3
+     11 ~< pic4-e4-3
      12 ~< {dd2} ebus d10 e h
-     13 ~< pic4-internal-e4-3
+     13 ~< pic4-e4-3
      9 ~> pi4 on l
      15 ~> %NC%
      4 ~< -pic5 ebus cp grant h
      5 ~< -pic2 tim 5,6 h
-     2 ~> pic5-internal-e26-2
+     2 ~> pic5-e26-2
 
 e48: 10105 2-3-2 or/nor
-     13 ~< pic4-internal-e26-3
+     13 ~< pic4-e26-3
      12 ~< {dl2} mr reset 02 h
      14 ~> %NC%
      15 ~> pi4 sys clr h
@@ -990,7 +990,7 @@ e53: 10101 quad or/nor
 
 e38: 10104 quad and/nand
      12 ~< {cd2} ebus d04 e h
-     13 ~< pic4-internal-e4-3
+     13 ~< pic4-e4-3
      9 ~> pi4 gen clr l
      15 ~> %NC%
      4 ~< pi1 pih1 h
@@ -1005,7 +1005,7 @@ e38: 10104 quad and/nand
 
 e41: 10104 quad and/nand
      12 ~< {cr1} ebus d06 e h
-     13 ~< pic4-internal-e4-3
+     13 ~< pic4-e4-3
      9 ~> pi4 gen set l
      15 ~> %NC%
      4 ~< pi1 pih4 h
@@ -1020,7 +1020,7 @@ e41: 10104 quad and/nand
 
 e19: 10104 quad and/nand
      12 ~< {de2} ebus d08 e h
-     13 ~< pic4-internal-e4-3
+     13 ~< pic4-e4-3
      9 ~> pi4 on clr l
      15 ~> %NC%
      10 ~< pic5 ebus pi grant l
@@ -1028,10 +1028,10 @@ e19: 10104 quad and/nand
      14 ~> pic5 inhibit req l
      6 ~< pic5 inhibit req l
      7 ~< -pic4 cono dly h
-     3 ~> pic5-internal-e19-3
+     3 ~> pic5-e19-3
      4 ~< -pic2 ebus return h
      5 ~< pic2 tim6 h
-     2 ~> pic5-internal-e19-2
+     2 ~> pic5-e19-2
 
 e22: 10104 quad and/nand
      4 ~< pi1 pih7 h
@@ -1080,7 +1080,7 @@ e32: 10174 2x4 mixer
 
 e27: 10174 2x4 mixer
      3 ~< pi1 on 2 h
-     5 ~< pi1 gen 2
+     5 ~< pi1 gen 2 h
      4 ~< {br1} ebus cs06 e h
      6 ~< pi5 ebus pi grant h
      13 ~< pi1 on 3 h
@@ -1095,7 +1095,7 @@ e27: 10174 2x4 mixer
 
 e33: 10174 2x4 mixer
      3 ~< pi1 on 4 h
-     5 ~< pi1 gen 4
+     5 ~< pi1 gen 4 h
      4 ~< {ce1} ebus cs00 e h
      6 ~< {ch2} ebus cs04 e h
      13 ~< pi1 on 5 h
@@ -1110,7 +1110,7 @@ e33: 10174 2x4 mixer
 
 e28: 10174 2x4 mixer
      3 ~< pi1 on 6 h
-     5 ~< pi1 gen 6
+     5 ~< pi1 gen 6 h
      4 ~< {bp2} ebus cs02 e h
      6 ~< {ca1} pi2 ready h
      13 ~< pi1 on 7 h
@@ -1166,18 +1166,18 @@ e54z: 10105 2-3-2 or/nor
       9 ~< -pic5 load l
       10 ~< -pic5 wait1 l
       11 ~< -pic5 wait2 l
-      6 ~> pic5-internal-e54-6
+      6 ~> pic5-e54-6
       7 ~> %NC%
 
 e30: 10141 shift register
-     13 ~< pic5-internal-e54-6
+     13 ~< pic5-e54-6
      12 ~< %NC%
      11 ~< %NC%
      9 ~< %NC%
      6 ~< %NC%
      5 ~< %NC%
      7 ~< pic5 ebus req h
-     10 ~< pic5-internal-e19-3
+     10 ~< pic5-e19-3
      4 ~< pic2 clk f h
      14 ~> pic5 load h
      15 ~> pic5 wait1 h
@@ -1196,15 +1196,15 @@ e42: 10131 dual ms dff
 e20: 10104 quad and/nand
      10 ~< pic5 pi disable l
      11 ~< pic1 active h
-     14 ~> pic5-internal-e20-14
+     14 ~> pic5-e20-14
      4 ~< pic5 test h
      5 ~< pic2 req h
-     2 ~> pic5-internal-e20-2
-     6 ~< pic5-internal-e20-2
+     2 ~> pic5-e20-2
+     6 ~< pic5-e20-2
      7 ~< -pic4 cono dly h
-     3 ~> pic5-internal-e20-3
-     12 ~< pic5-internal-e24-14
-     13 ~< pic5-internal-e20-3
+     3 ~> pic5-e20-3
+     12 ~< pic5-e24-14
+     13 ~< pic5-e20-3
      9 ~> pic5 ebus req l
      15 ~> pic5 ebus req h
 
@@ -1221,7 +1221,7 @@ e16: 10117 dual 2-3 or-and
      11 ~< -pic5 cp bus en l
      9 ~< -pic5 ebus pi grant l
      10 ~< pic5 ebus req l
-     14 ~> pic5-internal-e16-14
+     14 ~> pic5-e16-14
      15 ~> %NC%
 
 e11: 10131 dual ms dff
@@ -1233,7 +1233,7 @@ e11: 10131 dual ms dff
      2 ~> {au2} pi5 ebus cp grant h
      3 ~> pic5 ebus cp grant l
      12 ~< %NC%
-     10 ~< pic5-internal-e16-14
+     10 ~< pic5-e16-14
      11 ~< %NC%
      13 ~< pic4 mr reset h
      15 ~> pic5 ebus pi grant h
@@ -1247,9 +1247,9 @@ e6: 10131 dual ms dff
     4 ~< %NC%
     2 ~> -pic5 cyc start h
     3 ~> -pic5 cyc start l
-    12 ~< pic5-internal-e26-2
+    12 ~< pic5-e26-2
     10 ~< %NC%
-    11 ~< pic5-internal-e1-3
+    11 ~< pic5-e1-3
     13 ~< %NC%
     15 ~> %NC%
     14 ~> pic5 xfer force h
@@ -1306,11 +1306,11 @@ e1:  10136 binary counter
      11 ~< %NC%
      12 ~< %NC%
      10 ~< -pi2 tim2 l
-     7 ~< pic5-internal-e14-14
+     7 ~< pic5-e14-14
      9 ~< %NC%
      13 ~< {ac1} -mtr 1 mhz a h
      4 ~> %NC%
-     3 ~> pic5-internal-e1-3
+     3 ~> pic5-e1-3
      2 ~> %NC%
      15 ~> %NC%
      14 ~> %NC%
@@ -1324,7 +1324,7 @@ e25: 10158 4x2 mixer
      13 ~< pic2 sel phy 2 h
      10 ~< %NC%
      11 ~< pic2 sel phy 1 h
-     9 ~< pic5-internal-e19-2
+     9 ~< pic5-e19-2
      1 ~> {df2} ebus d07 e h
      2 ~> {de2} ebus d08 e h
      15 ~> {da1} ebus d09 e h
