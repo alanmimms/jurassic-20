@@ -497,30 +497,27 @@ ${netName}:
       aModule > bModule ? 1 : aModule < aModule ? -1 :
       aPin > bPin ? 1 : aPin < bPin ? -1 : 0;
   }
+}
+
+function canonicalNetNameSort(a, b) {
+  a = canonicalize(a).replace(/^[^a-zA-Z]/g, '');
+  b = canonicalize(b).replace(/^[^a-zA-Z]/g, '');
+  return a > b ? 1 : a < b ? -1 : 0;
+}
 
 
-  function canonicalNetNameSort(a, b) {
-    a = canonicalize(a).replace(/^[^a-zA-Z]/g, '');
-    b = canonicalize(b).replace(/^[^a-zA-Z]/g, '');
-    return a > b ? 1 : a < b ? -1 : 0;
-  }
+function testCanonicalNameSort() {
+  test1('-apr2 clk c l', 'apr2 a h', 1);
+  test1('-apr2 clk c l', 'apr2 d h', -1);
+  test1('apr2 clk c l', '-apr2 d l', -1);
+  test1('apr2 clk c l', '-apr2 a l', 1);
 
+  function test1(a, b, sb) {
 
-  function testCanonicalNameSort() {
-    test1('-apr2 clk c l', 'apr2 a h', 1);
-    test1('-apr2 clk c l', 'apr2 d h', -1);
-    test1('apr2 clk c l', '-apr2 d l', -1);
-    test1('apr2 clk c l', '-apr2 a l', 1);
-
-    function test1(a, b, sb) {
-
-      if (canonicalNetNameSort(a, b) != sb) {
-	console.error(`ERROR: canonicalNetNameSort('${a}', '${b}') != '${sb}' is ${canonicalNetNameSort(a, b)}`);
-      }
+    if (canonicalNetNameSort(a, b) != sb) {
+      console.error(`ERROR: canonicalNetNameSort('${a}', '${b}') != '${sb}' is ${canonicalNetNameSort(a, b)}`);
     }
   }
-
-  testCanonicalNameSort();
 }
 
 
@@ -557,8 +554,6 @@ function testCanonicalize() {
   }
 }
 
-testCanonicalize();
-
 
 function padValueToDigits(v, digits) {
 
@@ -568,7 +563,6 @@ function padValueToDigits(v, digits) {
     return String(v).padStart(digits, '0');
   }
 }
-
 
 function testPadValueToDigits() {
   test1(123, 4, '0123');
@@ -588,7 +582,15 @@ function testPadValueToDigits() {
   }
 }
 
-testPadValueToDigits();
 
+function doTests() {
+  testCanonicalNameSort();
+  testCanonicalize();
+  testPadValueToDigits();
+}
+
+doTests();
 
 module.exports.compile = compile;
+module.exports.doTests = doTests;
+
