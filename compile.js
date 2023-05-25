@@ -219,7 +219,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
   case 'Pin':
     cx.pin = ast;
     cx.pin.chip = cx.chip;
-    cx.pin.fullName = cx.pin.chip.page.name + '.' + cx.pin.chip.name + '.' + cx.pin.pin;
+    cx.pin.fullName = cx.pin.chip.page.name + '.' + cx.pin.chip.name.name + '.' + cx.pin.pin;
     cx.pin.symbol = Symbol(cx.pin.fullName);
     cx.net = '';
 
@@ -229,7 +229,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
       break;
 
     case 'IDList':
-      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv)).join('').trim();
+      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv)).join('');
       break;
 
     case 'IDChunk':
@@ -254,7 +254,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 ======>  ${cx.chip.name} undefined pin ${cx.pin.pin} ${cx.pin.dir} for ${cx.chip.type}`);
     }
 
-    cx.pin.netName = cx.net;
+    cx.pin.netName = cx.net.trim();
     if (cx.net === '') 
       console.log(`Pin ${cx.pin.fullName}  net=${util.inspect(cx.pin.net, {depth: 9})}`);
     
@@ -327,7 +327,7 @@ function evalExpr(t, macroEnv) {
     break;
 
   case 'IDList':
-    result = t.list.map(id => evalExpr(id, macroEnv)).join('').trim();
+    result = t.list.map(id => evalExpr(id, macroEnv)).join('');
     break;
 
   case 'IDChunk':
@@ -401,15 +401,16 @@ function compile(simOptions) {
     board.chips = slot.board.pages.reduce((chips, page) => {
 
       page.chips.forEach(astChip => {
+	const name = astChip.name.name;
 
-	if (chips[astChip.name]) {
+	if (chips[name]) {
 	  console.error(`\
-${slot.board.id}.${astChip.name} defined \
+${slot.board.id}.${name} defined \
 ${util.inspect(astChip.location)} and previously \
-${util.inspect(chips[astChip.name].location)}`);
+${util.inspect(chips[name].location)}`);
 	}
 
-	chips[astChip.name] = {
+	chips[name] = {
 	  type: astChip.type,
 	  desc: astChip.desc,
 	  page: page.name,
