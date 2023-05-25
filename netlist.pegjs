@@ -41,7 +41,7 @@ pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  b
 chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }
 
-chipHead = !'Page' name:bareID _ ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
+chipHead = !'Page' name:idChunk ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
 		{ return AST('Chip', {name, type, desc}) }
 
 pinDef = [ \t]+ pin:number _ dir:direction _ bpPin:$bpPin? net:net blankLines
@@ -57,14 +57,10 @@ macroRef =  '[' head:expr ids:selectorList ']'
 		{ return AST('Macro', {head, ids}) }
 
 selectorList = list:( ',' id:idList {return id} )*
-		{ /* console.error('list', util.inspect(list)); */
-		  return AST('SelectorList', {list}); }
+		{ return AST('SelectorList', {list}); }
 
 idList = list:( macroRef / idChunk )*
        		{ return AST('IDList', {list}) }
-
-bareID = [-/#=%.+_&()a-zA-Z^]+ [-/#=%.+_&<> a-zA-Z0-9^]*
-		{ return text() }
 
 idChunk = name:$[-/#%.+_&<> ()a-zA-Z0-9=]+
 		{ return AST('IDChunk', {name}) }
