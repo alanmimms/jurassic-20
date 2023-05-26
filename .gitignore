@@ -40,3 +40,5 @@ cpu.after.evaluation
 cpu.before.evaluation
 bp.dump
 bp.nets
+ebox.after.evaluation
+ebox.before.evaluation
