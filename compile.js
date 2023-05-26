@@ -1,9 +1,17 @@
 'use strict';
 
 // TODO:
-// * '-con2 long en h' is the same signal as 'con2 long en l'. They should be connected in same net.
+// * '-con2 long en h' is the same signal as 'con2 long en l'.
+//    * They should be connected in same net.
+//    * Maybe always store in canonical form?
 // * Need dump of nets and their backplane slot/pin fullname and chip pin fullname.
 // * Join nets with same canonical name into a single fully connected net.
+// * Show each slot attached to same net for multiply-instantiated modules like EDP.
+//   * E.g., these two signals should be attached to three slots each:
+//      cram arxm sel 4 00 h:
+//        DP02.e60.4     edp.ff1[52]    PDF16
+//      cram arxm sel 4 06 h:
+//        DP02.e60.4     edp.ff1[52]    PDF16
 
 const fs = require('fs');
 const util = require('util');
@@ -394,10 +402,6 @@ function compile(simOptions) {
 
     };
 
-    function astDirToDir(d) {
-      return (d == '~<') ? 'I' : (d == '~>') ? 'D' : `???${d}`;
-    }
-
     board.chips = slot.board.pages.reduce((chips, page) => {
 
       page.chips.forEach(astChip => {
@@ -425,13 +429,14 @@ ${util.inspect(chips[name].location)}`);
 	      dir: astDirToDir(pin.dir),
 	      fullName: pin.fullName,
 	      net: pin.netName,
+	      pdfRef: page.pdfRef,
 	      canonicalNet: canonicalize(pin.netName),
 	      location: pin.location,
 	    };
 
 	    if (pin.bpPin) {
 	      // Define backplane pin as <board>.<pin>[<slot#>]. Leave off "{}" from pin.
-	      result.bpPin = `${slot.board.id}.${pin.bpPin.replace(/[{}]/g, '')}[${slotNumber}]`;
+	      result.bpPin = `${slot.board.id}.${pin.bpPin}[${slotNumber}]`;
 	    }
 
 	    return result;
@@ -454,9 +459,14 @@ ${util.inspect(chips[name].location)}`);
   fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
 
   definePinsAndNets(bp);
-  if (options.dumpBackplane) dumpBackplane(bp);
+  if (options.dumpBackplane) dumpNets(bp);
   
   return bp;
+}
+
+
+function astDirToDir(d) {
+  return (d == '~<') ? 'I' : (d == '~>') ? 'D' : `???${d}`;
 }
 
 
@@ -472,7 +482,7 @@ ${bpPin}:
 }
 
 
-function dumpBackplane(bp) {
+function dumpNets(bp) {
   fs.writeFileSync('bp.nets',
 		   Object.keys(bp.allNets)
 		   .sort(canonicalNetNameSort)
@@ -480,7 +490,7 @@ function dumpBackplane(bp) {
 ${netName}:
   ${Object.keys(bp.allNets[netName]).map(pinFullName => {
     const pin = bp.allPins[pinFullName];
-    return `${pin.dir} ${pinFullName}`;
+    return `${pinFullName.padEnd(15) + (pin.bpPin || '').padEnd(15)}${pin.pdfRef}`;
   })
 		   .join("\n  ")}`)
 		   .join("\n"));
