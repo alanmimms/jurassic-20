@@ -44,12 +44,13 @@ chipDef = h:chipHead p:pinDef+
 chipHead = !'Page' name:idChunk ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
 		{ return AST('Chip', {name, type, desc}) }
 
-pinDef = [ \t]+ pin:number _ dir:direction _ bpPin:$bpPin? net:net blankLines
+pinDef = [ \t]+ pin:number _ dir:direction _ bpPin:bpPin? _ net:net blankLines
 		{ return AST('Pin', {pin, dir, bpPin: bpPin ? bpPin.trim() : null, net}) }
 
 direction = $('~>' / '~<')
 
-bpPin = $('{' bpPinID '}') _
+bpPin = '{' pinID:bpPinID '}'
+		{ return pinID; }
 
 bpPinID = $( [abcdef] [abcdefhjklmnprstuv] [12] )
 
