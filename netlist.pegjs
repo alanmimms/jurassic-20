@@ -20,7 +20,7 @@ backplane = 'Backplane' _ ':' _
 	slots:slotDef+
                 { return AST('Backplane', {name, macros, slots}) }
 
-slotDef = 'Slot' _ n:number _ ':' _ board:slotContent blankLines
+slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines
                 { return AST('Slot', {n, board, bpPins: {}}) }
 
 slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
@@ -88,7 +88,7 @@ primary = value:$number
 
 number = $([0-9]+)
 
-macroName = name:$simpleID
+macroName = name:simpleID
 		{ return AST('IDChunk', {name}) }
 
 simpleID = $[a-zA-Z0-9]+

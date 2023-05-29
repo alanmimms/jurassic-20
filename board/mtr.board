@@ -1,3 +1,290 @@
 Page: MTR1, PDF324
 // M8538 TBD
 
+e8:  10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e15-4
+     7 ~< -mtr3 clr ebox cnt h
+     9 ~< %NC%
+     13 ~< mtr2 ebox cnt clk h
+     4 ~> %NC%
+     3 ~> mtr1 ebox count 02 h
+     2 ~> mtr1 ebox count 03 h
+     15 ~> mtr1 ebox count 04 h
+     14 ~> mtr1 ebox count 05 h
+
+e24: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e29-4
+     7 ~< -mtr3 clr cache cnt h
+     9 ~< %NC%
+     13 ~< mtr2 cache cnt clk h
+     4 ~> %NC%
+     3 ~> mtr1 cache count 02 h
+     2 ~> mtr1 cache count 03 h
+     15 ~> mtr1 cache count 04 h
+     14 ~> mtr1 cache count 05 h
+
+e20: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e25-4
+     7 ~< -mtr3 clr time h
+     9 ~< %NC%
+     13 ~< mtr2 time clk h
+     4 ~> %NC%
+     3 ~> mtr1 time 02 h
+     2 ~> mtr1 time 03 h
+     15 ~> mtr1 time 04 h
+     14 ~> mtr1 time 05 h
+
+e19: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e34-4
+     7 ~< -mtr3 clr perf cnt h
+     9 ~< %NC%
+     13 ~< mtr4 perf cnt clk h
+     4 ~> %NC%
+     3 ~> mtr1 perf count 02 h
+     2 ~> mtr1 perf count 03 h
+     15 ~> mtr1 perf count 04 h
+     14 ~> mtr1 perf count 05 h
+
+e15: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< {dr1} mtr1 ebox cry 10[b, in,] l
+     7 ~< -mtr3 clr ebox cnt h
+     9 ~< %NC%
+     13 ~< mtr2 ebox cnt clk h
+     4 ~> %NC%
+     3 ~> mtr1 ebox count 06 h
+     2 ~> mtr1 ebox count 07 h
+     15 ~> mtr1 ebox count 08 h
+     14 ~> mtr1 ebox count 09 h
+
+e29: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< {dl2} mtr1 cache cry 10[b, in,] l
+     7 ~< -mtr3 clr cache cnt h
+     9 ~< %NC%
+     13 ~< mtr2 cache cnt clk h
+     4 ~> %NC%
+     3 ~> mtr1 cache count 06 h
+     2 ~> mtr1 cache count 07 h
+     15 ~> mtr1 cache count 08 h
+     14 ~> mtr1 cache count 09 h
+
+e25: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< {dt2} mtr1 time cry 10[b, in,] l
+     7 ~< -mtr3 clr time h
+     9 ~< %NC%
+     13 ~< mtr2 time clk h
+     4 ~> %NC%
+     3 ~> mtr1 time 06 h
+     2 ~> mtr1 time 07 h
+     15 ~> mtr1 time 08 h
+     14 ~> mtr1 time 09 h
+
+e34: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< {cd2} mtr1 perf cry 10[b, in,] l
+     7 ~< -mtr3 clr perf cnt h
+     9 ~< %NC%
+     13 ~< mtr4 perf cnt clk h
+     4 ~> %NC%
+     3 ~> mtr1 perf count 06 h
+     2 ~> mtr1 perf count 07 h
+     15 ~> mtr1 perf count 08 h
+     14 ~> mtr1 perf count 09 h
+
+e30: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e90-4
+     7 ~< -mtr3 clr interval h
+     9 ~< %NC%
+     13 ~< mtr2 interval clk h
+     4 ~> mtr1 interval cry l
+     3 ~> mtr1 interval 06 h
+     2 ~> mtr1 interval 07 h
+     15 ~> mtr1 interval 08 h
+     14 ~> mtr1 interval 09 h
+
+e69: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e85-4
+     7 ~< -mtr3 clr ebox cnt h
+     9 ~< %NC%
+     13 ~< mtr2 ebox cnt clk h
+     4 ~> {dp2} mtr1 ebox cry 10 l
+     3 ~> mtr1 ebox count 10 h
+     2 ~> mtr1 ebox count 11 h
+     15 ~> mtr1 ebox count 12 h
+     14 ~> mtr1 ebox count 13 h
+
+e65: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e80-4
+     7 ~< -mtr3 clr cache cnt h
+     9 ~< %NC%
+     13 ~< mtr2 cache cnt clk h
+     4 ~> {dm2} mtr1 cache cry 10 l
+     3 ~> mtr1 cache count 10 h
+     2 ~> mtr1 cache count 11 h
+     15 ~> mtr1 cache count 12 h
+     14 ~> mtr1 cache count 13 h
+
+e70: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e75-4
+     7 ~< -mtr3 clr time h
+     9 ~< %NC%
+     13 ~< mtr2 time clk h
+     4 ~> {dv2} mtr1 time cry 10 l
+     3 ~> mtr1 time 10 h
+     2 ~> mtr1 time 11 h
+     15 ~> mtr1 time 12 h
+     14 ~> mtr1 time 13 h
+
+e53: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr-e74-4
+     7 ~< -mtr3 clr perf cnt h
+     9 ~< %NC%
+     13 ~< mtr4 perf cnt clk h
+     4 ~> {ce2} mtr1 perf cry 10 l
+     3 ~> mtr1 perf cnt 10 h
+     2 ~> mtr1 perf cnt 11 h
+     15 ~> mtr1 perf cnt 12 h
+     14 ~> mtr1 perf cnt 13 h
+
+e90: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< {fr1} mtr1 interval cry 14[b, in,] l
+     7 ~< -mtr3 clr interval h
+     9 ~< %NC%
+     13 ~< mtr4 interval clk h
+     4 ~> mtr-e90-4
+     3 ~> mtr1 interval 10 h
+     2 ~> mtr1 interval 11 h
+     15 ~> mtr1 interval 12 h
+     14 ~> mtr1 interval 13 h
+
+e85: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     7 ~< -mtr3 clr ebox cnt h
+     9 ~< %NC%
+     13 ~< mtr2 ebox cnt clk h
+     4 ~> mtr-e85-4
+     3 ~> mtr1 ebox count 14 h
+     2 ~> mtr1 ebox count 15 h
+     15 ~> mtr1 ebox count 16 h
+     14 ~> mtr1 ebox count 17 h
+
+e80: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     7 ~< -mtr3 clr cache cnt h
+     9 ~< %NC%
+     13 ~< mtr2 cache cnt clk h
+     4 ~> mtr-e80-4
+     3 ~> mtr1 cache count 14 h
+     2 ~> mtr1 cache count 15 h
+     15 ~> mtr1 cache count 16 h
+     14 ~> mtr1 cache count 17 h
+
+e75: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< mtr3 clr time h
+     10 ~< %NC%
+     7 ~< -mtr3 clr time h
+     9 ~< %NC%
+     13 ~< mtr2 time clk h
+     4 ~> mtr-e75-4
+     3 ~> mtr1 time 14 h
+     2 ~> mtr1 time 15 h
+     15 ~> mtr1 time 16 h
+     14 ~> mtr1 time 17 h
+
+e74: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     7 ~< -mtr3 clr perf cnt h
+     9 ~< %NC%
+     13 ~< mtr4 perf cnt clk h
+     4 ~> mtr-e74-4
+     3 ~> mtr1 perf count 14 h
+     2 ~> mtr1 perf count 15 h
+     15 ~> mtr1 perf count 16 h
+     14 ~> mtr1 perf count 17 h
+
+e89: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< mtr2 ten usec l
+     7 ~< -mtr3 clr interval h
+     9 ~< %NC%
+     13 ~< mtr2 interval clk h
+     4 ~> {fs1} mtr1 interval cry 14 l
+     3 ~> mtr1 interval 14 h
+     2 ~> mtr1 interval 15 h
+     15 ~> mtr1 interval 16 h
+     14 ~> mtr1 interval 17 h
+
+Page: MTR2, PDF325
+

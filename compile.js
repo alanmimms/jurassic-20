@@ -1,5 +1,16 @@
 'use strict';
 
+// Needed:
+// * List of bpPins in each slot and which net(s) they're attached to.
+// * List of nets in the backplane and which bpPins/slots/chips/pins they're attached to.
+
+// Thoughts:
+// * It's better to transform AST into netlist structure at top level
+//     production of each parse (sub)tree.
+//   * This decouples netlist structure from AST structure near where AST
+//     structure is defined.
+//   * This decouples uses of netlist structure from AST structure.
+
 // TODO:
 // * '-con2 long en h' is the same signal as 'con2 long en l'.
 //    * They should be connected in same net.
@@ -45,24 +56,14 @@ function parseFile(parser, filename) {
 }
 
 
-function dumpAST(ast, name, stage) {
-  if (!options.dumpAst) return;
-
-  const f = fs.openSync(`${name}.${stage}.evaluation`, 'w');
-  fs.writeSync(f, util.inspect(ast, {depth: 9999}));
-  fs.closeSync(f);
-}
-
-
-
 function parseBackplanes(parser) {
   const filename = options.src;
-  const bp = parseFile(parser, filename)[0];
+  const bpAST = parseFile(parser, filename)[0];
 
-  console.log(`Backplane ${bp.name}:`);
-  dumpAST(bp, bp.name, 'before');
+  if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.before.evaluation`, util.inspect(bpAST, {depth: 9999}));
+  console.log(`Backplane ${bpAST.name}:`);
 
-  const bpMacros = bp.macros || [];
+  const bpMacros = bpAST.macros || [];
   const bpMacroDesc = bpMacros.map(macro => `${macro.id}=${macro.value}`).join (' ');
   const bpMacroEnv = {};
 
@@ -70,25 +71,27 @@ function parseBackplanes(parser) {
 
   // For each slot, (re)parse the board definition and expand its
   // macros for the slot (and backplane, and CPU type) specifics.
-  bp.slots.forEach(slot => {
-    const board = slot.board;
+  bpAST.slots
+    .filter(slot => slot.board && slot.board.id != 'ignore')
+    .forEach(slot => {
+      const slotNumber = slot.n;
+      const slotName = `${bpAST.name}.${slotNumber}`;
+      const board = slot.board;
+      const macros = board.macros || [];
+      const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
+      const macroEnv = {...bpMacroEnv};
 
-    const macros = board.macros || [];
-    const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
-    const macroEnv = {...bpMacroEnv};
+      macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
-    macros.forEach(macro => macroEnv[macro.id] = macro.value);
+      console.log(`  Slot ${slotName}: ${board.id} ${macroDesc}`);
 
-    console.log(`  Slot ${slot.n}: ${board.id} ${macroDesc}`);
+      const boardAST = parseFile(parser, `board/${board.id}.board`);
+      expandMacros(boardAST, bpAST, macroEnv);
+      slot.board = {slotName, ... board, ... boardAST};
+    });
 
-    const boardAST = parseFile(parser, `board/${board.id}.board`);
-    expandMacros(boardAST, bp, macroEnv);
-    slot.board = {... board, ... boardAST};
-  });
-
-  dumpAST(bp, bp.name, 'after');
-
-  return bp;
+  if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.after.evaluation`, util.inspect(bpAST, {depth: 9999}));
+  return bpAST;
 }
 
 
@@ -100,10 +103,10 @@ function gatherNetByName(bp) {
   bp.netByName = {};
   
   bp.slots
-    .filter(slot => slot.board && slot.board.pages)
-    .forEach(slot => {
+    .filter(board => board && board.pages)
+    .forEach(board => {
 
-      slot.board.pages.forEach(page => {
+      board.pages.forEach(page => {
 
 	page.chips.forEach(chip => {
 
@@ -126,9 +129,9 @@ function definePinsAndNets(bp) {
   bp.allNets = {};
   bp.allPins = {};
 
-  bp.slots.forEach(slot => {
+  bp.slots.forEach(board => {
 
-    Object.values(slot.chips).forEach(chip => {
+    Object.values(board.chips).forEach(chip => {
 
       chip.pins.forEach(pin => {
 	if (!bp.allNets[pin.net]) bp.allNets[pin.net] = {};
@@ -137,9 +140,9 @@ function definePinsAndNets(bp) {
 	  pin: pin.pin,
 	  dir: pin.dir,
 	  fullName: pin.fullName,
-	  slotNumber: slot.slotNumber,
+	  slotName: board.slotName,
 	  net: pin.net,
-	  module: slot.id,
+	  module: board.id,
 	};
 
 	bp.allNets[pin.net][pin.fullName] = net;
@@ -386,69 +389,75 @@ function compile(simOptions) {
   // Parse the backplane definition and collapse the board page
   // substructure into a list of chips on the board.
   const bpAST = parseBackplanes(parser);
-  const bp = {};
 
-  bp.slots = bpAST.slots.reduce((slots, slot, slotNumber) => {
+  const bp = {
+    name: bpAST.name,
+    slots: [],
+  };
 
-    const board = {
-      slotNumber,
-      id: slot.board.id,
-      comments: slot.board.comments,
-      location: slot.board.location,
+  bpAST.slots
+    .filter(slot => slot.board && slot.board.pages && slot.board.id != 'ignore')
+    .forEach(slot => {
+      const slotName = slot.board.slotName;
 
-      macros: (slot.board.macros || []).reduce((macros, mac) =>
-	macros.concat(`${mac.id}=${mac.value}`),
-	[]),
+      const board = {
+	slotName,
+	id: slot.board.id,
+	comments: slot.board.comments,
+	location: slot.board.location,
 
-    };
+	macros: (slot.board.macros || []).reduce((macros, mac) =>
+	  macros.concat(`${mac.id}=${mac.value}`),
+	  []),
 
-    board.chips = slot.board.pages.reduce((chips, page) => {
+      };
 
-      page.chips.forEach(astChip => {
-	const name = astChip.name.name;
+      bp.slots[+slot.n] = board;
+      board.chips = slot.board.pages.reduce((chips, page) => {
 
-	if (chips[name]) {
-	  console.error(`\
+	page.chips.forEach(astChip => {
+	  const name = astChip.name.name;
+
+	  if (chips[name]) {
+	    console.error(`\
 ${slot.board.id}.${name} defined \
 ${util.inspect(astChip.location)} and previously \
 ${util.inspect(chips[name].location)}`);
-	}
+	  }
 
-	chips[name] = {
-	  type: astChip.type,
-	  desc: astChip.desc,
-	  page: page.name,
-	  pdfRef: page.pdfRef,
-	  location: astChip.location,
-	  pins: astChip.pins,
+	  chips[name] = {
+	    type: astChip.type,
+	    desc: astChip.desc,
+	    page: page.name,
+	    pdfRef: page.pdfRef,
+	    location: astChip.location,
+	    pins: astChip.pins,
 
-	  pins: astChip.pins.map(pin => {
+	    pins: astChip.pins.map(pin => {
 
-	    let result = {
-	      pin: pin.pin,
-	      dir: astDirToDir(pin.dir),
-	      fullName: pin.fullName,
-	      net: pin.netName,
-	      pdfRef: page.pdfRef,
-	      canonicalNet: canonicalize(pin.netName),
-	      location: pin.location,
-	    };
+	      let result = {
+		pin: pin.pin,
+		dir: astDirToDir(pin.dir),
+		fullName: pin.fullName,
+		net: pin.netName,
+		pdfRef: page.pdfRef,
+		canonicalNet: canonicalize(pin.netName),
+		location: pin.location,
+	      };
 
-	    if (pin.bpPin) {
-	      // Define backplane pin as <board>.<pin>[<slot#>]. Leave off "{}" from pin.
-	      result.bpPin = `${slot.board.id}.${pin.bpPin}[${slotNumber}]`;
-	    }
+	      if (pin.bpPin) {
+		// Define backplane pin as <board>.<pin>[<slotName>]. Leave off "{}" from pin.
+		result.bpPin = `${slot.board.id}.${pin.bpPin}[${slotName}]`;
+	      }
 
-	    return result;
-	  }),
-	};
-      });
+	      return result;
+	    }),
+	  };
+	});
 
-      return chips;
-    }, {});
-
-    return slots.concat(board);
-  }, []);
+	return chips;
+      }, {});
+    });
 
   if (false) {
     gatherNetByName(backplane);
@@ -472,9 +481,7 @@ function astDirToDir(d) {
 
 function dumpPins(bp) {
   fs.writeFileSync('bp.pins',
-		   Object.keys(bp.allPins)
-		   .sort(slotPinSort)
-		   .map(bpPin => `\
+		   Object.keys(bp.allPins).sort(slotPinSort).map(bpPin => `\
 ${bpPin}:
   ${Object.values(bp.allPins[bpPin]).map(pin => `${pin.dir} ${pin.net.padEnd(32)}${pin.fullName}`)
 		   .join("\n  ")}`)
@@ -490,7 +497,7 @@ function dumpNets(bp) {
 ${netName}:
   ${Object.keys(bp.allNets[netName]).map(pinFullName => {
     const pin = bp.allPins[pinFullName];
-    return `${pinFullName.padEnd(15) + (pin.bpPin || '').padEnd(15)}${pin.pdfRef}`;
+    return `${pinFullName.padEnd(15) + (pin.bpPin || '').padEnd(20)}${pin.pdfRef}`;
   })
 		   .join("\n  ")}`)
 		   .join("\n"));
@@ -501,8 +508,8 @@ ${netName}:
   function slotPinSort(a, b) {
     a = bp.allPins[a];
     b = bp.allPins[b];
-    const [aModule, aPin, aSlot] = [a.module, a.pin, a.slotNumber];
-    const [bModule, bPin, bSlot] = [b.module, b.pin, b.slotNumber];
+    const [aModule, aPin, aSlot] = [a.module, a.pin, a.slotName];
+    const [bModule, bPin, bSlot] = [b.module, b.pin, b.slotName];
 
     return aSlot > bSlot ? 1 : aSlot < bSlot ? -1 :
       aModule > bModule ? 1 : aModule < aModule ? -1 :
