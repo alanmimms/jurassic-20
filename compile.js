@@ -23,6 +23,9 @@
 //        DP02.e60.4     edp.ff1[52]    PDF16
 //      cram arxm sel 4 06 h:
 //        DP02.e60.4     edp.ff1[52]    PDF16
+// * Signals that don't go to a backplane pin _must_ stay local to the module even if
+//   they have names that match global signal names. E.g., 'ad cry -02 h' is local to
+//   EDP and global driven by IRD.ca1 to CRA.cf1.
 
 const fs = require('fs');
 const util = require('util');
@@ -262,7 +265,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 
     if (!cx.chip.logic[cx.pin.dir] || !cx.chip.logic[cx.pin.dir][cx.pin.pin]) {
       console.log(`\
-======>  ${cx.chip.name} undefined pin ${cx.pin.pin} ${cx.pin.dir} for ${cx.chip.type}`);
+======>  ${cx.chip.name.name} undefined pin ${cx.pin.pin} ${cx.pin.dir} for ${cx.chip.type}`);
     }
 
     cx.pin.netName = cx.net.trim();
