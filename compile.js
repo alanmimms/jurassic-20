@@ -492,13 +492,15 @@ ${bpPin}:
 function dumpNets(bp) {
   fs.writeFileSync('bp.nets',
 		   Object.keys(bp.allNets)
+		   .filter(k => k != '%NC%')
 		   .sort(canonicalNetNameSort)
 		   .map(netName => `\
 ${netName}:
-  ${Object.keys(bp.allNets[netName]).map(pinFullName => {
-    const pin = bp.allPins[pinFullName];
-    return `${pinFullName.padEnd(15) + (pin.bpPin || '').padEnd(20)}${pin.pdfRef}`;
-  })
+  ${Object.keys(bp.allNets[netName])
+    .map(pinFullName => {
+      const pin = bp.allPins[pinFullName];
+      return `${pin.dir} ${pinFullName.padEnd(15) + (pin.bpPin || '').padEnd(20)}${pin.pdfRef}`;
+    })
 		   .join("\n  ")}`)
 		   .join("\n"));
 
