@@ -523,7 +523,7 @@ e80: 10174 2x4 mixer
      15 ~> shm2 sh 31a h
 
 e61: 10174 2x4 mixer
-     3 ~< {el1} ar32 b h
+     3 ~< {el1} ar 32 b h
      5 ~< {ek1} arx 12 a h
      4 ~< {fd2} arx 28 h
      6 ~< {ej1} ar 12 b h

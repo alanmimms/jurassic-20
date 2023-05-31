@@ -105,7 +105,7 @@ e54: 10164 8 mix
      4 ~< {el1} ad [n+05] h
      3 ~< {du2} ebus d[n+05] e h
      11 ~< {ca1} sh [n+05] h
-     12 ~< {ep1} [n/30+1,ad [n+06],adx 00 h]
+     12 ~< {ep1} [n/30+1,ad [n+06] h,adx 00 h]
      13 ~< {es1} adx [n+05] h
      14 ~< {dr1} ad [n+03] h
      10 ~< edp-[n]-sel4
@@ -143,20 +143,6 @@ e28: 10110 or buffer
      13 ~> {ck2} ar [n+03] b h
      14 ~> {cm1} ar [n+03] c h
 
-a62: 10110 or buffer
-     5 ~< %NC%
-     6 ~< %NC%
-     7 ~< ar [n+04] h
-     2 ~> {ev2} ar [n+04] a h
-     3 ~> {fk1} ar [n+04] b h
-     4 ~> {fk2} ar [n+04] c h
-     9 ~< %NC%
-     10 ~< %NC%
-     11 ~< ar [n+05] h
-     12 ~> {et2} ar [n+05] a h
-     13 ~> {fl2} ar [n+05] b h
-     14 ~> {fl1} ar [n+05] c h
-
 e39: 10141 shft reg
      13 ~< %NC%
      12 ~< arm [n+00] h
@@ -193,6 +179,8 @@ e62: 10110 or buffer
      2 ~> {ev2} ar [n+04] a h
      3 ~> {fk1} ar [n+04] b h
      4 ~> {fk2} ar [n+04] c h
+     9 ~< %NC%
+     10 ~< %NC%
      11 ~< ar [n+05] h
      12 ~> {et2} ar [n+05] a h
      13 ~> {fl2} ar [n+05] b h
@@ -473,7 +461,7 @@ e27: 10101 4xor/nor
       4 ~< {ep2} ad [n+00] h
       12 ~< %NC%
       2 ~> {cn1} ad [n+00] a l
-      5 ~> {ck1} adx [n+05] a h
+      5 ~> {ck1} ad [n+00] a h
       10 ~< {cp1} ad [n+04] h
       14 ~> %NC%
       11 ~> {cf2} ad [n+04] a h
@@ -481,8 +469,8 @@ e27: 10101 4xor/nor
       15 ~> %NC%
       9 ~> {ce1} ad [n+05] a h
       7 ~< {cj2} adx [n+00] h
-      3 ~> {cf1} adx [n+00] a h
-      6 ~> %NC%
+      3 ~> %NC%
+      6 ~> {cf1} adx [n+00] a h
 
 e33:  10107 3x2 xor/xnor
       4 ~< {cv2} ad ex [n-02] h
@@ -518,7 +506,7 @@ e7:   10109 or buffer
       12 ~< {dr2} ad [n+02] h
       13 ~< edp-[n]-e7-2-[n/6+01]
       14 ~> %NC%
-      15 ~> {at2} ad [n+00]-[n+05]=0 h
+      15 ~> {at2} -ad [n+00]-[n+05]=0 h
       4 ~< %NC%
       5 ~< {dr1} ad [n+03] h
       6 ~< {cp1} ad [n+04] h
@@ -947,7 +935,7 @@ e67: 10101 or buffer
      13 ~< {fs1} apr fm adr 2 h
      15 ~> %NC%
      6 ~> edp-[n] apr fm adr 2 h
-     10 ~< {fp2} arp fm adr 1 h
+     10 ~< {fp2} apr fm adr 1 h
      14 ~> %NC%
      11 ~> edp-[n] apr fm adr 1 h
 

@@ -856,7 +856,7 @@ e38: 10105 2-3-2 or/nor
      13 ~< {cp1} con arx loaded l
      14 ~> %NC%
      15 ~> clk4-e38-15
-     9 ~< {cp2} -apr apr chk en h
+     9 ~< {cp2} -apr apr par chk en h
      10 ~< -clk5 ar/arx par check h
      11 ~< clk4-e7-7
      6 ~> %NC%
@@ -877,7 +877,7 @@ e30: 10141 shift reg
      3 ~> {ch2} clk4 pf disp 10 h
 
 e39: 10121 4-wide or-and
-     4 ~< {ea1} apr4 set page fail l
+     4 ~< {ea1} apr5 set page fail l
      5 ~< clk4-e7-7
      6 ~< %NC%
      7 ~< {ct2} -shm1 ar par odd l

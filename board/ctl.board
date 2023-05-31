@@ -119,7 +119,7 @@ e18: 10164 8 mixer
      3 ~< {cs2} -ctl1 disp ret h
      11 ~< {cp2} -ctl1 load pc h
      12 ~< {bt2} ctl adx cry 36 h
-     13 ~< {bs2} adl adx cry 36 a h
+     13 ~< {bs2} ctl adx cry 36 a h
      14 ~< {bs1} diag mem reset h
      10 ~< ctl3 ds 04 h
      9 ~< ctl3 ds 05 h

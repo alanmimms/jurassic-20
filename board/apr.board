@@ -57,7 +57,7 @@ e57: 10176 hex dff
      2 ~> {bs1} apr nxm err l
      7 ~< apr2-e56-15
      4 ~> apr2 s adr p err int en l
-     10 ~< apr2-e62-2
+     10 ~< apr2-e52-2
      13 ~> apr2 pwr fail int en l
      12 ~< apr2-e53-2
      15 ~> apr2 pwr fail l
@@ -89,6 +89,9 @@ e62: 10104 quad and/nand
      4 ~< {ej2} con sel dis h
      5 ~< apr1 ebus 13 h
      2 ~> apr2-e62-2
+     6 ~< {ej2} con sel dis h
+     7 ~< apr1 ebus 11 h
+     3 ~> apr2-e62-3
 
 e20: 10117 dual 2-3 or-and
      4 ~< {ek2} con sel en l
@@ -342,6 +345,9 @@ e3:  10104 quad and/nand
      4 ~< {bk1} con cond/ebus ctl l
      5 ~< apr5 reset a l
      2 ~> apr3-e3-2
+     6 ~< {af1} con cond/mbox ctl l
+     7 ~< apr5 reset a l
+     3 ~> apr5-e3-3
 
 e32: 10105 2-3-2 or/nor
      9 ~< apr1 nxm err in h
@@ -393,6 +399,11 @@ e27: 10105 2-3-2 or/nor
      5 ~< apr2-e51-3
      3 ~> {cl1} apr apr interrupt l
      2 ~> apr2 apr interrupt h
+     9 ~< -apr2 clk d l
+     10 ~< {ck2} con fm write par l
+     11 ~< {df1} apr3 spare l
+     6 ~> %NC%
+     7 ~> apr3-e27-7
 
 dl1: delay-line (PCB wired)
      1 ~< {cr2} clk3 apr h
@@ -422,6 +433,11 @@ e9:  10101 quad or/nor
      13 ~< {ah2} mr reset 02 h
      15 ~> apr5 reset a l
      9 ~> apr5 reset a h
+     7 ~< apr5-e8-15
+     3 ~> {al1} apr5 mbox ctl 06 l
+     6 ~> {bf2} apr mbox ctl 06 h
+     2 ~> {al2} apr5 wr pt sel 1 l
+     5 ~> {bf1} apr5 wr pt sel 1 h
 
 e14: 10141 shift register
      13 ~< %NC%
@@ -887,7 +903,7 @@ e21: 10164 8 mixer
 e11: 10164 8 mixer
      6 ~< apr2 sweep done in h
      5 ~< {ce2} apr3 fm extended h
-     4 ~< apr2 sweep done en h
+     4 ~< apr2 sweep done en in h
      3 ~< %NC%
      11 ~< {av2} apr fm adr 2 h
      12 ~< {au2} apr ebox era h
@@ -1113,7 +1129,7 @@ Page: APR7, PDF388
 // to change backpanel etch.
 w5:  wire just a wire
      1 ~< con load prev context l
-     2 ~> {dm2} apr6-dm2
+     2 ~> {dm2} apr6-backplnae-dm2
 
 w6:  wire just a wire
      1 ~< con ar 36 l

@@ -681,8 +681,8 @@ e44: 10141 shift register
      13 ~< %NC%
      12 ~< {br2} ad 24 a h
      11 ~< {bm2} ad 25 h
-     9 ~< {bs1} ad 26 a h
-     6 ~< {bp2} ad 27 a h
+     9 ~< {bs1} ad 26 h
+     6 ~< {bp2} ad 27 h
      5 ~< %NC%
      7 ~< vma5 datao apr l
      10 ~< vma5 datao apr l
@@ -1004,13 +1004,13 @@ e12: 10174 2x4 mixer
      11 ~< vma3 pc 13 h
      12 ~< vma4 prev sec 13 h
      10 ~< {cj1} ad 13 h
-     15 ~> {bk1} ^armm 13 h
+     15 ~> {bk1} armm 13 h
      9 ~< {am1} mcl4 vmax sel 2 h
      7 ~< {ap1} mcl4 vmax sel 1 h
      14 ~< vma4 vmax en l
 
 w1:  wire just a wire
-     1 ~< {bk1} ^armm 13 h
+     1 ~< {bk1} armm 13 h
      2 ~> vma4 vma 13 in h
 
 e17: 10174 2x4 mixer
@@ -1018,22 +1018,22 @@ e17: 10174 2x4 mixer
      5 ~< vma3 pc 14 h
      4 ~< vma4 prev sec 14 h
      6 ~< {ch2} ad 14 h
-     2 ~> {bh2} ^armm 14 h
+     2 ~> {bh2} armm 14 h
      13 ~< {ca1} vma2 vma 15 a h
      11 ~< vma3 pc 15 h
      12 ~< vma4 prev sec 15 h
      10 ~< {cj2} ad 15 h
-     15 ~> {bf1} ^armm 15 h
+     15 ~> {bf1} armm 15 h
      9 ~< {am1} mcl4 vmax sel 2 h
      7 ~< {ap1} mcl4 vmax sel 1 h
      14 ~< vma4 vmax en l
 
 w2: wire just a wire
-    1 ~< {bh2} ^armm 14 h
+    1 ~< {bh2} armm 14 h
     2 ~> vma4 vma 14 in h
 
 w3: wire just a wire
-    1 ~< {bf1} ^armm 15 h
+    1 ~< {bf1} armm 15 h
     2 ~> vma4 vma 15 in h
 
 e19: 10174 2x4 mixer
@@ -1041,22 +1041,22 @@ e19: 10174 2x4 mixer
      5 ~< vma3 pc 16 h
      4 ~< vma4 prev sec 16 h
      6 ~< {cm1} ad 16 a h
-     2 ~> {be1} ^armm 16 h
+     2 ~> {be1} armm 16 h
      13 ~< {aa1} vma2 vma 17 a h
      11 ~< vma3 pc 17 h
      12 ~< vma4 prev sec 17 h
      10 ~< {au2} ad 17 a h
-     15 ~> {fd1} ^armm 17 h
+     15 ~> {fd1} armm 17 h
      9 ~< {am1} mcl4 vmax sel 2 h
      7 ~< {ap1} mcl4 vmax sel 1 h
      14 ~< vma4 vmax en l
 
 w4: wire just a wire
-    1 ~< {be1} ^armm 16 h
+    1 ~< {be1} armm 16 h
     2 ~> vma4 vma 16 in h
 
 w5: wire just a wire
-    1 ~< {fd1} ^armm 17 h
+    1 ~< {fd1} armm 17 h
     2 ~> vma4 vma 17 in h
 
 e32: 10141 shift register

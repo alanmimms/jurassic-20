@@ -293,7 +293,7 @@ e80: 10174 2x4 mix
 
 e62: 10174 2x4 mix
      3 ~< scd2 fe 06 h
-     5 ~< {fr2} ar 02 d h
+     5 ~< {fr2} ar 02 c h
      4 ~< scd1 scada exp 06 h
      6 ~< {dd2} cram # 05 h
      13 ~< scd2 fe 07 h
@@ -308,7 +308,7 @@ e62: 10174 2x4 mix
 
 e57: 10174 2x4 mix
      3 ~< scd2 fe 08 h
-     5 ~< {fk2} ar 04 d h
+     5 ~< {fk2} ar 04 c h
      4 ~< scd1 scada exp 08 h
      6 ~< {dr1} cram # 07 h
      13 ~< scd2 fe 09 h
@@ -859,9 +859,8 @@ e25: 10176 hex dff
 e20: 10117 dual 2-3 or-and
      4 ~< %NC%
      5 ~< scd4-e30-3
-     2 ~> %NC%
-     3 ~> {bd1} ad overflow 00 l
      9 ~< scd5 set ad flags l
+     2 ~> %NC%
      3 ~> scd4-e20-3
      12 ~< %NC%
      13 ~< scd4-e30-14
