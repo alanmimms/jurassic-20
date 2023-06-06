@@ -257,6 +257,8 @@ e45: 10121 4-wide or-nor
      13 ~< %NC%
      14 ~< %NC%
      15 ~< {dr2} mbx5 csh adr par err l
+     3 ~> apr2 c dir p err in h
+     2 ~> apr2-e45-2
 
 e50: 10101 quad or/nor
      13 ~< apr2 c dir p err l
@@ -380,7 +382,7 @@ e33: 10121 4-wide or-and
      2 ~> %NC%
 
 e51: 10121 4-wide or-and
-     4 ~< apr2 c dir p er l
+     4 ~< apr2 c dir p err l
      5 ~< apr2 c dir p err int en l
      6 ~< %NC%
      7 ~< {ae2} apr s adr p err l
@@ -436,6 +438,7 @@ e9:  10101 quad or/nor
      7 ~< apr5-e8-15
      3 ~> {al1} apr5 mbox ctl 06 l
      6 ~> {bf2} apr mbox ctl 06 h
+     4 ~< apr5-e8-3
      2 ~> {al2} apr5 wr pt sel 1 l
      5 ~> {bf1} apr5 wr pt sel 1 h
 

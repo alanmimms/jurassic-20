@@ -135,7 +135,7 @@ e23:  10174 2x4 mix
       4 ~< {ar2} cram [n+42] h
       5 ~< {cj2} cram [n+22] h
       3 ~< {ck2} cram [n+02] h
-      10 ~< {cd2} cram par [n] h
+      10 ~< {cd2} cram par [n+00] h
       12 ~< {av2} cram [n+43] h
       11 ~< {bf1} cram [n+23] h
       13 ~< {bp2} cram [n+03] h
@@ -151,10 +151,10 @@ e1: 10161 decoder
     7 ~< {aj2} diag 06 b l
     15 ~< %NC%
     2 ~< {aj1} diag load func 05x l
-    10 ~> {af2} cr02 dia func 050 [n] l
-    11 ~> {ae2} cr02 dia func 051 [n] l
-    12 ~> {ae1} cr02 dia func 052 [n] l
-    13 ~> {ad2} cr02 dia func 053 [n] l
+    10 ~> {af2} cr02 dia func 050 [n+00] l
+    11 ~> {ae2} cr02 dia func 051 [n+00] l
+    12 ~> {ae1} cr02 dia func 052 [n+00] l
+    13 ~> {ad2} cr02 dia func 053 [n+00] l
     3 ~> cr02 write (60-79) l
     4 ~> cr02 write (40-59) l
     5 ~> cr02 write (20-39) l
@@ -175,7 +175,7 @@ e16: 10160 parity
      13 ~< {av2} cram [n+43] h
      14 ~< {cf2} cram [n+62] h
      15 ~< cr03 par 1st h
-     2 ~> {cd2} cram par [n] h
+     2 ~> {cd2} cram par [n+00] h
 
 e40: 10160 parity
      3 ~< %NC%
@@ -207,7 +207,7 @@ e29: 10210 dual 3 or buffer
      14 ~> %NC%
 
 dl1: delay-line (PCB wired)
-     1 ~< {cr2} clk crm [n] h
+     1 ~< {cr2} clk crm [n+00] h
      2 ~> clk crm delayed h
 
 e3: 10101 quad or/nor

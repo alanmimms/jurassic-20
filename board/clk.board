@@ -606,6 +606,8 @@ e26: 10105 2-3-2 or/nor
      15 ~> clk4-e26-15
      4 ~< clk3 sync l
      5 ~< clk3-e17-3
+     3 ~> clk3 ebox src en h
+     2 ~> clk3 ebox src en l
 
 e31: 10164 8 mixer
      6 ~< clk3-e26-7
@@ -652,6 +654,8 @@ e22: 10109 4/5 or/nor
      11 ~< -clk3 error hold a l
      12 ~< -clk3 error hold b l
      13 ~< -clk5 ebox crm dis l
+     14 ~> clk3-e22-14
+     15 ~> %NC%
 
 e18: 10109 4/5 or/nor
      9 ~< clk3-e17-3
@@ -774,7 +778,9 @@ e34: 10210 or buffer
      4 ~> {cj2} clk3 vma h
      11 ~< %NC%
      10 ~< clk3-dlpcb4-2
-     9 ~< {cd2} clk3 scd h
+     14 ~> {cf2} clk3 mcl h
+     13 ~> {ce2} clk ir h
+     12 ~> {cd2} clk3 scd h
 
 Page: CLK4, PDF171
 
@@ -842,10 +848,10 @@ e9:  10104 quad and/nand
      14 ~> clk5-e9-14
      4 ~< clk1 rate selected l
      5 ~< clk2 func 042 l
-     2 ~> clk5-e9-2
+     2 ~> clk4-e9-2
      6 ~< clk2 func 042 l
      7 ~< clk2 burst l
-     3 ~> clk5-e9-2
+     3 ~> clk4-e9-2
 
 e38: 10105 2-3-2 or/nor
      4 ~< {ct2} -shm1 ar par odd l
@@ -944,7 +950,7 @@ e23: 10164 8 mixer
      4 ~< clk3 sync h
      3 ~< -clk4 ebox clk h
      11 ~< clk3 ebox source h
-     12 ~< clk5 ebox srm dis h
+     12 ~< clk5 ebox crm dis h
      13 ~< clk5 ebox edp dis h
      14 ~< clk5 ebox ctl dis h
      10 ~< clk5 diag 04 h
@@ -1038,10 +1044,10 @@ e14: 10141 shift reg
      7 ~< clk2 func 044 l
      10 ~< clk2 func 044 l
      4 ~< clk1 main source b h
-     14 ~> clk4 source sel 2 h
+     14 ~> clk5 source sel 2 h
      15 ~> clk5 source sel 1 h
      2 ~> clk5 rate sel 2 h
-     3 ~> clk4 rate sel 1 h
+     3 ~> clk5 rate sel 1 h
 
 e13: 10141 shift reg
      13 ~< %NC%

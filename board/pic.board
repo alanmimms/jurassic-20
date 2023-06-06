@@ -707,7 +707,7 @@ e34: 10176 hex dff
      15 ~> pic2 apr requesting h
 
 dl1: delay-line (PCB wired)
-     1 ~< {cr2} clk3 pi h
+     1 ~< {cr2} clk pi h
      2 ~> clk pi delayed h
 
 e47: 10210 or buffer

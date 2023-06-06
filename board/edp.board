@@ -1041,20 +1041,20 @@ e64: 10160 parity
 e34: 10210 or buffer
      5 ~< %NC%
      6 ~< %NC%
-     7 ~< clk edp [n] delayed h
+     7 ~< clk edp [n+00] delayed h
      2 ~> dp04 clk a h
      3 ~> dp04 clk b h
      4 ~> dp04 clk c h
      9 ~< %NC%
      10 ~< %NC%
-     11 ~< clk edp [n] delayed h
+     11 ~< clk edp [n+00] delayed h
      12 ~> dp04 clk d h
      13 ~> dp04 clk e h
      14 ~> dp04 clk f h
 
 dl2: delay-line (PCB wired)
-     1 ~< {cr2} clk edp [n] h
-     2 ~> clk edp [n] delayed h
+     1 ~< {cr2} clk edp [n+00] h
+     2 ~> clk edp [n+00] delayed h
 
 e61: 10141 shft reg
      13 ~< %NC%

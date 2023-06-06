@@ -358,8 +358,8 @@ e45: 10210 dual 3 or buffer
     14 ~> scd2 clk f h
 
 dl1: delay-line (PCB wired)
-     1 ~< {cr2} clk scd h
-     2 ~> clk scd delayed h
+     1 ~< {cr2} clk3 scd h
+     2 ~> clk3 scd delayed h
 
 e78: 10176 hex d ff
     5 ~< %NC%
@@ -915,7 +915,7 @@ e33: 10104 quad and
      10 ~< {cu2} cram # 06 h
      11 ~< scd5 pcf+# h
      14 ~> scd4-e33-14
-     12 ~< {br1} con cond/pcf<-#
+     12 ~< {br1} con cond/pcf<-# h
      13 ~< {bu2} -con pi cycle a h
      15 ~> scd5 pcf<-# h
      9 ~> %NC%

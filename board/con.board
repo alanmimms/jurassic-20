@@ -10,10 +10,10 @@ e8: 10161 decoder
     5 ~> con1 cond en 10-17 l
     4 ~> con1 cond en 20-27 l
     3 ~> {cm1} con cond en 30-37 l
-    13 ~> {cl2} con cond en 40-47 l
-    12 ~> {ck1} con cond en 50-57 l
-    11 ~> con1 cond en 60-67 l
-    10 ~> con1 cond en 70-77 l
+    13 ~> {cl2} con skip en 40-47 l
+    12 ~> {ck1} con skip en 50-57 l
+    11 ~> con1 skip en 60-67 l
+    10 ~> con1 skip en 70-77 l
 
 e25: 10162 decoder
      14 ~< {ad2} cram cond 03 h
@@ -42,7 +42,7 @@ e3: 10161 decoder
      3 ~> %NC%
      13 ~> %NC%
      12 ~> con1 cond/spec instr l
-     11 ~> con1 cond/sr<-# 10
+     11 ~> con1 cond/sr<-# l
      10 ~> {cp2} con cond/sel vma l
 
 e26: 10161 decoder
@@ -54,7 +54,7 @@ e26: 10161 decoder
      6 ~> {ee1} con cond/diag func l
      5 ~> con1 cond/ebox state l
      4 ~> {du2} con cond/ebus ctl l
-     3 ~> {cp1} con1 cond/mbox ctl l
+     3 ~> {cp1} con cond/mbox ctl l
      13 ~> {ck2} con1 cond/024 l
      12 ~> con1 cond/long en l
      11 ~> {cj1} con cond/026 l
@@ -139,7 +139,7 @@ e21: 10164 8 mix
      6 ~< %NC%
      5 ~< {da1} con trap en h
      4 ~< {bs2} -con load ir h
-     3 ~< {dc1} con load instr abort h
+     3 ~< {dc1} con cond instr abort h
      11 ~< {br2} con load access cond h
      12 ~< -con2 instr go h
      13 ~< {bp2} con load dram h
@@ -197,26 +197,26 @@ e5: 10101 quad or/nor
 
 e13: 10101 quad or/nor
      7 ~< ebus d18 e h
-     6 ~> con ebus 18 h
-     3 ~> con ebus 18 l
+     6 ~> con1 ebus 18 h
+     3 ~> con1 ebus 18 l
      12 ~< %NC%
      10 ~< diag 05 a h
      11 ~> con1 diag 05 h
      14 ~> %NC%
      13 ~< ebus d19 e h
-     9 ~> con ebus 19 h
-     15 ~> con ebus 19 l
+     9 ~> con1 ebus 19 h
+     15 ~> con1 ebus 19 l
 
 e22: 10101 quad or/nor
      10 ~< diag read func 13x l
      12 ~< %NC%
      11 ~> con1 diag read l
      7 ~< ebus d20 e h
-     6 ~> con ebus 20 h
-     3 ~> con ebus 20 l
+     6 ~> con1 ebus 20 h
+     3 ~> con1 ebus 20 l
      13 ~< ebus d21 e h
-     9 ~> con ebus 21 h
-     15 ~> con ebus 21 l
+     9 ~> con1 ebus 21 h
+     15 ~> con1 ebus 21 l
      4 ~< con-e39-4
      2 ~> con2 diag continue l
      5 ~> %NC%
@@ -231,6 +231,10 @@ e24: 10105 2-3-2 or/nor
      11 ~< con1 reset h
      6 ~> {et2} con load spec instr l
      7 ~> %NC%
+     4 ~< {ap1} clk page error h
+     5 ~< {dc1} con cond instr abort h
+     3 ~> %NC%
+     2 ~> {bk1} con clr private instr h
 
 e7: 10105 2-3-2 or/nor
     12 ~< con1 cond/vma dec h
@@ -250,16 +254,16 @@ e7: 10105 2-3-2 or/nor
 e31: 10101 quad or/nor
      10 ~< {cu2} ebus d22 e h
      12 ~< %NC%
-     11 ~> con ebus 22 h
-     14 ~> con ebus 22 l
+     11 ~> con1 ebus 22 h
+     14 ~> con1 ebus 22 l
      7 ~< {cv2} ebus d23 e h
-     3 ~> con ebus 23 l
+     3 ~> con1 ebus 23 l
      6 ~> %NC%
      13 ~< {df1} mr reset 04 h
-     9 ~> con reset h
-     15 ~> con reset l
+     9 ~> con1 reset h
+     15 ~> con1 reset l
      4 ~< {dj2} ctl disp/nicond h
-     5 ~> con nicond h
+     5 ~> con1 nicond h
      2 ~> %NC%
 
 Page: CON2, PDF159
@@ -527,7 +531,7 @@ e57: 10176 hex dff
 
 e14: 10141 shft reg
      13 ~< %NC%
-     12 ~< con1 ebus 10 h
+     12 ~< con1 ebus 18 h
      11 ~< -con1 ebus 19 h
      9 ~< con1 ebus 19 h
      6 ~< con1 ebus 20 h
@@ -810,7 +814,7 @@ e49: 10141 shft reg
      4 ~< con2 clk b h
      14 ~> {en1} con ebox halted h
      15 ~> %NC%
-     2 ~> {fa1} con pc+1 in h
+     2 ~> {fa1} con pc+1 inh h
      3 ~> {fd2} con4 spec 08 h
 
 e65: 10121 4-wide or-and
