@@ -12,11 +12,7 @@
 //   * This decouples uses of netlist structure from AST structure.
 
 // TODO:
-// * '-con2 long en h' is the same signal as 'con2 long en l'.
-//    * They should be connected in same net.
-//    * Maybe always store in canonical form?
 // * Need dump of nets and their backplane slot/pin fullname and chip pin fullname.
-// * Join nets with same canonical name into a single fully connected net.
 // * Show each slot attached to same net for multiply-instantiated modules like EDP.
 //   * E.g., these two signals should be attached to three slots each:
 //      cram arxm sel 4 00 h:
@@ -442,9 +438,8 @@ ${util.inspect(chips[name].location)}`);
 		pin: pin.pin,
 		dir: astDirToDir(pin.dir),
 		fullName: pin.fullName,
-		net: pin.netName,
+		net: canonicalize(pin.netName),
 		pdfRef: page.pdfRef,
-		canonicalNet: canonicalize(pin.netName),
 		location: pin.location,
 	      };
 
@@ -496,7 +491,7 @@ function dumpNets(bp) {
   fs.writeFileSync('bp.nets',
 		   Object.keys(bp.allNets)
 		   .filter(k => k != '%NC%')
-		   .sort(canonicalNetNameSort)
+		   .sort(netNameSort)
 		   .map(netName => `\
 ${netName}:
   ${Object.keys(bp.allNets[netName])
@@ -522,25 +517,10 @@ ${netName}:
   }
 }
 
-function canonicalNetNameSort(a, b) {
-  a = canonicalize(a).replace(/^[^a-zA-Z]/g, '');
-  b = canonicalize(b).replace(/^[^a-zA-Z]/g, '');
+function netNameSort(a, b) {
+  a = a.replace(/^[^a-zA-Z]/g, '');
+  b = b.replace(/^[^a-zA-Z]/g, '');
   return a > b ? 1 : a < b ? -1 : 0;
-}
-
-
-function testCanonicalNameSort() {
-  test1('-apr2 clk c l', 'apr2 a h', 1);
-  test1('-apr2 clk c l', 'apr2 d h', -1);
-  test1('apr2 clk c l', '-apr2 d l', -1);
-  test1('apr2 clk c l', '-apr2 a l', 1);
-
-  function test1(a, b, sb) {
-
-    if (canonicalNetNameSort(a, b) != sb) {
-      console.error(`ERROR: canonicalNetNameSort('${a}', '${b}') != '${sb}' is ${canonicalNetNameSort(a, b)}`);
-    }
-  }
 }
 
 
@@ -607,7 +587,6 @@ function testPadValueToDigits() {
 
 
 function doTests() {
-  testCanonicalNameSort();
   testCanonicalize();
   testPadValueToDigits();
 }
