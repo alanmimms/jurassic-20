@@ -1,12 +1,9 @@
 #!/usr/bin/env node
-
 'use strict';
 
 const util = require('util');
 const CMDR = require('commander').program;
-const COMPILE = require('./compile');
-
-
+const {compile} = require('./compile');
 
 CMDR
   .option('-t, --trace-parse', `Print trace while parsing netlist`)
@@ -20,7 +17,7 @@ CMDR
   .argument('<src>', `Source file to start parsing`)
   .action((src, options) => {
     options.src = src;
-    const backplanes = COMPILE.compile(options);
+    const backplanes = compile(options);
     console.log(`[done]`);
   })
   .parse();
