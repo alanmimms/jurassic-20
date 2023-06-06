@@ -375,6 +375,9 @@ function compile(simOptions) {
   const backplanes = {};
   options = simOptions;
 
+  // libreoffice --convert-to csv ./cram-backplane.ods
+  const cramDefs = readCRAMBackplane('cram-backplane.csv');
+
   const needCheck =
         options.checkNets ||
         options.checkWireOr ||
@@ -469,6 +472,27 @@ ${util.inspect(chips[name].location)}`);
   if (options.dumpBackplane) dumpNets(bp);
   
   return bp;
+}
+
+
+function readCRAMBackplane(fn) {
+  return fs.readFileSync(fn, 'utf8')
+    .split('\n')
+    .filter(line => line)
+    .reduce((slots, line) => {
+      const [sigUC, bitExpr, sliceExpr, pinFull] = line.split(',');
+      const sig = sigUC.toLowerCase();
+      const slice = parseInt(sliceExpr.split(/=/)[1]);
+      const bit = parseInt(bitExpr.split(/\+/)[1]) + slice;
+      const slot = parseInt(pinFull.slice(2, 4));
+      const pin = `${slot}.${pinFull[1]}${pinFull.slice(4)}`;
+
+      const pPin = slots[pin];
+      if (pPin) console.error(`${fn} duplicate '${sig}' pin '${pin}', was ${pPin.bit.toString().padStart(3)} '${pPin.sig}'`);
+      if (slots.signals[sig]) console.error(`${fn} defines signal '${sig}' more than once`);
+      slots[pin] = {sig, bit, slot, pin};
+      return slots;
+    }, {signals: {}, });
 }
 
 
