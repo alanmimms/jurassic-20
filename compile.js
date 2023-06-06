@@ -486,7 +486,7 @@ function dumpPins(bp) {
   fs.writeFileSync('bp.pins',
 		   Object.keys(bp.allPins).sort(slotPinSort).map(bpPin => `\
 ${bpPin}:
-  ${Object.values(bp.allPins[bpPin]).map(pin => `${pin.dir} ${pin.net.padEnd(32)}${pin.fullName}`)
+  ${Object.values(bp.allPins[bpPin]).map(pin => `${pin.dir} ${pin.net.padEnd(35)}${pin.fullName}`)
 		   .join("\n  ")}`)
 		   .join("\n"));
 }
@@ -502,7 +502,7 @@ ${netName}:
   ${Object.keys(bp.allNets[netName])
     .map(pinFullName => {
       const pin = bp.allPins[pinFullName];
-      return `${pin.dir} ${pinFullName.padEnd(15) + (pin.bpPin || '').padEnd(20)}${pin.pdfRef}`;
+      return `${pin.dir} ${pinFullName.padEnd(20) + (pin.bpPin || '').padEnd(20)}${pin.pdfRef}`;
     })
 		   .join("\n  ")}`)
 		   .join("\n"));
