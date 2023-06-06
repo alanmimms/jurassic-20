@@ -95,34 +95,6 @@ function parseBackplanes(parser) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Walk through all net references and create: {
-//   netName1: [{pin, dir, bpPin},  ... ],  ...
-// }
-function gatherNetByName(bp) {
-  bp.netByName = {};
-  
-  bp.slots
-    .filter(board => board && board.pages)
-    .forEach(board => {
-
-      board.pages.forEach(page => {
-
-	page.chips.forEach(chip => {
-
-	  chip.pins
-	    .forEach(pin => {
-	      if (!bp.netByName[pin.netName]) bp.netByName[pin.netName] = [];
-	      bp.netByName[pin.netName].push(pin);
-	    });
-	});
-      });
-    });
-
-  return bp.netByName;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
 // Define connections between pins and nets, including those on backplane.
 function definePinsAndNets(bp) {
   bp.allNets = {};
@@ -460,11 +432,9 @@ ${util.inspect(chips[name].location)}`);
       }, {});
     });
 
-  if (false) {
-    gatherNetByName(backplane);
-    if (needCheck) checkNetConnectivity(backplane.netByName);
-    if (options.dumpSignals) dumpSignals(bp);
-  }
+  // Add CRAM signal definitions for backplane signals attached to CRAM slots.
+  fs.writeFileSync('bp.cram-defs', util.inspect(cramDefs, {depth: 99, breakLength: 90, maxArrayLength: null}));
+
 
   fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
 
@@ -478,21 +448,26 @@ ${util.inspect(chips[name].location)}`);
 function readCRAMBackplane(fn) {
   return fs.readFileSync(fn, 'utf8')
     .split('\n')
-    .filter(line => line)
-    .reduce((slots, line) => {
+    .filter((line, x) => line && x != 0)
+    .reduce((cram, line) => {
       const [sigUC, bitExpr, sliceExpr, pinFull] = line.split(',');
       const sig = sigUC.toLowerCase();
       const slice = parseInt(sliceExpr.split(/=/)[1]);
       const bit = parseInt(bitExpr.split(/\+/)[1]) + slice;
-      const slot = parseInt(pinFull.slice(2, 4));
+      const slot = pinFull.slice(2, 4);
       const pin = `${slot}.${pinFull[1]}${pinFull.slice(4)}`;
 
-      const pPin = slots[pin];
+      if (isNaN(slot)) console.error(`${fn} bad slot number in line '${line}'`);
+
+      const pPin = cram.bp[pin];
       if (pPin) console.error(`${fn} duplicate '${sig}' pin '${pin}', was ${pPin.bit.toString().padStart(3)} '${pPin.sig}'`);
-      if (slots.signals[sig]) console.error(`${fn} defines signal '${sig}' more than once`);
-      slots[pin] = {sig, bit, slot, pin};
-      return slots;
-    }, {signals: {}, });
+      if (cram.signals[sig]) console.error(`${fn} defines signal '${sig}' more than once`);
+      cram.bp[pin] = {sig, bit, slot, pin};
+      if (!cram.slot[slot]) cram.slot[slot] = {};
+      cram.slot[slot][pin] = cram.bp[pin];
+      cram.signals[sig] = cram.bp[pin];
+      return cram;
+    }, {signals: {}, slot: {}, bp: {}, });
 }
 
 
