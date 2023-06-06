@@ -45,3 +45,4 @@ ebox.before.evaluation
 .#*
 .~lock.*
 cram-backplane.csv
+bp.cram-defs
