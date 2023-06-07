@@ -1,28 +1,5 @@
 'use strict';
 
-// Needed:
-// * List of bpPins in each slot and which net(s) they're attached to.
-// * List of nets in the backplane and which bpPins/slots/chips/pins they're attached to.
-
-// Thoughts:
-// * It's better to transform AST into netlist structure at top level
-//     production of each parse (sub)tree.
-//   * This decouples netlist structure from AST structure near where AST
-//     structure is defined.
-//   * This decouples uses of netlist structure from AST structure.
-
-// TODO:
-// * Need dump of nets and their backplane slot/pin fullname and chip pin fullname.
-// * Show each slot attached to same net for multiply-instantiated modules like EDP.
-//   * E.g., these two signals should be attached to three slots each:
-//      cram arxm sel 4 00 h:
-//        DP02.e60.4     edp.ff1[52]    PDF16
-//      cram arxm sel 4 06 h:
-//        DP02.e60.4     edp.ff1[52]    PDF16
-// * Signals that don't go to a backplane pin _must_ stay local to the module even if
-//   they have names that match global signal names. E.g., 'ad cry -02 h' is local to
-//   EDP and global driven by IRD.ca1 to CRA.cf1.
-
 const fs = require('fs');
 const util = require('util');
 const PEG = require('pegjs');
@@ -74,7 +51,7 @@ function parseBackplanes(parser) {
     .filter(slot => slot.board && slot.board.id != 'ignore')
     .forEach(slot => {
       const slotNumber = slot.n;
-      const slotName = `${bpAST.name}.${slotNumber}`;
+      const slotName = `${bpAST.name}.${slotNumber.padStart(2, '0')}`;
       const board = slot.board;
       const macros = board.macros || [];
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
@@ -82,7 +59,7 @@ function parseBackplanes(parser) {
 
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
-      console.log(`  Slot ${slotName}: ${board.id} ${macroDesc}`);
+      console.log(`  Slot ${slotName}: ${board.id.padEnd(4)} ${macroDesc.padEnd(12)} ${board.comments}`);
 
       const boardAST = parseFile(parser, `board/${board.id}.board`);
       expandMacros(boardAST, bpAST, macroEnv);
@@ -349,6 +326,7 @@ function compile(simOptions) {
 
   // libreoffice --convert-to csv ./cram-backplane.ods
   const cramDefs = readCRAMBackplane('cram-backplane.csv');
+  fs.writeFileSync('bp.cram-defs', util.inspect(cramDefs, {depth: 99, breakLength: 90, maxArrayLength: null}));
 
   const needCheck =
         options.checkNets ||
@@ -430,11 +408,13 @@ ${util.inspect(chips[name].location)}`);
 
 	return chips;
       }, {});
+
+      // Define signal names for this CRAM slot if it is one.
+      const slotCRAM = cramDefs.slot[slot.n];
+      if (slotCRAM) {
+	// XXX
+      }
     });
-
-  // Add CRAM signal definitions for backplane signals attached to CRAM slots.
-  fs.writeFileSync('bp.cram-defs', util.inspect(cramDefs, {depth: 99, breakLength: 90, maxArrayLength: null}));
-
 
   fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
 
@@ -594,4 +574,3 @@ doTests();
 
 module.exports.compile = compile;
 module.exports.doTests = doTests;
-
