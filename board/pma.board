@@ -1,3 +1,388 @@
-Page: PMA1, PDF84
 // M8518YA TBD
-// STUB
+Page: PMA1, PDF84
+
+e5:  10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 15 h
+     11 ~< pma1 va 16 h
+     9 ~< pma1 va 17 h
+     6 ~< pma1 va 18 h
+     5 ~< %NC%
+     7 ~< pma1-e9-9
+     10 ~< pma1-e9-9
+     4 ~< pma2 clock f h
+     14 ~> pma1 ubr 15 h
+     15 ~> pm1 ub4 16 h
+     2 ~> pma1 ubr 17 h
+     3 ~> pma1 ubr 18 h
+
+e13: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 19 h
+     11 ~< pma1 va 20 h
+     9 ~< pma1 va 21 h
+     6 ~< pma1 va 22 h
+     5 ~< %NC%
+     7 ~< pma1-e9-9
+     10 ~< pma1-e9-9
+     4 ~< pma2 clock f h
+     14 ~> pma1 ubr 19 h
+     15 ~> pm1 ub4 20 h
+     2 ~> pma1 ubr 21 h
+     3 ~> pma1 ubr 22 h
+
+e12: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 23 h
+     11 ~< pma1 va 24 h
+     9 ~< pma1 va 25 h
+     6 ~< pma1 va 26 h
+     5 ~< %NC%
+     7 ~< pma1-e9-9
+     10 ~< pma1-e9-9
+     4 ~< pma2 clock e h
+     14 ~> pma1 ubr 23 h
+     15 ~> pm1 ub4 24 h
+     2 ~> pma1 ubr 25 h
+     3 ~> pma1 ubr 26 h
+
+e9:  10104 quad and/nand
+     12 ~< {fd2} apr6 ebox ubr h
+     13 ~< {ad1} mbx1 ebox load reg h
+     9 ~> pma1-e9-9
+     15 ~> pma1-e9-15
+     4 ~< {aa1} apr6 ebox ebr h
+     5 ~< {ad1} mbx1 ebox load reg h
+     2 ~> pma1-e9-2
+     6 ~< {ac1} apr6 ebox cca h
+     7 ~< {ad1} mbx1 ebox load reg h
+     3 ~> pma2 cca load h
+
+e3:  10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 15 h
+     11 ~< pma1 va 16 h
+     9 ~< pma1 va 17 h
+     6 ~< pma1 va 18 h
+     5 ~< %NC%
+     7 ~< pma1-e14-14
+     10 ~< pma1-e14-14
+     4 ~< pma2 clock e h
+     14 ~> pma1 ebr 15 h
+     15 ~> pm1 ebr 16 h
+     2 ~> pma1 ebr 17 h
+     3 ~> pma1 ebr 18 h
+
+e8:  10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 19 h
+     11 ~< pma1 va 20 h
+     9 ~< pma1 va 21 h
+     6 ~< pma1 va 22 h
+     5 ~< %NC%
+     7 ~< pma1-e14-14
+     10 ~< pma1-e14-14
+     4 ~< pma2 clock e h
+     14 ~> pma1 ebr 19 h
+     15 ~> pm1 ebr 20 h
+     2 ~> pma1 ebr 21 h
+     3 ~> pma1 ebr 22 h
+
+e7:  10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 23 h
+     11 ~< pma1 va 24 h
+     9 ~< pma1 va 25 h
+     6 ~< pma1 va 26 h
+     5 ~< %NC%
+     7 ~< pma1-e14-14
+     10 ~< pma1-e14-14
+     4 ~< pma2 clock e h
+     14 ~> pma1 ebr 23 h
+     15 ~> pm1 ebr 24 h
+     2 ~> pma1 ebr 25 h
+     3 ~> pma1 ebr 26 h
+
+e14: 10101 quad or/nor
+     10 ~< pma1-e9-2
+     12 ~< %NC%
+     14 ~> pma1-e14-14
+     11 ~> %NC%
+     4 ~< {af1} vma2 vma 22 a h
+     2 ~> %NC%
+     5 ~> pma1 va 22 h
+     13 ~< {ae1} vma2 vma 23 a h
+     15 ~> %NC%
+     9 ~> pma1 va 23 h
+     7 ~< pma2 cca load h
+     3 ~> pma2 cca load l
+     6 ~> %NC%
+
+e15: 10117 dual 2-3 or-and
+     4 ~< pma1 ubr 14 h
+     5 ~< pma1-e9-15
+     6 ~< pma1-e9-9
+     7 ~< pma1 va 14 h
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> pma1-e15-2
+     12 ~< pma1 ebr 14 h
+     13 ~< pma1-e9-2
+     10 ~< pma1-e14-14
+     11 ~< pma1 va 14 h
+     14 ~> %NC%
+     15 ~> pma1-e15-15
+
+e19: 10117 dual 2-3 or-and
+     4 ~< pma1 cca 14 h
+     5 ~< pma2 cca load h
+     6 ~< -pma2 cca load h
+     7 ~< pma1 va 14 h
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> pma1-e19-2
+     12 ~< pma5 ubr sel h
+     13 ~< Pma1 ebr 14 h
+     10 ~< pma1 ubr 14 h
+     11 ~< -pma5 ubr sel h
+     14 ~> %NC%
+     15 ~> pma1 uebr 14 h
+
+e20: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma1-e15-2
+     11 ~< pma1-e15-15
+     9 ~< pma1-e19-2
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< %NC%
+     4 ~< pma2 clock f h
+     14 ~> pma1 ubr 14 h
+     15 ~> pma1 ebr 14 h
+     2 ~> pma1 cca 14 h
+     3 ~> %NC%
+
+e1:  10101 quad or/nor
+     4 ~< {ap2} vma2 vma 14 a h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> pma1 va 14 h
+     7 ~< {ap1} vma2 vma 15 a h
+     3 ~> %NC%
+     6 ~> pma1 va 15 h
+     13 ~< {am2} vma2 vma 16 a h
+     15 ~> %NC%
+     9 ~> pma1 va 16 h
+     10 ~< {am1} vma2 vma 17 a h
+     14 ~> %NC%
+     11 ~> pma1 va 17 h
+
+e25: 10101 quad or/nor
+     4 ~< {af2} vma 18 a h
+     12 ~< %NC%
+     2 ~> pma1 va 18 l
+     5 ~> pma1 va 18 h
+     7 ~< {ae2} vma 19 a h
+     3 ~> pma1 va 19-21=7 l
+     6 ~> pma1 va 19 h
+     13 ~< {ad2} vma 20 a h
+     15 ~> pma1 va 19-21=7 l
+     9 ~> pma1 va 20 h
+     10 ~< {ak1} vma2 vma 21 a h
+     14 ~> pma1 va 19-21=7 l
+     11 ~> pma1 va 21 h
+
+e11: 10113 quad 2 xor
+     5 ~< {av2} vma2 vma 24 a h
+     4 ~< %NC%
+     9 ~< %NC%
+     2 ~> pma1 va 24 h
+     7 ~< {au2} vma2 vma 25 a h
+     6 ~< %NC%
+     3 ~> pma1 va 25 h
+     11 ~< {ar1} vma2 vma 26 a h
+     10 ~< %NC%
+     14 ~> pma1 va 26 h
+
+e4:  10173 4x2 mixer latch
+     5 ~< pma1 ebr 15 h
+     6 ~< pma1 ubr 15 h
+     3 ~< pma1 ebr 16 h
+     4 ~< pma1 ubr 16 h
+     12 ~< pma1 ebr 17 h
+     13 ~< pma1 ubr 17 h
+     10 ~< pma1 ebr 18 h
+     11 ~< pma1 ubr 18 h
+     9 ~< pma5 ubr sel h
+     7 ~< %NC%
+     1 ~> pma1 uebr 15 h
+     2 ~> pma1 uebr 16 h
+     15 ~> pma1 uebr 17 h
+     14 ~> pma1 uebr 18 h
+
+e18: 10173 4x2 mixer latch
+     5 ~< pma1 ebr 19 h
+     6 ~< pma1 ubr 19 h
+     3 ~< pma1 ebr 20 h
+     4 ~< pma1 ubr 20 h
+     12 ~< pma1 ebr 21 h
+     13 ~< pma1 ubr 21 h
+     10 ~< pma1 ebr 22 h
+     11 ~< pma1 ubr 22 h
+     9 ~< pma5 ubr sel h
+     7 ~< %NC%
+     1 ~> pma1 uebr 19 h
+     2 ~> pma1 uebr 20 h
+     15 ~> pma1 uebr 21 h
+     14 ~> pma1 uebr 22 h
+
+e2:  10173 4x2 mixer latch
+     5 ~< pma1 ebr 23 h
+     6 ~< pma1 ubr 23 h
+     3 ~< pma1 ebr 24 h
+     4 ~< pma1 ubr 24 h
+     12 ~< pma1 ebr 25 h
+     13 ~< pma1 ubr 25 h
+     10 ~< pma1 ebr 26 h
+     11 ~< pma1 ubr 26 h
+     9 ~< pma5 ubr sel h
+     7 ~< %NC%
+     1 ~> pma1 uebr 23 h
+     2 ~> pma1 uebr 24 h
+     15 ~> pma1 uebr 25 h
+     14 ~> pma1 uebr 26 h
+
+Page: PMA2, PDF85
+
+e10: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 15 h
+     11 ~< pma1 va 16 h
+     9 ~< pma1 va 17 h
+     6 ~< pma1 va 18 h
+     5 ~< %NC%
+     7 ~< pma2 cca load l
+     10 ~< pma2 cca load l
+     4 ~< pma2 clock f h
+     14 ~> pma2 cca 15 h
+     15 ~> pma2 cca 16 h
+     2 ~> pma2 cca 17 h
+     3 ~> pma2 cca 18 h
+
+e24: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 19 h
+     11 ~< pma1 va 20 h
+     9 ~< pma1 va 21 h
+     6 ~< pma1 va 22 h
+     5 ~< %NC%
+     7 ~< pma2 cca load l
+     10 ~< pma2 cca load l
+     4 ~< pma2 clock d h
+     14 ~> pma2 cca 19 h
+     15 ~> pma2 cca 20 h
+     2 ~> pma2 cca 21 h
+     3 ~> pma2 cca 22 h
+
+e28: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma1 va 23 h
+     11 ~< pma1 va 24 h
+     9 ~< pma1 va 25 h
+     6 ~< pma1 va 26 h
+     5 ~< %NC%
+     7 ~< pma2 cca load l
+     10 ~< pma2 cca load l
+     4 ~< pma2 clock d h
+     14 ~> pma2 cca 23 h
+     15 ~> pma2 cca 24 h
+     2 ~> pma2 cca 25 h
+     3 ~> pma2 cca 26 h
+
+e38: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk pma delayed h
+     2 ~> pma2 clock a h
+     3 ~> pma2 clock b h
+     4 ~> pma2 clock c h
+     9 ~< %NC%
+     10 ~< clk pma delayed h
+     11 ~< %NC%
+     12 ~< pma2 clock d h
+     13 ~> pma2 clock e h
+     14 ~> pma2 clock f h
+
+dl1:  delay-line (PCB wired)
+      1 <~ {cr2} clk1 pma h
+      2 ~> clk pma delayed h
+
+e47:  10101 quad or/nor
+      7 ~< %NC%
+      12 ~< %NC%
+      3 ~> pma2 hi
+      6 ~> %NC%
+
+e40: 10136 binary counter
+     5 ~< %NC%
+     6 ~< pma2 hi
+     11 ~< pma2 hi
+     12 ~< pma2 hi
+     10 ~< pma2-e36-15
+     7 ~< {fm1} mbx1 cca sel 2 h
+     9 ~< {ff2} mbx1 cca sel 1 h
+     13 ~< pma2 clock a h
+     4 ~> %NC%
+     3 ~> %NC%
+     2 ~> pma2 cca 27 h
+     15 ~> pma2 cca 28 h
+     14 ~> pma2 cca 29 h
+
+e75: 10136 binary counter
+     5 ~< pma2 hi
+     6 ~< pma2 hi
+     11 ~< pma2 hi
+     12 ~< pma2 hi
+     10 ~< pma2-e65-2
+     7 ~< {fm1} mbx1 cca sel 2 h
+     9 ~< {ff2} mbx1 cca sel 1 h
+     13 ~< pma2 clock b h
+     4 ~> %NC%
+     3 ~> pma2 cca 30 h
+     2 ~> pma2 cca 31 h
+     15 ~> pma2 cca 32 h
+     14 ~> pma2 cca 33 h
+
+e70: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< pma2 hi
+     12 ~< pma2 hi
+     10 ~< %NC%
+     7 ~< {fm1} mbx1 cca sel 2 h
+     9 ~< {ff2} mbx1 cca sel 1 h
+     13 ~< pma2 clock b h
+     4 ~> %NC%
+     3 ~> %NC%
+     2 ~> %NC%
+     15 ~> pma2 cca 34 h
+     14 ~> pma2 cca 35 h
+
+e36: 10109 4/5 or/nor
+     9 ~< -pma2 cca 30 l
+     10 ~< -pma2 cca 31 l
+     11 ~< -pma2 cca 32 l
+     12 ~< -pma2 cca 33 l
+     13 ~< pma2-e65-2
+     14 ~> %NC%
+     15 ~> pma2-e36-15
+
+e65: 10117 dual 2-3 or-and
+     4 ~< {em2} -mbx1 cca all pages cyc l
+     5 ~< %NC%
+     6 ~< -pma2 cca 34 l
+     7 ~< -pma2 cca 35 l
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> pma2-e65-2

@@ -8,6 +8,29 @@
 
 * This decouples uses of netlist structure from AST structure.
 
+# Data
+
+## Data Needed
+
+* Board level wiring: Interconnect nets with same local net name
+  (`lNet`) on each chip on reach board. On the board `lNet` is the net
+  name.
+
+* CRAM bit naming per slot: Interconnect nets with same global net
+  name (`gNet`) by backplane pins for CRM board slots. On the
+  backplane, `gNet` is the net name.
+
+* Backplane level wiring: Interconnect nets with same global net name
+  (`gNet`) by backplane pin. On the backplane, `gNet` is the net name.
+  This `gNet` is initialized from the board's `lNet` and then
+  overridden by the CRAM global net name if there is one for this
+  slot.
+
+
+## Data Available
+
+
+
 # TODO:
 
 * Need dump of nets and their backplane slot/pin fullname and chip pin

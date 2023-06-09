@@ -46,7 +46,8 @@ function parseBackplanes(parser) {
   bpMacros.forEach(macro => bpMacroEnv[macro.id] = macro.value);
 
   // For each slot, (re)parse the board definition and expand its
-  // macros for the slot (and backplane, and CPU type) specifics.
+  // macros for the slot (and backplane, and CPU type) specifics.  The
+  // re-parsing makes each board's data structures a unique deep copy.
   bpAST.slots
     .filter(slot => slot.board && slot.board.id != 'ignore')
     .forEach(slot => {
@@ -55,8 +56,11 @@ function parseBackplanes(parser) {
       const board = slot.board;
       const macros = board.macros || [];
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
-      const macroEnv = {...bpMacroEnv};
 
+      // Each board macro env starts with copy of BP macro vars as
+      // base, then we add this board's values, possibly superseding
+      // exiting ones.
+      const macroEnv = {...bpMacroEnv};
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
       console.log(`  Slot ${slotName}: ${board.id.padEnd(4)} ${macroDesc.padEnd(12)} ${board.comments}`);
@@ -73,7 +77,7 @@ function parseBackplanes(parser) {
 
 ////////////////////////////////////////////////////////////////////////////////
 // Define connections between pins and nets, including those on backplane.
-function definePinsAndNets(bp) {
+function definePinsAndNets(bp, cramDefs) {
   bp.allNets = {};
   bp.allPins = {};
 
@@ -82,22 +86,44 @@ function definePinsAndNets(bp) {
     Object.values(board.chips).forEach(chip => {
 
       chip.pins.forEach(pin => {
-	if (!bp.allNets[pin.net]) bp.allNets[pin.net] = {};
 
-	const net = {
+	const newNet = {
 	  pin: pin.pin,
 	  dir: pin.dir,
 	  fullName: pin.fullName,
 	  slotName: board.slotName,
-	  net: pin.net,
+	  lNet: pin.lNet,
+	  gNet: pin.gNet,
 	  module: board.id,
 	};
 
-	bp.allNets[pin.net][pin.fullName] = net;
-	bp.allPins[pin.fullName] = pin;
+	if (!bp.allNets[newNet.lNet]) bp.allNets[newNet.lNet] = {};
+	bp.allNets[newNet.lNet][newNet.fullName] = newNet;
+
+	// This is not particularly DRY.
+	if (newNet.gNet) {
+	  if (!bp.allNets[newNet.gNet]) bp.allNets[newNet.gNet] = {};
+	  bp.allNets[pin.gNet][newNet.fullName] = newNet;
+	}
+	
+	bp.allPins[newNet.fullName] = pin;
       });
     });
   });
+
+  // For each slot we have in the CRAM-to-net mapping, for each
+  // net therein, install the net name in the slot.
+  Object.keys(cramDefs.slots)
+    .forEach(slot => {
+      Object.values(cramDefs.slots[slot])
+	.forEach(net => {
+
+	  bp.allNets[net.gNet][net.pin] = {
+	  };
+
+	  bp.allPins[net.pin] = ;
+	});
+    });
 }
 
 
@@ -387,38 +413,36 @@ ${util.inspect(chips[name].location)}`);
 
 	    pins: astChip.pins.map(pin => {
 
-	      let result = {
+	      const pinsResult = {
 		pin: pin.pin,
 		dir: astDirToDir(pin.dir),
 		fullName: pin.fullName,
-		net: canonicalize(pin.netName),
+		lNet: canonicalize(pin.netName),
 		pdfRef: page.pdfRef,
 		location: pin.location,
 	      };
 
-	      if (pin.bpPin) {
-		// Define backplane pin as <board>.<pin>[<slotName>]. Leave off "{}" from pin.
-		result.bpPin = `${slot.board.id}.${pin.bpPin}[${slotName}]`;
+	      if (pin.bpPin) {	// If this local net connects to the backplane
+
+		// Define backplane pin as <board>.<pin>[<slotName>].
+		pinsResult.bpPin = `${slot.board.id}.${pin.bpPin}[${slotName}]`;
+
+		// Note that this pin's net name is global.
+		pinsResult.gNet = pinsResult.lNet;
 	      }
 
-	      return result;
+	      return pinsResult;
 	    }),
 	  };
 	});
 
 	return chips;
       }, {});
-
-      // Define signal names for this CRAM slot if it is one.
-      const slotCRAM = cramDefs.slot[slot.n];
-      if (slotCRAM) {
-	// XXX
-      }
     });
 
   fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
 
-  definePinsAndNets(bp);
+  definePinsAndNets(bp, cramDefs);
   if (options.dumpBackplane) dumpNets(bp);
   
   return bp;
@@ -430,24 +454,25 @@ function readCRAMBackplane(fn) {
     .split('\n')
     .filter((line, x) => line && x != 0)
     .reduce((cram, line) => {
-      const [sigUC, bitExpr, sliceExpr, pinFull] = line.split(',');
-      const sig = sigUC.toLowerCase();
+      const [netUC, bitExpr, sliceExpr, pinFull] = line.split(',');
+      const net = netUC.toLowerCase();
       const slice = parseInt(sliceExpr.split(/=/)[1]);
       const bit = parseInt(bitExpr.split(/\+/)[1]) + slice;
       const slot = pinFull.slice(2, 4);
-      const pin = `${slot}.${pinFull[1]}${pinFull.slice(4)}`;
+      const bpPinName = `${pinFull[1]}${pinFull.slice(4)}`.toLowerCase();
+      const pin = `crm.${bpPinName}[ebox.${slot}]`;
 
       if (isNaN(slot)) console.error(`${fn} bad slot number in line '${line}'`);
 
       const pPin = cram.bp[pin];
-      if (pPin) console.error(`${fn} duplicate '${sig}' pin '${pin}', was ${pPin.bit.toString().padStart(3)} '${pPin.sig}'`);
-      if (cram.signals[sig]) console.error(`${fn} defines signal '${sig}' more than once`);
-      cram.bp[pin] = {sig, bit, slot, pin};
+      if (pPin) console.error(`${fn} duplicate '${net}' pin '${pin}', was ${pPin.bit.toString().padStart(3)} '${pPin.net}'`);
+      if (cram.nets[net]) console.error(`${fn} defines net '${net}' more than once`);
+      cram.bp[pin] = {net, pin, slot};
       if (!cram.slot[slot]) cram.slot[slot] = {};
       cram.slot[slot][pin] = cram.bp[pin];
-      cram.signals[sig] = cram.bp[pin];
+      cram.nets[net] = cram.bp[pin];
       return cram;
-    }, {signals: {}, slot: {}, bp: {}, });
+    }, {nets: {}, slot: {}, bp: {}, });
 }
 
 
