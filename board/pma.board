@@ -310,12 +310,12 @@ e38: 10210 or buffer
      9 ~< %NC%
      10 ~< clk pma delayed h
      11 ~< %NC%
-     12 ~< pma2 clock d h
+     12 ~> pma2 clock d h
      13 ~> pma2 clock e h
      14 ~> pma2 clock f h
 
 dl1:  delay-line (PCB wired)
-      1 <~ {cr2} clk1 pma h
+      1 ~< {cr2} clk1 pma h
       2 ~> clk pma delayed h
 
 e47:  10101 quad or/nor
