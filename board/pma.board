@@ -377,6 +377,12 @@ e36: 10109 4/5 or/nor
      13 ~< pma2-e65-2
      14 ~> %NC%
      15 ~> pma2-e36-15
+     4 ~< -pma2 cca 27 l
+     5 ~< -pma2 cca 28 l
+     6 ~< -pma2 cca 29 l
+     7 ~< pma2-e36-15
+     3 ~> %NC%
+     2 ~> {bf1} pma cca cry out l
 
 e65: 10117 dual 2-3 or-and
      4 ~< {em2} -mbx1 cca all pages cyc l
@@ -386,3 +392,140 @@ e65: 10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> %NC%
      2 ~> pma2-e65-2
+
+Page: PMA3, PDF86
+
+e32: 10164 8 mixer
+     6 ~< {ap2} vma2 vma 14 a h
+     5 ~< pma1 uebr 14 h
+     4 ~< %NC%
+     3 ~< {bc1} ccw cha 14 h
+     11 ~< {bv2} cam 14 h
+     12 ~< pma1 cca 14 h
+     13 ~< pma4 era 14 h
+     14 ~< {bs1} pag1 pt 14 a h
+     10 ~< pma5 14-26 sel 4 h
+     9 ~< pma5 14-26 sel 2 h
+     7 ~< pma5 14-26 sel 1 h
+     15 ~> {ds2} pma3 pa 14 h
+     2 ~< %NC%
+
+e30: 10164 8 mixer
+     6 ~< {ap1} vma2 vma 15 a h
+     5 ~< pma1 uebr 15 h
+     4 ~< %NC%
+     3 ~< {bl2} ccw cha 15 h
+     11 ~< {bt2} cam 15 h
+     12 ~< pma2 cca 15 h
+     13 ~< pma4 era 15 h
+     14 ~< {bs2} pag1 pt 15 a h
+     10 ~< pma5 14-26 sel 4 h
+     9 ~< pma5 14-26 sel 2 h
+     7 ~< pma5 14-26 sel 1 h
+     15 ~> {ds1} pma3 pa 15 h
+     2 ~< %NC%
+
+e26: 10164 8 mixer
+     6 ~< {am2} vma2 vma 16 a h
+     5 ~< pma1 uebr 16 h
+     4 ~< %NC%
+     3 ~< {bu2} ccw cha 16 h
+     11 ~< {ck2} cam 16 h
+     12 ~< pma2 cca 16 h
+     13 ~< pma4 era 16 h
+     14 ~< {br1} pag1 pt 16 a h
+     10 ~< pma5 14-26 sel 4 h
+     9 ~< pma5 14-26 sel 2 h
+     7 ~< pma5 14-26 sel 1 h
+     2 ~< %NC%
+     15 ~> {dr2} pma3 pa 16 h
+
+e16: 10164 8 mixer
+     6 ~< {am1} vma2 vma 17 a h
+     5 ~< pma1 uebr 17 h
+     4 ~< %NC%
+     3 ~< {ba1} ccw cha 17 h
+     11 ~< {ce2} cam 17 h
+     12 ~< pma2 cca 17 h
+     13 ~< pma4 era 17 h
+     14 ~< {at2} pag1 pt 17 a h
+     10 ~< pma5 14-26 sel 4 h
+     9 ~< pma5 14-26 sel 2 h
+     7 ~< pma5 14-26 sel 1 h
+     2 ~< %NC%
+     15 ~< {dm2} pma3 pa 17 h
+
+e17: 10164 8 mixer
+     6 ~< {af2} vma 18 a h
+     5 ~< pma1 uebr 18 h
+     4 ~< %NC%
+     3 ~< {aj1} ccw cha 18 h
+     11 ~< {cu2} cam 18 h
+     12 ~< pma2 cca 18 h
+     13 ~< pma4 era 18 h
+     14 ~< {as1} pag2 pt 18 a h
+     10 ~< pma5 14-26 sel 4 h
+     9 ~< pma5 14-26 sel 2 h
+     7 ~< pma5 14-26 sel 1 h
+     2 ~< %NC%
+     15 ~> {cm2} pma3 pa 18 h
+
+e21: 10164 8 mixer
+     6 ~< {ae2} vma 19 a h
+     5 ~< pma1 uebr 19 h
+     4 ~< %NC%
+     3 ~< {bm1} ccw cha 19 h
+     11 ~< {cs2} cam 19 h
+     12 ~< pma2 cca 19 h
+     13 ~< pma4 era 19 h
+     14 ~< {ar2} pag2 pt 19 a h
+     10 ~< pma5 14-26 sel 4 h
+     9 ~< pma5 14-26 sel 2 h
+     7 ~< pma5 14-26 sel 1 h
+     2 ~< %NC%
+     15 ~> {cm1} pma3 pa 19 h
+
+e29: 10164 8 mixer
+     14 ~< {ad2} vma 20 a h
+     13 ~< pma1 uebr 20 h
+     12 ~< %NC%
+     11 ~< {al1} ccw cha 20 h
+     3 ~< {ej1} cam 20 h
+     4 ~< pma2 cca 20 h
+     5 ~< pma4 era 20 h
+     6 ~< {bp1} pag2 pt 20 a h
+     10 ~< pma5 14-26 sel 4 l
+     9 ~< pma5 14-26 sel 2 l
+     7 ~< pma5 14-26 sel 1 l
+     2 ~< %NC%
+     15 ~> {cf2} pma3 pa 20 h
+
+e22: 10164 8 mixer
+     14 ~< {ak1} vma2 vma 21 a h
+     13 ~< pma1 uebr 21 h
+     12 ~< %NC%
+     11 ~< {ak2} ccw cha 21 h
+     3 ~< {ej2} cam 21 h
+     4 ~< pma2 cca 21 h
+     5 ~< pma4 era 21 h
+     6 ~< {bp2} pag2 pt 21 a h
+     10 ~< pma5 14-26 sel 4 l
+     9 ~< pma5 14-26 sel 2 l
+     7 ~< pma5 14-26 sel 1 l
+     2 ~< %NC%
+     15 ~> {cd2} pma3 pa 21 h
+
+e23: 10164 8 mixer
+     14 ~< {af1} vma2 vma 22 a h
+     13 ~< pma1 uebr 22 h
+     12 ~< %NC%
+     11 ~< {aj2} ccw cha 22 h
+     3 ~< {ff1} cam 22 h
+     4 ~< pma2 cca 22 h
+     5 ~< pma4 era 22 h
+     6 ~< {bn1} pag2 pt 22 a h
+     10 ~< pma5 14-26 sel 4 l
+     9 ~< pma5 14-26 sel 2 l
+     7 ~< pma5 14-26 sel 1 l
+     2 ~< %NC%
+     15 ~> {cd1} pma3 pa 22 h
