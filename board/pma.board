@@ -473,7 +473,7 @@ e16: 10164 8 mixer
      9 ~< pma5 14-26 sel 2 h
      7 ~< pma5 14-26 sel 1 h
      2 ~< %NC%
-     15 ~< {dm2} pma3 pa 17 h
+     15 ~> {dm2} pma3 pa 17 h
 
 e17: 10164 8 mixer
      6 ~< {af2} vma 18 a h
@@ -639,7 +639,7 @@ e45: 10164 8 mixer
      2 ~< %NC%
      15 ~> {dt2} pma3 pa 28 h
 
-e50: 10161 8 mixer
+e50: 10164 8 mixer
      6 ~< pma4 era 29 h
      5 ~< pma1 va 19 h
      4 ~< pma1 va 19 h
@@ -725,7 +725,7 @@ e39: 10141 shift register
      5 ~< %NC%
      7 ~< {dj1} hold era h
      10 ~< {dj1} hold era h
-     4 ~> pam2 clock a h
+     4 ~< pam2 clock a h
      14 ~> pma4 era 22 h
      15 ~> pma4 era 23 h
      2 ~> pma4 era 24 h
@@ -743,7 +743,7 @@ e49: 10141 shift register
      4 ~< pma2 clock a h
      14 ~> pma4 era 26 h
      15 ~> pma4 era 27 h
-     2 ~< pma4 era 28 h
+     2 ~> pma4 era 28 h
      3 ~> pma4 era 29 h
 
 e54: 10141 shift register
@@ -903,7 +903,7 @@ e46: 10101 quad or/nor
      5 ~> {dk1} pma 24 h
      7 ~< {dd1} pma3 pa 25 h
      3 ~> %NC%
-     6 ~< {dl1} pma 25 h
+     6 ~> {dl1} pma 25 h
      10 ~< {de1} pma3 pa 26 h
      14 ~> %NC%
      11 ~> {df2} pma 26 h
@@ -930,7 +930,7 @@ e56: 10101 quad or/nor
      4 ~< {bk1} pma4 pa 32 h
      12 ~< %NC%
      2 ~> %NC%
-     5 ~< {el1} pma 32 h
+     5 ~> {el1} pma 32 h
      7 ~< {bj1} pma4 pa 33 h
      3 ~> %NC%
      6 ~> {ek1} pma 33 h
@@ -1072,10 +1072,6 @@ e64: 10105 2-3-2 or/nor
      12 ~< {el2} pma5 csh writeback cyc h
      14 ~> %NC%
      15 ~> pma5 343-35 sel 2 h
-     4 ~< pma1 va 19-21=7 l
-     5 ~< -pma1 va 18 l
-     3 ~> pma5 vma exec per proc h
-     2 ~< pma5 vma exec per proc l
 
 e68: 10104 quad and/nand
      12 ~< pma5-e64-7
