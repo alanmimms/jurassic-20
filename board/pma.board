@@ -57,6 +57,9 @@ e9:  10104 quad and/nand
      6 ~< {ac1} apr6 ebox cca h
      7 ~< {ad1} mbx1 ebox load reg h
      3 ~> pma2 cca load h
+     10 ~< {ev2} mcl2 vma user l
+     11 ~< pma1 va 18 l
+     14 ~> %NC%
 
 e3:  10141 shift register
      13 ~< %NC%
@@ -204,6 +207,10 @@ e11: 10113 quad 2 xor
      11 ~< {ar1} vma2 vma 26 a h
      10 ~< %NC%
      14 ~> pma1 va 26 h
+     13 ~< {de1} pma3 pa 26 h
+     12 ~< pma4-e43-2
+     9 ~< %NC%
+     15 ~> {an1} pma 14-26 par h
 
 e4:  10173 4x2 mixer latch
      5 ~< pma1 ebr 15 h
@@ -323,6 +330,12 @@ e47:  10101 quad or/nor
       12 ~< %NC%
       3 ~> pma2 hi
       6 ~> %NC%
+      10 ~< {ds2} pma3 pa 14 h
+      14 ~> %NC%
+      11 ~> {cr1} pma 14 h
+      13 ~< {ds1} pma3 pa 15 h
+      15 ~> %NC%
+      9 ~> {cs1} pma 15 h
 
 e40: 10136 binary counter
      5 ~< %NC%
@@ -392,6 +405,13 @@ e65: 10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> %NC%
      2 ~> pma2-e65-2
+     12 ~< %NC%
+     13 ~< {ek2} mcl6 ebox may be paged l
+     10 ~< {ek2} mcl6 ebox may be paged l
+     11 ~< pma1 va 19-21=7 l
+     9 ~< %NC%
+     14 ~> {ee2} ebox paged h
+     15 ~> {ed1} pma5 ebox paged l
 
 Page: PMA3, PDF86
 
@@ -529,3 +549,635 @@ e23: 10164 8 mixer
      7 ~< pma5 14-26 sel 1 l
      2 ~< %NC%
      15 ~> {cd1} pma3 pa 22 h
+
+e33: 10164 8 mixer
+     14 ~< {ae1} vma2 vma 23 a h
+     13 ~< pma1 uebr 23 h
+     12 ~< %NC%
+     11 ~< {al2} ccw cha 23 h
+     3 ~< {fc1} cam 23 h
+     4 ~< pma2 cca 23 h
+     5 ~< pma4 era 23 h
+     6 ~< {cj2} pag2 pt 23 a h
+     10 ~< pma5 14-26 sel 4 l
+     9 ~< pma5 14-26 sel 2 l
+     7 ~< pma5 14-26 sel 1 l
+     2 ~< %NC%
+     15 ~> {ce1} pma3 pa 23 h
+
+e35: 10164 8 mixer
+     14 ~< {av2} vma2 vma 24 a h
+     13 ~< pma1 uebr 24 h
+     12 ~< %NC%
+     11 ~< {be1} ccw cha 24 h
+     3 ~< {fm2} cam 24 h
+     4 ~< pma2 cca 24 h
+     5 ~< pma4 era 24 h
+     6 ~< {cj1} pag2 pt 24 a h
+     10 ~< pma5 14-26 sel 4 l
+     9 ~< pma5 14-26 sel 2 l
+     7 ~< pma5 14-26 sel 1 l
+     2 ~< %NC%
+     15 ~> {dd2} pma3 pa 24 h
+
+e31: 10164 8 mixer
+     14 ~< {au2} vma2 vma 25 a h
+     13 ~< pma1 uebr 25 h
+     12 ~< %NC%
+     11 ~< {bd2} ccw cha 25 h
+     3 ~< {fk2} vam 25 h
+     4 ~< pma2 cca 25 h
+     5 ~< pma4 era 25 h
+     6 ~< {ck1} pag2 pt 25 a h
+     10 ~< pma5 14-26 sel 4 l
+     9 ~< pma5 14-26 sel 2 l
+     7 ~< pma5 14-26 sel 1 l
+     2 ~< %NC%
+     15 ~> {dd1} pma3 pa 25 h
+
+e27: 10164 8 mixer
+     14 ~< {ar1} vma2 vma 26 a h
+     13 ~< pma1 uebr 26 h
+     12 ~< %NC%
+     11 ~< {br2} ccw cha 26 h
+     3 ~< {fv2} cam 26 h
+     4 ~< pma2 cca 26 h
+     5 ~< pma4 era 26 h
+     6 ~< {bd1} pag2 pt 26 a h
+     10 ~< pma5 14-26 sel 4 l
+     9 ~< pma5 14-26 sel 2 l
+     7 ~< pma5 14-26 sel 1 l
+     2 ~< %NC%
+     15 ~> {de1} pma3 pa 26 h
+
+e80: 10164 8 mixer
+     6 ~< pma4 era 27 h
+     5 ~< pma2 hi
+     4 ~< %NC%
+     3 ~< {fu2} ccw cha 27 h
+     11 ~< pma2 cca 27 h
+     12 ~< pma2 cca 27 h
+     13 ~< {fs2} vma2 vma 27 h
+     14 ~< %NC%
+     10 ~< pma5 27 sel 4 h
+     9 ~< pma5 27 sel 2 h
+     7 ~< pma5 27 sel 1 h
+     2 ~< %NC%
+     15 ~> {de2} pma3 pa 27 h
+
+e45: 10164 8 mixer
+     6 ~< pma4 era 28 h
+     5 ~< pma2 hi
+     4 ~< pma1 va 18 h
+     3 ~< {bj2} ccw cha 28 h
+     11 ~< pma2 cca 28 h
+     12 ~< pma2 cca 28 h
+     14 ~< %NC%
+     10 ~< pma5 27 sel 4 h
+     9 ~< pma5 27 sel 2 h
+     7 ~< pma5 27 sel 1 h
+     2 ~< %NC%
+     15 ~> {dt2} pma3 pa 28 h
+
+e50: 10161 8 mixer
+     6 ~< pma4 era 29 h
+     5 ~< pma1 va 19 h
+     4 ~< pma1 va 19 h
+     3 ~< {cl1} ccw cha 29 h
+     11 ~< pma2 cca 29 h
+     12 ~< pma2 cca 29 h
+     13 ~< {bl1} vma2 vma 29 h
+     14 ~< %NC%
+     10 ~< pma5 27 sel 4 h
+     9 ~< pma5 27 sel 2 h
+     7 ~< pma5 27 sel 1 h
+     2 ~< %NC%
+     15 ~> {ea1} pma3 pa 29 h
+
+e55: 10164 8 mixer
+     6 ~< pma4 era 30 h
+     5 ~< pma1 va 20 h
+     4 ~< pma1 va 20 h
+     3 ~< {dj2} ccw cha 30 h
+     11 ~< pma2 cca 30 h
+     12 ~< pma2 cca 30 h
+     13 ~< {cl2} vma2 vma 30 h
+     14 ~< %NC%
+     10 ~< pma5 27 sel 4 h
+     9 ~< pma5 27 sel 2 h
+     7 ~< pma5 27 sel 1 h
+     2 ~< %NC%
+     15 ~> {dp1} pma3 pa 30 h
+
+e60: 10164 8 mixer
+     6 ~< pma4 era 31 h
+     5 ~< pma1 va 21 h
+     4 ~< pma1 va 21 h
+     3 ~< {er2} ccw cha 31 h
+     11 ~< pma2 cca 31 h
+     12 ~< pma2 cca 31 h
+     13 ~< {ed2} vma2 vma 31 h
+     14 ~< %NC%
+     10 ~< pma5 27 sel 4 h
+     9 ~< pma5 27 sel 2 h
+     7 ~< pma5 27 sel 1 h
+     2 ~< %NC%
+     15 ~> {dm1} pma3 pa 31 h
+
+Page: PMA4, PDF87
+
+e48: 10141 shift register
+     13 ~< %NC%
+     12 ~< {ds2} pma3 pa 14 h
+     11 ~< {ds1} pma3 pa 15 h
+     9 ~< {dr2} pma3 pa 16 h
+     6 ~< {dm2} pma3 pa 17 h
+     5 ~< %NC%
+     7 ~< {dj1} hold era h
+     10 ~< {dj1} hold era h
+     4 ~< pma2 clock a h
+     14 ~> pma4 era 14 h
+     15 ~> pma4 era 15 h
+     2 ~> pma4 era 16 h
+     3 ~> pma4 era 17 h
+
+e42: 10141 shift register
+     13 ~< %NC%
+     12 ~< {cm2} pma3 pa 18 h
+     11 ~< {cm1} pma3 pa 19 h
+     9 ~< {cf2} pma3 pa 20 h
+     6 ~< {cd2} pma3 pa 21 h
+     5 ~< %NC%
+     7 ~< {dj1} hold era h
+     10 ~< {dj1} hold era h
+     4 ~< pma2 clock d h
+     14 ~> pma4 era 18 h
+     15 ~> pma4 era 19 h
+     2 ~> pma4 era 20 h
+     3 ~> pma4 era 21 h
+
+e39: 10141 shift register
+     13 ~< %NC%
+     12 ~< {cd1} pma3 pa 22 h
+     11 ~< {ce1} pma3 pa 23 h
+     9 ~< {dd2} pma3 pa 24 h
+     6 ~< {dd1} pma3 pa 25 h
+     5 ~< %NC%
+     7 ~< {dj1} hold era h
+     10 ~< {dj1} hold era h
+     4 ~> pam2 clock a h
+     14 ~> pma4 era 22 h
+     15 ~> pma4 era 23 h
+     2 ~> pma4 era 24 h
+     3 ~> pma4 era 25 h
+
+e49: 10141 shift register
+     13 ~< %NC%
+     12 ~< {de1} pma3 pa 26 h
+     11 ~< {de2} pma3 pa 27 h
+     9 ~< {dt2} pma3 pa 27 h
+     6 ~< {ea1} pma3 pa 29 h
+     5 ~< %NC%
+     7 ~< {dj1} hold era h
+     10 ~< {dj1} hold era h
+     4 ~< pma2 clock a h
+     14 ~> pma4 era 26 h
+     15 ~> pma4 era 27 h
+     2 ~< pma4 era 28 h
+     3 ~> pma4 era 29 h
+
+e54: 10141 shift register
+     13 ~< %NC%
+     12 ~< {dp1} pma3 pa 30 h
+     11 ~< {dm1} pma3 pa 31 h
+     9 ~< {bk1} pma4 pa 32 h
+     6 ~< {bj1} pma4 pa 33 h
+     5 ~< %NC%
+     7 ~< {dj1} hold era h
+     10 ~< {dj1} hold era h
+     4 ~< pma2 clock b h
+     14 ~> pma4 era 30 h
+     15 ~> pma4 era 31 h
+     2 ~> pma4 era 32 h
+     3 ~> pma4 era 33 h
+
+e53: 10141 shift register
+     13 ~< %NC%
+     12 ~< {cp1} sbus adr 34 h
+     11 ~< {cp2} sbus adr 35 h
+     9 ~< %NC%
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< {dj1} hold era h
+     10 ~< {dj1} hold era h
+     4 ~< pma2 clock b h
+     14 ~> pma4 era 34 h
+     15 ~> pma4 era 35 h
+     2 ~> %NC%
+     3 ~> %NC%
+
+e71: 10164 8 mixer
+     6 ~< pma4 era 32 h
+     5 ~< %NC%
+     4 ~< pmma1 va 22 h
+     3 ~< {fl1} ccw cha 32 h
+     11 ~< pma2 cca 32 h
+     12 ~< pma2 cca 32 h
+     13 ~< {fj1} vma2 vma 32 h
+     14 ~< %NC%
+     10 ~< pma5 32-33 sel 4 h
+     9 ~< pma5 32-33 sel 2 h
+     7 ~< pma5 32-33 sel 1 h
+     2 ~< %NC%
+     15 ~> {bk1} pma4 pa 32 h
+
+e76: 10164 8 mixer
+     6 ~< pma4 era 33 h
+     5 ~< %NC%
+     4 ~< pma1 va 23 h
+     3 ~< {fr1} ccw cha 33 h
+     11 ~< pma2 cca 33 h
+     12 ~< pma2 cca 33 h
+     13 ~< {fp1} vma2 vma 33 h
+     14 ~< %NC%
+     10 ~< pma5 32-33 sel 4 h
+     9 ~< pma5 32-33 sel 2 h
+     7 ~< pma5 32-33 sel 1 h
+     2 ~< %NC%
+     15 ~> {bj1} pma4 pa 33 h
+
+e74: 10164 8 mixer
+     6 ~< pma4 era 34 h
+     5 ~< %NC%
+     4 ~< {fl2} mbx2 cache to mb 34 h
+     3 ~< {fl2} mbx2 cache to mb 34 h
+     11 ~< pma2 cca 34 h
+     12 ~< pma2 cca 34 h
+     13 ~< {fj2} vma2 vma 34 h
+     14 ~< %NC%
+     10 ~< pma5 32-33 sel 4 h
+     9 ~< pma5 32-33 sel 2 h
+     7 ~< pma5 32-33 sel 1 h
+     2 ~< %NC%
+     15 ~> {ee1} pma4 pa 34 h
+
+e69: 10164 8 mixer
+     6 ~< pma4 era 35 h
+     5 ~< %NC%
+     4 ~< {fe1} mbx2 cache to mb 35 h
+     3 ~< {fe1} mbx2 cache to mb 35 h
+     11 ~< pma2 cca 35 h
+     12 ~< pma2 cca 35 h
+     13 ~< {es2} vma2 vma 35 h
+     14 ~< %NC%
+     10 ~< pma5 32-33 sel 4 h
+     9 ~< pma5 32-33 sel 2 h
+     7 ~< pma5 32-33 sel 1 h
+     2 ~< %NC%
+     15 ~> {ef1} pma4 pa 35 h
+
+e43: 10160 parity
+     3 ~< {ds2} pma3 pa 14 h
+     4 ~< {ds1} pma3 pa 15 h
+     5 ~< {dr2} pma3 pa 16 h
+     6 ~< {dm2} pma3 pa 17 h
+     7 ~< {cm2} pma3 pa 18 h
+     9 ~< {cm1} pma3 pa 19 h
+     10 ~< {cf2} pma3 pa 20 h
+     11 ~< {cd2} pma3 pa 21 h
+     12 ~< {cd1} pma3 pa 22 h
+     13 ~< {ce1} pma3 pa 23 h
+     14 ~< {dd2} pma3 pa 24 h
+     15 ~< {dd1} pma3 pa 25 h
+     2 ~> pma4-e43-2
+
+e44: 10160 parity
+     3 ~< pma4-e43-2
+     4 ~< {de1} pma3 pa 26 h
+     5 ~< {de2} pma3 pa 27 h
+     6 ~< {dt2} pma3 pa 28 h
+     7 ~< {ea1} pma3 pa 29 h
+     9 ~< {dp1} pma3 pa 30 h
+     10 ~< {dm1} pma3 pa 31 h
+     11 ~< {bk1} pma4 pa 32 h
+     12 ~< {bj1} pma4 pa 33 h
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< pma2 hi
+     2 ~> {bk2} pma4 adr par h
+
+e41: 10101 quad or/nor
+     4 ~< {dr2} pma3 pa 16 h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {da1} pma 16 h
+     7 ~< {dm2} pma3 pa 17 h
+     3 ~> %NC%
+     6 ~> {dc1} pma 17 h
+     10 ~< {cm2} pma3 pa 18 h
+     14 ~> %NC%
+     11 ~> {ct2} pma 18 h
+     13 ~< {cm1} pma3 pa 19 h
+     15 ~> %NC%
+     9 ~> {cv2} pma 19 h
+
+e34: 10101 quad or/nor
+     4 ~< {cf2} pma3 pa 20 h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {cf1} pma 20 h
+     7 ~< {cd2} pma3 pa 21 h
+     3 ~> %NC%
+     6 ~> {ch2} pma 21 h
+     10 ~< {cd1} pma3 pa 22 h
+     14 ~> %NC%
+     11 ~> {bm2} pma 22 h
+     13 ~< {ce1} pma3 pa 23 h
+     15 ~> %NC%
+     9 ~> {ca1} pma 23 h
+
+e46: 10101 quad or/nor
+     4 ~< {dd2} pma3 pa 24 h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {dk1} pma 24 h
+     7 ~< {dd1} pma3 pa 25 h
+     3 ~> %NC%
+     6 ~< {dl1} pma 25 h
+     10 ~< {de1} pma3 pa 26 h
+     14 ~> %NC%
+     11 ~> {df2} pma 26 h
+     13 ~< {de2} pma3 pa 27 h
+     15 ~> %NC%
+     9 ~> {df1} pma 27 h
+
+e51: 10101 quad or/nor
+     4 ~< {dt2} pma3 pa 28 h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {du2} pma 28 h
+     7 ~< {ea1} pma3 pa 29 h
+     3 ~> %NC%
+     6 ~> {dv2} pma 29 h
+     10 ~< {dp1} pma3 pa 30 h
+     14 ~> %NC%
+     11 ~> {dn1} pma 30 h
+     13 ~< {dm1} pma3 pa 31 h
+     15 ~> %NC%
+     9 ~> {dp2} pma 31 h
+
+e56: 10101 quad or/nor
+     4 ~< {bk1} pma4 pa 32 h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~< {el1} pma 32 h
+     7 ~< {bj1} pma4 pa 33 h
+     3 ~> %NC%
+     6 ~> {ek1} pma 33 h
+     10 ~< {ee1} pma4 pa 34 h
+     14 ~> %NC%
+     11 ~> {as2} pma 34 h
+     13 ~< {ef1} pma4 pa 35 h
+     15 ~> %NC%
+     9 ~> {be2} pma 35 h
+
+e61: 10101 quad or/nor
+     7 ~< {ee1} pma4 pa 34 h
+     12 ~< %NC%
+     3 ~> {es1} pma4 34 b l
+     6 ~> {er1} pma4 34 b h
+     10 ~< {ef1} pma4 pa 35 h
+     14 ~> {em1} pma4 35 b l
+     11 ~> {ep1} pma4 35 b h
+     4 ~< {fd1} csh5 page refill t4 l
+     2 ~> pma5 page refill t4 a h
+     5 ~> pma5 page refill t4 a l
+     13 ~< {ep2} mbx4 writeback t2 l
+     15 ~> pma5 writeback t2 a h
+     9 ~> pma5 writeback t2 a l
+
+Page: PMA5, PDF88
+
+e67: 10104 quad and/nand
+     10 ~< {ev2} mcl2 vma user l
+     11 ~< pma5 vma exec per proc l
+     14 ~> pma5 pgrf ubr cond l
+     12 ~< {ev2} -mcl2 vma user h
+     13 ~< -pma1 va 18 h
+     9 ~> pma5-e67-9
+     15 ~> pma5-e67-15
+
+e66: 10105 2-3-2 or/nor
+     4 ~< {fd1} csh5 page refill t4 l
+     5 ~< pma5-e67-9
+     3 ~> pma5 page refill 5,7 h
+     2 ~> %NC%
+     12 ~< pma5-e67-15
+     13 ~< {fd1} csh5 page refill t4 l
+     14 ~> pma5 page refill 3,4 h
+     15 ~> %NC%
+     9 ~< {fa1} mcl6 vma upt h
+     10 ~< %NC%
+     11 ~< {fd2} apr6 ebox ubr h
+     6 ~> pma5-e66-6
+     7 ~> pma5-e66-7
+
+e59: 10109 4/5 or/nor
+     9 ~< {fd1} csh5 page refill t4 l
+     10 ~< pma5-e67-9
+     11 ~< -pma5 vma exec per proc l
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> pma5 page refill 7 h
+     15 ~> %NC%
+     4 ~< {ef2} mcl6 vma ept h
+     5 ~< {aa1} apr6 ebox ebr h
+     6 ~< {ac1} apr6 ebox cca h
+     7 ~< {ee2} ebox paged h
+     3 ~> %NC%
+     2 ~> pma5-e59-2
+
+e52: 10117 dual 2-3 or-and
+     4 ~< {fp2} csh1 chan req grant h
+     5 ~< pma5 page refill t4 a h
+     7 ~< {ec1} ccl chan ept h
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> pma5-e52-2
+     12 ~< pma5-e66-6
+     13 ~< {dk2} pma5 csh ebox cyc l
+     10 ~< {dl2} pma5 page refill cyc l
+     11 ~< pma5 pgrf ubr cond l
+     9 ~< %NC%
+     14 ~> pma5 ubr sel h
+     15 ~> pma5 ubr sel l
+
+e77: 10165 priority encoder
+     5 ~< %NC%
+     7 ~< pma5-e52-2
+     13 ~< %NC%
+     10 ~< {fp2} csh1 chan req grant h
+     11 ~< pma5 writeback t2 a h
+     12 ~< {fn1} csh1 cca req grant h
+     9 ~< %NC%
+     6 ~< {fs1} csh1 ebox req grant h
+     4 ~< %NC%
+     14 ~> %NC%
+     15 ~> pma5-e77-15
+     2 ~> pma5-e77-2
+     3 ~> pma5-e77-3
+
+e78: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma5-e77-15
+     11 ~< pma5-e77-2
+     9 ~< pma5-e77-3
+     6 ~< pma5-e72-15
+     5 ~< %NC%
+     7 ~< {fr2} pma5 cyc type hold h
+     10 ~< {fr2} pma5 cyc type hold h
+     4 ~< pma2 clock c h
+     14 ~> pma5-e78-14
+     15 ~> pma5-e78-15
+     2 ~> pma5-e78-2
+     3 ~> pma5 27 sel 4 h
+
+e58: 10117 dual 2-3 or-and
+     4 ~< %NC%
+     5 ~< pma5-e78-14
+     6 ~< {ac1} apr6 ebox cca h
+     7 ~< pma5-e64-7
+     9 ~< {dk2} -pma5 csh ebox cyc h
+     3 ~> pma5 14-26 sel 4 l
+     2 ~> pma5 14-26 sel 4 h
+     12 ~< pma5-e78-2
+     13 ~< %NC%
+     10 ~< pma5-e59-2
+     11 ~< pma5-e66-7
+     9 ~< {dk2} -pma5 csh ebox cyc h
+     14 ~> pma5 14-26 sel 1 l
+     15 ~> pma5 14-26 sel 1 h
+
+e64: 10105 2-3-2 or/nor
+     9 ~< {fe2} apr ebox era h
+     10 ~< {ee2} ebox paged h
+     11 ~< {dk2} -pma5 csh ebox cyc h
+     6 ~> %NC%
+     7 ~> pma5-e64-7
+     4 ~< pma1 va 19-21=7 l
+     5 ~< -pma1 va 18 l
+     3 ~> pma5 vma exec per proc h
+     2 ~> pma5 vma exec per proc l
+     13 ~< pma5 32-33 sel 2 h
+     12 ~< {el2} pma5 csh writeback cyc h
+     14 ~> %NC%
+     15 ~> pma5 343-35 sel 2 h
+     4 ~< pma1 va 19-21=7 l
+     5 ~< -pma1 va 18 l
+     3 ~> pma5 vma exec per proc h
+     2 ~< pma5 vma exec per proc l
+
+e68: 10104 quad and/nand
+     12 ~< pma5-e64-7
+     13 ~< pma5-e78-15
+     9 ~> pma5 14-26 sel 2 l
+     15 ~> pma5 14-26 sel 2 h
+     4 ~< {ft2} -csh1 ready to go h
+     5 ~< {ep2} -mbx4 writeback t h
+     2 ~> {fr2} pma5 cyc type hold h
+     6 ~< pma5 32-33 sel 4 h
+     7 ~< {eu2} -pma5 csh writeback cyc h
+     3 ~> pma5 34-35 sel 4 h
+     10 ~< pma5 32-33 sel 1 h
+     11 ~< {eu2} -pma5 csh writeback cyc h
+     14 ~> pma5 34-35 sel 1 h
+
+e72: 10165 priority encoder
+     5 ~< {cc1} csh1 ebox era grant h
+     7 ~< pm5 page refill 5,7 h
+     13 ~< %NC%
+     10 ~< {fp2} csh1 chan req grant h
+     11 ~< {cn1} csh1 ebox cca grant h
+     12 ~< {fn1} csh1 cca req grant h
+     9 ~< {fs1} csh1 ebox req grant h
+     6 ~< pma2 hi
+     4 ~< %NC%
+     14 ~> %NC%
+     15 ~> pma5-e72-15
+     2 ~> pma5-e72-2
+     3 ~> pma5-e72-3
+
+e79: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma5-e72-2
+     11 ~< pma5-e72-3
+     9 ~< pma5-e57-15
+     6 ~< pma5-e57-2
+     5 ~< %NC%
+     7 ~< {ft2} -csh1 ready to go h
+     10 ~< {ft2} -csh1 ready to go h
+     4 ~< pma2 clock c h
+     14 ~> pma5 27 sel 2 h
+     15 ~> pma5 27 sel 1 h
+     2 ~> pma5 28-31 sel 4 h
+     3 ~> pma5 27-31 sel 2 h
+
+e73: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma5 page refill t4 a l
+     11 ~< {fk1} csh1 ebox req grant a l
+     9 ~< pma5 writeback t2 a h
+     6 ~< pma5 writeback t2 a l
+     5 ~< %NC%
+     7 ~< {fr2} pma5 cyc type hold h
+     10 ~< {fr2} pma5 cyc type hold h
+     4 ~< pma2 clock c h
+     14 ~> {dl2} pma5 page refill cyc l
+     15 ~> {dk2} pma5 csh ebox cyc l
+     2 ~> {el2} pma5 csh writeback cyc h
+     3 ~> {eu2} pma5 csh writeback cyc l
+
+e57: 10165 priority encoder
+     5 ~< {cc1} csh1 ebox era grant h
+     7 ~< pma5 page refill 7 h
+     13 ~< pma5 page refill 3,4 h
+     10 ~< {fp2} csh1 chan req grant h
+     11 ~< {cn1} csh1 ebox cca grant h
+     12 ~< {fn1} csh1 cca req grant h
+     9 ~< {fs1} csh1 ebox req grant h
+     6 ~< pma2 hi
+     4 ~< %NC%
+     14 ~> %NC%
+     15 ~> pma5-e57-15
+     2 ~> pma5-e57-2
+     3 ~> pma5-e57-3
+
+e62: 10165 priority encoder
+     5 ~< {cc1} csh1 ebox era grant h
+     7 ~< %NC%
+     13 ~< pma5 page refill t4 a h
+     10 ~< {fp2} csh1 chan req grant h
+     11 ~< {cn1} csh1 ebox cca grant h
+     12 ~< {fn1} csh1 cca req grant h
+     9 ~< {fs1} csh1 ebox req grant h
+     6 ~< pma2 hi
+     4 ~< %NC%
+     14 ~> %NC%
+     15 ~> pma5-e62-15
+     2 ~> pma5-e62-2
+     3 ~> pma5-e62-3
+
+e63: 10141 shift register
+     13 ~< %NC%
+     12 ~< pma5-e57-3
+     11 ~< pma5-e62-15
+     9 ~< pma5-e62-2
+     6 ~< pma5-e62-2
+     5 ~< %NC%
+     7 ~< {ft2} -csh1 ready to go h
+     10 ~< {ft2} -csh1 ready to go h
+     5 ~< pma2 clock c h
+     14 ~> pma5 28-31 sel 1 h
+     15 ~> pma5 32-33 sel 4 h
+     2 ~> pma5 32-33 sel 2 h
+     3 ~> pma5 32-33 sel 1 h
