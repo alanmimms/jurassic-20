@@ -1,3 +1,1400 @@
 Page: PAG1, PDF106
 // M8520YA TBD
-// STUB
+
+e87: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {fr2} pt in 00 h
+     15 ~> pag1 pt access a h
+
+e83: 10117 dual 2-3 or-and
+     4 ~< pag3 pt match h
+     5 ~< %NC%
+     6 ~< pag1 pt access a h
+     7 ~< pag1 pt access b h
+     9 ~< %NC%
+     3 ~> pag1 pt access l
+     2 ~> {dt2} pt access h
+     12 ~< {fj2} mcl2 vma write l
+     13 ~< {fm2} -csh6 page refill error l
+     14 ~> {fn1} pf hold 05 in h
+     15 ~> %NC%
+
+e77: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {fk1} pt in 01 h
+     15 ~> pag1 pt public a h
+
+e78: 10105 2-3-2 or/nor
+     4 ~< pag1 pt public a h
+     5 ~< pag1 pt public b h
+     3 ~> %NC%
+     2 ~> {fe2} pt public h
+     12 ~< pag1 pt writable a h
+     13 ~< pag1 pt writable b h
+     14 ~> %NC%
+     15 ~> {fu2} pt writable h
+     9 ~< pag3 pt adr 25 a in h
+     10 ~< pag3 pt adr 25 b in h
+     11 ~< pag3 pt adr 25 c in h
+     6 ~> pag5 pt adr 25 a l
+     7 ~> pag5 pt adr 25 b h
+
+e82: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {fk2} pt in 02 h
+     15 ~> pag1 pt writable a h
+
+e72: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {fe1} pt in 03 h
+     15 ~> pag1 pt software a h
+
+e73: 10105 2-3-2 or/nor
+     4 ~< pag1 pt software a h
+     5 ~< pag1 pt software b h
+     3 ~> %NC%
+     2 ~> {fv2} pt software h
+     12 ~< pag1-e69-15
+     13 ~< pag1-e68-15
+     14 ~> {fd2} pag1 pt cache l
+     15 ~> {fa1} pt cache h
+     9 ~< pag3 pt adr 25 a in h
+     10 ~< pag3 pt adr 25 b in h
+     11 ~< pag3 pt adr 25 c in h
+     6 ~> pag5 pt adr 25 c l
+     7 ~> pag5 pt adr 25 d h
+
+e69: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {et2} pt in 04 h
+     15 ~> pag1-e69-15
+
+e64: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {el1} pt in 05 h
+     15 ~> pag1-e64-15
+
+e59: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {ec1} pt in 06 h
+     15 ~> pag1-e59-15
+
+e54: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {dr1} pt in 07 h
+     15 ~> pag1-e54-15
+
+e49: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 a l
+     2 ~< pag5 pt adr 19 a l
+     3 ~< pag5 pt adr 20 a l
+     4 ~< pag5 pt adr 21 a l
+     9 ~< pag5 pt adr 22 a l
+     10 ~< pag5 pt adr 23 a l
+     11 ~< pag5 pt adr 24 a l
+     12 ~< pag5 pt adr 25 a l
+     5 ~< pag3 pt left en a l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr a l
+     13 ~< {dk1} pt in 08 h
+     15 ~> pag1-e49-15
+
+e65: 10118 triple 4-2 or-and
+     3 ~< %NC%
+     4 ~< pag3 pt en a h
+     5 ~< {ds2} pma3 pa 14 h
+     6 ~< pag1-e64-15
+     7 ~< pag1-e63-15
+     9 ~< -pag3 pt en a h
+     2 ~> {df1} pt 14 b h
+     12 ~< %NC%
+     13 ~< pag3 pt en a h
+     14 ~< {ds1} pma3 pa 15 h
+     10 ~< pag1-e59-15
+     11 ~< pag1-e58-15
+     9 ~< -pag3 pt en a h
+     15 ~> {de2} pt 15 b h
+
+e60: 10101 quad or/nor
+     4 ~< {df1} pt 14 b h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {bs1} pag1 pt 14 a h
+     7 ~< {de2} pt 15 b h
+     3 ~> %NC%
+     6 ~> {bs2} pag1 pt 15 a h
+     13 ~< {cn1} pt 16 b h
+     15 ~> %NC%
+     9 ~> {br1} pag1 pt 16 a h
+     10 ~< {cr1} pt 17 b h
+     14 ~> %NC%
+     11 ~> {as2} pag1 pt 17 a h
+
+e55: 10118 triple 4-2 or-and
+     3 ~< %NC%
+     4 ~< pag3 pt en a h
+     5 ~< {dr2} pma3 pa 16 h
+     6 ~< pag1-e54-15
+     7 ~< pag1-e53-15
+     9 ~< -pag3 pt en a h
+     2 ~> {cn1} pt 16 b h
+     12 ~< %NC%
+     13 ~< pag3 pt en a h
+     14 ~< {dm2} pma3 pa 17 h
+     10 ~< pag1-e49-15
+     11 ~< pag1-e48-15
+     9 ~< -pag3 pt en a h
+     15 ~> {cr1} pt 17 b h
+
+e86: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {fs1} pt in 18 h
+     15 ~> pag1 pt access b h
+
+e76: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {ff1} pt in 19 h
+     15 ~> pag1 pt public b h
+
+e81: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {fh2} pt in 20 h
+     15 ~> pag1 pt writable b h
+
+e71: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {fc1} pt in 21 h
+     15 ~> pag1 pt software b h
+
+e68: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {ep2} pt in 22 h
+     15 ~> pag1-e68-15
+
+e63: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {ee1} pt in 23 h
+     15 ~> pag1-e63-15
+
+e58: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {dv2} pt in 24 h
+     15 ~> pag1-e58-15
+
+e53: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {dn1} pt in 27 h
+     15 ~> pag1-e53-15
+
+e48: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 b l
+     2 ~< pag5 pt adr 19 b l
+     3 ~< pag5 pt adr 20 b l
+     4 ~< pag5 pt adr 21 b l
+     9 ~< pag5 pt adr 22 b l
+     10 ~< pag5 pt adr 23 b l
+     11 ~< pag5 pt adr 24 b l
+     12 ~< pag5 pt adr 25 b l
+     5 ~< pag3 pt left en b l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr b l
+     13 ~< {dj1} pt in 26 h
+     15 ~> pag1-e48-15
+
+Page: PAG2, PDF107
+
+e42: 10118 triple 4-2 or-and
+     12 ~< %NC%
+     13 ~< pag3 pt en a h
+     14 ~< {cm2} pma3 pa 18 h
+     10 ~< pma2-e41-15
+     11 ~< pma2-e40-15
+     9 ~< -pag3 pt en a h
+     15 ~> {dp2} pt 18 b h
+     3 ~< pag4 paged ref l
+     4 ~< -pag3 pt match l
+     5 ~< -pag4 page fail a l
+     // The pin 6-7-9 gate is intentionally permanently disabled
+     6 ~< -pag4 page test private l
+     7 ~< pag4 page test private l
+     9 ~< pag3 pt en a l
+     2 ~> {ct2} pag4 page refill l
+
+e52: 10101 quad or/nor
+     10 ~< {dp2} pt 18 b h
+     12 ~< %NC%
+     14 ~> %NC%
+     11 ~> {as1} pag2 pt 18 a h
+     7 ~< {en1} csh1 pgrf cyc a h
+     3 ~> pag3-e52-3
+     6 ~> pag3-e52-6
+     13 ~< {ea1} vma2 vma 26 h
+     15 ~> pag3 pt adr 26 l
+     9 ~> pag3 pt adr 26 h
+     4 ~< {dl2} mcl3 page test private h
+     2 ~> pag4 page test private l
+     5 ~> pag4 page test private h
+
+e37: 10118 triple 4-2 or-and
+     3 ~< %NC%
+     4 ~< pag3 pt en a h
+     5 ~< {cm1} pma3 pa 19 h
+     6 ~< pag2-e36-15
+     7 ~< pag2-e31-15
+     9 ~< -pag3 pt en a h
+     2 ~> {dp1} pt 19 b h
+     12 ~< %NC%
+     13 ~< pag3 pt en a h
+     14 ~< {cf2} pma3 pa 20 h
+     10 ~< pag2-e31-15
+     11 ~< pag2-e26-15
+     9 ~< -pag3 pt en a h
+     15 ~> {dj2} pt 20 b h
+
+e32: 10101 quad or/nor
+     4 ~< {dp1} pt 19 b h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {ar2} pag2 pt 19 a h
+     7 ~< {dj2} pt 20 b h
+     3 ~> %NC%
+     6 ~> {bp1} pag2 pt 20 a h
+     13 ~< {dk2} pt 21 b h
+     15 ~> %NC%
+     9 ~> {bp2} pag2 pt 21 a h
+     10 ~< {es1} pt 22 b h
+     14 ~> %NC%
+     11 ~> {bn1} pag2 pt 22 a h
+
+e27: 10118 triple 4-2 or-and
+     3 ~< %NC%
+     4 ~< pag3 pt en b h
+     5 ~< {cd2} pma3 pa 21 h
+     6 ~< pag2-e26-15
+     7 ~< pag2-e25-15
+     9 ~< -pag3 pt en b h
+     2 ~> {dk2} pt 21 b h
+     12 ~< %NC%
+     13 ~< pag3 pt en b h
+     14 ~< {cd1} pma3 pa 22 h
+     10 ~< pag2-e21-15
+     11 ~< pag2-e20-15
+     9 ~< -pag3 pt en b h
+     15 ~> {es1} pt 22 b h
+
+e17: 10118 triple 4-2 or-and
+     3 ~< %NC%
+     4 ~< pag3 pt en b h
+     5 ~< {ce2} pma3 pa 23 h
+     6 ~< pag2-e16-15
+     7 ~< pag2-e15-15
+     9 ~< -pag3 pt en b h
+     2 ~> {er2} pt 23 b h
+     12 ~< %NC%
+     13 ~< pag3 pt en b h
+     14 ~< {dd2} pma3 pa 24 h
+     10 ~< pag2-e11-15
+     11 ~< pag2-e10-15
+
+e12: 10101 quad or/nor
+     4 ~< {er2} pt 23 b h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {cj2} pag2 pt 23 a h
+     7 ~< {ed2} pt 24 b h
+     3 ~> %NC%
+     6 ~> {cj1} pag2 pt 24 a h
+     13 ~< {em2} pt 25 b h
+     15 ~> %NC%
+     9 ~> {ck2} pag2 pt 25 a h
+     10 ~< {fl1} pt 26 b h
+     14 ~> %NC%
+     11 ~> {bd1} pag2 pt 26 a h
+
+e8:  10118 triple 4-2 or-and
+     3 ~< %NC%
+     4 ~< pag3 pt en b h
+     5 ~< {dd1} pma3 pa 25 h
+     6 ~< pag2-e7-15
+     7 ~< pag2-e6-15
+     9 ~< -pag3 pt en b h
+     2 ~> {em2} pt 25 b h
+     12 ~< %NC%
+     13 ~< pag3 pt en b h
+     14 ~< {de1} pma3 pa 26 h
+     10 ~< pag2-e2-15
+     11 ~< pag2-e1-15
+     15 ~> {fl1} pt 26 b h
+
+e41: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {cs2} pt in 09 h
+     15 ~> pag2-e41-15
+
+e36: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {cl1} pt in 10 h
+     15 ~> pag2-e36-15
+
+e31: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {ce1} pt in 11 h
+     15 ~> pag2-e31-15
+
+e26: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {bm2} pt in 12 h
+     15 ~> pag2-e25-15
+
+e21: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {be2} pt in 13 h
+     15 ~> pag2-e21-15
+
+e16: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {av2} pt in 14 h
+     15 ~> pag2-e16-15
+
+e11: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {at2} pt in 15 h
+     15 ~> pag2-e11-15
+
+e7:   10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {ak2} pt in 16 h
+     15 ~> pag2-e7-15
+
+e2:  10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< {af1} pt in 17 h
+     15 ~> pag2-e2-15
+
+e40: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {cp2} pt in 27 h
+     15 ~> pag2-e40-15
+
+e35: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {ck1} pt in 28 h
+     15 ~> pag2-e35-15
+
+e30: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {ca1} pt in 29 h
+     15 ~> pag2-e30-15
+
+e25: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {bm1} pt in 30 h
+     15 ~> pag2-e25-15
+
+e20: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {bf2} pt in 31 h
+     15 ~> pag2-e20-15
+
+e15: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {bj1} pt in 32 h
+     15 ~> pag2-e15-15
+
+e10: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {au2} pt in 33 h
+     15 ~> pag2-e10-15
+
+e6:  10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {al1} pt in 34 h
+     15 ~> pag2-e6-15
+
+e1:  10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt left en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< {af2} pt in 35 h
+     15 ~> pag2-e1-15
+
+Page: PAG3, PDF108
+
+e4:  10101 quad or/nor
+     4 ~< {ae2} vma2 vma 18 h
+     12 ~< %NC%
+     2 ~> pag3 pt adr 18 l
+     5 ~> pag3 pt adr 18 h
+     7 ~< {ae1} vma2 vma 21 h
+     3 ~> pag3 pt adr 21 l
+     6 ~> pag3 pt adr 21 h
+     13 ~< {ad1} vma2 vma 22 h
+     15 ~> pag3 pt adr 22 l
+     9 ~> pag3 pt adr 22 h
+     10 ~< {ad2} vma2 vma 23 h
+     14 ~> pag3 pt adr 23 l
+     11 ~> pag3 pt adr 23 h
+
+e74: 10104 quad and/nand
+     10 ~< {fj1} csh6 mbox pt dir wr l
+     11 ~< {ff2} clk2 pt dir wr l
+     14 ~> pag3-e74-14
+     4 ~< -pag3 pt adr 24 l
+     5 ~< pag3 pt dir clr l
+     2 ~> pag3-e74-2
+     12 ~< {dt2} pt access h
+     13 ~< {fj2} -mcl2 vma write h
+     9 ~> pag4-e74-9
+     15 ~> %NC%
+     6 ~< -pag4 pf code 2x h
+     7 ~< {dt2} pt access h
+     3 ~> {fd1} pf hold 02 in h
+
+e38: 10113 quad xor/xnor
+     5 ~< pag3-e39-15
+     4 ~< {cl2} mcl vma user h
+     9 ~< %NC%
+     2 ~> pag3 no match in a h
+     7 ~< pag3-e34-15
+     6 ~< {ar1} vma2 vma 13 a h
+     3 ~> pag3 no match in a h
+     11 ~< pag3-e29-15
+     10 ~< {ap2} vma2 vma 14 a h
+     14 ~> pag3 no match in a h
+     13 ~< pag3-e24-15
+     12 ~< {ap1} vma2 vma 15 a h
+     15 ~> pag3 no match in a h
+
+e13: 10113 quad xor/xnor
+     5 ~< pag3-e19-15
+     4 ~< {am2} vma2 vma 16 a h
+     9 ~< %NC%
+     2 ~> pag3 no patch in b h
+     7 ~< pag3-e14-15
+     6 ~< {am1} vma2 vma 17 a h
+     3 ~> pag3 no patch in b h
+     11 ~< {ak1} mb 12-17 par odd h
+     10 ~< {al2} mb par h
+     9 ~< %NC%
+     14 ~> pag5-e13-14
+     13 ~< {aj1} mb 30-35 par odd h
+     12 ~< {al2} mb par h
+     15 ~> pag4-e13-15
+
+e33: 10105 2-3-2 or/nor
+     9 ~< pag3 no match in a h
+     10 ~< pag3 no match in b h
+     11 ~< pag3 dir not val h
+     6 ~> -pag3 pt match l
+     7 ~> {fm1} -pt match h
+     4 ~< {cf1} csh ebox cyc a l
+     5 ~< {ed1} pma5 ebox paged l
+     3 ~> pag3 pt en a h
+     2 ~> pag3 pt en a l
+     12 ~< {cf1} csh ebox cyc a l
+     13 ~< {ed1} pma5 ebox paged l
+     14 ~> pag3 pt en b h
+     15 ~> pag3 pt en b l
+
+e39: 10147 128x1 RAM
+     4 ~< pag3 pt adr 18 l
+     3 ~< pag3 pt adr 19 l
+     2 ~< pag3 pt adr 20 l
+     5 ~< pag3 pt adr 21 l
+     6 ~< pag3 pt adr 22 l
+     7 ~< pag3 pt adr 23 l
+     10 ~< pag3 pt adr 24 l
+     13 ~< a l
+     14 ~< a l
+     12 ~< pag3-e74-14
+     11 ~< {cl2} mcl vma user h
+     15 ~> pag3-e39-15
+
+e34: 10147 128x1 RAM
+     4 ~< pag3 pt adr 18 l
+     3 ~< pag3 pt adr 19 l
+     2 ~< pag3 pt adr 20 l
+     5 ~< pag3 pt adr 21 l
+     6 ~< pag3 pt adr 22 l
+     7 ~< pag3 pt adr 23 l
+     10 ~< pag3 pt adr 24 l
+     13 ~< a l
+     14 ~< a l
+     12 ~< pag3-e74-14
+     11 ~< {ar1} vma2 vma 13 a h
+     15 ~> pag3-e34-15
+
+e29: 10147 128x1 RAM
+     4 ~< pag3 pt adr 18 l
+     3 ~< pag3 pt adr 19 l
+     2 ~< pag3 pt adr 20 l
+     5 ~< pag3 pt adr 21 l
+     6 ~< pag3 pt adr 22 l
+     7 ~< pag3 pt adr 23 l
+     10 ~< pag3 pt adr 24 l
+     13 ~< a l
+     14 ~< a l
+     12 ~< pag3-e74-14
+     11 ~< {ap2} vma2 vma 14 a h
+     15 ~> pag3-e29-15
+
+e24: 10147 128x1 RAM
+     4 ~< pag3 pt adr 18 l
+     3 ~< pag3 pt adr 19 l
+     2 ~< pag3 pt adr 20 l
+     5 ~< pag3 pt adr 21 l
+     6 ~< pag3 pt adr 22 l
+     7 ~< pag3 pt adr 23 l
+     10 ~< pag3 pt adr 24 l
+     13 ~< a l
+     14 ~< a l
+     12 ~< pag3-e74-14
+     11 ~< {ap1} vma2 vma 15 a h
+     15 ~> pag3-e24-15
+
+e19: 10147 128x1 RAM
+     4 ~< pag3 pt adr 18 l
+     3 ~< pag3 pt adr 19 l
+     2 ~< pag3 pt adr 20 l
+     5 ~< pag3 pt adr 21 l
+     6 ~< pag3 pt adr 22 l
+     7 ~< pag3 pt adr 23 l
+     10 ~< pag3 pt adr 24 l
+     13 ~< a l
+     14 ~< a l
+     12 ~< pag3-e74-14
+     11 ~< {am2} vma2 vma 16 a h
+     15 ~> pag3-e19-15
+
+e14: 10147 128x1 RAM
+     4 ~< pag3 pt adr 18 l
+     3 ~< pag3 pt adr 19 l
+     2 ~< pag3 pt adr 20 l
+     5 ~< pag3 pt adr 21 l
+     6 ~< pag3 pt adr 22 l
+     7 ~< pag3 pt adr 23 l
+     10 ~< pag3 pt adr 24 l
+     13 ~< a l
+     14 ~< a l
+     12 ~< pag3-e74-14
+     11 ~< {am1} vma2 vma 17 a h
+     15 ~> pag3-e14-15
+
+e9:  10147 128x1 RAM
+     4 ~< pag3 pt adr 18 l
+     3 ~< pag3 pt adr 19 l
+     2 ~< pag3 pt adr 20 l
+     5 ~< pag3 pt adr 21 l
+     6 ~< pag3 pt adr 22 l
+     7 ~< pag3 pt adr 23 l
+     10 ~< pag3 pt adr 24 l
+     13 ~< a l
+     14 ~< pag3-e74-2
+     12 ~< pag3-e74-14
+     11 ~< pag3 pt dir clr h
+     15 ~> pag3-e9-15
+
+e5:  10147 128x1 RAM
+     4 ~< pag3 pt adr 18 l
+     3 ~< pag3 pt adr 19 l
+     2 ~< pag3 pt adr 20 l
+     5 ~< pag3 pt adr 21 l
+     6 ~< pag3 pt adr 22 l
+     7 ~< pag3 pt adr 23 l
+     10 ~< pag3 pt adr 24 l
+     13 ~< a l
+     14 ~< pag3-e61-3
+     12 ~< pag3-e74-14
+     11 ~< pag3 pt dir clr h
+     15 ~> pag3-e5-15
+
+e61: 10105 2-3-2 or/nor
+     4 ~< pag3 pt adr 24 h
+     5 ~< pag3 pt dir clr h
+     3 ~> pag3-e61-3
+     2 ~> %NC%
+     12 ~< {en1} csh1 pgrf cyc a h
+     13 ~< {ej1} apr5 wr pt sel 0 h
+     14 ~> pag3 pt wr both halves l
+     15 ~> %NC%
+     9 ~< pag4 page exec ref l
+     10 ~< {ef1} -mcl3 page ill entry l
+     11 ~< {ed1} pma5 ebox paged l
+     6 ~> pag4 page exec paged ref h
+     7 ~> pag4 page exec paged ref l
+
+e47: 10107 3x2 xor/xnor
+     4 ~< {ac1} mcl2 vma exec h
+     5 ~< {df2} vma2 vma 19 h
+     2 ~> pag3 pt adr 19 l
+     3 ~> pag3 pt adr 19 h
+     9 ~< {da1} vma2 vma 17 h
+     7 ~< {dc1} vma2 vma 20 h
+     11 ~> pag3 pt adr 20 l
+     10 ~> pag3 pt adr 20 h
+     14 ~< pag5-e70-2
+     15 ~< pag5-e22-2
+     12 ~> pag5 pt par odd l
+     13 ~> pag5 pt par odd h
+
+e66: 10104 quad and/nand
+     4 ~< {ev2} apr5 wr pt sel 1 h
+     5 ~< {ej1} apr5 wr pt sel 0 h
+     2 ~> pag3 pt adr 25 c in h
+     6 ~< {eu2} vma2 vma 25 h
+     7 ~< -pag3 pt wr both halves h
+     3 ~> pag3 pt adr 25 a in h
+     10 ~< {er1} mb sel 1 h
+     11 ~< {en1} csh1 pgrf cyc a h
+     14 ~> pag3 pt adr 25 b in h
+     12 ~< {ep1} -mcl3 page ill entry h
+     13 ~< {ed1} -pma5 ebox paged h
+     9 ~> pag4 page unpaged ref l
+     15 ~> %NC%
+
+e43: 10117 dual 2-3 or-and
+     4 ~< {ej1} -apr5 wr pt sel 0 l
+     5 ~< {cv2} apr5 wr pt sel 1 l
+     6 ~< {cs1} csh6 page fail hold l
+     7 ~< {bl2} con ki10 paging mode l
+     9 ~< %NC%
+     3 ~> pag3 pt dir clr h
+     2 ~> pag3 pt dir clr l
+     12 ~< {cr2} mb sel 2 h
+     13 ~< pag3-e52-3
+     10 ~< pag3-e52-6
+     11 ~< {cp1} vma2 vma 24 h
+     9 ~< %NC%
+     14 ~> pag3 pt adr 24 l
+     15 ~> pag3 pt adr 24 h
+
+e50: 10104 quad and/nand
+     4 ~< -pag3 pt adr 26 l
+     5 ~< pag3 pt wr both halves l
+     2 ~> pag3 pt left en a l
+     6 ~< -pag3 pt adr 26 l
+     7 ~< pag3 pt wr both halves l
+     3 ~> pag3 pt left en c l
+     12 ~< pag3 pt adr 26 l
+     13 ~< pag3 pt wr both halves l
+     9 ~> %NC%
+     15 ~> pag3 pt right en b l
+     10 ~< pag3 pt adr 26 l
+     11 ~< pag3 pt wr both halves l
+     14 ~> pag3 pt right en d l
+
+e51: 10104 quad and/nand
+     4 ~< {dh2} clk2 pt wr l
+     5 ~< {dm1} csh5 page refill t12 l
+     2 ~> pag3 pt wr a l
+     6 ~< {dh2} clk2 pt wr l
+     7 ~< {dm1} csh5 page refill t12 l
+     3 ~> pag3 pt wr b l
+     12 ~< {dh2} clk2 pt wr l
+     13 ~< {dm1} csh5 page refill t12 l
+     9 ~> %NC%
+     15 ~> pag3 pt wr c l
+     10 ~< {dh2} clk2 pt wr l
+     11 ~< {dm1} csh5 page refill t12 l
+     14 ~> pag3 pt wr d l
+
+Page: PAG4, PDF109
+
+e62: 10105 2-3-2 or/nor
+     4 ~< {cl2} -mcl vma user l
+     5 ~< {ek1} -mcl6 page uebr ref l
+     3 ~> pag4 page exec ref h
+     2 ~> pag4 page exec ref l
+     9 ~< {ek1} -mcl6 page uebr ref l
+     10 ~< {ef1} -mcl3 page ill entry l
+     11 ~< -pag4 page exec ref l
+     6 ~> pag4 page user paged ref h
+     7 ~> pag4 page user paged ref l
+     12 ~< pag4-e57-15
+     13 ~< {du2} -con ki10 paging mode l
+     14 ~> {eh2} pag4 pf ebox handle h
+     15 ~> %NC%
+
+e67: 10117 dual 2-3 or-and
+     12 ~< -pag4 page test private l
+     13 ~< pag4 page user paged ref l
+     10 ~< {ed1} pma5 ebox paged l
+     11 ~< -pag4 page test private l
+     9 ~< pag4 page exec ref l
+     14 ~> pag4-e67-14
+     15 ~> %NC%
+     4 ~< {ep1} mcl3 page ill entry l
+     5 ~< %NC%
+     6 ~< pag4 page test private l
+     7 ~< pag4 page unpaged ref l
+     9 ~< pag4 page exwec ref l
+     3 ~> %NC%
+     2 ~> pag4-e67-2
+
+e75: 10121 4-wide or-and
+     4 ~< {ep1} -mcl3 page ill entry h
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< pag4 page exec paged ref h
+     9 ~< pag4 page user paged ref h
+     10 ~< pag4-e67-14
+     11 ~< pag1 pt public a h
+     12 ~< pag1 pt public b h
+     13 ~< {dt2} pt access h
+     14 ~< %NC%
+     15 ~< %NC%
+     3 ~> pag4 page test write l
+     2 ~> %NC%
+
+e57: 10117 dual 2-3 or-and
+     4 ~< -pag3 pt match l
+     5 ~< %NC%
+     6 ~< {dt2} -pt access l
+     7 ~< %NC%
+     9 ~< pag5 pt par odd l
+     3 ~> %NC%
+     2 ~> pag4-e57-2
+     12 ~< pag4-e57-2
+     13 ~< pag4 paged ref l
+     10 ~< -pag4 page write ok l
+     11 ~< pag4 page test write l
+     9 ~< pag5 pt par odd l
+     14 ~> %NC%
+     15 ~> pag4-e57-15
+
+e85: 10105 2-3-2 or/nor
+     4 ~< pag4 page user paged ref h
+     5 ~< pag4 page exec paged ref h
+     3 ~> pag4 paged ref l
+     2 ~> {cu2} paged ref h
+     12 ~< {fu2} pt writable h
+     13 ~< {fj2} -mcl2 vma write h
+     14 ~> pag4 page write ok l
+     15 ~> pag4 page write ok h
+     9 ~< pag4 paged ref l
+     10 ~< -pag5 pt par odd l
+     11 ~< {fm1} pt match l
+     6 ~> pag4-e86-6
+     7 ~> %NC%
+
+e89: 10101 quad or/nor
+     13 ~< {ek1} mcl6 page uebr ref h
+     12 ~< %NC%
+     15 ~> pag4-e89-15
+     9 ~> %NC%
+     10 ~< pag4 pf code 2x l
+     14 ~> {fr1} pf hold 01 in h
+     11 ~> %NC%
+     4 ~< pag3 pt adr 24 h
+     2 ~> pag5 pt adr 24 a l
+     5 ~> pag5 pt adr 24 b h
+     7 ~< pag3 pt adr 24 h
+     3 ~> pag5 pt adr 24 c l
+     6 ~> pag5 pt adr 24 d h
+
+e80: 10121 4-wide or-and
+     4 ~< pag4-e89-15
+     5 ~< {ef1} -mcl3 page ill entry l
+     6 ~< %NC%
+     7 ~< pag4 page write ok l
+     9 ~< pag4 page test write l
+     10 ~< pag5 pt par odd l
+     11 ~< pag4-e74-9
+     12 ~< pag4 page exec paged ref l
+     13 ~< pag4 page exec ref l
+     14 ~< pag4 page unpaged ref l
+     15 ~< -pag4 page test private l
+     3 ~> %NC%
+     2 ~> {fl2} pag4 page ok l
+
+e56: 10121 4-wide or-and
+     4 ~< pag4-e67-2
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< {du2} -con ki10 paging mode l
+     9 ~< -pag3 pt match l
+     10 ~< pag4 paged ref l
+     11 ~< %NC%
+     12 ~< {dl1} csh6 page refill error l
+     13 ~< pag4 paged ref l
+     14 ~< -pag5 pt par odd l
+     15 ~< {fm1} pt match l
+     3 ~> pag4 page fail a h
+     2 ~> pag4 page fail a l
+
+e84: 10121 4-wide or-and
+     4 ~< pag4 paged ref l
+     5 ~< {dt2} -pt access l
+     6 ~< {fm1} pt match l
+     7 ~< pag4 page fail a l
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< -pag4 page write ok l
+     12 ~< pag4 page test write l
+     13 ~< pag4 page test private l
+     14 ~< {fe2} -pt public l
+     15 ~< pag4-e79-15
+     3 ~> %NC%
+     2 ~> {fp2} pag4 page fail l
+
+e79: 10118 triple 4-2 or-and
+     3 ~< pag4 page test private l
+     4 ~< {fe2} -pt public l
+     5 ~< pag4-e79-15
+     6 ~< pag4 page fail a l
+     7 ~< %NC%
+     9 ~< %NC%
+     2 ~> pag4 pf code 2x l
+     12 ~< {fj2} mcl2 vma write l
+     13 ~< pag4 page exec paged ref l
+     14 ~< pag1 pt access l
+     10 ~< pag1 pt access l
+     11 ~< pag4 page user paged ref l
+     9 ~< %NC%
+     15 ~> pag4-e79-15
+
+e90: 10118 triple 4-2 or-and
+     3 ~< {el2} mcl5 vma adr err h
+     4 ~< {fu2} pt writable h
+     5 ~< pag4-e85-6
+     6 ~< pag4-e85-6
+     7 ~< {el2} mcl5 vma adr err h
+     9 ~< -pag4 pf code 2x h
+     2 ~> {ft2} pf hold 03 in h
+     12 ~< {fv2} pt software h
+     13 ~< {fm2} csh6 page refill error h
+     14 ~< {fs2} mcl3 page address cond h
+     10 ~< {fm2} csh6 page refill error h
+     11 ~< {fs2} mcl3 page address cond h
+     9 ~< -pag4 pf code 2x h
+     15 ~> {fp1} pf hold 04 in h
+
+Page: PAG5, PDF110
+
+// NOTE: The e23-3 and e23-15 signals are correct due to XORing in MB PAR H
+e23: 10113 quad xor/xnor
+     5 ~< {be1} mb 00-05 par odd h
+     4 ~< {bf1} mb 06-11 par odd h
+     9 ~< %NC%
+     2 ~> pag5-e23-2
+     7 ~< pag5-e23-2
+     6 ~< pag5-e13-14
+     3 ~> {bj2} pag mb 18-35 par h
+     11 ~< {bd2} mb 18-23 par odd h
+     10 ~< {ba1} mb 24-29 par odd h
+     14 ~> pag5-e23-14
+     13 ~< pag4-e23-14
+     12 ~< pag4-e13-15
+     14 ~> {bk2} pag mb 00-17 par h
+
+e88: 10101 quad or/nor
+     4 ~< pag3 pt adr 18 h
+     12 ~< %NC%
+     2 ~> pag5 pt adr 18 a l
+     5 ~> pag5 pt adr 18 b h
+     7 ~< pag3 pt adr 19 h
+     3 ~> pag4 pt adr 19 a l
+     6 ~> pag5 pt adr 19 b h
+     13 ~< pag3 pt adr 20 h
+     15 ~> pag5 pt adr 20 a l
+     9 ~> pag5 pt adr 20 b h
+     10 ~< pag3 pt adr 21 h
+     14 ~> pag5 pt adr 21 a l
+     11 ~> pag5 pt adr 21 b h
+
+e3:  10101 quad or/nor
+     4 ~< pag3 pt adr 18 h
+     12 ~< %NC%
+     2 ~> pag5 pt adr 18 c l
+     5 ~> pag5 pt adr 18 d h
+     7 ~< -pag3 pt adr 19 h
+     3 ~> pag4 pt adr 19 c l
+     6 ~> pag5 pt adr 19 d h
+     13 ~< pag3 pt adr 20 h
+     15 ~> pag5 pt adr 20 c l
+     9 ~> pag5 pt adr 20 d h
+     10 ~< pag3 pt adr 21 h
+     14 ~> pag5 pt adr 21 c l
+     11 ~> pag5 pt adr 21 d h
+
+e46: 10101 quad or/nor
+     4 ~< pag3 pt adr 22 h
+     12 ~< %NC%
+     2 ~> pag5 pt adr 22 a l
+     5 ~> pag5 pt adr 22 b h
+     13 ~< pag3 pt adr 22 h
+     15 ~> pag5 pt adr 22 c l
+     9 ~> pag5 pt adr 22 d h
+     7 ~< pag3 pt adr 23 h
+     3 ~> pag5 pt adr 23 a l
+     6 ~> pag5 pt adr 23 b h
+     10 ~< pag3 pt adr 23 h
+     14 ~> pag5 pt adr 23 c l
+     11 ~> pag5 pt adr 23 d h
+
+e18: 10160 parity
+     3 ~< {be1} mb 00-05 par odd h
+     4 ~< {bf1} mb 06-11 par odd h
+     5 ~< {ak1} mb 12-17 par odd h
+     6 ~< {bd2} mb 18-23 par odd h
+     7 ~< {ba1} mb 24-29 par odd h
+     9 ~< {aj1} mb 30-35 par odd h
+     10 ~< {al2} mb par h
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< %NC%
+     2 ~> {bc1} mb par odd h
+
+e70: 10160 parity
+     3 ~< {dt2} pt access h
+     4 ~< {fe2} pt public h
+     5 ~< {fu2} pt writable h
+     6 ~< {fv2} pt software h
+     7 ~< {fa1} pt cache h
+     9 ~< {df1} pt 14 b h
+     10 ~< {df1} pt 15 b h
+     11 ~< {df1} pt 16 b h
+     12 ~< {df1} pt 17 b h
+     13 ~< {df1} pt 18 b h
+     14 ~< {df1} pt 19 b h
+     15 ~< {df1} pt 20 b h
+     2 ~> pag5-e70-2
+
+e22: 10160 parity
+     3 ~< %NC%
+     4 ~< {dk2} pt 21 b h
+     5 ~< {es1} pt 22 b h
+     6 ~< {er2} pt 23 b h
+     7 ~< {ed2} pt 24 b h
+     9 ~< {em2} pt 25 b h
+     10 ~< {fl1} pt 26 b h
+     11 ~< pag5 pt par left h
+     12 ~< pag5 pt par right h
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< %NC%
+     2 ~> pag5-e22-2
+
+e45: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 c l
+     2 ~< pag5 pt adr 19 c l
+     3 ~< pag5 pt adr 20 c l
+     4 ~< pag5 pt adr 21 c l
+     9 ~< pag5 pt adr 22 c l
+     10 ~< pag5 pt adr 23 c l
+     11 ~< pag5 pt adr 24 c l
+     12 ~< pag5 pt adr 25 c l
+     5 ~< pag3 pt left en c l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr c l
+     13 ~< pag5-e28-2
+     15 ~> pag5 pt par left h
+
+e44: 10144 256x1 RAM
+     1 ~< pag5 pt adr 18 d l
+     2 ~< pag5 pt adr 19 d l
+     3 ~< pag5 pt adr 20 d l
+     4 ~< pag5 pt adr 21 d l
+     9 ~< pag5 pt adr 22 d l
+     10 ~< pag5 pt adr 23 d l
+     11 ~< pag5 pt adr 24 d l
+     12 ~< pag5 pt adr 25 d l
+     5 ~< pag3 pt right en d l
+     6 ~< %NC%
+     7 ~< %NC%
+     14 ~< pag3 pt wr d l
+     13 ~< pag5-e28-15
+     15 ~> pag5 pt par right h
+
+e28: 10117 dual 2-3 or-and
+     4 ~< {bk2} pag mb 00-17 par h
+     5 ~< {bl2} -con ki10 paging mode h
+     6 ~< %NC%
+     7 ~< {bl1} sh ar par odd a h
+     9 ~< {du2} con ki10 paging mode h
+     3 ~> %NC%
+     2 ~> pag5-e28-2
+     12 ~< {bj2} pag mb 18-35 par h
+     13 ~< {bl2} -con ki10 paging mode h
+     10 ~< %NC%
+     11 ~< {bl1} sh ar par odd a h
+     9 ~< {du2} con ki10 paging mode h
+     14 ~> %NC%
+     15 ~> pag5-e28-15
