@@ -113,17 +113,19 @@ function definePinsAndNets(bp, cramDefs) {
 
   // For each slot we have in the CRAM-to-net mapping, for each
   // net therein, install the net name in the slot.
-  Object.keys(cramDefs.slots)
+  if (false) {
+  Object.keys(cramDefs.slot)
     .forEach(slot => {
-      Object.values(cramDefs.slots[slot])
+      Object.values(cramDefs.slot[slot])
 	.forEach(net => {
 
 	  bp.allNets[net.gNet][net.pin] = {
 	  };
 
-	  bp.allPins[net.pin] = ;
+//	  bp.allPins[net.pin] = ;
 	});
     });
+  }
 }
 
 
