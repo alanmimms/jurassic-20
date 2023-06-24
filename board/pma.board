@@ -145,7 +145,7 @@ e19: 10117 dual 2-3 or-and
      3 ~> %NC%
      2 ~> pma1-e19-2
      12 ~< pma5 ubr sel h
-     13 ~< Pma1 ebr 14 h
+     13 ~< pma1 ebr 14 h
      10 ~< pma1 ubr 14 h
      11 ~< -pma5 ubr sel h
      14 ~> %NC%
