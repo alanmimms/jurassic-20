@@ -1,3 +1,464 @@
 Page: CSH1, PDF24
 // M8513YA TBD
-// STUB
+
+e82: 10101 quad or/nor
+     13 ~< csh1 mb req h
+     12 ~< %NC%
+     15 ~> {et2} csh1 mb req grant l
+     9 ~> csh1 mb req grant h
+     4 ~< csh1 chan req grant l
+     2 ~> %NC%
+     5 ~> csh1-e82-5
+
+e84: 10105 2-3-2 or/nor
+     9 ~< -csh1 mb req l
+     10 ~< {fl1} ccl chan req l
+     11 ~< csh1 chan req en l
+     6 ~> {ev2} csh1 chan req grant h
+     7 ~> csh1 chan req grant l
+     4 ~< csh4 writeback t1 a h
+     5 ~< csh2-e76-2
+     3 ~> %NC%
+     2 ~> csh2 e req en clr h
+
+e49: 10109 4/5 or/nor
+     4 ~< -csh1 mb req l
+     5 ~< {ee1} clk4 ebox req l
+     6 ~< csh2 ebox req en l
+     // Time critical
+     7 ~< {fe1} -ccl chan req l
+     3 ~> csh1 ebox req grant h
+     2 ~> csh1 ebox req grant l
+     9 ~< {ba1} apr6 ebox era l
+     10 ~< {fe1} -ccl chan req l
+     11 ~< csh2 ebox req en l
+     12 ~< {ee1} clk4 ebox req l
+     13 ~< -csh1 mb req l
+     // Time critical
+     14 ~> csh1 ebox era grant h
+     15 ~> %NC%
+
+e50: 10101 quad or/nor
+     4 ~< csh1 ebox req grant l
+     2 ~> csh1 ebox req grant a h
+     5 ~> {es1} csh1 ebox req grant a l
+     10 ~< csh1 mr reset a l
+     12 ~< %NC%
+     14 ~> csh reset b h
+     11 ~> %NC%
+
+e55: 10109 4/5 or/nor
+     9 ~< {da1} apr6 ebox cca l
+     10 ~< {fe1} -ccl chan req l
+     11 ~< csh2 ebox req en l
+     12 ~< {ee1} clk4 ebox req l
+     13 ~< -csh1 mb req l
+     // Time critical
+     14 ~> csh1 ebox cca grant h
+     15 ~> %NC%
+
+e76: 10109 4/5 or/nor
+     9 ~< {da1} apr6 ebox cca l
+     10 ~< {fe1} -ccl chan req l
+     11 ~< csh2 ebox req en l
+     12 ~< {ee1} clk4 ebox req l
+     13 ~< -csh1 mb req l
+     14 ~> {eu2} csh1 cca req grant h
+     15 ~> csh1 cca req grant l
+     4 ~< {fk1} csh7 e writeback l
+     5 ~< %NC%
+     6 ~< {fj2} mcl2 vma read l
+     7 ~< {fp2} pma5 csh writeback cyc l
+     3 ~> csh2-e76-3
+     2 ~> %NC%
+
+e83: 10109 4/5 or/nor
+     4 ~< csh5 page refill t4 h
+     5 ~< csh1 mb req grant h
+     6 ~< {ev2} csh1 chan req grant h
+     7 ~< {eu2} csh1 cca req grant h
+     3 ~> csh1 non-ebox req grant l
+     2 ~> csh1 non-ebox req grant h
+     9 ~< %NC%
+     10 ~< -csh1 ebox cyc b h
+     11 ~< %NC%
+     12 ~< csh5 page refill t4 h
+     13 ~< csh1 reset b h
+     14 ~> csh1-e83-14
+     15 ~> %NC%
+
+e45: 10105 2-3-2 or/nor
+     9 ~< -csh4 writeback t1 a l
+     10 ~< -csh5 page refill t4 in l
+     11 ~< {bl2} -mem busy l
+     6 ~> %NC%
+     7 ~> csh1-e45-7
+
+e67: 10176 hex dff
+     11 ~< csh1-e45-7
+     9 ~< csh1 clk c h
+     14 ~> csh1 chan req en l
+
+e62: 10176 hex dff
+     10 ~< {cs1} mbx5 mb req in h
+     9 ~< csh1 clk c h
+     13 ~> csh1 mb req h
+     12 ~< csh1-e40-7
+     9 ~< csh1 clk c h
+     15 ~> csh1 cca req en l
+
+e40: 10105 2-3-2 or/nor
+     9 ~< -csh4 writeback t1 a l
+     10 ~< -csh5 page refill t4 in l
+     11 ~< {ec1} -core busy l
+     6 ~> %NC%
+     7 ~> csh1-e40-7
+
+e16: 10101 quad or/nor
+     13 ~< {ae2} mr reset 05 h
+     12 ~< %NC%
+     15 ~> csh1 mr reset a l
+     9 ~> csh1 reset a h
+     7 ~< {bd2} mbx3 sbus diag 3 l
+     3 ~> %NC%
+     6 ~> csh2 sbus diag 3 a l
+     4 ~< {be2} csh2 one word rd l
+     2 ~> {bk1} csh2 one word rd h
+     5 ~> csh2 one word rd a l
+
+e79: 10104 quad and/nand
+     12 ~< -csh1 ready to go a h
+     13 ~< -csh4 writeback t2 h
+     9 ~> %NC%
+     15 ~> csh1 cyc type hold h
+
+e72: 10141 shift register
+     13 ~< %NC%
+     12 ~< {es1} csh1 ebox req grant a l
+     11 ~< {et2} csh1 mb req grant l
+     9 ~< csh1-e82-5
+     6 ~< csh1 cca req grant l
+     5 ~< %NC%
+     7 ~< csh1 cyc type hold h
+     10 ~< csh1 cyc type hold h
+     4 ~< csh1 clk c h
+     14 ~> csh1 ebox cyc b l
+     15 ~> {bp2} csh1 mb cyc l
+     2 ~> {ak2} csh chan cyc l
+     3 ~> {ap2} csh1 cca cyc l
+
+e54: 10104 quad and/nand
+     10 ~< {de1} vma1 ac ref a h
+     11 ~< csh4 ebox t0 b h
+     14 ~> csh1 cache idle in d h
+     4 ~< csh4 ebox t1 h
+     5 ~< {fa1} clk4 ebox cyc abort h
+     2 ~> csh1 cache idle in d h
+
+e52: 10176 hex dff
+     6 ~< csh1 cache idle3 in d h
+     9 ~< csh1 clk a h
+     3 ~> csh1 cache idle in h
+     11 ~< csh1-e46-15
+     14 ~> csh1 cache idle in h
+     12 ~< csh1-e22-3
+     15 ~> csh1 cache idle in h
+     10 ~< {bl2} -mem busy l
+     13 ~> csh1-e52-13
+     5 ~< csh2-e4-2
+     2 ~> {ea1} csh2 e core rd rq b l
+     7 ~< csh2-e51-2
+     4 ~> csh2 ebox req en l
+
+e64: 10101 quad or/nor
+     4 ~< csh1 cache idle in h
+     12 ~< %NC%
+     2 ~> csh1 cache idle l
+     5 ~> csh1 cache idle h
+
+e66: 10121 4-wide or-and
+     4 ~< {fp2} pma5 csh writeback cyc l
+     5 ~< %NC%
+     6 ~< {fk2} mbx4 cache to mb done l
+     7 ~< {fm1} -csh1 ready to go l
+     9 ~< csh1 cache idle l
+     10 ~< %NC%
+     11 ~< {bh2} e cache wr cyc l
+     12 ~< {ef2} cache to mb t4 l
+     13 ~< {ee2} csh5 chan rd t5 l
+     // Time critical
+     14 ~< {ed2} phase change coming l
+     15 ~< %NC%
+     3 ~> csh1 cache idle in a h
+     2 ~> %NC%
+
+e37: 10104 quad and/nand
+     12 ~< csh5 chan wr t5 l
+     13 ~< csh6 cache wr from mem l
+     9 ~> csh1-e37-9
+     15 ~> %NC%
+     6 ~< {dm2} csh6 cca cyc done l
+     7 ~< csh4 ebox wr t4 l
+     3 ~> csh1-e37-3
+
+e46: 10109 4/5 or/nor
+     9 ~< csh1 cache idle in a h
+     10 ~< csh1-e37-9
+     11 ~< csh1 reset b h
+     12 ~< csh1 cache idle in b h
+     13 ~< csh2 ebox retry next h
+     14 ~> %NC%
+     15 ~> csh1-e46-15
+
+e34: 10121 4-wide or-and
+     4 ~< csh4 ebox pause write l
+     5 ~< csh4 e t2 mem ref l
+     // Time crit
+     6 ~< {ed1} pag4 page ok l
+     7 ~< csh1-e37-3
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< csh4 ebox t0 l
+     12 ~< {ds1} apr6 ebox load reg l
+     13 ~< %NC%
+     14 ~< %NC%
+     // Time critical
+     15 ~< csh3 cache idle in c l
+     3 ~> csh1 cache idle in b h
+     2 ~> csh1 cache idle in b l
+
+e22: 10121 4-wide or-and
+     4 ~< csh1 ready to go a l
+     5 ~< -csh1 ebox req grant a l
+     6 ~< -csh1 non-ebox req grant l
+     7 ~< csh4 e rd t2 ok l
+     9 ~< csh3 rd found l
+     10 ~< %NC%
+     11 ~< {bc1} a change coming in l
+     12 ~< {bd2} mbx3 sbus diag 3 l
+     13 ~< {ad1} csh5 chan t3 l
+     14 ~< -csh3 any valid match l
+     15 ~< {dt2} ccl chan to mem l
+     3 ~> csh2-e22-3
+     2 ~> %NC%
+
+e33: 10105 2-3-2 or/nor
+     4 ~< {bm2} pma5 page refill cyc l
+     5 ~< %NC%
+     3 ~> {bk2} csh1 pgrf cyc a h
+     2 ~> {bj2} csh1 pgrf cyc a l
+
+e56: 10101 quad or/nor
+     4 ~< csh1 ebox cyc b l
+     12 ~< %NC%
+     2 ~> csh1 ebox cyc a h
+     5 ~> {du2} csh ebox cyc a l
+
+e70: 10121 4-wide or-and
+     4 ~< csh1-e52-13
+     5 ~< csh5 page refill t10 l
+     6 ~< %NC%
+     7 ~< %NC%
+     9 ~< {ej2} clk3 ebox sync d l
+     10 ~< csh1 cache idle l
+     11 ~< csh1-e83-14
+     12 ~< %NC%
+     13 ~< {ej1} -mcl2 vma pause l
+     14 ~< csh2 mbox resp l
+     15 ~< csh2 one word rd a l
+     3 ~> {fm1} csh1 ready to go h
+     2 ~> {cc1} csh1 ready to go l
+
+e61: 10105 2-3-2 or/nor
+     4 ~< {fm1} csh1 ready to go h
+     5 ~< %NC%
+     3 ~> csh1 ready to go a l
+     2 ~> csh1 ready to go a h
+
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk1 csh h
+     2 ~> clk csh delayed h
+
+e41: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk csh delayed h
+     2 ~> csh1 clk a h
+     3 ~> csh1 clk b h
+     4 ~> csh1 clk c h
+     9 ~< %NC%
+     10 ~< clk csh delayed h
+     11 ~< %NC%
+     12 ~> csh1 clk d h
+     13 ~> csh1 clk e h
+     14 ~> csh1 clk f h
+
+Page: CSH2, PDF25
+
+// Time critical
+e17: 10121 4-wide or-and
+     4 ~< csh4 e rd t2 ok l
+     5 ~< csh3 rd found l
+     6 ~< %NC%
+     7 ~< {bc1} a change coming in l
+     9 ~< csh2 sbus diag 3 a l
+     10 ~< %NC%
+     11 ~< -csh1 reset a l
+     12 ~< csh2-e23-2
+     13 ~< %NC%
+     // Time critical
+     14 ~< csh1 cache idle in b l
+     15 ~< csh1 ebox cyc b l
+     // Time critical
+     3 ~> csh2 mbox resp in h
+     2 ~> csh2-e17-2
+
+e8:  10176 hex dff
+     6 ~< csh2-e17-2
+     9 ~< csh1 clk d h
+     3 ~> csh2 mbox resp l
+
+e65: 10105 2-3-2 or/nor
+     4 ~< csh2 mbox resp l
+     5 ~< {ej2} clk3 ebox sync d l
+     3 ~> csh2 ebox restart h
+     2 ~> csh2 ebox restart l
+
+e23: 10121 4-wide or-and
+     4 ~< %NC%
+     5 ~< {bh2} e cache wr cyc l
+     6 ~< {ef2} cache to mb t4 l
+     7 ~< -csh6 ebox sync hold l
+     9 ~< csh6 data dly 1 l
+     10 ~< %NC%
+     11 ~< {bl1} mbc4 core data val -1 l
+     12 ~< csh2 e core rd rq a l
+     13 ~< -csh6 e core rd comp l
+     14 ~< csh2 mbox resp l
+     15 ~< -csh2 ebox restart l
+     3 ~> %NC%
+     2 ~> csh2-e23-2
+
+e58: 10117 dual 2-3 or-and
+     13 ~< csh6 data dly 2 l
+     12 ~< {dp2} csh2 rd pause 2nd half l
+     11 ~< csh2 rd pse 2nd req en l
+     10 ~< {fh2} -clk4 ebox req l
+     9 ~< -csh1 reset b l
+     14 ~> %NC%
+     15 ~> csh2-e58-15
+
+e53: 10176 hex dff
+     7 ~< csh2-e58-15
+     9 ~< csh1 clk a h
+     4 ~> csh2 rd pse 2nd req en l
+     6 ~< csh2 ebox retry next in h
+     3 ~> csh2 box retry next h
+
+e4:  10121 4-wide or-and
+     4 ~< csh4 e rd t2 core ok l
+     5 ~< -csh3 rd found l
+     6 ~< csh3 any valid match l
+     7 ~< -csh3 lru any wr l
+     9 ~< -csh3 any valid match l
+     10 ~< csh4 e rd t2 core ok l
+     11 ~< -csh3 any valid match l
+     12 ~< {ah2} -mbx1 cache bit l
+     13 ~< {ae1} -mbc4 core data valid l
+     14 ~< -csh1 reset a l
+     15 ~< csh2 e core rd rq a l
+     3 ~> %NC%
+     2 ~> csh2-e4-2
+
+e14: 10176 hex dff
+     5 ~< csh2-e4-2
+     9 ~< csh1 clk e h
+     2 ~> {fs1} csh2 e core rd rq l
+     12 ~< csh2-e4-2
+     15 ~> csh2 e core rd rq a l
+     11 ~< csh2-e9-15
+     14 ~> {be2} csh2 one word rd l
+
+e9:  10118 triple 4-2 or-and
+     14 ~< csh4 e rd t2 core ok l
+     13 ~< -csh3 any valid match l
+     12 ~< {ah2} -mbx1 cache bit l
+     11 ~< -csh2 ebox restart l
+     10 ~< {be2} csh2 one word rd l
+     9 ~< -csh1 ready to go a l
+     15 ~> csh2-e9-15
+
+e75: 10118 triple 4-2 or-and
+     14 ~< csh2 one word rd a l
+     13 ~< csh2 ebox restart l
+     12 ~< csh4 ebox pause a l
+     11 ~< {fm1} -csh1 ready to go l
+     10 ~< {dp2} csh2 rd pause 2nd half l
+     9 ~< %NC%
+     15 ~> csh2-e75-15
+
+e74: 10176 hex dff
+     12 ~< csh2-e75-15
+     9 ~< csh1 blk b h
+     15 ~> {dp2} csh2 rd pause 2nd half l
+
+e43: 10105 2-3-2 or/nor
+     12 ~< {ce2} -mbx1 cache bit h
+     13 ~< csh3 lru any wr h
+     14 ~> csh2-e43-14
+     15 ~> %NC%
+     9 ~< csh4 e wr t2 l
+     10 ~< {ed1} pag4 page ok l
+     11 ~< {fv2} core busy l
+     6 ~> %NC%
+     7 ~> csh2-e43-7
+
+e47: 10117 dual 2-3 or-and
+     4 ~< {fv2} core busy l
+     5 ~< {dk1} apr ebox sbus diag l
+     6 ~< csh5 ebox refill ok l
+     7 ~< {dl1} pag4 page refill l
+     9 ~< -csh1 reset b l
+     3 ~> %NC%
+     2 ~> csh2-e47-2
+
+e28: 10104 quad and/nand
+     12 ~< {ck1} csh4 clear wr t0 l
+     13 ~< csh4 ebox wr t3 l
+     9 ~> %NC%
+     15 ~> csh2 wr test l
+
+e38: 10121 4-wide or-and
+     4 ~< csh2-e43-14
+     5 ~< csh2-e43-7
+     6 ~< -csh3 any valid match l
+     7 ~< {fj1} csh3 adr ready l
+     9 ~< csh2-e47-2
+     10 ~< csh1 ebox cyc b l
+     11 ~< {dd1} -mbc1 write ok l
+     12 ~< csh2 wr test l
+     13 ~< -csh3 rd found l
+     14 ~< csh4 e rd t2 ok l
+     15 ~< {fv2} core busy l
+     3 ~> csh2 ebox retry next in h
+     2 ~> csh2-e38-2
+
+e29: 10176 hex dff
+     5 ~< csh2-e38-2
+     9 ~< csh1 clk e h
+     2 ~> csh2 ebox retry next l
+
+e51: 10121 4-wide or-and
+     4 ~< {ec1} -core busy l
+     5 ~< -csh2 e req en clr l
+     6 ~< -csh5 page refill t4 in l
+     7 ~< {bp2} csh1 mb cyc l
+     9 ~< {fj2} mcl2 vma read l
+     10 ~< %NC%
+     11 ~< csh1 mr reset a l
+     12 ~< %NC%
+     13 ~< -csh2 e req en clr l
+     14 ~< csh2 ebox req en l
+     15 ~< -csh2 ebox retry next l
+     3 ~> %NC%
+     2 ~> csh2-e51-2
