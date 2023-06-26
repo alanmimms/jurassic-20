@@ -9,6 +9,12 @@ e82: 10101 quad or/nor
      4 ~< csh1 chan req grant l
      2 ~> %NC%
      5 ~> csh1-e82-5
+     10 ~< {fr2} csh3 any val hold a h
+     14 ~> csh3 any val hold l
+     11 ~> %NC%
+     7 ~< {fr1} apr en refill ram wr h
+     3 ~> csh4-e82-3
+     6 ~> %NC%
 
 e84: 10105 2-3-2 or/nor
      9 ~< -csh1 mb req l
@@ -20,6 +26,10 @@ e84: 10105 2-3-2 or/nor
      5 ~< csh2-e76-2
      3 ~> %NC%
      2 ~> csh2 e req en clr h
+     12 ~< csh5 t1 l
+     13 ~< {fp1} -csh6 wr from mem next l
+     14 ~> csh5 t2 in h
+     15 ~> csh5-e84-15
 
 e49: 10109 4/5 or/nor
      4 ~< -csh1 mb req l
@@ -46,6 +56,12 @@ e50: 10101 quad or/nor
      12 ~< %NC%
      14 ~> csh reset b h
      11 ~> %NC%
+     13 ~< csh6 ebox took 1 wd h
+     15 ~> %NC%
+     9 ~> csh3-e50-9
+     7 ~< {dp1} diag 04 b h
+     3 ~> csh7-e50-3
+     6 ~> csh7-e50-6
 
 e55: 10109 4/5 or/nor
      9 ~< {da1} apr6 ebox cca l
@@ -56,6 +72,12 @@ e55: 10109 4/5 or/nor
      // Time critical
      14 ~> csh1 ebox cca grant h
      15 ~> %NC%
+     4 ~< -csh1 ebox cyc a l
+     5 ~< {fd1} -csh4 ebox t0 in l
+     6 ~< {fc1} -mbx1 refill adr en nxt l
+     7 ~< %NC%
+     3 ~> csh3-e55-3
+     2 ~> %NC%
 
 e76: 10109 4/5 or/nor
      9 ~< {da1} apr6 ebox cca l
@@ -93,11 +115,29 @@ e45: 10105 2-3-2 or/nor
      11 ~< {bl2} -mem busy l
      6 ~> %NC%
      7 ~> csh1-e45-7
+     4 ~< {cl1} mcl6 ebox map l
+     5 ~< csh3-e79-14
+     3 ~> csh3-e45-3
+     2 ~> %NC%
+     12 ~< {ds1} apr6 ebox load reg l
+     13 ~< csh4 ebox t0 l
+     14 ~> {cn1} csh6 ebox load reg h
+     15 ~> %NC%
 
 e67: 10176 hex dff
      11 ~< csh1-e45-7
      9 ~< csh1 clk c h
      14 ~> csh1 chan req en l
+     5 ~< {ff1} csh3 any val hold in h
+     2 ~> {fr2} csh3 any val hold a h
+     7 ~< csh3-e77-14
+     4 ~> {ep1} csh3 gate vma 27-33 h
+     12 ~< csh3-e55-3
+     15 ~> {ep2} csh3 adr pma en h
+     6 ~< {fd1} csh4 ebox t0 in h
+     3 ~> csh4 ebox t0 b h
+     10 ~< csh5-e61-15
+     13 ~> csh5 chan wr t5 l
 
 e62: 10176 hex dff
      10 ~< {cs1} mbx5 mb req in h
@@ -106,6 +146,14 @@ e62: 10176 hex dff
      12 ~< csh1-e40-7
      9 ~< csh1 clk c h
      15 ~> csh1 cca req en l
+     11 ~< csh4 ebox t0 in l
+     14 ~> csh4 ebox t0 l
+     7 ~< csh4-e63-15
+     4 ~> {er2} csh4 data clr done l
+     5 ~< csh5 page refill t9,12 l
+     2 ~> csh5 page refill t13 l
+     6 ~< csh5 page refill t4 in h
+     3 ~> csh5 page refill t4 h
 
 e40: 10105 2-3-2 or/nor
      9 ~< -csh4 writeback t1 a l
@@ -113,6 +161,14 @@ e40: 10105 2-3-2 or/nor
      11 ~< {ec1} -core busy l
      6 ~> %NC%
      7 ~> csh1-e40-7
+     4 ~< -csh4 ebox read a l
+     5 ~< csh4 ebox pause a l
+     3 ~> csh4 ebox pause write h
+     2 ~> csh4 ebox pause write l
+     12 ~< {fk2} mbx4 cache to mb done l
+     13 ~< {bm2} pma5 page refill cyc l
+     14 ~> %NC%
+     15 ~> csh5-e40-15
 
 e16: 10101 quad or/nor
      13 ~< {ae2} mr reset 05 h
@@ -125,12 +181,21 @@ e16: 10101 quad or/nor
      4 ~< {be2} csh2 one word rd l
      2 ~> {bk1} csh2 one word rd h
      5 ~> csh2 one word rd a l
+     10 ~< {bm1} csh6 page refill error l
+     14 ~> {bp1} csh6 page refill error h
+     11 ~> %NC%
 
 e79: 10104 quad and/nand
      12 ~< -csh1 ready to go a h
      13 ~< -csh4 writeback t2 h
      9 ~> %NC%
      15 ~> csh1 cyc type hold h
+     10 ~< {dl1} pag4 page refill l
+     11 ~< -csh6 ki10 paging mode l
+     14 ~> csh3-e79-14
+     6 ~< csh4 ebox t2 l
+     7 ~< {em1} csh5 t2 l
+     3 ~> {fj1} csh3 adr ready l
 
 e72: 10141 shift register
      13 ~< %NC%
@@ -154,6 +219,13 @@ e54: 10104 quad and/nand
      4 ~< csh4 ebox t1 h
      5 ~< {fa1} clk4 ebox cyc abort h
      2 ~> csh1 cache idle in d h
+     12 ~< {cl1} mcl6 ebox map l
+     13 ~< {cl1} mcl6 ebox map l
+     9 ~> csh3 ebox map h
+     15 ~> %NC%
+     7 ~< csh3-e45-3
+     6 ~< {ed1} -pag4 page ok h
+     3 ~> csh3 map problem h
 
 e52: 10176 hex dff
      6 ~< csh1 cache idle3 in d h
@@ -175,6 +247,15 @@ e64: 10101 quad or/nor
      12 ~< %NC%
      2 ~> csh1 cache idle l
      5 ~> csh1 cache idle h
+     7 ~< csh4 writeback t1 l
+     3 ~> csh4 writeback t1 a h
+     6 ~> {fs1} csh4 writeback t1 a l
+     10 ~< {fj2} mcl2 vma read l
+     14 ~> csh4 ebox read a h
+     11 ~> %NC%
+     13 ~< {ej1} mcl2 vma pause h
+     15 ~> csh4 ebox pause a l
+     9 ~> %NC%
 
 e66: 10121 4-wide or-and
      4 ~< {fp2} pma5 csh writeback cyc l
@@ -200,6 +281,12 @@ e37: 10104 quad and/nand
      6 ~< {dm2} csh6 cca cyc done l
      7 ~< csh4 ebox wr t4 l
      3 ~> csh1-e37-3
+     10 ~< csh6 data dly 2 l
+     11 ~< {bt2} csh5 page refill t12 l
+     14 ~> csh3-e37-14
+     4 ~< csh3-e37-14
+     5 ~< csh6 cache wr from mem l
+     2 ~> {cf1} mb test par a in l
 
 e46: 10109 4/5 or/nor
      9 ~< csh1 cache idle in a h
@@ -209,6 +296,12 @@ e46: 10109 4/5 or/nor
      13 ~< csh2 ebox retry next h
      14 ~> %NC%
      15 ~> csh1-e46-15
+     4 ~< {ec1} -core busy l
+     5 ~< {au2} csh4 ebox t3 l
+     6 ~< csh5 ebox refill ok l
+     7 ~< {dl1} pag4 page refill l
+     3 ~> csh5 page refill t4 in h
+     2 ~> csh5 page refill t4 in l
 
 e34: 10121 4-wide or-and
      4 ~< csh4 ebox pause write l
@@ -247,12 +340,30 @@ e33: 10105 2-3-2 or/nor
      5 ~< %NC%
      3 ~> {bk2} csh1 pgrf cyc a h
      2 ~> {bj2} csh1 pgrf cyc a l
+     9 ~< csh4 ebox t0 l
+     10 ~< {de1} -vma1 ac ref a l
+     11 ~< -csh1 cache idle in b l
+     6 ~> csh4-e33-6
+     7 ~> csh4-e33-7
+     12 ~< csh2 e core rd rq a l
+     13 ~< {be1} mbc4 core data valid l
+     14 ~> csh6 e core rd comp h
+     15 ~> csh6-e33-15
 
 e56: 10101 quad or/nor
      4 ~< csh1 ebox cyc b l
      12 ~< %NC%
      2 ~> csh1 ebox cyc a h
      5 ~> {du2} csh ebox cyc a l
+     10 ~< {dr1} diag 05 b h
+     14 ~> csh7-e56-14
+     11 ~> csh7-e56-11
+     13 ~< {dm1} diag 06 b h
+     15 ~> csh7-d56-15
+     9 ~> csh7-d56-9
+     7 ~< {ef1} diag read func 17x l
+     3 ~> %NC%
+     6 ~> csh7-e56-6
 
 e70: 10121 4-wide or-and
      4 ~< csh1-e52-13
@@ -274,6 +385,10 @@ e61: 10105 2-3-2 or/nor
      5 ~< %NC%
      3 ~> csh1 ready to go a l
      2 ~> csh1 ready to go a h
+     12 ~< {dt2} ccl chan to mem l
+     13 ~< {ds2} csh5 chan t4 l
+     14 ~> {dr2} csh5 chan wr t5 in h
+     15 ~> csh5-e61-15
 
 dl1: delay-line (PCB wired)
      1 ~< {cr2} clk1 csh h
@@ -317,12 +432,31 @@ e8:  10176 hex dff
      6 ~< csh2-e17-2
      9 ~< csh1 clk d h
      3 ~> csh2 mbox resp l
+     7 ~< csh5 page refill t7 l
+     4 ~> {ar2} csh5 page refill t8 l
+     5 ~< csh5-e3-2
+     2 ~> {ds2} csh5 chan t4 l
+     12 ~< csh5-e2-2
+     15 ~> {ee2} csh5 chan rd t5 l
+     10 ~< csh6-e1-3
+     13 ~> {ap1} csh6 cca inval t4 l
+     11 ~< csh6-e6-2
+     14 ~> {dm2} csh6 cca cyc done l
 
 e65: 10105 2-3-2 or/nor
      4 ~< csh2 mbox resp l
      5 ~< {ej2} clk3 ebox sync d l
      3 ~> csh2 ebox restart h
      2 ~> csh2 ebox restart l
+     12 ~< csh4 ebox t1 l
+     13 ~< {fa1} -clk4 ebox cyc abort l
+     14 ~> %NC%
+     15 ~> csh4-e65-15
+     9 ~< {ej1} -mcl2 vma pause l
+     10 ~< csh4 e t2 mem ref l
+     11 ~< -csh4 ebox read a l
+     6 ~> %NC%
+     7 ~> csh4 e wr t2 l
 
 e23: 10121 4-wide or-and
      4 ~< %NC%
@@ -347,6 +481,13 @@ e58: 10117 dual 2-3 or-and
      9 ~< -csh1 reset b l
      14 ~> %NC%
      15 ~> csh2-e58-15
+     4 ~< -csh4 ebox read a l
+     5 ~< {au2} csh4 ebox t3 l
+     6 ~< {au2} csh4 ebox t3 l
+     7 ~< csh2 e core rd rq a l
+     9 ~< -csh1 reset b l
+     3 ~> csh7-e58-3
+     2 ~> csh7 e core rd t3 l
 
 e53: 10176 hex dff
      7 ~< csh2-e58-15
@@ -354,6 +495,14 @@ e53: 10176 hex dff
      4 ~> csh2 rd pse 2nd req en l
      6 ~< csh2 ebox retry next in h
      3 ~> csh2 box retry next h
+     5 ~< csh4-e63-2
+     2 ~> csh4 ebox wr t3 l
+     11 ~< csh4-e48-2
+     14 ~> csh4 ebox wr t4 l
+     10 ~< csh5 page refill t4 in l
+     13 ~> {dj2} csh5 page refill t4 l
+     12 ~< csh6-e48-14
+     15 ~> csh6 ebox took 1 wd h
 
 e4:  10121 4-wide or-and
      4 ~< csh4 e rd t2 core ok l
@@ -378,6 +527,12 @@ e14: 10176 hex dff
      15 ~> csh2 e core rd rq a l
      11 ~< csh2-e9-15
      14 ~> {be2} csh2 one word rd l
+     10 ~< csh6-e9-2
+     13 ~> {ad2} csh6 chan wr cache l
+     6 ~< csh6-e15-2
+     3 ~> csh6 page fail hold ff l
+     7 ~< csh6-e20-15
+     4 ~> csh6 wr data rdy l
 
 e9:  10118 triple 4-2 or-and
      14 ~< csh4 e rd t2 core ok l
@@ -387,6 +542,13 @@ e9:  10118 triple 4-2 or-and
      10 ~< {be2} csh2 one word rd l
      9 ~< -csh1 ready to go a l
      15 ~> csh2-e9-15
+     3 ~< csh3 any valid match l
+     4 ~< {dt2} ccl chan to mem l
+     5 ~< {ad1} csh5 chan t3 l
+     6 ~< %NC%
+     7 ~< {ad2} csh6 chan wr cache l
+     9 ~< -csh1 ready to go a l
+     2 ~> csh6-e9-2
 
 e75: 10118 triple 4-2 or-and
      14 ~< csh2 one word rd a l
@@ -396,11 +558,28 @@ e75: 10118 triple 4-2 or-and
      10 ~< {dp2} csh2 rd pause 2nd half l
      9 ~< %NC%
      15 ~> csh2-e75-15
+     3 ~< %NC%
+     4 ~< csh4 writeback t1 l
+     5 ~< {ap2} csh1 cca cyc l
+     6 ~< -csh1 cache idle l
+     7 ~< {el1} csh7 cca writeback l
+     9 ~< %NC%
+     2 ~> csh7-e75-2
 
 e74: 10176 hex dff
      12 ~< csh2-e75-15
      9 ~< csh1 blk b h
      15 ~> {dp2} csh2 rd pause 2nd half l
+     10 ~< csh4-e33-6
+     13 ~> csh4 ebox t1 h
+     7 ~< csh6-e86-6
+     4 ~> csh6 ebox sync hold h
+     6 ~< csh7-e80-2
+     3 ~> {ft2} csh7 fill cache rd l
+     6 ~< csh7-e75-2
+     14 ~> {el1} csh7 cca writeback l
+     5 ~< csh7-e80-15
+     2 ~> {fk1} csh7 e writeback l
 
 e43: 10105 2-3-2 or/nor
      12 ~< {ce2} -mbx1 cache bit h
@@ -412,6 +591,10 @@ e43: 10105 2-3-2 or/nor
      11 ~< {fv2} core busy l
      6 ~> %NC%
      7 ~> csh2-e43-7
+     4 ~< csh5 page refill t11 l
+     5 ~< %NC%
+     3 ~> csh5 page refill t11 h
+     2 ~> %NC%
 
 e47: 10117 dual 2-3 or-and
      4 ~< {fv2} core busy l
@@ -421,12 +604,28 @@ e47: 10117 dual 2-3 or-and
      9 ~< -csh1 reset b l
      3 ~> %NC%
      2 ~> csh2-e47-2
+     13 ~< csh6 ebox sync seen l
+     12 ~< csh6 wr data rdy l
+     11 ~< csh5 t1 l
+     10 ~< {bp2} csh1 mb cyc l
+     9 ~< -csh1 reset b l
+     14 ~> {fp1} csh6 wr from mem next h
+     15 ~> csh6 wr from mem next l
 
 e28: 10104 quad and/nand
      12 ~< {ck1} csh4 clear wr t0 l
      13 ~< csh4 ebox wr t3 l
      9 ~> %NC%
      15 ~> csh2 wr test l
+     6 ~< {dl2} ctl3 diag ld ebus reg l
+     7 ~< csh4 page fail t2 l
+     3 ~> csh3-e28-3
+     10 ~< csh3-e28-3
+     11 ~< csh3-e11-7
+     14 ~> {br1} load ebus reg l
+     4 ~< {bt2} csh5 page refill t12 l
+     5 ~< {cj2} csh5 page refill t9 l
+     2 ~> csh5 page refill t9,12 l
 
 e38: 10121 4-wide or-and
      4 ~< csh2-e43-14
@@ -447,6 +646,16 @@ e29: 10176 hex dff
      5 ~< csh2-e38-2
      9 ~< csh1 clk e h
      2 ~> csh2 ebox retry next l
+     6 ~< csh4-e24-2
+     3 ~> {dj1} csh4 one word wr t0 l
+     11 ~< csh4-e24-15
+     14 ~> csh4 writeback t1 l
+     7 ~< csh5-e40-15
+     4 ~> {cj1} csh5 page refill t9 l
+     12 ~< csh5-e25-2
+     15 ~> csh5 page refill comp l
+     10 ~< csh6-e20-2
+     13 ~> {bm1} csh6 page refill error l
 
 e51: 10121 4-wide or-and
      4 ~< {ec1} -core busy l
@@ -462,3 +671,612 @@ e51: 10121 4-wide or-and
      15 ~< -csh2 ebox retry next l
      3 ~> %NC%
      2 ~> csh2-e51-2
+
+Page: CSH3, PDF26
+
+e11: 10105 2-3-2 or/nor
+     9 ~< {av2} apr6 ebox read reg l
+     // Time critical
+     10 ~< {au2} csh4 ebox t3 l
+     11 ~< -csh3 map problem l
+     6 ~> %NC%
+     7 ~> csh3-e11-6
+     4 ~< {bm2} pma5 page refill cyc l
+     5 ~< csh5 t3 l
+     3 ~> %NC%
+     2 ~> csh5 page refill t7 l
+     12 ~< csh5 t3 l
+     13 ~< {ap2} csh1 cca cyc l
+     14 ~> csh5 cca t3 h
+     15 ~> csh5 cca t3 l
+
+e30: 10104 quad and/nand
+     6 ~< csh3-e11-7
+     7 ~< csh4 page fail t3 l
+     // Time critical
+     3 ~> csh3 cache idle in c l
+     12 ~< {at2} con ki10 paging mode h
+     13 ~< {at2} con ki10 paging mode h
+     9 ~> csh6-e30-9
+     15 ~> csh6 ki10 paging mode h
+     10 ~< csh4 page fail t3 l
+     11 ~< {bt2} csh5 apge refill t12 l
+     14 ~> csh6-e30-9
+     4 ~< csh6-e30-9
+     5 ~< csh6-e30-9
+     2 ~> {cd2} csh6 mbox pt dir wr l
+
+e77: 10117 dual 2-3 or-and
+     4 ~< {fj1} csh3 adr ready l
+     5 ~< csh3 any valid match l
+     6 ~< -csh1 ready to go a l
+     7 ~< csh3 any val hold l
+     9 ~< %NC%
+     3 ~> {ff1} csh3 any val hold in h
+     2 ~> %NC%
+     13 ~< %NC%
+     12 ~< csh4 ebox t0 in l
+     11 ~< csh1 ebox cyc b l
+     10 ~< {fc1} -mbx1 refill adr en nxt l
+     9 ~< %NC%
+     14 ~> csh3-e77-14
+     15 ~> %NC%
+
+e68: 10176 hex dff
+     10 ~< {ff1} csh3 any val hold in h
+     9 ~< csh1 clk b h
+     // NOTE: This signal is not used
+     13 ~> csh3 any val hold h
+     7 ~< {fs1} csh4 writeback t1 a l
+     4 ~> csh4 writeback t2 l
+     6 ~< csh1 non-ebox req grant l
+     3 ~> csh5 csh t0 l
+     5 ~< csh1 ready to go a l
+     2 ~> csh5 csh t0 l
+     12 ~< csh5 csh t0 l
+     15 ~> csh5 t1 l
+     11 ~< csh6-e85-2
+     14 ~> {es2} csh use hold h
+
+e21: 10118 triple 4-2 or-and
+     14 ~< -csh3 any valid match h
+     13 ~< {bs1} csh 3 valid match h
+     12 ~< {bv2} csh 2 valid match h
+     11 ~< {bv2} csh 2 valid match h
+     10 ~< {cj2} csh lru 2 h
+     9 ~< {bs1} csh 3 valid match h
+     15 ~> {bu2} csh3 match hold 2 in h
+     3 ~< -csh3 any valid match h
+     4 ~< {bs1} csh 3 valid match h
+     5 ~< {bs2} csh 1 valid match h
+     6 ~< {bs2} csh 1 valid match h
+     7 ~< {cr1} csh lru 1 h
+     9 ~< {bs1} csh 3 valid match h
+     2 ~> {br2} csh3 match hold 1 in h
+
+e31: 10121 4-wide or-and
+     4 ~< {cu2} csh 0 valid match l
+     5 ~< {ck2} csh 0 any wr l
+     6 ~< %NC%
+     7 ~< {cv2} csh 1 valid match l
+     9 ~< {cm2} csh 1 any wr l
+     10 ~< %NC%
+     11 ~< {ct2} csh 2 valid match l
+     12 ~< {cl2} csh 2 any wr l
+     13 ~< {cs2} csh 3 valid match l
+     14 ~< {cp1} csh 3 any wr l
+     15 ~< %NC%
+     3 ~> csh3 any written match h
+     2 ~> csh3 any written match l
+
+e36: 10121 4-wide or-and
+     4 ~< csh3 0 wd val l
+     5 ~< {cu2} csh 0 valid match l
+     6 ~< %NC%
+     7 ~< csh3 1 wd val l
+     9 ~< {cv2} csh 1 valid match l
+     10 ~< %NC%
+     11 ~< {ct2} csh 2 valid match l
+     12 ~< csh3 2 wd val l
+     13 ~< %NC%
+     14 ~< {cs2} csh 3 valid match l
+     15 ~< csh3 3 wd val l
+     3 ~> csh3 rd found h
+     2 ~> csh3 rd found l
+
+e26: 10174 2x4 mixer
+     3 ~< {ck2} -csh 0 any wr h
+     5 ~< {cm2} -csh 1 any wr h
+     4 ~< {cl2} -csh 2 any wr h
+     6 ~< {cp1} -csh 3 any wr h
+     13 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     9 ~< {cj2} csh lru 2 h
+     7 ~< {cr1} csh lru 1 h
+     14 ~< %NC%
+     2 ~> csh3 lru any wr l
+
+e5:  10101 quad or/nor
+     7 ~< csh3 lru any wr l
+     12 ~< %NC%
+     3 ~> csh3 lru any wr h
+     6 ~> %NC%
+     13 ~< %NC%
+     15 ~> csh4 hi
+     9 ~> %NC%
+     10 ~< csh6 page fail hold ff l
+     14 ~> {cf2} csh6 page fail hold h
+     11 ~> {df2} csh6 page fail hold l
+     4 ~< {dd1} mbc1 write ok h
+     2 ~> csh6 write ok l
+     5 ~> %NC%
+
+e42: 10109 4/5 or/nor
+     4 ~< csh5 page refill t11 h
+     5 ~< {fp1} csh6 wr from mem nxt h
+     6 ~< csh3-e50-9
+     7 ~< {ce1} chan read h
+     3 ~> {fm2} csh3 mb wr rq clr nxt l
+     2 ~> %NC%
+
+e39: 10101 quad or/nor
+     4 ~< {de2} csh 0 wd val h
+     12 ~< %NC%
+     2 ~> csh3 0 wd val l
+     5 ~> %NC%
+     7 ~< {df1} csh 1 wd val h
+     3 ~> csh3 1 wd val l
+     6 ~> %NC%
+     10 ~< {dc1} csh 2 wd val h
+     14 ~> csh3 2 wd val l
+     11 ~> %NC%
+     13 ~< {dd2} csh 3 wd val h
+     15 ~> csh3 3 wd val l
+     9 ~> %NC%
+
+e19: 10109 4/5 or/nor
+     4 ~< {bv2} csh 2 valid match h
+     5 ~< {bs1} csh 3 valid match h
+     6 ~< {bs2} csh 1 valid match h
+     7 ~< {bj1} csh 0 valid match h
+     3 ~> csh3 any valid match l
+     2 ~> csh3 any valid match h
+     9 ~< {ed1} pag4 page ok l
+     10 ~< -csh3 any valid match l
+     11 ~< csh4 e wr t2 l
+     12 ~< {ce2} mbx1 cache bit l
+     13 ~< -csh3 lru any wr l
+     14 ~> %NC%
+     15 ~> csh4-e19-15
+
+Page: CSH4, PDF27
+
+e44: 10117 dual 2-3 or-and
+     4 ~< {cc1} csh1 ready to go l
+     5 ~< csh1 ebox req grant l
+     6 ~< {ee1} clk4 ebox req l
+     7 ~< csh2 rd pse 2nd req en l
+     9 ~< %NC%
+     3 ~> {fd1} csh4 ebox t0 in h
+     2 ~> csh4 ebox t0 in l
+     13 ~< csh3 ebox map h
+     12 ~< {av2} -apr6 ebox read reg h
+     11 ~< -csh5 page refill comp h
+     10 ~< %NC%
+     9 ~< %NC%
+     14 ~> csh5 ebox refill ok l
+     15 ~> %NC%
+
+e69: 10176 hex dff
+     12 ~< csh4-e33-7
+     9 ~< csh1 clk b h
+     15 ~> csh4 ebox t1 l
+     11 ~< csh4-e65-15
+     14 ~> csh4 ebox t2 l
+     10 ~< csh4 ebox t2 l
+     // Time critical
+     13 ~> {au2} csh4 ebox t3 l
+     5 ~< {ek1} mbc2 csh data clr t3 l
+     2 ~> csh4 data clr t4 l
+     6 ~< csh5-e84-15
+     3 ~> {em1} csh5 t2 l
+     7 ~< {em1} csh5 t2 l
+     4 ~> csh5 t3 l
+
+e24: 10118 triple 4-2 or-and
+     3 ~< {ec1} -core busy l
+     4 ~< {dk1} apr ebox sbus diag l
+     5 ~< csh4 ebox t2 l
+     6 ~< csh4-e59-15
+     7 ~< {ah2} -mbx1 cache bit l
+     9 ~< -csh3 any valid match l
+     2 ~> csh4-e24-2
+     14 ~< csh3 any written match l
+     13 ~< {ac1} mbx1 csh cca val core l
+     12 ~< csh5 cca t3 l
+     11 ~< csh4-e42-15
+     10 ~< csh3 lru any wr l
+     9 ~< -csh3 any valid match l
+     15 ~> csh4-e24-15
+
+e59: 10109 4/5 or/nor
+     9 ~< {ed1} pag4 page ok l
+     10 ~< {ec1} -core busy l
+     11 ~< {ej1} -mcl2 vma pause l
+     12 ~< -csh4 ebox read a l
+     13 ~< csh4 e t2 mem ref l
+     14 ~> %NC%
+     15 ~> csh4-e59-15
+     4 ~< {ed1} pag4 page ok l
+     5 ~< {fj2} mcl2 vma read l
+     6 ~< csh4 ebox t2 l
+     7 ~< {ec1} -core busy l
+     3 ~> %NC%
+     2 ~> csh4 e rd t2 core ok l
+
+e3:  10105 2-3-2 or/nor
+     9 ~< {ak1} -apr6 ebox sbus diag l
+     10 ~< csh4 ebox t2 l
+     11 ~< {aj1} -apr6 ebox read reg l
+     6 ~> %NC%
+     7 ~> csh4 e t2 mem ref l
+     4 ~< csh3 any valid match l
+     5 ~< {ad1} csh5 chan t3 l
+     3 ~> %NC%
+     2 ~> csh5-e3-2
+     12 ~< {ak2} csh chan cyc l
+     13 ~< csh5 t3 l
+     14 ~> %NC%
+     15 ~> {ad1} csh5 chan t3 l
+
+e48: 10105 2-3-2 or/nor
+     // Time critical
+     9 ~< {ed1} pag4 page ok l
+     10 ~< {fj2} mcl2 vma read l
+     11 ~< csh4 ebox t2 l
+     6 ~> %NC%
+     // Time critical
+     7 ~> csh4 e rd t2 ok l
+     4 ~< csh4 ebox wr t3 l
+     5 ~< -csh2 ebox retry next in l
+     3 ~> {dh2} csh4 ebox wr t4 in h
+     2 ~> csh4-e48-2
+     12 ~< csh6 ebox sync seen l
+     13 ~< csh2 one word rd a l
+     14 ~> csh6-e48-14
+
+e63: 10117 dual 2-3 or-and
+     4 ~< csh4 data clr t4 l
+     5 ~< {bh2} e cache wr cyc l
+     6 ~< csh4 e wr t2 l
+     7 ~< csh3 any valid match l
+     9 ~< {ed1} pag4 page ok l
+     3 ~> %NC%
+     2 ~> csh4-e63-2
+     12 ~< {eh2} mbc2 data clr done in l
+     13 ~< {fm1} -csh1 ready to go l
+     10 ~< csh3 any valid match l
+     11 ~< csh4 e wr t2 l
+     9 ~< {ed1} pag4 page ok l
+     14 ~> %NC%
+     15 ~> csh4-e63-15
+
+e35: 10176 hex dff
+     10 ~< csh4-e19-15
+     9 ~< csh1 clk f h
+     13 ~> {ck1} csh4 clear wr t0 l
+     6 ~< csh5-e85-15
+     3 ~> csh5 page refill t10 l
+     11 ~< csh5 page refill t10 l
+     14 ~> csh5 page refill t11 l
+     5 ~< {cp2} mbx2 mb sel hold l
+     2 ~> csh5 page refill t11 l
+     12 ~< csh5 page refill t11 l
+     15 ~> {bt2} csh5 page refill t12 l
+     7 ~< csh6 wr from mem nxt l
+     4 ~> csh6 cache wr from mem l
+
+e86: 10105 2-3-2 or/nor
+     4 ~< csh4-e82-3
+     5 ~< csh4 ebox t2 l
+     3 ~> %NC%
+     2 ~> {fl2} csh refill ram wr l
+     12 ~< csh6 ebox sync hold h
+     13 ~< csh2 ebox restart h
+     14 ~> csh6 ebox sync seen l
+     15 ~> %NC%
+     9 ~< -csh4 ebox t0 b l
+     10 ~< -csh1 reset b l
+     11 ~< csh6 ebox sync seen l
+     6 ~> csh6-e86-6
+     7 ~> %NC%
+
+e18: 10176 hex dff
+     11 ~< {cf2} csh6 page fail hold h
+     9 ~< csh1 clk d h
+     14 ~> csh4 page fail dly h
+     7 ~< csh4 page fail dly h
+     4 ~> csh4 page fail t2 l
+     10 ~< {df2} csh6 page fail hold l
+     13 ~> csh4 page fail t2 l
+     5 ~< csh4 page fail t2 l
+     2 ~> csh4 page fail t3 l
+     12 ~< csh6-e33-15
+     15 ~> csh6 data dly 1 l
+     6 ~< csh6 data dly 1 l
+     3 ~> csh6 data dly 2 l
+
+Page: CSH5, PDF28
+
+e25: 10117 dual 2-3 or-and
+     4 ~< csh5 page refill t10 l
+     5 ~< {ec1} -core busy l
+     6 ~< -csh2 ebox restart l
+     7 ~< csh5 page refill comp l
+     9 ~< -csh1 reset a l
+     3 ~> %NC%
+     2 ~> csh5-e25-2
+
+e85: 10118 triple 4-2 or-and
+     14 ~< csh5 page refill t10 l
+     13 ~< {fv2} core busy l
+     12 ~< {du2} -mbx2 mb sel hold ff l
+     11 ~< %NC%
+     10 ~< csh5 page refill t13 l
+     9 ~< %NC%
+     15 ~> csh5-e85-15
+     3 ~< csh4 ebox t1 h
+     4 ~< {es2} csh use hold h
+     5 ~< csh5 t2 in h
+     6 ~< -csh1 ready to go a h
+     7 ~< %NC%
+     9 ~< %NC%
+     2 ~> csh6-e85-2
+
+e2:  10121 4-wide or-and
+     4 ~< {ad1} csh5 chan t3 l
+     5 ~< {af1} -ccl chan to mem l
+     6 ~< -csh3 any valid match l
+     7 ~< csh4 hi
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< {fk2} mbx4 cache to mb done l
+     12 ~< {ak2} csh chan cyc l
+     13 ~< -csh1 reset a l
+     14 ~< -csh1 cache idle in a l
+     15 ~< {ee2} csh5 chan rd t5 l
+     3 ~> %NC%
+     2 ~> csh5-e2-2
+
+Page: CSH6, PDF29
+
+e15: 10121 4-wide or-and
+     4 ~< {at2} -con ki10 paging mode l
+     5 ~< csh4 ebox t2 l
+     6 ~< {as2} pag4 page fail l
+     7 ~< csh4 e t2 mem ref l
+     9 ~< {as2} pag4 page fail l
+     10 ~< {aj1} -apr6 ebox read reg l
+     11 ~< -csh1 ready to go a l
+     12 ~< csh6 page fail hold ff l
+     13 ~< {au2} csh4 ebox t3 l
+     14 ~< {dl1} pag4 page refill l
+     15 ~< csh5 page refill comp l
+     3 ~> %NC%
+     2 ~> csh6-e15-2
+
+e20: 10118 triple 4-2 or-and
+     3 ~< csh5 page refill comp l
+     4 ~< {dl1} pag4 page refill l
+     5 ~< {au2} csh4 ebox t3 l
+     6 ~< -csh2 ebox restart l
+     7 ~< {bm1} csh6 page refill error l
+     9 ~< -csh1 reset a l
+     2 ~> csh6-e20-2
+     14 ~< {bk1} -csh2 one word rd l
+     13 ~< csh6-e33-15
+     12 ~< %NC%
+     11 ~< csh6 wr data rdy l
+     10 ~< {am2} -csh6 cache wr in l
+     9 ~< -csh1 reset a l
+     15 ~> csh6-e20-15
+
+e1:  10121 4-wide or-and
+     4 ~< {al2} mbx1 csh cca inval csh h
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< csh5 cca t3 h
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< csh3 any valid match h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< -csh3 any written match h
+     15 ~< {ac1} -mbox1 csh cca val core h
+     3 ~> csh6-e1-3
+     2 ~> %NC%
+
+e6:  10121 4-wide or-and
+     4 ~< {ap1} csh6 cca inval t4 l
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     9 ~< -csh3 any valid match l
+     10 ~< csh5 cca t3 l
+     11 ~< {al2} -mbx1 csh cca inval csh l
+     12 ~< -csh3 any written match l
+     13 ~< csh5 cca t3 l
+     14 ~< {aj2} -mbx1 csh cca val core l
+     15 ~< {al2} -mbx1 csh cca inval csh l
+     3 ~> %NC%
+     2 ~> csh6-e6-2
+
+e10: 10121 4-wide or-and
+     4 ~< {af2} mbc2 csh data clr t1 l
+     5 ~< {bk1} -csh2 one word rd l
+     6 ~< csh2 e core rd rq a l
+     7 ~< csh4 ebox wr t3 l
+     9 ~< csh6 write ok l
+     10 ~< %NC%
+     11 ~< csh4 hi
+     12 ~< %NC%
+     13 ~< -csh1 reset a l
+     14 ~< csh6 wr from mem next l
+     15 ~< %NC%
+     3 ~> {am2} csh6 cache wr in h
+     2 ~> %NC%
+
+e13: 10121 4-wide or-and
+     4 ~< {ed1} pag4 page ok l
+     5 ~< csh3 any valid match l
+     6 ~< csh4 ebox t2 l
+     7 ~< {bk1} -csh2 one word rd l
+     9 ~< {bf1} mbc2 csh data clr t2 l
+     10 ~< %NC%
+     11 ~< {bf2} mbx1 cca all pages cyc l
+     12 ~< {ap1} csh6 cca inval t4 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< csh4 hi
+     3 ~> {ar1} csh use wr en h
+     2 ~> %NC%
+
+Page: CSH7, PDF30
+
+e12: 10164 8 mixer
+     14 ~< -csh5 page refill comp h
+     13 ~< {ee2} -csh5 chan rd t5 h
+     12 ~< {ad2} -csh6 chan wr cache h
+     11 ~< -csh2 one word rd a h
+     3 ~< -csh2 e core rd rq a h
+     4 ~< {as1} -csh2 ebox retry req h
+     5 ~< {ap1} -csh6 cca inval t4 h
+     6 ~< {bm1} -csh6 page refill error h
+     10 ~< csh7-e50-3
+     9 ~< csh7-e56-14
+     7 ~< csh7-e56-15
+     2 ~< csh7-e56-6
+     15 ~> {al1} ebus d22 e h
+
+e7:  10164 8 mixer
+     14 ~< {am2} csh6 cache wr in h
+     13 ~< -csh6 wr data rdy h
+     12 ~< {dm2} -csh6 cca cyc done h
+     11 ~< -csh2 mbox resp h
+     3 ~< {df2} -csh6 page fail hold h
+     4 ~< {ar1} csh use wr en h
+     5 ~< {ar2} -csh5 page refill t8 h
+     6 ~< -csh6 data dly 1 h
+     10 ~< csh7-e50-3
+     9 ~< csh7-e56-14
+     7 ~< csh7-e56-15
+     2 ~< csh7-e56-6
+     15 ~> {am1} ebus d23 e h
+
+e32: 10164 8 mixer
+     14 ~< {cd2} -csh6 mbox pt dir wr h
+     13 ~< -csh4 page fail t2 h
+     12 ~< {ds2} -csh5 chan t4 h
+     11 ~< -csh2 rd pse 2nd req en h
+     3 ~< -csh5 page refill t9,12 h
+     4 ~< {cf1} -mb test par a in h
+     5 ~< -csh4 ebox t0 h
+     6 ~< csh4 page fail dly h
+     10 ~< csh7-e50-3
+     9 ~< csh7-e56-14
+     7 ~< csh7-e56-15
+     2 ~< csh7-e56-6
+     15 ~> {cd1} ebus d24 e h
+
+e27: 10164 8 mixer
+     14 ~< -csh2 wr test h
+     13 ~< {cn1} csh6 ebox load reg h
+     12 ~< {cj2} csh lru 2 h
+     11 ~< {cr1} csh lru 1 h
+     3 ~< {cp1} -csh 3 any wr h
+     4 ~< {cm2} -csh 1 any wr h
+     5 ~< {dl2} -csh 2 any wr h
+     6 ~< {ck2} -csh 0 any wr h
+     10 ~< csh7-e50-3
+     9 ~< csh7-e56-14
+     7 ~< csh7-e56-15
+     2 ~< csh7-e56-6
+     15 ~> {cm1} ebus d25 e h
+
+e78: 10164 8 mixer
+     6 ~< {ff1} csh3 any val hold in h
+     5 ~< {ft2} -csh7 fill cache rd h
+     4 ~< csh1 ready to go a h
+     3 ~< -csh5 t1 h
+     11 ~< -csh5 csh t0 h
+     12 ~< -csh5 t3 h
+     13 ~< {em1} -csh5 t2 h
+     14 ~< -csh5 page refill t10 h
+     10 ~< csh7-e50-6
+     9 ~< csh7-e56-11
+     7 ~< csh7-e56-9
+     2 ~< csh7-e56-6
+     15 ~> {fd2} ebus d26 e h
+
+e71: 10164 8 mixer
+     6 ~< {er2} -csh4 data clr done h
+     5 ~< -csh5 chan wr t5 h
+     4 ~< {es2} csh use hold h
+     3 ~< csh4 writeback t1 a h
+     11 ~< {ep2} csh3 adr pma en h
+     12 ~< {ep1} csh3 gate vma 27-33 h
+     13 ~< {em2} csh2 e cache wr cyc h
+     14 ~< csh1 cyc type hold h
+     10 ~< csh7-e50-6
+     9 ~< csh7-e56-11
+     7 ~< csh7-e56-9
+     2 ~< csh7-e56-6
+     15 ~> {el2} ebus d27 e h
+
+e73: 10164 8 mixer
+     6 ~< {fl2} -csh refill ram wr h
+     5 ~< {fm2} -csh3 mb wr rq clr nxt h
+     4 ~< {ap2} -csh1 cca cyc h
+     3 ~< {el1} -csh7 cca writeback h
+     11 ~< -csh1 ebox cyc b h
+     12 ~< {bp2} -csh1 mb cyc h
+     13 ~< {fk1} -csh7 e writeback h
+     14 ~< {dp2} -csh2 rd pause 2nd half h
+     10 ~< csh7-e50-6
+     9 ~< csh7-e56-11
+     7 ~< csh7-e56-9
+     2 ~< csh7-e56-6
+     15 ~> {er1} ebus d28 e h
+
+e57: 10164 8 mixer
+     6 ~< {au2} -csh4 ebox t3 h
+     5 ~< -csh4 ebox t1 h
+     4 ~< -csh2 ebox req en h
+     3 ~< -csh4 ebox t2 h
+     11 ~< -csh1 cache idle h
+     12 ~< {dj1} -csh4 one word wr t0 h
+     13 ~< {dj2} -csh5 page refill t4 h
+     14 ~< -csh4 ebox wr t4 h
+     10 ~< csh7-e50-6
+     9 ~< csh7-e56-11
+     7 ~< csh7-e56-9
+     2 ~< csh7-e56-6
+     15 ~> {dk2} ebus d29 e h
+
+e80: 10117 dual 2-3 or-and
+     4 ~< csh7 e core rd t3 l
+     5 ~< csh2 e core rd rq a l
+     6 ~< -csh2 ebox restart l
+     7 ~< {ft2} csh7 fill cache rd l
+     9 ~< -csh1 reset b l
+     3 ~> %NC%
+     2 ~> csh7-e80-2
+     13 ~< csh4 writeback t1 l
+     12 ~< csh1 ebox cyc b l
+     11 ~< csh7-e58-3
+     10 ~< {fk1} csh7 e writeback l
+     9 ~< -csh1 reset b l
+     14 ~> %NC%
+     15 ~> csh7-e80-15
