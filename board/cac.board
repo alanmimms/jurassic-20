@@ -579,12 +579,6 @@ e39: 10103 quad or
      10 ~< {cl1} mem to cache [n+05] h
      11 ~< %NC%
      14 ~> cac2-e39-14
-     5 ~< %NC%
-     6 ~< %NC%
-     7 ~< {el1} cache wr [n+00] a l
-     2 ~> csh write a l
-     3 ~> csh write b l
-     4 ~> csh write c l
 
 ////////////////////////////////////////////////////////////////
 e56: 10144 256x1 RAM
@@ -993,7 +987,7 @@ e28: 10144 256x1 RAM
      15 ~> chd3 [n+06] b h
 
 ////////////////////////////////////////////////////////////////
-e56: 10144 256x1 RAM
+e27: 10144 256x1 RAM
      1 ~< csh adr 27 e h
      2 ~< csh adr 28 e h
      3 ~< csh adr 29 e h
@@ -1009,7 +1003,7 @@ e56: 10144 256x1 RAM
      13 ~< cac3-e10-3
      15 ~> chd3 [n+07] a h
 
-e51: 10144 256x1 RAM
+e22: 10144 256x1 RAM
      1 ~< csh adr 27 e h
      2 ~< csh adr 28 e h
      3 ~< csh adr 29 e h
@@ -1025,7 +1019,7 @@ e51: 10144 256x1 RAM
      13 ~< cac3-e10-3
      15 ~> chd3 [n+07] a h
 
-e46: 10144 256x1 RAM
+e17: 10144 256x1 RAM
      1 ~< csh adr 27 e h
      2 ~< csh adr 28 e h
      3 ~< csh adr 29 e h
@@ -1041,7 +1035,7 @@ e46: 10144 256x1 RAM
      13 ~< cac3-e10-3
      15 ~> chd3 [n+07] a h
 
-e41: 10144 256x1 RAM
+e12: 10144 256x1 RAM
      1 ~< csh adr 27 e h
      2 ~< csh adr 28 e h
      3 ~< csh adr 29 e h
@@ -1058,7 +1052,7 @@ e41: 10144 256x1 RAM
      15 ~> chd3 [n+07] a h
 
 
-e55: 10144 256x1 RAM
+e23: 10144 256x1 RAM
      1 ~< csh adr 27 f h
      2 ~< csh adr 28 f h
      3 ~< csh adr 29 f h
@@ -1074,7 +1068,7 @@ e55: 10144 256x1 RAM
      13 ~< cac3-e10-3
      15 ~> chd3 [n+07] b h
 
-e50: 10144 256x1 RAM
+e18: 10144 256x1 RAM
      1 ~< csh adr 27 f h
      2 ~< csh adr 28 f h
      3 ~< csh adr 29 f h
@@ -1090,7 +1084,7 @@ e50: 10144 256x1 RAM
      13 ~< cac3-e10-3
      15 ~> chd3 [n+07] b h
 
-e45: 10144 256x1 RAM
+e13: 10144 256x1 RAM
      1 ~< csh adr 27 f h
      2 ~< csh adr 28 f h
      3 ~< csh adr 29 f h
@@ -1106,7 +1100,7 @@ e45: 10144 256x1 RAM
      13 ~< cac3-e10-3
      15 ~> chd3 [n+07] b h
 
-e40: 10144 256x1 RAM
+e9:  10144 256x1 RAM
      1 ~< csh adr 27 f h
      2 ~< csh adr 28 f h
      3 ~< csh adr 29 f h
@@ -1123,7 +1117,7 @@ e40: 10144 256x1 RAM
      15 ~> chd3 [n+07] b h
 
 ////////////////////////////////////////////////////////////////
-e36: 10144 256x1 RAM
+e8:  10144 256x1 RAM
      1 ~< csh adr 27 e h
      2 ~< csh adr 28 e h
      3 ~< csh adr 29 e h
@@ -1139,7 +1133,7 @@ e36: 10144 256x1 RAM
      13 ~< cac3-e10-14
      15 ~> chd3 [n+08] a h
 
-e31: 10144 256x1 RAM
+e7:  10144 256x1 RAM
      1 ~< csh adr 27 e h
      2 ~< csh adr 28 e h
      3 ~< csh adr 29 e h
@@ -1155,7 +1149,7 @@ e31: 10144 256x1 RAM
      13 ~< cac3-e10-14
      15 ~> chd3 [n+08] a h
 
-e26: 10144 256x1 RAM
+e6:  10144 256x1 RAM
      1 ~< csh adr 27 e h
      2 ~< csh adr 28 e h
      3 ~< csh adr 29 e h
@@ -1171,7 +1165,7 @@ e26: 10144 256x1 RAM
      13 ~< cac3-e10-14
      15 ~> chd3 [n+08] a h
 
-e21: 10144 256x1 RAM
+e5:  10144 256x1 RAM
      1 ~< csh adr 27 e h
      2 ~< csh adr 28 e h
      3 ~< csh adr 29 e h
@@ -1188,7 +1182,7 @@ e21: 10144 256x1 RAM
      15 ~> chd3 [n+08] a h
 
 
-e35: 10144 256x1 RAM
+e4:  10144 256x1 RAM
      1 ~< csh adr 27 f h
      2 ~< csh adr 28 f h
      3 ~< csh adr 29 f h
@@ -1204,7 +1198,7 @@ e35: 10144 256x1 RAM
      13 ~< cac3-e10-14
      15 ~> chd3 [n+08] b h
 
-e30: 10144 256x1 RAM
+e3:  10144 256x1 RAM
      1 ~< csh adr 27 f h
      2 ~< csh adr 28 f h
      3 ~< csh adr 29 f h
@@ -1220,7 +1214,7 @@ e30: 10144 256x1 RAM
      13 ~< cac3-e10-14
      15 ~> chd3 [n+08] b h
 
-e25: 10144 256x1 RAM
+e2:  10144 256x1 RAM
      1 ~< csh adr 27 f h
      2 ~< csh adr 28 f h
      3 ~< csh adr 29 f h
@@ -1236,7 +1230,7 @@ e25: 10144 256x1 RAM
      13 ~< cac3-e10-14
      15 ~> chd3 [n+08] b h
 
-e20: 10144 256x1 RAM
+e1:  10144 256x1 RAM
      1 ~< csh adr 27 f h
      2 ~< csh adr 28 f h
      3 ~< csh adr 29 f h
@@ -1266,7 +1260,7 @@ e11: 10110 or buffer
      3 ~> {ba1} cache data [n+08] b h
      4 ~> {bd1} cache data [n+08] c h
 
-e10: quad or
+e10: 10103 quad or
      4 ~< {au2} mem to cache [n+06] h
      5 ~< %NC%
      2 ~> cac3-e10-2
@@ -1463,7 +1457,7 @@ e53: 10144 256x1 RAM
      5 ~< chd5-e10-15
      6 ~< %NC%
      7 ~< csh adr 35 a l
-     14 ~> csh write a l
+     14 ~< csh write a l
      13 ~< {fd1} csh par bit in h
      15 ~> {dd1} csh par bit [n/9+00] a h
 
@@ -1479,6 +1473,6 @@ e83: 10144 256x1 RAM
      5 ~< chd5-e10-15
      6 ~< %NC%
      7 ~< -csh adr 35 a l
-     14 ~> csh write b l
+     14 ~< csh write b l
      13 ~< {fd1} csh par bit in h
      15 ~> {dd1} csh par bit [n/9+00] b h
