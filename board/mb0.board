@@ -1,3 +1,1162 @@
 Page: MB01, PDF74
 // M8517 TBD
-// STUB
+
+e61: 10174 2x4 mixer
+     3 ~< {fc1} ar [n+00] a h
+     5 ~< {fc2} mb [n+00] h
+     4 ~< {em2} mem data in [n+00] h
+     6 ~< ch reg [n+00] h
+     13 ~< {fd1} ar [n+01] a h
+     11 ~< {dr2} mb [n+01] h
+     12 ~< {ej2} mem data in [n+01] h
+     10 ~< ch reg [n+01] h
+     9 ~< mem to c sel 2 a h
+     7 ~< mem to c sel 1 a h
+     14 ~< mem to c en a l
+     2 ~> {en1} mem to cache [n+00] h
+     15 ~> {ef2} mem to cache [n+01] h
+
+e55: 10174 2x4 mixer
+     3 ~< {eu2} ar [n+02] a h
+     5 ~< {dp2} mb [n+02] h
+     4 ~< {ea1} mem data in [n+02] h
+     6 ~< ch reg [n+02] h
+     13 ~< {ev2} ar [n+03] a h
+     11 ~< {dm1} mb [n+03] h
+     12 ~< {dv2} mem data in [n+03] h
+     10 ~< ch reg [n+03] h
+     9 ~< mem to c sel 2 a h
+     7 ~< mem to c sel 1 a h
+     14 ~< mem to c en a l
+     2 ~> {ec1} mem to cache [n+02] h
+     15 ~> {du2} mem to cache [n+03] h
+
+e27: 10174 2x4 mixer
+     3 ~< {cv2} ar [n+04] a h
+     5 ~< {dr1} mb [n+04] h
+     4 ~< {cp1} mem data in [n+04] h
+     6 ~< ch reg [n+04] h
+     13 ~< {bu2} ar [n+05] a h
+     11 ~< {dp1} mb [n+05] h
+     12 ~< {cm1} mem data in [n+05] h
+     10 ~< ch reg [n+05] h
+     9 ~< mem to c sel 2 a h
+     7 ~< mem to c sel 1 a h
+     14 ~< mem to c en a l
+     2 ~> {cf2} mem to cache [n+04] h
+     15 ~> {cc1} mem to cache [n+05] h
+
+e50: 10160 parity
+     3 ~< {fd2} mb [n+00] h
+     4 ~< {dr2} mb [n+01] h
+     5 ~< {dp2} mb [n+02] h
+     6 ~< {dm1} mb [n+03] h
+     7 ~< {dr1} mb [n+04] h
+     9 ~< {dp1} mb [n+05] h
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< %NC%
+     2 ~> {ds2} mb [n+00]-[n+05] par odd h
+
+e56: 10101 quad or/nor
+     7 ~< {ed2} mem to c en l
+     12 ~< %NC%
+     3 ~> %NC%
+     6 ~> mem to c en a l
+     13 ~< {ds1} mem to c sel 2 h
+     15 ~> %NC%
+     9 ~> mem to c sel 2 a h
+     4 ~< {ed1} mem to c sel 1 h
+     2 ~> %NC%
+     5 ~> mem to c sel 1 a h
+     10 ~< {dt2} -crc buf mb sel l
+     14 ~> ch buf mb sel h
+     11 ~> %NC%
+
+e41: 10174 2x4 mixer
+     3 ~< {dd2} ar [n+18] a h
+     5 ~< {av2} mb [n+18] h
+     4 ~< {dj2} mem data in [n+18] h
+     6 ~< ch reg [n+18] h
+     13 ~< {cs2} ar [n+19] a h
+     11 ~< {ba1} mb [n+19] h
+     12 ~< {df2} mem data in [n+19] h
+     10 ~< ch reg [n+19] h
+     9 ~< mem to c sel 2 a h
+     7 ~< mem to c sel 1 a h
+     14 ~< mem to c en a l
+     2 ~> {cs1} mem to cache [n+18] h
+     15 ~> {dd1} mem to cache [n+19] h
+
+e22: 10174 2x4 mixer
+     3 ~< {bp1} ar [n+20] a h
+     5 ~< {cd2} mb [n+20] h
+     4 ~< {bm1} mem data in [n+20] h
+     6 ~< ch reg [n+20] h
+     13 ~< {bj2} ar [n+21] a h
+     11 ~< {cd1} mb [n+21] h
+     12 ~< {bk2} mem data in [n+21] h
+     10 ~< ch reg [n+21] h
+     9 ~< mem to c sel 2 a h
+     7 ~< mem to c sel 1 a h
+     14 ~< mem to c en a l
+     2 ~> {br2} mem to cache [n+20] h
+     15 ~> {bf2} mem to cache [n+21] h
+
+e21: 10174 2x4 mixer
+     3 ~< {bm2} ar [n+22] a h
+     5 ~< {ca1} mb [n+22] h
+     4 ~< {bl2} mem data in [n+22] h
+     6 ~< ch reg [n+22] h
+     13 ~< {bf1} ar [n+23] a h
+     11 ~< {bv2} mb [n+23] h
+     12 ~< {bk1} mem data in [n+23] h
+     10 ~< ch reg [n+23] h
+     9 ~< mem to c sel 2 a h
+     7 ~< mem to c sel 1 a h
+     14 ~< mem to c en a l
+     2 ~> {bp2} mem to cache [n+22] h
+     15 ~> {bh2} mem to cache [n+23] h
+
+e16: 10160 parity
+     3 ~< {av2} mb [n+18] h
+     4 ~< {ba1} mb [n+19] h
+     5 ~< {cd2} mb [n+20] h
+     6 ~< {cd1} mb [n+21] h
+     7 ~< {ca1} mb [n+22] h
+     9 ~< {bv2} mb [n+23] h
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< %NC%
+     2 ~> {au2} mb [n+18]-[n+23] par odd h
+
+e75: 10101 quad or/nor
+     4 ~< {fu2} crc cbus out hold h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> cbus out hold a h
+     13 ~< {fs1} -nxm any h
+     15 ~> mb in en a l
+     9 ~> %NC%
+     7 ~< {fk1} ccl ccw buf wr l
+     3 ~> %NC%
+     6 ~> mb04 ccw buf wr l
+     10 ~< {fs2} ch t0 l
+     14 ~> %NC%
+     11 ~> mb ch buf load l
+
+e60: 10101 quad or/nor
+     10 ~< {ek1} -con ki10 paging mode h
+     12 ~< %NC%
+     14 ~> %NC%
+     11 ~> pt in sel ar h
+     13 ~< {ej1} mb in sel 1 h
+     15 ~> %NC%
+     9 ~> mb in sel 1 a h
+     4 ~< {ep2} mb in sel 4 h
+     2 ~> %NC%
+     5 ~> mb in sel 4 a h
+     7 ~< {el1} mb in sel 2 h
+     3 ~> %NC%
+     6 ~> mb in sel 2 a h
+
+e63: 10141 shift register
+     13 ~< %NC%
+     12 ~< ch buf [n+00] h
+     11 ~< ch buf [n+01] h
+     9 ~< ch buf [n+02] h
+     6 ~< ch buf [n+03] h
+     5 ~< %NC%
+     7 ~< cbus out hold a h
+     10 ~< cbus out hold a h
+     4 ~< clk a h
+     14 ~> {ee1} cbus d[n+00] te h
+     15 ~> {ee2} cbus d[n+01] te h
+     2 ~> {el2} cbus d[n+02] te h
+     3 ~> {em1} cbus d[n+03] te h
+
+e53: 10141 shift register
+     13 ~< %NC%
+     12 ~< ch buf [n+04] h
+     11 ~< ch buf [n+05] h
+     9 ~< ch buf [n+18] h
+     6 ~< ch buf [n+19] h
+     5 ~< %NC%
+     7 ~< cbus out hold a h
+     10 ~< cbus out hold a h
+     4 ~< clk e h
+     14 ~> {df1} cbus d[n+04] te h
+     15 ~> {dl2} cbus d[n+05] te h
+     2 ~> {dn1} cbus d[n+18] te h
+     3 ~> {dm2} cbus d[n+19] te h
+
+e6:  10141 shift register
+     13 ~< %NC%
+     12 ~< ch buf [n+20] h
+     11 ~< ch buf [n+21] h
+     9 ~< ch buf [n+22] h
+     6 ~< ch buf [n+23] h
+     5 ~< %NC%
+     7 ~< cbus out hold a h
+     10 ~< cbus out hold a h
+     4 ~< clk d h
+     14 ~> {ah2} cbus d[n+20] te h
+     15 ~> {af2} cbus d[n+21] te h
+     2 ~> {aj2} cbus d[n+22] te h
+     3 ~> {ak2} cbus d[n+23] te h
+
+e65: 10158 4x2 mixer
+     5 ~< {fd2} mb [n+00] h
+     6 ~< {fc1} ar [n+00] a h
+     3 ~< {dr2} mb [n+01] h
+     4 ~< {fd1} ar [n+01] a h
+     12 ~< {dp2} mb [n+02] h
+     13 ~< {eu2} ar [n+02] a h
+     10 ~< {dm1} mb [n+03] h
+     11 ~< {ev2} ar [n+03] a h
+     9 ~< pt in sel ar h
+     1 ~> {fe1} pt in [n+00] h
+     2 ~> {fe2} pt in [n+01] h
+     15 ~> {fa1} pt in [n+02] h
+     14 ~> {et2} pt in [n+03] h
+
+e40: 10158 4x2 mixer
+     5 ~< {dr1} mb [n+04] h
+     6 ~< {cv2} ar [n+04] a h
+     3 ~< {dp1} mb [n+05] h
+     4 ~< {bu2} ar [n+05] a h
+     12 ~< {av2} mb [n+18] h
+     13 ~< {fc1} ar [n+00] a h
+     10 ~< {ba1} mb [n+19] h
+     11 ~< {fd1} ar [n+01] a h
+     9 ~< pt in sel ar h
+     1 ~> {dc1} pt in [n+04] h
+     2 ~> {da1} pt in [n+05] h
+     15 ~> {cu2} pt in [n+18] h
+     14 ~> {ct2} pt in [n+19] h
+
+e26: 10158 4x2 mixer
+     5 ~< {cd2} mb [n+20] h
+     6 ~< {eu2} ar [n+02] a h
+     3 ~< {cd1} mb [n+21] h
+     4 ~< {ev2} ar [n+03] a h
+     12 ~< {ca1} mb [n+22] h
+     13 ~< {cv2} ar [n+04] a h
+     10 ~< {bv2} mb [n+23] h
+     11 ~< {bu2} ar [n+05] a h
+     9 ~< pt in sel ar h
+     1 ~> {ce1} pt in [n+20] h
+     2 ~> {ce2} pt in [n+21] h
+     15 ~> {bs1} pt in [n+22] h
+     14 ~> {bt2} pt in [n+23] h
+
+Page: MB02, PDF75
+
+e72: 10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+00] in h
+     11 ~< mb [n+01] in h
+     9 ~< mb [n+02] in h
+     6 ~< mb [n+03] in h
+     5 ~< %NC%
+     7 ~< mb0 hold h
+     10 ~< mb0 hold h
+     4 ~< clk b h
+     14 ~> mb0 [n+00] h
+     15 ~> mb0 [n+01] h
+     2 ~> mb0 [n+02] h
+     3 ~> mb0 [n+03] h
+
+e77: 10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+00] in h
+     11 ~< mb [n+01] in h
+     9 ~< mb [n+02] in h
+     6 ~< mb [n+03] in h
+     5 ~< %NC%
+     7 ~< mb1 hold h
+     10 ~< mb1 hold h
+     4 ~< clk b h
+     14 ~> mb1 [n+00] h
+     15 ~> mb1 [n+01] h
+     2 ~> mb1 [n+02] h
+     3 ~> mb1 [n+03] h
+
+e68: 10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+00] in h
+     11 ~< mb [n+01] in h
+     9 ~< mb [n+02] in h
+     6 ~< mb [n+03] in h
+     5 ~< %NC%
+     7 ~< mb2 hold h
+     10 ~< mb2 hold h
+     4 ~< clk a h
+     14 ~> mb2 [n+00] h
+     15 ~> mb2 [n+01] h
+     2 ~> mb2 [n+02] h
+     3 ~> mb2 [n+03] h
+
+e73: 10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+00] in h
+     11 ~< mb [n+01] in h
+     9 ~< mb [n+02] in h
+     6 ~< mb [n+03] in h
+     5 ~< %NC%
+     7 ~< mb3 hold h
+     10 ~< mb3 hold h
+     4 ~< clk a h
+     14 ~> mb3 [n+00] h
+     15 ~> mb3 [n+01] h
+     2 ~> mb3 [n+02] h
+     3 ~> mb3 [n+03] h
+
+e71: 10174 2x4 mixer
+     3 ~< mb0 [n+00] h
+     5 ~< mb1 [n+00] h
+     4 ~< mb2 [n+00] h
+     6 ~< mb3 [n+00] h
+     13 ~< mb0 [n+01] h
+     11 ~< mb1 [n+01] h
+     12 ~< mb2 [n+01] h
+     10 ~< mb3 [n+01] h
+     9 ~< mb sel 2 a h
+     7 ~< mb sel 1 a h
+     14 ~< %NC%
+     2 ~> {fd2} mb [n+00] h
+     15 ~> {dr2} mb [n+01] h
+
+e78: 10174 2x4 mixer
+     3 ~< mb0 [n+02] h
+     5 ~< mb1 [n+02] h
+     4 ~< mb2 [n+02] h
+     6 ~< mb3 [n+02] h
+     13 ~< mb0 [n+03] h
+     11 ~< mb1 [n+03] h
+     12 ~< mb2 [n+03] h
+     10 ~< mb3 [n+03] h
+     9 ~< mb sel 2 a h
+     7 ~< mb sel 1 a h
+     14 ~< %NC%
+     2 ~> {dp2} mb [n+02] h
+     15 ~> {dm1} mb [n+03] h
+
+e28: 10174 2x4 mixer
+     3 ~< mb0 [n+04] h
+     5 ~< mb1 [n+04] h
+     4 ~< mb2 [n+04] h
+     6 ~< mb3 [n+04] h
+     13 ~< mb0 [n+05] h
+     11 ~< mb1 [n+05] h
+     12 ~< mb2 [n+05] h
+     10 ~< mb3 [n+05] h
+     9 ~< mb sel 2 a h
+     7 ~< mb sel 1 a h
+     14 ~< %NC%
+     2 ~> {dr1} mb [n+04] h
+     15 ~> {dp1} mb [n+05] h
+
+e52: 10174 2x4 mixer
+     3 ~< mb0 [n+18] h
+     5 ~< mb1 [n+18] h
+     4 ~< mb2 [n+18] h
+     6 ~< mb3 [n+18] h
+     13 ~< mb0 [n+19] h
+     11 ~< mb1 [n+19] h
+     12 ~< mb2 [n+19] h
+     10 ~< mb3 [n+19] h
+     9 ~< mb sel 2 a h
+     7 ~< mb sel 1 a h
+     14 ~< %NC%
+     2 ~> {av2} mb [n+18] h
+     15 ~> {ba1} mb [n+19] h
+
+e8:  10174 2x4 mixer
+     3 ~< mb0 [n+20] h
+     5 ~< mb1 [n+20] h
+     4 ~< mb2 [n+20] h
+     6 ~< mb3 [n+20] h
+     13 ~< mb0 [n+21] h
+     11 ~< mb1 [n+21] h
+     12 ~< mb2 [n+21] h
+     10 ~< mb3 [n+21] h
+     9 ~< mb sel 2 a h
+     7 ~< mb sel 1 a h
+     14 ~< %NC%
+     2 ~> {cd2} mb [n+20] h
+     15 ~> {cd1} mb [n+21] h
+
+e3:  10174 2x4 mixer
+     3 ~< mb0 [n+22] h
+     5 ~< mb1 [n+22] h
+     4 ~< mb2 [n+22] h
+     6 ~< mb3 [n+22] h
+     13 ~< mb0 [n+23] h
+     11 ~< mb1 [n+23] h
+     12 ~< mb2 [n+23] h
+     10 ~< mb3 [n+23] h
+     9 ~< mb sel 2 a h
+     7 ~< mb sel 1 a h
+     14 ~< %NC%
+     2 ~> {ca1} mb [n+22] h
+     15 ~> {bv2} mb [n+23] h
+
+e76: 10141 shift register
+     13 ~< %NC%
+     12 ~< {ft2} mb sel 2 en h
+     11 ~< {fr1} mb sel 1 en h
+     9 ~< %NC%
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< {fv2} mb sel hold h
+     10 ~< {fv2} mb sel hold h
+     4 ~< clk b h
+     14 ~> mb sel 2 a h
+     15 ~> mb sel 1 a h
+     2 ~> %NC%
+     3 ~> %NC%
+
+e33: 10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+04] in h
+     11 ~< mb [n+05] in h
+     9 ~< mb [n+18] in h
+     6 ~< mb [n+19] in h
+     5 ~< %NC%
+     7 ~< mb0 hold h
+     10 ~< mb0 hold h
+     4 ~< clk c h
+     14 ~> mb0 [n+04] h
+     15 ~> mb0 [n+05] h
+     2 ~> mb0 [n+18] h
+     3 ~> mb0 [n+19] h
+
+e47: 10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+04] in h
+     11 ~< mb [n+05] in h
+     9 ~< mb [n+18] in h
+     6 ~< mb [n+19] in h
+     5 ~< %NC%
+     7 ~< mb1 hold h
+     10 ~< mb1 hold h
+     4 ~< clk c h
+     14 ~> mb1 [n+04] h
+     15 ~> mb1 [n+05] h
+     2 ~> mb1 [n+18] h
+     3 ~> mb1 [n+19] h
+
+e46: 10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+04] in h
+     11 ~< mb [n+05] in h
+     9 ~< mb [n+18] in h
+     6 ~< mb [n+19] in h
+     5 ~< %NC%
+     7 ~< mb2 hold h
+     10 ~< mb2 hold h
+     4 ~< clk c h
+     14 ~> mb2 [n+04] h
+     15 ~> mb2 [n+05] h
+     2 ~> mb2 [n+18] h
+     3 ~> mb2 [n+19] h
+
+e34: 10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+04] in h
+     11 ~< mb [n+05] in h
+     9 ~< mb [n+18] in h
+     6 ~< mb [n+19] in h
+     5 ~< %NC%
+     7 ~< mb3 hold h
+     10 ~< mb3 hold h
+     4 ~< clk c h
+     14 ~> mb3 [n+04] h
+     15 ~> mb3 [n+05] h
+     2 ~> mb3 [n+18] h
+     3 ~> mb3 [n+19] h
+
+e4:  10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+20] in h
+     11 ~< mb [n+21] in h
+     9 ~< mb [n+22] in h
+     6 ~< mb [n+23] in h
+     5 ~< %NC%
+     7 ~< mb0 hold h
+     10 ~< mb0 hold h
+     4 ~< clk f h
+     14 ~> mb0 [n+20] h
+     15 ~> mb0 [n+21] h
+     2 ~> mb0 [n+22] h
+     3 ~> mb0 [n+23] h
+
+e9:  10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+20] in h
+     11 ~< mb [n+21] in h
+     9 ~< mb [n+22] in h
+     6 ~< mb [n+23] in h
+     5 ~< %NC%
+     7 ~< mb1 hold h
+     10 ~< mb1 hold h
+     4 ~< clk f h
+     14 ~> mb1 [n+20] h
+     15 ~> mb1 [n+21] h
+     2 ~> mb1 [n+22] h
+     3 ~> mb1 [n+23] h
+
+e2:  10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+20] in h
+     11 ~< mb [n+21] in h
+     9 ~< mb [n+22] in h
+     6 ~< mb [n+23] in h
+     5 ~< %NC%
+     7 ~< mb2 hold h
+     10 ~< mb2 hold h
+     4 ~< clk f h
+     14 ~> mb2 [n+20] h
+     15 ~> mb2 [n+21] h
+     2 ~> mb2 [n+22] h
+     3 ~> mb2 [n+23] h
+
+e7:  10141 shift register
+     13 ~< %NC%
+     12 ~< mb [n+20] in h
+     11 ~< mb [n+21] in h
+     9 ~< mb [n+22] in h
+     6 ~< mb [n+23] in h
+     5 ~< %NC%
+     7 ~< mb3 hold h
+     10 ~< mb3 hold h
+     4 ~< clk f h
+     14 ~> mb3 [n+20] h
+     15 ~> mb3 [n+21] h
+     2 ~> mb3 [n+22] h
+     3 ~> mb3 [n+23] h
+
+e1:  10101 quad or/nor
+     4 ~< {ad2} mb0 hold in h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> mb0 hold h
+     7 ~< {ad1} mb1 hold h
+     3 ~> %NC%
+     6 ~> mb1 hold h
+     13 ~< {aa1} mb2 hold in h
+     15 ~> %NC%
+     9 ~> mb2 hold h
+     10 ~< {ac1} mb3 hold in h
+     14 ~> %NC%
+     11 ~> mb3 hold h
+
+Page: MB03, PDF76
+
+e51: 10158 4x2 mixer
+     5 ~< ch reg [n+00] h
+     6 ~< {fd2} mb [n+00] h
+     3 ~< ch reg [n+01] h
+     4 ~< {dr2} mb [n+01] h
+     12 ~< ch reg [n+02] h
+     13 ~< {dp2} mb [n+02] h
+     10 ~< ch reg [n+03] h
+     11 ~< {dm1} mb [n+03] h
+     9 ~< ch buf mb sel h
+     1 ~> ch buf in [n+00] h
+     2 ~> ch buf in [n+01] h
+     15 ~> ch buf in [n+02] h
+     14 ~> ch buf in [n+03] h
+
+e32: 10158 4x2 mixer
+     5 ~< ch reg [n+04] h
+     6 ~< {dr1} mb [n+04] h
+     3 ~< ch reg [n+05] h
+     4 ~< {dp1} mb [n+05] h
+     12 ~< ch reg [n+18] h
+     13 ~< {av2} mb [n+18] h
+     10 ~< ch reg [n+19] h
+     11 ~< {ba1} mb [n+19] h
+     9 ~< ch buf mb sel h
+     1 ~> ch buf in [n+04] h
+     2 ~> ch buf in [n+05] h
+     15 ~> ch buf in [n+18] h
+     14 ~> ch buf in [n+19] h
+
+e17: 10158 4x2 mixer
+     5 ~< ch reg [n+20] h
+     6 ~< {cd2} mb [n+20] h
+     3 ~< ch reg [n+21] h
+     4 ~< {cd1} mb [n+21] h
+     12 ~< ch reg [n+22] h
+     13 ~< {ca1} mb [n+22] h
+     10 ~< ch reg [n+23] h
+     11 ~< {bv2} mb [n+23] h
+     9 ~< ch buf mb sel h
+     1 ~> ch buf in [n+20] h
+     2 ~> ch buf in [n+21] h
+     15 ~> ch buf in [n+22] h
+     14 ~> ch buf in [n+23] h
+
+e69: 10147 128x1 RAM
+     4 ~< ch buf adr 0 h
+     3 ~< ch buf adr 1 h
+     2 ~< ch buf adr 2 h
+     5 ~< ch buf adr 3 h
+     6 ~< ch buf adr 4 h
+     7 ~< ch buf adr 5 h
+     10 ~< ch buf adr 6 h
+     13 ~< %NC%
+     14 ~< ch buf en l
+     12 ~< {ep1} ch buf wr [n/06] l
+     11 ~< ch buf in [n+00] h
+     15 ~> ch buf [n+00] h
+
+e59: 10147 128x1 RAM
+     4 ~< ch buf adr 0 h
+     3 ~< ch buf adr 1 h
+     2 ~< ch buf adr 2 h
+     5 ~< ch buf adr 3 h
+     6 ~< ch buf adr 4 h
+     7 ~< ch buf adr 5 h
+     10 ~< ch buf adr 6 h
+     13 ~< %NC%
+     14 ~< ch buf en l
+     12 ~< {ep1} ch buf wr [n/06] l
+     11 ~< ch buf in [n+01] h
+     15 ~> ch buf [n+01] h
+
+e49: 10147 128x1 RAM
+     4 ~< ch buf adr 0 h
+     3 ~< ch buf adr 1 h
+     2 ~< ch buf adr 2 h
+     5 ~< ch buf adr 3 h
+     6 ~< ch buf adr 4 h
+     7 ~< ch buf adr 5 h
+     10 ~< ch buf adr 6 h
+     13 ~< %NC%
+     14 ~< ch buf en l
+     12 ~< {ep1} ch buf wr [n/06] l
+     11 ~< ch buf in [n+02] h
+     15 ~> ch buf [n+02] h
+
+e44: 10147 128x1 RAM
+     4 ~< ch buf adr 0 h
+     3 ~< ch buf adr 1 h
+     2 ~< ch buf adr 2 h
+     5 ~< ch buf adr 3 h
+     6 ~< ch buf adr 4 h
+     7 ~< ch buf adr 5 h
+     10 ~< ch buf adr 6 h
+     13 ~< %NC%
+     14 ~< ch buf en l
+     12 ~< {ep1} ch buf wr [n/06] l
+     11 ~< ch buf in [n+03] h
+     15 ~> ch buf [n+03] h
+
+e64: 10147 128x1 RAM
+     4 ~< ch buf adr 0 h
+     3 ~< ch buf adr 1 h
+     2 ~< ch buf adr 2 h
+     5 ~< ch buf adr 3 h
+     6 ~< ch buf adr 4 h
+     7 ~< ch buf adr 5 h
+     10 ~< ch buf adr 6 h
+     13 ~< %NC%
+     14 ~< ch buf en l
+     12 ~< {ep1} ch buf wr [n/06] l
+     11 ~< ch buf in [n+04] h
+     15 ~> ch buf [n+04] h
+
+e54: 10147 128x1 RAM
+     4 ~< ch buf adr 0 h
+     3 ~< ch buf adr 1 h
+     2 ~< ch buf adr 2 h
+     5 ~< ch buf adr 3 h
+     6 ~< ch buf adr 4 h
+     7 ~< ch buf adr 5 h
+     10 ~< ch buf adr 6 h
+     13 ~< %NC%
+     14 ~< ch buf en l
+     12 ~< {ep1} ch buf wr [n/06] l
+     11 ~< ch buf in [n+05] h
+     15 ~> ch buf [n+05] h
+
+e39: 10147 128x1 RAM
+     4 ~< ch buf adr 0 a h
+     3 ~< ch buf adr 1 a h
+     2 ~< ch buf adr 2 a h
+     5 ~< ch buf adr 3 a h
+     6 ~< ch buf adr 4 a h
+     7 ~< ch buf adr 5 a h
+     10 ~< ch buf adr 6 a h
+     13 ~< %NC%
+     14 ~< ch buf en a l
+     12 ~< {aj1} ch buf wr [n/06+03] l
+     11 ~< ch buf in [n+18] h
+     15 ~> ch buf [n+18] h
+
+e35: 10147 128x1 RAM
+     4 ~< ch buf adr 0 a h
+     3 ~< ch buf adr 1 a h
+     2 ~< ch buf adr 2 a h
+     5 ~< ch buf adr 3 a h
+     6 ~< ch buf adr 4 a h
+     7 ~< ch buf adr 5 a h
+     10 ~< ch buf adr 6 a h
+     13 ~< %NC%
+     14 ~< ch buf en a l
+     12 ~< {aj1} ch buf wr [n/06+03] l
+     11 ~< ch buf in [n+19] h
+     15 ~> ch buf [n+19] h
+
+e25: 10147 128x1 RAM
+     4 ~< ch buf adr 0 a h
+     3 ~< ch buf adr 1 a h
+     2 ~< ch buf adr 2 a h
+     5 ~< ch buf adr 3 a h
+     6 ~< ch buf adr 4 a h
+     7 ~< ch buf adr 5 a h
+     10 ~< ch buf adr 6 a h
+     13 ~< %NC%
+     14 ~< ch buf en a l
+     12 ~< {aj1} ch buf wr [n/06+03] l
+     11 ~< ch buf in [n+20] h
+     15 ~> ch buf [n+20] h
+
+e15: 10147 128x1 RAM
+     4 ~< ch buf adr 0 a h
+     3 ~< ch buf adr 1 a h
+     2 ~< ch buf adr 2 a h
+     5 ~< ch buf adr 3 a h
+     6 ~< ch buf adr 4 a h
+     7 ~< ch buf adr 5 a h
+     10 ~< ch buf adr 6 a h
+     13 ~< %NC%
+     14 ~< ch buf en a l
+     12 ~< {aj1} ch buf wr [n/06+03] l
+     11 ~< ch buf in [n+21] h
+     15 ~> ch buf [n+21] h
+
+e30: 10147 128x1 RAM
+     4 ~< ch buf adr 0 a h
+     3 ~< ch buf adr 1 a h
+     2 ~< ch buf adr 2 a h
+     5 ~< ch buf adr 3 a h
+     6 ~< ch buf adr 4 a h
+     7 ~< ch buf adr 5 a h
+     10 ~< ch buf adr 6 a h
+     13 ~< %NC%
+     14 ~< ch buf en a l
+     12 ~< {aj1} ch buf wr [n/06+03] l
+     11 ~< ch buf in [n+22] h
+     15 ~> ch buf [n+22] h
+
+e20: 10147 128x1 RAM
+     4 ~< ch buf adr 0 a h
+     3 ~< ch buf adr 1 a h
+     2 ~< ch buf adr 2 a h
+     5 ~< ch buf adr 3 a h
+     6 ~< ch buf adr 4 a h
+     7 ~< ch buf adr 5 a h
+     10 ~< ch buf adr 6 a h
+     13 ~< %NC%
+     14 ~< ch buf en a l
+     12 ~< {aj1} ch buf wr [n/06+03] l
+     11 ~< ch buf in [n+23] h
+     15 ~> ch buf [n+23] h
+
+Page: MB04, PDF77
+
+e57: 10158 4x2 mixer
+     5 ~< {fc1} ar [n+00] a h
+     6 ~< mb ch buf [n+00] h
+     3 ~< {fc1} ar [n+01] a h
+     4 ~< mb ch buf [n+01] h
+     12 ~< {fc1} ar [n+02] a h
+     13 ~< mb ch buf [n+02] h
+     10 ~< {fc1} ar [n+03] a h
+     11 ~< mb ch buf [n+03] h
+     9 ~< mb in sel 1 a h
+     1 ~> mb [n+00] in a h
+     2 ~> mb [n+01] in a h
+     15 ~> mb [n+02] in a h
+     14 ~> mb [n+03] in a h
+
+e38: 10158 4x2 mixer
+     5 ~< {fc1} ar [n+04] a h
+     6 ~< mb ch buf [n+04] h
+     3 ~< {fc1} ar [n+05] a h
+     4 ~< mb ch buf [n+05] h
+     12 ~< {fc1} ar [n+18] a h
+     13 ~< mb ch buf [n+18] h
+     10 ~< {fc1} ar [n+19] a h
+     11 ~< mb ch buf [n+19] h
+     9 ~< mb in sel 1 a h
+     1 ~> mb [n+04] in a h
+     2 ~> mb [n+05] in a h
+     15 ~> mb [n+18] in a h
+     14 ~> mb [n+19] in a h
+
+e19: 10158 4x2 mixer
+     5 ~< {fc1} ar [n+20] a h
+     6 ~< mb ch buf [n+20] h
+     3 ~< {fc1} ar [n+21] a h
+     4 ~< mb ch buf [n+21] h
+     12 ~< {fc1} ar [n+22] a h
+     13 ~< mb ch buf [n+22] h
+     10 ~< {fc1} ar [n+23] a h
+     11 ~< mb ch buf [n+23] h
+     9 ~< mb in sel 1 a h
+     1 ~> mb [n+20] in a h
+     2 ~> mb [n+21] in a h
+     15 ~> mb [n+22] in a h
+     14 ~> mb [n+23] in a h
+
+e62: 10174 2x4 mixer
+     3 ~< {er2} cache data [n+00] a h
+     5 ~< mb [n+00] in a h
+     4 ~< {em2} mem data in [n+00] h
+     6 ~< {ek2} ccw mix [n+00] h
+     13 ~< {ef1} cache data [n+01] a h
+     11 ~< mb [n+01] in a h
+     12 ~< {ej2} mem data in [n+01] h
+     10 ~< {eh2} ccw mix [n+01] h
+     9 ~< mb in sel 4 a h
+     7 ~< mb in sel 2 a h
+     14 ~< mb in en a l
+     2 ~> mb [n+00] in h
+     15 ~> mb [n+01] in h
+
+e45: 10174 2x4 mixer
+     3 ~< {dk2} cache data [n+18] a h
+     5 ~< mb [n+18] in a h
+     4 ~< {dj2} mem data in [n+18] h
+     6 ~< {dl1} ccw mix [n+18] h
+     13 ~< {dk1} cache data [n+19] a h
+     11 ~< mb [n+19] in a h
+     12 ~< {df2} mem data in [n+19] h
+     10 ~< {dh2} ccw mix [n+19] h
+     9 ~< mb in sel 4 a h
+     7 ~< mb in sel 2 a h
+     14 ~< mb in en a l
+     2 ~> mb [n+18] in h
+     15 ~> mb [n+19] in h
+
+e67: 10174 2x4 mixer
+     3 ~< {ff2} cache data [n+02] a h
+     5 ~< mb [n+02] in a h
+     4 ~< {ea1} mem data in [n+02] h
+     6 ~< {ff1} ccw mix [n+02] h
+     13 ~< {er1} cache data [n+03] a h
+     11 ~< mb [n+03] in a h
+     12 ~< {dv2} mem data in [n+03] h
+     10 ~< {es2} ccw mix [n+03] h
+     9 ~< mb in sel 4 a h
+     7 ~< mb in sel 2 a h
+     14 ~< mb in en a l
+     2 ~> mb [n+02] in h
+     15 ~> mb [n+03] in h
+
+e13: 10174 2x4 mixer
+     3 ~< {am1} cache data [n+20] a h
+     5 ~< mb [n+20] in a h
+     4 ~< {bm1} mem data in [n+20] h
+     6 ~< {al2} ccw mix [n+20] h
+     13 ~< {ak1} cache data [n+21] a h
+     11 ~< mb [n+21] in a h
+     12 ~< {bk2} mem data in [n+21] h
+     10 ~< {al1} ccw mix [n+21] h
+     9 ~< mb in sel 4 a h
+     7 ~< mb in sel 2 a h
+     14 ~< mb in en a l
+     2 ~> mb [n+20] in h
+     15 ~> mb [n+21] in h
+
+e36: 10174 2x4 mixer
+     3 ~< {cr1} cache data [n+04] a h
+     5 ~< mb [n+04] in a h
+     4 ~< {cp1} mem data in [n+04] h
+     6 ~< {cp2} ccw mix [n+04] h
+     13 ~< {cm2} cache data [n+05] a h
+     11 ~< mb [n+05] in a h
+     12 ~< {cm1} mem data in [n+05] h
+     10 ~< {cn1} ccw mix [n+05] h
+     9 ~< mb in sel 4 a h
+     7 ~< mb in sel 2 a h
+     14 ~< mb in en a l
+     2 ~> mb [n+04] in h
+     15 ~> mb [n+05] in h
+
+e18: 10174 2x4 mixer
+     3 ~< {ar1} cache data [n+22] a h
+     5 ~< mb [n+22] in a h
+     4 ~< {bl2} mem data in [n+22] h
+     6 ~< {as2} ccw mix [n+22] h
+     13 ~< {ap1} cache data [n+23] a h
+     11 ~< mb [n+23] in a h
+     12 ~< {bk1} mem data in [n+23] h
+     10 ~< {ar2} ccw mix [n+23] h
+     9 ~< mb in sel 4 a h
+     7 ~< mb in sel 2 a h
+     14 ~< mb in en a l
+     2 ~> mb [n+22] in h
+     15 ~> mb [n+23] in h
+
+e70: 10145 12x4 RAM
+     5 ~< {fl1} ccw buf [n+00] in h
+     4 ~< {fm2} ccw buf [n+01] in h
+     11 ~< {fh2} ccw buf [n+02] in h
+     12 ~< {fj2} ccw buf [n+03] in h
+     10 ~< {fk2} ccw buf adr 0 h
+     9 ~< {fj1} ccw buf adr 1 h
+     7 ~< {fl2} ccw buf adr 2 h
+     6 ~< {fm1} ccw buf adr 3 h
+     3 ~< %NC%
+     13 ~< mb04 ccw buf wr l
+     2 ~> mb04-e70-2
+     1 ~> mb04-e70-1
+     15 ~> mb04-e70-15
+     14 ~> mb04-e70-14
+
+e66: 10158 4x2 mixer
+     5 ~< mb04-e70-2
+     6 ~< {fd2} mb [n+00] h
+     3 ~< mb04-e70-1
+     4 ~< {dr2} mb [n+01] h
+     12 ~< mb04-e70-15
+     13 ~< {dp2} mb [n+00] h
+     10 ~< mb04-e70-14
+     11 ~< {dm1} mb [n+00] h
+     9 ~< {es1} ccl mix mb sel h
+     1 ~> {ek2} ccw mix [n+00] h
+     2 ~> {eh2} ccw mix [n+01] h
+     15 ~> {ff1} ccw mix [n+02] h
+     14 ~> {es2} ccw mix [n+03] h
+
+e31: 10145 12x4 RAM
+     5 ~< {cl2} ccw buf [n+04] in h
+     4 ~< {cl1} ccw buf [n+05] in h
+     11 ~< {ck2} ccw buf [n+18] in h
+     12 ~< {ck1} ccw buf [n+19] in h
+     10 ~< {fk2} ccw buf adr 0 h
+     9 ~< {fj1} ccw buf adr 1 h
+     7 ~< {fl2} ccw buf adr 2 h
+     6 ~< {fm1} ccw buf adr 3 h
+     3 ~< %NC%
+     13 ~< mb04 ccw buf wr l
+     2 ~> mb04-e31-2
+     1 ~> mb04-e31-1
+     15 ~> mb04-e31-15
+     14 ~> mb04-e31-14
+
+e37: 10158 4x2 mixer
+     5 ~< mb04-e31-2
+     6 ~< {dr1} mb [n+04] h
+     3 ~< mb04-e31-1
+     4 ~< {dp1} mb [n+05] h
+     12 ~< mb04-e31-15
+     13 ~< {av2} mb [n+18] h
+     10 ~< mb04-e31-14
+     11 ~< {ba1} mb [n+19] h
+     9 ~< {es1} ccl mix mb sel h
+     1 ~> {cp2} ccw mix [n+04] h
+     2 ~> {cn1} ccw mix [n+05] h
+     15 ~> {dl1} ccw mix [n+18] h
+     14 ~> {dh2} ccw mix [n+19] h
+
+e11: 10145 12x4 RAM
+     5 ~< {at2} ccw buf [n+20] in h
+     4 ~< {as1} ccw buf [n+21] in h
+     11 ~< {ap2} ccw buf [n+22] in h
+     12 ~< {am2} ccw buf [n+23] in h
+     10 ~< {fk2} ccw buf adr 0 h
+     9 ~< {fj1} ccw buf adr 1 h
+     7 ~< {fl2} ccw buf adr 2 h
+     6 ~< {fm1} ccw buf adr 3 h
+     3 ~< %NC%
+     13 ~< mb04 ccw buf wr l
+     2 ~> mb04-e11-2
+     1 ~> mb04-e11-1
+     15 ~> mb04-e11-15
+     14 ~> mb04-e11-14
+
+e12: 10158 4x2 mixer
+     5 ~< mb04-e11-2
+     6 ~< {cd2} mb [n+20] h
+     3 ~< mb04-e11-1
+     4 ~< {cd1} mb [n+21] h
+     12 ~< mb04-e11-15
+     13 ~< {ca1} mb [n+22] h
+     10 ~< mb04-e11-14
+     11 ~< {bv2} mb [n+23] h
+     9 ~< {es1} ccl mix mb sel h
+     1 ~> {al2} ccw mix [n+20] h
+     2 ~> {al1} ccw mix [n+21] h
+     15 ~> {as2} ccw mix [n+22] h
+     14 ~> {ar2} ccw mix [n+23] h
+
+e42: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk mb [n] delayed h
+     2 ~> clk a h
+     3 ~> clk b h
+     4 ~> clk c h
+     9 ~< %NC%
+     10 ~< clk mb [n] delayed h
+     11 ~< %NC%
+     12 ~> clk d h
+     13 ~> clk e h
+     14 ~> clk f h
+
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk mb [n] h
+     2 ~> clk mb [n] delayed h
+
+Page: MB05, PDF78
+
+e24: 10173 4x2 mixer latch
+     5 ~< {cj1} cbus d[n+00] re h
+     6 ~< {ch2} cbus d[n+18] re h
+     3 ~< {cj2} cbus d[n+01] re h
+     4 ~< {cf1} cbus d[n+19] re h
+     12 ~< {bs2} cbus d[n+02] re h
+     13 ~< {be2} cbus d[n+20] re h
+     10 ~< {bc1} cbus d[n+03] re h
+     11 ~< {bj1} cbus d[n+21] re h
+     9 ~< {bd1} ch reverse h
+     7 ~< ch reg hold h
+     1 ~> ch reg [n+00] h
+     2 ~> ch reg [n+01] h
+     15 ~> ch reg [n+02] h
+     14 ~> ch reg [n+03] h
+
+e29: 10173 4x2 mixer latch
+     5 ~< {br1} cbus d[n+04] re h
+     6 ~< {be1} cbus d[n+22] re h
+     3 ~< {bd2} cbus d[n+05] re h
+     4 ~< {bl1} cbus d[n+23] re h
+     12 ~< {ch2} cbus d[n+18] re h
+     13 ~< {cj1} cbus d[n+00] re h
+     10 ~< {cf1} cbus d[n+19] re h
+     11 ~< {cj2} cbus d[n+01] re h
+     9 ~< {bd1} ch reverse h
+     7 ~< ch reg hold h
+     1 ~> ch reg [n+04] h
+     2 ~> ch reg [n+05] h
+     15 ~> ch reg [n+18] h
+     14 ~> ch reg [n+19] h
+
+e23: 10173 4x2 mixer latch
+     5 ~< {be2} cbus d[n+20] re h
+     6 ~< {bs2} cbus d[n+02] re h
+     3 ~< {bj1} cbus d[n+21] re h
+     4 ~< {bc1} cbus d[n+03] re h
+     12 ~< {be1} cbus d[n+22] re h
+     13 ~< {br1} cbus d[n+04] re h
+     10 ~< {bl1} cbus d[n+23] re h
+     11 ~< {bd2} cbus d[n+04] re h
+     9 ~< {bd1} ch reverse h
+     7 ~< ch reg hold h
+     1 ~> ch reg [n+20] h
+     2 ~> ch reg [n+21] h
+     15 ~> ch reg [n+22] h
+     14 ~> ch reg [n+23] h
+
+e74: 10176 hex dff
+     5 ~< {fp2} crc ch buf adr 0 h
+     6 ~< {fp2} crc ch buf adr 0 h
+     7 ~< {fr2} crc ch buf adr 1 h
+     10 ~< {fr2} crc ch buf adr 1 h
+     11 ~< {fp1} crc ch buf adr 2 h
+     12 ~< {fp1} crc ch buf adr 2 h
+     9 ~< clk a h
+     2 ~> ch buf adr 0 h
+     3 ~> ch buf adr 0 a h
+     4 ~> ch buf adr 1 h
+     13 ~> ch buf adr 1 a h
+     14 ~> ch buf adr 2 h
+     15 ~> ch buf adr 2 a h
+
+e48: 10176 hex dff
+     5 ~< {de1} crc ch buf adr 3 h
+     6 ~< {de1} crc ch buf adr 3 h
+     7 ~< {dj1} crc ch buf adr 4 h
+     10 ~< {dj1} crc ch buf adr 4 h
+     11 ~< {de2} crc ch buf adr 5 h
+     12 ~< {de2} crc ch buf adr 5 h
+     9 ~< clk e h
+     2 ~> ch buf adr 3 h
+     3 ~> ch buf adr 3 a h
+     4 ~> ch buf adr 4 h
+     13 ~> ch buf adr 4 a h
+     14 ~> ch buf adr 5 h
+     15 ~> ch buf adr 5 a h
+
+e10: 10176 hex dff
+     5 ~< {ae1} crc ch buf adr 6 h
+     6 ~< {ae1} crc ch buf adr 6 h
+     7 ~< {ae2} ccl ch buf en l
+     10 ~< {ae2} ccl ch buf en l
+     11 ~< {af1} -ch t2 h
+     12 ~< %NC%
+     9 ~< clk f h
+     2 ~> ch buf adr 6 h
+     3 ~> ch buf adr 6 a h
+     4 ~> ch buf en l
+     13 ~> ch buf en a l
+     14 ~> ch reg hold h
+     15 ~> %NC%
+
+e58: 10141 shift register
+     13 ~< %NC%
+     12 ~< ch buf [n+00] h
+     11 ~< ch buf [n+01] h
+     9 ~< ch buf [n+02] h
+     6 ~< ch buf [n+03] h
+     5 ~< %NC%
+     7 ~< mb ch buf load l
+     10 ~< mb ch buf load l
+     4 ~< clk e h
+     14 ~> mb ch buf [n+00] h
+     15 ~> mb ch buf [n+01] h
+     2 ~> mb ch buf [n+02] h
+     3 ~> mb ch buf [n+03] h
+
+e43: 10141 shift register
+     13 ~< %NC%
+     12 ~< ch buf [n+04] h
+     11 ~< ch buf [n+05] h
+     9 ~< ch buf [n+18] h
+     6 ~< ch buf [n+19] h
+     5 ~< %NC%
+     7 ~< mb ch buf load l
+     10 ~< mb ch buf load l
+     4 ~< clk e h
+     14 ~> mb ch buf [n+04] h
+     15 ~> mb ch buf [n+05] h
+     2 ~> mb ch buf [n+18] h
+     3 ~> mb ch buf [n+19] h
+
+e14: 10141 shift register
+     13 ~< %NC%
+     12 ~< ch buf [n+20] h
+     11 ~< ch buf [n+21] h
+     9 ~< ch buf [n+22] h
+     6 ~< ch buf [n+23] h
+     5 ~< %NC%
+     7 ~< mb ch buf load l
+     10 ~< mb ch buf load l
+     4 ~< clk f h
+     14 ~> mb ch buf [n+20] h
+     15 ~> mb ch buf [n+21] h
+     2 ~> mb ch buf [n+22] h
+     3 ~> mb ch buf [n+23] h
