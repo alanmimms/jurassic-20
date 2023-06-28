@@ -1,3 +1,1278 @@
 Page: MBX1, PDF178
 // M8529YA TBD
-// STUB
+
+e83: 10121 4-wide or-and
+     4 ~< {fs1} csh1 mb req grant l
+     5 ~< {fs2} csh1 ready to go l
+     6 ~< %NC%
+     7 ~< {ft2} mbc2 csh data clr t3 l
+     9 ~< mbx4 e core rd rq a l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< {fc1} -csh1 ready to go l
+     15 ~< mbx1 refill adr en a l
+     3 ~> {fr2} mbx1 refill adr en nxt h
+     2 ~> %NC%
+
+e95: 10176 hex dff
+     11 ~< {fr2} mbx1 refill adr en nxt h
+     9 ~< mbx4 clk c h
+     14 ~> {fn1} mbx1 refill adr en h
+
+e84: 10101 quad or/nor
+     13 ~< {fn1} mbx1 refill adr en h
+     12 ~< %NC%
+     15 ~> mbx1 refill adr en a l
+     9 ~> %NC%
+     7 ~< {fc1} csh1 ready to go h
+     3 ~> mbx1 ready to go a l
+     6 ~> mbx1 ready to go a h
+     10 ~< {eu2} csh6 cca inval t4 l
+     14 ~> {et2} mbx1 cca inval t4 a h
+     11 ~> %NC%
+     4 ~< {ev2} csh6 cca cyc done l
+     2 ~> mbx1 cca cyc done a h
+     5 ~> mbx1 cca cyc done a l
+
+e75: 10176 hex dff
+     10 ~< {ep1} csh6 ebox load reg h
+     9 ~< mbx4 clk c h
+     13 ~> {ap1} mbx1 ebox load reg h
+     5 ~< {fp2} csh3 any val hold in h
+     2 ~> mbx any val hold h
+     6 ~< mbx2-e81-15
+     3 ~> {ar1} mb req hold h
+     7 ~< mbx2 mb sel hold ff in h
+     4 ~> {am1} mbx2 mb sel hold ff h
+     12 ~< mbx5-e73-3
+     15 ~> mbx5-e75-15
+     11 ~< mbx5-e73-2
+     14 ~> {en1} mbx5 csh adr par err l
+
+e69: 10105 4/5 or/nor
+     9 ~< {fn1} mbx1 refill adr en h
+     10 ~< mbx4 e core rd rq a h
+     11 ~< {ee1} pma5 csh writeback cyc h
+     6 ~> {fu2} mbx1 force match en l
+     7 ~> mbx1-e69-7
+     12 ~< mbx1-e85-15
+     13 ~< -mbx1 reset l
+     14 ~> mbx1-e69-14
+     15 ~> {df1} mbx1 cca req l
+     4 ~< mbx1-e74-3
+     5 ~< -mbx1 ready to go a l
+     3 ~> mbx1-e69-3
+     2 ~> mbx1-e69-2
+
+e51: 10109 4/5 or/nor
+     9 ~< mbx1-e69-7
+     10 ~< mbx3 ebox diag cyc h
+     11 ~< {cm2} mbx1 cca all pages cyc h
+     12 ~< {es1} -con cache look en h
+     13 ~< mbx5 c dir par err h
+     14 ~> %NC%
+     15 ~> {au2} force no match h
+     4 ~< mbx3 ctomb wd 0 rq h
+     5 ~< mbx3 ctomb wd 1 rq h
+     6 ~< mbx3 ctomb wd 2 rq h
+     7 ~< mbx3 ctomb wd 3 rq h
+     3 ~> %NC%
+     2 ~> mbx2 cache to mb cont h
+
+e77: 10141 shift register
+     13 ~< %NC%
+     12 ~< {fd2} csh wd 0 val h
+     11 ~< {er2} csh wd 1 val h
+     9 ~< {fe2} csh wd 2 val h
+     6 ~< {fj2} csh wd 3 val h
+     5 ~< %NC%
+     7 ~< mbx1-e79-5
+     10 ~< mbx1-e79-5
+     4 ~< mbx4 clk a h
+     14 ~> mbx1-e77-14
+     15 ~> mbx1-e77-15
+     2 ~> mbx1-e77-2
+     3 ~> mbx1-e77-3
+
+e62: 10104 quad and/nand
+     4 ~< mbx1-e77-14
+     5 ~< mbx1-e79-5
+     2 ~> mbx1 csh wd 0 val b h
+     6 ~< mbx1-e77-3
+     7 ~< mbx1-e79-5
+     3 ~> mbx1 csh wd 3 val b h
+     10 ~< {ep2} mbc4 core data val -2 l
+     11 ~< {el1} csh4 one word wr t0 l
+     14 ~> mbx2-e62-14
+     12 ~< {el2} csh chan cyc a h
+     13 ~< {ds1} ccl chan to mem h
+     9 ~> {dj1} mbx2 chan wr cyc l
+     15 ~> mbx2 chan wr cyc h
+
+e74: 10104 quad and/nand
+     4 ~< mbx1-e77-15
+     5 ~< mbx1-e79-5
+     2 ~> mbx1 csh wd 1 val b h
+     10 ~< mbx1-e77-2
+     11 ~< mbx1-e79-5
+     14 ~> mbx1 csh wd 2 val b h
+     12 ~< -mbx1 ebox load reg l
+     13 ~< {fd1} -apr6 ebox cca l
+     9 ~> {de1} mbx1 cca sel 1 h
+     15 ~> mbx1 cca sel 1 l
+     6 ~< {eu2} csh6 cca inval t4 l
+     7 ~< mbx1 cca hold adr l
+
+e79: 10101 quad or/nor
+     4 ~< mbx2 any val hold h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> mbx1-e79-5
+     13 ~< {fa1} pma5 ebox paged l
+     15 ~> mbx1 ebox paged a h
+     9 ~> %NC%
+     7 ~< {fm2} mr reset 06 h
+     3 ~> mbx1 reset l
+     6 ~> mbx1 reset h
+     10 ~< {ct2} mbx1 csh cca val core h
+     14 ~> {fm1} mbx1 csh cca val core l
+     11 ~> %NC%
+
+e73: 10117 dual 2-3 or-and
+     13 ~< -mbx1 ebox load reg l
+     12 ~< mbx1-e85-2
+     11 ~< mbx1-e85-2
+     10 ~< {fd1} -apr6 ebox cca l
+     9 ~< -mbx1 reset l
+     14 ~> {dd1} mbx1 cca sel 2 h
+     15 ~> %NC%
+     4 ~< mbx5-e71-13
+     5 ~< mbx1 ready to go a l
+     6 ~< {em1} -apr2 c dir p err l
+     7 ~< {en1} mbx5 csh adr par err l
+     9 ~< -mbx1 reset l
+     3 ~> mbx5-e73-3
+     2 ~> mbx5-e73-2
+
+e85: 10176 hex dff
+     5 ~< -mbx1 cca cyc done a l
+     9 ~< mbx4 clk c h
+     2 ~> mbx1-e85-2
+     12 ~< mbx1-e86-3
+     15 ~> mbx1-e85-15
+     6 ~< mbx1-e69-3
+     3 ~> mbx1 cca hold adr h
+     7 ~< mbx1-e69-2
+     4 ~> mbx1 cca hold adr l
+     10 ~< {fp1} csh3 mb wr rq clr nxt l
+     13 ~> mbx2 mb wr rq clr ff l
+
+e80: 10118 triple 4-2 or-and
+     3 ~< {fk2} pag1 pt cache l
+     4 ~< {fa1} pma5 ebox paged lds
+     5 ~< {fk1} mcl6 ebox cache l
+     7 ~< -mbx1 ebox paged a l
+     9 ~< %NC%
+     2 ~> mbx1-e80-2
+     14 ~< %NC%
+     13 ~< mbx2 mb wr rq clr ff l
+     12 ~< %NC%
+     11 ~< mbx2 mb wr rq any h
+     10 ~< {af1} mb sel hold h
+     9 ~< %NC%
+     15 ~> mbx2 mb sel hold ff in h
+
+e81: 10105 2-3-2 or/nor
+     9 ~< mbx1-e80-2
+     10 ~< -mbx5 c dir par err l
+     11 ~< {dj2} cache exists l
+     6 ~> {de2} mbx1 cache bit h
+     7 ~> {fj1} mbx1 cache bit l
+     4 ~< {eh2} csh1 cca cyc l
+     5 ~< -mbx1 csh cca one page l
+     3 ~> {cm2} mbx1 cca all pages cyc h
+     2 ~> {fv2} mbx1 cca all pages cyc l
+     12 ~< mbx2 mb wr rq any h
+     13 ~< mbx2 mb sel hold ff in h
+     14 ~> %NC%
+     15 ~> mbx2-e81-15
+
+e66: 10101 quad or/nor
+     4 ~< {eh2} csh1 cca cyc l
+     12 ~< %NC%
+     2 ~> mbx1 csh cca cyc a h
+     5 ~> %NC%
+     7 ~< {ea1} core busy a h
+     3 ~> mbx3 core busy 1a l
+     6 ~> mbx3 core busy 1a h
+     13 ~< %NC%
+     15 ~> mbx3 hi
+     9 ~> %NC%
+     10 ~< mbx3 sbus diag 2 l
+     12 ~< %NC%
+     14 ~> mbx3 sbus diag 2 h
+     11 ~> %NC%
+
+e78: 10141 shift register
+     13 ~< %NC%
+     12 ~< {fh2} ir ac 10 h
+     11 ~< {ff2} ir ac 11 h
+     9 ~< {ff1} ir ac 12 h
+     6 ~< %NC%
+     5 ~< %NC%
+     7 ~< {de1} mbx1 cca sel 1 h
+     10 ~< {de1} mbx1 cca sel 1 h
+     4 ~< mbx4 clk f h
+     14 ~> mbx1 csh cca one page h
+     15 ~> {ct2} mbx1 csh cca val core h
+     2 ~> {cv2} mbx1 csh cca inval csh h
+     3 ~> %NC%
+
+e86: 10117 dual 2-3 or-and
+     4 ~< mbx1-e69-14
+     5 ~< -mbx1 cca sel 1 h
+     6 ~< -mbx1 cca cyc done a h
+     7 ~< {fl1} -pma2 cca cry out h
+     9 ~< %NC%
+     3 ~> mbx1-e86-3
+     2 ~> %NC%
+
+Page: MBX2, PDF179
+
+e41: 10165 priority encoder
+     5 ~< mbx3 ctomb wd 0 rq h
+     7 ~< mbx3 ctomb wd 1 rq h
+     13 ~< mbx3 ctomb wd 2 rq h
+     10 ~< mbx3 ctomb wd 3 rq h
+     11 ~< %NC%
+     12 ~< %NC%
+     9 ~< %NC%
+     6 ~< %NC%
+     4 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
+     2 ~> {fl2} mbx2 cache to mb 34 h
+     3 ~> {fe1} mbx2 cache to mb 35 h
+
+e4:  10165 priority encoder
+     5 ~< mbx2 mb 0 wr rq h
+     7 ~< mbx2 mb 1 wr rq h
+     13 ~< mbx2 mb 2 wr rq h
+     10 ~< mbx2 mb 3 wr rq h
+     11 ~< %NC%
+     12 ~< %NC%
+     9 ~< %NC%
+     6 ~< %NC%
+     4 ~< %NC%
+     14 ~> mbx2 mb wr rq any h
+     15 ~> %NC%
+     2 ~> mbx2 mb wr rq p2 h
+     3 ~> mbx2 mb wr rq p1 h
+
+e33: 10165 priority encoder
+     5 ~< {bs1} mbx5 rq 0 in h
+     7 ~< {bs1} mbx5 rq 0 in h
+     13 ~< {bs1} mbx5 rq 0 in h
+     10 ~< {bs1} mbx5 rq 0 in h
+     11 ~< %NC%
+     12 ~< %NC%
+     9 ~< %NC%
+     6 ~< %NC%
+     4 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
+     2 ~> mbx2-e33-2
+     3 ~> mbx2-e33-3
+
+e42: 10121 4-wide or-and
+     4 ~< {ck1} pma4 pa 34 h
+     5 ~< mbx2-e57-7
+     6 ~< %NC%
+     7 ~< mbx2-e33-2
+     9 ~< mbx2-e45-6
+     10 ~< mbx2-e57-6
+     11 ~< {cp1} ccw cha 34 h
+     12 ~< mbx2-e45-7
+     13 ~< mbx2-e57-6
+     14 ~< mbx2-e57-7
+     15 ~< %NC%
+     3 ~> %NC%
+     2 ~> {be1} sbus adr 34 h
+
+e47: 10121 4-wide or-and
+     4 ~< pma4 pa 35 h
+     5 ~< mbx2-e57-7
+     6 ~< %NC%
+     7 ~< mbx2-e33-3
+     9 ~< mbx2-e45-6
+     10 ~< mbx2-e57-6
+     11 ~< {br1} ccw cha 35 h
+     12 ~< mbx2-e45-7
+     13 ~< mbx2-e57-6
+     14 ~< mbx2-e57-7
+     15 ~< %NC%
+     3 ~> %NC%
+     2 ~> {bd2} sbus adr 35 h
+
+e45: 10105 2-3-2 or/nor
+     9 ~< mbx4 csh chan cyc a l
+     10 ~< {ds1} -ccl chan to mem l
+     11 ~< -mbx2 any val hold l
+     6 ~> mbx2-e45-6
+     7 ~> mbx2-e45-7
+     12 ~< {dk2} mbx4 cache to mb t2 l
+     13 ~< {cl1} phase change coming l
+     14 ~> mbx4-e45-14
+     15 ~> mbx4-e45-15
+     4 ~< mbx4 cache to mb t1 l
+     5 ~< -mbx2 cache to mb cont l
+     3 ~> mbx4 cache to mb done h
+     2 ~> {ek1} mbx4 cache to mb done l
+
+e57: 10105 2-3-2 or/nor
+     9 ~< {ee1} pma5 csh writeback cyc h
+     10 ~< mbx2 csh pgrf cyc b h
+     11 ~< {el2} csh chan cyc a h
+     6 ~> mbx2-e57-6
+     7 ~> mbx2-e57-7
+     12 ~< -mbx3 sbus diag 1 l
+     13 ~< mbx3 sbus diag 0 l
+     14 ~> %NC%
+     15 ~> {ce2} mem diag l
+
+e7:  10101 quad or/nor
+     7 ~< mbx4 wd 0 needed l
+     12 ~< mbx2 ctomb load l
+     3 ~> mbx2-e7-3
+     6 ~> %NC%
+     13 ~< mbx4 wd 1 needed l
+     15 ~> mbx2-e7-15
+     9 ~> %NC%
+     4 ~< mbx4 wd 2 needed l
+     2 ~> mbx2-e7-2
+     5 ~> %NC%
+     10 ~< mbx4 wd 3 needed l
+     14 ~> mbx2-e7-14
+     11 ~> %NC%
+
+e2:  10118 triple 4-2 or-and
+     3 ~< mbx2-e7-3
+     4 ~< %NC%
+     5 ~< {ad2} csh wd 0 wr h
+     6 ~< {ad2} csh wd 0 wr h
+     7 ~< mbx1 csh wd 0 val b h
+     9 ~< mbx2 chan wr cyc h
+     2 ~> mbx2 csh to mb wd 0 h
+     14 ~< mbx2-e7-15
+     13 ~< %NC%
+     12 ~< {ac1} csh wd 1 wr h
+     11 ~< {ac1} csh wd 1 wr h
+     10 ~< mbx1 csh wd 1 val b h
+     15 ~> mbx2 csh to mb wd 1 h
+
+e1:  10118 triple 4-2 or-and
+     3 ~< mbx2-e7-2
+     4 ~< %NC%
+     5 ~< {ad1} csh wd 2 wr h
+     6 ~< {ad1} csh wd 2 wr h
+     7 ~< mbx1 csh wd 2 val b h
+     9 ~< mbx2 chan wr cyc h
+     2 ~> mbx2 csh to mb wd 2 h
+     14 ~< mbx2-e7-14
+     13 ~< %NC%
+     12 ~< {aa1} csh wd 3 wr h
+     11 ~< {aa1} csh wd 3 wr h
+     10 ~< mbx1 csh wd 3 val b h
+     15 ~> mbx2 csh to mb wd 3 h
+
+e58: 10121 4-wide or-and
+     4 ~< {dj1} mbx2 chan wr cyc l
+     5 ~< {ed1} csh5 t2 l
+     6 ~< %NC%
+     7 ~< {ed2} csh5 page refill t8 l
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< {ec1} csh5 chan t4 l
+     12 ~< -mbx2 chan wr cyc l
+     13 ~< mbx3 hi
+     14 ~< %NC%
+     15 ~< %NC%
+     3 ~> %NC%
+     2 ~> mbx2 ctomb load l
+
+e49: 10101 quad or/nor
+     7 ~< {dk1} csh1 pgrf cyc a l
+     12 ~< %NC%
+     3 ~> mbx2 csh pgrf cyc b h
+     6 ~> %NC%
+     4 ~< mbx3 sbus diag 1 l
+     12 ~< %NC%
+     2 ~> mbx3 sbus diag 1 h
+     5 ~> %NC%
+     10 ~< {cj2} csh2 e core rd rq l
+     14 ~> mbx4 e core rd rq a h
+     11 ~> mbx4 e core rd rq a l
+
+e3:  10118 triple 4-2 or-and
+     3 ~< mbx2 core wd 0 coming h
+     4 ~< mbx2 csh to mb wd 0 h
+     5 ~< mbx2 mb 0 wr rq h
+     6 ~< mbx2 mb sel 2a h
+     7 ~< mbx2 mb sel 1a h
+     9 ~< -mbx2 mb wr rq clr h
+     // Time critical
+     2 ~> mbx2-e3-2
+     14 ~< mbx2 core wd 2 coming h
+     13 ~< mbx2 csh to mb wd 2 h
+     12 ~< mbx2 mb 2 wr rq h
+     11 ~< -mbx2 mb sel 2a h
+     10 ~< mbx2 mb sel 1a h
+     15 ~> mbx2-e3-15
+
+e8:  10118 triple 4-2 or-and
+     3 ~< mbx2 core wd 1 coming h
+     4 ~< mbx2 csh to mb wd 1 h
+     5 ~< mbx2 mb 1 wr rq h
+     6 ~< mbx2 mb sel 2a h
+     7 ~< -mbx2 mb sel 1a h
+     9 ~< -mbx2 mb wr rq clr h
+     // Time critical
+     2 ~> mbx2-e8-2
+     14 ~< mbx2 core wd 3 coming h
+     13 ~< mbx2 csh to mb wd 3 h
+     12 ~< mbx2 mb 3 wr rq h
+     11 ~< -mbx2 mb sel 2a h
+     10 ~< -mbx2 mb sel 1a h
+     15 ~> mbx2-e8-15
+
+e9:  10141 shift register
+     13 ~< %NC%
+     12 ~< mbx2-e3-2
+     11 ~< mbx2-e7-2
+     9 ~< mbx2-e3-15
+     6 ~< mbx2-e8-15
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< mbx1 reset h
+     4 ~< mbx4 clk d h
+     14 ~> mbx2 mb 0 wr rq h
+     15 ~> mbx2 mb 1 wr rq h
+     2 ~> mbx2 mb 2 wr rq h
+     3 ~> mbx2 mb 3 wr rq h
+
+e63: 10121 4-wide or-and
+     4 ~< {ee2} mbx2 mb sel hold l
+     5 ~< mbx3 core busy 1a l
+     6 ~< %NC%
+     7 ~< {ej2} chan read l
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< {ef2} mbc4 mem start l
+     12 ~< {ee2} mbx2 mb sel hold l
+     13 ~< {ee2} mbx2 mb sel hold l
+     14 ~< {dm2} -csh2 e cache wr cyc l
+     15 ~< {ee1} -pma5 csh writeback cyc l
+     3 ~> %NC%
+     2 ~> mbx2 mb wr rq clr l
+
+e18: 10162 decoder
+     14 ~< %NC%
+     9 ~< {bh2} mbc4 core adr 34 h
+     7 ~< {bj1} mbc4 core adr 35 h
+     15 ~< -mbx3 core busy 1a l
+     2 ~< mbx2-e62-14
+     6 ~> mbx2 core wd 0 coming h
+     5 ~> mbx2 core wd 1 coming h
+     4 ~> mbx2 core wd 2 coming h
+     3 ~> mbx2 core wd 3 coming h
+     13 ~> %NC%
+     12 ~> %NC%
+     11 ~> %NC%
+     10 ~> %NC%
+
+e5:  10101 quad or/nor
+     4 ~< mbx2 mb 0 wr rq h
+     12 ~< %NC%
+     2 ~> mbx2 mb 0 wr rq l
+     5 ~> %NC%
+     13 ~< mbx2 mb 2 wr rq h
+     12 ~< %NC%
+     15 ~> mbx2 mb 2 wr rq l
+     9 ~> %NC%
+     10 ~< mbx2 mb 3 wr rq h
+     14 ~> mbx2 mb 3 wr rq l
+     11 ~> %NC%
+     7 ~< {ej2} chan read l
+     3 ~> mbx2 chan read a h
+     6 ~> mbx2 chan read a l
+
+e13: 10101 quad or/nor
+     13 ~< mbx2 mb 1 wr rq h
+     12 ~< %NC%
+     15 ~> mbx2 mb 1 wr rq l
+     9 ~> %NC%
+     7 ~< mbx2 mb sel 1b h
+     3 ~> mbx2 mb sel 1a l
+     6 ~> {cf2} mb sel 1 h
+     4 ~< {bp1} diag 05 b h
+     2 ~> %NC%
+     5 ~> mbx6 diag 05 h
+     10 ~< {bl1} diag 06 b h
+     14 ~> %NC%
+     11 ~> mbx6 diag 06 h
+
+e25: 10101 quad or/nor
+     7 ~< mbx2 mb sel 2b h
+     12 ~< %NC%
+     3 ~> mbx2 mb sel 2a l
+     6 ~> {bp2} mb sel 2 h
+     4 ~< {ck2} cache to mb t4 l
+     2 ~> mbx4 cache to mb t4 h
+     5 ~> {cm1} mbx4 cache to mb t4 a l
+     13 ~< {bn1} diag 04 b h
+     15 ~> %NC%
+     9 ~> mbx6 diag 04 h
+     10 ~< {bk2} diag read func 17x l
+     14 ~> %NC%
+     11 ~> mbx6 diag en l
+
+e10: 10117 dual 2-3 or-and
+     13 ~< {ak2} ccl ch mb sel 2 h
+     12 ~< -mbx2 chan read a h
+     11 ~< mbx2 chan read a h
+     10 ~< mbx2 mb wr rq p2 h
+     9 ~< %NC%
+     14 ~> %NC%
+     15 ~> {ae1} mb sel 2 en h
+     4 ~< {ah2} ccl ch mb sel 1 h
+     5 ~< -mbx2 chan read a h
+     6 ~< mbx2 chan read a h
+     7 ~< mbx2 mb wr rq p1 h
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> {ak1} mb sel 1 en h
+
+e12: 10141 shift register
+     13 ~< %NC%
+     12 ~< {ae1} mb sel 2 en h
+     11 ~< {ae1} mb sel 2 en h
+     9 ~< {ak1} mb sel 1 en h
+     6 ~< {ak1} mb sel 1 en h
+     5 ~< %NC%
+     7 ~< {af1} mb sel hold h
+     10 ~< {af1} mb sel hold h
+     4 ~< mbx4 clk e h
+     14 ~> mbx2 mb sel 2a h
+     15 ~> mbx2 mb sel 2b h
+     2 ~> mbx2 mb sel 1a h
+     3 ~> mbx2 mb sel 1b h
+
+e64: 10121 4-wide or-and
+     4 ~< {er1} -ackn pulse h
+     5 ~< %NC%
+     6 ~< {em2} mem rd rq h
+     7 ~< %NC%
+     9 ~< {am1} mbx2 mb sel hold ff h
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< mbx2-e65-2
+     13 ~< {em2} mem rd rq h
+     14 ~< -mbx6 core data valid b h
+     15 ~< -mbx3 core busy 1a h
+     3 ~> {ee2} mbx2 mb sel hold l
+     2 ~> {af1} mb sel hold h
+
+e65: 10104 quad and/nand
+     4 ~< -mbx3 sbus diag 2 h
+     5 ~< -mbx1 reset h
+     2 ~> mbx2-e65-2
+     6 ~< {ds2} -mbc3 a change coming a h
+     7 ~< mbx3-e70-14
+     3 ~> mbx3-e65-3
+     12 ~< {ar1} mb req hold h
+     13 ~< {dl1} -csh1 mb cyc h
+     9 ~> mbx5-e65-9
+     15 ~> %NC%
+     10 ~< {dl1} csh1 mb cyc l
+     11 ~< {dm1} mem to c diag en l
+     14 ~> {cd1} mbx5 mem to c en l
+
+Page: MBX3, PDF180
+
+e55: 10105 2-3-2 or/nor
+     4 ~< {ek2} -mb in sel 1 l
+     5 ~< {cf1} -mb in sel 4 l
+     3 ~> mbx3-e55-3
+     2 ~> %NC%
+     12 ~< mbx3-e59-3
+     13 ~< mbx3 core busy 1a h
+     14 ~> %NC%
+     15 ~> {at2} mem data to mem h
+     9 ~< mbx4 e core rd rq a h
+     10 ~< mbx5 one word rd a h
+     11 ~< mbx5 rd non-val wds h
+     6 ~> %NC%
+     7 ~> {cd2} mbx5 mem rd rq in h
+
+e59: 10117 dual 2-3 or-and
+     13 ~< mbx3-e55-3
+     12 ~< {cf1} -mb in sel 4 l
+     11 ~< {cf1} -mb in sel 4 l
+     10 ~< {ch2} -mb in sel 2 l
+     9 ~< %NC%
+     14 ~> mbx3-e59-14
+     15 ~> %NC%
+     4 ~< {ef2} mbc4 mem start l
+     5 ~< {em2} -mem rd rq l
+     6 ~< mbx3 sbus diag 0 l
+     7 ~< -mbx3 sbus diag 2 l
+     9 ~< %NC%
+     3 ~> mbx3-e59-3
+     2 ~> %NC%
+
+e20: 10104 quad and/nand
+     12 ~< {bl2} mb0 hold in h
+     13 ~< mbx3-e44-2
+     9 ~> %NC%
+     15 ~> mbx3-e20-15
+     6 ~< {bm1} mb1 hold in h
+     7 ~< mbx3-e44-2
+     3 ~> mbx3-e20-3
+     10 ~< {bk1} mb2 hold in h
+     11 ~< mbx3-e44-2
+     14 ~> mbx3-e20-14
+     4 ~< {bj2} mb3 hold in h
+     5 ~< mbx3-e44-2
+     2 ~> mbx3-e20-2
+
+e44: 10104 quad and/nand
+     4 ~< mbx2 ctomb load l
+     5 ~< mbx3-e44-3
+     2 ~> mbx3-e44-2
+     6 ~< {bc1} mbx4 writeback t2 l
+     7 ~< mbx1 reset l
+     3 ~> mbx3-e44-3
+     12 ~< -mbx4 csh chan cyc a h
+     13 ~< {al1} -mbc3 csh wr wr data h
+     9 ~> mbx4-e44-9
+     15 ~> %NC%
+     10 ~< {dv2} csh wr out en l
+     11 ~< {ck2} cache to mb t4 l
+     14 ~> mbx4-e44-14
+
+e22: 10141 shift register
+     13 ~< %NC%
+     12 ~< {am2} mb par bit in h
+     11 ~< mbx2 csh to mb wd 0 h
+     9 ~< mbx3-e55-3
+     6 ~< mbx3-e59-14
+     5 ~< %NC%
+     7 ~< mbx3-e20-15
+     10 ~< mbx3-e20-15
+     4 ~< mbx4-clk d h
+     14 ~> mbx3 mb0 par h
+     15 ~> mbx3 ctomb wd 0 rq h
+     2 ~> mbx3 mb0 data code 2 h
+     3 ~> mbx3 mb0 data code 1 h
+
+e21: 10141 shift register
+     13 ~< %NC%
+     12 ~< {am2} mb par bit in h
+     11 ~< mbx2 csh to mb wd 1 h
+     9 ~< mbx3-e55-3
+     6 ~< mbx3-e59-14
+     5 ~< %NC%
+     7 ~< mbx3-e20-3
+     10 ~< mbx3-e20-3
+     4 ~< mbx4-clk e h
+     14 ~> mbx1 mb0 par h
+     15 ~> mbx3 ctomb wd 1 rq h
+     2 ~> mbx3 mb1 data code 2 h
+     3 ~> mbx3 mb1 data code 1 h
+
+e26: 10141 shift register
+     13 ~< %NC%
+     12 ~< {am2} mb par bit in h
+     11 ~< mbx2 csh to mb wd 2 h
+     9 ~< mbx3-e55-3
+     6 ~< mbx3-e59-14
+     5 ~< %NC%
+     7 ~< mbx3-e20-14
+     10 ~< mbx3-e20-14
+     4 ~< mbx4-clk e h
+     14 ~> mbx1 mb2 par h
+     15 ~> mbx3 ctomb wd 2 rq h
+     2 ~> mbx3 mb2 data code 2 h
+     3 ~> mbx3 mb2 data code 1 h
+
+e31: 10141 shift register
+     13 ~< %NC%
+     12 ~< {am2} mb par bit in h
+     11 ~< mbx2 csh to mb wd 3 h
+     9 ~< mbx3-e55-3
+     6 ~< mbx3-e59-14
+     5 ~< %NC%
+     7 ~< mbx3-e2024
+     10 ~< mbx3-e20-2
+     4 ~< mbx4-clk e h
+     14 ~> mbx1 mb3 par h
+     15 ~> mbx3 ctomb wd 3 rq h
+     2 ~> mbx3 mb3 data code 2 h
+     3 ~> mbx3 mb3 data code 1 h
+
+e17: 10174 2x4 mixer
+     3 ~< mbx3 mb0 par h
+     5 ~< mbx3 mb1 par h
+     4 ~< mbx3 mb2 par h
+     6 ~< mbx3 mb3 par h
+     13 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     9 ~< mbx2 mb sel 2a h
+     7 ~< mbx2 mb sel 1a h
+     14 ~< %NC%
+     2 ~> {ar2} mb par h
+     15 ~> %NC%
+
+e72: 10105 2-3-2 or/nor
+     4 ~< {ar1} mb req hold h
+     5 ~< {ef1} core rd in prog h
+     3 ~> mbx3-e72-3
+     2 ~> %NC%
+     9 ~< mbx1 cca hold adr h
+     10 ~< {ee1} pma5 csh writeback cyc h
+     11 ~< mbx3 mb req allow h
+     6 ~> %NC%
+     7 ~> {bs2} mbx3 refill hold h
+     12 ~< {bd1} mbx3 sbus diag 3 l
+     13 ~< {ds2} mbc3 a change coming a l
+     14 ~> mbx3 diag cyc done h
+     15 ~> %NC%
+
+e70: 10117 dual 2-3 or-and
+     4 ~< {cj2} csh2 e core rd rq l
+     5 ~< -mbx5 one word rd a l
+     6 ~< mbx3-e72-3
+     7 ~< mbx3 mb req allow ff l
+     9 ~< -mbx1 reset l
+     3 ~> mbx3 mb req allow h
+     2 ~> mbx3 mb req allow l
+     13 ~< {ek1} mbx4 cache to mb done l
+     12 ~< mbx3 ebox diag cyc l
+     11 ~< -mbx3 diag cyc done l
+     10 ~< mbx3 sbus diag cyc l
+     9 ~< -mbx1 reset l
+
+e71: 10176 hex dff
+     6 ~< mbx3 mb req allow l
+     9 ~< mbx4 clk b h
+     3 ~> mbx3 mb req allow ff l
+     11 ~< mbx3-e70-15
+     14 ~> mbx3 sbus diag cyc l
+     10 ~< mbx5-e68-2
+     13 ~> mbx5-e71-13
+     5 ~< {ep2} mbc4 core data val -2 l
+     2 ~> mbx6 core data valid -1 b l
+     12 ~< mbx6 core data valid -1 b l
+     15 ~> mbx6 core data valid b l
+
+e54: 10105 2-3-2 or/nor
+     4 ~< {dp2} pma5 csh ebox cyc l
+     5 ~< {dn1} apr ebox sbus diag l
+     3 ~> mbx3 ebox diag cyc h
+     2 ~> mbx3 ebox diag cyc l
+     12 ~< mbx4 e core rd rq a h
+     13 ~< mbx3 ebox diag cyc h
+     14 ~> mbx3-e54-14
+     15 ~> mbx3-e54-15
+     9 ~< {dm2} csh2 e cache wr cyc h
+     10 ~< mbx2 chan wr cyc h
+     11 ~< {ee1} pma5 csh writeback cyc h
+     6 ~> mbx5 wr wds in mb l
+     7 ~> %NC%
+
+e67: 10141 shift register
+     13 ~< %NC%
+     12 ~< mbx3 hi
+     11 ~< mbx3 hi
+     9 ~< mbx3 hi
+     6 ~< mbx3 hi
+     5 ~< %NC%
+     7 ~< mbx3-e65-3
+     10 ~< mbx3-e70-14
+     14 ~> mbx3 sbus diag 0 l
+     15 ~> mbx3 sbus diag 1 l
+     2 ~> mbx3 sbus diag 2 l
+     3 ~> {bd1} mbx3 sbus diag 3 l
+
+e27: 10174 2x4 mixer
+     3 ~< mbx3 mb0 data code 2 h
+     5 ~< mbx3 mb1 data code 2 h
+     4 ~< mbx3 mb2 data code 2 h
+     6 ~< mbx3 mb3 data code 2 h
+     13 ~< mbx3 mb0 data code 1 h
+     11 ~< mbx3 mb1 data code 1 h
+     12 ~< mbx3 mb2 data code 1 h
+     10 ~< mbx3 mb3 data code 1 h
+     9 ~< mbx2 mb sel 2a h
+     7 ~< mbx2 mb sel 1a h
+     14 ~< %NC%
+     2 ~> {as1} mb data code 2 h
+     15 ~> {as2} mb data code 1 h
+
+e48: 10141 shift register
+     13 ~< %NC%
+     12 ~< {da1} ebus d30 e h
+     11 ~< {dc1} ebus d31 e h
+     9 ~< {dd2} ebus d32 e h
+     6 ~< {df2} ebus d33 e h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< %NC%
+     4 ~< {dh2} -diag load func 071 h
+     14 ~> mbx3-e48-14
+     15 ~> mbx3-e48-15
+     2 ~> mbx3-e48-2
+     3 ~> mbx3-e48-3
+
+e53: 10117 dual 2-3 or-and
+     4 ~< mbx3-e48-14
+     5 ~< mbx3-e48-15
+     6 ~< mbx3-e54-14
+     7 ~< %NC%
+     9 ~< mbx3-e48-3
+     3 ~> {bu2} mem to c sel 2 h
+     2 ~> %NC%
+     13 ~< mbx3-e48-15
+     12 ~< mbx3-e48-2
+     11 ~< mbx3-e54-15
+     10 ~< {dm2} -csh2 e cache wr cyc l
+     9 ~< mbx3-e48-3
+     14 ~> {bv2} mem to c sel 1 h
+     15 ~> %NC%
+
+Page: MBX4, PDF181
+
+e28: 10121 4-wide or-and
+     4 ~< mbx4-e44-9
+     5 ~< -mbx2 mb sel 2a l
+     6 ~< -mbx2 mb sel 1a l
+     7 ~< mbx4 csh chan cyc a l
+     9 ~< mbx4 wd 0 needed l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< {al1} mbc3 csh wr wr data l
+     14 ~< -mbx5 pa 34 a l
+     15 ~< -mbx5 pa 35 a l
+     3 ~> {cu2} csh wr wd 0 en h
+     2 ~> %NC%
+
+e14: 10121 4-wide or-and
+     4 ~< mbx4-e44-9
+     5 ~< -mbx2 mb sel 2a l
+     6 ~< mbx2 mb sel 1a l
+     7 ~< mbx4 csh chan cyc a l
+     9 ~< mbx4 wd 1 needed l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< {al1} mbc3 csh wr wr data l
+     14 ~< -mbx5 pa 34 a l
+     15 ~< mbx5 pa 35 a l
+     3 ~> {cs1} csh wr wd 1 en h
+     2 ~> %NC%
+
+e23: 10121 4-wide or-and
+     4 ~< mbx4-e44-9
+     5 ~< mbx2 mb sel 2a l
+     6 ~< -mbx2 mb sel 1a l
+     7 ~< mbx4 csh chan cyc a l
+     9 ~< mbx4 wd 2 needed l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< {al1} mbc3 csh wr wr data l
+     14 ~< mbx5 pa 34 a l
+     15 ~< -mbx5 pa 35 a l
+     3 ~> {ba1} csh wr wd 2 en h
+     2 ~> %NC%
+
+e19: 10121 4-wide or-and
+     4 ~< mbx4-e44-9
+     5 ~< mbx2 mb sel 2a l
+     6 ~< mbx2 mb sel 1a l
+     7 ~< mbx4 csh chan cyc a l
+     9 ~< mbx4 wd 3 needed l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< {al1} mbc3 csh wr wr data l
+     14 ~< mbx5 pa 34 a l
+     15 ~< mbx5 pa 35 a l
+     3 ~> {av2} csh wr wd 3 en h
+     2 ~> %NC%
+
+e6:  10101 quad or/nor
+     10 ~< {an1} ccw wd0 req h
+     12 ~< {du2} -csh chan cyc h
+     14 ~> mbx4 wd 0 needed l
+     11 ~> %NC%
+     13 ~< {ap2} ccw wd1 req h
+     15 ~> mbx4 wd 1 needed l
+     9 ~> %NC%
+     7 ~< {cn1} ccw wd2 req h
+     3 ~> mbx4 wd 2 needed l
+     6 ~> %NC%
+     4 ~< {cl2} ccw wd3 req h
+     2 ~> mbx4 wd 3 needed l
+     5 ~> %NC%
+
+e40: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk mbx delayed h
+     2 ~> mbx4 clk a h
+     3 ~> mbx4 clk b h
+     4 ~> mbx4 clk c h
+     11 ~< %NC%
+     10 ~< clk mbx delayed h
+     9 ~< %NC%
+     14 ~> mbx4 clk d h
+     13 ~> mbx4 clk e h
+     12 ~> mbx4 clk f h
+
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk1 mbx h
+     2 ~> clk mbx delayed h
+
+e52: 10101 quad or/nor
+     7 ~< {du2} csh chan cyc l
+     12 ~< %NC%
+     3 ~> {el2} csh chan cyc a h
+     6 ~> mbx4 csh chan cyc a l
+     4 ~< {cp2} csh2 one word rd l
+     2 ~> mbx5 one word rd a h
+     5 ~> mbx5 one word rd a l
+     13 ~< {ck1} pma4 pa 34 h
+     15 ~> mbx5 pa 34 a l
+     9 ~> mbx5 pa 34 a h
+     10 ~< {cj1} pma4 pa 35 h
+     14 ~> mbx5 pa 35 a l
+     11 ~> mbx5 pa 35 a h
+
+e61: 10176 hex dff
+     7 ~< {dl2} csh4 writeback t1 a l
+     9 ~< mbx4 clk b h
+     4 ~> {dv2} csh wr out en l
+     6 ~< mbx4-e44-14
+     3 ~> mbx4 cache to mb t1 l
+     5 ~< mbx4-e50-2
+     2 ~> {dk2} mbx4 cache to mb t2 l
+     12 ~< mbx4-e45-15
+     15 ~> mbx4 cache to mb t3 l
+     10 ~< mbx4 cache to mb t3 l
+     13 ~> {ck2} cache to mb t4 l
+     11 ~< mbx6-e56-15
+     14 ~> mbx6-e61-14
+
+e50: 10121 4-wide or-and
+     4 ~< mbx4 cache to mb t1 l
+     5 ~< -mbx4 cache to mb done l
+     6 ~< -mbx1 reset l
+     7 ~< mbx2 ctomb load l
+     9 ~< -mbx2 chan wr cyc l
+     10 ~< %NC%
+     11 ~< mbx4-e45-14
+     12 ~< {dk2} mbx4 cache to mb t2 l
+     13 ~< %NC%
+     14 ~< %NC%
+     15 ~< {el1} csh4 one word wr t0 l
+     3 ~> %NC%
+     2 ~> mbx4-e50-2
+
+Page: MBX5, PDF182
+
+e60: 10121 4-wide or-and
+     4 ~< mbx3 hi
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< mbx4 e core rd rq a l
+     9 ~< -mbx5 one word rd a l
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< {dk1} csh1 pgrf cyc a l
+     13 ~< {du2} csh chan cyc l
+     14 ~< -mbx2 chan wr cyc l
+     15 ~< %NC%
+     3 ~> mbx5 rd non-val wds h
+     2 ~> mbx5 rd non-val wds l
+
+e37: 10121 4-wide or-and
+     4 ~< -mbx5 pa 34 a l
+     5 ~< -mbx5 pa 35 a l
+     6 ~< mbx5 one word rd a l
+     7 ~< mbx5 wr wds in mb l
+     9 ~< mbx2 mb 0 wr rq l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< -mbx1 csh wd 0 val b l
+     14 ~< mbx4 wd 0 needed l
+     15 ~< mbx5 rd non-val wds l
+     3 ~> {bs1} mbx5 rq 0 in h
+     2 ~> %NC%
+
+e29: 10121 4-wide or-and
+     4 ~< -mbx5 pa 34 a l
+     5 ~< mbx5 pa 35 a l
+     6 ~< mbx5 one word rd a l
+     7 ~< mbx5 wr wds in mb l
+     9 ~< mbx2 mb 1 wr rq l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< -mbx1 csh wd 1 val b l
+     14 ~< mbx4 wd 1 needed l
+     15 ~< mbx5 rd non-val wds l
+     3 ~> {bf2} mbx5 rq 1 in h
+     2 ~> %NC%
+
+e34: 10121 4-wide or-and
+     4 ~< mbx5 pa 34 a l
+     5 ~< -mbx5 pa 35 a l
+     6 ~< mbx5 one word rd a l
+     7 ~< mbx5 wr wds in mb l
+     9 ~< mbx2 mb 2 wr rq l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< -mbx1 csh wd 2 val b l
+     14 ~< mbx4 wd 2 needed l
+     15 ~< mbx5 rd non-val wds l
+     3 ~> {bf1} mbx5 rq 2 in h
+     2 ~> %NC%
+
+e24: 10121 4-wide or-and
+     4 ~< mbx5 pa 34 a l
+     5 ~< mbx5 pa 35 a l
+     6 ~< mbx5 one word rd a l
+     7 ~< mbx5 wr wds in mb l
+     9 ~< mbx2 mb 3 wr rq l
+     10 ~< %NC%
+     11 ~< mbx3 hi
+     12 ~< %NC%
+     13 ~< -mbx1 csh wd 3 val b l
+     14 ~< mbx4 wd 3 needed l
+     15 ~< mbx5 rd non-val wds l
+     3 ~> {be2} mbx5 rq 3 in h
+     2 ~> %NC%
+
+e76: 10105 2-3-2 or/nor
+     12 ~< {es1} con cache look en l
+     13 ~< -mbx1 csh cca cyc a l
+     14 ~> %NC%
+     15 ~> mbx5-e76-15
+     4 ~< {em1} apr2 c dir p err h
+     5 ~< mbx5-e75-15
+     3 ~> %NC%
+     2 ~> mbx5 c dir par err h
+     9 ~< mbx5-e65-9
+     10 ~< mbx3 mb req allow l
+     11 ~< {es2} -mbc3 inh 1st mb req l
+     6 ~> {ce1} mbx5 mb req in h
+     7 ~> %NC%
+
+e68: 10121 4-wide or-and
+     4 ~< mbx3 hi
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< mbx5-e76-15
+     9 ~< {dr1} csh3 adr ready l
+     10 ~< {dp1} csh adr par bad l
+     11 ~< %NC%
+     12 ~< {dl2} csh4 writeback t1 a l
+     13 ~< -mbx1 ready to go a l
+     14 ~< -mbx1 reset l
+     15 ~< mbx5-e71-13
+     3 ~> %NC%
+     2 ~> mbx5-e68-2
+
+e39: 10105 2-3-2 or/nor
+     9 ~< mbx4 cache to mb t4 h
+     10 ~< mbx2 chan wr cyc h
+     11 ~< mbx5-e39-3
+     6 ~> {cs2} mbx5 mem wr rq in l
+     7 ~> {bt2} mbx5 mem wr rq in h
+     4 ~< {cp2} csh2 one word rd l
+     5 ~< {cr1} mcl2 vma pause l
+     3 ~> mbx5-e39-3
+     2 ~> %NC%
+     12 ~< -mbx2 cache to mb cont l
+     13 ~< {du2} csh chan cyc l
+     14 ~> mbx6-e39-14
+     15 ~> %NC%
+
+Page: MBX6, PDF183
+
+e43: 10164 8 mixer
+     6 ~< {de2} mbx1 cache bit h
+     5 ~< {fl2} mbx2 cache to mb 34 h
+     4 ~< {fe1} mbx2 cache to mb 35 h
+     3 ~< mbx4 cache to mb done h
+     11 ~< {dk2} -mbx4 cache to mb t2 h
+     12 ~< -mbx4 cache to mb t3 h
+     13 ~< {cm1} -mbx4 cache to mb t4 a h
+     14 ~< {cm2} mbx1 cca all pages cyc h
+     10 ~< mbx6 diag 04 h
+     9 ~< mbx6 diag 05 h
+     7 ~< mbx6 diag 06 h
+     2 ~< mbx6 diag en l
+     15 ~> {da1} ebus d30 e h
+
+e38: 10164 8 mixer
+     6 ~< {df1} -mbx1 cca req h
+     5 ~< {de1} mbx1 cca sel 1 h
+     4 ~< {dd1} mbx1 cca sel 2 h
+     3 ~< {dj1} -mbx2 chan wr cyc h
+     11 ~< {cv2} mbx1 csh cca inval csh h
+     12 ~< {ct2} mbx1 csh cca val core h
+     13 ~< {cu2} csh wr wd 0 en h
+     14 ~< {cs1} csh wr wd 1 en h
+     10 ~< mbx6 diag 04 h
+     9 ~< mbx6 diag 05 h
+     7 ~< mbx6 diag 06 h
+     2 ~< mbx6 diag en l
+     15 ~> {dc1} ebus d31 e h
+
+e11: 10164 8 mixer
+     6 ~< {ba1} csh wr wd 2 en h
+     5 ~< {av2} csh wr wd 3 en h
+     4 ~< {au2} force no match h
+     3 ~< {at2} mem data to mem h
+     11 ~< {as2} mb data code 1 h
+     12 ~< {as1} mb data code 2 h
+     13 ~< {ar2} mb par h
+     14 ~< {ar1} mb req hold h
+     10 ~< mbx6 diag 04 h
+     9 ~< mbx6 diag 05 h
+     7 ~< mbx6 diag 06 h
+     2 ~< mbx6 diag en l
+     15 ~> {dd2} ebus d32 e h
+
+e35: 10164 8 mixer
+     6 ~< {ce1} mbx5 mb req in h
+     5 ~< {cf2} mb sel 1 h
+     4 ~< {bp2} mb sel 2 h
+     3 ~< {af1} mb sel hold h
+     11 ~< {bl2} mb0 hold in h
+     12 ~< {bm1} mb1 hold in h
+     13 ~< {bk1} mb2 hold in h
+     14 ~< {bj2} mb3 hold in h
+     10 ~< mbx6 diag 04 h
+     9 ~< mbx6 diag 05 h
+     7 ~< mbx6 diag 06 h
+     2 ~< mbx6 diag en l
+     15 ~> {df2} ebus d33 e h
+
+e30: 10164 8 mixer
+     6 ~< {cd1} -mbx5 mem to c en h
+     5 ~< {ce2} -mem diag h
+     4 ~< {cd2} mbx5 mem rd rq in h
+     3 ~< {bv2} mem to c sel 1 h
+     11 ~< {bu2} mem to c sel 2 h
+     12 ~< {bt2} mbx5 mem wr rq in h
+     13 ~< {bs2} mbx3 refill hold h
+     14 ~< {bs1} mbx5 rq 0 in h
+     10 ~< mbx6 diag 04 h
+     9 ~< mbx6 diag 05 h
+     7 ~< mbx6 diag 06 h
+     2 ~< mbx6 diag en l
+     15 ~> {cc1} ebus d34 e h
+
+e16: 10164 8 mixer
+     6 ~< {bf2} mbx5 rq in h
+     5 ~< {bf1} mbx5 rq 2 in h
+     4 ~< {be2} mbx5 rq 3 in h
+     3 ~< {be1} sbus adr 34 h
+     11 ~< {bd2} sbus adr 35 h
+     12 ~< {bd1} -mbx3 sbus diag 3 h
+     13 ~< -mbx3 sbus diag cyc h
+     14 ~< {bc1} -mbx4 writeback t2 h
+     10 ~< mbx6 diag 04 h
+     9 ~< mbx6 diag 05 h
+     7 ~< mbx6 diag 06 h
+     2 ~< mbx6 diag en l
+     15 ~> {ca1} ebus d35 e h
+
+e32: 10164 8 mixer
+     6 ~< {fl2} mbx2 cache to mb 34 h
+     5 ~< %NC%
+     4 ~< mbx5 pa 34 a h
+     3 ~< {ak2} ccl ch mb sel 2 h
+     11 ~< {bh2} mbc4 core adr 34 h
+     12 ~< %NC%
+     13 ~< {ak2} ccl ch mb sel 2 h
+     14 ~< %NC%
+     10 ~< {cf1} mb in sel 4 h
+     9 ~< {ch2} mb in sel 2 h
+     7 ~< {ek2} mb in sel 1 h
+     2 ~< %NC%
+     15 ~> mbx6-e32-15
+
+e46: 10164 8 mixer
+     6 ~< {fe1} mbx2 cache to mb 35 h
+     5 ~< %NC%
+     4 ~< mbx5 pa 35 a h
+     3 ~< {ah2} ccl ch mb sel 1 h
+     11 ~< {bj1} mbc4 core adr 35 h
+     12 ~< %NC%
+     13 ~< {ah2} ccl ch mb sel 1 h
+     14 ~< %NC%
+     10 ~< {cf1} mb in sel 4 h
+     9 ~< {ch2} mb in sel 2 h
+     7 ~< {ek2} mb in sel 1 h
+     2 ~< %NC%
+     15 ~> mbx6-e46-15
+
+e56: 10164 8 mixer
+     6 ~< -mbx4 cache to mb t3 h
+     5 ~< %NC%
+     4 ~< {el1} -csh4 one word wr t0 h
+     3 ~< {ej1} -ccl ch load mb h
+     11 ~< -mbx6 core data valid -1 b h
+     12 ~< %NC%
+     13 ~< {ej1} -ccl ch load mb h
+     14 ~< %NC%
+     10 ~< {cf1} mb in sel 4 h
+     9 ~< {ch2} mb in sel 2 h
+     7 ~< {ek2} mb in sel 1 h
+     2 ~< %NC%
+     15 ~> mbx6-e56-15
+
+// MB IN SEL     MB                  CYCLE
+// 4  2  1     SOURCE                TYPE
+// 0  0  0    cache data         cache writeback, CCA wb
+//                               page refill, chan mem rd
+// 0  1  0       AR              EBOX wr, SBUS diag
+// 0  1  1    chan data buf      channel data to mem
+// 1  0  0     mem data          mem read
+// 1  1  0     CCW mix           channel store status
+
+e36: 10161 decoder
+     14 ~< %NC%
+     9 ~< mbx6-e32-15
+     7 ~< mbx6-e46-15
+     15 ~< mbx6-e39-14
+     2 ~< mbx6-e61-14
+     6 ~> {bl2} -mb0 hold in l
+     5 ~> {bm1} -mb1 hold in l
+     4 ~> {bk1} -mb2 hold in l
+     3 ~> {bj2} -mb3 hold in l
+     13 ~> %NC%
+     12 ~> %NC%
+     11 ~> %NC%
+     10 ~> %NC%
