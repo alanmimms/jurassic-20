@@ -203,6 +203,11 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
     ast.pages.forEach(k => expandMacros(k, nets, macroEnv, cx));
     break;
 
+  case 'Stub':
+    console.log(`                  STUB`);
+    cx.board = ast;
+    break;
+
   case 'Pin':
     cx.pin = ast;
     cx.pin.chip = cx.chip;
@@ -395,7 +400,7 @@ function compile(simOptions) {
       bp.slots[+slot.n] = board;
       board.chips = slot.board.pages.reduce((chips, page) => {
 
-	page.chips.forEach(astChip => {
+	(page.chips || []).forEach(astChip => {
 	  const name = astChip.name.name;
 
 	  if (chips[name]) {

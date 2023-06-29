@@ -12,7 +12,7 @@
 }
 
 
-compileable = (_ EOL )* b:(backplane+ / board) { return b }
+compileable = (_ EOL )* b:(stubBoard / backplane+ / board) { return b }
 
 backplane = 'Backplane' _ ':' _
 	macros:( '{' _ m:macroDef* '}' _ {return m} )?
@@ -29,6 +29,9 @@ slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
 
 macroDef = id:simpleID _ '=' _ value:number _
                 { return AST('MacroDef', {id, value}) }
+
+stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
+	    	{ return AST('Stub', {pages: p}) }
 
 board = pages:page+ { return AST('Board', {pages}) }
 
