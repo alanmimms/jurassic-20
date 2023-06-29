@@ -1,3 +1,1197 @@
 Page: CHX1, PDF47
 // M8515 TBD
-// STUB
+
+e44: 10113 quad 2 xor
+     7 ~< {da1} csh dir 14 0 h
+     6 ~< {df1} pt 14 b h
+     3 ~> chx1-e44-3
+     4 ~< {cm1} csh dir 15 0 h
+     5 ~< {de2} pt 15 b h
+     2 ~> chx1-e44-3
+     13 ~< {cl1} csh dir 16 0 h
+     12 ~< {cn1} pt 16 b h
+     15 ~> chx1-e44-3
+     11 ~< {cp1} csh dir 17 0 h
+     10 ~< {cr1} pt 17 b h
+     14 ~> chx1-e44-3
+     9 ~< {cs1} force valid match 0 h
+
+e51: 10113 quad 2 xor
+     7 ~< {dr1} csh dir 18 0 h
+     6 ~< {dp2} pt 18 b h
+     3 ~> chx1-e51-3
+     4 ~< {dn1} csh dir 19 0 h
+     5 ~< {dp1} pt 19 b h
+     2 ~> chx1-e51-3
+     13 ~< {dj1} csh dir 20 0 h
+     12 ~< {dj2} pt 20 b h
+     15 ~> chx1-e51-3
+     11 ~< {dk1} csh dir 21 0 h
+     10 ~< {dk2} pt 21 b h
+     14 ~> chx1-e51-3
+     9 ~< {cs1} force valid match 0 h
+
+e61: 10113 quad 2 xor
+     7 ~< {eh2} csh dir 22 0 h
+     6 ~< {es1} pt 22 b h
+     3 ~> chx1-e61-3
+     4 ~< {ef2} csh dir 23 0 h
+     5 ~< {er2} pt 23 b h
+     2 ~> chx1-e61-3
+     13 ~< {ed1} csh dir 24 0 h
+     12 ~< {ed2} pt 24 b h
+     15 ~> chx1-e61-3
+     11 ~< {ee1} csh dir 25 0 h
+     10 ~< {em2} pt 25 b h
+     14 ~> chx1-e61-3
+     9 ~< {cs1} force valid match 0 h
+
+e70: 10113 quad 2 xor
+     7 ~< {fd2} csh dir 26 0 h
+     6 ~< {fl1} pt 26 b h
+     3 ~> chx1-e70-3
+     4 ~< -csh 0 any val h
+     5 ~< %NC%
+     2 ~> chx1-e70-3
+     13 ~< {fj2} force no match h
+     12 ~< %NC%
+     15 ~> chx1-e70-3
+     11 ~< %NC%
+     10 ~< %NC%
+     14 ~> %NC%
+     9 ~< {cs1} force valid match 0 h
+
+
+e48: 10113 quad 2 xor
+     7 ~< {cj1} csh dir 14 1 h
+     6 ~< {df1} pt 14 b h
+     3 ~> chx1-e48-3
+     4 ~< {cd1} csh dir 15 1 h
+     5 ~< {de2} pt 15 b h
+     2 ~> chx1-e48-3
+     13 ~< {cc1} csh dir 16 1 h
+     12 ~< {cn1} pt 16 b h
+     15 ~> chx1-e48-3
+     11 ~< {cf1} csh dir 17 1 h
+     10 ~< {cr1} pt 17 b h
+     14 ~> chx1-e48-3
+     9 ~< {fk1} force valid match 1 h
+
+e57: 10113 quad 2 xor
+     7 ~< {dt2} csh dir 18 1 h
+     6 ~< {dp2} pt 18 b h
+     3 ~> chx1-e57-3
+     4 ~< {ds1} csh dir 19 1 h
+     5 ~< {dp1} pt 19 b h
+     2 ~> chx1-e57-3
+     13 ~< {dm1} csh dir 20 1 h
+     12 ~< {dj2} pt 20 b h
+     15 ~> chx1-e57-3
+     11 ~< {dm2} csh dir 21 1 h
+     10 ~< {dk2} pt 21 b h
+     14 ~> chx1-e57-3
+     9 ~< {fk1} force valid match 1 h
+
+e66: 10113 quad 2 xor
+     7 ~< {ep2} csh dir 22 1 h
+     6 ~< {es1} pt 22 b h
+     3 ~> chx1-e66-3
+     4 ~< {ep1} csh dir 23 1 h
+     5 ~< {er2} pt 23 b h
+     2 ~> chx1-e66-3
+     13 ~< {ek2} csh dir 24 1 h
+     12 ~< {ed2} pt 24 b h
+     15 ~> chx1-e66-3
+     11 ~< {el1} csh dir 25 1 h
+     10 ~< {em2} pt 25 b h
+     14 ~> chx1-e66-3
+     9 ~< {fk1} force valid match 1 h
+
+e76: 10113 quad 2 xor
+     7 ~< {fl2} csh dir 26 1 h
+     6 ~< {fl1} pt 26 b h
+     3 ~> chx1-e76-3
+     4 ~< -csh 1 any val h
+     5 ~< %NC%
+     2 ~> chx1-e76-3
+     13 ~< {fj2} force no match h
+     12 ~< %NC%
+     15 ~> chx1-e76-3
+     11 ~< %NC%
+     10 ~< %NC%
+     14 ~> %NC%
+     9 ~< {fk1} force valid match 1 h
+
+
+e52: 10113 quad 2 xor
+     7 ~< {dl2} csh dir 14 2 h
+     6 ~< {df1} pt 14 b h
+     3 ~> chx1-e52-3
+     4 ~< {dl1} csh dir 15 2 h
+     5 ~< {de2} pt 15 b h
+     2 ~> chx1-e52-3
+     13 ~< {ca1} csh dir 16 2 h
+     12 ~< {cn1} pt 16 b h
+     15 ~> chx1-e52-3
+     11 ~< {ce1} csh dir 17 2 h
+     10 ~< {cr1} pt 17 b h
+     14 ~> chx1-e52-3
+     9 ~< {dh2} force valid match 2 h
+
+e62: 10113 quad 2 xor
+     7 ~< {ef1} csh dir 18 2 h
+     6 ~< {dp2} pt 18 b h
+     3 ~> chx1-e62-3
+     4 ~< {ee2} csh dir 19 2 h
+     5 ~< {dp1} pt 19 b h
+     2 ~> chx1-e62-3
+     13 ~< {du2} csh dir 20 2 h
+     12 ~< {dj2} pt 20 b h
+     15 ~> chx1-e62-3
+     11 ~< {dv2} csh dir 21 2 h
+     10 ~< {dk2} pt 21 b h
+     14 ~> chx1-e62-3
+     9 ~< {dh2} force valid match 2 h
+
+e71: 10113 quad 2 xor
+     7 ~< {fd1} csh dir 22 2 h
+     6 ~< {es1} pt 22 b h
+     3 ~> chx1-e71-3
+     4 ~< {fe1} csh dir 23 2 h
+     5 ~< {er2} pt 23 b h
+     2 ~> chx1-e71-3
+     13 ~< {eu2} csh dir 24 2 h
+     12 ~< {ed2} pt 24 b h
+     15 ~> chx1-e71-3
+     11 ~< {ev2} csh dir 25 2 h
+     10 ~< {em2} pt 25 b h
+     14 ~> chx1-e71-3
+     9 ~< {dh2} force valid match 2 h
+
+e81: 10113 quad 2 xor
+     7 ~< {fl2} csh dir 26 2 h
+     6 ~< {fl1} pt 26 b h
+     3 ~> chx1-e81-3
+     4 ~< -csh 2 any val h
+     5 ~< %NC%
+     2 ~> chx1-e81-3
+     13 ~< {fj2} force no match h
+     12 ~< %NC%
+     15 ~> chx1-e81-3
+     11 ~< %NC%
+     10 ~< %NC%
+     14 ~> %NC%
+     9 ~< {dh2} force valid match 2 h
+
+
+e47: 10113 quad 2 xor
+     7 ~< {df2} csh dir 14 3 h
+     6 ~< {df1} pt 14 b h
+     3 ~> chx1-e47-3
+     4 ~< {de1} csh dir 15 3 h
+     5 ~< {de2} pt 15 b h
+     2 ~> chx1-e47-3
+     13 ~< {dc1} csh dir 16 3 h
+     12 ~< {cn1} pt 16 b h
+     15 ~> chx1-e47-3
+     11 ~< {ds2} csh dir 17 3 h
+     10 ~< {dd2} pt 17 b h
+     14 ~> chx1-e47-3
+     9 ~< {dd1} force valid match 3 h
+
+e56: 10113 quad 2 xor
+     7 ~< {ea1} csh dir 18 3 h
+     6 ~< {dp2} pt 18 b h
+     3 ~> chx1-e56-3
+     4 ~< {ec1} csh dir 19 3 h
+     5 ~< {dp1} pt 19 b h
+     2 ~> chx1-e56-3
+     13 ~< {dr2} csh dir 20 3 h
+     12 ~< {dj2} pt 20 b h
+     15 ~> chx1-e56-3
+     11 ~< {dr2} csh dir 21 3 h
+     10 ~< {dk2} pt 21 b h
+     14 ~> chx1-e56-3
+     9 ~< {dd1} force valid match 3 h
+
+e65: 10113 quad 2 xor
+     7 ~< {es2} csh dir 22 3 h
+     6 ~< {es1} pt 22 b h
+     3 ~> chx1-e65-3
+     4 ~< {er1} csh dir 23 3 h
+     5 ~< {er2} pt 23 b h
+     2 ~> chx1-e65-3
+     13 ~< {dl1} csh dir 24 3 h
+     12 ~< {ed2} pt 24 b h
+     15 ~> chx1-e65-3
+     11 ~< {em1} csh dir 25 3 h
+     10 ~< {em2} pt 25 b h
+     14 ~> chx1-e65-3
+     9 ~< {dd1} force valid match 3 h
+
+e75: 10113 quad 2 xor
+     7 ~< {fk1} csh dir 26 3 h
+     6 ~< {fl1} pt 26 b h
+     3 ~> chx1-e75-3
+     4 ~< -csh 3 any val h
+     5 ~< %NC%
+     2 ~> chx1-e75-3
+     13 ~< {fj2} force no match h
+     12 ~< %NC%
+     15 ~> chx1-e75-3
+     11 ~< %NC%
+     10 ~< %NC%
+     14 ~> %NC%
+     9 ~< {dd1} force valid match 3 h
+
+e53: 10109 4/5 or/nor
+     4 ~< chx1-e44-3
+     5 ~< chx1-e51-3
+     6 ~< chx1-e61-3
+     7 ~< chx1-e70-3
+     3 ~> %NC%
+     2 ~> {ap2} csh 0 00-17 sel a l
+     9 ~< %NC%
+     13 ~< chx1-e44-3
+     12 ~< chx1-e51-3
+     11 ~< chx1-e61-3
+     10 ~< chx1-e70-3
+     14 ~> %NC%
+     15 ~> {cd2} csh 0 18-35 sel a l
+
+e58: 10109 4/5 or/nor
+     4 ~< chx1-e44-3
+     5 ~< chx1-e51-3
+     6 ~< chx1-e61-3
+     7 ~< chx1-e70-3
+     3 ~> {cp2} csh 0 valid match h
+     2 ~> {cm2} csh 0 valid match l
+     9 ~< %NC%
+     13 ~< chx1-e48-3
+     12 ~< chx1-e57-3
+     11 ~< chx1-e66-3
+     10 ~< chx1-e76-3
+     14 ~> {cj2} csh 1 valid match h
+     15 ~> {bs2} csh 1 valid match l
+
+e63: 10109 4/5 or/nor
+     4 ~< chx1-e48-3
+     5 ~< chx1-e57-3
+     6 ~< chx1-e66-3
+     7 ~< chx1-e76-3
+     3 ~> csh 1,3 valid match h
+     2 ~> {cv2} csh 1 00-17 sel a l
+     9 ~< %NC%
+     13 ~< chx1-e48-3
+     12 ~< chx1-e57-3
+     11 ~< chx1-e66-3
+     10 ~< chx1-e76-3
+     14 ~> %NC%
+     15 ~> {ct2} csh 1 18-35 sel a l
+
+e67: 10109 4/5 or/nor
+     4 ~< chx1-e52-3
+     5 ~< chx1-e62-3
+     6 ~< chx1-e71-3
+     7 ~< chx1-e81-3
+     3 ~> csh 2,3 valid match h
+     2 ~> {en1} csh 2 00-17 sel a l
+     9 ~< %NC%
+     13 ~< chx1-e52-3
+     12 ~< chx1-e62-3
+     11 ~< chx1-e71-3
+     10 ~< chx1-e81-3
+     14 ~> %NC%
+     15 ~> {ek1} csh 2 18-35 sel a l
+
+e72: 10109 4/5 or/nor
+     4 ~< chx1-e47-3
+     5 ~< chx1-e56-3
+     6 ~< chx1-e65-3
+     7 ~< chx1-e75-3
+     3 ~> {fe2} csh 2 valid match h
+     2 ~> {ff2} csh 2 valid match l
+     9 ~< %NC%
+     13 ~< chx1-e52-3
+     12 ~< chx1-e62-3
+     11 ~< chx1-e71-3
+     10 ~< chx1-e81-3
+     14 ~> {et2} csh 3 valid match h
+     15 ~> {fa1} csh 3 valid match l
+
+e77: 10109 4/5 or/nor
+     4 ~< chx1-e47-3
+     5 ~< chx1-e56-3
+     6 ~< chx1-e65-3
+     7 ~< chx1-e75-3
+     3 ~> csh 2,3 valid match h
+     2 ~> {fm1} csh 3 00-17 sel a l
+     9 ~< %NC%
+     13 ~< chx1-e52-3
+     12 ~< chx1-e62-3
+     11 ~< chx1-e71-3
+     10 ~< chx1-e81-3
+     14 ~> csh 1,3 valid match h
+     15 ~> {fj1} csh 3 18-35 sel a l
+
+e29: 10174 2x4 mixer
+     3 ~< csh 0 wd 0 val h
+     5 ~< csh 0 wd 1 val h
+     4 ~< csh 0 wd 2 val h
+     6 ~< csh 0 wd 3 val h
+     13 ~< csh 1 wd 0 val h
+     11 ~< csh 1 wd 1 val h
+     12 ~< csh 1 wd 2 val h
+     10 ~< csh 1 wd 3 val h
+     9 ~< {as2} pma 34 h
+     7 ~< {be2} pma 35 h
+     14 ~< %NC%
+     2 ~> {au2} csh 0 wd val h
+     15 ~> {ar2} csh 1 wd val h
+
+e40: 10174 2x4 mixer
+     3 ~< csh 2 wd 0 val h
+     5 ~< csh 2 wd 1 val h
+     4 ~< csh 2 wd 2 val h
+     6 ~< csh 2 wd 3 val h
+     13 ~< csh 3 wd 0 val h
+     11 ~< csh 3 wd 1 val h
+     12 ~< csh 3 wd 2 val h
+     10 ~< csh 3 wd 3 val h
+     9 ~< {as2} pma 34 h
+     7 ~< {be2} pma 35 h
+     14 ~< %NC%
+     2 ~> {bj2} csh 2 wd val h
+     15 ~> {bh2} csh 3 wd val h
+
+Page: CHX2, PDF48
+
+e54: 10174 2x4 mixer
+     3 ~< {da1} csh dir 14 0 h
+     5 ~< {cj1} csh dir 14 1 h
+     4 ~< {dl2} csh dir 14 2 h
+     6 ~< {df2} csh dir 14 3 h
+     13 ~< {cm1} csh dir 15 0 h
+     11 ~< {cd1} csh dir 15 1 h
+     12 ~< {dl1} csh dir 15 2 h
+     10 ~< {de1} csh dir 15 3 h
+     9 ~< {bu2} cam sel 2 h
+     7 ~< {cl2} cam sel 1 h
+     14 ~< %NC%
+     2 ~> {bv2} cam 14 h
+     15 ~> {bt2} cam 15 h
+
+e68: 10174 2x4 mixer
+     3 ~< {dj1} csh dir 20 0 h
+     5 ~< {dm1} csh dir 20 1 h
+     4 ~< {du2} csh dir 20 2 h
+     6 ~< {dr2} csh dir 20 3 h
+     13 ~< {dk1} csh dir 21 0 h
+     11 ~< {dm2} csh dir 21 1 h
+     12 ~< {dv2} csh dir 21 2 h
+     10 ~< {ds2} csh dir 21 3 h
+     9 ~< {bu2} cam sel 2 h
+     7 ~< {cl2} cam sel 1 h
+     14 ~< %NC%
+     2 ~> {ej1} cam 20 h
+     15 ~> {ej2} cam 21 h
+
+e82: 10174 2x4 mixer
+     3 ~< {fd2} csh dir 26 0 h
+     5 ~< {fl2} csh dir 26 1 h
+     4 ~< {fu2} csh dir 26 2 h
+     6 ~< {fk1} csh dir 26 3 h
+     13 ~< {fr2} csh dir par 0 h
+     11 ~< {fp1} csh dir par 1 h
+     12 ~< {fn1} csh dir par 2 h
+     10 ~< {fp2} csh dir par 3 h
+     9 ~< {bu2} cam sel 2 h
+     7 ~< {cl2} cam sel 1 h
+     14 ~< %NC%
+     2 ~> {fv2} cam 26 h
+     15 ~> {fs2} cam par h
+
+e59: 10174 2x4 mixer
+     3 ~< {cl1} csh dir 16 0 h
+     5 ~< {cc1} csh dir 16 1 h
+     4 ~< {ca1} csh dir 16 2 h
+     6 ~< {dc1} csh dir 16 3 h
+     13 ~< {cp1} csh dir 17 0 h
+     11 ~< {cf1} csh dir 17 1 h
+     12 ~< {ce1} csh dir 17 2 h
+     10 ~< {dd2} csh dir 17 3 h
+     9 ~< {bu2} cam sel 2 h
+     7 ~< {cl2} cam sel 1 h
+     14 ~< %NC%
+     2 ~> {ck2} cam 16 h
+     15 ~> {ce2} cam 17 h
+
+e73: 10174 2x4 mixer
+     3 ~< {eh2} csh dir 22 0 h
+     5 ~< {ep2} csh dir 22 1 h
+     4 ~< {ed1} csh dir 22 2 h
+     6 ~< {es2} csh dir 22 3 h
+     13 ~< {ef2} csh dir 23 0 h
+     11 ~< {ep1} csh dir 23 1 h
+     12 ~< {fe1} csh dir 23 2 h
+     10 ~< {er1} csh dir 23 3 h
+     9 ~< {bu2} cam sel 2 h
+     7 ~< {cl2} cam sel 1 h
+     14 ~< %NC%
+     2 ~> {ff1} cam 22 h
+     15 ~> {fc1} cam 23 h
+
+e64: 10174 2x4 mixer
+     3 ~< {dr1} csh dir 18 0 h
+     5 ~< {dt2} csh dir 18 1 h
+     4 ~< {ef1} csh dir 18 2 h
+     6 ~< {ea1} csh dir 18 3 h
+     13 ~< {dn1} csh dir 19 0 h
+     11 ~< {ds1} csh dir 19 1 h
+     12 ~< {ee2} csh dir 19 2 h
+     10 ~< {ec1} csh dir 19 3 h
+     9 ~< {bu2} cam sel 2 h
+     7 ~< {cl2} cam sel 1 h
+     14 ~< %NC%
+     2 ~> {cu2} cam 18 h
+     15 ~> {cs2} cam 19 h
+
+e78: 10174 2x4 mixer
+     3 ~< {ed1} csh dir 24 0 h
+     5 ~< {ek2} csh dir 24 1 h
+     4 ~< {eu2} csh dir 24 2 h
+     6 ~< {el2} csh dir 24 3 h
+     13 ~< {ee1} csh dir 25 0 h
+     11 ~< {el1} csh dir 25 1 h
+     12 ~< {ev2} csh dir 25 2 h
+     10 ~< {em1} csh dir 25 3 h
+     9 ~< {bu2} cam sel 2 h
+     7 ~< {cl2} cam sel 1 h
+     14 ~< %NC%
+     2 ~> {fm2} cam 24 h
+     15 ~> {fk2} cam 25 h
+
+e6:  10101 quad or/nor
+     4 ~< {al1} csh 0 wr en l
+     12 ~< {ak1} csh val wr pulse l
+     2 ~> %NC%
+     5 ~> csh 0 val wr l
+     7 ~< {am1} csh 1 wr en l
+     3 ~> %NC%
+     6 ~> csh 1 val wr l
+     13 ~< {aj1} csh 2 wr en l
+     15 ~> %NC%
+     9 ~> csh 2 val wr l
+     10 ~< {ak2} csh 3 wr en l
+     14 ~> %NC%
+     11 ~> csh 3 val wr l
+
+e1: 10101 quad or/nor
+    4 ~< {ae1} csh wr wd 0 en h
+    12 ~< {ac1} csh val sel all h
+    2 ~> csh val wd 0 sel l
+    5 ~> %NC%
+    7 ~< {af1} csh wr wd 1 en h
+    3 ~> csh val wd 1 sel l
+    6 ~> %NC%
+    13 ~< {aa1} csh wr wd 2 en h
+    15 ~> csh val wd 2 sel l
+    9 ~> %NC%
+    10 ~< {ad1} csh wr wd 3 en h
+    14 ~> csh val wd 3 sel l
+    11 ~> %NC%
+
+e34: 10109 4/5 or/nor
+     4 ~< csh 0 wd 0 val h
+     5 ~< csh 0 wd 1 val h
+     6 ~< csh 0 wd 2 val h
+     7 ~< csh 0 wd 3 val h
+     3 ~> csh 0 any val l
+     2 ~> %NC%
+     9 ~< %NC%
+     10 ~< csh 1 wd 0 val h
+     11 ~< csh 1 wd 1 val h
+     12 ~< csh 1 wd 2 val h
+     13 ~< csh 1 wd 3 val h
+     14 ~> csh 1 any val l
+     15 ~> %NC%
+
+e43: 10109 4/5 or/nor
+     4 ~< csh 2 wd 0 val h
+     5 ~< csh 2 wd 1 val h
+     6 ~< csh 2 wd 2 val h
+     7 ~< csh 2 wd 3 val h
+     3 ~> csh 2 any val l
+     2 ~> %NC%
+     9 ~< %NC%
+     10 ~< csh 3 wd 0 val h
+     11 ~< csh 3 wd 1 val h
+     12 ~< csh 3 wd 2 val h
+     13 ~< csh 3 wd 3 val h
+     14 ~> csh 3 any val l
+     15 ~> %NC%
+
+e2:  10147 128x1 RAM
+     4 ~< adr 27 a h
+     3 ~< adr 28 a h
+     2 ~< adr 29 a h
+     5 ~< adr 30 a h
+     6 ~< adr 31 a h
+     7 ~< adr 32 a h
+     10 ~< adr 33 a h
+     13 ~< %NC%
+     14 ~< csh val wd 0 sel l
+     12 ~< csh 0 val wr l
+     11 ~< csh val wr data a h
+     15 ~> csh 0 wd 0 val h
+
+e7:  10147 128x1 RAM
+     4 ~< adr 27 a h
+     3 ~< adr 28 a h
+     2 ~< adr 29 a h
+     5 ~< adr 30 a h
+     6 ~< adr 31 a h
+     7 ~< adr 32 a h
+     10 ~< adr 33 a h
+     13 ~< %NC%
+     14 ~< csh val wd 1 sel l
+     12 ~< csh 0 val wr l
+     11 ~< csh val wr data a h
+     15 ~> csh 0 wd 1 val h
+
+e12: 10147 128x1 RAM
+     4 ~< adr 27 a h
+     3 ~< adr 28 a h
+     2 ~< adr 29 a h
+     5 ~< adr 30 a h
+     6 ~< adr 31 a h
+     7 ~< adr 32 a h
+     10 ~< adr 33 a h
+     13 ~< %NC%
+     14 ~< csh val wd 2 sel l
+     12 ~< csh 0 val wr l
+     11 ~< csh val wr data a h
+     15 ~> csh 0 wd 2 val h
+
+e17: 10147 128x1 RAM
+     4 ~< adr 27 a h
+     3 ~< adr 28 a h
+     2 ~< adr 29 a h
+     5 ~< adr 30 a h
+     6 ~< adr 31 a h
+     7 ~< adr 32 a h
+     10 ~< adr 33 a h
+     13 ~< %NC%
+     14 ~< csh val wd 3 sel l
+     12 ~< csh 0 val wr l
+     11 ~< csh val wr data a h
+     15 ~> csh 0 wd 3 val h
+
+e22: 10147 128x1 RAM
+     4 ~< adr 27 a h
+     3 ~< adr 28 a h
+     2 ~< adr 29 a h
+     5 ~< adr 30 a h
+     6 ~< adr 31 a h
+     7 ~< adr 32 a h
+     10 ~< adr 33 a h
+     13 ~< %NC%
+     14 ~< csh val wd 0 sel l
+     12 ~< csh 2 val wr l
+     11 ~< csh val wr data a h
+     15 ~> csh 2 wd 0 val h
+
+e27: 10147 128x1 RAM
+     4 ~< adr 27 a h
+     3 ~< adr 28 a h
+     2 ~< adr 29 a h
+     5 ~< adr 30 a h
+     6 ~< adr 31 a h
+     7 ~< adr 32 a h
+     10 ~< adr 33 a h
+     13 ~< %NC%
+     14 ~< csh val wd 1 sel l
+     12 ~< csh 2 val wr l
+     11 ~< csh val wr data a h
+     15 ~> csh 2 wd 1 val h
+
+e32: 10147 128x1 RAM
+     4 ~< adr 27 a h
+     3 ~< adr 28 a h
+     2 ~< adr 29 a h
+     5 ~< adr 30 a h
+     6 ~< adr 31 a h
+     7 ~< adr 32 a h
+     10 ~< adr 33 a h
+     13 ~< %NC%
+     14 ~< csh val wd 2 sel l
+     12 ~< csh 2 val wr l
+     11 ~< csh val wr data a h
+     15 ~> csh 2 wd 2 val h
+
+e37: 10147 128x1 RAM
+     4 ~< adr 27 a h
+     3 ~< adr 28 a h
+     2 ~< adr 29 a h
+     5 ~< adr 30 a h
+     6 ~< adr 31 a h
+     7 ~< adr 32 a h
+     10 ~< adr 33 a h
+     13 ~< %NC%
+     14 ~< csh val wd 3 sel l
+     12 ~< csh 2 val wr l
+     11 ~< csh val wr data a h
+     15 ~> csh 2 wd 3 val h
+
+e3:  10147 128x1 RAM
+     4 ~< adr 27 b h
+     3 ~< adr 28 b h
+     2 ~< adr 29 b h
+     5 ~< adr 30 b h
+     6 ~< adr 31 b h
+     7 ~< adr 32 b h
+     10 ~< adr 33 b h
+     13 ~< %NC%
+     14 ~< csh val wd 0 sel l
+     12 ~< csh 1 val wr l
+     11 ~< csh val wr data b h
+     15 ~> csh 1 wd 0 val h
+
+e8:  10147 128x1 RAM
+     4 ~< adr 27 b h
+     3 ~< adr 28 b h
+     2 ~< adr 29 b h
+     5 ~< adr 30 b h
+     6 ~< adr 31 b h
+     7 ~< adr 32 b h
+     10 ~< adr 33 b h
+     13 ~< %NC%
+     14 ~< csh val wd 1 sel l
+     12 ~< csh 1 val wr l
+     11 ~< csh val wr data b h
+     15 ~> csh 1 wd 1 val h
+
+e13: 10147 128x1 RAM
+     4 ~< adr 27 b h
+     3 ~< adr 28 b h
+     2 ~< adr 29 b h
+     5 ~< adr 30 b h
+     6 ~< adr 31 b h
+     7 ~< adr 32 b h
+     10 ~< adr 33 b h
+     13 ~< %NC%
+     14 ~< csh val wd 2 sel l
+     12 ~< csh 1 val wr l
+     11 ~< csh val wr data b h
+     15 ~> csh 1 wd 2 val h
+
+e18:  10147 128x1 RAM
+     4 ~< adr 27 b h
+     3 ~< adr 28 b h
+     2 ~< adr 29 b h
+     5 ~< adr 30 b h
+     6 ~< adr 31 b h
+     7 ~< adr 32 b h
+     10 ~< adr 33 b h
+     13 ~< %NC%
+     14 ~< csh val wd 3 sel l
+     12 ~< csh 1 val wr l
+     11 ~< csh val wr data b h
+     15 ~> csh 1 wd 3 val h
+
+e23: 10147 128x1 RAM
+     4 ~< adr 27 b h
+     3 ~< adr 28 b h
+     2 ~< adr 29 b h
+     5 ~< adr 30 b h
+     6 ~< adr 31 b h
+     7 ~< adr 32 b h
+     10 ~< adr 33 b h
+     13 ~< %NC%
+     14 ~< csh val wd 0 sel l
+     12 ~< csh 3 val wr l
+     11 ~< csh val wr data b h
+     15 ~> csh 3 wd 0 val h
+
+e28: 10147 128x1 RAM
+     4 ~< adr 27 b h
+     3 ~< adr 28 b h
+     2 ~< adr 29 b h
+     5 ~< adr 30 b h
+     6 ~< adr 31 b h
+     7 ~< adr 32 b h
+     10 ~< adr 33 b h
+     13 ~< %NC%
+     14 ~< csh val wd 1 sel l
+     12 ~< csh 3 val wr l
+     11 ~< csh val wr data b h
+     15 ~> csh 3 wd 1 val h
+
+e33: 10147 128x1 RAM
+     4 ~< adr 27 b h
+     3 ~< adr 28 b h
+     2 ~< adr 29 b h
+     5 ~< adr 30 b h
+     6 ~< adr 31 b h
+     7 ~< adr 32 b h
+     10 ~< adr 33 b h
+     13 ~< %NC%
+     14 ~< csh val wd 2 sel l
+     12 ~< csh 3 val wr l
+     11 ~< csh val wr data b h
+     15 ~> csh 3 wd 2 val h
+
+e38: 10147 128x1 RAM
+     4 ~< adr 27 b h
+     3 ~< adr 28 b h
+     2 ~< adr 29 b h
+     5 ~< adr 30 b h
+     6 ~< adr 31 b h
+     7 ~< adr 32 b h
+     10 ~< adr 33 b h
+     13 ~< %NC%
+     14 ~< csh val wd 1 sel l
+     12 ~< csh 3 val wr l
+     11 ~< csh val wr data b h
+     15 ~> csh 3 wd 1 val h
+
+Page: CHX3, PDF49
+
+e49: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk chx delayed h
+     2 ~> clk a h
+     3 ~> %NC%
+     4 ~> %NC%
+     11 ~< %NC%
+     10 ~< clk chx delayed h
+     9 ~< %NC%
+     14 ~> %NC%
+     13 ~> %NC%
+     12 ~> %NC%
+
+dl1: delay-line 24ns
+     1 ~< chx2-e46-2
+     2 ~> chx2-dl1-2
+
+dl2: delay-line (PCB wired)
+     1 ~< {cr2} clk chx h
+     2 ~> clk chx delayed h
+
+e46: 10131 dual ms dff
+     7 ~< {br2} csh use wr en h
+     6 ~< %NC%
+     9 ~< clk a h
+     4 ~< chx2-dl1-2
+     2 ~> chx2-e46-2
+     3 ~> wr use bits a l
+     10 ~< {br2} csh use wr en h
+     9 ~< clk a h
+     11 ~< %NC%
+     13 ~< chx2-dl1-2
+     15 ~> chx2-e46-2
+     3 ~> wr use bits b l
+
+e45: 10121 4-wide or-and
+     4 ~< chx2-e80-2
+     5 ~< chx2-e80-5
+     6 ~< %NC%
+     7 ~< {bs1} csh lru 2 h
+     9 ~< {bp2} -csh sel lru h
+     10 ~< chx2-e80-5
+     11 ~< {av2} csh sel lru h
+     12 ~< csh 2,3 valid match h
+     13 ~< adr 27 b h
+     14 ~< chx2-e80-2
+     15 ~< %NC%
+     3 ~> %NC%
+     2 ~> csh use in 0 h
+
+e42: 10121 4-wide or-and
+     4 ~< chx2-e80-2
+     5 ~< chx2-e80-5
+     6 ~< %NC%
+     7 ~< {br1} csh lru 1 h
+     9 ~< {bp2} -csh sel lru h
+     10 ~< chx2-e80-5
+     11 ~< {av2} csh sel lru h
+     12 ~< csh 1,3 valid match h
+     13 ~< adr 27 b h
+     14 ~< chx2-e80-2
+     15 ~< %NC%
+     3 ~> %NC%
+     2 ~> csh use in 1 h
+
+e80: 10101 quad or/nor
+     4 ~< {aj2} apr en refill ram wr h
+     12 ~< %NC%
+     2 ~> chx2-e80-2
+     5 ~> chx2-e80-5
+
+e11: 10110 or buffer
+     5 ~< {ar1} vma 27 g h
+     6 ~< {as1} mbx csh adr 27 h
+     7 ~< %NC%
+     2 ~> adr 27 a h
+     3 ~> adr 27 b h
+     4 ~> adr 27 c h
+     9 ~< {ap1} vma 28 g h
+     10 ~< {an1} mbx csh adr 28 h
+     11 ~< %NC%
+     12 ~> adr 28 a h
+     13 ~> adr 28 b h
+     14 ~> adr 28 c h
+
+e16: 10110 or buffer
+     5 ~< {bd1} vma 29 g h
+     6 ~< {be1} mbx csh adr 29 h
+     7 ~< %NC%
+     2 ~> adr 29 a h
+     3 ~> adr 29 b h
+     4 ~> adr 29 c h
+     9 ~< {bc1} vma 30 g h
+     10 ~< {ba1} mbx csh adr 30 h
+     11 ~< %NC%
+     12 ~> adr 30 a h
+     13 ~> adr 30 b h
+     14 ~> adr 30 c h
+
+e31: 10110 or buffer
+     5 ~< {bm2} vma 31 g h
+     6 ~< {bp1} mbx csh adr 31 h
+     7 ~< %NC%
+     2 ~> adr 31 a h
+     3 ~> adr 31 b h
+     4 ~> adr 31 c h
+     9 ~< {bm1} vma 32 g h
+     10 ~< {bl1} mbx csh adr 32 h
+     11 ~< %NC%
+     12 ~> adr 32 a h
+     13 ~> adr 32 c h
+     14 ~> adr 32 c h
+
+e26: 10110 or buffer
+     9 ~< {bj1} vma 33 g h
+     10 ~< {bf1} mbx csh adr 33 h
+     11 ~< %NC%
+     12 ~> adr 33 a h
+     13 ~> adr 33 b h
+     14 ~> adr 33 c h
+     5 ~< %NC%
+     6 ~< {bk1} csh val wr data h
+     7 ~< %NC%
+     2 ~> %NC%
+     3 ~> csh val wr data a h
+     4 ~> csh val wr data b h
+
+e5:  10173 4x2 mixer latch
+     5 ~< %NC%
+     6 ~< {af2} vma 18 a h
+     3 ~< %NC%
+     4 ~< {ae2} vma 19 a h
+     12 ~< %NC%
+     13 ~< {ad2} vma 20 a h
+     10 ~< chx3-e4-15
+     11 ~< adr 29 b h
+     9 ~< {aj2} apr en refill ram wr h
+     7 ~< {al2} csh use hold h
+     1 ~> use tbl in 2 h
+     2 ~> use tbl in 3 h
+     15 ~> use tbl in 4 h
+     14 ~> csh use adr 2 h
+
+e10: 10173 4x2 mixer latch
+     5 ~< chx3-e9-15
+     6 ~< adr 30 b h
+     3 ~< chx3-e14-15
+     4 ~< adr 31 b h
+     12 ~< chx3-e19-15
+     13 ~< adr 32 b h
+     10 ~< chx3-e24-15
+     11 ~< adr 33 b h
+     9 ~< {aj2} apr en refill ram wr h
+     7 ~< {al2} csh use hold h
+     1 ~> csh use adr 2 h
+     2 ~> csh use adr 3 h
+     15 ~> {bs1} csh lru 2 h
+     14 ~> {br1} csh lru 1 h
+
+e15: 10147 128x1 RAM
+     4 ~< csh use in 0 h
+     3 ~< csh use in 1 h
+     2 ~< csh use adr 2 h
+     5 ~< csh use adr 3 h
+     6 ~< csh use adr 4 h
+     7 ~< {bs1} csh lru 2 h
+     10 ~< {br1} csh lru 1 h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< {am2} csh refill ram wr l
+     11 ~< use tbl in 2 h
+     15 ~> csh use in 2 h
+
+e20: 10147 128x1 RAM
+     4 ~< csh use in 0 h
+     3 ~< csh use in 1 h
+     2 ~< csh use adr 2 h
+     5 ~< csh use adr 3 h
+     6 ~< csh use adr 4 h
+     7 ~< {bs1} csh lru 2 h
+     10 ~< {br1} csh lru 1 h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< {am2} csh refill ram wr l
+     11 ~< use tbl in 3 h
+     15 ~> csh use in 3 h
+
+e25: 10147 128x1 RAM
+     4 ~< csh use in 0 h
+     3 ~< csh use in 1 h
+     2 ~< csh use adr 2 h
+     5 ~< csh use adr 3 h
+     6 ~< csh use adr 4 h
+     7 ~< {bs1} csh lru 2 h
+     10 ~< {br1} csh lru 1 h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< {am2} csh refill ram wr l
+     11 ~< use tbl in 4 h
+     15 ~> csh use in 4 h
+
+e4:  10147 128x1 RAM
+     4 ~< adr 27 c h
+     3 ~< adr 28 c h
+     2 ~< adr 29 c h
+     5 ~< adr 30 c h
+     6 ~< adr 31 c h
+     7 ~< adr 32 c h
+     10 ~< adr 33 c h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< wr use bits a l
+     11 ~< csh use in 0 h
+     15 ~> chx3-e4-15
+
+e9:  10147 128x1 RAM
+     4 ~< adr 27 c h
+     3 ~< adr 28 c h
+     2 ~< adr 29 c h
+     5 ~< adr 30 c h
+     6 ~< adr 31 c h
+     7 ~< adr 32 c h
+     10 ~< adr 33 c h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< wr use bits a l
+     11 ~< csh use in 1 h
+     15 ~> chx3-e9-15
+
+e14: 10147 128x1 RAM
+     4 ~< adr 27 c h
+     3 ~< adr 28 c h
+     2 ~< adr 29 c h
+     5 ~< adr 30 c h
+     6 ~< adr 31 c h
+     7 ~< adr 32 c h
+     10 ~< adr 33 c h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< wr use bits a l
+     11 ~< csh use in 2 h
+     15 ~> chx3-e14-15
+
+e19: 10147 128x1 RAM
+     4 ~< adr 27 c h
+     3 ~< adr 28 c h
+     2 ~< adr 29 c h
+     5 ~< adr 30 c h
+     6 ~< adr 31 c h
+     7 ~< adr 32 c h
+     10 ~< adr 33 c h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< wr use bits a l
+     11 ~< csh use in 3 h
+     15 ~> chx3-e19-15
+
+e24: 10147 128x1 RAM
+     4 ~< adr 27 c h
+     3 ~< adr 28 c h
+     2 ~< adr 29 c h
+     5 ~< adr 30 c h
+     6 ~< adr 31 c h
+     7 ~< adr 32 c h
+     10 ~< adr 33 c h
+     13 ~< %NC%
+     14 ~< %NC%
+     12 ~< wr use bits a l
+     11 ~< csh use in 4 h
+     15 ~> chx3-e24-15
+
+Page: CHX4, PDF50
+
+e50: 10164 8 mixer
+     6 ~< -csh 0 any val h
+     5 ~< -csh 1 any val h
+     4 ~< -csh 2 any val h
+     3 ~< -csh 3 any val h
+     11 ~< csh dir 0 par odd h
+     12 ~< csh dir 1 par odd h
+     13 ~< csh dir 2 par odd h
+     14 ~< csh dir 3 par odd h
+     10 ~< chx diag 04 h
+     9 ~< chx diag 05 h
+     7 ~< chx diag 06 h
+     2 ~< {bn1} diag read func 17x l
+     15 ~> {ch2} ebus d[n+00] e h
+
+e30: 10164 8 mixer
+     6 ~< csh use in 0 h
+     5 ~< csh use in 0 h
+     4 ~< csh use in 0 h
+     3 ~< csh use in 0 h
+     11 ~< csh use in 4
+     12 ~< csh use adr 2 h
+     13 ~< csh use adr 3 h
+     14 ~< csh use adr 4 h
+     10 ~< chx diag 04 h
+     9 ~< chx diag 05 h
+     7 ~< chx diag 06 h
+     2 ~< {bn1} diag read func 17x l
+     15 ~> {cf2} ebus d[n+01] e h
+
+e84: 10113 quad 2 xor/xnor
+     7 ~< {ed1} csh dir 24 0 h
+     6 ~< {ee1} csh dir 25 0 h
+     4 ~< {fd2} csh dir 26 0 h
+     5 ~< {fr2} csh dir par 0 h
+     13 ~< {ek2} csh dir 24 1 h
+     12 ~< {el1} csh dir 25 1 h
+     11 ~< {fl2} csh dir 26 1 h
+     10 ~< {fp1} csh dir par 1 h
+     9 ~< %NC%
+     3 ~> chx4-e84-3
+     2 ~> chx4-e84-2
+     15 ~> chx4-e84-15
+     14 ~> chx4-e84-14
+
+e83: 10160 parity
+     3 ~< {da1} csh dir 14 0 h
+     4 ~< {cm1} csh dir 15 0 h
+     5 ~< {cl1} csh dir 16 0 h
+     6 ~< {cp1} csh dir 17 0 h
+     7 ~< {dr1} csh dir 18 0 h
+     9 ~< {dn1} csh dir 19 0 h
+     10 ~< {dj1} csh dir 20 0 h
+     11 ~< {dk1} csh dir 21 0 h
+     12 ~< {eh2} csh dir 22 0 h
+     13 ~< {ef2} csh dir 23 0 h
+     14 ~< chx4-e84-3
+     15 ~< chx4-e84-2
+     2 ~> csh dir 0 par odd h
+
+e69: 10160 parity
+     3 ~< {cj1} csh dir 14 1 h
+     4 ~< {cd1} csh dir 15 1 h
+     5 ~< {cc1} csh dir 16 1 h
+     6 ~< {cf1} csh dir 17 1 h
+     7 ~< {dt2} csh dir 18 1 h
+     9 ~< {ds1} csh dir 19 1 h
+     10 ~< {dm1} csh dir 20 1 h
+     11 ~< {dm2} csh dir 21 1 h
+     12 ~< {ep2} csh dir 22 1 h
+     13 ~< {ep1} csh dir 23 1 h
+     14 ~< chx4-e84-15
+     15 ~< chx4-e84-14
+     2 ~> csh dir 1 par odd h
+
+e74: 10121 4-wide or-and
+     4 ~< csh dir 0 par odd h
+     5 ~< csh 0 any val l
+     6 ~< %NC%
+     7 ~< csh dir 1 par odd h
+     9 ~< csh 1 any val l
+     10 ~< %NC%
+     11 ~< csh dir 2 par odd h
+     12 ~< csh 2 any val l
+     13 ~< %NC%
+     14 ~< csh 3 any val l
+     15 ~< csh dir 3 par odd h
+     3 ~> %NC%
+     2 ~> {fh2} csh adr par bad l
+
+e79: 10113 quad 2 xor/xnor
+     7 ~< {eu2} csh dir 24 2 h
+     6 ~< {ev2} csh dir 25 2 h
+     4 ~< {fu2} csh dir 26 2 h
+     5 ~< {fn1} csh dir par 2 h
+     13 ~< {el2} csh dir 24 3 h
+     12 ~< {em1} csh dir 25 3 h
+     11 ~< {fk1} csh dir 26 3 h
+     10 ~< {fp2} csh dir par 3 h
+     9 ~< %NC%
+     3 ~> chx4-e79-3
+     2 ~> chx4-e79-2
+     15 ~> chx4-e79-15
+     14 ~> chx4-e79-14
+
+e60: 10160 parity
+     3 ~< {dl2} csh dir 14 2 h
+     4 ~< {dl1} csh dir 15 2 h
+     5 ~< {ca1} csh dir 16 2 h
+     6 ~< {ce1} csh dir 17 2 h
+     7 ~< {ef1} csh dir 18 2 h
+     9 ~< {ee2} csh dir 19 2 h
+     10 ~< {du2} csh dir 20 2 h
+     11 ~< {dv2} csh dir 21 2 h
+     12 ~< {fd1} csh dir 22 2 h
+     13 ~< {fe1} csh dir 23 2 h
+     14 ~< chx4-e79-3
+     15 ~< chx4-e79-2
+     2 ~> csh dir 2 par odd h
+
+e55: 10160 parity
+     3 ~< {dl2} csh dir 14 3 h
+     4 ~< {dl1} csh dir 15 3 h
+     5 ~< {ca1} csh dir 16 3 h
+     6 ~< {ce1} csh dir 17 3 h
+     7 ~< {ef1} csh dir 18 3 h
+     9 ~< {ee2} csh dir 19 3 h
+     10 ~< {du2} csh dir 20 3 h
+     11 ~< {dv2} csh dir 21 3 h
+     12 ~< {fd1} csh dir 22 3 h
+     13 ~< {fe1} csh dir 23 3 h
+     14 ~< chx4-e79-15
+     15 ~< chx4-e79-14
+     2 ~> csh dir 3 par odd h
+
+e39: 10174 2x4 mixer
+     3 ~< csh 0 wd 0 val h
+     5 ~< csh 1 wd 0 val h
+     4 ~< csh 2 wd 0 val h
+     6 ~< csh 3 wd 0 val h
+     13 ~< csh 0 wd 1 val h
+     11 ~< csh 1 wd 1 val h
+     12 ~< csh 2 wd 1 val h
+     10 ~< csh 3 wd 1 val h
+     9 ~< csh 2,3 valid match h
+     7 ~< csh 1,3 valid match h
+     14 ~< %NC%
+     2 ~> {bl2} csh wd 0 val h
+     15 ~> {bk2} csh wd 1 val h
+
+e35: 10174 2x4 mixer
+     3 ~< csh 0 wd 2 val h
+     5 ~< csh 1 wd 2 val h
+     4 ~< csh 2 wd 2 val h
+     6 ~< csh 3 wd 2 val h
+     13 ~< csh 0 wd 3 val h
+     11 ~< csh 1 wd 3 val h
+     12 ~< csh 2 wd 3 val h
+     10 ~< csh 3 wd 3 val h
+     9 ~< csh 2,3 valid match h
+     7 ~< csh 1,3 valid match h
+     14 ~< %NC%
+     2 ~> {bf2} csh wd 2 val h
+     15 ~> {bd2} csh wd 3 val h
