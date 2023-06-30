@@ -1,3 +1,1215 @@
-STUB IMPLEMENTATION
 Page: CHC1, PDF222
 // M8533 TBD
+
+e36: 10173 4x2 mixer latch
+     5 ~< chc1 ram adr 4 h
+     6 ~< {de2} crc sel 4c h
+     3 ~< chc1 ram adr 2 h
+     4 ~< {df2} crc sel 2c h
+     12 ~< chc1 ram adr 1 h
+     13 ~< {dd2} crc sel 1c h
+     10 ~< %NC%
+     11 ~< %NC%
+     9 ~< chc1 t2 a h
+     7 ~< %NC%
+     1 ~> chc1-e36-1
+     1 ~> chc1-e36-1
+     1 ~> chc1-e36-1
+     14 ~> %NC%
+
+e41: 10145 16x4 RAM
+     5 ~< {dp2} crc ready in h
+     4 ~< {dr2} crc last word in h
+     11 ~< {dk2} crc err in h
+     12 ~< {dl2} crc reverse in h
+     10 ~< %NC%
+     9 ~< chc1-e36-1
+     7 ~< chc1-e36-2
+     6 ~< chc1-e36-15
+     3 ~< -chc3 mr reset a l
+     13 ~< {dm2} crc wr ram l
+     2 ~> chc1-e41-2
+     1 ~> chc1-e41-1
+     15 ~> chc1-e41-15
+     14 ~> chc1-e41-14
+
+e37: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc1-e41-2
+     11 ~< chc1-e41-1
+     9 ~< chc1-e41-15
+     6 ~< chc1-e41-14
+     5 ~< %NC%
+     7 ~< {er2} -ch t2 h
+     10 ~< {er2} -ch t2 h
+     4 ~< chc3 clk b h
+     14 ~> chc1-e37-14
+     15 ~> chc1-e37-15
+     2 ~> chc1-e37-2
+     3 ~> chc1-e37-3
+
+e4: 10101 quad or/nor
+    13 ~< chc1-e37-14
+    12 ~< %NC%
+    15 ~> chc1-e4-15
+    9 ~> %NC%
+    4 ~< chc5 sel 4a h
+    2 ~> chc5 sel 4a l
+    5 ~> %NC%
+    7 ~< chc5 sel 2a h
+    3 ~> chc5 sel 2a l
+    6 ~> %NC%
+    10 ~< chc5 sel 1a h
+    14 ~> chc5 sel 1a l
+    11 ~> %NC%
+
+e27: 10104 quad and/nand
+     4 ~< chc1-e37-14
+     5 ~< chc1-e37-15
+     2 ~> chc1-e27-2
+     10 ~< chc1-e37-2
+     11 ~< chc1-e37-2
+     14 ~> chc1-e27-14
+     12 ~< chc2-e75-14
+     13 ~< {ch2} -ccl mb rip h
+     9 ~> {cf2} ch contr req l
+     15 ~> {ce1} ch contr req h
+     6 ~< {cl2} cbus ctom e h
+     7 ~< {dt2} cbus start e h
+     3 ~> chc5 cbus ctom h
+
+e17: 10176 hex dff
+     12 ~< chc1-e4-15
+     9 ~< chc1 t0 a h
+     15 ~> {bd2} chc1 cbus ready e l
+     5 ~< chc1-e37-14
+     2 ~> {be2} cbus ready e h
+     6 ~< chc1-e27-2
+     3 ~> {bf2} cbus last word e h
+     7 ~< chc1-e27-14
+     4 ~> {bh2} cbus error e h
+     10 ~< chc1-e37-3
+     13 ~> chc1-e17-13
+     11 ~< chc1-e19-14
+     9 ~< chc1 t0 a h
+     14 ~> {av2} ch req d l
+
+e19: 10103 quad or
+     4 ~< chc1-e17-13
+     5 ~< %NC%
+     2 ~> {cf1} ch reverse h
+     12 ~< chc2 mr reset l
+     13 ~< chc1-e14-3
+     9 ~> chc1 timing block h
+     15 ~> %NC%
+     10 ~< {au2} ch cbus req l
+     11 ~< {bm2} ch ctom l
+     14 ~> chc1-e19-14
+     6 ~< {bt2} ch mr reset b h
+     7 ~< {bs2} ccw diag load func 070 h
+     3 ~> chc5 diag strobe h
+
+e23: 10105 2-3-2 or/nor
+     4 ~< -chc2 contr cyc l
+     5 ~< {ce1} -ch contr req l
+     3 ~> chc1-e23-3
+     2 ~> %NC%
+     9 ~< {ct2} mbc3 a phase coming l
+     10 ~< -chc1 ebus clk dly l
+     11 ~< -chc1 timing block l
+     6 ~> chc1 clk syn h
+     7 ~> %NC%
+     12 ~< -chc2 reset intr in l
+     13 ~< chc2 start intr ena l
+     14 ~> chc2 start intr in h
+     15 ~> %NC%
+
+e14: 10131 dual ms dff
+     12 ~< chc1 timing block h
+     10 ~< %NC%
+     11 ~< %NC%
+     9 ~< chc2 mr reset a h
+     13 ~< chc1-e23-3
+     15 ~> {bu2} ch mb req inh h
+     14 ~> %NC%
+     5 ~< {bs2} ccw diag load func 070 h
+     7 ~< %NC%
+     6 ~< %NC%
+     9 ~< chc2 mr reset a h
+     4 ~< %NC%
+     2 ~> %NC%
+     3 ~> chc1-e14-3
+
+e11: 10103 quad or
+     4 ~< {au2} ch cbus req l
+     5 ~< {cd1} -ch ctom l
+     2 ~> {as2} chc1 cbus out ena l
+     10 ~< -chc5 diag fast req l
+     11 ~< -chc5 slow mode stored l
+     14 ~> chc1-e11-14
+     6 ~< chc1-e11-14
+     7 ~< {av2} ch req d l
+     3 ~> {at2} ch cbus receive ena l
+     12 ~< -chc1 clk syn l
+     13 ~< -chc1 timing block l
+     9 ~> chc1-e11-9
+     15 ~> %NC%
+
+e15: 10109 4/5 or/nor
+     4 ~< chc5 fast req h
+     5 ~< chc5 diag slow req h
+     6 ~< chc1 req c h
+     7 ~< %NC%
+     3 ~> {au2} ch cbus req l
+     2 ~> {bj2} ch cbus req h
+     9 ~< chc5 sel 2a l
+     10 ~< chc5 sel 4a l
+     11 ~< {bu2} -ch mb req inh l
+     12 ~< chc5 diag fast req l
+     13 ~< {bt2} -ch mr reset b l
+     14 ~> chc5 fast req h
+     15 ~> %NC%
+
+e50: 10101 quad or/nor
+     4 ~< {ee2} crc ram adr 1r l
+     12 ~< %NC%
+     2 ~> chc1 ram adr 1 h
+     5 ~> %NC%
+     13 ~< {ed2} crc ram adr 2r l
+     15 ~> chc1 ram adr 2 h
+     9 ~> %NC%
+     10 ~< {ea1} crc ram adr 4r l
+     14 ~> chc1 ram adr 4 h
+     11 ~> %NC%
+     7 ~< chc4-e65-15
+     3 ~> {ef2} ch start l
+     6 ~> chc4 start h
+
+e31: 10101 quad or/nor
+     10 ~< {ct2} mbc3 a phase coming l
+     12 ~< %NC%
+     14 ~> chc1-e31-14
+     11 ~> %NC%
+     4 ~< {cp2} ch reset intr h
+     2 ~> {fr2} ch reset intr l
+     5 ~> %NC%
+     7 ~< {cm2} ch start intr h
+     3 ~> {cv2} ch start intr l
+     6 ~> %NC%
+     13 ~< {cs2} ch done intr h
+     15 ~> {du2} ch done intr l
+     9 ~> %NC%
+
+e3:  10176 hex dff
+     5 ~< chc1-e31-14
+     9 ~< chc2 clk d h
+     2 ~> chc1 ebus clk dly h
+     6 ~< {af2} ccl ch buf wr en l
+     3 ~> chc4-e3-3
+     12 ~< {af2} ccl ch buf wr en l
+     15 ~> chc4-e3-15
+     7 ~< chc5 sel 4a l
+     4 ~> {ah2} ch sel 4b en l
+     10 ~< chc5 sel 2a l
+     13 ~> {ad2} ch sel 2b en l
+     11 ~< chc5 sel 1a l
+     14 ~> {ae2} ch sel 1b en l
+
+e12: 10141 shift register
+     13 ~< {bl2} ch t3 h
+     12 ~< chc1 clk syn n
+     11 ~< %NC%
+     9 ~< %NC%
+     6 ~< chc1 timing block h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc1-e11-9
+     14 ~> chc1 t0 a h
+     15 ~> chc1 t1 a h
+     2 ~> chc1 t2 a h
+     3 ~> chc1-e12-3
+
+e13: 10101 quad or/nor
+     4 ~< chc1 t0 a h
+     12 ~< %NC%
+     2 ~> {bp2} ch t0 l
+     5 ~> chc1-e13-5
+     7 ~< chc1 t1 a h
+     3 ~> %NC%
+     6 ~> chc1-e13-6
+     13 ~< chc1 t2 a h
+     15 ~> %NC%
+     9 ~> chc1-e13-9
+     10 ~< chc1-e12-3
+     14 ~> chc1 t3 b l
+     11 ~> chc1-e13-11
+
+e18: 10101 quad or/nor
+     4 ~< chc1-e13-5
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {bk1} ch t0 h
+     7 ~< chc1-e13-6
+     3 ~> {fv2} ch t1 l
+     6 ~> {bl1} ch t1 h
+     13 ~< chc1-e13-9
+     15 ~> {er2} ch t2 l
+     9 ~> chc1 t2 h
+     10 ~< chc1-e13-11
+     14 ~> {aj2} ch t3 l
+     11 ~> {bl2} ch t3 h
+
+e35: 10176 hex dff
+     5 ~< chc5 cbus start h
+     6 ~< chc5 cbus ctom h
+     7 ~< chc5 cbus done h
+     10 ~< chc5 cbus store h
+     11 ~< chc5 cbus reset h
+     12 ~< {cs1} cbus request e h
+     9 ~< chc1 t0 a h
+     2 ~> chc1-e35-2
+     3 ~> chc1-e35-3
+     4 ~> chc1-e35-4
+     13 ~> chc1-e35-13
+     14 ~> chc1-e35-14
+     15 ~> chc1 req c h
+
+e30: 10101 quad or/nor
+     4 ~< chc1-e35-2
+     2 ~> chc1 chx start l
+     5 ~> chc1 chx start h
+     13 ~< chc1-e35-3
+     15 ~> chc1 chx ctom l
+     9 ~> chc1 chx ctom h
+     10 ~< chc1-e35-4
+     14 ~> chc1 chx done l
+     11 ~> chc1 chx done h
+     7 ~< chc1-e35-14
+     3 ~> chc1 chx store l
+     6 ~> chc1 chx store h
+
+e20: 10101 quad or/nor
+     7 ~< chc1-e35-14
+     12 ~< %NC%
+     3 ~> chc1 chx reset l
+     6 ~> chc1 chx reset h
+     10 ~< chc2 mr reset h
+     14 ~> %NC%
+     11 ~> {bt2} ch mr reset b h
+     4 ~< chc3-e44-15
+     2 ~> {bm2} ch ctom l
+     5 ~> {cd1} ch ctom h
+
+Page: CHC2, PDF223
+
+e76: 10109 4/5 or/nor
+     4 ~< chc4 ch0 reset intr h
+     5 ~< chc4 ch0 start intr h
+     6 ~< chc3 ch0 done intr h
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> chc2 ch0 contr req h
+     9 ~< chc4 ch1 reset intr h
+     10 ~< chc4 ch1 start intr h
+     11 ~< chc3 ch1 done intr h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> chc2 ch1 contr req h
+
+e71: 10109 4/5 or/nor
+     4 ~< chc4 ch2 reset intr h
+     5 ~< chc4 ch2 start intr h
+     6 ~< chc3 ch2 done intr h
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> chc2 ch2 contr req h
+     9 ~< chc4 ch3 reset intr h
+     10 ~< chc4 ch3 start intr h
+     11 ~< chc3 ch3 done intr h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> chc2 ch3 contr req h
+
+e69: 10109 4/5 or/nor
+     4 ~< chc4 ch4 reset intr h
+     5 ~< chc4 ch4 start intr h
+     6 ~< chc3 ch4 done intr h
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> chc2 ch4 contr req h
+     9 ~< chc4 ch5 reset intr h
+     10 ~< chc4 ch5 start intr h
+     11 ~< chc3 ch5 done intr h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> chc2 ch5 contr req h
+
+e67: 10109 4/5 or/nor
+     4 ~< chc4 ch6 reset intr h
+     5 ~< chc4 ch6 start intr h
+     6 ~< chc3 ch6 done intr h
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> chc2 ch6 contr req h
+     9 ~< chc4 ch7 reset intr h
+     10 ~< chc4 ch7 start intr h
+     11 ~< chc3 ch7 done intr h
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> chc2 ch7 contr req h
+
+e24: 10101 quad or/nor
+     7 ~< {cd2} mr reset 05 h
+     12 ~< %NC%
+     3 ~> chc2 mr reset l
+     6 ~> chc2 mr reset h
+     4 ~< chc2 mr reset h
+     2 ~> %NC%
+     3 ~> chc2 mr reset a h
+     10 ~< chc2-e66-15
+     14 ~> chc2 start intr ena l
+     11 ~> chc2 start intr ena h
+     13 ~< chc2-e63-15
+     15 ~> chc2 done intr ena l
+     9 ~> %NC%
+
+e60: 10101 quad or/nor
+     4 ~< {ev2} crc cbus contr cyc l
+     12 ~< %NC%
+     2 ~> chc2 contr cyc h
+     5 ~> %NC%
+     7 ~< {eu2} crc sel 4e l
+     3 ~> chc2 sel 4e h
+     6 ~> %NC%
+     13 ~< {et2} crc sel 2e l
+     15 ~> chc2 sel 2e h
+     9 ~> %NC%
+     10 ~< {es2} crc sel 1e l
+     14 ~> chc2 sel 1e h
+     11 ~> %NC%
+
+e75: 10165 priority encoder
+     5 ~< chc2 ch0 contr req h
+     7 ~< chc2 ch1 contr req h
+     13 ~< chc2 ch2 contr req h
+     10 ~< chc2 ch3 contr req h
+     11 ~< chc2 ch4 contr req h
+     12~< chc2 ch5 contr req h
+     9 ~< chc2 ch6 contr req h
+     6 ~< chc2 ch7 contr req h
+     4 ~< -chc1 t3 b h
+     14 ~> chc2-e75-14
+     15 ~> chc2-e75-15
+     2 ~> chc2-e75-2
+     3 ~> chc2-e75-3
+
+e70: 10101 quad or/nor
+     7 ~< chc2-e75-15
+     12 ~< %NC%
+     3 ~> {ft2} ch contr 4 l
+     6 ~> chc2 contr 4 h
+     13 ~< chc2-e75-2
+     15 ~> {fp2} ch contr 2 l
+     9 ~> chc2 contr 2 h
+     10 ~< chc2-e75-3
+     14 ~> {fm2} ch contr 1 l
+     11 ~> chc2 contr 1 h
+     4 ~< {fs2} diag 06 b h
+     12 ~< %NC%
+     2 ~> {fu2} ch diag 06 l
+     5 ~> {aj1} ch diag 06 h
+
+e46: 10164 8 mixer
+     6 ~< chc2 ch0 store h
+     5 ~< chc2 ch1 store h
+     4 ~< chc2 ch2 store h
+     3 ~< chc2 ch3 store h
+     11 ~< chc2 ch4 store h
+     12 ~< chc2 ch5 store h
+     13 ~< chc2 ch6 store h
+     14 ~< chc2 ch7 store h
+     10 ~< chc1 ram adr 4 h
+     9 ~< chc1 ram adr 2 h
+     7 ~< chc1 ram adr 1 h
+     2 ~< %NC%
+     15 ~> chc2 store ena h
+
+e49: 10162 decoder
+     14 ~< chc2 sel 4e h
+     9 ~< chc2 sel 2e h
+     7 ~< chc2 sel 1e h
+     15 ~< chc1 chx store l
+     2 ~< chc1 chx done l
+     6 ~> chc2 ch0 store in h
+     5 ~> chc2 ch1 store in h
+     4 ~> chc2 ch2 store in h
+     3 ~> chc2 ch3 store in h
+     13 ~> chc2 ch4 store in h
+     12 ~> chc2 ch5 store in h
+     11 ~> chc2 ch6 store in h
+     10 ~> chc2 ch7 store in h
+
+e43: 10104 quad and/nand
+     4 ~< chc2 ch0 store h
+     5 ~< chc4 ch0 start intr hold h
+     2 ~> chc2 ch0 store in h
+     6 ~< chc2 ch1 store h
+     7 ~< chc4 ch1 store h
+     3 ~> chc2 ch1 store in h
+     12 ~< chc2 ch2 store h
+     13 ~< chc4 ch2 start intr hold h
+     9 ~> %NC%
+     15 ~> cch2 ch2 store in h
+     10 ~< chc2 ch3 store h
+     11 ~< chc4 ch3 start intr hold h
+     14 ~> chc2 ch3 store in h
+
+e42: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc2 ch0 store in h
+     11 ~< chc2 ch1 store in h
+     9 ~< chc2 ch2 store in h
+     6 ~< chc2 ch3 store in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset h
+     4 ~< chc2 clk b h
+     14 ~> chc2 ch0 store h
+     15 ~> chc2 ch1 store h
+     2 ~> chc2 ch2 store h
+     3 ~> chc2 ch3 store h
+
+e47: 10104 quad and/nand
+     4 ~< chc2 ch4 store h
+     5 ~< chc4 ch4 start intr hold h
+     2 ~> chc2 ch4 store in h
+     6 ~< chc2 ch5 store h
+     7 ~< chc4 ch5 store h
+     3 ~> chc2 ch5 store in h
+     12 ~< chc2 ch6 store h
+     13 ~< chc4 ch6 start intr hold h
+     9 ~> %NC%
+     15 ~> chc2 ch6 store in h
+     10 ~< chc2 ch7 store h
+     11 ~< chc4 ch7 start intr hold h
+     14 ~> chc2 ch7 store in h
+
+e48: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc2 ch4 store in h
+     11 ~< chc2 ch5 store in h
+     9 ~< chc2 ch6 store in h
+     6 ~< chc2 ch7 store in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset h
+     4 ~< chc2 clk b h
+     14 ~> chc2 ch4 store h
+     15 ~> chc2 ch5 store h
+     2 ~> chc2 ch6 store h
+     3 ~> chc2 ch7 store h
+
+dl9: delay-line (PCB wired)
+     1 ~< {cr2} clk1 chc h
+     2 ~> clk1 chc delayed h
+
+e32: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk1 chc delayed h
+     2 ~> chc2 clk a h
+     3 ~> chc2 clk b h
+     4 ~> chc2 clk c h
+     9 ~< %NC%
+     10 ~< clk1 chc delayed h
+     11 ~< %NC%
+     12 ~> chc2 clk d h
+     13 ~> chc2 clk e h
+     14 ~> chc2 clk f h
+
+e22: 10173 4x2 mixer latch
+     5 ~< %NC%
+     6 ~< chc2 reset intr in h
+     3 ~< %NC%
+     4 ~< chc2 start intr in h
+     12 ~< %NC%
+     13 ~< chc2 done intr in h
+     10 ~< %NC%
+     11 ~< chc2 store ena h
+     9 ~< chc2 contr cyc h
+     7 ~< {fv2} -ch t1 h
+     1 ~> {cp2} ch reset intr h
+     2 ~> {cm2} ch start intr h
+     15 ~> {cs2} ch done intr h
+     14 ~> {cj2} ch store h
+
+e28: 10109 4/5 or/nor
+     9 ~< -chc2 reset intr in l
+     10 ~< -chc2 start intr ena l
+     11 ~< chc2 done intr ena l
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> chc2 done intr in h
+     15 ~> %NC%
+     4 ~< {cs2} ch done intr h
+     5 ~< {cm2} ch start intr h
+     6 ~< {cp2} ch reset intr h
+     7 ~< %NC%
+     3 ~> chc4-e28-3
+     2 ~> %NC%
+
+e74: 10164 8 mixer
+     6 ~< chc4 ch0 reset intr h
+     5 ~< chc4 ch1 reset intr h
+     4 ~< chc4 ch2 reset intr h
+     3 ~< chc4 ch3 reset intr h
+     11 ~< chc4 ch4 reset intr h
+     12 ~< chc4 ch5 reset intr h
+     13 ~< chc4 ch6 reset intr h
+     14 ~< chc4 ch7 reset intr h
+     10 ~< chc2 contr 4 h
+     9 ~< chc2 contr 2 h
+     7 ~< chc2 contr 1 h
+     2 ~< %NC%
+     15 ~> chc2 reset intr in h
+
+e66: 10164 8 mixer
+     6 ~< chc4 ch0 start intr h
+     5 ~< chc4 ch1 start intr h
+     4 ~< chc4 ch2 start intr h
+     3 ~< chc4 ch3 start intr h
+     11 ~< chc4 ch4 start intr h
+     12 ~< chc4 ch5 start intr h
+     13 ~< chc4 ch6 start intr h
+     14 ~< chc4 ch7 start intr h
+     10 ~< chc2 contr 4 h
+     9 ~< chc2 contr 2 h
+     7 ~< chc2 contr 1 h
+     2 ~< %NC%
+     15 ~> chc2-e66-15
+
+e63: 10164 8 mixer
+     6 ~< chc4 ch0 done intr h
+     5 ~< chc4 ch1 done intr h
+     4 ~< chc4 ch2 done intr h
+     3 ~< chc4 ch3 done intr h
+     11 ~< chc4 ch4 done intr h
+     12 ~< chc4 ch5 done intr h
+     13 ~< chc4 ch6 done intr h
+     14 ~< chc4 ch7 done intr h
+     10 ~< chc2 contr 4 h
+     9 ~< chc2 contr 2 h
+     7 ~< chc2 contr 1 h
+     2 ~< %NC%
+     15 ~> chc2-e63-15
+
+Page: CHC3, PDF224
+
+e29: 10104 quad and/nand
+     4 ~< chc3 ch0 ctom h
+     5 ~< chc3 ch0 ctom hold h
+     2 ~> chc3 ch0 ctom in h
+     6 ~< chc3 ch2 ctom h
+     7 ~< chc3 ch2 ctom hold h
+     3 ~> chc3 ch2 ctom in h
+     12 ~< chc3 ch4 ctom h
+     13 ~< chc3 ch4 ctom hold h
+     9 ~> %NC%
+     15 ~> chc3 ch4 ctom in h
+     10 ~< chc3 ch6 ctom h
+     11 ~< chc3 ch6 ctom hold h
+     14 ~> chc3 ch6 ctom in h
+
+e25: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc3 ch0 ctom in h
+     11 ~< chc3 ch2 ctom in h
+     9 ~< chc3 ch4 ctom in h
+     6 ~< chc3 ch6 ctom in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset h
+     4 ~< chc2 clk f h
+     14 ~> chc3 ch0 ctom h
+     15 ~> chc3 ch2 ctom h
+     2 ~> chc3 ch4 ctom h
+     3 ~> chc3 ch6 ctom h
+
+e53: 10104 quad and/nand
+     4 ~< chc3 ch0 done intr h
+     5 ~< chc3 ch0 done intr hold h
+     2 ~> chc3 ch0 done intr in h
+     6 ~< chc3 ch1 done intr h
+     7 ~< chc3 ch1 done intr hold h
+     3 ~> chc3 ch1 done intr in h
+     12 ~< chc3 ch2 done intr h
+     13 ~< chc3 ch2 done intr hold h
+     9 ~> %NC%
+     15 ~> chc3 ch2 done intr in h
+     10 ~< chc3 ch3 done intr h
+     11 ~< chc3 ch3 done intr hold h
+     14 ~> chc3 ch3 done intr in h
+
+e54: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc3 ch0 done intr in h
+     11 ~< chc3 ch1 done intr in h
+     9 ~< chc3 ch2 done intr in h
+     6 ~< chc3 ch3 done intr in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset a h
+     4 ~< chc2 clk a h
+     14 ~> chc3 ch0 done intr h
+     15 ~> chc3 ch1 done intr h
+     2 ~> chc3 ch2 done intr h
+     3 ~> chc3 ch3 done intr h
+
+e38: 10104 quad and/nand
+     4 ~< chc3 ch1 ctom h
+     5 ~< chc3 ch1 ctom hold h
+     2 ~> chc3 ch1 ctom in h
+     6 ~< chc3 ch3 ctom h
+     7 ~< chc3 ch3 ctom hold h
+     3 ~> chc3 ch3 ctom in h
+     12 ~< chc3 ch5 ctom h
+     13 ~< chc3 ch5 ctom hold h
+     9 ~> %NC%
+     15 ~> chc3 ch5 ctom in h
+     10 ~< chc3 ch7 ctom h
+     11 ~< chc3 ch7 ctom hold h
+     14 ~> chc3 ch7 ctom in h
+
+e33: 10141 shift register
+     13 ~< chc2 mr reset h
+     12 ~< chc3 ch1 ctom in h
+     11 ~< chc3 ch3 ctom in h
+     9 ~< chc3 ch5 ctom in h
+     6 ~< chc3 ch7 ctom in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset h
+     4 ~< chc2 clk e h
+     14 ~> chc3 ch1 ctom h
+     15 ~> chc3 ch3 ctom h
+     2 ~> chc3 ch5 ctom h
+     3 ~> chc3 ch7 ctom h
+
+e58: 10104 quad and/nand
+     4 ~< chc3 ch4 done intr h
+     5 ~< chc3 ch4 done intr hold h
+     2 ~> chc3 ch4 done intr in h
+     6 ~< chc3 ch5 done intr h
+     7 ~< chc3 ch5 done intr hold h
+     3 ~> chc3 ch5 done intr in h
+     12 ~< chc3 ch6 done intr h
+     13 ~< chc3 ch6 done intr hold h
+     9 ~> %NC%
+     15 ~> chc3 ch6 done intr in h
+     10 ~< chc3 ch7 done intr h
+     11 ~< chc3 ch7 done intr hold h
+     14 ~> chc3 ch7 done intr in h
+
+e64: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc3 ch4 done intr in h
+     11 ~< chc3 ch5 done intr in h
+     9 ~< chc3 ch6 done intr in h
+     6 ~< chc3 ch7 done intr in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset a h
+     4 ~< chc2 clk a h
+     14 ~> chc3 ch4 done intr h
+     15 ~> chc3 ch5 done intr h
+     2 ~> chc3 ch6 done intr h
+     3 ~> chc3 ch7 done intr h
+
+e34: 10162 decoder
+     14 ~< chc2 sel 4e h
+     9 ~< chc2 sel 2e h
+     7 ~< chc2 sel 1e h
+     15 ~< chc1 chx start l
+     2 ~< chc1 chx ctom l
+     6 ~> chc3 ch0 ctom in h
+     5 ~> chc3 ch1 ctom in h
+     4 ~> chc3 ch2 ctom in h
+     3 ~> chc3 ch3 ctom in h
+     13 ~> chc3 ch4 ctom in h
+     12 ~> chc3 ch5 ctom in h
+     11 ~> chc3 ch6 ctom in h
+     10 ~> chc3 ch7 ctom in h
+
+e39: 10161 decoder
+     14 ~< chc2 sel 4e h
+     9 ~< chc2 sel 2e h
+     7 ~< chc2 sel 1e h
+     15 ~< chc1 chx start l
+     2 ~< chc1 chx ctom l
+     6 ~> -chc3 ch0 ctom hold l
+     5 ~> -chc3 ch1 ctom hold l
+     4 ~> -chc3 ch2 ctom hold l
+     3 ~> -chc3 ch3 ctom hold l
+     13 ~> -chc3 ch4 ctom hold l
+     12 ~> -chc3 ch5 ctom hold l
+     11 ~> -chc3 ch6 ctom hold l
+     10 ~> -chc3 ch7 ctom hold l
+
+e44: 10164 8 mixer
+     6 ~< chc3 ch0 ctom h
+     5 ~< chc3 ch1 ctom h
+     4 ~< chc3 ch2 ctom h
+     3 ~< chc3 ch3 ctom h
+     11 ~< chc3 ch4 ctom h
+     12 ~< chc3 ch5 ctom h
+     13 ~< chc3 ch6 ctom h
+     14 ~< chc3 ch7 ctom h
+     10 ~< chc1 ram adr 4 h
+     9 ~< chc1 ram adr 2 h
+     7 ~< chc1 ram adr 1 h
+     2 ~< %NC%
+     15 ~> chc3-e44-15
+
+e59: 10162 decoder
+     14 ~< chc2 sel 4e h
+     9 ~< chc2 sel 2e h
+     7 ~< chc2 sel 1e h
+     15 ~< chc1 chx done l
+     2 ~< {er2} ch t2 l
+     6 ~> chc3 ch0 done intr in h
+     5 ~> chc3 ch1 done intr in h
+     4 ~> chc3 ch2 done intr in h
+     3 ~> chc3 ch3 done intr in h
+     13 ~> chc3 ch4 done intr in h
+     12 ~> chc3 ch5 done intr in h
+     11 ~> chc3 ch6 done intr in h
+     10 ~> chc3 ch7 done intr in h
+
+Page: CHC4, PDF225
+
+e78: 10162 decoder
+     14 ~< chc2 sel 4e h
+     9 ~< chc2 sel 2e h
+     7 ~< chc2 sel 1e h
+     15 ~< chc1 chx reset l
+     2 ~< {er2} ch t2 l
+     6 ~> chc3 ch0 reset intr in h
+     5 ~> chc3 ch1 reset intr in h
+     4 ~> chc3 ch2 reset intr in h
+     3 ~> chc3 ch3 reset intr in h
+     13 ~> chc3 ch4 reset intr in h
+     12 ~> chc3 ch5 reset intr in h
+     11 ~> chc3 ch6 reset intr in h
+     10 ~> chc3 ch7 reset intr in h
+
+e68: 10161 decoder
+     14 ~< chc2 contr 4 h
+     9 ~< chc2 contr 2 h
+     7 ~< chc2 contr 1 h
+     15 ~< {fr2} ch reset intr l
+     2 ~< {er2} ch t2 l
+     6 ~> -chc3 ch0 reset intr hold in h
+     5 ~> -chc3 ch1 reset intr hold in h
+     4 ~> -chc3 ch2 reset intr hold in h
+     3 ~> -chc3 ch3 reset intr hold in h
+     13 ~> -chc3 ch4 reset intr hold in h
+     12 ~> -chc3 ch5 reset intr hold in h
+     11 ~> -chc3 ch6 reset intr hold in h
+     10 ~> -chc3 ch7 reset intr hold in h
+
+e62: 10162 decoder
+     14 ~< chc2 sel 4e h
+     9 ~< chc2 sel 2e h
+     7 ~< chc2 sel 1e h
+     15 ~< chc1 chx start l
+     2 ~< {er2} ch t2 l
+     6 ~> chc3 ch0 start intr in h
+     5 ~> chc3 ch1 start intr in h
+     4 ~> chc3 ch2 start intr in h
+     3 ~> chc3 ch3 start intr in h
+     13 ~> chc3 ch4 start intr in h
+     12 ~> chc3 ch5 start intr in h
+     11 ~> chc3 ch6 start intr in h
+     10 ~> chc3 ch7 start intr in h
+
+e52: 10161 decoder
+     14 ~< chc2 contr 4 h
+     9 ~< chc2 contr 2 h
+     7 ~< chc2 contr 1 h
+     15 ~< chc4-e28-3
+     2 ~< {er2} ch t2 l
+     6 ~> -chc3 ch0 start intr hold in h
+     5 ~> -chc3 ch1 start intr hold in h
+     4 ~> -chc3 ch2 start intr hold in h
+     3 ~> -chc3 ch3 start intr hold in h
+     13 ~> -chc3 ch4 start intr hold in h
+     12 ~> -chc3 ch5 start intr hold in h
+     11 ~> -chc3 ch6 start intr hold in h
+     10 ~> -chc3 ch7 start intr hold in h
+
+e65: 10164 8 mixer
+     6 ~< chc4 ch0 start intr h
+     5 ~< chc4 ch1 start intr h
+     4 ~< chc4 ch2 start intr h
+     3 ~< chc4 ch3 start intr h
+     11 ~< chc4 ch4 start intr h
+     12 ~< chc4 ch5 start intr h
+     13 ~< chc4 ch6 start intr h
+     14 ~< chc4 ch7 start intr h
+     10 ~< chc1 ram adr 4 h
+     9 ~< chc1 ram adr 2 h
+     7 ~< chc1 ram adr 1 h
+     2 ~< %NC%
+     15 ~> chc4-e65-15
+
+dl1: delay-line 13ns
+     1 ~< chc4-e3-3
+     2 ~> chc4-dl1-2
+
+dl2: delay-line 13ns
+     1 ~< chc4-e3-14
+     2 ~> chc4-dl2-2
+
+e55: 10110 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< chc4-dl1-2
+     2 ~> {el2} ch buf wr 00 l
+     3 ~> {em2} ch buf wr 01 l
+     4 ~> {ep2} ch buf wr 02 l
+     9 ~< %NC%
+     10 ~< chc4-dl1-2
+     11 ~< %NC%
+     12 ~> {ek2} ch buf wr 03 l
+     13 ~> {ej2} ch buf wr 04 l
+     14 ~> {eh2} ch buf wr 05 l
+
+e72: 10104 quad and/nand
+     4 ~< chc4 ch0 reset intr h
+     5 ~< chc4 ch0 reset intr hold h
+     2 ~> chc4 ch0 reset intr in h
+     6 ~< chc4 ch1 reset intr h
+     7 ~< chc4 ch1 reset intr hold h
+     3 ~> chc4 ch1 reset intr in h
+     12 ~< chc4 ch2 reset intr h
+     13 ~< chc4 ch2 reset intr hold h
+     9 ~> %NC%
+     15 ~> chc4 ch2 reset intr in h
+     10 ~< chc4 ch3 reset intr h
+     11 ~< chc4 ch3 reset intr hold h
+     14 ~> chc4 ch3 reset intr in h
+
+e77: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc4 ch0 reset intr in h
+     11 ~< chc4 ch1 reset intr in h
+     9 ~< chc4 ch2 reset intr in h
+     6 ~< chc4 ch3 reset intr in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset a h
+     4 ~< chc2 clk c h
+     14 ~> chc4 ch0 reset intr h
+     15 ~> chc4 ch1 reset intr h
+     2 ~> chc4 ch2 reset intr h
+     3 ~> chc4 ch3 reset intr h
+
+e51: 10104 quad and/nand
+     4 ~< chc4 ch0 start intr h
+     5 ~< chc4 ch0 start intr hold h
+     2 ~> chc4 ch0 start intr in h
+     6 ~< chc4 ch1 start intr h
+     7 ~< chc4 ch1 start intr hold h
+     3 ~> chc4 ch1 start intr in h
+     12 ~< chc4 ch2 start intr h
+     13 ~< chc4 ch2 start intr hold h
+     9 ~> %NC%
+     15 ~> chc4 ch2 start intr in h
+     10 ~< chc4 ch3 start intr h
+     11 ~< chc4 ch3 start intr hold h
+     14 ~> chc4 ch3 start intr in h
+
+e56: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc4 ch0 start intr in h
+     11 ~< chc4 ch1 start intr in h
+     9 ~< chc4 ch2 start intr in h
+     6 ~< chc4 ch3 start intr in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset h
+     4 ~< chc2 clk c h
+     14 ~> chc4 ch0 start intr h
+     15 ~> chc4 ch1 start intr h
+     2 ~> chc4 ch2 start intr h
+     3 ~> chc4 ch3 start intr h
+
+e73: 10104 quad and/nand
+     4 ~< chc4 ch4 reset intr h
+     5 ~< chc4 ch4 reset intr hold h
+     2 ~> chc4 ch4 reset intr in h
+     6 ~< chc4 ch5 reset intr h
+     7 ~< chc4 ch5 reset intr hold h
+     3 ~> chc4 ch5 reset intr in h
+     12 ~< chc4 ch6 reset intr h
+     13 ~< chc4 ch6 reset intr hold h
+     9 ~> %NC%
+     15 ~> chc4 ch6 reset intr in h
+     10 ~< chc4 ch7 reset intr h
+     11 ~< chc4 ch7 reset intr hold h
+     14 ~> chc4 ch7 reset intr in h
+
+e79: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc4 ch4 reset intr in h
+     11 ~< chc4 ch5 reset intr in h
+     9 ~< chc4 ch6 reset intr in h
+     6 ~< chc4 ch7 reset intr in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset a h
+     4 ~< chc2 clk a h
+     14 ~> chc4 ch4 reset intr h
+     15 ~> chc4 ch5 reset intr h
+     2 ~> chc4 ch6 reset intr h
+     3 ~> chc4 ch7 reset intr h
+
+e57: 10104 quad and/nand
+     4 ~< chc4 ch4 start intr h
+     5 ~< chc4 ch4 start intr hold h
+     2 ~> chc4 ch4 start intr in h
+     6 ~< chc4 ch5 start intr h
+     7 ~< chc4 ch5 start intr hold h
+     3 ~> chc4 ch5 start intr in h
+     12 ~< chc4 ch6 start intr h
+     13 ~< chc4 ch6 start intr hold h
+     9 ~> %NC%
+     15 ~> chc4 ch6 start intr in h
+     10 ~< chc4 ch7 start intr h
+     11 ~< chc4 ch7 start intr hold h
+     14 ~> chc4 ch7 start intr in h
+
+e61: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc4 ch4 start intr in h
+     11 ~< chc4 ch5 start intr in h
+     9 ~< chc4 ch6 start intr in h
+     6 ~< chc4 ch7 start intr in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< chc2 mr reset h
+     4 ~< chc2 clk c h
+     14 ~> chc4 ch4 start intr h
+     15 ~> chc4 ch5 start intr h
+     2 ~> chc4 ch6 start intr h
+     3 ~> chc4 ch7 start intr h
+
+Page: CHC5, PDF226
+
+e45: 10101 quad or/nor
+     4 ~< {dv2} cbus reset e h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> chc5 cbus reset h
+     13 ~< {dt2} cbus start e h
+     15 ~> %NC%
+     9 ~> chc5 cbus start h
+     10 ~< {ds2} cbus done e h
+     14 ~> %NC%
+     11 ~> chc5 cbus done h
+     7 ~< {du2} cbus store e h
+     3 ~> %NC%
+     6 ~> chc5 cbus store h
+
+e21: 10164 8 mixer
+     6 ~< chc1 chx reset h
+     5 ~< chc1 chx start h
+     4 ~< chc1 chx done h
+     3 ~< chc1 chx store h
+     11 ~< chc1 chx ctom h
+     12 ~< chc5 sel 8a h
+     13 ~< {bu2} ch mb req inh h
+     14 ~< chc2 contr cyc h
+     10 ~< {cc1} ch diag 04 h
+     9 ~< {ca1} ch diag 05 h
+     7 ~< {aj1} ch diag 06 h
+     2 ~< {ck2} ch diag read a l
+     // bit 13
+     15 ~> {bv2} ebus d[m+02] e h
+
+e26: 10164 8 mixer
+     6 ~< {cp2} ch reset intr h
+     5 ~< {cm2} ch start intr h
+     4 ~< {cs2} ch done intr h
+     3 ~< {cj2} ch store h
+     11 ~< {cd1} ch ctom h
+     12 ~< {ce1} ch contr req h
+     13 ~< {cf1} ch reverse h
+     14 ~< chc4 start h
+     10 ~< {cc1} ch diag 04 h
+     9 ~< {ca1} ch diag 05 h
+     7 ~< {aj1} ch diag 06 h
+     2 ~< {ck2} ch diag read a l
+     // bit 14
+     15 ~> {ce2} ebus d[m+03] e h
+
+e1:  10164 8 mixer
+     6 ~< {ak1} cbus sel 0 e h
+     5 ~< {al1} cbus sel 1 e h
+     4 ~< {am1} cbus sel 2 e h
+     3 ~< {an1} cbus sel 3 e h
+     11 ~< {af1} cbus sel 4 e h
+     12 ~< {ae1} cbus sel 5 e h
+     13 ~< {ad1} cbus sel 6 e h
+     14 ~< {ac1} cbus sel 7 e h
+     10 ~< {cc1} ch diag 04 h
+     9 ~< {ca1} ch diag 05 h
+     7 ~< {aj1} ch diag 06 h
+     2 ~< {ck2} ch diag read a l
+     // bit 12
+     15 ~> {aa1} ebus d[m+01] e h
+
+e16: 10164 8 mixer
+     6 ~< {bk1} ch t0 h
+     5 ~< {bl1} ch t1 h
+     4 ~< chc1 t2 h
+     3 ~< {bl2} ch t3 h
+     11 ~< {be2} cbus ready e h
+     12 ~< {bf2} cbus last word e h
+     13 ~< {bh2} cbus error e h
+     14 ~< {bj2} ch bus req h
+     10 ~< {cc1} ch diag 04 h
+     9 ~< {ca1} ch diag 05 h
+     7 ~< {aj1} ch diag 06 h
+     2 ~< {ck2} ch diag read a l
+     // bit 11
+     15 ~> {bk2} ebus d[m+00] e h
+
+e7:  10131 dual ms dff
+     12 ~< %NC%
+     10 ~< -chc2 mr reset h
+     11 ~< chc5 diag slow req h
+     9 ~< %NC%
+     13 ~< chc2 mr reset h
+     15 ~> chc5 slow mode stored h
+     14 ~> %NC%
+     5 ~< %NC%
+     7 ~< {ar2} ebus d13 e h
+     6 ~< chc5 diag strobe h
+     9 ~< %NC%
+     4 ~< %NC%
+     2 ~> chc5 diag fast req h
+     3 ~> chc5 diag fast req l
+
+e8:  10107 quad xor/xnor
+     9 ~< {al2} diag 04 b h
+     7 ~< %NC%
+     11 ~> {ak2} ch diag 04 l
+     10 ~> {cc1} ch diag 04 h
+     4 ~< {ap2} diag 05 b h
+     5 ~< %NC%
+     2 ~> {am2} ch diag 05 l
+     3 ~> {ca1} ch diag 05 h
+     14 ~< chc5 sel 4a h
+     15 ~< chc5 sel 2a h
+     12 ~> chc5-e8-12
+     13 ~> %NC%
+
+e9:  10105 2-3-2 or/nor
+     4 ~< chc5 sel 8a h
+     5 ~< chc5 sel 4a h
+     3 ~> chc5-e9-3
+     2 ~> %NC%
+     9 ~< chc5-e9-12
+     10 ~< chc5-e9-3
+     11 ~< chc5 sel 1a l
+     6 ~> chc5-e9-6
+     7 ~> %NC%
+     12 ~< {aj2} -ch t3 h
+     13 ~< chc2 mr reset a h
+     14 ~> %NC%
+     15 ~> chc5-e9-15
+
+// S2  S4  ALU OPERATION
+//  L   L   A plus 0 plus C
+//  H   H   A plus B plus C
+
+e5:  10181 ALU
+     10 ~< %NC%
+     9 ~< chc5 sel 8a h
+     16 ~< %NC%
+     11 ~< chc5 sel 4a h
+     18 ~< chc5-e9-6
+     19 ~< chc5 sel 2a h
+     21 ~< -chc2 mr reset h
+     20 ~< chc5 sel 1a h
+     22 ~< %NC%
+     13 ~< %NC%
+     15 ~< -chc2 mr reset h
+     17 ~< -chc2 mr reset h
+     14 ~< %NC%
+     23 ~< %NC%
+     5 ~> %NC%
+     6 ~> chc5-e5-6
+     7 ~> chc5-e5-7
+     3 ~> chc5-e5-3
+     2 ~> chc5-e5-2
+     4 ~> %NC%
+     8 ~> %NC%
+
+e10: 10141 shift register
+     13 ~< %NC%
+     12 ~< chc5-e5-6
+     11 ~< chc5-e5-7
+     9 ~< chc5-e5-3
+     6 ~< chc5-e5-2
+     5 ~< %NC%
+     7 ~< chc5-e9-15
+     10 ~< {aj2} -ch t3 h
+     4 ~< chc2 clk f h
+     14 ~> chc5 sel 8a h
+     15 ~> chc5 sel 4a h
+     2 ~> chc5 sel 2a h
+     3 ~> chc5 sel 1a h
+
+e6:  10110 or buffer
+     5 ~< {ap1} diag read func 17x l
+     6 ~< %NC%
+     7 ~< %NC%
+     2 ~> {ck2} ch diag read a l
+     3 ~> {as1} ch diag read b l
+     4 ~> {ar1} ch diag read c l
+
+e2:  10162 decoder
+     14 ~< chc5 sel 4a h
+     9 ~< chc5 sel 2a h
+     7 ~< chc5 sel 1a h
+     15 ~< %NC%
+     2 ~< %NC%
+     6 ~> {ak1} cbus sel 0 e h
+     5 ~> {al1} cbus sel 1 e h
+     4 ~> {am1} cbus sel 2 e h
+     3 ~> {an1} cbus sel 3 e h
+     13 ~> {af1} cbus sel 4 e h
+     12 ~> {ae1} cbus sel 5 e h
+     11 ~> {ad1} cbus sel 6 e h
+     10 ~> {ac1} cbus sel 7 e h
+
+e40: 10176 hex dff
+     5 ~< {df1} ebus d06 e h
+     6 ~< {dh2} ebus d07 e h
+     7 ~< {dj2} ebus d09 e h
+     10 ~< {dd1} ebus d10 e h
+     11 ~< {dc1} ebus d11 e h
+     12 ~< {da1} ebus d12 e h
+     9 ~< chc5 diag strobe h
+     2 ~> chc5 cbus reset h
+     3 ~> chc5 cbus start h
+     4 ~> chc5 cbus done h
+     13 ~> chc5 cbus ctom h
+     14 ~> chc5 cbus store h
+     15 ~> chc5 diag slow req h
