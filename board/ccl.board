@@ -1,3 +1,1152 @@
-STUB IMPLEMENTATION
 Page: CCL1, PDF267
 // M8536 TBD
+
+e22: 10105 2-3-2 or/nor
+     12 ~< ccl mem err latch l
+     13 ~< {bm1} -ccl mb rip l
+     14 ~> ccl err req h
+     15 ~> {ae2} ccl err req l
+     9 ~< {cd2} ccw ccwf req ena h
+     10 ~< {ca1} ccw act flag req ena h
+     11 ~< {bv2} ccw mem store ena h
+     6 ~> ccl hold mem l
+     7 ~> {bs1} ccl hold mem h
+     4 ~< ccl err req h
+     5 ~< ccl st/res intr h
+     3 ~> ccl rip inh l
+     2 ~> ccl rip inh h
+
+e20: 10105 2-3-2 or/nor
+     9 ~< ccl adr par err en h
+     10 ~< ccl nxm err en h
+     11 ~< ccl mem par err en h
+     6 ~> ccl mem err l
+     7 ~> %NC%
+     4 ~< ccl mb rip a l
+     5 ~< -ccl mb req t1 l
+     3 ~> %NC%
+     2 ~> ccl init ram req l
+     12 ~< ccl init mb cyc l
+     13 ~< ccl t2 l
+     14 ~> %NC%
+     15 ~> {el1} ccl mb cyc t2 l
+
+e19: 10117 dual 2-3 or/and
+     4 ~< ccl mem par err en l
+     5 ~< -ccl mem err clr l
+     6 ~< ccl csh chan cyc l
+     7 ~< {bd2} chan par err l
+     9 ~< ccl ccwf req l
+     3 ~> ccl mem par err en h
+     2 ~> ccl mem par err en l
+
+e10: 10117 dual 2-3 or/and
+     4 ~< {ak2} chan nxm err l
+     5 ~< %NC%
+     6 ~< -ccl mem err clr l
+     9 ~< %NC%
+     3 ~> ccl nxm err en h
+     2 ~> ccl nxm err en l
+     12 ~< {ah2} chan adr par err l
+     13 ~< ccl ccwf req l
+     10 ~< -ccl mem err clr l
+     11 ~< ccl adr par err en l
+     9 ~< %NC%
+     14 ~> ccl adr par err en h
+     15 ~> ccl adr par err en l
+
+e4:  10117 dual 2-3 or/and
+     4 ~< ccl nxm err l
+     5 ~< -ccl st/res intr l
+     6 ~< ccl nxm err en l
+     7 ~< {ae2} ccl err req l
+     9 ~< ccl mb cyc a l
+     3 ~> ccl nxm err in h
+     2 ~> ccl nxm err in l
+     12 ~< ccl mem par err l
+     13 ~< -ccl st/res intr l
+     10 ~< ccl mem par err en l
+     11 ~< {ae2} ccl err req l
+     9 ~< ccl mb cyc a l
+     14 ~> ccl mem par err in h
+     15 ~> ccl mem par err in l
+
+e5:  10117 dual 2-3 or/and
+     4 ~< ccl adr par err l
+     5 ~< -ccl st/res intr l
+     6 ~< ccl adr par err en l
+     7 ~< {ae2} ccl err req l
+     9 ~< ccl mb cyc a l
+     3 ~> ccl adr par err in h
+     2 ~> ccl adr par err in l
+     12 ~< ccl mr reset l
+     13 ~< %NC%
+     10 ~< ccl t0 l
+     11 ~< {ae2} ccl err req l
+     9 ~< ccl mb cyc a l
+     14 ~> ccl1-e5-14
+     15 ~> %NC%
+
+e33: 10176 hex dff
+     11 ~< ccl1-e5-14
+     9 ~< ccl clk a h
+     14 ~> ccl mem err clr h
+
+e15: 10109 4/5 or nor
+     4 ~< %NC%
+     5 ~< ccl nxm err in h
+     6 ~< ccl mem par err in h
+     7 ~< ccl adr par err in h
+     3 ~> %NC%
+     2 ~> {ba1} ccl error h
+
+e27: 10101 quad or/nor
+     4 ~< ccl t0 l
+     12 ~< %NC%
+     2 ~> ccl t0 a h
+     5 ~> ccl t0 a l
+     7 ~< {cd2} ccw ccwf req ena h
+     3 ~> ccl ccwf req ena l
+     6 ~> ccl ccwf req ena h
+     10 ~< {ca1} ccw act flag req ena h
+     14 ~> ccl act flag req ena l
+     11 ~> ccl act flag req ena h
+     13 ~< {bv2} ccw mem store ena h
+     15 ~> ccl mem store req ena l
+     9 ~> %NC%
+
+e13: 10176 hex dff
+     11 ~< {ap2} ch t3 l
+     9 ~< ccl clk f h
+     14 ~> ccl t0 l
+     5 ~< {as2} ch t0 l
+     2 ~> ccl t1 l
+     6 ~< {at2} ch t1 l
+     3 ~> ccl t2 l
+     7 ~< {au2} ch t2 l
+     4 ~> ccl t3 l
+     10 ~< ccl mem err l
+     13 ~> {aa1} ccl mem err latch l
+     12 ~< ccl mb cyc h
+     15 ~> ccl mb cyc dly h
+
+e32: 10101 quad or/nor
+     10 ~< ccl t1 l
+     12 ~< %NC%
+     14 ~> ccl t1 h
+     11 ~> %NC%
+     4 ~< {ce2} crc mb cyc h
+     2 ~> ccl mb cyc l
+     5 ~> ccl mb cyc h
+     13 ~< {ce2} crc mb cyc h
+     15 ~> ccl mb cyc a l
+     9 ~> %NC%
+     7 ~< ccl6-e35-3
+     3 ~> %NC%
+     6 ~> {cp2} ccl data reverse h
+
+e2:  10145 16x4 RAM
+     5 ~< -ccl rxm err in h
+     4 ~< -ccl mem par err in h
+     11 ~< -ccl adr par err in h
+     12 ~< %NC%
+     10 ~< %NC%
+     9 ~< {bp1} crc ram adr 4r h
+     7 ~< {bn1} crc ram adr 2r h
+     6 ~< {br1} crc ram adr 1r h
+     3 ~< %NC%
+     13 ~< {ad2} crc wr ram l
+     2 ~> ccl1-e2-2
+     1 ~> ccl1-e2-1
+     15 ~> ccl1-e2-15
+     14 ~> %NC%
+
+e3:  10173 4x2 mixer latch
+     5 ~< ccl1-e2-2
+     6 ~< %NC%
+     3 ~< ccl1-e2-1
+     4 ~< %NC%
+     12 ~< ccl1-e2-15
+     13 ~< %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     9 ~< %NC%
+     7 ~< -ccl t1 h
+     1 ~> -ccl nxm err h
+     2 ~> -ccl mem par err h
+     15 ~> -ccl adr par err h
+
+e51: 10164 8 mixer
+     6 ~< ccl err req h
+     5 ~< ccl store ccw h
+     4 ~< {ek2} ccl ccwf req h
+     3 ~< {cv2} ccl chan req h
+     11 ~< {ds2} ccl ch mb sel 2 h
+     12 ~< ccl chwf t2 h
+     13 ~< ccl mb rip a h
+     14 ~< {dp2} ccl odd wc par h
+     10 ~< {da1} -ch diag 04 h
+     9 ~< {dc1} -ch diag 05 h
+     7 ~< {de1} -ch diag 06 h
+     2 ~< {dd2} ch diag read a l
+     15 ~> {dp2} ebus d[n+00] e h
+
+e56: 10164 8 mixer
+     6 ~< -ccl csh chan cyc h
+     5 ~< {ej1} ccl buf adr 3 h
+     4 ~< ccl act flag req h
+     3 ~< {ah2} ccl chan ept h
+     11 ~< {ee2} ccl ch mb sel 1 h
+     12 ~< ccl mb req t2 h
+     13 ~< {ee1} -ccl alu minus h
+     14 ~< ccl wc ge4 h
+     10 ~< {da1} -ch diag 04 h
+     9 ~< {dc1} -ch diag 05 h
+     7 ~< {de1} -ch diag 06 h
+     2 ~< {dd2} ch diag read a l
+     15 ~> {ed2} ebus d[n+02] e h
+
+e41: 10164 8 mixer
+     6 ~< ccl mem ptr en h
+     5 ~< {de2} -ccl start mem h
+     4 ~< {ep1} ccl mem store req h
+     3 ~< {dd1} ccl chan to mem h
+     11 ~< -ccl af t2 h
+     12 ~< ccl reverse h
+     13 ~< {dl2} -ccl ch test mb par h
+     14 ~< {cl2} -ccl wc=0 h
+     10 ~< {da1} -ch diag 04 h
+     9 ~< {dc1} -ch diag 05 h
+     7 ~< {de1} -ch diag 06 h
+     2 ~< {dd2} ch diag read a l
+     15 ~> {cv2} ebus d[n+03] e h
+
+e40: 10118 triple 4-2 or-and
+     12 ~< {df1} ccl chan to mem l
+     13 ~< ccl csh chan cyc l
+     14 ~< ccl t2 l
+     10 ~< ccl data en l
+     11 ~< -ccl mem ptr en l
+     9 ~< {bm2} ccl mb rip l
+     15 ~> ccl1-e40-15
+
+e35: 10176 hex dff
+     11 ~< ccl1-e40-15
+     9 ~< ccl clk c h
+     14 ~> ccl1-e35-14
+     5 ~< ccl4-e45-15
+     2 ~> ccl af wd ready l
+     12 ~< ccl4-e57-7
+     15 ~> {de2} ccl start mem l
+     10 ~< ccl wd taken l
+     13 ~> {dl2} ccl ch test mb par l
+     7 ~< {cs1} csh chan cyc a h
+     4 ~> ccl6-e35-4
+     6 ~< {cr1} ch reverse h
+     3 ~> ccl6-e35-3
+
+e52: 10101 quad or/nor
+     4 ~< ccl1-e35-14
+     12 ~< %NC%
+     2 ~> ccl data en h
+     5 ~> ccl data en l
+     7 ~< ccl3-e34-15
+     3 ~> {bm2} ccl mb rip l
+     6 ~> {bm1} ccl mb rip h
+     13 ~< ccl3-e34-15
+     15 ~> ccl mb rip a l
+     9 ~> ccl mb rip a h
+     10 ~< ccl req ctr 2 h
+     14 ~> ccl4-e52-14
+     11 ~> %NC%
+
+e58: 10105 2-3-2 or/nor
+     12 ~< {ec1} ccl op load h
+     13 ~< ccl mem ptr en h
+     14 ~> {cs2} ccl load ac l
+     15 ~> {ct2} ccl load ac h
+     4 ~< {dh2} -crc act ctr 1 l
+     5 ~< {ef2} crc act ctr 2r l
+     3 ~> %NC%
+     2 ~> ccl2-e58-2
+     9 ~< -ccl req ctr 0 l
+     10 ~< -ccl req ctr 1 l
+     11 ~< -ccl req ctr 2 l
+
+e7:  10101 quad or/nor
+     4 ~< {al2} mr reset 05 h
+     12 ~< %NC%
+     2 ~> ccl mr reset l
+     5 ~> ccl mr reset h
+     13 ~< ccl wc=0 h
+     15 ~> {cl2} ccl wc=0 l
+     9 ~> %NC%
+     7 ~< ccl6-e6-15
+     3 ~> ccl cmd stored l
+     6 ~> ccl cmd stored h
+     10 ~< ccl6-e6-14
+     14 ~> ccl cmd toggled l
+     11 ~> ccl cmd toggled h
+
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk ccl h
+     2 ~> clk ccl delayed h
+
+e37: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk ccl delayed h
+     2 ~> ccl clk a h
+     3 ~> ccl clk b h
+     4 ~> ccl clk c h
+     9 ~< %NC%
+     10 ~< clk ccl delayed h
+     11 ~< %NC%
+     12 ~> ccl clk d h
+     13 ~> %NC%
+     14 ~> ccl clk f h
+
+e31: 10104 quad and/nand
+     12 ~< {cj1} ch start intr l
+     13 ~< {ch2} ch reset intr l
+     9 ~> ccl st/res intr h
+     15 ~> %NC%
+     6 ~< {cm2} -ccw buf 00 in l
+     7 ~< -ccl ccwf t2 l
+     3 ~> ccl2-e31-3
+     10 ~< ccl mb req t2 h
+     11 ~< {dl1} -ccl mem store req h
+     14 ~> {cf2} ccl mix mb sel h
+
+e50: 10101 quad or/nor
+     4 ~< ccl st/res intr h
+     12 ~< %NC%
+     2 ~> %NC%
+     5 ~> {cn1} ccl st/res intr a h
+     7 ~< ccl mem ptr en h
+     3 ~> %NC%
+     6 ~> ccl mem ptr en a h
+     10 ~< {cm2} ccw buf 00 in h
+     14 ~> {dr1} ccw buf 00 in l
+     11 ~> %NC%
+     13 ~< {ds1} ccw buf 00 in h
+     15 ~> {dp1} ccw buf 01 in h
+     9 ~> %NC%
+
+Page: CCL2, PDF268
+
+e67: 10164 8 mixer
+     6 ~< -ccl mr reset h
+     5 ~< -ccl ac=1 h
+     4 ~< ccl ac=3 or 4 h
+     3 ~< ccl ac=4 h
+     11 ~< -ccl mr reset h
+     12 ~< ccl ac=4 h
+     13 ~< ccl ac=3 or 4 h
+     14 ~< -ccl ac=1 h
+     10 ~< {dm2} -ccw buf 02 in h
+     9 ~< {ep2} ccw cha 34 h
+     7 ~< {en1} ccw cha 35 h
+     2 ~< ccl2-e17-15
+     15 ~> {fc1} ccl af wd0 req h
+
+e17: 10117 dual 2-3 or/and
+     12 ~< {bd1} ccl act flag req l
+     13 ~< %NC%
+     10 ~< ccl ccwf req l
+     11 ~< {eh2} -ccl chan ept l
+     9 ~< ccl mb cyc l
+     14 ~> %NC%
+     15 ~> ccl2-e17-15
+     4 ~< ccl last xfer err l
+     5 ~< -ccl st/res intr l
+     6 ~< ccl6-e8-15
+     7 ~< {ae2} ccl err req l
+     9 ~< ccl mb cyc l
+     3 ~> {er2} ccl last xfer err in h
+     2 ~> ccl last xfer err in l
+
+e68: 10164 8 mixer
+     6 ~< ccl ac=4 h
+     5 ~< -ccl mr reset h
+     4 ~< -ccl ac=1 h
+     3 ~< ccl ac=3 or 4 h
+     11 ~< -ccl ac=1 h
+     12 ~< -ccl mr reset h
+     13 ~< ccl ac=4 h
+     14 ~< ccl ac=3 or 4 h
+     10 ~< {dm2} -ccw buf 02 in h
+     9 ~< {ep2} ccw cha 34 h
+     7 ~< {en1} ccw cha 35 h
+     2 ~< ccl2-e17-15
+     15 ~> {fa1} ccl af wd1 req h
+
+e73: 10164 8 mixer
+     6 ~< ccl ac=3 or 4 h
+     5 ~< ccl ac=4 h
+     4 ~< -ccl mr reset h
+     3 ~< -ccl ac=1 h
+     11 ~< ccl ac=3 or 4 h
+     12 ~< -ccl ac=1 h
+     13 ~< -ccl mr reset h
+     14 ~< ccl ac=4 h
+     10 ~< {dm2} -ccw buf 02 in h
+     9 ~< {ep2} ccw cha 34 h
+     7 ~< {en1} ccw cha 35 h
+     2 ~< ccl2-e17-15
+     15 ~> {fh2} ccl af wd2 req h
+
+e72: 10164 8 mixer
+     6 ~< -ccl ac=1 h
+     5 ~< ccl ac=3 or 4 h
+     4 ~< ccl ac=4 h
+     3 ~< -ccl mr reset h
+     11 ~< ccl ac=4 h
+     12 ~< ccl ac=3 or 4 h
+     13 ~< -ccl ac=1 h
+     14 ~< -ccl mr reset h
+     10 ~< {dm2} -ccw buf 02 in h
+     9 ~< {ep2} ccw cha 34 h
+     7 ~< {en1} ccw cha 35 h
+     2 ~< ccl2-e17-15
+     15 ~> {fj2} ccl af wd3 req h
+
+e63: 10105 2-3-2 or/nor
+     4 ~< {ek2} ccl ccwf req h
+     5 ~< %NC%
+     3 ~> ccl ccwf req a l
+     2 ~> %NC%
+     9 ~< {ek1} ccl mb req t2 l
+     10 ~< {ej2} -ccl zero fill l
+     11 ~< ccl reverse l
+     6 ~> %NC%
+     7 ~> {ee1} ccl alu minus l
+
+e36: 10105 2-3-2 or/nor
+     4 ~< {bm2} ccl mb rip l
+     5 ~< ccl ccwf req ena l
+     3 ~> {ek2} ccl ccwf req h
+     2 ~> ccl ccwf req l
+     9 ~< {bm2} ccl mb rip l
+     10 ~< -ccl ccwf req ena l
+     11 ~< ccl act flag req ena l
+     6 ~> ccl act flag req h
+     7 ~> {bd1} ccl act flag req l
+     12 ~< ccl ccwf t0 l
+     13 ~< ccl mb cyc l
+     14 ~> {ec1} ccl op load h
+     15 ~> {cm1} ccl op load l
+
+e30: 10101 quad or/nor
+     7 ~< ccl ac1 flag req h
+     12 ~< %NC%
+     3 ~> ccl act flag req a l
+     6 ~> %NC%
+     4 ~< ccl3-e34-14
+     2 ~> ccl ccwf t2 l
+     5 ~> ccl ccwr t2 h
+     13 ~< %NC%
+     15 ~> hi
+     9 ~> %NC%
+
+e23: 10109 4-5 or/nor
+     4 ~< {bm2} ccl mb rip l
+     5 ~< ccl mem store req ena l
+     6 ~< -ccl act flag req ena l
+     7 ~< -ccl ccwf req ena l
+     3 ~> {ep1} ccl mem store req h
+     2 ~> {dl1} ccl mem store req l
+     9 ~< %NC%
+     10 ~< ccl ccwf t2 h
+     11 ~< ccl store ccw h
+     12 ~< ccl mem ptr en h
+     13 ~< ccl mr reset h
+     14 ~> %NC%
+     15 ~> ccl4-e23-15
+
+e18: 10104 quad and/nand
+     4 ~< {dl1} ccl mem store req l
+     5 ~< {dl1} ccl mem store req l
+     2 ~> ccl mem store req a l
+     12 ~< ccl mb cyc h
+     13 ~< {ek1} -ccl mb req t2 h
+     9 ~> ccl init mb cyc l
+     15 ~> ccl init mb cyc h
+
+e49: 10105 2-3-2 or/nor
+     9 ~< {dh2} -crc act ctr 1 l
+     10 ~< {dj2} -crc act ctr 2 l
+     11 ~< {ad1} ccl act flag req l
+     6 ~> ccl ac=4 h
+     7 ~> %NC%
+     12 ~< ccl t1 l
+     13 ~< ccl mem store req a l
+     14 ~> %NC%
+     15 ~> ccl4-e49-15
+     4 ~< ccl data en l
+     5 ~< ccl4-e48-15
+     3 ~> %NC%
+     2 ~> {dk2} ccl ch load mb l
+
+e59: 10107 quad xor/xnor
+     4 ~< {dh2} crc act ctr 1 h
+     5 ~< {dj2} crc act ctr 2 h
+     2 ~> ccl2-e59-2
+     3 ~> %NC%
+     14 ~< {cm2} ccw buf 00 in h
+     15 ~< {ds1} ccw buf 01 in h
+     12 ~> %NC%
+     13 ~> ccl5-e59-13
+     9 ~< {ea1} ccw buf 02 in h
+     7 ~< {fs2} ccw buf 03 in h
+     11 ~> %NC%
+     10 ~> ccl5-e59-10
+
+e54: 10104 quad and/nand
+     4 ~< ccl2-e59-2
+     5 ~< ccl ccwf req a l
+     2 ~> -ccl ac=3 or 4 l
+     6 ~< ccl ccwf req a l
+     7 ~< ccl2-e58-2
+     3 ~> ccl ac=1 l
+     10 ~< ccl ccwf req a l
+     11 ~< ccl mem store req a l
+     14 ~> ccl3-e54-14
+     12 ~< ccl5-e39-15
+     13 ~< ccl5-e39-15
+     9 ~> {dm2} ccw buf 02 in l
+     15 ~> {ea1} ccw buf 02 in h
+
+e21: 10117 dual 2-3 or/and
+     12 ~< ccl ccwf req l
+     13 ~< ccl2-e31-3
+     10 ~< ccl mem store req a l
+     11 ~< -ccl store ccw l
+     9 ~< %NC%
+     14 ~> {ej1} ccl buf adr 3 h
+     15 ~> %NC%
+     4 ~< {br2} crc req e l
+     5 ~< ccl t0 l
+     6 ~< ccl t0 l
+     7 ~< ccl af wd ready l
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> {bs2} ccl ch buf wr en l
+
+e16: 10117 dual 2-3 or/and
+     4 ~< ccl rip inh l
+     5 ~< -ccl t1 l
+     6 ~< {bf2} crc ram cyc l
+     7 ~< ccl t3 l
+     9 ~< ccl act flag req a l
+     3 ~> %NC%
+     2 ~> {be2} ccl act flag clr l
+     12 ~< {as1} ccl zero fill l
+     13 ~< {bm2} ccl mb rip l
+     10 ~< {bc1} ccw mem adr=0 l
+     11 ~< ccl mb cyc t3 l
+     9 ~< ccl act flag req a l
+     14 ~> {ej2} ccl zero fill h
+     15 ~> {as1} ccl zero fill l
+
+e12: 10117 dual 2-3 or/and
+     4 ~< ccl rip inh l
+     5 ~< -ccl t1 l
+     6 ~< ccl ccwf req l
+     7 ~< ccl init mb cyc l
+     9 ~< %NC%
+     3 ~> {aj1} ccl ccwf clr h
+     2 ~> {av2} ccl ccwf clr l
+     12 ~< ccl init mb cyc l
+     13 ~< ccl cmd toggled l
+     10 ~< -ccl init mb cyc l
+     11 ~< ccl cmd stored l
+     9 ~< %NC%
+     14 ~> ccl cmd stored in h
+     15 ~> %NC%
+
+Page: CCL3, PDF269
+
+e34: 10176 hex dff
+     5 ~< {el1} -ccl mb cyc t2 h
+     6 ~< ccl3-e19-14
+     7 ~< ccl3-e19-15
+     10 ~< ccl ccwf t0 h
+     11 ~< ccl3-e31-2
+     12 ~< ccl mb rip in hb
+     9 ~< ccl clk a h
+     2 ~> -ccl mb cyc t3 h
+     3 ~> ccl ccwf t0 h
+     4 ~> -ccl ccwf t0 h
+     13 ~> ccl ccwf t1 h
+     14 ~> ccl3-e34-14
+     15 ~> ccl3-e34-15
+
+e47: 10176 hex dff
+     5 ~< ccl data en h
+     6 ~< ccl af t0 h
+     7 ~< ccl3-e40-2
+     10 ~< ccl chan req en h
+     11 ~< -ccl chan req en h
+     12 ~< {bm2} -ccl mb rip h
+     9 ~< ccl clk b h
+     2 ~> ccl af t0 h
+     3 ~> ccl af t1 h
+     4 ~> ccl af t2 h
+     13 ~> {dv2} ccl chan req h
+     14 ~> {df2} -ccl chan req h
+     15 ~> -ccl mb req t0 h
+
+e57: 10105 2-3-2 or/nor
+     4 ~< {bm2} ccl mb rip l
+     5 ~< {ef1} -ccl csh chan cyc l
+     3 ~> %NC%
+     2 ~> ccl3-e57-2
+     9 ~< ccl data en l
+     10 ~< -ccl store ccw l
+     11 ~< ccl4-e48-2
+     6 ~> %NC%
+     7 ~> ccl4-e57-7
+     12 ~< ccl5-e74-15
+     13 ~< ccl5-e74-2
+     14 ~> {ed1} ccl wc ge4 l
+     15 ~> ccl wc ge4 h
+
+e42: 10117 dual 2-3 or/and
+     4 ~< {df2} ccl chan req l
+     5 ~< ccl3-e57-2
+     6 ~< ccl zero fill req h
+     7 ~< ccl mb cyc t3 l
+     9 ~< -ccl err req l
+     3 ~> ccl chan req en h
+     2 ~> ccl chan req en l
+     12 ~< ccl init ram req l
+     13 ~< ccl t0 l
+     10 ~< ccl ccwf t0 l
+     11 ~< -ccl ccwf t2 l
+     9 ~< -ccl err req l
+     14 ~> %NC%
+     15 ~> ccl3-e42-15
+
+e43: 10105 2-3-2 or/nor
+     9 ~< {bc1} ccw mem adr=0 l
+     10 ~< {df1} ccl chan to mem l
+     11 ~< ccl act flag req a l
+     6 ~> ccl zero fill req h
+     7 ~> %NC%
+     4 ~< -ccl reverse l
+     5 ~< {ej2} -ccl zero fill l
+     3 ~> %NC%
+     2 ~> ccl3-e43-2
+     12 ~< ccl req ctr=0 h
+     13 ~< ccl zero fill req h
+     14 ~> ccl4-e43-14
+     15 ~> %NC%
+
+e24: 10121 4-wide or-and
+     4 ~< {bd1} ccl act flag req l
+     5 ~< {ek1} ccl mb req t2 l
+     6 ~< {bl2} crc mb cyc l
+     7 ~< %NC%
+     9 ~< hi
+     10 ~< %NC%
+     11 ~< hi
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< ccl mb req t0 l
+     15 ~< ccl mem ptr en l
+     3 ~> ccl mem ptr en h
+     2 ~> ccl mem ptr en l
+
+e9: 10118 triple 4-2 or-and
+    3 ~< ccl3-e54-14
+    4 ~< ccl mb cyc l
+    5 ~< ccl t3 l
+    6 ~< ccl t3 l
+    7 ~< ccl mem ptr en l
+    9 ~< ccl act flag req a l
+    2 ~> {bt2} ccl ccw buf wr l
+    12 ~< %NC%
+    13 ~< ccl ccwf req l
+    14 ~< -ccl mb req t2 l
+    10 ~< ccl3-e43-2
+    11 ~< {ek1} ccl mb req t2 l
+    9 ~< ccl act flag req a l
+    15 ~> {aj2} ccl alu plus l
+
+e14: 10117 dual 2-3 or/and
+     4 ~< ccl mb req t0 l
+     5 ~< ccl mb cyc l
+     6 ~< %NC%
+     7 ~< ccl mb req t1 l
+     9 ~< ccl mb rip a l
+     3 ~> ccl mb req t1 h
+     2 ~> ccl mb req t1 l
+     12 ~< ccl mb req t1 l
+     13 ~< -ccl mb cyc l
+     10 ~< %NC%
+     11 ~< {ek1} ccl mb req t2 l
+     9 ~< ccl mb rip a l
+     14 ~> ccl mb req t2 h
+     15 ~> {ek1} ccl mb req t2 l
+
+e11: 10121 4-wide or-and
+     4 ~< ccl t3 l
+     5 ~< ccl init mb cyc l
+     6 ~< {as1} ccl zero fill l
+     7 ~< {dl1} ccl mem store req l
+     9 ~< %NC%
+     10 ~< ccl mb cyc t3 l
+     11 ~< ccl ccwf req l
+     12 ~< {ar2} crc reset l
+     13 ~< %NC%
+     14 ~< ccl mb rip a l
+     15 ~< {ar1} ccl chan ept l
+     3 ~> {eh2} ccl chan ept h
+     2 ~> {ar1} ccl chan ept l
+
+e38: 10117 dual 2-3 or-and
+     12 ~< ccl3-e42-15
+     13 ~< %NC%
+     10 ~< ccl t2 l
+     11 ~< ccl store ccw l
+     9 ~< %NC%
+     14 ~> {cu2} ccl ccw reg load h
+     15 ~> %NC%
+     4 ~< {ep1} ccl mem store req h
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< -ccl mb req t2 h
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> ccl5-e38-2
+
+Page: CCL4, PDF270
+
+e46: 10121 4-wide or-and
+     4 ~< {dl2} ccl ch test mb par l
+     5 ~< {dd1} -ccl chan to mem l
+     6 ~< {ek2} -ccl ccwf req l
+     7 ~< -ccl req ctr=0 l
+     9 ~< ccl t1 l
+     10 ~< ccl data en l
+     11 ~< {dl1} ccl mem store req l
+     12 ~< ccl t1 l
+     13 ~< %NC%
+     14 ~< {bd1} ccl act flag req l
+     15 ~< {el1} ccl mb cyc t2 l
+     3 ~> %NC%
+     2 ~> {em2} ccl req ctr en l
+
+e25: 10121 4-wide or-and
+     4 ~< ccl ccwf t0 l
+     5 ~< -ccl ccwf t2 l
+     6 ~< %NC%
+     7 ~< {ae2} ccl err req l
+     9 ~< -ccl mb cyc dly l
+     10 ~< -ccl mb req t1 l
+     11 ~< ccl init ram req l
+     12 ~< %NC%
+     13 ~< ccl act flag req a l
+     14 ~< ccl4-e43-14
+     15 ~< -ccl mb cyc l
+     3 ~> %NC%
+     2 ~> {bp2} ccl ram req l
+
+e44: 10117 dual 2-3 or-and
+     4 ~< ccl4-e49-15
+     5 ~< ccl data en l
+     7 ~< {bm2} ccl mb rip l
+     7 ~< ccl store ccw l
+     9 ~< %NC%
+     3 ~> ccl store ccw h
+     2 ~> ccl store ccw l
+     12 ~< {cs2} ccl load ac l
+     13 ~< {cl2} ccl wc=0 l
+     10 ~< {ct2} -ccl load ac l
+     11 ~< ccl wc=0 stored l
+     9 ~< %NC%
+     14 ~> {cl1} ccl wc=0 in h
+     15 ~> {af2} ccl wc=0 in l
+
+e26: 10121 4-wide or-and
+     4 ~< ccl mb cyc t3 l
+     5 ~< {cc1} ch ctom l
+     6 ~< ccl act flag req a l
+     7 ~< ccl mb cyc t3 l
+     9 ~< ccl mem store req a l
+     10 ~< %NC%
+     11 ~< hi
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< {bm2} ccl mb rip l
+     15 ~< {df1} ccl chan to mem l
+     2 ~> {df1} ccl chan to mem l
+     3 ~> {dd1} ccl chan to mem h
+
+e61: 10117 dual 2-3 or-and
+     12 ~< ccl init mb cyc l
+     13 ~< ccl t0 a l
+     10 ~< ccl reverse l
+     11 ~< %NC%
+     9 ~< {em2} ccl req ctr en l
+     14 ~> %NC%
+     15 ~> ccl4-e61-15
+     4 ~< ccl init mb cyc l
+     5 ~< ccl t0 a l
+     6 ~< -ccl reverse l
+     7 ~< %NC%
+     9 ~< {em2} ccl req ctr en l
+     15 ~> ccl4-e61-2
+
+e66: 10136 binary counter
+     5 ~< %NC%
+     6 ~< %NC%
+     11 ~< {ep2} ccw cha 34 h
+     12 ~< {en1} ccw cha 34 h
+     10 ~< %NC%
+     7 ~< ccl4-e61-15
+     9 ~< ccl4-e61-2
+     13 ~< ccl clk d h
+     4 ~> %NC%
+     3 ~> %NC%
+     2 ~> %NC%
+     15 ~> {ds2} ccl ch mb sel 2 h
+     14 ~> {ee2} ccl ch mb sel 1 h
+
+e48: 10117 dual 2-3 or-and
+     12 ~< ccl mem store req a l
+     13 ~< ccl t3 l
+     10 ~< -ccl req ctr=0 l
+     11 ~< ccl t0 l
+     9 ~< ccl act flag req a l
+     14 ~> %NC%
+     15 ~> ccl4-e48-15
+     4 ~< -ccl reverse l
+     5 ~< -ccl af t1 l
+     6 ~< ccl mb sel sub l
+     7 ~< ccl req ctr=1 l
+     9 ~< ccl act flag req a l
+     3 ~> %NC%
+     2 ~> ccl4-e48-2
+
+e45: 10109 4-5 or/nor
+     9 ~< {cs1} -csh chan cyc a l
+     10 ~< {dk1} -crc req d l
+     11 ~< {dj1} ccw wd ready l
+     12 ~< ccl act flag req a l
+     13 ~< {dd1} -ccl chan to mem l
+     14 ~> %NC%
+     15 ~> ccl4-e45-15
+     4 ~< -ccl req ctr 0 l
+     5 ~< -ccl req ctr 1 l
+     6 ~< ccl4-e52-14
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> ccl req ctr=1 l
+
+e62: 10136 binary counter
+     5 ~< %NC%
+     6 ~< {em1} crc act ctr 0 h
+     11 ~< {dh2} crc act ctr 1 h
+     12 ~< {dj2} crc act ctr 2 h
+     10 ~< %NC%
+     7 ~< {em2} -ccl req ctr en h
+     9 ~< {el1} -ccl mb cyc t2 h
+     13 ~< ccl clk d h
+     4 ~> %NC%
+     3 ~> %NC%
+     2 ~> ccl req ctr 0 h
+     15 ~> ccl req ctr 1 h
+     14 ~> ccl req ctr 2 h
+
+e28: 10117 dual 2-3 or-and
+     4 ~< ccl mb rip a l
+     5 ~< _ccl mb rip clr l
+     6 ~< ccl t2 l
+     7 ~< ccl hold mem l
+     9 ~< -ccl rip inh l
+     3 ~> ccl mb rip in h
+     2 ~> %NC%
+     12 ~< -ccl ccwf t1 l
+     13 ~< ccl ccwf t0 l
+     10 ~< ccl af wd ready l
+     11 ~< ccl t0 l
+     9 ~< -ccl rip inh l
+     14 ~> {bu2} ccl wd taken h
+     15 ~> ccl wd taken l
+
+e60: 10131 dual ms dff
+     12 ~< %NC%
+     10 ~< {el2} crc reverse in h
+     11 ~< {el1} -ccl mb cyc t2 h
+     9 ~< %NC%
+     13 ~< -ccl act flag req a h
+     15 ~> ccl reverse h
+     14 ~> ccl reverse l
+     5 ~< %NC%
+     7 ~< hi
+     6 ~< ccl6-e35-4
+     2 ~> {ef1} ccl csh chan cyc h
+     3 ~> ccl csh chan cyc l
+
+Page: CCL5, PDF271
+
+e77: 10181 ALU
+     10 ~< %NC%
+     9 ~< %NC%
+     16 ~< ccl reg 03 h
+     11 ~< %NC%
+     18 ~< ccl reg 04 h
+     19 ~< %NC%
+     21 ~< ccl reg 05 h
+     20 ~< %NC%
+     22 ~< ccl alu cb h
+     13 ~< ccl mem ptr en a h
+     15 ~< %NC%
+     17 ~< %NC%
+     14 ~< ccl mem ptr en a h
+     23 ~< %NC%
+     5 ~> %NC%
+     6 ~> %NC%
+     7 ~> {fs2} ccw buf 03 in h
+     3 ~> {fp2} ccw buf 04 in h
+     2 ~> {fn1} ccw buf 05 in h
+     4 ~> %NC%
+     8 ~> %NC%
+
+e76: 10181 ALU
+     10 ~< ccl reg 06 h
+     9 ~< %NC%
+     16 ~< ccl reg 07 h
+     11 ~< %NC%
+     18 ~< ccl reg 08 h
+     19 ~< %NC%
+     21 ~< ccl reg 09 h
+     20 ~< %NC%
+     22 ~< ccl alu ca h
+     13 ~< ccl mem ptr en a h
+     15 ~< %NC%
+     17 ~< %NC%
+     14 ~< ccl mem ptr en a h
+     23 ~< %NC%
+     5 ~> ccl alu cb h
+     6 ~> {fm1} ccw buf 06 in h
+     7 ~> {fj1} ccw buf 07 in h
+     3 ~> {fk2} ccw buf 08 in h
+     2 ~> {fk1} ccw buf 09 in h
+     4 ~> %NC%
+     8 ~> %NC%
+
+e75: 10181 ALU
+     10 ~< ccl reg 10 h
+     9 ~< %NC%
+     16 ~< ccl reg 11 h
+     11 ~< {fv2} ccl cons 0 h
+     18 ~< ccl reg 12 h
+     19 ~< {ft2} ccl cons 1 h
+     21 ~< ccl reg 13 h
+     20 ~< {fu2} ccl cons 2 h
+     22 ~< ccl mem ptr en a h
+     13 ~< ccl mem ptr en a h
+     15 ~< %NC%
+     17 ~< %NC%
+     14 ~< ccl mem ptr en a h
+     23 ~< %NC%
+     5 ~> ccl alu ca h
+     6 ~> {fl2} ccw buf 10 in h
+     7 ~> {fl1} ccw buf 11 in h
+     3 ~> {fm2} ccw buf 12 in h
+     2 ~> {fp1} ccw buf 13 in h
+     4 ~> %NC%
+     8 ~> %NC%
+
+e71: 10173 4x2 mixer latch
+     5 ~< %NC%
+     6 ~< ccl req ctr 0 h
+     3 ~< %NC%
+     4 ~< ccl req ctr 1 h
+     12 ~< hi
+     13 ~< ccl req ctr 2 h
+     10 ~< %NC%
+     11 ~< %NC%
+     9 ~< ccl act flag req h
+     7 ~< ccl mb req t2 h
+     1 ~> {fv2} ccl cons 0 h
+     2 ~> {ft2} ccl cons 1 h
+     15 ~> {fu2} ccl cons 2 h
+     14 ~> %NC%
+
+e69: 10160 parity
+     3 ~< ccl5-e59-13
+     4 ~< ccl5-e59-10
+     5 ~< {fp2} ccw buf 04 in h
+     6 ~< {fn1} ccw buf 05 in h
+     7 ~< {fm1} ccw buf 06 in h
+     9 ~< {fj1} ccw buf 07 in h
+     10 ~< {fk2} ccw buf 08 in h
+     11 ~< {fk1} ccw buf 09 in h
+     12 ~< {fl2} ccw buf 10 in h
+     13 ~< {fl1} ccw buf 11 in h
+     14 ~< {fm2} ccw buf 12 in h
+     15 ~< {fp1} ccw buf 13 in h
+     2 ~> {dr2} ccl odd wc par h
+
+e29: 10121 4-wide or-and
+     4 ~< ccl mb req t1 l
+     5 ~< {ep1} -ccl mem store req l
+     6 ~< -ccl ccwf t0 l
+     7 ~< {dl1} ccl mem store req l
+     9 ~< {bt2} ccl ccw buf wr l
+     10 ~< %NC%
+     11 ~< hi
+     12 ~< %NC%
+     13 ~< ccl ccwf req a l
+     14 ~< ccl ccwf t2 l
+     15 ~< %NC%
+     3 ~> ccl reg hold h
+     2 ~> %NC%
+
+e74: 10109 4-5 or/nor
+     9 ~< {fs2} ccw buf 03 in h
+     10 ~< {fp2} ccw buf 04 in h
+     11 ~< {fn1} ccw buf 05 in h
+     12 ~< {fm1} ccw buf 06 in h
+     13 ~< {fj1} ccw buf 07 in h
+     14 ~> %NC%
+     15 ~> ccl5-e74-15
+     4 ~< {fk2} ccw buf 08 in h
+     5 ~< {fk1} ccw buf 09 in h
+     6 ~< {fl2} ccw buf 10 in h
+     7 ~< {fl1} ccw buf 11 in h
+     3 ~> %NC%
+     2 ~> ccl5-e74-2
+
+e70: 10162 decoder
+     14 ~< ccl wc ge4 h
+     9 ~< {fm2} ccw buf 12 in h
+     7 ~< {fp1} ccw buf 13 in h
+     15 ~< %NC%
+     2 ~< %NC%
+     6 ~> ccl wc=0 h
+     5 ~> {fr2} ccl wc=1 h
+     4 ~> {fr1} ccl wc=2 h
+     3 ~> {fs1} ccl wc=3 h
+     13 ~> %NC%
+     12 ~> %NC%
+     11 ~> %NC%
+     10 ~> %NC%
+
+e39: 10173 4x2 mixer latch
+     5 ~< {cj2} ccw mix 00 h
+     6 ~< hi
+     3 ~< {ck2} ccw mix 01 h
+     4 ~< ccl mem par err in h
+     12 ~< {ck1} ccw mix 03 h
+     13 ~< -ccl adr par err in h
+     10 ~< %NC%
+     11 ~< %NC%
+     9 ~< ccl5-e38-2
+     7 ~< ccl reg hold h
+     1 ~> {cm2} ccw buf 00 in h
+     2 ~> {ds1} ccw buf 01 in h
+     15 ~> ccl5-e39-15
+     14 ~> %NC%
+
+e53: 10173 4x2 mixer latch
+     5 ~< %NC%
+     6 ~< %NC%
+     3 ~< {du2} ccw mix 03 h
+     4 ~< {af2} -ccl wc=0 in h
+     12 ~< {dn1} ccw mix 04 h
+     13 ~< ccl nxm err in h
+     10 ~< {dt2} ccw mix 05 h
+     11 ~< %NC%
+     9 ~< ccl5-e38-2
+     7 ~< ccl reg hold h
+     1 ~> %NC%
+     2 ~> ccl reg 03 h
+     15 ~> ccl reg 04 h
+     14 ~> ccl reg 05 h
+
+e65: 10173 4x2 mixer latch
+     5 ~< {fd1} ccw mix 06 h
+     6 ~< %NC%
+     3 ~< {fd2} ccw mix 07 h
+     4 ~< %NC%
+     12 ~< {er1} ccw mix 08 h
+     13 ~< %NC%
+     10 ~< {es2} ccw mix 09 h
+     11 ~< {er2} ccl last xfer err in h
+     9 ~< ccl5-e38-2
+     7 ~< ccl reg hold h
+     1 ~> ccl reg 06 h
+     2 ~> ccl reg 07 h
+     15 ~> ccl reg 08 h
+     14 ~> ccl reg 09 h
+
+e64: 10173 4x2 mixer latch
+     5 ~< {fe2} ccw mix 10 h
+     6 ~< {fe1} crc rh20 err in h
+     3 ~< {ff2} ccw mix 11 h
+     4 ~< crc long wc err h
+     12 ~< {et2} ccw mix 12 h
+     13 ~< {es1} crc short wc err h
+     10 ~< {ev2} ccw mix 13 h
+     11 ~< {eu2} crc ovn err in h
+     9 ~< ccl5-e38-2
+     7 ~< ccl reg hold h
+     1 ~> ccl reg 10 h
+     2 ~> ccl reg 11 h
+     15 ~> ccl reg 12 h
+     14 ~> ccl reg 13 h
+
+Page: CCL6, PDF272
+
+e8:  10117 dual 2-3 or-and
+     12 ~< ccl cmd stored l
+     13 ~< -ccl cmd toggled l
+     10 ~< -ccl cmd stored l
+     11 ~< ccl cmd toggled l
+     9 ~< -ccl mr reset l
+     14 ~> %NC%
+     15 ~> ccl6-e8-15
+     4 ~< {am2} ch done intr l
+     5 ~< -ccl cmd toggled l
+     6 ~< {an1} -ch done intr l
+     7 ~< ccl cmd toggled l
+     9 ~< -ccl mr reset l
+     3 ~> ccl cmd toggled in h
+     2 ~> %NC%
+
+e1:  10145 16x4 RAM
+     5 ~< {af2} -ccl wc=0 in h
+     4 ~< -ccl last xfer err in h
+     11 ~< ccl cmd stored in h
+     12 ~< ccl cmd toggled in h
+     10 ~< {bp1} crc ram adr 4r h
+     9 ~< {bn1} crc ram adr 2r h
+     7 ~< {br1} crc ram adr 1r h
+     6 ~< %NC%
+     3 ~< %NC%
+     13 ~< {ad2} crc wr ram l
+     2 ~> ccl6-e1-2
+     1 ~> ccl6-e1-1
+     15 ~> ccl6-e1-15
+     14 ~> ccl6-e1-14
+
+e6:  10173 4x2 mixer latch
+     5 ~< ccl6-e1-2
+     6 ~< %NC%
+     3 ~< ccl6-e1-1
+     4 ~< %NC%
+     12 ~< ccl6-e1-15
+     13 ~< %NC%
+     10 ~< ccl6-e1-14
+     11 ~< %NC%
+     9 ~< %NC%
+     7 ~< -ccl t1 h
+     1 ~> -ccl w=0 stored h
+     2 ~> -ccl last xfer err h
+     15 ~> ccl6-e6-15
+     14 ~> ccl6-e6-14
