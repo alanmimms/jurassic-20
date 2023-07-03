@@ -862,7 +862,7 @@ e62: 10136 binary counter
 
 e28: 10117 dual 2-3 or-and
      4 ~< ccl mb rip a l
-     5 ~< _ccl mb rip clr l
+     5 ~< ccl mb rip clr l
      6 ~< ccl t2 l
      7 ~< ccl hold mem l
      9 ~< -ccl rip inh l
