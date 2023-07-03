@@ -12,13 +12,14 @@
 }
 
 
-compileable = (_ EOL )* b:(stubBoard / backplane+ / board) { return b }
+compileable = blankLines? b:(stubBoard / backplane+ / board) { return b }
 
 backplane = 'Backplane' _ ':' _
 	macros:( '{' _ m:macroDef* '}' _ {return m} )?
 	name:simpleID _ EOL
 	slots:slotDef+
                 { return AST('Backplane', {name, macros, slots}) }
+
 
 slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines wires:wireDef* blankLines?
                 { return AST('Slot', {n, board, wires, bpPins: {}}) }
@@ -30,7 +31,7 @@ slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
 macroDef = id:simpleID _ '=' _ value:number _
                 { return AST('MacroDef', {id, value}) }
 
-wireDef = slotPin:bpPinID _ farPin:bpPinID '[' slot:number ']' _ name:id EOL
+wireDef = _ slotPin:bpPinID _ farPin:bpPinID '[' slot:number ']' _ name:id _ blankLines
 	        { return AST('Wire', {slotPin, farPin, slot, name}) }
 
 stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
@@ -113,4 +114,4 @@ EOL "end of line" = '\r\n' / '\r' / '\n'
 blankLines = (_ EOL)+
 
 _ "whitespace or comments"
-=	(   [ \t]+   /    '\\' EOL    /    '//' ( !EOL . )*   /   '/*' ( !'*/' . )* '*/'   )*
+=	(   [ \t]+   /    '\\' EOL    /    '//' ( !EOL . )*  /   '/*' ( !'*/' . )* '*/'   )*

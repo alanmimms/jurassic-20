@@ -21,16 +21,21 @@ Slot  5: ignore TR0 E&C BUS TRAN M8516
 Slot  6: ignore TR0 E&C BUS TRAN M8516
 Slot  7: ignore TR0 S BUS TRAN M8519
 Slot  8: ignore TR0 S BUS TRAN M8519
+
 Slot  9: {m=0} chc M8533
 Slot 10: crc M8535
 Slot 11: {n=0} ccl M8536
 Slot 12: {n=0} ccw M8534
+
 Slot 13: ignore blank
+
 Slot 14: {n=12} mb0 M8517
 Slot 15: {n=6} mb0 M8517
 Slot 16: {n=0} mb0 M8517
 Slot 17: {n=27} cac M8521 (cache) // ch0 M8549YH (no cache)
+
 Slot 18: ignore blank
+
 Slot 19: {n=18} cac M8521 (cache) // ch0 M8549YH (no cache)
 Slot 20: mbz M8537
 Slot 21: {n=30} mbx M8529YA
@@ -38,7 +43,9 @@ Slot 22: {n=22} mbc M8531YA
 Slot 23: {k=22} csh M8513YA
 Slot 24: {n=9} cac M8521 (cache) // ch0 M8549YH (no cache)
 Slot 25: {n=0} cac M8521 (cache) // ch0 M8549YH (no cache)
+
 Slot 26: ignore blank
+
 Slot 27: cha M8514 (cache) // ch0a M8549YE (no cache)
 Slot 28: {n=0} chx M8515 (cache) // ch0x M8549YF (no cache)
 Slot 29: pma M8518YA
@@ -49,13 +56,38 @@ Slot 33: {n=18} mtr M8538
 Slot 34: apr M8545
 Slot 35: {n=18} con M8525
 Slot 36: {n=24} ctl M8543
+
 Slot 37: ignore blank
+
 Slot 38: {n=13} vma M8542
+
 Slot 39: {n=30} edp M8512
+//   em2 de1[40] serial32
+//   ea1 de1[40] serial16
+//   ee1 de1[40] serial8
+//   dd2 de1[40] serial4
+//   de1 de1[40] serial2
+//   ef2 de1[40] serial1
+
 Slot 40: {n=16 m=30} crm M8548
+
 Slot 41: {n=24} edp M8512
+     em2 de1[42] serial2048
+     ea1 de1[42] serial1024
+     ee1 de1[42] serial512
+     dd2 de1[42] serial256
+//   de1 de1[42] serial128
+//   ef2 de1[42] serial64
+
 Slot 42: {n=12 m=24} crm M8548
+
 Slot 43: {n=18} edp M8512
+//   em2 de1[44] option50Hz
+     ea1 de1[44] optionCacheAvailable
+     ee1 de1[44] optionInternalChannels
+     dd2 de1[44] optionExtendedKL
+//   de1 de1[44] optionMasterOscillator
+
 Slot 44: {n=8 m=18} crm M8548
 Slot 45: {n=0} cra M8541
 Slot 46: shm M8540
@@ -109,65 +141,66 @@ Slot 54: {n=2} scd M8524
 // Backplane: RH20
 // Slot 1: ignore cables IOC3 (M920), IOC4 (M902), INT M8554 // for DTE20#1
 
-// // DTE20#1 Slot 2-3
+// DTE20#1 Slot 2-3
 // Slot 2: cnt M8553
 // Slot 3: dps M8552
 
-// // DTE20#2 Slot 4-5
+// DTE20#2 Slot 4-5
 // Slot 4: cnt M8553
 // Slot 5: dps M8552
 
 // Slot 6: int M8554 // three instances for DTE20#2, #3, and #4
 
-// // DTE20#3 Slot 6-7
+// DTE20#3 Slot 6-7
 // Slot 7: cnt M8553
 // Slot 8: dps M8552
 
-// // DTE20#4 Slot 9-10
+// DTE20#4 Slot 9-10
 // Slot 9: cnt M8553
 // Slot 10: dps M8552
 
 // Slot 11: ignore blank
 // Slot 12: cds M8559
 
-// // RH7
+// RH7
 // Slot 13: ebi M8555
 // Slot 14: mss M8557
 // Slot 15: dp M8556
 
-// // RH6
+// RH6
 // Slot 16: ebi M8555
 // Slot 17: mss M8557
 // Slot 18: dp M8556
 
-// // RH5
+// RH5
 // Slot 19: ebi M8555
 // Slot 20: mss M8557
 // Slot 21: dp M8556
 
-// // RH4
+// RH4
 // Slot 22: ebi M8555
 // Slot 23: mss M8557
 // Slot 24: dp M8556
 
-// // RH3
+// RH3
 // Slot 25: ebi M8555
 // Slot 26: mss M8557
 // Slot 27: dp M8556
 
-// // RH2
+// RH2
 // Slot 28: ebi M8555
 // Slot 29: mss M8557
 // Slot 30: dp M8556
 
-// // RH1
+// RH1
 // Slot 331: ebi M8555
 // Slot 32: mss M8557
 // Slot 33: dp M8556
 
-// // RH0
+// RH0
 // Slot 34: ebi M8555
 // Slot 35: mss M8557
 // Slot 36: dp M8556
 
 // Slot 37: ignore cables IOC1 BC11A (M929), IOC2 BC202C (M9006), IOC2 B20C (M9006)
+
