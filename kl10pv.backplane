@@ -21,26 +21,26 @@ Slot  5: ignore TR0 E&C BUS TRAN M8516
 Slot  6: ignore TR0 E&C BUS TRAN M8516
 Slot  7: ignore TR0 S BUS TRAN M8519
 Slot  8: ignore TR0 S BUS TRAN M8519
-Slot  9: chc M8533
+Slot  9: {m=0} chc M8533
 Slot 10: crc M8535
-Slot 11: ccl M8536
-Slot 12: ccw M8534
+Slot 11: {n=0} ccl M8536
+Slot 12: {n=0} ccw M8534
 Slot 13: ignore blank
 Slot 14: {n=12} mb0 M8517
 Slot 15: {n=6} mb0 M8517
 Slot 16: {n=0} mb0 M8517
-Slot 17: cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 17: {n=27} cac M8521 (cache) // ch0 M8549YH (no cache)
 Slot 18: ignore blank
-Slot 19: cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 19: {n=18} cac M8521 (cache) // ch0 M8549YH (no cache)
 Slot 20: mbz M8537
 Slot 21: {n=30} mbx M8529YA
 Slot 22: {n=22} mbc M8531YA
 Slot 23: {k=22} csh M8513YA
-Slot 24: cac M8521 (cache) // ch0 M8549YH (no cache)
-Slot 25: cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 24: {n=9} cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 25: {n=0} cac M8521 (cache) // ch0 M8549YH (no cache)
 Slot 26: ignore blank
 Slot 27: cha M8514 (cache) // ch0a M8549YE (no cache)
-Slot 28: chx M8515 (cache) // ch0x M8549YF (no cache)
+Slot 28: {n=0} chx M8515 (cache) // ch0x M8549YF (no cache)
 Slot 29: pma M8518YA
 Slot 30: pag M8520YA
 Slot 31: pic M8532
