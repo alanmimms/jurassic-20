@@ -58,3 +58,205 @@
   backplane).
 
 * Finish defining signals for CRAM bits on backplane.
+
+
+# Glossary
+
+AC                  Accumulator
+AC                  Action Count
+ACKN                Acknowledge
+ACT                 Action
+ADA                 AdderA
+AD                  Adder
+ADB                 Adder B
+ADR                 Address
+ADX                 Adder Extension
+AF                  Action Flag
+ALT                 Alternate
+ALU                 Arithmetic Logic Unit
+APR                 Arithmetic Processor Register
+AR                  Arithmetic Register
+ARL                 Arithmetic Register Left
+ARM                 Arithmetic Register Mixer
+ARMM                Arithmetic Register Mixer Mixer
+ARR                 Arithmetic Register Right
+ARX                 Arithmetic Register Extension
+ARXL                Arithmetic Register Extension Left
+ARXM                Arithmetic Register Extension Mixer
+ARXR                Arithmetic Register Extension Right
+BOOLE               Boolean
+BR                  Buffer Register
+BRK                 Break
+BRX                 Buffer Register Extension
+BUF                 Buffer
+CAM                 Cache Address Mixer
+CBUS                Channel Bus
+CCA                 Cache Clearer Address
+CCL                 Channel Control Logic
+CCW                 Channel Command Word
+CCWF                Channel Command
+C DIR P             Cache Directory Parity
+CG                  Carry Generate
+CHA                 Channel Address
+CHAN                Channel
+CH                  Channel
+CHK                 Check
+CHX                 Cache Extension
+CLK                 Clock
+CLR                 Clear
+COMP                Complete
+CON                 Control
+COND                Condition
+CONS                Constant
+CONTR               Control
+CP                  Carry Propagate
+CP                  Central Processor
+CPU                 Central Processing Unit
+CRA                 Control RAM Address
+CRAM                Control RAM Address Mixer
+CRC                 Channel RAM Control
+CR                  Control RAM
+CRM                 Control RAM
+CRY                 Carry
+CS                  Controller Select
+CSH                 Cache
+CTL                 Control
+CTOM                Controller-to-Memory or Cache-to-Memory
+CTR                 Counter
+CWSX                Called With Special Execute
+CYC                 Cycle
+DAT                 Data
+D                   Data
+DIAG                Diagnostic
+DIF                 Difference
+DIR                 Directory
+DIS                 Disable
+DISP                Dispatch
+DIV                 Divide
+DRAM                Dispatch RAM
+EBR                 Executive Base Register
+EBUS                Execution Bus
+ECL                 Emitter-Coupled Logic
+EDP                 EBox Data Path
+E                   EBox Cyc
+ENA                 Enable
+EN                  Enable
+EPT                 Executive Process Table
+ERA                 Error Address
+ERR                 Error
+E to T              ECL to TTL
+EX                  Extension
+EXP                 Exponent
+EXT TRA REC Externalsfer Receiver
+FE                  Floating Exponent
+FE                  Front End
+F                   Function
+FLG                 Flag
+FM                  Fast memory
+FOV                 Floating Overflow
+FPD                 First Part Done
+FPD                 Floating Point Divide
+FUNC                Function
+FXU                 Floating Exponent Underflow
+GE                  Greater or Equal
+GEN                 Generate
+G                   Gated
+H                   High
+INC                 Increment
+INH                 Inhibit
+IN                  Input
+INSTR               Instruction
+INT                 Internal
+INTR                Interrupt
+INVAL               Invalid
+IOT                 Input/Output Transfer
+IR                  Instruction Register
+J                   Jump
+LAT                 External
+L                   Low
+LRU                 Least Recently Used
+MBC                 M Box Control
+MB                  Memory Buffer
+MBX                 M Box Control
+MBZ                 M Box Control
+MCL                 Memory Control
+MEM                 Memory
+MHz                 Megahertz
+MIX                 Mixer
+MQM                 Multiplier Quotient Mixer
+MQ                  Multiplier Quotient
+MR                  Master
+MRU                 Most Recently Used
+MTR                 Meter
+NICOND              Next Instruction Condition
+NXM                 Non-Existent Memory
+NXT                 Next
+OK                  011 Korrect
+OP                  Operation (code)
+OVN                 Overrun
+PAG                 Pager
+PA                  Physical Address
+PAR                 Parity
+PCF#                Previous Context Flags from Number
+PCP                 Previous Context Public
+PC                  Program Counter
+PC                  Program Counter
+PERF                Performance
+PF                  Page Fault
+PGRF                Page Refill
+PIA                 Priority Interrupt Assignment
+PIH                 Priority Interrupt Hold
+PI                  Priority Interrupt
+PMA                 Physical Memory Address
+PMA                 Physical Memory Address Selector
+PREV                Previous
+PT                  Page Table / Process Table
+PTR                 Pointer
+PWR                 Power
+RAM                 Random Access Memory
+RD                  Read
+REC                 Receive
+REF                 Reference
+REG                 Register
+REL                 Release
+REQ                 Request
+RE                  Receive ECL
+RESP                Response
+RES                 Reset
+RET                 Return
+RIP                 Request In Progress
+RQ                  Request
+S ADR P             Storage Address Parity
+SBR                 Subroutine
+SBUS                Storage Bus
+SCADA               Shift Count Adder A
+SCADB               Shift Count Adder B
+SCAD                Shift Count Adder
+SCD                 Shift Count Adder
+SCM                 Shift Count Mixer
+SC                  Shift Count
+SEL                 Select
+SHRT                Shift Right
+SH                  Shifter
+SIM                 Simulate
+SPEC                Special
+SP                  Special
+SR                  State Register
+ST                  Start
+SYNC                Synchronize
+TE                  Transmit ECL
+TRA                 Transfer
+T                   Time
+TTL                 Transistor-Transistor Logic
+T to E              TTL to ECL
+UBR                 User Base Register
+UCODE               Microcode
+VAL                 Valid
+VMA                 Virtual Memory Address
+WARN                Warning
+WC                  Word Count
+WD                  Word
+Word                Fetch
+WR                  Write
+XFER                Transfer
+XR                  Index Register
