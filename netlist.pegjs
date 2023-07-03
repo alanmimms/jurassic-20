@@ -20,8 +20,8 @@ backplane = 'Backplane' _ ':' _
 	slots:slotDef+
                 { return AST('Backplane', {name, macros, slots}) }
 
-slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines
-                { return AST('Slot', {n, board, bpPins: {}}) }
+slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines wires:wireDef* blankLines?
+                { return AST('Slot', {n, board, wires, bpPins: {}}) }
 
 slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
 	id:simpleID _ comments:$( !EOL . )*
@@ -29,6 +29,9 @@ slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
 
 macroDef = id:simpleID _ '=' _ value:number _
                 { return AST('MacroDef', {id, value}) }
+
+wireDef = slotPin:bpPinID _ farPin:bpPinID '[' slot:number ']' _ name:id EOL
+	        { return AST('Wire', {slotPin, farPin, slot, name}) }
 
 stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
 	    	{ return AST('Stub', {pages: p}) }
