@@ -1,3 +1,1143 @@
-STUB IMPLEMENTATION
 Page: CCW1, PDF234
 // M8534 TBD
+
+e22: 10174 2x4 mixer
+     3 ~< ccw ccwf adr 4 h
+     5 ~< ccw mem store adr 4 h
+     4 ~< ccw act flag adr 4 h
+     6 ~< ccw err adr 0 h
+     13 ~< ccw ccwd adr 2 h
+     11 ~< ccw mem store adr 2 h
+     12 ~< ccw act flag  adr 2 h
+     10 ~< ccw err adr  h
+     9 ~< ccw buf sel 2 h
+     7 ~< ccw buf sel 1 h
+     14 ~< %NC%
+     2 ~> {ca1} ccw buf adr 0 h
+     15 ~> {bc1} ccw buf adr 1 h
+
+e23: 10174 2x4 mixer
+     3 ~< ccw ccwf adr 1 h
+     5 ~< ccw mem store adr 1 h
+     4 ~< ccw act flag adr 1 h
+     6 ~< ccw err adr 2 h
+     13 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     10 ~< %NC%
+     9 ~< ccw buf sel 2 h
+     7 ~< ccw buf sel 1 h
+     14 ~< %NC%
+     2 ~> {bk2} ccw buf adr 2 h
+     15 ~> %NC%
+
+e27: 10176 hex dff
+     5 ~< {ca1} ccw buf adr 0 h
+     6 ~< {bc1} ccw buf adr 1 h
+     7 ~< {bk2} ccw buf adr 2 h
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     9 ~< ccw1-e50-15
+     2 ~> ccw err adr 0 h
+     3 ~> ccw err adr 1 h
+     4 ~> ccw err adr 2 h
+     13 ~> %NC%
+     14 ~> %NC%
+     15 ~> %NC%
+
+e50: 10104 quad and/nand
+     12 ~< ccw csh chan cyc h
+     13 ~< {cv2} -ccl mem err latch h
+     9 ~> %NC%
+     15 ~> ccw1-e50-15
+     4 ~< ccw cha 27 ena h
+     5 ~< -ccw chan ept h
+     2 ~> {cs1} ccw cha 27 h
+     6 ~< ccw cha 28 ena h
+     7 ~< -ccw chan ept h
+     3 ~> {dn1} ccw cha 28 h
+     10 ~< ccw cha 29 ena h
+     11 ~< -ccw chan ept h
+     14 ~> {dj2} ccw cha 29 h
+
+e56: 10104 quad and/nand
+     12 ~< {ds1} ccl act flag req l
+     13 ~< {du2} ccl err req l
+     9 ~> ccw buf sel 2 h
+     15 ~> %NC%
+     4 ~< ccw alu minus h
+     5 ~< ccw alu minus h
+     2 ~> ccw alu minus a h
+     6 ~< ccw alu plus h
+     7 ~< ccw alu plus h
+     3 ~> ccw alu plus a h
+     10 ~< ccw cha 34 ena h
+     11 ~< -ccw chan ept h
+     14 ~> {dm1} ccw cha 34 h
+
+e55: 10104 quad and/nand
+     12 ~< {dv2} ccl mem store req l
+     13 ~< {du2} ccl err req l
+     9 ~> ccw buf sel 1 h
+     15 ~> %NC%
+     6 ~< ccw chan ept h
+     7 ~< {ek2} -ccl zero fill h
+     3 ~> ccw2-e55-3
+     10 ~< ccw cha 30 ena h
+     11 ~< -ccw chan ept h
+     14 ~> ccw2-e55-14
+     4 ~< ccw wc=3 l
+     5 ~< ccw wc=1 l
+     2 ~> ccw3-e55-2
+
+e8:  10109 4/5 or/nor
+     4 ~< {aj1} diag load func 070 l
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> {aa1} ccw diag load func 070 h
+     2 ~> %NC%
+     9 ~< %NC%
+     10 ~< ccw wd0 ready h
+     11 ~< ccw wd1 ready h
+     12 ~< ccw wd2 ready h
+     13 ~< ccw wd3 ready h
+     14 ~> {ar2} ccw wd ready l
+     15 ~> ccw wd ready h
+
+e28: 10101 quad or/nor
+     4 ~< {ca1} ccw buf adr 0 h
+     12 ~< %NC%
+     2 ~> {cn1} ccw buf adr 0 l
+     5 ~> %NC%
+     7 ~< {bc1} ccw buf adr 1 h
+     3 ~> {dp2} ccw buf adr 1 l
+     6 ~> %NC%
+     13 ~< {bk2} ccw buf adr 2 h
+     15 ~> {df1} ccw buf adr 2 l
+     9 ~> %NC%
+     10 ~< {bk1} ccl af wd3 req h
+     14 ~> ccw wd3 req in l
+     11 ~> %NC%
+
+e73: 10109 4/5 or/nor
+     9 ~< {fs1} -ccw buf 14 in l
+     10 ~< {fr1} -ccw buf 15 in l
+     11 ~< {fp1} -ccw buf 16 in l
+     12 ~< {fs2} -ccw buf 17 in l
+     13 ~< {fm1} -ccw buf 18 in l
+     14 ~> %NC%
+     15 ~> ccw1-e73-15
+     4 ~< {fn1} -ccw buf 19 in l
+     5 ~< {ft2} -ccw buf 20 in l
+     6 ~< {fu2} -ccw buf 21 in l
+     7 ~< {fv2} -ccw buf 22 in l
+     3 ~> %NC%
+     2 ~> ccw1-e73-2
+
+e62: 10109 4/5 or/nor
+     9 ~< {en1} -ccw buf 23 in l
+     10 ~< {fc1} -ccw buf 24 in l
+     11 ~< {fa1} -ccw buf 25 in l
+     12 ~< {er2} -ccw buf 26 in l
+     13 ~< {es2} -ccw buf 27 in l
+     14 ~> %NC%
+     15 ~> ccw1-e62-15
+     4 ~< {et2} -ccw buf 28 in l
+     5 ~< {ev2} -ccw buf 29 in l
+     6 ~< {eu2} -ccw buf 30 in l
+     7 ~< {fd1} -ccw buf 31 in l
+     3 ~> %NC%
+     2 ~> ccw1-e62-2
+
+e69: 10109 4/5 or/nor
+     4 ~< {fr2} -ccw buf 32 in l
+     5 ~< {fp2} -ccw buf 33 in l
+     6 ~< {fk1} -ccw buf 34 in l
+     7 ~< {fl1} -ccw buf 35 in l
+     3 ~> %NC%
+     2 ~> ccw1-e69-2
+     9 ~< ccw1-e73-15
+     10 ~< ccw1-e73-2
+     11 ~< ccw1-e62-15
+     12 ~< ccw1-e62-2
+     13 ~< ccw1-e69-2
+     14 ~> ccw mem adr=0 h
+     15 ~> {fe1} ccw mem adr=0 l
+
+Page: CCW2, PDF235
+
+e32: 10176 hex dff
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< {cd2} ccw mix 14 h
+     10 ~< {bv2} ccw mix 15 h
+     11 ~< {bs2} ccw mix 16 h
+     12 ~< {br1} ccw mix 17 h
+     9 ~< ccw reg load h
+     2 ~> %NC%
+     3 ~> %NC%
+     4 ~> {em1} ccw cha 14 h
+     13 ~> {da1} ccw cha 15 h
+     14 ~> {ff2} ccw cha 16 h
+     15 ~> {es1} ccw cha 17 h
+
+e71: 10176 hex dff
+     5 ~< {fm2} ccw mix 18 h
+     6 ~< {fl2} ccw mix 19 h
+     7 ~< {fk2} ccw mix 20 h
+     10 ~< {fh2} ccw mix 21 h
+     11 ~< {fj2} ccw mix 22 h
+     12 ~< {fe1} ccw mix 23 h
+     9 ~< ccw reg load h
+     2 ~> {ds2} ccw cha 18 h
+     3 ~> {cp2} ccw cha 19 h
+     4 ~> {ej2} ccw cha 20 h
+     13 ~> {dc1} ccw cha 21 h
+     14 ~> {dp1} ccw cha 22 h
+     15 ~> {dh2} ccw cha 23 h
+
+e26: 10176 hex dff
+     5 ~< {bm1} ccw mix 24 h
+     6 ~< {bn1} ccw mix 25 h
+     7 ~< {bp1} ccw mix 26 h
+     10 ~< {bm2} ccw mix 27 h
+     11 ~< {bl1} ccw mix 28 h
+     12 ~< {bl2} ccw mix 29 h
+     9 ~< ccw reg load h
+     2 ~> {el1} ccw cha 24 h
+     3 ~> {el2} ccw cha 25 h
+     4 ~> {em2} ccw cha 26 h
+     13 ~> ccw cha 27 ena h
+     14 ~> ccw cha 28 ena h
+     15 ~> ccw cha 29 ena h
+
+e21: 10176 hex dff
+     5 ~< {bj1} ccw mix 30 h
+     6 ~< {bf2} ccw mix 31 h
+     7 ~< {bh2} ccw mix 32 h
+     10 ~< {bf1} ccw mix 33 h
+     11 ~< {be2} ccw mix 34 h
+     12 ~< {be1} ccw mix 35 h
+     9 ~< ccw reg load h
+     2 ~> ccw cha 30 ena h
+     3 ~> ccw cha 31 ena h
+     4 ~> ccw cha 32 ena h
+     13 ~> ccw cha 33 ena h
+     14 ~> ccw cha 34 ena h
+     15 ~> ccw cha 35 ena h
+
+e18: 10101 quad or/nor
+     7 ~< {bd1} ccl chan ept l
+     12 ~< %NC%
+     3 ~> ccw chan ept h
+     6 ~> ccw chan ept l
+     13 ~< {dr1} ccl wc=2 h
+     15 ~> ccw wc=2 l
+     9 ~> ccw wc=2 h
+     10 ~< {ar1} ccl csh chan cyc h
+     14 ~> ccw csh chan cyc l
+     11 ~> ccw csh chan cyc h
+
+e45: 10101 quad or/nor
+     7 ~< {dk2} ccl alu minus l
+     12 ~< %NC%
+     3 ~> ccw alu minus h
+     6 ~> %NC%
+     13 ~< {dd1} ccl alu plus l
+     15 ~> ccw alu plus h
+     9 ~> %NC%
+
+e53: 10101 quad or/nor
+     7 ~< {ed1} ccl mb rip h
+     12 ~< %NC%
+     3 ~> ccw mb rip l
+     6 ~> ccw mb rip h
+     4 ~< {ee2} crc ram adr 1r l
+     2 ~> ccw ram adr 1 h
+     5 ~> %NC%
+     13 ~< {ed2} crc ram adr 2r l
+     15 ~> ccw ram adr 2 h
+     9 ~> %NC%
+     10 ~< {ea1} crc ram adr 4r l
+     14 ~> ccw ram adr 4 h
+
+e70: 10103 quad or
+     4 ~< ccw cha 31 ena h
+     5 ~< {dr2} ccl zero fill h
+     2 ~> ccw2-e70-2
+     6 ~< ccw2-e55-14
+     7 ~< {dr2} ccl zero fill h
+     3 ~> {dl2} ccw cha 30 h
+
+e33: 10158 4x2 mixer
+     5 ~< ccw2-e70-2
+     6 ~< {ca1} ccw buf adr 0 h
+     3 ~< ccw cha 32 ena h
+     4 ~< {bc1} ccw buf adr 1 h
+     12 ~< ccw cha 33 ena h
+     13 ~< {bk2} ccw buf adr 2 h
+     10 ~< ccw cha 35 ena h
+     11 ~< ccw buf sel 1 h
+     9 ~< ccw2-e55-3
+     1 ~> {cj2} ccw cha 31 h
+     2 ~> {ec1} ccw cha 32 h
+     15 ~> {cp1} ccw cha 34 h
+     14 ~> {de1} ccw cha 35 h
+
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk ccw h
+     2 ~> clk ccw delayed h
+
+e41: 10210 or buffer
+     5 ~< %NC%
+     6 ~< {cc1} diag channel clk stop h
+     7 ~< clk ccw delayed h
+     2 ~> ccw clk a h
+     3 ~> ccw clk b h
+     4 ~> %NC%
+     9 ~< %NC%
+     10 ~< {cc1} diag channel clk stop h
+     11 ~< clk ccw delayed h
+     12 ~> ccw clk f h
+     13 ~> ccw clk d h
+     14 ~> ccw clk e h
+
+Page: CCW3, PDF236
+
+// S1 S2 S4 S8   ALU Operation
+//  L  L  L  L   A plus 0 plus C
+//  H  H  H  H	 A minus 1 plus C
+//  H  L  L  H	 A minus B mins 1 plus C
+//  L  H  H  L   A plus B plus C
+
+e63: 10181 ALU
+     10 ~< %NC%
+     9 ~< %NC%
+     16 ~< %NC%
+     11 ~< %NC%
+     10 ~< {em1} ccw cha 14 h
+     19 ~< %NC%
+     21 ~< {da1} ccw cha 15 h
+     20 ~< %NC%
+     22 ~< ccw alu c16 h
+     13 ~< ccw alu minus a h
+     15 ~< ccw alu plus a h
+     17 ~< ccw alu plus a h
+     14 ~< ccw alu minus a h
+     23 ~< %NC%
+     5 ~> %NC%
+     6 ~> %NC%
+     7 ~> %NC%
+     3 ~> {fs1} ccw buf 14 in h
+     2 ~> {fr1} ccw buf 15 in h
+     4 ~> %NC%
+     8 ~> %NC%
+
+e67: 10181 ALU
+     10 ~< {ff2} ccw cha 16 h
+     9 ~< %NC%
+     16 ~< {es1} ccw cha 17 h
+     11 ~< %NC%
+     10 ~< {ds2} ccw cha 18 h
+     19 ~< %NC%
+     21 ~< {cp2} ccw cha 19 h
+     20 ~< %NC%
+     22 ~< ccw alu c8 out h
+     13 ~< ccw alu minus a h
+     15 ~< ccw alu plus a h
+     17 ~< ccw alu plus a h
+     14 ~< ccw alu minus a h
+     23 ~< %NC%
+     5 ~> ccw alu c16 h
+     6 ~> {fp1} ccw buf 16 in h
+     7 ~> {fs2} ccw buf 17 in h
+     3 ~> {fm1} ccw buf 14 in h
+     2 ~> {fn1} ccw buf 15 in h
+     4 ~> %NC%
+     8 ~> %NC%
+
+e76: 10181 ALU
+     10 ~< {ej2} ccw cha 20 h
+     9 ~< %NC%
+     16 ~< {dc1} ccw cha 21 h
+     11 ~< %NC%
+     10 ~< {dp1} ccw cha 22 h
+     19 ~< %NC%
+     21 ~< {dh2} ccw cha 23 h
+     20 ~< %NC%
+     22 ~< ccw alu c4 h
+     13 ~< ccw alu minus a h
+     15 ~< ccw alu plus a h
+     17 ~< ccw alu plus a h
+     14 ~< ccw alu minus a h
+     23 ~< %NC%
+     5 ~> %NC%
+     6 ~> {ft2} ccw buf 20 in h
+     7 ~> {fu2} ccw buf 21 in h
+     3 ~> {fv2} ccw buf 22 in h
+     2 ~> {en1} ccw buf 23 in h
+     4 ~> ccw alu cg8 h
+     8 ~> ccw alu cp8 h
+
+e59: 10181 ALU
+     10 ~< {el1} ccw cha 24 h
+     9 ~< %NC%
+     16 ~< {el2} ccw cha 25 h
+     11 ~< %NC%
+     10 ~< {em2} ccw cha 26 h
+     19 ~< %NC%
+     21 ~< ccw cha 27 ena h
+     20 ~< %NC%
+     22 ~< ccw alu c2 out h
+     13 ~< ccw alu minus h
+     15 ~< ccw alu plus h
+     17 ~< ccw alu plus h
+     14 ~< ccw alu minus h
+     23 ~< %NC%
+     5 ~> ccw alu c4 h
+     6 ~> {fc1} ccw buf 24 in h
+     7 ~> {fa1} ccw buf 25 in h
+     3 ~> {er2} ccw buf 26 in h
+     2 ~> {es2} ccw buf 27 in h
+     4 ~> ccw alu cg4 h
+     8 ~> ccw alu cp4 h
+
+e60: 10181 ALU
+     10 ~< ccw cha 28 ena h
+     9 ~< %NC%
+     16 ~< ccw cha 29 ena h
+     11 ~< %NC%
+     10 ~< ccw cha 30 ena h
+     19 ~< %NC%
+     21 ~< ccw cha 31 ena h
+     20 ~< %NC%
+     22 ~< ccw alu c1 h
+     13 ~< ccw alu minus h
+     15 ~< ccw alu plus h
+     17 ~< ccw alu plus h
+     14 ~< ccw alu minus h
+     23 ~< %NC%
+     5 ~> %NC%
+     6 ~> {et2} ccw buf 28 in h
+     7 ~> {ev2} ccw buf 29 in h
+     3 ~> {eu2} ccw buf 30 in h
+     2 ~> {fd1} ccw buf 31 in h
+     4 ~> ccw alu cg2 h
+     8 ~> ccw alu cp2 h
+
+e66: 10181 ALU
+     10 ~< ccw cha 32 ena h
+     9 ~< %NC%
+     16 ~< ccw cha 33 ena h
+     11 ~< {fd2} ccl cons 0 h
+     10 ~< ccw cha 34 ena h
+     19 ~< {ep1} ccl cons 1 h
+     21 ~< ccw cha 35 ena h
+     20 ~< {ep2} ccl cons 2 h
+     22 ~< ccw alu minus h
+     13 ~< ccw alu minus h
+     15 ~< ccw alu plus h
+     17 ~< ccw alu plus h
+     14 ~< ccw alu minus h
+     23 ~< %NC%
+     5 ~> ccw alu c1 h
+     6 ~> {fr2} ccw buf 32 in h
+     7 ~> {fp2} ccw buf 33 in h
+     3 ~> {fk1} ccw buf 34 in h
+     2 ~> {fl1} ccw buf 35 in h
+     4 ~> ccw alu cg1 h
+     8 ~> ccw alu cp1 h
+
+e31: 10105 2-3-2 or/nor
+     12 ~< {ef1} ccl wc=1 h
+     13 ~< %NC%
+     14 ~> ccw wc=1 l
+     15 ~> ccw wc=1 h
+     4 ~< {as1} ccl mem store req h
+     5 ~< {ce2} ccl af wd1 req h
+     3 ~> ccw wd1 req in l
+     2 ~> %NC%
+     9 ~< {bs1} ccl af wd2 req h
+     10 ~< {as1} ccl mem store req h
+     11 ~< %NC%
+     6 ~> ccw wd2 req in l
+     7 ~> %NC%
+
+e68: 10107 quad xor/xnor
+     9 ~< {fj1} ccw buf 02 in h
+     7 ~< {fk1} ccw buf 34 in h
+     11 ~> ccw data adr 34 l
+     10 ~> ccw data adr 34 h
+     4 ~< {fj1} ccw buf 02 in h
+     5 ~< {fl1} ccw buf 35 in h
+     2 ~> ccw data adr 35 l
+     3 ~> ccw data adr 35 h
+
+e64: 10103 quad or
+     4 ~< -ccw data adr 34 l
+     5 ~< -ccw data adr 35 l
+     2 ~> ccw data adr=0 l
+     6 ~< -ccw data adr 34 l
+     7 ~< ccw data adr 35 l
+     2 ~> ccw data adr=1 l
+     10 ~< ccw data adr 34 l
+     11 ~< -ccw data adr 35 l
+     14 ~> ccw data adr=2 l
+     12 ~< ccw data adr 34 l
+     13 ~< ccw data adr 35 l
+     9 ~> %NC%
+     15 ~> ccw data adr=3 l
+
+e58: 10179 carry skipper
+     5 ~< ccw alu cg8 h
+     13 ~< ccw alu cp8 h
+     9 ~< ccw alu cg4 h
+     12 ~< ccw alu cp4 h
+     7 ~< ccw alu cg2 h
+     10 ~< ccw alu cp2 h
+     4 ~< ccw alu cg1 h
+     14 ~< ccw alu cp1 h
+     11 ~< ccw alu minus h
+     2 ~> %NC%
+     15 ~> %NC%
+     3 ~> ccw alu c8 out h
+     6 ~> ccw alu c2 out h
+
+e36: 10117 dual 2-3 or-and
+     12 ~< {ch2} ccl wc ge4 l
+     13 ~< ccw data adr=0 l
+     10 ~< ccw data adr=0 l
+     11 ~< {ce1} ccl wc=0 l
+     9 ~< %NC%
+     14 ~> ccw act ctr 0 en h
+     15 ~> {cd1} ccw act ctr 0 en l
+     4 ~< {cl2} ccl ccwf req h
+     5 ~< {ck2} ccl af wd0 req h
+     6 ~< {ck2} ccl af wd0 req h
+     7 ~< ccw chan ept h
+     9 ~< %NC%
+     3 ~> ccw wd0 req in l
+     2 ~> %NC%
+
+e61: 10121 4-wide or-and
+     4 ~< -ccw wc=1 l
+     5 ~< ccw data adr=1 l
+     6 ~< %NC%
+     7 ~< ccw wc=2 l
+     9 ~< %NC%
+     10 ~< ccw data adr=0 l
+     11 ~< %NC%
+     12 ~< ccw wc=3 l
+     13 ~< -ccw wc=1 l
+     14 ~< ccw data adr=2 l
+     15 ~< %NC%
+     3 ~> ccw act ctr 1 en h
+     2 ~> {er1} ccw act ctr 1 en l
+
+e57: 10121 4-wide or-and
+     4 ~< ccw data adr=3 l
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< ccw data adr=1 l
+     9 ~< -ccw wc=2 l
+     10 ~< %NC%
+     11 ~< ccw data adr=2 l
+     12 ~< ccw wc=1 l
+     13 ~< %NC%
+     14 ~< ccw data adr=0 l
+     15 ~< ccw3-e55-2
+     3 ~> ccw act ctr 2 en h
+     2 ~> {ek1} ccw act ctr 2 en l
+
+Page: CCW4, PDF237
+
+e2:  10117 dual 2-3 or-and
+     4 ~< ccw csh chan cyc l
+     5 ~< ccw wd0 avail l
+     6 ~< {ap2} -mb0 hold in l
+     7 ~< {al2} -ccl chan to mem l
+     9 ~< ccw csh chan cyc l
+     3 ~> %NC%
+     2 ~> -ccw wd0 avail l
+     12 ~< ccw csh chan cyc l
+     13 ~< ccw wd1 avail l
+     10 ~< {ae2} -mb1 hold in l
+     11 ~< {al2} -ccl chan to mem l
+     14 ~> %NC%
+     15 ~> ccw wd avail l
+
+e1:  10117 dual 2-3 or-and
+     4 ~< ccw csh chan cyc l
+     5 ~< ccw wd2 avail l
+     7 ~< {al2} -ccl chan to mem l
+     9 ~< ccw csh chan cyc l
+     3 ~> %NC%
+     2 ~> ccw wd2 avail l
+     12 ~< ccw csh chan cyc l
+     13 ~< ccw wd3 avail l
+     10 ~< {ad2} -mb3 hold in l
+     11 ~< {al2} -ccl chan to mem l
+     14 ~> %NC%
+     15 ~> ccw wd3 avail l
+
+e65: 10160 parity
+     3 ~< {fl1} ccw buf 35 in h
+     4 ~< {fk1} ccw buf 34 in h
+     5 ~< {fp2} ccw buf 33 in h
+     6 ~< {fr2} ccw buf 32 in h
+     7 ~< {fd1} ccw buf 31 in h
+     9 ~< {eu2} ccw buf 30 in h
+     10 ~< {ev2} ccw buf 29 in h
+     11 ~< {et2} ccw buf 28 in h
+     12 ~< {es2} ccw buf 27 in h
+     13 ~< {er2} ccw buf 26 in h
+     14 ~< {fa1} ccw buf 25 in h
+     15 ~< {fc1} ccw buf 24 in h
+     2 ~> ccw4-e65-2
+
+e72: 10160 parity
+     3 ~< ccw4-e65-2
+     4 ~< {en1} ccw buf 23 in h
+     5 ~< {fv2} ccw buf 22 in h
+     6 ~< {fu2} ccw buf 21 in h
+     7 ~< {ft2} ccw buf 20 in h
+     9 ~< {fn1} ccw buf 19 in h
+     10 ~< {fm1} ccw buf 18 in h
+     11 ~< {fs2} ccw buf 17 in h
+     12 ~< {fp1} ccw buf 16 in h
+     13 ~< {fr1} ccw buf 15 in h
+     14 ~< {fs1} ccw buf 14 in h
+     15 ~< ccw mb rip h
+     2 ~> {dj1} ccw odd adr par h
+
+e17: 10117 dual 2-3 or-and
+     4 ~< ccw wd0 req in l
+     5 ~< ccw mb cyc t3 l
+     6 ~< -ccw wd0 taken l
+     9 ~< ccw mb rip l
+     3 ~> ccw4-e17-3
+     2 ~> %NC%
+     12 ~< ccw wd1 req in l
+     13 ~< ccw mb cyc t3 l
+     10 ~< -ccw wd1 taken l
+     11 ~< ccw wd1 req l
+     9 ~< ccw mb rip l
+     14 ~> ccw4-e17-14
+     15 ~> %NC%
+
+e12: 10117 dual 2-3 or-and
+     4 ~< ccw wd2 req in l
+     5 ~< ccw mb cyc t3 l
+     6 ~< -ccw wd2 taken l
+     7 ~< ccw wd2 req l
+     9 ~< ccw mb rip l
+     3 ~> ccw4-e12-3
+     2 ~> %NC%
+     12 ~< ccw wd3 taken l
+     13 ~< ccw mb cyc t3 l
+     10 ~< -ccw wd taken l
+     11 ~< ccw wd3 req l
+     9 ~< ccw mb rip l
+     14 ~> ccw4-e12-14
+     15 ~> %NC%
+
+e7: 10105 2-3-2 or/nor
+    12 ~< {cm2} ccl ccw reg load h
+    13 ~< {bt2} ch mr reset b h
+    14 ~> %NC%
+    15 ~> ccw4-e7-15
+    4 ~< ccw wd0 req l
+    5 ~< ccw wd0 avail l
+    3 ~> ccw4-e7-3
+    2 ~> %NC%
+    9 ~< {dm2} -ccw wd0 req l
+    10 ~< ccw wd1 req l
+    11 ~< ccw wd1 avail l
+    6 ~> ccw4-e7-6
+    7 ~> %NC%
+
+e16: 10176 hex dff
+     5 ~< ccw4-e7-15
+     6 ~< {av2} -ccl mb cyc t2 h
+     7 ~< ccw-e17-3
+     10 ~< ccw-e17-14
+     11 ~< ccw-e12-3
+     12 ~< ccw-e12-14
+     9 ~< ccw clk f h
+     2 ~> ccw reg load h
+     3 ~> -ccw mb cyc t3 h
+     4 ~> {dm2} ccw wd0 req h
+     13 ~> {cf2} ccw wd1 req h
+     14 ~> {ef2} ccw wd2 req h
+     15 ~> {cr1} ccw wd3 req h
+
+e11: 10101 quad or/nor
+     4 ~< {dm2} ccw wd0 req h
+     12 ~< %NC%
+     2 ~> ccw wd0 req l
+     5 ~> %NC
+     7 ~< {cf2} ccw wd1 req h
+     3 ~> ccw wd1 req l
+     6 ~> %NC
+     10 ~< {ef2} ccw wd2 req h
+     14 ~> ccw wd2 req l
+     11 ~> %NC
+     13 ~< {cr1} ccw wd3 req h
+     15 ~> ccw wd3 req l
+     9 ~> %NC
+
+e6: 10109 4/5 or/nor
+    4 ~< {dm2} -ccw wd0 req l
+    5 ~< {cf2} -ccw wd1 req l
+    6 ~< ccw wd2 req l
+    7 ~< ccw wd2 avail l
+    3 ~> ccw4-e6-3
+    2 ~> %NC%
+    9 ~< {dm2} -ccw wd0 req l
+    10 ~< {cf2} -ccw wd1 req l
+    11 ~< {ef2} -ccw wd2 req l
+    12 ~< ccw wd3 req l
+    13 ~< ccw wd3 avail l
+    14 ~> ccw4-e6-14
+    15 ~> %NC%
+
+e13: 10104 quad and/nand
+     4 ~< {at2} ccl wd taken h
+     5 ~< ccw wd0 ready h
+     2 ~> ccw wd0 taken h
+     6 ~< {at2} ccl wd taken h
+     7 ~< ccw wd1 ready h
+     3 ~> ccw wd1 taken h
+     10 ~< {at2} ccl wd taken h
+     11 ~< ccw wd2 ready h
+     14 ~> ccw wd2 taken h
+     12 ~< {at2} ccl wd taken h
+     13 ~< ccw wd3 ready h
+     9 ~> %NC%
+     15 ~> ccw wd3 taken h
+
+Page: CCW5, PDF238
+
+e49: 10164 8 mixer
+     6 ~< ccw ram adr 1 h
+     5 ~< {ff1} ccl wc=3 h
+     4 ~< {ds2} ccw cha 18 h
+     3 ~< {el1} ccw cha 24 h
+     11 ~< {dl2} ccw cha 30 h
+     12 ~< ccw act ctr 0 en h
+     13 ~< {dm2} ccw wd0 req h
+     14 ~< ccw wd ready h
+     10 ~< {cl1} -ch diag 04 h
+     9 ~< {cm1} -ch diag 05 h
+     7 ~< {cu2} -ch diag 06 h
+     2 ~< {dt2} ch diag read b l
+     15 ~> {dk1} ebus d[n+00] e h
+
+e37: 10164 8 mixer
+     6 ~< ccw ram adr 2 h
+     5 ~< {cm2} ccl ccw reg load h
+     4 ~< {cp2} ccw cha 19 h
+     3 ~< {el2} ccw cha 25 h
+     11 ~< {cj2} ccw cha 31 h
+     12 ~< ccw act ctr 1 en h
+     13 ~< {cf2} ccw wd1 req h
+     14 ~< {cj1} ccw ccwf req ena h
+     10 ~< {cl1} -ch diag 04 h
+     9 ~< {cm1} -ch diag 05 h
+     7 ~< {cu2} -ch diag 06 h
+     2 ~< {dt2} ch diag read b l
+     15 ~> {cf1} ebus d[n+01] e h
+
+e54: 10164 8 mixer
+     6 ~< ccw ram adr 4 h
+     5 ~< {em1} ccw cha 14 h
+     4 ~< {ej2} ccw cha 20 h
+     3 ~< {em2} ccw cha 26 h
+     11 ~< {ec1} ccw cha 32 h
+     12 ~< ccw act ctr 2 en h
+     13 ~< {ef2} ccw wd2 req h
+     14 ~< {ee1} ccw mem store ena h
+     10 ~< {cl1} -ch diag 04 h
+     9 ~< {cm1} -ch diag 05 h
+     7 ~< {cu2} -ch diag 06 h
+     2 ~< {dt2} ch diag read b l
+     15 ~> {eh2} ebus d[n+02] e h
+
+e40: 10164 8 mixer
+     6 ~< {ef1} ccl wc=1 h
+     5 ~< {da1} ccw cha 15 h
+     4 ~< {dc1} ccw cha 21 h
+     3 ~< {cs1} ccw cha 27 h
+     11 ~< {cp1} ccw cha 33 h
+     12 ~< {cn1} -ccw buf adr 0
+     13 ~< {cr1} ccw wd3 req h
+     14 ~< {ct2} ccw act flag req ena h
+     10 ~< {cl1} -ch diag 04 h
+     9 ~< {cm1} -ch diag 05 h
+     7 ~< {cu2} -ch diag 06 h
+     2 ~< {dt2} ch diag read b l
+     15 ~> {cs2} ebus d[n+03] e h
+
+e48: 10164 8 mixer
+     6 ~< {dr1} ccl wc=2 h
+     5 ~< {ff2} ccw cha 16 h
+     4 ~< {dp1} ccw cha 22 h
+     3 ~< {dn1} ccw cha 28 h
+     11 ~< {dm1} ccw cha 34 h
+     12 ~< {dp2} -ccw buf adr 1
+     13 ~< ccw mem adr=0 h
+     14 ~< ccw alu c8 out h
+     10 ~< {cl1} -ch diag 04 h
+     9 ~< {cm1} -ch diag 05 h
+     7 ~< {cu2} -ch diag 06 h
+     2 ~< {dt2} ch diag read b l
+     15 ~> {dl1} ebus d[n+04] e h
+
+e44: 10164 8 mixer
+     6 ~< {dj1} ccw odd adr par h
+     5 ~< {es1} ccw cha 17 h
+     4 ~< {dh2} ccw cha 23 h
+     3 ~< {dj2} ccw cha 29 h
+     11 ~< {de1} ccw cha 35 h
+     12 ~< {df1} -ccw buf adr 2
+     13 ~< {de2} ccw ccwf waiting h
+     14 ~< ccw alu c2 out h
+     10 ~< {cl1} -ch diag 04 h
+     9 ~< {cm1} -ch diag 05 h
+     7 ~< {cu2} -ch diag 06 h
+     2 ~< {dt2} ch diag read b l
+     15 ~> {df2} ebus d[n+05] e h
+
+e35: 10104 quad and/nand
+     4 ~< ccw0 act flag h
+     5 ~< ccw0 act flag hold h
+     2 ~> ccw0 act flag in h
+     6 ~< ccw1 act flag h
+     7 ~< ccw1 act flag hold h
+     3 ~> ccw1 act flag in h
+     12~< ccw2 act flag h
+     13 ~< ccw2 act flag hold h
+     9 ~> %NC%
+     15 ~> ccw2 act flag in h
+     10 ~< ccw3 act flag h
+     11 ~< ccw3 act flag hold h
+     14 ~> ccw3 act flag in h
+
+e25: 10141 shift register
+     13 ~< %NC%
+     12 ~< ccw0 act flag in h
+     11 ~< ccw1 act flag in h
+     9 ~< ccw2 act flag in h
+     5 ~< ccw3 act flag in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< {bt2} ch mr reset b h
+     4 ~< ccw clk b h
+     14 ~> ccw0 act flag h
+     15 ~> ccw1 act flag h
+     2 ~> ccw2 act flag h
+     3 ~> ccw3 act flag h
+
+e30: 10162 decoder
+     14 ~< ccw ram adr 4 h
+     9 ~< ccw ram adr 2 h
+     7 ~< ccw ram adr 1 h
+     15 ~< {bp2} ch t0 l
+     2 ~< {bj2} crc act flag ena l
+     6 ~> ccw0 act flag in h
+     5 ~> ccw1 act flag in h
+     4 ~> ccw2 act flag in h
+     3 ~> ccw3 act flag in h
+     13 ~> ccw4 act flag in h
+     12 ~> ccw5 act flag in h
+     11 ~> ccw6 act flag in h
+     10 ~> ccw7 act flag in h
+
+e19: 10161 decoder
+     14 ~< ccw ram adr 4 h
+     9 ~< ccw ram adr 2 h
+     7 ~< ccw ram adr 1 h
+     15 ~< {bp2} ch t0 l
+     2 ~< {au2} crc act flag clr l
+     6 ~> -ccw0 act flag in h
+     5 ~> -ccw1 act flag in h
+     4 ~> -ccw2 act flag in h
+     3 ~> -ccw3 act flag in h
+     13 ~> -ccw4 act flag in h
+     12 ~> -ccw5 act flag in h
+     11 ~> -ccw6 act flag in h
+     10 ~> -ccw7 act flag in h
+
+e24: 10104 quad and/nand
+     4 ~< ccw4 act flag h
+     5 ~< ccw4 act flag hold h
+     2 ~> ccw4 act flag in h
+     6 ~< ccw5 act flag h
+     7 ~< ccw5 act flag hold h
+     3 ~> ccw5 act flag in h
+     12 ~< ccw6 act flag h
+     13 ~< ccw6 act flag hold h
+     9 ~> %NC%
+     15~> ccw6 act flag in h
+     10 ~< ccw7 act flag h
+     11 ~< ccw7 act flag hold h
+     14 ~> ccw7 act flag in h
+
+e29: 10141 shift register
+     13 ~< %NC%
+     12 ~< ccw4 act flag in h
+     11 ~< ccw5 act flag in h
+     9 ~< ccw6 act flag in h
+     6 ~< ccw7 act flag in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< {bt2} ch mr reset b
+     4 ~< ccw clk b h
+     14 ~> ccw4 act flag h
+     15 ~> ccw5 act flag h
+     2 ~> ccw6 act flag h
+     3 ~> ccw7 act flag h
+
+e34: 10165 priority encoder
+     5 ~< ccw0 act flag h
+     7 ~< ccw1 act flag h
+     13 ~< ccw2 act flag h
+     10 ~< ccw3 act flag h
+     11 ~< ccw4 act flag h
+     12 ~< ccw5 act flag h
+     9 ~< ccw6 act flag h
+     6 ~< ccw7 act flag h
+     4 ~< ccw mb rip h
+     14 ~> {ct2} ccw act flag req ena h
+     15 ~> ccw act flag adr 4 h
+     2 ~> ccw act flag adr 2 h
+     3 ~> ccw act flag adr 1 h
+
+Page: CCW6, PDF239
+
+e10: 10162 decoder
+     14 ~< ccw ram adr 4 h
+     9 ~< ccw ram adr 2 h
+     7 ~< ccw ram adr 1 h
+     15 ~< {bu2} -ch mb req in l
+     2 ~< {as2} crc mem store ena l
+     6 ~> ccw0 mem store in h
+     5 ~> ccw1 mem store in h
+     4 ~> ccw2 mem store in h
+     3 ~> ccw3 mem store in h
+     13 ~> ccw4 mem store in h
+     12 ~> ccw5 mem store in h
+     11 ~> ccw6 mem store in h
+     10 ~> ccw7 mem store in h
+
+e20: 10161 decoder
+     14 ~< ccw ram adr 4 h
+     9 ~< ccw ram adr 2 h
+     7 ~< ccw ram adr 1 h
+     15 ~< {dv2} ccl mem store req l
+     2 ~< ccw mb cyc t3 l
+     6 ~> -ccw0 mem store hold l
+     5 ~> -ccw1 mem store hold l
+     4 ~> -ccw2 mem store hold l
+     3 ~> -ccw3 mem store hold l
+     13 ~> -ccw4 mem store hold l
+     12 ~> -ccw5 mem store hold l
+     11 ~> -ccw6 mem store hold l
+     10 ~> -ccw7 mem store hold l
+
+e43: 10162 decoder
+     14 ~< ccw ram adr 4 h
+     9 ~< ccw ram adr 2 h
+     7 ~< ccw ram adr 1 h
+     15 ~< {bp2} ch t0 l
+     2 ~< {ck1} crc ccwf en l
+     6 ~> ccw0 ccwf in h
+     5 ~> ccw1 ccwf in h
+     4 ~> ccw2 ccwf in h
+     3 ~> ccw3 ccwf in h
+     13 ~> ccw4 ccwf in h
+     12 ~> ccw5 ccwf in h
+     11 ~> ccw6 ccwf in h
+     10 ~> ccw7 ccwf in h
+
+
+e39: 10161 decoder
+     14 ~< ccw ram adr 4 h
+     9 ~< ccw ram adr 2 h
+     7 ~< ccw ram adr 1 h
+     15 ~< %NC%
+     2 ~< {br2} ccl ccwf clr l
+     6 ~> -ccw0 ccwf hold l
+     5 ~> -ccw1 ccwf hold l
+     4 ~> -ccw2 ccwf hold l
+     3 ~> -ccw3 ccwf hold l
+     13 ~> -ccw4 ccwf hold l
+     12 ~> -ccw5 ccwf hold l
+     11 ~> -ccw6 ccwf hold l
+     10 ~> -ccw7 ccwf hold l
+
+e51: 10164 8 mixer
+     6 ~< ccw0 ccwf req h
+     5 ~< ccw1 ccwf req h
+     4 ~< ccw2 ccwf req h
+     3 ~< ccw3 ccwf req h
+     11 ~< ccw4 ccwf req h
+     12 ~< ccw5 ccwf req h
+     13 ~< ccw6 ccwf req h
+     14 ~< ccw7 ccwf req h
+     10 ~< ccw ram adr 4 h
+     9 ~< ccw ram adr 2 h
+     7 ~< ccw ram adr 1 h
+     15 ~> {de2} ccw ccwf waiting h
+
+e46: 10165 priority encoder
+     5 ~< ccw0 ccwf req h
+     7 ~< ccw1 ccwf req h
+     13 ~< ccw2 ccwf req h
+     10 ~< ccw3 ccwf req h
+     11 ~< ccw4 ccwf req h
+     12 ~< ccw5 ccwf req h
+     9 ~< ccw6 ccwf req h
+     6 ~< ccw7 ccwf req h
+     4 ~< ccw mb rip h
+     14 ~> {cj1} ccw ccwf req ena h
+     15 ~> ccw ccwf adr 4 h
+     2 ~> ccw ccwf adr 2 h
+     3 ~> ccw ccwf adr 1 h
+
+e4:  10165 priority encoder
+     5 ~< ccw0 mem store req h
+     7 ~< ccw1 mem store req h
+     13 ~< ccw2 mem store req h
+     10 ~< ccw3 mem store req h
+     11 ~< ccw4 mem store req h
+     12 ~< ccw5 mem store req h
+     9 ~< ccw6 mem store req h
+     6 ~< ccw7 mem store req h
+     4 ~< ccw mb rip h
+     14 ~> {ee1} ccw mem store ena h
+     15 ~> ccw mem store adr 4 h
+     2 ~> ccw mem store adr 2 h
+     3 ~> ccw mem store adr 1 h
+
+e38: 10104 quad and/nand
+     4 ~< ccw0 ccwf req h
+     5 ~< ccw0 ccwf hold h
+     2 ~> ccw0 ccwf in h
+     6 ~< ccw1 ccwf req h
+     7 ~< ccw1 ccwf hold h
+     3 ~> ccw1 ccwf in h
+     10 ~< ccw2 ccwf req h
+     11 ~< ccw2 ccwf hold h
+     14 ~> ccw2 ccwf in h
+     12 ~< ccw3 ccwf req h
+     13 ~< ccw3 ccwf hold h
+     9 ~> %NC%
+     15 ~> ccw3 ccwf in h
+
+e42: 10141 shift register
+     13 ~< %NC%
+     12 ~< ccw0 ccwf in h
+     11 ~< ccw1 ccwf in h
+     9 ~< ccw2 ccwf in h
+     6 ~< ccw3 ccwf in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< {bt2} ch mr reset b h
+     4 ~< ccw clk a h
+     14 ~> ccw0 ccwf req h
+     15 ~> ccw1 ccwf req h
+     2 ~> ccw2 ccwf req h
+     3 ~> ccw3 ccwf req h
+
+e52: 10104 quad and/nand
+     4 ~< ccw4 ccwf req h
+     5 ~< ccw4 ccwf hold h
+     2 ~> ccw4 ccwf in h
+     6 ~< ccw5 ccwf req h
+     7 ~< ccw5 ccwf hold h
+     3 ~> ccw5 ccwf in h
+     10 ~< ccw6 ccwf req h
+     11 ~< ccw6 ccwf hold h
+     14 ~> ccw6 ccwf in h
+     12 ~< ccw7 ccwf req h
+     13 ~< ccw7 ccwf hold h
+     9 ~> %NC%
+     15 ~> ccw7 ccwf in h
+
+e47: 10141 shift register
+     13 ~< %NC%
+     12 ~< ccw4 ccwf in h
+     11 ~< ccw5 ccwf in h
+     9 ~< ccw6 ccwf in h
+     6 ~< ccw7 ccwf in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< {bt2} ch mr reset b h
+     4 ~< ccw clk a h
+     14 ~> ccw4 ccwf req h
+     15 ~> ccw5 ccwf req h
+     2 ~> ccw6 ccwf req h
+     3 ~> ccw7 ccwf req h
+
+e15: 10104 quad and/nand
+     4 ~< ccw0 mem store req h
+     5 ~< ccw0 mem store hold h
+     2 ~> ccw0 mem store in h
+     6 ~< ccw1 mem store req h
+     7 ~< ccw1 mem store hold h
+     3 ~> ccw1 mem store in h
+     10 ~< ccw2 mem store req h
+     11 ~< ccw2 mem store hold h
+     14 ~> ccw2 mem store in h
+     12 ~< ccw3 mem store req h
+     13 ~< ccw3 mem store hold h
+     9 ~> %NC%
+     15 ~> ccw3 mem store in h
+
+e14: 10141 shift register
+     13 ~< %NC%
+     12 ~< ccw0 mem store in h
+     11 ~< ccw1 mem store in h
+     9 ~< ccw2 mem store in h
+     6 ~< ccw3 mem store in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< {bt2} ch mr reset b h
+     4 ~< ccw clk e h
+     14 ~> ccw0 mem store req h
+     15 ~> ccw1 mem store req h
+     2 ~> ccw2 mem store req h
+     3 ~> ccw3 mem store req h
+
+e5:  10104 quad and/nand
+     4 ~< ccw4 mem store req h
+     5 ~< ccw4 mem store hold h
+     2 ~> ccw4 mem store in h
+     6 ~< ccw5 mem store req h
+     7 ~< ccw5 mem store hold h
+     3 ~> ccw5 mem store in h
+     10 ~< ccw6 mem store req h
+     11 ~< ccw6 mem store hold h
+     14 ~> ccw6 mem store in h
+     12 ~< ccw7 mem store req h
+     13 ~< ccw7 mem store hold h
+     9 ~> %NC%
+     15 ~> ccw7 mem store in h
+
+e9:  10141 shift register
+     13 ~< %NC%
+     12 ~< ccw4 mem store in h
+     11 ~< ccw5 mem store in h
+     9 ~< ccw6 mem store in h
+     6 ~< ccw7 mem store in h
+     5 ~< %NC%
+     7 ~< %NC%
+     10 ~< {bt2} ch mr reset b h
+     4 ~< ccw clk e h
+     14 ~> ccw4 mem store req h
+     15 ~> ccw5 mem store req h
+     2 ~> ccw6 mem store req h
+     3 ~> ccw7 mem store req h
