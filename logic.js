@@ -942,6 +942,25 @@ const logic = {
 
     init() {},
   },
+
+  'logic': {
+    desc: 'produce logic 1 and 0 on some pins 1 and 2, respectively',
+    '~>': expand('hi=1,lo=2'),
+
+    fn({i}) {
+
+      return {
+
+        out: {
+	  hi:true,
+	  lo:false,
+	},
+      };
+    },
+
+    init() {},
+  },
+
 };
 
 
