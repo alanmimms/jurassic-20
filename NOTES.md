@@ -30,14 +30,18 @@
 ## Data Available
 
 
+# Modeling
+* Use SystemVerilog
+* Requirements:
+  * Set undriven nets to 0.
+  * Detect wire-OR and replace with explicit OR in Verilog code.
+  * Algorithmically translate symbols from whacky DEC nomenclature to Verilog identifiers.
+    * ' ' ==> _
+	* '<-' ==> GETS
+	* [/,*.-+=#()%^<>&] ==> SYMBOLNAME
+
 
 # TODO:
-
-* Need dump of nets and their backplane slot/pin fullname and chip pin
-  fullname.
-
-* Show each slot attached to same net for multiply-instantiated
-  modules like EDP and CRM.
 
 * E.g., these two signals should be attached to three slots each:
 
@@ -57,6 +61,10 @@
   there for each slot (especially for signals for CRAM bits on
   backplane).
 
+* Binding between net and module.pin[backplane.slot] needs to be done
+  specific to slot. For example `hi 04` should be bound to
+  `crm.de1[ebox.50]`.
+
 * Finish defining signals for CRAM bits on backplane.
 
 
@@ -66,7 +74,7 @@ AC                  Accumulator
 AC                  Action Count
 ACKN                Acknowledge
 ACT                 Action
-ADA                 AdderA
+ADA                 Adder A
 AD                  Adder
 ADB                 Adder B
 ADR                 Address
@@ -94,7 +102,7 @@ CBUS                Channel Bus
 CCA                 Cache Clearer Address
 CCL                 Channel Control Logic
 CCW                 Channel Command Word
-CCWF                Channel Command
+CCWF                Channel Command Word Fetch
 C DIR P             Cache Directory Parity
 CG                  Carry Generate
 CHA                 Channel Address
@@ -147,7 +155,7 @@ ERR                 Error
 E to T              ECL to TTL
 EX                  Extension
 EXP                 Exponent
-EXT TRA REC Externalsfer Receiver
+EXT TRA REC         External Transfer Receiver
 FE                  Floating Exponent
 FE                  Front End
 F                   Function
@@ -199,7 +207,6 @@ PA                  Physical Address
 PAR                 Parity
 PCF#                Previous Context Flags from Number
 PCP                 Previous Context Public
-PC                  Program Counter
 PC                  Program Counter
 PERF                Performance
 PF                  Page Fault
@@ -256,7 +263,6 @@ VMA                 Virtual Memory Address
 WARN                Warning
 WC                  Word Count
 WD                  Word
-Word                Fetch
 WR                  Write
 XFER                Transfer
 XR                  Index Register
