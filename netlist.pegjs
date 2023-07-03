@@ -66,11 +66,12 @@ selectorList = list:( ',' id:idList {return id} )*
 idList = list:( macroRef / idChunk )*
        		{ return AST('IDList', {list}) }
 
-idChunk = name:$[-/#%.+_&<> ()a-zA-Z0-9=]+
+idChunk = name:$[-/#%.+& <>()a-zA-Z0-9=]+
 		{ return AST('IDChunk', {name}) }
 
 // like idChunk but allows ',' in the identifier in non-macro context
-id = name:( '\\' EOL _ / [-/#%,.+_&<> ()a-zA-Z0-9=^] )+
+id = '%NC%'	{ return AST('IDChunk', {name: '%NC%'}) }
+/       name:[-/#%,.+& <>()a-zA-Z0-9=^]+
 		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
 
 expr = sum
@@ -98,8 +99,11 @@ simpleID = $[a-zA-Z0-9]+
 
 net = '%NC%'	{ return AST('NoConnect', {}) }
 /	[01]	{ return AST('Value', {value: parseInt(text(), 2)}) }
-/	list:( macroRef / id )+
+/	list:( macroRef / idWith_ )+
 		{ return AST('IDList', {list}) }
+
+idWith_ = ( '\\' EOL _ )* id:id
+		{ return id }
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
 
