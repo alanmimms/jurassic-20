@@ -677,16 +677,16 @@ e11: 10101 quad or/nor
      4 ~< {dm2} ccw wd0 req h
      12 ~< %NC%
      2 ~> ccw wd0 req l
-     5 ~> %NC
+     5 ~> %NC%
      7 ~< {cf2} ccw wd1 req h
      3 ~> ccw wd1 req l
-     6 ~> %NC
+     6 ~> %NC%
      10 ~< {ef2} ccw wd2 req h
      14 ~> ccw wd2 req l
-     11 ~> %NC
+     11 ~> %NC%
      13 ~< {cr1} ccw wd3 req h
      15 ~> ccw wd3 req l
-     9 ~> %NC
+     9 ~> %NC%
 
 e6: 10109 4/5 or/nor
     4 ~< {dm2} -ccw wd0 req l
