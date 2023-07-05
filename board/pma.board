@@ -585,7 +585,7 @@ e31: 10164 8 mixer
      13 ~< pma1 uebr 25 h
      12 ~< %NC%
      11 ~< {bd2} ccw cha 25 h
-     3 ~< {fk2} vam 25 h
+     3 ~< {fk2} cam 25 h
      4 ~< pma2 cca 25 h
      5 ~< pma4 era 25 h
      6 ~< {ck1} pag2 pt 25 a h
@@ -779,7 +779,7 @@ e53: 10141 shift register
 e71: 10164 8 mixer
      6 ~< pma4 era 32 h
      5 ~< %NC%
-     4 ~< pmma1 va 22 h
+     4 ~< pma1 va 22 h
      3 ~< {fl1} ccw cha 32 h
      11 ~< pma2 cca 32 h
      12 ~< pma2 cca 32 h
