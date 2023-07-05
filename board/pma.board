@@ -328,7 +328,7 @@ dl1:  delay-line (PCB wired)
 e47:  10101 quad or/nor
       7 ~< %NC%
       12 ~< %NC%
-      3 ~> pma2 hi h
+      3 ~> pma2 hi
       6 ~> %NC%
       10 ~< {ds2} pma3 pa 14 h
       14 ~> %NC%
@@ -339,9 +339,9 @@ e47:  10101 quad or/nor
 
 e40: 10136 binary counter
      5 ~< %NC%
-     6 ~< pma2 hi h
-     11 ~< pma2 hi h
-     12 ~< pma2 hi h
+     6 ~< pma2 hi
+     11 ~< pma2 hi
+     12 ~< pma2 hi
      10 ~< pma2-e36-15
      7 ~< {fm1} mbx1 cca sel 2 h
      9 ~< {ff2} mbx1 cca sel 1 h
@@ -353,10 +353,10 @@ e40: 10136 binary counter
      14 ~> pma2 cca 29 h
 
 e75: 10136 binary counter
-     5 ~< pma2 hi h
-     6 ~< pma2 hi h
-     11 ~< pma2 hi h
-     12 ~< pma2 hi h
+     5 ~< pma2 hi
+     6 ~< pma2 hi
+     11 ~< pma2 hi
+     12 ~< pma2 hi
      10 ~< pma2-e65-2
      7 ~< {fm1} mbx1 cca sel 2 h
      9 ~< {ff2} mbx1 cca sel 1 h
@@ -370,8 +370,8 @@ e75: 10136 binary counter
 e70: 10136 binary counter
      5 ~< %NC%
      6 ~< %NC%
-     11 ~< pma2 hi h
-     12 ~< pma2 hi h
+     11 ~< pma2 hi
+     12 ~< pma2 hi
      10 ~< %NC%
      7 ~< {fm1} mbx1 cca sel 2 h
      9 ~< {ff2} mbx1 cca sel 1 h
@@ -612,7 +612,7 @@ e27: 10164 8 mixer
 
 e80: 10164 8 mixer
      6 ~< pma4 era 27 h
-     5 ~< pma2 hi h
+     5 ~< pma2 hi
      4 ~< %NC%
      3 ~< {fu2} ccw cha 27 h
      11 ~< pma2 cca 27 h
@@ -627,7 +627,7 @@ e80: 10164 8 mixer
 
 e45: 10164 8 mixer
      6 ~< pma4 era 28 h
-     5 ~< pma2 hi h
+     5 ~< pma2 hi
      4 ~< pma1 va 18 h
      3 ~< {bj2} ccw cha 28 h
      11 ~< pma2 cca 28 h
@@ -863,7 +863,7 @@ e44: 10160 parity
      12 ~< {bj1} pma4 pa 33 h
      13 ~< %NC%
      14 ~< %NC%
-     15 ~< pma2 hi h
+     15 ~< pma2 hi
      2 ~> {bk2} pma4 adr par h
 
 e41: 10101 quad or/nor
@@ -1096,7 +1096,7 @@ e72: 10165 priority encoder
      11 ~< {cn1} csh1 ebox cca grant h
      12 ~< {fn1} csh1 cca req grant h
      9 ~< {fs1} csh1 ebox req grant h
-     6 ~< pma2 hi h
+     6 ~< pma2 hi
      4 ~< %NC%
      14 ~> %NC%
      15 ~> pma5-e72-15
@@ -1141,7 +1141,7 @@ e57: 10165 priority encoder
      11 ~< {cn1} csh1 ebox cca grant h
      12 ~< {fn1} csh1 cca req grant h
      9 ~< {fs1} csh1 ebox req grant h
-     6 ~< pma2 hi h
+     6 ~< pma2 hi
      4 ~< %NC%
      14 ~> %NC%
      15 ~> pma5-e57-15
@@ -1156,7 +1156,7 @@ e62: 10165 priority encoder
      11 ~< {cn1} csh1 ebox cca grant h
      12 ~< {fn1} csh1 cca req grant h
      9 ~< {fs1} csh1 ebox req grant h
-     6 ~< pma2 hi h
+     6 ~< pma2 hi
      4 ~< %NC%
      14 ~> %NC%
      15 ~> pma5-e62-15

@@ -446,7 +446,7 @@ e30: 10101 quad or/nor
      2 ~> ccl ccwf t2 l
      5 ~> ccl ccwr t2 h
      13 ~< %NC%
-     15 ~> hi h
+     15 ~> hi
      9 ~> %NC%
 
 e23: 10109 4-5 or/nor
@@ -648,9 +648,9 @@ e24: 10121 4-wide or-and
      5 ~< {ek1} ccl mb req t2 l
      6 ~< {bl2} crc mb cyc l
      7 ~< %NC%
-     9 ~< hi h
+     9 ~< hi
      10 ~< %NC%
-     11 ~< hi h
+     11 ~< hi
      12 ~< %NC%
      13 ~< %NC%
      14 ~< ccl mb req t0 l
@@ -776,7 +776,7 @@ e26: 10121 4-wide or-and
      7 ~< ccl mb cyc t3 l
      9 ~< ccl mem store req a l
      10 ~< %NC%
-     11 ~< hi h
+     11 ~< hi
      12 ~< %NC%
      13 ~< %NC%
      14 ~< {bm2} ccl mb rip l
@@ -885,7 +885,7 @@ e60: 10131 dual ms dff
      15 ~> ccl reverse h
      14 ~> ccl reverse l
      5 ~< %NC%
-     7 ~< hi h
+     7 ~< hi
      6 ~< ccl6-e35-4
      2 ~> {ef1} ccl csh chan cyc h
      3 ~> ccl csh chan cyc l
@@ -966,7 +966,7 @@ e71: 10173 4x2 mixer latch
      6 ~< ccl req ctr 0 h
      3 ~< %NC%
      4 ~< ccl req ctr 1 h
-     12 ~< hi h
+     12 ~< hi
      13 ~< ccl req ctr 2 h
      10 ~< %NC%
      11 ~< %NC%
@@ -999,7 +999,7 @@ e29: 10121 4-wide or-and
      7 ~< {dl1} ccl mem store req l
      9 ~< {bt2} ccl ccw buf wr l
      10 ~< %NC%
-     11 ~< hi h
+     11 ~< hi
      12 ~< %NC%
      13 ~< ccl ccwf req a l
      14 ~< ccl ccwf t2 l
@@ -1039,7 +1039,7 @@ e70: 10162 decoder
 
 e39: 10173 4x2 mixer latch
      5 ~< {cj2} ccw mix 00 h
-     6 ~< hi h
+     6 ~< hi
      3 ~< {ck2} ccw mix 01 h
      4 ~< ccl mem par err in h
      12 ~< {ck1} ccw mix 03 h

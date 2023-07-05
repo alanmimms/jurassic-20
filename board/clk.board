@@ -332,7 +332,7 @@ e64: 10141 shift reg
      12 ~< clk2-e64-14
      11 ~< clk2-e64-15
      9 ~< clk2 15 mhz free h
-     6 ~< clk2 hi h
+     6 ~< clk2 hi
      5 ~< {fm2} synchronize clk h
      7 ~< clk2 16 mhz free h
      10 ~< %NC%
@@ -354,7 +354,7 @@ e62: 10101 quad or/nor
      3 ~> clk2 func clr reset h
      6 ~> %NC%
      4 ~< %NC%
-     2 ~> clk2 hi h
+     2 ~> clk2 hi
      5 ~> %NC%
 
 e60: 10176 hex d ff

@@ -804,7 +804,7 @@ e5:  10101 quad or/nor
      3 ~> csh3 lru any wr h
      6 ~> %NC%
      13 ~< %NC%
-     15 ~> csh4 hi h
+     15 ~> csh4 hi
      9 ~> %NC%
      10 ~< csh6 page fail hold ff l
      14 ~> {cf2} csh6 page fail hold h
@@ -1039,7 +1039,7 @@ e2:  10121 4-wide or-and
      4 ~< {ad1} csh5 chan t3 l
      5 ~< {af1} -ccl chan to mem l
      6 ~< -csh3 any valid match l
-     7 ~< csh4 hi h
+     7 ~< csh4 hi
      9 ~< %NC%
      10 ~< %NC%
      11 ~< {fk2} mbx4 cache to mb done l
@@ -1120,7 +1120,7 @@ e10: 10121 4-wide or-and
      7 ~< csh4 ebox wr t3 l
      9 ~< csh6 write ok l
      10 ~< %NC%
-     11 ~< csh4 hi h
+     11 ~< csh4 hi
      12 ~< %NC%
      13 ~< -csh1 reset a l
      14 ~< csh6 wr from mem next l
@@ -1139,7 +1139,7 @@ e13: 10121 4-wide or-and
      12 ~< {ap1} csh6 cca inval t4 l
      13 ~< %NC%
      14 ~< %NC%
-     15 ~< csh4 hi h
+     15 ~< csh4 hi
      3 ~> {ar1} csh use wr en h
      2 ~> %NC%
 

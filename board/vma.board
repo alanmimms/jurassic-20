@@ -98,8 +98,8 @@ e84: 10181 ALU
      20 ~< vma3 pc 35 h
      22 ~< {fm2} mcl4 vma inc h
      13 ~< {fr2} con cond/vma<-# h
-     15 ~< vma1 hi h
-     17 ~< vma1 hi h
+     15 ~< vma1 hi
+     17 ~< vma1 hi
      14 ~< {fr2} con cond/vma<-# h
      23 ~< vma1 spec/vma<-# h
      5 ~> vma1 ad cry 32 h
@@ -207,7 +207,7 @@ e83: 10101 quad or/nor
      2 ~> %NC%
      5 ~> vma1 spec/vma<-# h
      7 ~< %NC%
-     3 ~> vma1 hi h
+     3 ~> vma1 hi
      6 ~> %NC%
      10 ~< {ff1} mcl5 vmax en l
      14 ~> %NC%
