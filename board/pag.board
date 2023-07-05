@@ -1101,7 +1101,7 @@ e67: 10117 dual 2-3 or-and
      5 ~< %NC%
      6 ~< pag4 page test private l
      7 ~< pag4 page unpaged ref l
-     9 ~< pag4 page exwec ref l
+     9 ~< pag4 page exec ref l
      3 ~> %NC%
      2 ~> pag4-e67-2
 
