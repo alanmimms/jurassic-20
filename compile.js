@@ -453,6 +453,8 @@ ${util.inspect(chips[name].location)}`);
   verilogifyNetNames(bp);
   dumpVerilogNames(bp);
   if (options.dumpBackplane) dumpNets(bp);
+
+  checkForSuspiciousSymbolNames(bp);
   
   return bp;
 }
@@ -493,6 +495,7 @@ function astDirToDir(d) {
 function verilogifyNetNames(bp) {
   bp.v2n = {};
   bp.n2v = {};
+
   Object.keys(bp.allNets)
     .filter(netName => netName != '%NC%')
     .forEach(netName => {
@@ -545,6 +548,30 @@ function verilogifyNetNames(bp) {
     return n;
   }
 }
+
+
+function checkForSuspiciousSymbolNames(bp) {
+  const suspicious = Object.keys(bp.allNets)
+	.sort(netNameSort)
+  // No connect
+	.filter(n => n != '%NC%')
+  // xxx [hl]
+	.filter(n => !n.slice(-2).match(/ [hl]/))
+  // xxx hi
+	.filter(n => n.slice(-3) != ' hi')
+  // local anonymous net naming convention
+	.filter(n => !n.match(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/))
+	.map(n => `'${n}'`)
+	.join('\n');
+
+  if (suspicious) console.error(`\
+
+SUSPCIOUS symbol names:\n
+${suspicious}
+
+`);
+}
+
 
 function dumpVerilogNames(bp) {
   fs.writeFileSync('bp.verilog-names',
