@@ -506,6 +506,9 @@ function verilogifyNetNames(bp) {
   // Use the following mappings and rules:
   //  * ` ` ==> _
   //  * `<-` ==> GETS
+  //  * <digits>-<digits> ==> <digits>to<digits>
+  //  * i/o ==> IO
+  //  * xxx<digit>-e<digits>-<digits> ==> xxx<digits>_e<digits>_<digits>
   //  * [/,*.-+=#()%^<>&] ==> SYMBOLNAME
   //  * `-xxxx h` ==> `xxxx l`
   //  * `-xxxx l` ==> `xxxx h`
@@ -534,6 +537,10 @@ function verilogifyNetNames(bp) {
 
     n = n.replace(/ /g, '_');
     n = n.replace(/<-/g, 'GETS');
+    n = n.replace(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/g, '$1_$2_$3');
+    n = n.replace(/(\d+)-(\d+)/g, '$1to$2');
+    n = n.replace(/i\/o/g, 'IO');
+    n = n.replace(/10\/11/g, '10_11');
     n = n.replace(/[-\/,*.+=#()%^<>&]/g, match => characterSymbolNames[match]);
     return n;
   }
@@ -543,7 +550,7 @@ function dumpVerilogNames(bp) {
   fs.writeFileSync('bp.verilog-names',
 		   Object.keys(bp.n2v)
 		   .sort(netNameSort)
-		   .map(nName => `${nName.padStart(25)}: ${bp.n2v[nName]}`).join('\n'))
+		   .map(nName => `${nName.padStart(35)}: ${bp.n2v[nName]}`).join('\n'))
 }
 
 
