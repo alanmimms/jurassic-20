@@ -893,7 +893,7 @@ e29: 10141 shift register
      6 ~< ccw7 act flag in h
      5 ~< %NC%
      7 ~< %NC%
-     10 ~< {bt2} ch mr reset b
+     10 ~< {bt2} ch mr reset b h
      4 ~< ccw clk b h
      14 ~> ccw4 act flag h
      15 ~> ccw5 act flag h

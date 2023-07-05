@@ -188,7 +188,7 @@ e30: 10101 quad or/nor
      6 ~> {fp1} ctl3 diag ld ebus reg h
 
 e28: 10109 4/5 or/nor
-     9 ~< ctl1 disp/mul
+     9 ~< ctl1 disp/mul h
      10 ~< ctl1 disp/div h
      11 ~< ctl1 disp/norm h
      12 ~< ctl1 spec/ad long h

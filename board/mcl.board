@@ -566,7 +566,7 @@ e18: 10105 2-3-2 or/nor
      4 ~< mcl6 ebox paging en l
      5 ~< -mcl6 reg func l
      3 ~> %NC%
-     2 ~> {cc1} mcl6 ebox may be paged
+     2 ~> {cc1} mcl6 ebox may be paged l
 
 // These loads must be
 // more than 4 inches

@@ -1124,16 +1124,16 @@ e1:  10109 4/5 or/nor
      3 ~> {au2} apr ebox era h
      2 ~> {ad1} apr6 ebox era l
 
-Page: APR7, PDF388
-
+//Page: APR7, PDF388
+//
 // Note these two signals are
 // unused here, but are
 // required in order not
 // to change backpanel etch.
-w5:  wire just a wire
-     1 ~< con load prev context l
-     2 ~> {dm2} apr6-backplane-dm2
-
-w6:  wire just a wire
-     1 ~< con ar 36 l
-     2 ~> {ev2} apr6-ev2
+//w5:  wire just a wire
+//     1 ~< con load prev context l
+//     2 ~> {dm2} apr6-backplane-dm2
+//
+//w6:  wire just a wire
+//     1 ~< con ar 36 l
+//     2 ~> {ev2} apr6-ev2

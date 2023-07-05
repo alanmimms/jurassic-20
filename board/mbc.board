@@ -832,16 +832,16 @@ e69: 10141 shift register
      10 ~< mbc4-e70-14
      4 ~< mbc1 clk b h
      14 ~> mbc4 rq 0b h
-     15 ~> mbc4 any request
-     2 ~> mbc4 any request
-     3 ~> mbc4 any request
+     15 ~> mbc4 any request h
+     2 ~> mbc4 any request h
+     3 ~> mbc4 any request h
 
 e74: 10105 2-3-2 or/nor
      4 ~< mbc4 mem start rd h
      5 ~< mgbc4 init comp h
      3 ~> %NC%
      2 ~> mbc4-e74-2
-     12 ~< mbc4 any request
+     12 ~< mbc4 any request h
      13 ~< {fr1} -mbc4 core data valid h
      14 ~> mbc4 any rqs left l
      15 ~> %NC%

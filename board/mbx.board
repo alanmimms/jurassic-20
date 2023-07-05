@@ -8,7 +8,7 @@ e83: 10121 4-wide or-and
      7 ~< {ft2} mbc2 csh data clr t3 l
      9 ~< mbx4 e core rd rq a l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< %NC%
      14 ~< {fc1} -csh1 ready to go l
@@ -171,7 +171,7 @@ e85: 10176 hex dff
 
 e80: 10118 triple 4-2 or-and
      3 ~< {fk2} pag1 pt cache l
-     4 ~< {fa1} pma5 ebox paged lds
+     4 ~< {fa1} pma5 ebox paged l
      5 ~< {fk1} mcl6 ebox cache l
      7 ~< -mbx1 ebox paged a l
      9 ~< %NC%
@@ -208,7 +208,7 @@ e66: 10101 quad or/nor
      3 ~> mbx3 core busy 1a l
      6 ~> mbx3 core busy 1a h
      13 ~< %NC%
-     15 ~> mbx3 hi
+     15 ~> mbx3 hi h
      9 ~> %NC%
      10 ~< mbx3 sbus diag 2 l
      12 ~< %NC%
@@ -396,7 +396,7 @@ e58: 10121 4-wide or-and
      10 ~< %NC%
      11 ~< {ec1} csh5 chan t4 l
      12 ~< -mbx2 chan wr cyc l
-     13 ~< mbx3 hi
+     13 ~< mbx3 hi h
      14 ~< %NC%
      15 ~< %NC%
      3 ~> %NC%
@@ -714,7 +714,7 @@ e31: 10141 shift register
      9 ~< mbx3-e55-3
      6 ~< mbx3-e59-14
      5 ~< %NC%
-     7 ~< mbx3-e2024
+     7 ~< mbx3-e20-2
      10 ~< mbx3-e20-2
      4 ~< mbx4-clk e h
      14 ~> mbx1 mb3 par h
@@ -796,10 +796,10 @@ e54: 10105 2-3-2 or/nor
 
 e67: 10141 shift register
      13 ~< %NC%
-     12 ~< mbx3 hi
-     11 ~< mbx3 hi
-     9 ~< mbx3 hi
-     6 ~< mbx3 hi
+     12 ~< mbx3 hi h
+     11 ~< mbx3 hi h
+     9 ~< mbx3 hi h
+     6 ~< mbx3 hi h
      5 ~< %NC%
      7 ~< mbx3-e65-3
      10 ~< mbx3-e70-14
@@ -863,7 +863,7 @@ e28: 10121 4-wide or-and
      7 ~< mbx4 csh chan cyc a l
      9 ~< mbx4 wd 0 needed l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< {al1} mbc3 csh wr wr data l
      14 ~< -mbx5 pa 34 a l
@@ -878,7 +878,7 @@ e14: 10121 4-wide or-and
      7 ~< mbx4 csh chan cyc a l
      9 ~< mbx4 wd 1 needed l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< {al1} mbc3 csh wr wr data l
      14 ~< -mbx5 pa 34 a l
@@ -893,7 +893,7 @@ e23: 10121 4-wide or-and
      7 ~< mbx4 csh chan cyc a l
      9 ~< mbx4 wd 2 needed l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< {al1} mbc3 csh wr wr data l
      14 ~< mbx5 pa 34 a l
@@ -908,7 +908,7 @@ e19: 10121 4-wide or-and
      7 ~< mbx4 csh chan cyc a l
      9 ~< mbx4 wd 3 needed l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< {al1} mbc3 csh wr wr data l
      14 ~< mbx5 pa 34 a l
@@ -997,7 +997,7 @@ e50: 10121 4-wide or-and
 Page: MBX5, PDF182
 
 e60: 10121 4-wide or-and
-     4 ~< mbx3 hi
+     4 ~< mbx3 hi h
      5 ~< %NC%
      6 ~< %NC%
      7 ~< mbx4 e core rd rq a l
@@ -1018,7 +1018,7 @@ e37: 10121 4-wide or-and
      7 ~< mbx5 wr wds in mb l
      9 ~< mbx2 mb 0 wr rq l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< -mbx1 csh wd 0 val b l
      14 ~< mbx4 wd 0 needed l
@@ -1033,7 +1033,7 @@ e29: 10121 4-wide or-and
      7 ~< mbx5 wr wds in mb l
      9 ~< mbx2 mb 1 wr rq l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< -mbx1 csh wd 1 val b l
      14 ~< mbx4 wd 1 needed l
@@ -1048,7 +1048,7 @@ e34: 10121 4-wide or-and
      7 ~< mbx5 wr wds in mb l
      9 ~< mbx2 mb 2 wr rq l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< -mbx1 csh wd 2 val b l
      14 ~< mbx4 wd 2 needed l
@@ -1063,7 +1063,7 @@ e24: 10121 4-wide or-and
      7 ~< mbx5 wr wds in mb l
      9 ~< mbx2 mb 3 wr rq l
      10 ~< %NC%
-     11 ~< mbx3 hi
+     11 ~< mbx3 hi h
      12 ~< %NC%
      13 ~< -mbx1 csh wd 3 val b l
      14 ~< mbx4 wd 3 needed l
@@ -1087,7 +1087,7 @@ e76: 10105 2-3-2 or/nor
      7 ~> %NC%
 
 e68: 10121 4-wide or-and
-     4 ~< mbx3 hi
+     4 ~< mbx3 hi h
      5 ~< %NC%
      6 ~< %NC%
      7 ~< mbx5-e76-15

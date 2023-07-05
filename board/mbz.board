@@ -526,7 +526,7 @@ e63: 10101 quad or/nor
      14 ~> nxm flg h
      11 ~> {de2} nxm any l
      7 ~< %NC%
-     3 ~> {fk2} hi
+     3 ~> {fk2} hi h
      6 ~> %NC%
      4 ~< nxm t6 h
      2 ~> mbz4-e63-2

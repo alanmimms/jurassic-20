@@ -216,6 +216,8 @@ e59: 10174 2x4 mixer
      2 ~> cra1-e59-2
      15 ~> cra1-e59-15
 
+Page: CRA2, PDF344
+
 e27: 10110 or buffer
      5 ~< cra1-e21-11
      6 ~< cra1-e1-15
@@ -253,7 +255,7 @@ e32: 10164 8 mixer
      11 ~< %NC%
      12 ~< %NC%
      13 ~< cra1-e8-2
-     14 ~< {ff1} ea type 07
+     14 ~< {ff1} ea type 07 h
      10 ~< cra3 disp 02 b h
      9 ~< cra3 disp 03 c h
      7 ~< cra3 disp 04 c h

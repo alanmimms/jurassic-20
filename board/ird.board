@@ -182,16 +182,16 @@ e72: 10109 2x2/4 or/nor
 
 e66: 10121 4-wide or-and/or-and
      4 ~< ir 03 h
-     5 ~< {es2} bp-only-es2
-     6 ~< {er2} bp-only-er2
+     5 ~< {es2} bp only es2 h
+     6 ~< {er2} bp only er2 h
      7 ~< ir 04 h
-     9 ~< bp-only-es2
-     10 ~< bp-only-er2
+     9 ~< bp only es2 h
+     10 ~< bp only er2 h
      11 ~< ir 05 h
-     12 ~< bp-only-es2
+     12 ~< bp only es2 h
      13 ~< ir 06 h
-     14 ~< bp-only-es2
-     15 ~< bp-only-er2
+     14 ~< bp only es2 h
+     15 ~< bp only er2 h
      2 ~> {ck1} ir i/o legal h
      3 ~> %NC%
 
@@ -704,7 +704,7 @@ e17: 10160 parity
 
 e56: 10160 parity
      3 ~< ird-e17-2
-     4 ~< dram j 01
+     4 ~< dram j 01 h
      5 ~< dram j 02 h
      6 ~< dram j 03 h
      7 ~< dram j 04 h

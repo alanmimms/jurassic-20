@@ -217,7 +217,7 @@ e3:  10176 hex dff
 
 e12: 10141 shift register
      13 ~< {bl2} ch t3 h
-     12 ~< chc1 clk syn n
+     12 ~< chc1 clk syn h
      11 ~< %NC%
      9 ~< %NC%
      6 ~< chc1 timing block h

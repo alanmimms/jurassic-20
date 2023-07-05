@@ -615,7 +615,7 @@ e22:  10164 8 mix
       12 ~< br [n+00] h
       13 ~< br [n+00] h
       14 ~< {bk2} ar [n+00] h
-      10 ~< {bs2} [(n+199)/100,hi,%NC%]
+      10 ~< {bs2} [(n+199)/100,hi h,%NC%]
       9 ~< {bs1} cram adb sel 2 [n] h
       7 ~< {bt2} cram adb sel 1 [n] h
       2 ~< %NC%
@@ -630,7 +630,7 @@ e21:  10164 8 mix
       12 ~< br [n+00] h
       13 ~< br [n+00] h
       14 ~< {bl2} ar [n+01] h
-      10 ~< {bs2} [(n+199)/100,hi,%NC%]
+      10 ~< {bs2} [(n+199)/100,hi h,%NC%]
       9 ~< {bs1} cram adb sel 2 [n] h
       7 ~< {bt2} cram adb sel 1 [n] h
       2 ~< %NC%
