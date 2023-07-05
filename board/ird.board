@@ -71,7 +71,7 @@ e61: 10173 4x2 mix latch
      4 ~< dram par j 08 h
      12 ~< ir 11 h
      13 ~< dram par j 09 h
-     10 ~< ir 12 h h
+     10 ~< ir 12 h
      11 ~< dram par j 10 h
      9 ~< -ir jrst h
      7 ~< hold dram b h
@@ -87,7 +87,7 @@ e77: 10173 4x2 mix latch
      4 ~< %NC%
      12 ~< ir 11 h
      13 ~< %NC%
-     10 ~< ir 12 h h
+     10 ~< ir 12 h
      11 ~< %NC%
      9 ~< -ir en ac h
      7 ~< hold dram b h
