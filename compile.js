@@ -558,7 +558,7 @@ function checkForSuspiciousSymbolNames(bp) {
   // xxx [hl]
 	.filter(n => !n.slice(-2).match(/ [hl]/))
   // xxx hi
-	.filter(n => n.slice(-3) != ' hi')
+	.filter(n => n.slice(-3) != ' hi' && n != 'hi')
   // local anonymous net naming convention
 	.filter(n => !n.match(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/))
 	.map(n => `'${n}'`)
