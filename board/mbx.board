@@ -687,7 +687,7 @@ e21: 10141 shift register
      7 ~< mbx3-e20-3
      10 ~< mbx3-e20-3
      4 ~< mbx4-clk e h
-     14 ~> mbx1 mb0 par h
+     14 ~> mbx3 mb1 par h
      15 ~> mbx3 ctomb wd 1 rq h
      2 ~> mbx3 mb1 data code 2 h
      3 ~> mbx3 mb1 data code 1 h
@@ -702,7 +702,7 @@ e26: 10141 shift register
      7 ~< mbx3-e20-14
      10 ~< mbx3-e20-14
      4 ~< mbx4-clk e h
-     14 ~> mbx1 mb2 par h
+     14 ~> mbx3 mb2 par h
      15 ~> mbx3 ctomb wd 2 rq h
      2 ~> mbx3 mb2 data code 2 h
      3 ~> mbx3 mb2 data code 1 h
@@ -717,7 +717,7 @@ e31: 10141 shift register
      7 ~< mbx3-e20-2
      10 ~< mbx3-e20-2
      4 ~< mbx4-clk e h
-     14 ~> mbx1 mb3 par h
+     14 ~> mbx3 mb3 par h
      15 ~> mbx3 ctomb wd 3 rq h
      2 ~> mbx3 mb3 data code 2 h
      3 ~> mbx3 mb3 data code 1 h
