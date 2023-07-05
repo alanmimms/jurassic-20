@@ -771,7 +771,7 @@ e40: 10164 8 mixer
      4 ~< {dc1} ccw cha 21 h
      3 ~< {cs1} ccw cha 27 h
      11 ~< {cp1} ccw cha 33 h
-     12 ~< {cn1} -ccw buf adr 0
+     12 ~< {cn1} -ccw buf adr 0 h
      13 ~< {cr1} ccw wd3 req h
      14 ~< {ct2} ccw act flag req ena h
      10 ~< {cl1} -ch diag 04 h
@@ -786,7 +786,7 @@ e48: 10164 8 mixer
      4 ~< {dp1} ccw cha 22 h
      3 ~< {dn1} ccw cha 28 h
      11 ~< {dm1} ccw cha 34 h
-     12 ~< {dp2} -ccw buf adr 1
+     12 ~< {dp2} -ccw buf adr 1 h
      13 ~< ccw mem adr=0 h
      14 ~< ccw alu c8 out h
      10 ~< {cl1} -ch diag 04 h
@@ -801,7 +801,7 @@ e44: 10164 8 mixer
      4 ~< {dh2} ccw cha 23 h
      3 ~< {dj2} ccw cha 29 h
      11 ~< {de1} ccw cha 35 h
-     12 ~< {df1} -ccw buf adr 2
+     12 ~< {df1} -ccw buf adr 2 h
      13 ~< {de2} ccw ccwf waiting h
      14 ~< ccw alu c2 out h
      10 ~< {cl1} -ch diag 04 h

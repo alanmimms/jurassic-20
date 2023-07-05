@@ -506,7 +506,7 @@ e65: 10105 2-3-2 or/nor
      15 ~> clk3-e65-15
 
 e58: 10176 hex d ff
-     5 ~< clk3-intenral-e65-7
+     5 ~< clk3-e65-7
      6 ~< clk3-e65-2
      7 ~< clk3-e65-15
      10 ~< clk3 ebox src en l
