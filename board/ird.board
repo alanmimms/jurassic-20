@@ -996,7 +996,7 @@ e1: 10179 carry
      11 ~< ad cry 36 h
      3 ~> {ct2} ad cry 24 h
      6 ~> {ah2} ad cry 30 h
-     2 ~> ad cry 24 15 h
+     2 ~> ad cg 24-35 h
      15 ~> ad cp 24-35 h
 
 e27: 10103 quad or

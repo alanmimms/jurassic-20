@@ -1132,7 +1132,7 @@ Page: APR7, PDF388
 // to change backpanel etch.
 w5:  wire just a wire
      1 ~< con load prev context l
-     2 ~> {dm2} apr6-backplnae-dm2
+     2 ~> {dm2} apr6-backplane-dm2
 
 w6:  wire just a wire
      1 ~< con ar 36 l
