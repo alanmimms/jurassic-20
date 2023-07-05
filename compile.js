@@ -150,13 +150,13 @@ function checkNetConnectivity(netByName) {
 
       if (driving.length > 1) {
 
-        if (options.checkWireOr) {
+        if (options.dumpWireOr) {
           console.log(`WARNING WIRE-OR: "${netName}" is wire-OR driven by ${driving.length} pins:`);
           if (options.verboseErrors) console.log(`    ${util.inspect(driving)}`);
         }
       } else if (driving.length === 0 && !pins.some(pin => pin.bpPin)) {
 
-        if (options.checkUndriven) {
+        if (options.dumpUndriven) {
           console.log(`WARNING UNDRIVEN: "${netName}" is not driven by any pin and is not backplane connected:`);
           if (options.verboseErrors) console.log(`    ${util.inspect(pins)}`);
         }
@@ -362,9 +362,9 @@ function compile(simOptions) {
   fs.writeFileSync('bp.cram-defs', util.inspect(cramDefs, {depth: 99, breakLength: 90, maxArrayLength: null}));
 
   const needCheck =
-        options.checkNets ||
-        options.checkWireOr ||
-        options.checkUndriven;
+        options.dumpNets ||
+        options.dumpWireOr ||
+        options.dumpUndriven;
 
   const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
     output: 'parser',
@@ -450,6 +450,8 @@ ${util.inspect(chips[name].location)}`);
   fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
 
   definePinsAndNets(bp, cramDefs);
+  verilogifyNetNames(bp);
+  dumpVerilogNames(bp);
   if (options.dumpBackplane) dumpNets(bp);
   
   return bp;
@@ -488,6 +490,63 @@ function astDirToDir(d) {
 }
 
 
+function verilogifyNetNames(bp) {
+  bp.v2n = {};
+  bp.n2v = {};
+  Object.keys(bp.allNets)
+    .filter(netName => netName != '%NC%')
+    .forEach(netName => {
+      const net = bp.allNets[netName];
+      const vName = verilogify(netName);
+      bp.v2n[vName] = netName;
+      bp.n2v[netName] = vName;
+    });
+
+  // Convert DEC nomenclature name `n` to Verilog identifier.
+  // Use the following mappings and rules:
+  //  * ` ` ==> _
+  //  * `<-` ==> GETS
+  //  * [/,*.-+=#()%^<>&] ==> SYMBOLNAME
+  //  * `-xxxx h` ==> `xxxx l`
+  //  * `-xxxx l` ==> `xxxx h`
+  function verilogify(n) {
+
+    const characterSymbolNames = {
+      '-': 'MINUS',
+      '/': 'SLASH',
+      ',': 'COMMA',
+      '*': 'STAR',
+      '.': 'DOT',
+      '+': 'PLUS',
+      '=': 'EQ',
+      '#': 'NUM',
+      '(': 'LP',
+      ')': 'RP',
+      '%': 'PERCENT',
+      '^': 'CARET',
+      '<': 'LT',
+      '>': 'GT',
+      '&': 'AND',
+    };
+
+    // First convert -xxxx [lh] to xxxx [hl].
+    n = canonicalize(n);
+
+    n = n.replace(/ /g, '_');
+    n = n.replace(/<-/g, 'GETS');
+    n = n.replace(/[-\/,*.+=#()%^<>&]/g, match => characterSymbolNames[match]);
+    return n;
+  }
+}
+
+function dumpVerilogNames(bp) {
+  fs.writeFileSync('bp.verilog-names',
+		   Object.keys(bp.n2v)
+		   .sort(netNameSort)
+		   .map(nName => `${nName.padStart(25)}: ${bp.n2v[nName]}`).join('\n'))
+}
+
+
 function dumpPins(bp) {
   fs.writeFileSync('bp.pins',
 		   Object.keys(bp.allPins).sort(slotPinSort).map(bpPin => `\
@@ -503,11 +562,13 @@ function dumpNets(bp) {
 		   Object.keys(bp.allNets)
 		   .filter(k => k != '%NC%')
 		   .sort(netNameSort)
+		   .sort(netNameSort)
 		   .map(netName => `\
 ${netName}:
   ${Object.keys(bp.allNets[netName])
     .map(pinFullName => {
       const pin = bp.allPins[pinFullName];
+      if (!pin) console.error(`pin==null for ${pinFullName}`);
       return `${pin.dir} ${pinFullName.padEnd(20) + (pin.bpPin || '').padEnd(20)}${pin.pdfRef}`;
     })
 		   .join("\n  ")}`)
