@@ -564,12 +564,16 @@ function checkForSuspiciousSymbolNames(bp) {
 	.map(n => `'${n}'`)
 	.join('\n');
 
-  if (suspicious) console.error(`\
+  if (suspicious) {
+    console.error(`\
 
 SUSPCIOUS symbol names:\n
 ${suspicious}
 
 `);
+  } else {
+    console.log(`[no suspicious symbol names found]`);
+  }
 }
 
 
