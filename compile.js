@@ -517,21 +517,21 @@ function verilogifyNetNames(bp) {
   function verilogify(n) {
 
     const characterSymbolNames = {
-      '-': 'MINUS',
-      '/': 'SLASH',
-      ',': 'COMMA',
-      '*': 'STAR',
-      '.': 'DOT',
-      '+': 'PLUS',
+      '-': 'MS',
+      '/': 'SL',
+      ',': 'CM',
+      '*': 'ST',
+      '.': 'DT',
+      '+': 'PL',
       '=': 'EQ',
-      '#': 'NUM',
+      '#': 'NR',
       '(': 'LP',
       ')': 'RP',
-      '%': 'PERCENT',
-      '^': 'CARET',
+      '%': 'PC',
+      '^': 'CT',
       '<': 'LT',
       '>': 'GT',
-      '&': 'AND',
+      '&': 'ND',
       '[': 'LB',
       ']': 'RB',
     };
@@ -582,7 +582,7 @@ function dumpVerilogNames(bp) {
   fs.writeFileSync('bp.verilog-names',
 		   Object.keys(bp.n2v)
 		   .sort(netNameSort)
-		   .map(nName => `${nName.padStart(35)}: ${bp.n2v[nName]}`).join('\n'))
+		   .map(nName => `${nName.padStart(50)}: ${bp.n2v[nName]}`).join('\n'))
 }
 
 
