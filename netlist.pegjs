@@ -28,7 +28,7 @@ slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
 	id:simpleID _ comments:$( !EOL . )*
                 { return AST('ModuleID', {macros, id, comments}) }
 
-macroDef = id:simpleID _ '=' _ value:number _
+macroDef = id:simpleID _ '=' _ value:$(number / simpleID) _
                 { return AST('MacroDef', {id, value}) }
 
 wireDef = _ slotPin:bpPinID _ farPin:bpPinID '[' slot:number ']' _ name:id _ blankLines
@@ -61,7 +61,7 @@ bpPin = '{' pinID:bpPinID '}'
 
 bpPinID = $( [abcdef] [abcdefhjklmnprstuv] [12] )
 
-macroRef =  '[' head:expr ids:selectorList ']'
+macroRef = '[' head:expr ids:selectorList ']'
 		{ return AST('Macro', {head, ids}) }
 
 selectorList = list:( ',' id:idList {return id} )*
@@ -75,7 +75,7 @@ idChunk = name:$[-/#%.+& <>()a-zA-Z0-9=]+
 
 // like idChunk but allows ',' in the identifier in non-macro context
 id = '%NC%'	{ return AST('IDChunk', {name: '%NC%'}) }
-/       name:[-/#%,.+& <>()a-zA-Z0-9=^]+
+/       name:[-/#%,.+*& <>()a-zA-Z0-9=^]+
 		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
 
 expr = sum
@@ -94,7 +94,7 @@ primary = value:$number
 		{ return val }
 /	macroName
 
-number = $([0-9]+)
+number = $[0-9]+
 
 macroName = name:simpleID
 		{ return AST('IDChunk', {name}) }

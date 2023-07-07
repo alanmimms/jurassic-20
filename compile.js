@@ -173,7 +173,6 @@ function checkNetConnectivity(netByName) {
 // all expansion, accumulating the nets as we work through them.
 function expandMacros(ast, nets, macroEnv, cx = {}) {
 
-
   if (!ast) return;
 
   switch (ast.nodeType) {
@@ -204,7 +203,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
     break;
 
   case 'Stub':
-    console.log(`                  STUB`);
+    console.log(`================================================================ STUB`);
     cx.board = ast;
     break;
 
@@ -292,7 +291,7 @@ function evalExpr(t, macroEnv) {
 
     if (t.ids.list.length) {		// It's a selector
       const sel = result;
-      const selected = t.ids.list[+result - 1];
+      const selected = t.ids.list[+result - 1]; // 1-origin indexing
 
       if (result < 1 || selected == null) {
 	console.log(`ERROR: Selector produces undefined result t=\n${util.inspect(t, {depth:99})}`);
@@ -533,6 +532,8 @@ function verilogifyNetNames(bp) {
       '<': 'LT',
       '>': 'GT',
       '&': 'AND',
+      '[': 'LB',
+      ']': 'RB',
     };
 
     // First convert -xxxx [lh] to xxxx [hl].
@@ -544,7 +545,7 @@ function verilogifyNetNames(bp) {
     n = n.replace(/(\d+)-(\d+)/g, '$1to$2');
     n = n.replace(/i\/o/g, 'IO');
     n = n.replace(/10\/11/g, '10_11');
-    n = n.replace(/[-\/,*.+=#()%^<>&]/g, match => characterSymbolNames[match]);
+    n = n.replace(/[-\/,*.+=#()%^<>&\[\]]/g, match => characterSymbolNames[match]);
     return n;
   }
 }
