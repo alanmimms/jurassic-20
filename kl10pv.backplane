@@ -30,8 +30,8 @@ Slot 12: {n=0} ccw M8534
 Slot 13: ignore blank
 
 Slot 14: {n=12} mb0 M8517
-Slot 15: {n=6} mb0 M8517
-Slot 16: {n=0} mb0 M8517
+Slot 15: {n=6}  mb0 M8517
+Slot 16: {n=0}  mb0 M8517
 Slot 17: {n=27} cac M8521 (cache) // ch0 M8549YH (no cache)
 
 Slot 18: ignore blank
@@ -41,8 +41,8 @@ Slot 20: mbz M8537
 Slot 21: {n=30} mbx M8529YA
 Slot 22: {n=22} mbc M8531YA
 Slot 23: {k=22} csh M8513YA
-Slot 24: {n=9} cac M8521 (cache) // ch0 M8549YH (no cache)
-Slot 25: {n=0} cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 24: {n=9}  cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 25: {n=0}  cac M8521 (cache) // ch0 M8549YH (no cache)
 
 Slot 26: ignore blank
 
