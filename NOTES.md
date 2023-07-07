@@ -27,6 +27,22 @@
   slot.
 
 
+# RTL Generation
+
+* Don't evaluate macros for board local symbols.
+  * Keep those symbols generic for each instantiation of the board.
+* Generate each board's RTL from local symbols with interface for
+  backplane pins.
+  * Each backplane pin uses its _local symbol name_ for the board's
+    SV module interface.
+* Assign CRAM global names to slot specific backplane pins.
+* Evaluate macros for global symbols on backplane pins.
+* Generate backplane's RTL using global symbols.
+  * Instantiate each module in each slot it appears in, wiring its
+    interface to the slot's global symbol for each backplane pin it
+    uses.
+
+
 ## Data Available
 
 

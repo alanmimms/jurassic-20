@@ -2,13 +2,13 @@ Page: CAC1, PDF116
 // M8521 TBD
 
 e85: 10103 quad or
-     4 ~< {fd2} mem to cache [n+00] h
+     4 ~< {fd2} mem to cache n+00 h
      5 ~< %NC%
      2 ~> cac1-e85-2
-     6 ~< {er2} mem to cache [n+01] h
+     6 ~< {er2} mem to cache n+01 h
      7 ~< %NC%
      3 ~> cac1-e85-3
-     10 ~< {ff2} mem to cache [n+02] h
+     10 ~< {ff2} mem to cache n+02 h
      11 ~< %NC%
      14 ~> cac1-e85-14
 
@@ -26,7 +26,7 @@ e93: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-2
-     15 ~> chd1 [n+00] a h
+     15 ~> chd1 n+00 a h
 
 e94: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -42,7 +42,7 @@ e94: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-2
-     15 ~> chd1 [n+00] a h
+     15 ~> chd1 n+00 a h
 
 e95: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -58,7 +58,7 @@ e95: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-2
-     15 ~> chd1 [n+00] a h
+     15 ~> chd1 n+00 a h
 
 e96: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -74,7 +74,7 @@ e96: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-2
-     15 ~> chd1 [n+00] a h
+     15 ~> chd1 n+00 a h
 
 
 e88: 10144 256x1 RAM
@@ -91,7 +91,7 @@ e88: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-2
-     15 ~> chd1 [n+00] b h
+     15 ~> chd1 n+00 b h
 
 e89: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -107,7 +107,7 @@ e89: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-2
-     15 ~> chd1 [n+00] b h
+     15 ~> chd1 n+00 b h
 
 e91: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -123,7 +123,7 @@ e91: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-2
-     15 ~> chd1 [n+00] b h
+     15 ~> chd1 n+00 b h
 
 e90: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -139,15 +139,15 @@ e90: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-2
-     15 ~> chd1 [n+00] b h
+     15 ~> chd1 n+00 b h
 
 e84: 10110 or buffer
-     5 ~< {fd2} mem to cache [n+00] h
-     6 ~< chd1 [n+00] a h
-     7 ~< chd1 [n+00] b h
-     2 ~> {ff1} cache data [n+00] a h
-     3 ~> {fe2} cache data [n+00] b h
-     4 ~> {fe1} cache data [n+00] c h
+     5 ~< {fd2} mem to cache n+00 h
+     6 ~< chd1 n+00 a h
+     7 ~< chd1 n+00 b h
+     2 ~> {ff1} cache data n+00 a h
+     3 ~> {fe2} cache data n+00 b h
+     4 ~> {fe1} cache data n+00 c h
 
 ////////////////////////////////////////////////////////////////
 e92: 10144 256x1 RAM
@@ -164,7 +164,7 @@ e92: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-3
-     15 ~> chd1 [n+01] a h
+     15 ~> chd1 n+01 a h
 
 e87: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -180,7 +180,7 @@ e87: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-3
-     15 ~> chd1 [n+01] a h
+     15 ~> chd1 n+01 a h
 
 e82: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -196,7 +196,7 @@ e82: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-3
-     15 ~> chd1 [n+01] a h
+     15 ~> chd1 n+01 a h
 
 e78: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -212,7 +212,7 @@ e78: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-3
-     15 ~> chd1 [n+01] a h
+     15 ~> chd1 n+01 a h
 
 
 e86: 10144 256x1 RAM
@@ -229,7 +229,7 @@ e86: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-3
-     15 ~> chd1 [n+01] b h
+     15 ~> chd1 n+01 b h
 
 e81: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -245,7 +245,7 @@ e81: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-3
-     15 ~> chd1 [n+01] b h
+     15 ~> chd1 n+01 b h
 
 e77: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -261,7 +261,7 @@ e77: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-3
-     15 ~> chd1 [n+01] b h
+     15 ~> chd1 n+01 b h
 
 e72: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -277,21 +277,21 @@ e72: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-3
-     15 ~> chd1 [n+01] b h
+     15 ~> chd1 n+01 b h
 
 e80: 10110 or buffer
-     9 ~< {er2} mem to cache [n+01] h
-     10 ~< chd1 [n+01] a h
-     11 ~< chd1 [n+01] b h
-     12 ~> {ep2} cache data [n+01] a h
-     13 ~> {ep1} cache data [n+01] b h
-     14 ~> {er1} cache data [n+01] c h
-     5 ~< {er2} mem to cache [n+02] h
-     6 ~< chd1 [n+02] a h
-     7 ~< chd1 [n+02] b h
-     2 ~> {es2} cache data [n+02] a h
-     3 ~> {eu2} cache data [n+02] b h
-     4 ~> {ev2} cache data [n+02] c h
+     9 ~< {er2} mem to cache n+01 h
+     10 ~< chd1 n+01 a h
+     11 ~< chd1 n+01 b h
+     12 ~> {ep2} cache data n+01 a h
+     13 ~> {ep1} cache data n+01 b h
+     14 ~> {er1} cache data n+01 c h
+     5 ~< {er2} mem to cache n+02 h
+     6 ~< chd1 n+02 a h
+     7 ~< chd1 n+02 b h
+     2 ~> {es2} cache data n+02 a h
+     3 ~> {eu2} cache data n+02 b h
+     4 ~> {ev2} cache data n+02 c h
 
 ////////////////////////////////////////////////////////////////
 e73: 10144 256x1 RAM
@@ -308,7 +308,7 @@ e73: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-14
-     15 ~> chd1 [n+02] a h
+     15 ~> chd1 n+02 a h
 
 e68: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -324,7 +324,7 @@ e68: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-14
-     15 ~> chd1 [n+02] a h
+     15 ~> chd1 n+02 a h
 
 e63: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -340,7 +340,7 @@ e63: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-14
-     15 ~> chd1 [n+02] a h
+     15 ~> chd1 n+02 a h
 
 e58: 10144 256x1 RAM
      1 ~< csh adr 27 a h
@@ -356,7 +356,7 @@ e58: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write a l
      13 ~< cac1-e85-14
-     15 ~> chd1 [n+02] a h
+     15 ~> chd1 n+02 a h
 
 
 e67: 10144 256x1 RAM
@@ -373,7 +373,7 @@ e67: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-14
-     15 ~> chd1 [n+02] b h
+     15 ~> chd1 n+02 b h
 
 e62: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -389,7 +389,7 @@ e62: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-14
-     15 ~> chd1 [n+02] b h
+     15 ~> chd1 n+02 b h
 
 e57: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -405,7 +405,7 @@ e57: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-14
-     15 ~> chd1 [n+02] b h
+     15 ~> chd1 n+02 b h
 
 e52: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -421,7 +421,7 @@ e52: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write b l
      13 ~< cac1-e85-14
-     15 ~> chd1 [n+02] b h
+     15 ~> chd1 n+02 b h
 
 ////////////////////////////////////////////////////////////////
 Page: CAC2, PDF117
@@ -440,7 +440,7 @@ e76: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-2
-     15 ~> chd2 [n+03] a h
+     15 ~> chd2 n+03 a h
 
 e71: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -456,7 +456,7 @@ e71: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-2
-     15 ~> chd2 [n+03] a h
+     15 ~> chd2 n+03 a h
 
 e66: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -472,7 +472,7 @@ e66: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-2
-     15 ~> chd2 [n+03] a h
+     15 ~> chd2 n+03 a h
 
 e61: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -488,7 +488,7 @@ e61: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-2
-     15 ~> chd2 [n+03] a h
+     15 ~> chd2 n+03 a h
 
 
 e75: 10144 256x1 RAM
@@ -505,7 +505,7 @@ e75: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-2
-     15 ~> chd2 [n+03] b h
+     15 ~> chd2 n+03 b h
 
 e70: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -521,7 +521,7 @@ e70: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-2
-     15 ~> chd2 [n+03] b h
+     15 ~> chd2 n+03 b h
 
 e65: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -537,7 +537,7 @@ e65: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-2
-     15 ~> chd2 [n+03] b h
+     15 ~> chd2 n+03 b h
 
 e60: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -553,30 +553,30 @@ e60: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-2
-     15 ~> chd2 [n+03] b h
+     15 ~> chd2 n+03 b h
 
 e54: 10110 or buffer
-     9 ~< {cm1} mem to cache [n+03] h
-     10 ~< chd2 [n+03] a h
-     11 ~< chd2 [n+03] b h
-     12 ~> {df1} cache data [n+03] a h
-     13 ~> {df2} cache data [n+03] b h
-     14 ~> {de1} cache data [n+03] c h
-     5 ~< {er2} mem to cache [n+04] h
-     6 ~< chd2 [n+04] a h
-     7 ~< chd2 [n+04] b h
-     2 ~> {dm1} cache data [n+04] a h
-     3 ~> {dm2} cache data [n+04] b h
-     4 ~> {dl2} cache data [n+04] c h
+     9 ~< {cm1} mem to cache n+03 h
+     10 ~< chd2 n+03 a h
+     11 ~< chd2 n+03 b h
+     12 ~> {df1} cache data n+03 a h
+     13 ~> {df2} cache data n+03 b h
+     14 ~> {de1} cache data n+03 c h
+     5 ~< {er2} mem to cache n+04 h
+     6 ~< chd2 n+04 a h
+     7 ~< chd2 n+04 b h
+     2 ~> {dm1} cache data n+04 a h
+     3 ~> {dm2} cache data n+04 b h
+     4 ~> {dl2} cache data n+04 c h
 
 e39: 10103 quad or
-     4 ~< {cm1} mem to cache [n+03] h
+     4 ~< {cm1} mem to cache n+03 h
      5 ~< %NC%
      2 ~> cac2-e39-2
-     6 ~< {cp1} mem to cache [n+04] h
+     6 ~< {cp1} mem to cache n+04 h
      7 ~< %NC%
      3 ~> cac2-e39-3
-     10 ~< {cl1} mem to cache [n+05] h
+     10 ~< {cl1} mem to cache n+05 h
      11 ~< %NC%
      14 ~> cac2-e39-14
 
@@ -595,7 +595,7 @@ e56: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-3
-     15 ~> chd2 [n+04] a h
+     15 ~> chd2 n+04 a h
 
 e51: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -611,7 +611,7 @@ e51: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-3
-     15 ~> chd2 [n+04] a h
+     15 ~> chd2 n+04 a h
 
 e46: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -627,7 +627,7 @@ e46: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-3
-     15 ~> chd2 [n+04] a h
+     15 ~> chd2 n+04 a h
 
 e41: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -643,7 +643,7 @@ e41: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-3
-     15 ~> chd2 [n+04] a h
+     15 ~> chd2 n+04 a h
 
 
 e55: 10144 256x1 RAM
@@ -660,7 +660,7 @@ e55: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-3
-     15 ~> chd2 [n+04] b h
+     15 ~> chd2 n+04 b h
 
 e50: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -676,7 +676,7 @@ e50: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-3
-     15 ~> chd2 [n+04] b h
+     15 ~> chd2 n+04 b h
 
 e45: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -692,7 +692,7 @@ e45: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-3
-     15 ~> chd2 [n+04] b h
+     15 ~> chd2 n+04 b h
 
 e40: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -708,7 +708,7 @@ e40: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-3
-     15 ~> chd2 [n+04] b h
+     15 ~> chd2 n+04 b h
 
 ////////////////////////////////////////////////////////////////
 e36: 10144 256x1 RAM
@@ -725,7 +725,7 @@ e36: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-14
-     15 ~> chd2 [n+05] a h
+     15 ~> chd2 n+05 a h
 
 e31: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -741,7 +741,7 @@ e31: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-14
-     15 ~> chd2 [n+05] a h
+     15 ~> chd2 n+05 a h
 
 e26: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -757,7 +757,7 @@ e26: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-14
-     15 ~> chd2 [n+05] a h
+     15 ~> chd2 n+05 a h
 
 e21: 10144 256x1 RAM
      1 ~< csh adr 27 c h
@@ -773,7 +773,7 @@ e21: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write c l
      13 ~< cac2-e39-14
-     15 ~> chd2 [n+05] a h
+     15 ~> chd2 n+05 a h
 
 
 e35: 10144 256x1 RAM
@@ -790,7 +790,7 @@ e35: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-14
-     15 ~> chd2 [n+05] b h
+     15 ~> chd2 n+05 b h
 
 e30: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -806,7 +806,7 @@ e30: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-14
-     15 ~> chd2 [n+05] b h
+     15 ~> chd2 n+05 b h
 
 e25: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -822,7 +822,7 @@ e25: 10144 256x1 RAM
      7 ~< csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-14
-     15 ~> chd2 [n+05] b h
+     15 ~> chd2 n+05 b h
 
 e20: 10144 256x1 RAM
      1 ~< csh adr 27 d h
@@ -838,21 +838,21 @@ e20: 10144 256x1 RAM
      7 ~< -csh adr 35 b l
      14 ~< csh write d l
      13 ~< cac2-e39-14
-     15 ~> chd2 [n+05] b h
+     15 ~> chd2 n+05 b h
 
 e16: 10110 or buffer
-     9 ~< {cl1} mem to cache [n+05] h
-     10 ~< chd2 [n+05] a h
-     11 ~< chd2 [n+05] b h
-     12 ~> {be2} cache data [n+05] a h
-     13 ~> {be1} cache data [n+05] a h
-     14 ~> {bf2} cache data [n+05] a h
-     5 ~< {au2} mem to cache [n+06] h
-     6 ~< chd3 [n+06] a h
-     7 ~< chd3 [n+06] b h
-     2 ~> {bk1} cache data [n+06] a h
-     3 ~> {bl2} cache data [n+06] b h
-     4 ~> {bk2} cache data [n+06] c h
+     9 ~< {cl1} mem to cache n+05 h
+     10 ~< chd2 n+05 a h
+     11 ~< chd2 n+05 b h
+     12 ~> {be2} cache data n+05 a h
+     13 ~> {be1} cache data n+05 a h
+     14 ~> {bf2} cache data n+05 a h
+     5 ~< {au2} mem to cache n+06 h
+     6 ~< chd3 n+06 a h
+     7 ~< chd3 n+06 b h
+     2 ~> {bk1} cache data n+06 a h
+     3 ~> {bl2} cache data n+06 b h
+     4 ~> {bk2} cache data n+06 c h
 
 ////////////////////////////////////////////////////////////////
 Page: CAC3, PDF118
@@ -871,7 +871,7 @@ e47: 10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-2
-     15 ~> chd3 [n+06] a h
+     15 ~> chd3 n+06 a h
 
 e42: 10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -887,7 +887,7 @@ e42: 10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-2
-     15 ~> chd3 [n+06] a h
+     15 ~> chd3 n+06 a h
 
 e37: 10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -903,7 +903,7 @@ e37: 10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-2
-     15 ~> chd3 [n+06] a h
+     15 ~> chd3 n+06 a h
 
 e32: 10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -919,7 +919,7 @@ e32: 10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-2
-     15 ~> chd3 [n+06] a h
+     15 ~> chd3 n+06 a h
 
 
 e43: 10144 256x1 RAM
@@ -936,7 +936,7 @@ e43: 10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-2
-     15 ~> chd3 [n+06] b h
+     15 ~> chd3 n+06 b h
 
 e38: 10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -952,7 +952,7 @@ e38: 10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-2
-     15 ~> chd3 [n+06] b h
+     15 ~> chd3 n+06 b h
 
 e33: 10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -968,7 +968,7 @@ e33: 10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-2
-     15 ~> chd3 [n+06] b h
+     15 ~> chd3 n+06 b h
 
 e28: 10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -984,7 +984,7 @@ e28: 10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-2
-     15 ~> chd3 [n+06] b h
+     15 ~> chd3 n+06 b h
 
 ////////////////////////////////////////////////////////////////
 e27: 10144 256x1 RAM
@@ -1001,7 +1001,7 @@ e27: 10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-3
-     15 ~> chd3 [n+07] a h
+     15 ~> chd3 n+07 a h
 
 e22: 10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -1017,7 +1017,7 @@ e22: 10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-3
-     15 ~> chd3 [n+07] a h
+     15 ~> chd3 n+07 a h
 
 e17: 10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -1033,7 +1033,7 @@ e17: 10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-3
-     15 ~> chd3 [n+07] a h
+     15 ~> chd3 n+07 a h
 
 e12: 10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -1049,7 +1049,7 @@ e12: 10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-3
-     15 ~> chd3 [n+07] a h
+     15 ~> chd3 n+07 a h
 
 
 e23: 10144 256x1 RAM
@@ -1066,7 +1066,7 @@ e23: 10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-3
-     15 ~> chd3 [n+07] b h
+     15 ~> chd3 n+07 b h
 
 e18: 10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -1082,7 +1082,7 @@ e18: 10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-3
-     15 ~> chd3 [n+07] b h
+     15 ~> chd3 n+07 b h
 
 e13: 10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -1098,7 +1098,7 @@ e13: 10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-3
-     15 ~> chd3 [n+07] b h
+     15 ~> chd3 n+07 b h
 
 e9:  10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -1114,7 +1114,7 @@ e9:  10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-3
-     15 ~> chd3 [n+07] b h
+     15 ~> chd3 n+07 b h
 
 ////////////////////////////////////////////////////////////////
 e8:  10144 256x1 RAM
@@ -1131,7 +1131,7 @@ e8:  10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-14
-     15 ~> chd3 [n+08] a h
+     15 ~> chd3 n+08 a h
 
 e7:  10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -1147,7 +1147,7 @@ e7:  10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-14
-     15 ~> chd3 [n+08] a h
+     15 ~> chd3 n+08 a h
 
 e6:  10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -1163,7 +1163,7 @@ e6:  10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-14
-     15 ~> chd3 [n+08] a h
+     15 ~> chd3 n+08 a h
 
 e5:  10144 256x1 RAM
      1 ~< csh adr 27 e h
@@ -1179,7 +1179,7 @@ e5:  10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write e l
      13 ~< cac3-e10-14
-     15 ~> chd3 [n+08] a h
+     15 ~> chd3 n+08 a h
 
 
 e4:  10144 256x1 RAM
@@ -1196,7 +1196,7 @@ e4:  10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-14
-     15 ~> chd3 [n+08] b h
+     15 ~> chd3 n+08 b h
 
 e3:  10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -1212,7 +1212,7 @@ e3:  10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-14
-     15 ~> chd3 [n+08] b h
+     15 ~> chd3 n+08 b h
 
 e2:  10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -1228,7 +1228,7 @@ e2:  10144 256x1 RAM
      7 ~< csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-14
-     15 ~> chd3 [n+08] b h
+     15 ~> chd3 n+08 b h
 
 e1:  10144 256x1 RAM
      1 ~< csh adr 27 f h
@@ -1244,30 +1244,30 @@ e1:  10144 256x1 RAM
      7 ~< -csh adr 35 c l
      14 ~< csh write f l
      13 ~< cac3-e10-14
-     15 ~> chd3 [n+08] b h
+     15 ~> chd3 n+08 b h
 
 e11: 10110 or buffer
-     9 ~< {cl1} mem to cache [n+07] h
-     10 ~< chd2 [n+07] a h
-     11 ~< chd2 [n+07] b h
-     12 ~> {ar1} cache data [n+07] a h
-     13 ~> {ap2} cache data [n+07] a h
-     14 ~> {ar2} cache data [n+07] a h
-     5 ~< {as2} mem to cache [n+08] h
-     6 ~< chd3 [n+08] a h
-     7 ~< chd3 [n+09] a h
-     2 ~> {bd2} cache data [n+08] a h
-     3 ~> {ba1} cache data [n+08] b h
-     4 ~> {bd1} cache data [n+08] c h
+     9 ~< {cl1} mem to cache n+07 h
+     10 ~< chd2 n+07 a h
+     11 ~< chd2 n+07 b h
+     12 ~> {ar1} cache data n+07 a h
+     13 ~> {ap2} cache data n+07 a h
+     14 ~> {ar2} cache data n+07 a h
+     5 ~< {as2} mem to cache n+08 h
+     6 ~< chd3 n+08 a h
+     7 ~< chd3 n+09 a h
+     2 ~> {bd2} cache data n+08 a h
+     3 ~> {ba1} cache data n+08 b h
+     4 ~> {bd1} cache data n+08 c h
 
 e10: 10103 quad or
-     4 ~< {au2} mem to cache [n+06] h
+     4 ~< {au2} mem to cache n+06 h
      5 ~< %NC%
      2 ~> cac3-e10-2
-     6 ~< {av2} mem to cache [n+07] h
+     6 ~< {av2} mem to cache n+07 h
      7 ~< %NC%
      3 ~> cac3-e10-3
-     10 ~< {as2} mem to cache [n+08] h
+     10 ~< {as2} mem to cache n+08 h
      11 ~< %NC%
      14 ~> cac3-e10-14
 
@@ -1387,28 +1387,28 @@ e14: 10110 or buffer
      14 ~> csh adr 34 f h
 
 e69: 10110 or buffer
-     5 ~< {ej1} csh 0 [n/18*18]-[n/18*18+17] sel a l
+     5 ~< {ej1} csh 0 n/18*18-n/18*18+17 sel a l
      6 ~< %NC%
-     7 ~< csh [n/18*18]-[n/18*18+17] en csh data l
+     7 ~< csh n/18*18-n/18*18+17 en csh data l
      2 ~> c match 0 a l
      3 ~> c match 0 b l
      4 ~> c match 0 c l
-     9 ~< {ee1} csh 1 [n/18*18]-[n/18*18+17] sel a l
-     10 ~< csh [n/18*18]-[n/18*18+17] en csh data l
+     9 ~< {ee1} csh 1 n/18*18-n/18*18+17 sel a l
+     10 ~< csh n/18*18-n/18*18+17 en csh data l
      11 ~< %NC%
      12 ~> c match 1 a l
      13 ~> c match 1 b l
      14 ~> c match 1 c l
 
 e15: 10110 or buffer
-     5 ~< {bj2} csh 2 [n/18*18]-[n/18*18+17] sel a l
+     5 ~< {bj2} csh 2 n/18*18-n/18*18+17 sel a l
      6 ~< %NC%
-     7 ~< csh [n/18*18]-[n/18*18+17] en csh data l
+     7 ~< csh n/18*18-n/18*18+17 en csh data l
      2 ~> c match 2 a l
      3 ~> c match 2 b l
      4 ~> c match 2 c l
-     9 ~< {bj1} csh 3 [n/18*18]-[n/18*18+17] sel a l
-     10 ~< csh [n/18*18]-[n/18*18+17] en csh data l
+     9 ~< {bj1} csh 3 n/18*18-n/18*18+17 sel a l
+     10 ~< csh n/18*18-n/18*18+17 en csh data l
      11 ~< %NC%
      12 ~> c match 3 a l
      13 ~> c match 3 b l
@@ -1417,12 +1417,12 @@ e15: 10110 or buffer
 e74: 10110 or buffer
      5 ~< %NC%
      6 ~< %NC%
-     7 ~< {el1} cache wr [n+00] a l
+     7 ~< {el1} cache wr n+00 a l
      2 ~> csh write a l
      3 ~> csh write b l
      4 ~> csh write c l
      9 ~< %NC%
-     10 ~< {el1} cache wr [n+00] a l
+     10 ~< {el1} cache wr n+00 a l
      11 ~< %NC%
      12 ~> csh write d l
      13 ~> csh write e l
@@ -1459,7 +1459,7 @@ e53: 10144 256x1 RAM
      7 ~< csh adr 35 a l
      14 ~< csh write a l
      13 ~< {fd1} csh par bit in h
-     15 ~> {dd1} csh par bit [n/9+00] a h
+     15 ~> {dd1} csh par bit n/9+00 a h
 
 e83: 10144 256x1 RAM
      1 ~< csh adr 27 b h
@@ -1475,4 +1475,4 @@ e83: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write b l
      13 ~< {fd1} csh par bit in h
-     15 ~> {dd1} csh par bit [n/9+00] b h
+     15 ~> {dd1} csh par bit n/9+00 b h
