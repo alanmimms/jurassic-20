@@ -106,7 +106,7 @@ function definePinsAndNets(bp, cramDefs) {
 	  bp.allNets[pin.gNet][newNet.fullName] = newNet;
 	}
 	
-	bp.allPins[newNet.fullName] = pin;
+	bp.allPins[newNet.fullName] = newNet;
       });
     });
   });
@@ -450,6 +450,7 @@ ${util.inspect(chips[name].location)}`);
 
   definePinsAndNets(bp, cramDefs);
   verilogifyNetNames(bp);
+  dumpPins(bp);
   dumpVerilogNames(bp);
   if (options.dumpBackplane) dumpNets(bp);
 
@@ -588,11 +589,18 @@ function dumpVerilogNames(bp) {
 
 function dumpPins(bp) {
   fs.writeFileSync('bp.pins',
-		   Object.keys(bp.allPins).sort(slotPinSort).map(bpPin => `\
+		   Object.keys(bp.allPins)
+		   .sort(slotPinSort)
+		   .map(bpPin => `\
 ${bpPin}:
-  ${Object.values(bp.allPins[bpPin]).map(pin => `${pin.dir} ${pin.net.padEnd(35)}${pin.fullName}`)
-		   .join("\n  ")}`)
+  ${Object.values(bp.allPins[bpPin])
+    .map(pin => util.inspect(pin) /*`${pin.dir} ${pin.lNet.padEnd(35)}${pin.fullName}`*/)
+    .join("\n  ")}`)
 		   .join("\n"));
+
+  function slotPinSort(a, b) {
+    return a > b ? 1 : a < b ? -1 : 0;
+  }
 }
 
 
