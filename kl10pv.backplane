@@ -29,20 +29,20 @@ Slot 12: {n=0} ccw M8534
 
 Slot 13: ignore blank
 
-Slot 14: mb0 M8517
-Slot 15: mb0 M8517
-Slot 16: mb0 M8517
-Slot 17: cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 14: {n=12} mb0 M8517
+Slot 15: {n=6}  mb0 M8517
+Slot 16: {n=0}  mb0 M8517
+Slot 17: {n=27} cac M8521 (cache) // ch0 M8549YH (no cache)
 
 Slot 18: ignore blank
 
-Slot 19: cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 19: {n=18} cac M8521 (cache) // ch0 M8549YH (no cache)
 Slot 20: mbz M8537
 Slot 21: {n=30} mbx M8529YA
 Slot 22: {n=22} mbc M8531YA
 Slot 23: {k=22} csh M8513YA
-Slot 24: cac M8521 (cache) // ch0 M8549YH (no cache)
-Slot 25: cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 24: {n=9}  cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 25: {n=0}  cac M8521 (cache) // ch0 M8549YH (no cache)
 
 Slot 26: ignore blank
 
@@ -61,7 +61,7 @@ Slot 37: ignore blank
 
 Slot 38: {n=13} vma M8542
 
-Slot 39: edp M8512
+Slot 39: {n=30} edp M8512
 //   em2 de1[40] serial32
 //   ea1 de1[40] serial16
 //   ee1 de1[40] serial8
@@ -69,9 +69,9 @@ Slot 39: edp M8512
 //   de1 de1[40] serial2
 //   ef2 de1[40] serial1
 
-Slot 40: crm M8548
+Slot 40: {n=16 m=30} crm M8548
 
-Slot 41: edp M8512
+Slot 41: {n=24} edp M8512
      em2 de1[42] serial2048
      ea1 de1[42] serial1024
      ee1 de1[42] serial512
@@ -79,25 +79,25 @@ Slot 41: edp M8512
 //   de1 de1[42] serial128
 //   ef2 de1[42] serial64
 
-Slot 42: crm M8548
+Slot 42: {n=12 m=24} crm M8548
 
-Slot 43: edp M8512
+Slot 43: {n=18} edp M8512
 //   em2 de1[44] option50Hz
      ea1 de1[44] optionCacheAvailable
      ee1 de1[44] optionInternalChannels
      dd2 de1[44] optionExtendedKL
 //   de1 de1[44] optionMasterOscillator
 
-Slot 44: crm M8548
+Slot 44: {n=8 m=18} crm M8548
 Slot 45: {n=0} cra M8541
 Slot 46: shm M8540
 Slot 47: {n=18} mcl M8544
 Slot 48: {n=12} ird M8522
-Slot 49: edp M8512
-Slot 50: crm M8548
-Slot 51: edp M8512
-Slot 52: crm M8548
-Slot 53: edp M8512
+Slot 49: {n=12} edp M8512
+Slot 50: {n=4 m=12} crm M8548
+Slot 51: {n=6} edp M8512
+Slot 52: {n=0 m=6} crm M8548
+Slot 53: {n=0} edp M8512
 Slot 54: {n=2} scd M8524
 
 ////////////////////////////////////////////////////////////////
