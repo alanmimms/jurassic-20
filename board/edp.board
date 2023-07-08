@@ -9,286 +9,286 @@ Page: DP01,PDF15
 // N=30       4AF39
 
 e52: 10101 or buffer
-     4 ~< {er1} ctl arl sel 4 h
+     4 ~< {er1} [n/18+1,ctl arl sel 4 h,cram arm sel 4 a h]
      12 ~< %NC%
      5 ~> edp-e52-5
      2 ~> %NC%
-     7 ~< {ek1} ctl arl sel 2 h
+     7 ~< {ek1} [n/18+1,ctl arl sel 2 h,ctl arr sel 2 h]
      3 ~> %NC%
      6 ~> edp-e52-6
-     13 ~< {eh2} ctl ar 00-11 clr h
+     13 ~< {eh2} [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,ctl arr clr h,ctl arr clr h,ctl arr clr h]
      15 ~> %NC%
      9 ~> edp-e52-9
-     10 ~< {en1} ctl arl sel 1 h
+     10 ~< {en1} [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]
      14 ~> %NC%
      11 ~> edp-e52-11
 
 
 e53: 10164 8 mix
-     6 ~< {em2} armm n+00 h
-     5 ~< {em1} cache data n+00 b h
-     4 ~< {ep2} ad n+00 h
-     3 ~< {dv2} ebus dn+00 e h
-     11 ~< {ed1} sh n+00 h
-     12 ~< {dl1} ad n+01 h
-     13 ~< {cj2} adx n+00 h
-     14 ~< {cp2} ad ex -02 h
+     6 ~< {em2} armm [n+00] h
+     5 ~< {em1} cache data [n+00] b h
+     4 ~< {ep2} ad [n+00] h
+     3 ~< {dv2} ebus d[n+00] e h
+     11 ~< {ed1} sh [n+00] h
+     12 ~< {dl1} ad [n+01] h
+     13 ~< {cj2} adx [n+00] h
+     14 ~< {cp2} [n/6+1,ad ex -02 h,ad 04 h,ad 10 h,ad 16 h,ad 22 h,ad 28 h]
      10 ~< edp-e52-5
      9 ~< edp-e52-6
      7 ~< edp-e52-9
      2 ~< edp-e52-11
-     15 ~> arm n+00 h
+     15 ~> arm [n+00] h
 
 e46: 10164 8 mix
-     6 ~< {ea1} armm n+01 h
-     5 ~< {ed2} cache data n+01 b h
-     4 ~< {dl1} ad n+01 h
-     3 ~< {ds2} ebus dn+01 e h
-     11 ~< {ec1} sh n+01 h
-     12 ~< {dr2} ad n+02 h
-     13 ~< adx n+01 h
-     14 ~< {el2} ad ex -01 h
+     6 ~< {ea1} armm [n+01] h
+     5 ~< {ed2} cache data [n+01] b h
+     4 ~< {dl1} ad [n+01] h
+     3 ~< {ds2} ebus d[n+01] e h
+     11 ~< {ec1} sh [n+01] h
+     12 ~< {dr2} ad [n+02] h
+     13 ~< adx [n+01] h
+     14 ~< {el2} [n/6+1,ad ex -01 h,ad 05 h,ad 11 h,ad 17 h,ad 23 h,ad 29 h]
      10 ~< edp-e52-5
      9 ~< edp-e52-6
      7 ~< edp-e52-9
      2 ~< edp-e52-11
-     15 ~> arm n+01 h
+     15 ~> arm [n+01] h
 
 e47: 10164 8 mix
-     6 ~< {ee1} armm n+02 h
-     5 ~< {ee2} cache data n+02 b h
-     4 ~< {dr2} ad n+02 h
-     3 ~< {dt2} ebus dn+02 e h
-     11 ~< {ds1} sh n+02 h
-     12 ~< {dr1} ad n+03 h
-     13 ~< adx n+02 h
-     14 ~< {ep2} ad n+00 h
+     6 ~< {ee1} armm [n+02] h
+     5 ~< {ee2} cache data [n+02] b h
+     4 ~< {dr2} ad [n+02] h
+     3 ~< {dt2} ebus d[n+02] e h
+     11 ~< {ds1} sh [n+02] h
+     12 ~< {dr1} ad [n+03] h
+     13 ~< adx [n+02] h
+     14 ~< {ep2} ad [n+00] h
      10 ~< edp-e52-5
      9 ~< edp-e52-6
      7 ~< edp-e52-9
      2 ~< edp-e52-11
-     15 ~> arm n+02 h
+     15 ~> arm [n+02] h
 
 e41: 10164 8 mix
-     6 ~< {dd2} armm n+03 h
-     5 ~< {dd1} cache data n+03 b h
-     4 ~< {dr1} ad n+03 h
-     3 ~< {dp1} ebus dn+03 e h
-     11 ~< {da1} sh n+03 h
-     12 ~< {cp1} ad n+04 h
-     13 ~< adx n+03 h
-     14 ~< {dl1} ad n+01 h
+     6 ~< {dd2} armm [n+03] h
+     5 ~< {dd1} cache data [n+03] b h
+     4 ~< {dr1} ad [n+03] h
+     3 ~< {dp1} ebus d[n+03] e h
+     11 ~< {da1} sh [n+03] h
+     12 ~< {cp1} ad [n+04] h
+     13 ~< adx [n+03] h
+     14 ~< {dl1} ad [n+01] h
      10 ~< edp-e52-5
      9 ~< edp-e52-6
      7 ~< edp-e52-9
      2 ~< edp-e52-11
-     15 ~> arm n+03 h
+     15 ~> arm [n+03] h
 
 e40: 10164 8 mix
-     6 ~< {de1} armm n+04 h
-     5 ~< {dl2} cache data n+04 b h
-     4 ~< {cp1} ad n+04 h
-     3 ~< {dp2} ebus dn+04 e h
-     11 ~< {de2} sh n+04 h
-     12 ~< {el1} ad n+05 h
-     13 ~< {dk1} adx n+04 h
-     14 ~< {dr2} ad n+02 h
+     6 ~< {de1} armm [n+04] h
+     5 ~< {dl2} cache data [n+04] b h
+     4 ~< {cp1} ad [n+04] h
+     3 ~< {dp2} ebus d[n+04] e h
+     11 ~< {de2} sh [n+04] h
+     12 ~< {el1} ad [n+05] h
+     13 ~< {dk1} adx [n+04] h
+     14 ~< {dr2} ad [n+02] h
      10 ~< edp-e52-5
      9 ~< edp-e52-6
      7 ~< edp-e52-9
      2 ~< edp-e52-11
-     15 ~> arm n+04 h
+     15 ~> arm [n+04] h
 
 e54: 10164 8 mix
-     6 ~< {ef2} armm n+05 h
-     5 ~< {cc1} cache data n+05 b h
-     4 ~< {el1} ad n+05 h
-     3 ~< {du2} ebus dn+05 e h
-     11 ~< {ca1} sh n+05 h
-     12 ~< {ep1} ad n+06 h
-     13 ~< {es1} adx n+05 h
-     14 ~< {dr1} ad n+03 h
+     6 ~< {ef2} armm [n+05] h
+     5 ~< {cc1} cache data [n+05] b h
+     4 ~< {el1} ad [n+05] h
+     3 ~< {du2} ebus d[n+05] e h
+     11 ~< {ca1} sh [n+05] h
+     12 ~< {ep1} [n/30+1,ad [n+06] h,adx 00 h]
+     13 ~< {es1} adx [n+05] h
+     14 ~< {dr1} ad [n+03] h
      10 ~< edp-e52-5
      9 ~< edp-e52-6
      7 ~< edp-e52-9
      2 ~< edp-e52-11
-     15 ~> arm n+05 h
+     15 ~> arm [n+05] h
 
 e51: 10141 shft reg
      13 ~< %NC%
      12 ~< %NC%
-     11 ~< arm n+03 h
-     9 ~< arm n+04 h
-     6 ~< arm n+05 h
+     11 ~< arm [n+03] h
+     9 ~< arm [n+04] h
+     6 ~< arm [n+05] h
      5 ~< %NC%
-     7 ~< {ek2} ctl ar 00-08 load l
-     10 ~< {ek2} ctl ar 00-08 load l
+     7 ~< {ek2} [n/6+1,ctl ar 00-08 load l,ctl ar 09-17 load l,ctl ar 09-17 load l,ctl arr load a l,ctl arr load a l,ctl arr load a l]
+     10 ~< {ek2} [n/6+1,ctl ar 00-08 load l,ctl ar 09-17 load l,ctl ar 09-17 load l,ctl arr load a l,ctl arr load a l,ctl arr load a l]
      4 ~< dp04 clk f h
      14 ~> %NC%
-     15 ~> ar n+03 h
-     2 ~> ar n+04 h
-     3 ~> ar n+05 h
+     15 ~> ar [n+03] h
+     2 ~> ar [n+04] h
+     3 ~> ar [n+05] h
 
 e28: 10110 or buffer
      5 ~< %NC%
      6 ~< %NC%
-     7 ~< ar n+02 h
-     2 ~> {ff2} ar n+02 a h
-     3 ~> {cl1} ar n+02 b h
-     4 ~> {ch2} ar n+02 c h
+     7 ~< ar [n+02] h
+     2 ~> {ff2} ar [n+02] a h
+     3 ~> {cl1} ar [n+02] b h
+     4 ~> {ch2} ar [n+02] c h
      9 ~< %NC%
      10 ~< %NC%
-     11 ~< ar n+03 h
-     12 ~> {eu2} ar n+03 a h
-     13 ~> {ck2} ar n+03 b h
-     14 ~> {cm1} ar n+03 c h
+     11 ~< ar [n+03] h
+     12 ~> {eu2} ar [n+03] a h
+     13 ~> {ck2} ar [n+03] b h
+     14 ~> {cm1} ar [n+03] c h
 
 e39: 10141 shft reg
      13 ~< %NC%
-     12 ~< arm n+00 h
-     11 ~< arm n+00 h
-     9 ~< arm n+01 h
-     6 ~< arm n+02 h
+     12 ~< arm [n+00] h
+     11 ~< arm [n+00] h
+     9 ~< arm [n+01] h
+     6 ~< arm [n+02] h
      5 ~< %NC%
-     7 ~< {dh2} ctl ar 00-08 load l
-     10 ~< {dh2} ctl ar 00-08 load l
+     7 ~< {dh2} [n/6+1,ctl ar 00-08 load l,ctl ar 00-08 load l,ctl ar 09-17 load l,ctl arr load b l,ctl arr load b l,ctl arr load b l]
+     10 ~< {dh2} [n/6+1,ctl ar 00-08 load l,ctl ar 00-08 load l,ctl ar 09-17 load l,ctl arr load b l,ctl arr load b l,ctl arr load b l]
      4 ~< dp04 clk b h
-     14 ~> {dm2} ar n+00 d h
-     15 ~> {bk2} ar n+00 h
-     2 ~> {bl2} ar n+01 h
-     3 ~> ar n+02 h
+     14 ~> {dm2} ar [n+00] d h
+     15 ~> {bk2} ar [n+00] h
+     2 ~> {bl2} ar [n+01] h
+     3 ~> ar [n+02] h
 
 e68: 10110 or buffer
      5 ~< %NC%
      6 ~< %NC%
-     7 ~< {bk2} ar n+00 h
-     2 ~> {fj2} ar n+00 a h
-     3 ~> {ft2} ar n+00 b h
-     4 ~> {fs2} ar n+00 c h
+     7 ~< {bk2} ar [n+00] h
+     2 ~> {fj2} ar [n+00] a h
+     3 ~> {ft2} ar [n+00] b h
+     4 ~> {fs2} ar [n+00] c h
      9 ~< %NC%
      10 ~< %NC%
-     11 ~< {bl2} ar n+01 h
-     12 ~> {fc1} ar n+01 a h
-     13 ~> {fu2} ar n+01 b h
-     14 ~> {fv2} ar n+01 c h
+     11 ~< {bl2} ar [n+01] h
+     12 ~> {fc1} ar [n+01] a h
+     13 ~> {fu2} ar [n+01] b h
+     14 ~> {fv2} ar [n+01] c h
 
 e62: 10110 or buffer
      5 ~< %NC%
      6 ~< %NC%
-     7 ~< ar n+04 h
-     2 ~> {ev2} ar n+04 a h
-     3 ~> {fk1} ar n+04 b h
-     4 ~> {fk2} ar n+04 c h
+     7 ~< ar [n+04] h
+     2 ~> {ev2} ar [n+04] a h
+     3 ~> {fk1} ar [n+04] b h
+     4 ~> {fk2} ar [n+04] c h
      9 ~< %NC%
      10 ~< %NC%
-     11 ~< ar n+05 h
-     12 ~> {et2} ar n+05 a h
-     13 ~> {fl2} ar n+05 b h
-     14 ~> {fl1} ar n+05 c h
+     11 ~< ar [n+05] h
+     12 ~> {et2} ar [n+05] a h
+     13 ~> {fl2} ar [n+05] b h
+     14 ~> {fl1} ar [n+05] c h
 
 Page: DP02,PDF16
 
 e60: 10101 or buffer
-     4 ~< {ff1} cram arxm sel 4 00 h
+     4 ~< {ff1} cram arxm sel 4 [n/18+1,00,06] h
      12 ~< %NC%
      5 ~> edp-e60-5
      2 ~> %NC%
-     7 ~< {fd2} ctl arxl sel 2 h
+     7 ~< {fd2} [n/18+1,ctl arxl sel 2 h,ctl arxr sel 2 h]
      3 ~> %NC%
      6 ~> edp-e60-6
-     13 ~< {fj1} ctl arxl sel 1 h
+     13 ~< {fj1} [n/18+1,ctl arxl sel 1 h,ctl arxr sel 1 h]
      15 ~> %NC%
      9 ~> edp-e60-9
 
 e55: 10164 8 mix
      6 ~< %NC%
-     5 ~< cache data n+00 b h
-     4 ~< ad n+00 h
-     3 ~< mq n+00 h
-     11 ~< sh n+00 h
-     12 ~< adx n+01 h
-     13 ~< adx n+00 h
-     14 ~< ad 34 h
+     5 ~< cache data [n+00] b h
+     4 ~< ad [n+00] h
+     3 ~< mq [n+00] h
+     11 ~< sh [n+00] h
+     12 ~< adx [n+01] h
+     13 ~< adx [n+00] h
+     14 ~< [(n+199)/100,ad 34 h,adx [n-02] h]
      10 ~< edp-e60-5
      9 ~< edp-e60-6
      7 ~< edp-e60-9
      2 ~< %NC%
-     15 ~> arxm n+00 h
+     15 ~> arxm [n+00] h
 
 e56: 10164 8 mix
      6 ~< %NC%
-     5 ~< {ed2} cache data n+01 b h
-     4 ~< {dl1} ad n+01 h
-     3 ~< mq n+01 h
-     11 ~< {ec1} sh n+01 h
-     12 ~< adx n+02 h
-     13 ~< adx n+01 h
-     14 ~< {es2} ad 35 h
+     5 ~< {ed2} cache data [n+01] b h
+     4 ~< {dl1} ad [n+01] h
+     3 ~< mq [n+01] h
+     11 ~< {ec1} sh [n+01] h
+     12 ~< adx [n+02] h
+     13 ~< adx [n+01] h
+     14 ~< {es2} [(n+199)/100,ad 35 h,adx [n-01] h]
      10 ~< edp-e60-5
      9 ~< edp-e60-6
      7 ~< edp-e60-9
      2 ~< %NC%
-     15 ~> arxm n+01 h
+     15 ~> arxm [n+01] h
 
 e49: 10164 8 mix
      6 ~< %NC%
-     5 ~< {ee2} cache data n+02 b h
-     4 ~< {dr2} ad n+02 h
-     3 ~< mq n+02 h
-     11 ~< {ds1} sh n+02 h
-     12 ~< adx n+03 h
-     13 ~< adx n+02 h
-     14 ~< {cj2} adx n+00 h
+     5 ~< {ee2} cache data [n+02] b h
+     4 ~< {dr2} ad [n+02] h
+     3 ~< mq [n+02] h
+     11 ~< {ds1} sh [n+02] h
+     12 ~< adx [n+03] h
+     13 ~< adx [n+02] h
+     14 ~< {cj2} adx [n+00] h
      10 ~< edp-e60-5
      9 ~< edp-e60-6
      7 ~< edp-e60-9
      2 ~< %NC%
-     15 ~> arxm n+02 h
+     15 ~> arxm [n+02] h
 
 e42: 10164 8 mix
      6 ~< %NC%
-     5 ~< {dd1} cache data n+03 b h
-     4 ~< {dr1} ad n+03 h
-     3 ~< mq n+03 h
-     11 ~< {da1} sh n+03 h
-     12 ~< {dk1} adx n+04 h
-     13 ~< adx n+03 h
-     14 ~< adx n+01 h
+     5 ~< {dd1} cache data [n+03] b h
+     4 ~< {dr1} ad [n+03] h
+     3 ~< mq [n+03] h
+     11 ~< {da1} sh [n+03] h
+     12 ~< {dk1} adx [n+04] h
+     13 ~< adx [n+03] h
+     14 ~< adx [n+01] h
      10 ~< edp-e60-5
      9 ~< edp-e60-6
      7 ~< edp-e60-9
      2 ~< %NC%
-     15 ~> arxm n+03 h
+     15 ~> arxm [n+03] h
 
 e31: 10164 8 mix
      6 ~< %NC%
-     5 ~< {dl2} cache data n+04 b h
-     4 ~< {cp1} ad n+04 h
-     3 ~< {cs1} mq n+04 h
-     11 ~< {de2} sh n+04 h
-     12 ~< {es1} adx n+05 h
-     13 ~< {dk1} adx n+04 h
-     14 ~< adx n+02 h
+     5 ~< {dl2} cache data [n+04] b h
+     4 ~< {cp1} ad [n+04] h
+     3 ~< {cs1} mq [n+04] h
+     11 ~< {de2} sh [n+04] h
+     12 ~< {es1} adx [n+05] h
+     13 ~< {dk1} adx [n+04] h
+     14 ~< adx [n+02] h
      10 ~< edp-e60-5
      9 ~< edp-e60-6
      7 ~< edp-e60-9
      2 ~< %NC%
-     15 ~> arxm n+04 h
+     15 ~> arxm [n+04] h
 
 e30: 10164 8 mix
      6 ~< %NC%
-     5 ~< {cc1} cache data n+05 b h
-     4 ~< {el1} ad n+05 h
-     3 ~< {df1} mq n+05 h
-     11 ~< {ca1} sh n+05 h
-     12 ~< {cj1} adx n+06 h
-     13 ~< {es1} adx n+05 h
-     14 ~< adx n+03 h
+     5 ~< {cc1} cache data [n+05] b h
+     4 ~< {el1} ad [n+05] h
+     3 ~< {df1} mq [n+05] h
+     11 ~< {ca1} sh [n+05] h
+     12 ~< {cj1} [n/30+1,adx [n+06] h,mq 00 h]
+     13 ~< {es1} adx [n+05] h
+     14 ~< adx [n+03] h
      10 ~< edp-e60-5
      9 ~< edp-e60-6
      7 ~< edp-e60-9
      2 ~< %NC%
-     15 ~> arxm n+05 h
+     15 ~> arxm [n+05] h
 
 e38: 10101 or buffer
      4 ~< {dm1} ctl mqm setl 2 h
@@ -306,49 +306,49 @@ e38: 10101 or buffer
      11 ~> %NC%
 
 e45: 10174 2x4 mix
-     3 ~< {cs2} adx 34 h
-     5 ~< {ed1} sh n+00 h
-     4 ~< {ep2} ad n+00 h
+     3 ~< {cs2} [(n+199)/100,adx 34 h,mq [n-02] h]
+     5 ~< {ed1} sh [n+00] h
+     4 ~< {ep2} ad [n+00] h
      6 ~< edp-e38-9
-     13 ~< adx 35 h
-     11 ~< sh n+01 h
-     12 ~< ad n+01 h
+     13 ~< [(n+199)/100,adx 35 h,mq [n-01] h]
+     11 ~< sh [n+01] h
+     12 ~< ad [n+01] h
      10 ~< edp-e38-9
      9 ~< edp-e38-5
      7 ~< edp-e38-6
      14 ~< edp-e38-15
-     2 ~> mqm n+00 h
-     15 ~> mqm n+01 h
+     2 ~> mqm [n+00] h
+     15 ~> mqm [n+01] h
 
 e48: 10174 2x4 mix
-     3 ~< {cd2} mq n+00 h
-     5 ~< {ds1} sh n+02 h
-     4 ~< {dr2} ad n+02 h
+     3 ~< {cd2} mq [n+00] h
+     5 ~< {ds1} sh [n+02] h
+     4 ~< {dr2} ad [n+02] h
      6 ~< edp-e38-9
-     13 ~< mq n+01 h
-     11 ~< {da1} sh n+03 h
-     12 ~< {dr1} ad n+03 h
+     13 ~< mq [n+01] h
+     11 ~< {da1} sh [n+03] h
+     12 ~< {dr1} ad [n+03] h
      10 ~< edp-e38-9
      9 ~< edp-e38-5
      7 ~< edp-e38-6
      14 ~< edp-e38-15
-     2 ~> mqm n+02 h
-     15 ~> mqm n+03 h
+     2 ~> mqm [n+02] h
+     15 ~> mqm [n+03] h
 
 e35: 10174 2x4 mix
-     3 ~< mq n+02 h
-     5 ~< {de2} sh n+04 h
-     4 ~< {cp1} ad n+04 h
+     3 ~< mq [n+02] h
+     5 ~< {de2} sh [n+04] h
+     4 ~< {cp1} ad [n+04] h
      6 ~< edp-e38-9
-     13 ~< mq n+03 h
-     11 ~< {ca1} sh n+05 h
-     12 ~< {el1} ad n+05 h
+     13 ~< mq [n+03] h
+     11 ~< {ca1} sh [n+05] h
+     12 ~< {el1} ad [n+05] h
      10 ~< edp-e38-9
      9 ~< edp-e38-5
      7 ~< edp-e38-6
      14 ~< edp-e38-15
-     2 ~> mqm n+04 h
-     15 ~> mqm n+05 h
+     2 ~> mqm [n+04] h
+     15 ~> mqm [n+05] h
 
 e20: 10101 or buffer
      4 ~< {bv2} ctl mq sel 2 h
@@ -358,99 +358,99 @@ e20: 10101 or buffer
      7 ~< {bu2} ctl mq sel 1 h
      3 ~> %NC%
      6 ~> edp-e20-6
-     13 ~< {cs1} mq n+04 h
+     13 ~< {cs1} mq [n+04] h
      15 ~> %NC%
      9 ~> edp-e20-9
-     10 ~< {cd1} mq n+06 h
+     10 ~< {cd1} [n/30+1,mq [n+06] h,ad cry -02 a h]
      14 ~> %NC%
      11 ~> edp-e20-11
 
 e13: 10141 shft reg
-     13 ~< mqm n+01 h
-     12 ~< mqm n+00 h
-     11 ~< mqm n+01 h
-     9 ~< mqm n+02 h
-     6 ~< mqm n+03 h
+     13 ~< mqm [n+01] h
+     12 ~< mqm [n+00] h
+     11 ~< mqm [n+01] h
+     9 ~< mqm [n+02] h
+     6 ~< mqm [n+03] h
      5 ~< edp-e20-9
      7 ~< edp-e20-5
      10 ~< edp-e20-6
-     14 ~> {cd2} mq n+00 h
-     15 ~> mq n+01 h
-     2 ~> mq n+02 h
+     14 ~> {cd2} mq [n+00] h
+     15 ~> mq [n+01] h
+     2 ~> mq [n+02] h
      3 ~> %NC%
      4 ~< dp04 clk c h
 
 e15: 10141 shft reg
-     13 ~< mqm n+03 h
-     12 ~< mqm n+02 h
-     11 ~< mqm n+03 h
-     9 ~< mqm n+04 h
-     6 ~< mqm n+05 h
+     13 ~< mqm [n+03] h
+     12 ~< mqm [n+02] h
+     11 ~< mqm [n+03] h
+     9 ~< mqm [n+04] h
+     6 ~< mqm [n+05] h
      5 ~< edp-e20-11
      7 ~< edp-e20-5
      10 ~< edp-e20-6
      14 ~> %NC%
-     15 ~> mq n+03 h
-     2 ~> {cs1} mq n+04 h
-     3 ~> {df1} mq n+05 h
+     15 ~> mq [n+03] h
+     2 ~> {cs1} mq [n+04] h
+     3 ~> {df1} mq [n+05] h
      4 ~< dp04 clk d h
 
 e25: 10141 shft reg
      13 ~< %NC%
-     12 ~< arxm n+00 h
-     11 ~< arxm n+00 h
-     9 ~< arxm n+01 h
-     6 ~< arxm n+02 h
+     12 ~< arxm [n+00] h
+     11 ~< arxm [n+00] h
+     9 ~< arxm [n+01] h
+     6 ~< arxm [n+02] h
      5 ~< %NC%
      7 ~< edp-e24-14
      10 ~< edp-e24-14
-     14 ~> {br2} arx n+00 b h
-     15 ~> {ej2} arx n+00 h
-     2 ~> {bd2} arx n+01 h
-     3 ~> {dc1} arx n+02 h
+     14 ~> {br2} arx [n+00] b h
+     15 ~> {ej2} arx [n+00] h
+     2 ~> {bd2} arx [n+01] h
+     3 ~> {dc1} arx [n+02] h
      4 ~< dp04 clk e h
 
 e24: 10101 or buffer
-     4 ~< {ej2} arx n+00 h
+     4 ~< {ej2} arx [n+00] h
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> {as2} arx n+00 a h
-     7 ~< {bd2} arx n+01 h
+     5 ~> {as2} arx [n+00] a h
+     7 ~< {bd2} arx [n+01] h
      3 ~> %NC%
-     6 ~> {as1} arx n+01 a h
-     13 ~< {dc1} arx n+02 h
+     6 ~> {as1} arx [n+01] a h
+     13 ~< {dc1} arx [n+02] h
      15 ~> %NC%
-     9 ~> arx n+02 a h
+     9 ~> arx [n+02] a h
      10 ~< {br1} ctl arx load h
      14 ~> edp-e24-14
      11 ~> %NC%
 
 e32: 10141 shft reg
      13 ~< %NC%
-     12 ~< arxm n+01 h
-     11 ~< arxm n+03 h
-     9 ~< arxm n+04 h
-     6 ~< arxm n+05 h
+     12 ~< arxm [n+01] h
+     11 ~< arxm [n+03] h
+     9 ~< arxm [n+04] h
+     6 ~< arxm [n+05] h
      5 ~< %NC%
      7 ~< edp-e24-14
      10 ~< edp-e24-14
-     14 ~> {cm2} arx n+01 b h
-     15 ~> {aj2} arx n+03 h
-     2 ~> {ac1} arx n+04 h
-     3 ~> {aa1} arx n+05 h
+     14 ~> {cm2} arx [n+01] b h
+     15 ~> {aj2} arx [n+03] h
+     2 ~> {ac1} arx [n+04] h
+     3 ~> {aa1} arx [n+05] h
      4 ~< dp04 clk f h
 
 e11: 10101 or buffer
-     4 ~< {aj2} arx n+03 h
+     4 ~< {aj2} arx [n+03] h
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> arx n+03 a h
-     7 ~< {ac1} arx n+04 h
+     5 ~> arx [n+03] a h
+     7 ~< {ac1} arx [n+04] h
      3 ~> %NC%
-     6 ~> arx n+04 a h
-     13 ~< {aa1} arx n+05 h
+     6 ~> arx [n+04] a h
+     13 ~< {aa1} arx [n+05] h
      15 ~> %NC%
-     9 ~> arx n+05 a h
+     9 ~> arx [n+05] a h
      10 ~< {ar2} cram brx load a h
      14 ~> edp-e11-14
      11 ~> %NC%
@@ -458,42 +458,42 @@ e11: 10101 or buffer
 Page: DP03,PDF17
 
 e27: 10101 4xor/nor
-      4 ~< {ep2} ad n+00 h
+      4 ~< {ep2} ad [n+00] h
       12 ~< %NC%
-      2 ~> {cn1} ad n+00 a l
-      5 ~> {ck1} ad n+00 a h
-      10 ~< {cp1} ad n+04 h
+      2 ~> {cn1} ad [n+00] a l
+      5 ~> {ck1} ad [n+00] a h
+      10 ~< {cp1} ad [n+04] h
       14 ~> %NC%
-      11 ~> {cf2} ad n+04 a h
-      13 ~< {el1} ad n+05 h
+      11 ~> {cf2} ad [n+04] a h
+      13 ~< {el1} ad [n+05] h
       15 ~> %NC%
-      9 ~> {ce1} ad n+05 a h
-      7 ~< {cj2} adx n+00 h
+      9 ~> {ce1} ad [n+05] a h
+      7 ~< {cj2} adx [n+00] h
       3 ~> %NC%
-      6 ~> {cf1} adx n+00 a h
+      6 ~> {cf1} adx [n+00] a h
 
 e33:  10107 3x2 xor/xnor
-      4 ~< {cv2} ad ex n-02 h
-      5 ~< {cr1} ad ex n-01 h
+      4 ~< {cv2} ad ex [n-02] h
+      5 ~< {cr1} ad ex [n-01] h
       2 ~> %NC%
       3 ~> edp-e33-3
-      9 ~< {cr1} ad ex n-01 h
-      7 ~< {ep2} ad n+00 h
+      9 ~< {cr1} ad ex [n-01] h
+      7 ~< {ep2} ad [n+00] h
       11 ~> %NC%
       10 ~> edp-e33-10
       14 ~< edp-e33-10
-      15 ~< ad cry n-02 h
-      12 ~> {ct2} ad cry n+01 l
-      13 ~> {cu2} ad cry n+01 h
+      15 ~< ad cry [n-02] h
+      12 ~> {ct2} ad cry [n+01] l
+      13 ~> {cu2} ad cry [n+01] h
 
 e29:  10105 3x2-3-2 or/nor
       12 ~< edp-e33-3
       13 ~< edp-e33-10
-      14 ~> {cl2} ad overflow n+00 l
+      14 ~> {cl2} ad overflow [n+00] l
       15 ~> %NC%
       9 ~< edp-dl1-2
       10 ~< edp-e29-2
-      11 ~< {ce2} con fm write 00-17/18-35 l
+      11 ~< {ce2} [n/18+1,con fm write 00-17 l,con fm write 18-35 l]
       6 ~> %NC%
       7 ~> dp04 fm write l
       4 ~< dp04 clk c h
@@ -503,305 +503,305 @@ e29:  10105 3x2-3-2 or/nor
 
 e7:   10109 or buffer
       9 ~< %NC%
-      10 ~< {ep2} ad n+00 h
-      11 ~< {dl1} ad n+01 h
-      12 ~< {dr2} ad n+02 h
+      10 ~< {ep2} ad [n+00] h
+      11 ~< {dl1} ad [n+01] h
+      12 ~< {dr2} ad [n+02] h
       13 ~< edp-e7-2
       14 ~> %NC%
-      15 ~> {at2} -ad n+00-n+05=0 h
+      15 ~> {at2} -ad [n+00]-[n+05]=0 h
       4 ~< %NC%
-      5 ~< {dr1} ad n+03 h
-      6 ~< {cp1} ad n+04 h
-      7 ~< {el1} ad n+05 h
+      5 ~< {dr1} ad [n+03] h
+      6 ~< {cp1} ad [n+04] h
+      7 ~< {el1} ad [n+05] h
       2 ~> edp-e7-2
       3 ~> %NC%
 
 e1:   10181 alu
-      10 ~< ada n+00 h
-      9 ~< adb n-02 h
-      16 ~< ada n+00 h
-      11 ~< adb n-01 h
-      18 ~< ada n+00 h
-      19 ~< adb n+00 h
-      21 ~< ada n+01 h
-      20 ~< adb n+01 h
-      22 ~< ad cry n+02 h
-      13 ~< {ad1} cram ad sel 8 N h
-      15 ~< {ae2} cram ad sel 4 N h
-      17 ~< {ah2} cram ad sel 2 N h
-      14 ~< {ad2} cram ad sel 1 N h
-      23 ~< {an1} cram ad boole N h
-      5 ~> ad cry n-02 h
-      6 ~> {cv2} ad ex n-02 h
-      7 ~> {cr1} ad ex n-01 h
-      3 ~> {ep2} ad n+00 h
-      2 ~> {dl1} ad n+01 h
-      4 ~> {am1} ad cg n+00 h
-      8 ~> {aj1} ad cp n+00 h
+      10 ~< ada [n+00] h
+      9 ~< adb [n-02] h
+      16 ~< ada [n+00] h
+      11 ~< adb [n-01] h
+      18 ~< ada [n+00] h
+      19 ~< adb [n+00] h
+      21 ~< ada [n+01] h
+      20 ~< adb [n+01] h
+      22 ~< ad cry [n+02] h
+      13 ~< {ad1} cram ad sel 8 [n] h
+      15 ~< {ae2} cram ad sel 4 [n] h
+      17 ~< {ah2} cram ad sel 2 [n] h
+      14 ~< {ad2} cram ad sel 1 [n] h
+      23 ~< {an1} cram ad boole [n] h
+      5 ~> ad cry [n-02] h
+      6 ~> {cv2} ad ex [n-02] h
+      7 ~> {cr1} ad ex [n-01] h
+      3 ~> {ep2} ad [n+00] h
+      2 ~> {dl1} ad [n+01] h
+      4 ~> {am1} ad cg [n+00] h
+      8 ~> {aj1} ad cp [n+00] h
 
 e2:   10181 alu
-      10 ~< ada n+02 h
-      9 ~< adb n+02 h
-      16 ~< ada n+03 h
-      11 ~< adb n+03 h
-      18 ~< ada n+04 h
-      19 ~< adb n+04 h
-      21 ~< ada n+05 h
-      20 ~< adb n+05 h
-      22 ~< {al1} ad cry n+06 h
-      13 ~< {ad1} cram ad sel 8 N h
-      15 ~< {ae2} cram ad sel 4 N h
-      17 ~< {ah2} cram ad sel 2 N h
-      14 ~< {ad2} cram ad sel 1 N h
-      23 ~< {an1} cram ad boole N h
-      5 ~> ad cry n+02 h
-      6 ~> {dr2} ad n+02 h
-      7 ~> {dr1} ad n+03 h
-      3 ~> {cp1} ad n+04 h
-      2 ~> {el1} ad n+05 h
-      4 ~> {am2} ad cg n+02 h
-      8 ~> {af1} ad cp n+02 h
+      10 ~< ada [n+02] h
+      9 ~< adb [n+02] h
+      16 ~< ada [n+03] h
+      11 ~< adb [n+03] h
+      18 ~< ada [n+04] h
+      19 ~< adb [n+04] h
+      21 ~< ada [n+05] h
+      20 ~< adb [n+05] h
+      22 ~< {al1} [n/30+1,ad cry [n+06] h,ad cry 36 b h]
+      13 ~< {ad1} cram ad sel 8 [n] h
+      15 ~< {ae2} cram ad sel 4 [n] h
+      17 ~< {ah2} cram ad sel 2 [n] h
+      14 ~< {ad2} cram ad sel 1 [n] h
+      23 ~< {an1} cram ad boole [n] h
+      5 ~> ad cry [n+02] h
+      6 ~> {dr2} ad [n+02] h
+      7 ~> {dr1} ad [n+03] h
+      3 ~> {cp1} ad [n+04] h
+      2 ~> {el1} ad [n+05] h
+      4 ~> {am2} ad cg [n+02] h
+      8 ~> {af1} ad cp [n+02] h
 
 e3:   10181 alu
-      10 ~< adxa n+00 h
-      9 ~< adxb n+00 h
-      16 ~< adxa n+00 h
-      11 ~< adxb n+00 h
-      18 ~< ada n+01 h
-      19 ~< adb n+01 h
-      21 ~< ada n+02 h
-      20 ~< adb n+02 h
-      22 ~< adx cry n+03 h
-      13 ~< {ad1} cram ad sel 8 N h
-      15 ~< {ae2} cram ad sel 4 N h
-      17 ~< {ah2} cram ad sel 2 N h
-      14 ~< {ad2} cram ad sel 1 N h
-      23 ~< {an1} cram ad boole N h
+      10 ~< adxa [n+00] h
+      9 ~< adxb [n+00] h
+      16 ~< adxa [n+00] h
+      11 ~< adxb [n+00] h
+      18 ~< ada [n+01] h
+      19 ~< adb [n+01] h
+      21 ~< ada [n+02] h
+      20 ~< adb [n+02] h
+      22 ~< adx cry [n+03] h
+      13 ~< {ad1} cram ad sel 8 [n] h
+      15 ~< {ae2} cram ad sel 4 [n] h
+      17 ~< {ah2} cram ad sel 2 [n] h
+      14 ~< {ad2} cram ad sel 1 [n] h
+      23 ~< {an1} cram ad boole [n] h
       5 ~> %NC%
       6 ~> %NC%
-      7 ~> {cj2} adx n+00 h
-      3 ~> adx n+01 h
-      2 ~> adx n+02 h
-      4 ~> {al2} adx cg n+00 h
-      8 ~> {ae1} adx cp n+00 h
+      7 ~> {cj2} adx [n+00] h
+      3 ~> adx [n+01] h
+      2 ~> adx [n+02] h
+      4 ~> {al2} adx cg [n+00] h
+      8 ~> {ae1} adx cp [n+00] h
 
 e4:   10181 alu
-      10 ~< adxa n+03 h
-      9 ~< adxb n+03 h
-      16 ~< adxa n+03 h
-      11 ~< adxb n+03 h
-      18 ~< ada n+04 h
-      19 ~< adb n+04 h
-      21 ~< ada n+05 h
-      20 ~< adb n+05 h
-      22 ~< {ak1} adx cry n+06 h
-      13 ~< {ad1} cram ad sel 8 N h
-      15 ~< {ae2} cram ad sel 4 N h
-      17 ~< {ah2} cram ad sel 2 N h
-      14 ~< {ad2} cram ad sel 1 N h
-      23 ~< {an1} cram ad boole N h
-      5 ~> adx cry n+03 h
+      10 ~< adxa [n+03] h
+      9 ~< adxb [n+03] h
+      16 ~< adxa [n+03] h
+      11 ~< adxb [n+03] h
+      18 ~< ada [n+04] h
+      19 ~< adb [n+04] h
+      21 ~< ada [n+05] h
+      20 ~< adb [n+05] h
+      22 ~< {ak1} [n/30+1,adx cry [n+06] h,ctl adx cry 36 h]
+      13 ~< {ad1} cram ad sel 8 [n] h
+      15 ~< {ae2} cram ad sel 4 [n] h
+      17 ~< {ah2} cram ad sel 2 [n] h
+      14 ~< {ad2} cram ad sel 1 [n] h
+      23 ~< {an1} cram ad boole [n] h
+      5 ~> adx cry [n+03] h
       6 ~> %NC%
-      7 ~> adx n+03 h
-      3 ~> {dk1} adx n+04 h
-      2 ~> {es1} adx n+05 h
-      4 ~> {ak2} ad cg n+03 h
-      8 ~> {af2} ad cp n+03 h
+      7 ~> adx [n+03] h
+      3 ~> {dk1} adx [n+04] h
+      2 ~> {es1} adx [n+05] h
+      4 ~> {ak2} ad cg [n+03] h
+      8 ~> {af2} ad cp [n+03] h
 
 e22:  10164 8 mix
-      6 ~< fm n+00 h
-      5 ~< br n+01 h
-      4 ~< br n+00 h
-      3 ~< ar n+02 h
-      11 ~< fm n+00 h
-      12 ~< br n+00 h
-      13 ~< br n+00 h
-      14 ~< {bk2} ar n+00 h
-      10 ~< {bs2} hi
-      9 ~< {bs1} cram adb sel 2 N h
-      7 ~< {bt2} cram adb sel 1 N h
+      6 ~< fm [n+00] h
+      5 ~< br [n+01] h
+      4 ~< br [n+00] h
+      3 ~< ar [n+02] h
+      11 ~< fm [n+00] h
+      12 ~< br [n+00] h
+      13 ~< br [n+00] h
+      14 ~< {bk2} ar [n+00] h
+      10 ~< {bs2} [(n+199)/100,hi,%NC%]
+      9 ~< {bs1} cram adb sel 2 [n] h
+      7 ~< {bt2} cram adb sel 1 [n] h
       2 ~< %NC%
-      15 ~> adb n-02 h
+      15 ~> adb [n-02] h
 
 e21:  10164 8 mix
-      6 ~< fm n+00 h
-      5 ~< br n+01 h
-      4 ~< br n+00 h
-      3 ~< ar n+02 h
-      11 ~< fm n+00 h
-      12 ~< br n+00 h
-      13 ~< br n+00 h
-      14 ~< {bl2} ar n+01 h
-      10 ~< {bs2} hi
-      9 ~< {bs1} cram adb sel 2 N h
-      7 ~< {bt2} cram adb sel 1 N h
+      6 ~< fm [n+00] h
+      5 ~< br [n+01] h
+      4 ~< br [n+00] h
+      3 ~< ar [n+02] h
+      11 ~< fm [n+00] h
+      12 ~< br [n+00] h
+      13 ~< br [n+00] h
+      14 ~< {bl2} ar [n+01] h
+      10 ~< {bs2} [(n+199)/100,hi,%NC%]
+      9 ~< {bs1} cram adb sel 2 [n] h
+      7 ~< {bt2} cram adb sel 1 [n] h
       2 ~< %NC%
-      15 ~> adb n-01 h
+      15 ~> adb [n-01] h
 
 e14:  10174 2x4 mix
-      3 ~< {bk2} ar n+00 h
-      5 ~< {ej2} arx n+00 h
-      4 ~< {cd2} mq n+00 h
-      6 ~< {bj2} vma held or pc n+00 h
-      13 ~< {bl2} ar n+01 h
-      11 ~< {bd2} arx n+01 h
-      12 ~< mq n+01 h
-      10 ~< {bh2} vma held or pc n+01 h
-      9 ~< {bf2} cram ada sel 2 N h
-      7 ~< {bj1} cram ada sel 1 N h
-      14 ~< {bn1} cram ada dis N l
-      2 ~> ada n+00 h
-      15 ~> ada n+01 h
+      3 ~< {bk2} ar [n+00] h
+      5 ~< {ej2} arx [n+00] h
+      4 ~< {cd2} mq [n+00] h
+      6 ~< {bj2} vma held or pc [n+00] h
+      13 ~< {bl2} ar [n+01] h
+      11 ~< {bd2} arx [n+01] h
+      12 ~< mq [n+01] h
+      10 ~< {bh2} vma held or pc [n+01] h
+      9 ~< {bf2} cram ada sel 2 [n] h
+      7 ~< {bj1} cram ada sel 1 [n] h
+      14 ~< {bn1} cram ada dis [n] l
+      2 ~> ada [n+00] h
+      15 ~> ada [n+01] h
 
 e16:  10174 2x4 mix
-      3 ~< ar n+02 h
-      5 ~< {dc1} arx n+02 h
-      4 ~< mq n+02 h
-      6 ~< {bf1} vma held or pc n+02 h
-      13 ~< ar n+03 h
-      11 ~< {aj2} arx n+03 h
-      12 ~< mq n+03 h
-      10 ~< {bp2} vma held or pc n+03 h
-      9 ~< {bf2} cram ada sel 2 N h
-      7 ~< {bj1} cram ada sel 1 N h
-      14 ~< {bn1} cram ada dis N l
-      2 ~> ada n+02 h
-      15 ~> ada n+03 h
+      3 ~< ar [n+02] h
+      5 ~< {dc1} arx [n+02] h
+      4 ~< mq [n+02] h
+      6 ~< {bf1} vma held or pc [n+02] h
+      13 ~< ar [n+03] h
+      11 ~< {aj2} arx [n+03] h
+      12 ~< mq [n+03] h
+      10 ~< {bp2} vma held or pc [n+03] h
+      9 ~< {bf2} cram ada sel 2 [n] h
+      7 ~< {bj1} cram ada sel 1 [n] h
+      14 ~< {bn1} cram ada dis [n] l
+      2 ~> ada [n+02] h
+      15 ~> ada [n+03] h
 
 e18:  10174 2x4 mix
-      3 ~< ar n+04 h
-      5 ~< {ac1} arx n+04 h
-      4 ~< {cs1} mq n+04 h
-      6 ~< {bp1} vma held or pc n+04 h
-      13 ~< ar n+05 h
-      11 ~< {aa1} arx n+05 h
-      12 ~< {df1} mq n+05 h
-      10 ~< {bc1} vma held or pc n+05 h
-      9 ~< {bf2} cram ada sel 2 N h
-      7 ~< {bj1} cram ada sel 1 N h
-      14 ~< {bn1} cram ada dis N l
-      2 ~> ada n+04 h
-      15 ~> ada n+05 h
+      3 ~< ar [n+04] h
+      5 ~< {ac1} arx [n+04] h
+      4 ~< {cs1} mq [n+04] h
+      6 ~< {bp1} vma held or pc [n+04] h
+      13 ~< ar [n+05] h
+      11 ~< {aa1} arx [n+05] h
+      12 ~< {df1} mq [n+05] h
+      10 ~< {bc1} vma held or pc [n+05] h
+      9 ~< {bf2} cram ada sel 2 [n] h
+      7 ~< {bj1} cram ada sel 1 [n] h
+      14 ~< {bn1} cram ada dis [n] l
+      2 ~> ada [n+04] h
+      15 ~> ada [n+05] h
 
 e17:  10158 4x2 mix
       6 ~< %NC%
       5 ~< %NC%
       4 ~< %NC%
-      3 ~< {ej2} arx n+00 h
+      3 ~< {ej2} arx [n+00] h
       13 ~< %NC%
-      12 ~< {bd2} arx n+01 h
+      12 ~< {bd2} arx [n+01] h
       11 ~< %NC%
-      10 ~< {dc1} arx n+02 h
-      9 ~< {bn1} cram ada dis N l
+      10 ~< {dc1} arx [n+02] h
+      9 ~< {bn1} cram ada dis [n] l
       1 ~> %NC%
-      2 ~> adxa n+00 h
-      15 ~> adxa n+01 h
-      14 ~> adxa n+02 h
+      2 ~> adxa [n+00] h
+      15 ~> adxa [n+01] h
+      14 ~> adxa [n+02] h
 
 e5:   10158 4x2 mix
       6 ~< %NC%
       5 ~< %NC%
       4 ~< %NC%
-      3 ~< {aj2} arx n+03 h
+      3 ~< {aj2} arx [n+03] h
       13 ~< %NC%
-      12 ~< {ac1} arx n+04 h
+      12 ~< {ac1} arx [n+04] h
       11 ~< %NC%
-      10 ~< {aa1} arx n+05 h
-      9 ~< {bn1} cram ada dis N l
+      10 ~< {aa1} arx [n+05] h
+      9 ~< {bn1} cram ada dis [n] l
       1 ~> %NC%
-      2 ~> adxa n+03 h
-      15 ~> adxa n+04 h
-      14 ~> adxa n+05 h
+      2 ~> adxa [n+03] h
+      15 ~> adxa [n+04] h
+      14 ~> adxa [n+05] h
 
 e23:  10174 2x4 mix
-      3 ~< fm n+00 h
-      5 ~< br n+01 h
-      4 ~< br n+00 h
-      6 ~< ar n+02 h
-      13 ~< fm n+01 h
-      11 ~< fm n+02 h
-      12 ~< br n+01 h
-      10 ~< ar n+03 h
-      9 ~< {bs1} cram adb sel 2 N h
-      7 ~< {bt1} cram adb sel 1 N h
+      3 ~< fm [n+00] h
+      5 ~< br [n+01] h
+      4 ~< br [n+00] h
+      6 ~< ar [n+02] h
+      13 ~< fm [n+01] h
+      11 ~< fm [n+02] h
+      12 ~< br [n+01] h
+      10 ~< ar [n+03] h
+      9 ~< {bs1} cram adb sel 2 [n] h
+      7 ~< {bt1} cram adb sel 1 [n] h
       14 ~< %NC%
-      2 ~> adb n+00 h
-      15 ~> adb n+01 h
+      2 ~> adb [n+00] h
+      15 ~> adb [n+01] h
 
 e26:  10174 2x4 mix
-      3 ~< fm n+02 h
-      5 ~< br n+03 h
-      4 ~< br n+02 h
-      6 ~< ar n+04 h
-      13 ~< fm n+03 h
-      11 ~< fm n+04 h
-      12 ~< br n+03 h
-      10 ~< ar n+05 h
-      9 ~< {bs1} cram adb sel 2 N h
-      7 ~< {bt1} cram adb sel 1 N h
+      3 ~< fm [n+02] h
+      5 ~< br [n+03] h
+      4 ~< br [n+02] h
+      6 ~< ar [n+04] h
+      13 ~< fm [n+03] h
+      11 ~< fm [n+04] h
+      12 ~< br [n+03] h
+      10 ~< ar [n+05] h
+      9 ~< {bs1} cram adb sel 2 [n] h
+      7 ~< {bt1} cram adb sel 1 [n] h
       14 ~< %NC%
-      2 ~> adb n+02 h
-      15 ~> adb n+03 h
+      2 ~> adb [n+02] h
+      15 ~> adb [n+03] h
 
 e19:  10174 2x4 mix
-      3 ~< fm n+04 h
-      5 ~< br n+05 h
-      4 ~< br n+04 h
-      6 ~< {bk1} ar n+06 h
-      13 ~< fm n+05 h
-      11 ~< {bm1} br n+06 a h
-      12 ~< br n+05 h
-      10 ~< {bl1} ar n+07 h
-      9 ~< {bs1} cram adb sel 2 N h
-      7 ~< {bt1} cram adb sel 1 N h
+      3 ~< fm [n+04] h
+      5 ~< br [n+05] h
+      4 ~< br [n+04] h
+      6 ~< {bk1} [n/30+1,ar [n+06] h,arx 00 h]
+      13 ~< fm [n+05] h
+      11 ~< {bm1} [n/30+1,br [n+06] a h,brx 00 h]
+      12 ~< br [n+05] h
+      10 ~< {bl1} [n/30+1,ar [n+07] h,arx 01 h]
+      9 ~< {bs1} cram adb sel 2 [n] h
+      7 ~< {bt1} cram adb sel 1 [n] h
       14 ~< %NC%
-      2 ~> adb n+04 h
-      15 ~> adb n+05 h
+      2 ~> adb [n+04] h
+      15 ~> adb [n+05] h
 
 e9:   10174 2x4 mix
-      3 ~< {ar1} # n+00 h
-      5 ~< brx n+01 h
-      4 ~< {be2} brx n+00 h
-      6 ~< {dc1} arx n+02 h
-      13 ~< {ap1} # n+01 h
-      11 ~< brx n+02 h
-      12 ~< brx n+01 h
-      10 ~< {aj2} arx n+03 h
-      9 ~< {bs1} cram adb sel 2 N h
-      7 ~< {bt1} cram adb sel 1 N h
+      3 ~< {ar1} # [n+00] h
+      5 ~< brx [n+01] h
+      4 ~< {be2} brx [n+00] h
+      6 ~< {dc1} arx [n+02] h
+      13 ~< {ap1} # [n+01] h
+      11 ~< brx [n+02] h
+      12 ~< brx [n+01] h
+      10 ~< {aj2} arx [n+03] h
+      9 ~< {bs1} cram adb sel 2 [n] h
+      7 ~< {bt1} cram adb sel 1 [n] h
       14 ~< %NC%
-      2 ~> adxb n+00 h
-      15 ~> adxb n+01 h
+      2 ~> adxb [n+00] h
+      15 ~> adxb [n+01] h
 
 e12:  10174 2x4 mix
-      3 ~< {ba1} # n+02 h
-      5 ~< brx n+03 h
-      4 ~< brx n+02 h
-      6 ~< {ac1} arx n+04 h
-      13 ~< {ap2} # n+03 h
-      11 ~< brx n+04 h
-      12 ~< brx n+03 h
-      10 ~< {aa1} arx n+05 h
-      9 ~< {bs1} cram adb sel 2 N h
-      7 ~< {bt1} cram adb sel 1 N h
+      3 ~< {ba1} # [n+02] h
+      5 ~< brx [n+03] h
+      4 ~< brx [n+02] h
+      6 ~< {ac1} arx [n+04] h
+      13 ~< {ap2} # [n+03] h
+      11 ~< brx [n+04] h
+      12 ~< brx [n+03] h
+      10 ~< {aa1} arx [n+05] h
+      9 ~< {bs1} cram adb sel 2 [n] h
+      7 ~< {bt1} cram adb sel 1 [n] h
       14 ~< %NC%
-      2 ~> adxb n+02 h
-      15 ~> adxb n+03 h
+      2 ~> adxb [n+02] h
+      15 ~> adxb [n+03] h
 
 e6:   10174 2x4 mix
-      3 ~< {av2} # n+04 h
-      5 ~< brx n+05 h
-      4 ~< brx n+04 h
-      6 ~< {ej1} arx n+06 h
-      13 ~< {au2} # n+05 h
-      11 ~< {be1} brx n+06 h
-      12 ~< brx n+05 h
-      10 ~< {bd1} arx n+07 h
-      9 ~< {bs1} cram adb sel 2 N h
-      7 ~< {bt1} cram adb sel 1 N h
+      3 ~< {av2} # [n+04] h
+      5 ~< brx [n+05] h
+      4 ~< brx [n+04] h
+      6 ~< {ej1} arx [n+06] h
+      13 ~< {au2} # [n+05] h
+      11 ~< {be1} brx [n+06] h
+      12 ~< brx [n+05] h
+      10 ~< {bd1} arx [n+07] h
+      9 ~< {bs1} cram adb sel 2 [n] h
+      7 ~< {bt1} cram adb sel 1 [n] h
       14 ~< %NC%
-      2 ~> adxb n+04 h
-      15 ~> adxb n+05 h
+      2 ~> adxb [n+04] h
+      15 ~> adxb [n+05] h
 
 Page: DP04,PDF18
 
@@ -811,7 +811,7 @@ dl1: delay-line 13ns delay buffer
 
 e59: 10101 or buffer
      10 ~< {ef1} diag read func 12x h
-     12 ~< {fe2} ctl ad to ebus l h
+     12 ~< {fe2} [n/18+1,ctl ad to ebus l h,ctl ad to ebus r h]
      14 ~> edp-e59-14
      11 ~> %NC%
      4 ~< {fd1} diag 04 a h
@@ -825,295 +825,295 @@ e59: 10101 or buffer
      9 ~> edp-e59-9
 
 e57: 10164 8 mix
-     6 ~< {bk2} ar n+00 h
-     5 ~< br n+00 h
-     4 ~< {cd2} mq n+00 h
-     3 ~< fm n+00 h
-     11 ~< {be2} brx n+00 h
-     12 ~< {ej2} arx n+00 h
-     13 ~< {cj2} adx n+00 h
-     14 ~< {ep2} ad n+00 h
+     6 ~< {bk2} ar [n+00] h
+     5 ~< br [n+00] h
+     4 ~< {cd2} mq [n+00] h
+     3 ~< fm [n+00] h
+     11 ~< {be2} brx [n+00] h
+     12 ~< {ej2} arx [n+00] h
+     13 ~< {cj2} adx [n+00] h
+     14 ~< {ep2} ad [n+00] h
      10 ~< edp-e59-5
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {dv2} ebus dn+00 e h
+     15 ~> {dv2} ebus d[n+00] e h
 
 e50: 10164 8 mix
-     6 ~< {bl2} ar n+01 h
-     5 ~< br n+01 h
-     4 ~< mq n+01 h
-     3 ~< fm n+01 h
-     11 ~< brx n+01 h
-     12 ~< {bd2} arx n+01 h
-     13 ~< adx n+01 h
-     14 ~< {dl1} ad n+01 h
+     6 ~< {bl2} ar [n+01] h
+     5 ~< br [n+01] h
+     4 ~< mq [n+01] h
+     3 ~< fm [n+01] h
+     11 ~< brx [n+01] h
+     12 ~< {bd2} arx [n+01] h
+     13 ~< adx [n+01] h
+     14 ~< {dl1} ad [n+01] h
      10 ~< edp-e59-5
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {ds2} ebus dn+01 e h
+     15 ~> {ds2} ebus d[n+01] e h
 
 e43: 10164 8 mix
-     6 ~< ar n+02 h
-     5 ~< br n+02 h
-     4 ~< mq n+02 h
-     3 ~< fm n+02 h
-     11 ~< brx n+02 h
-     12 ~< {dc1} arx n+02 h
-     13 ~< adx n+02 h
-     14 ~< {dr2} ad n+02 h
+     6 ~< ar [n+02] h
+     5 ~< br [n+02] h
+     4 ~< mq [n+02] h
+     3 ~< fm [n+02] h
+     11 ~< brx [n+02] h
+     12 ~< {dc1} arx [n+02] h
+     13 ~< adx [n+02] h
+     14 ~< {dr2} ad [n+02] h
      10 ~< edp-e59-5
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {dt2} ebus dn+02 e h
+     15 ~> {dt2} ebus d[n+02] e h
 
 e44: 10164 8 mix
-     6 ~< ar n+03 h
-     5 ~< br n+03 h
-     4 ~< mq n+03 h
-     3 ~< fm n+03 h
-     11 ~< brx n+03 h
-     12 ~< {aj2} arx n+03 h
-     13 ~< adx n+03 h
-     14 ~< {dr1} ad n+03 h
+     6 ~< ar [n+03] h
+     5 ~< br [n+03] h
+     4 ~< mq [n+03] h
+     3 ~< fm [n+03] h
+     11 ~< brx [n+03] h
+     12 ~< {aj2} arx [n+03] h
+     13 ~< adx [n+03] h
+     14 ~< {dr1} ad [n+03] h
      10 ~< edp-e59-5
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {dp1} ebus dn+03 e h
+     15 ~> {dp1} ebus d[n+03] e h
 
 e36: 10164 8 mix
-     6 ~< ar n+04 h
-     5 ~< br n+04 h
-     4 ~< {cs1} mq n+04 h
-     3 ~< fm n+04 h
-     11 ~< brx n+04 h
-     12 ~< {ac1} arx n+04 h
-     13 ~< {dk1} adx n+04 h
-     14 ~< {cp1} ad n+04 h
+     6 ~< ar [n+04] h
+     5 ~< br [n+04] h
+     4 ~< {cs1} mq [n+04] h
+     3 ~< fm [n+04] h
+     11 ~< brx [n+04] h
+     12 ~< {ac1} arx [n+04] h
+     13 ~< {dk1} adx [n+04] h
+     14 ~< {cp1} ad [n+04] h
      10 ~< edp-e59-5
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {dp2} ebus dn+04 e h
+     15 ~> {dp2} ebus d[n+04] e h
 
 e37: 10164 8 mix
-     6 ~< ar n+05 h
-     5 ~< br n+05 h
-     4 ~< {df1} mq n+05 h
-     3 ~< fm n+05 h
-     11 ~< brx n+05 h
-     12 ~< {aa1} arx n+05 h
-     13 ~< {es1} adx n+05 h
-     14 ~< {el1} ad n+05 h
+     6 ~< ar [n+05] h
+     5 ~< br [n+05] h
+     4 ~< {df1} mq [n+05] h
+     3 ~< fm [n+05] h
+     11 ~< brx [n+05] h
+     12 ~< {aa1} arx [n+05] h
+     13 ~< {es1} adx [n+05] h
+     14 ~< {el1} ad [n+05] h
      10 ~< edp-e59-5
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {du2} ebus dn+05 e h
+     15 ~> {du2} ebus d[n+05] e h
 
 e66: 10101 or buffer
      4 ~< {fp1} apr fm block 4 h
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> edp N apr fm block 4 h
+     5 ~> edp [n] apr fm block 4 h
      7 ~< {fm1} apr fm block 2 h
      3 ~> %NC%
-     6 ~> edp N apr fm block 2 h
+     6 ~> edp [n] apr fm block 2 h
      13 ~< {fr1} apr fm block 1 h
      15 ~> %NC%
-     9 ~> edp N apr fm block 1 h
+     9 ~> edp [n] apr fm block 1 h
 
 e67: 10101 or buffer
      4 ~< {fr2} apr fm adr 10 h
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> edp N apr fm adr 10 h
+     5 ~> edp [n] apr fm adr 10 h
      7 ~< {fn1} apr fm adr 4 h
      3 ~> %NC%
-     6 ~> edp N apr fm adr 4 h
+     6 ~> edp [n] apr fm adr 4 h
      13 ~< {fs1} apr fm adr 2 h
      15 ~> %NC%
-     6 ~> edp N apr fm adr 2 h
+     6 ~> edp [n] apr fm adr 2 h
      10 ~< {fp2} apr fm adr 1 h
      14 ~> %NC%
-     11 ~> edp N apr fm adr 1 h
+     11 ~> edp [n] apr fm adr 1 h
 
 e69: 10147 128x1 ram
-     4 ~< edp N apr fm block 4 h
-     3 ~< edp N apr fm block 2 h
-     2 ~< edp N apr fm block 1 h
-     5 ~< edp N apr fm adr 10 h
-     6 ~< edp N apr fm adr 4 h
-     7 ~< edp N apr fm adr 2 h
-     10 ~< edp N apr fm adr 1 h
+     4 ~< edp [n] apr fm block 4 h
+     3 ~< edp [n] apr fm block 2 h
+     2 ~< edp [n] apr fm block 1 h
+     5 ~< edp [n] apr fm adr 10 h
+     6 ~< edp [n] apr fm adr 4 h
+     7 ~< edp [n] apr fm adr 2 h
+     10 ~< edp [n] apr fm adr 1 h
      13 ~< %NC%
      14 ~< %NC%
      12 ~< dp04 fm write l
-     15 ~> fm n+00 h
-     11 ~< {bk2} ar n+00 h
+     15 ~> fm [n+00] h
+     11 ~< {bk2} ar [n+00] h
 
 e70: 10147 128x1 ram
-     4 ~< edp N apr fm block 4 h
-     3 ~< edp N apr fm block 2 h
-     2 ~< edp N apr fm block 1 h
-     5 ~< edp N apr fm adr 10 h
-     6 ~< edp N apr fm adr 4 h
-     7 ~< edp N apr fm adr 2 h
-     10 ~< edp N apr fm adr 1 h
+     4 ~< edp [n] apr fm block 4 h
+     3 ~< edp [n] apr fm block 2 h
+     2 ~< edp [n] apr fm block 1 h
+     5 ~< edp [n] apr fm adr 10 h
+     6 ~< edp [n] apr fm adr 4 h
+     7 ~< edp [n] apr fm adr 2 h
+     10 ~< edp [n] apr fm adr 1 h
      13 ~< %NC%
      14 ~< %NC%
      12 ~< dp04 fm write l
-     15 ~> fm n+01 h
-     11 ~< {bl2} ar n+01 h
+     15 ~> fm [n+01] h
+     11 ~< {bl2} ar [n+01] h
 
 e71: 10147 128x1 ram
-     4 ~< edp N apr fm block 4 h
-     3 ~< edp N apr fm block 2 h
-     2 ~< edp N apr fm block 1 h
-     5 ~< edp N apr fm adr 10 h
-     6 ~< edp N apr fm adr 4 h
-     7 ~< edp N apr fm adr 2 h
-     10 ~< edp N apr fm adr 1 h
+     4 ~< edp [n] apr fm block 4 h
+     3 ~< edp [n] apr fm block 2 h
+     2 ~< edp [n] apr fm block 1 h
+     5 ~< edp [n] apr fm adr 10 h
+     6 ~< edp [n] apr fm adr 4 h
+     7 ~< edp [n] apr fm adr 2 h
+     10 ~< edp [n] apr fm adr 1 h
      13 ~< %NC%
      14 ~< %NC%
      12 ~< dp04 fm write l
-     15 ~> fm n+02 h
-     11 ~< ar n+02 h
+     15 ~> fm [n+02] h
+     11 ~< ar [n+02] h
 
 e72: 10147 128x1 ram
-     4 ~< edp N apr fm block 4 h
-     3 ~< edp N apr fm block 2 h
-     2 ~< edp N apr fm block 1 h
-     5 ~< edp N apr fm adr 10 h
-     6 ~< edp N apr fm adr 4 h
-     7 ~< edp N apr fm adr 2 h
-     10 ~< edp N apr fm adr 1 h
+     4 ~< edp [n] apr fm block 4 h
+     3 ~< edp [n] apr fm block 2 h
+     2 ~< edp [n] apr fm block 1 h
+     5 ~< edp [n] apr fm adr 10 h
+     6 ~< edp [n] apr fm adr 4 h
+     7 ~< edp [n] apr fm adr 2 h
+     10 ~< edp [n] apr fm adr 1 h
      13 ~< %NC%
      14 ~< %NC%
      12 ~< dp04 fm write l
-     15 ~> fm n+03 h
-     11 ~< ar n+03 h
+     15 ~> fm [n+03] h
+     11 ~< ar [n+03] h
 
 e65: 10147 128x1 ram
-     4 ~< edp N apr fm block 4 h
-     3 ~< edp N apr fm block 2 h
-     2 ~< edp N apr fm block 1 h
-     5 ~< edp N apr fm adr 10 h
-     6 ~< edp N apr fm adr 4 h
-     7 ~< edp N apr fm adr 2 h
-     10 ~< edp N apr fm adr 1 h
+     4 ~< edp [n] apr fm block 4 h
+     3 ~< edp [n] apr fm block 2 h
+     2 ~< edp [n] apr fm block 1 h
+     5 ~< edp [n] apr fm adr 10 h
+     6 ~< edp [n] apr fm adr 4 h
+     7 ~< edp [n] apr fm adr 2 h
+     10 ~< edp [n] apr fm adr 1 h
      13 ~< %NC%
      14 ~< %NC%
      12 ~< dp04 fm write l
-     15 ~> fm n+04 h
-     11 ~< ar n+04 h
+     15 ~> fm [n+04] h
+     11 ~< ar [n+04] h
 
 e58: 10147 128x1 ram
-     4 ~< edp N apr fm block 4 h
-     3 ~< edp N apr fm block 2 h
-     2 ~< edp N apr fm block 1 h
-     5 ~< edp N apr fm adr 10 h
-     6 ~< edp N apr fm adr 4 h
-     7 ~< edp N apr fm adr 2 h
-     10 ~< edp N apr fm adr 1 h
+     4 ~< edp [n] apr fm block 4 h
+     3 ~< edp [n] apr fm block 2 h
+     2 ~< edp [n] apr fm block 1 h
+     5 ~< edp [n] apr fm adr 10 h
+     6 ~< edp [n] apr fm adr 4 h
+     7 ~< edp [n] apr fm adr 2 h
+     10 ~< edp [n] apr fm adr 1 h
      13 ~< %NC%
      14 ~< %NC%
      12 ~< dp04 fm write l
-     15 ~> fm n+05 h
-     11 ~< ar n+05 h
+     15 ~> fm [n+05] h
+     11 ~< ar [n+05] h
 
 e64: 10160 parity
-     3 ~< fm n+00 h
-     4 ~< fm n+01 h
-     5 ~< fm n+02 h
-     6 ~< fm n+03 h
-     7 ~< fm n+04 h
-     9 ~< fm n+05 h
+     3 ~< fm [n+00] h
+     4 ~< fm [n+01] h
+     5 ~< fm [n+02] h
+     6 ~< fm [n+03] h
+     7 ~< fm [n+04] h
+     9 ~< fm [n+05] h
      10 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
      13 ~< %NC%
      14 ~< %NC%
      15 ~< %NC%
-     2 ~> {fm2} edp fm parity n+00-n+05 h
+     2 ~> {fm2} edp fm parity [n+00]-[n+05] h
 
 e34: 10210 or buffer
      5 ~< %NC%
      6 ~< %NC%
-     7 ~< clk edp n+00 delayed h
+     7 ~< clk edp [n+00] delayed h
      2 ~> dp04 clk a h
      3 ~> dp04 clk b h
      4 ~> dp04 clk c h
      9 ~< %NC%
      10 ~< %NC%
-     11 ~< clk edp n+00 delayed h
+     11 ~< clk edp [n+00] delayed h
      12 ~> dp04 clk d h
      13 ~> dp04 clk e h
      14 ~> dp04 clk f h
 
 dl2: delay-line (PCB wired)
-     1 ~< {cr2} clk edp n+00 h
-     2 ~> clk edp n+00 delayed h
+     1 ~< {cr2} clk edp [n+00] h
+     2 ~> clk edp [n+00] delayed h
 
 e61: 10141 shft reg
      13 ~< %NC%
-     12 ~< {fj2} ar n+00 a h
-     11 ~< {fj2} ar n+00 a h
-     9 ~< {fc1} ar n+01 a h
-     6 ~< {ff2} ar n+02 a h
+     12 ~< {fj2} ar [n+00] a h
+     11 ~< {fj2} ar [n+00] a h
+     9 ~< {fc1} ar [n+01] a h
+     6 ~< {ff2} ar [n+02] a h
      5 ~< %NC%
      7 ~< edp-e38-14
      10 ~< edp-e38-14
-     14 ~> {bm2} br n+00 a h
-     15 ~> br n+00 h
-     2 ~> br n+01 h
-     3 ~> br n+02 h
+     14 ~> {bm2} br [n+00] a h
+     15 ~> br [n+00] h
+     2 ~> br [n+01] h
+     3 ~> br [n+02] h
      4 ~< dp04 clk a h
 
 e63: 10141 shft reg
      13 ~< %NC%
-     12 ~< {eu2} ar n+03 a h
-     11 ~< {ev2} ar n+04 a h
-     9 ~< {et2} ar n+05 a h
+     12 ~< {eu2} ar [n+03] a h
+     11 ~< {ev2} ar [n+04] a h
+     9 ~< {et2} ar [n+05] a h
      6 ~< %NC%
      5 ~< %NC%
      7 ~< edp-e38-14
      10 ~< edp-e38-14
-     14 ~> br n+03 h
-     15 ~> br n+04 h
-     2 ~> br n+05 h
+     14 ~> br [n+03] h
+     15 ~> br [n+04] h
+     2 ~> br [n+05] h
      3 ~> %NC%
      4 ~< dp04 clk a h
 
 e8:  10141 shft reg
      13 ~< %NC%
-     12 ~< {as2} arx n+00 a h
-     11 ~< {as1} arx n+01 a h
-     9 ~< arx n+02 a h
+     12 ~< {as2} arx [n+00] a h
+     11 ~< {as1} arx [n+01] a h
+     9 ~< arx [n+02] a h
      6 ~< %NC%
      5 ~< %NC%
      7 ~< edp-e11-14
      10 ~< edp-e11-14
-     14 ~> {be2} brx n+00 h
-     15 ~> brx n+01 h
-     2 ~> brx n+02 h
+     14 ~> {be2} brx [n+00] h
+     15 ~> brx [n+01] h
+     2 ~> brx [n+02] h
      3 ~> %NC%
      4 ~< dp04 clk d h
 
 e10: 10141 shft reg
      13 ~< %NC%
-     12 ~< arx n+03 a h
-     11 ~< arx n+04 a h
-     9 ~< arx n+05 a h
+     12 ~< arx [n+03] a h
+     11 ~< arx [n+04] a h
+     9 ~< arx [n+05] a h
      6 ~< %NC%
      5 ~< %NC%
      7 ~< edp-e11-14
      10 ~< edp-e11-14
-     14 ~> brx n+03 h
-     15 ~> brx n+04 h
-     2 ~> brx n+05 h
+     14 ~> brx [n+03] h
+     15 ~> brx [n+04] h
+     2 ~> brx [n+05] h
      3 ~> %NC%
      4 ~< dp04 clk d h
