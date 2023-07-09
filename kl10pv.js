@@ -17,6 +17,7 @@
 const globalMacros = {a: 2, b: 1};
 const hasCache = true;
 
+// Read each board description
 const m =
 `chc crc ccl ccw mb0 cac mbz mbx mbc csh cha chx ch0a ch0x pma pag pic
 clk mtr apr con ctl vma edp crm shm scd`
@@ -27,7 +28,7 @@ clk mtr apr con ctl vma edp crm shm scd`
 	return accum;
       }, {});
 
-// EBOX/MBOX
+// Define EBOX/MBOX backplane
 const bp = [
   /* 0 */ null, // not used
   /* 1 */ null, // cables BC11A M919, BC20C M9006, BC20C M9006
@@ -46,72 +47,72 @@ const bp = [
 
   /*13 */ null, // blank
 
-  /*14 */ {board: m.mb0, module: 'M8517'},
-  /*15 */ {board: m.mb0, module: 'M8517'},
-  /*16 */ {board: m.mb0, module: 'M8517'},
-  /*17 */ hasCache ? {board: m.cac, module: 'M8521'} : {board: m.ch0, module: 'M8549YH'},
+  /*14 */ {board: m.mb0, module: 'M8517', macros: {n: 12}},
+  /*15 */ {board: m.mb0, module: 'M8517', macros: {n: 6}},
+  /*16 */ {board: m.mb0, module: 'M8517', macros: {n: 0}},
+  /*17 */ hasCache ? {board: m.cac, module: 'M8521', macros: {n: 27}} : {board: m.ch0, module: 'M8549YH', macros: {n: 27}},
 
   /*18 */ null, // blank
 
-  /*19 */ hasCache ? {board: m.cac, module: 'M8521'} : {board: m.ch0, module: 'M8549YH'},
+  /*19 */ hasCache ? {board: m.cac, module: 'M8521', macros: {n: 18}} : {board: m.ch0, module: 'M8549YH', macros: {n: 18}},
   /*20 */ {board: m.mbz, module: 'M8537'},
   /*21 */ {board: m.mbx, module: 'M8529YA', macros: {n: 30}},
   /*22 */ {board: m.mbc, module: 'M8531YA', macros: {n: 22}},
-  /*23 */ {board: m.csh, module: 'M8513YA'},
-  /*24 */ hasCache ? {board: m.cac, module: 'M8521'} : {board: m.ch0, module: 'M8549YH'},
-  /*25 */ hasCache ? {board: m.cac, module: 'M8521'} : {board: m.ch0, module: 'M8549YH'},
+  /*23 */ {board: m.csh, module: 'M8513YA', macros: {k: 22}},
+  /*24 */ hasCache ? {board: m.cac, module: 'M8521', macros: {n: 9}} : {board: m.ch0, module: 'M8549YH', macros: {n: 9}},
+  /*25 */ hasCache ? {board: m.cac, module: 'M8521', macros: {n: 0}} : {board: m.ch0, module: 'M8549YH', macros: {n: 0}},
 
   /*26 */ null, // blank
 
   /*27 */ hasCache ? {board: m.cha, module: 'M8514'} : {board: m.ch0a, module: 'M8549YE'},
-  /*28 */ hasCache ? {board: m.chx, module: 'M8515', macros: {n: 0}} : {board: m.ch0x, module: 'M8549YF'},
+  /*28 */ hasCache ? {board: m.chx, module: 'M8515', macros: {n: 0}} : {board: m.ch0x, module: 'M8549YF', macros: {n: 0}},
   /*29 */ {board: m.pma, module: 'M8518YA'},
   /*30 */ {board: m.pag, module: 'M8520YA'},
   /*31 */ {board: m.pic, module: 'M8532'},
-  /*32 */ {board: m.clk, module: 'M8526YA'},
-  /*33 */ {board: m.mtr, module: 'M8538'},
+  /*32 */ {board: m.clk, module: 'M8526YA', macros: {n: 30}},
+  /*33 */ {board: m.mtr, module: 'M8538', macros: {n: 18}},
   /*34 */ {board: m.apr, module: 'M8545'},
-  /*35 */ {board: m.con, module: 'M8525'},
-  /*36 */ {board: m.ctl, module: 'M8543'},
+  /*35 */ {board: m.con, module: 'M8525', macros: {n: 18}},
+  /*36 */ {board: m.ctl, module: 'M8543', macros: {n: 24}},
 
   /*37 */ null, // blank
 
-  /*38 */ {board: m.vma, module: 'M8542'},
-  /*39 */ {board: m.edp, module: 'M8512'},
-  /*40 */ {board: m.crm, module: 'M8548'},
-  /*41 */ {board: m.edp, module: 'M8512'},
-  /*42 */ {board: m.crm, module: 'M8548'},
-  /*43 */ {board: m.edp, module: 'M8512'},
-  /*44 */ {board: m.crm, module: 'M8548'},
-  /*45 */ {board: m.cra, module: 'M8541'},
+  /*38 */ {board: m.vma, module: 'M8542', macros: {n: 13}},
+  /*39 */ {board: m.edp, module: 'M8512', macros: {n: 30}},
+  /*40 */ {board: m.crm, module: 'M8548', macros: {n: 16, m: 30}},
+  /*41 */ {board: m.edp, module: 'M8512', macros: {n: 24}},
+  /*42 */ {board: m.crm, module: 'M8548', macros: {n: 12, m: 24}},
+  /*43 */ {board: m.edp, module: 'M8512', macros: {n: 18}},
+  /*44 */ {board: m.crm, module: 'M8548', macros: {n: 8, m: 18}},
+  /*45 */ {board: m.cra, module: 'M8541', macros: {n: 0}},
   /*46 */ {board: m.shm, module: 'M8540'},
-  /*47 */ {board: m.mcl, module: 'M8544'},
+  /*47 */ {board: m.mcl, module: 'M8544', macros: {n: 18}},
   /*48 */ {board: m.ird, module: 'M8522', macros: {n: 12}},
-  /*49 */ {board: m.edp, module: 'M8512'},
-  /*50 */ {board: m.crm, module: 'M8548'},
-  /*51 */ {board: m.edp, module: 'M8512'},
-  /*52 */ {board: m.crm, module: 'M8548'},
-  /*53 */ {board: m.edp, module: 'M8512'},
-  /*54 */ {board: m.scd, module: 'M8524'},
+  /*49 */ {board: m.edp, module: 'M8512', macros: {n: 12}},
+  /*50 */ {board: m.crm, module: 'M8548', macros: {n: 4, m: 12}},
+  /*51 */ {board: m.edp, module: 'M8512', macros: {n: 6}},
+  /*52 */ {board: m.crm, module: 'M8548', macros: {n: 0, m: 6}},
+  /*53 */ {board: m.edp, module: 'M8512', macros: {n: 0}},
+  /*54 */ {board: m.scd, module: 'M8524', macros: {n: 2}},
 ];
 
-//  addOptionWire(43, 'em2', 44, 'de1', 'option50Hz');
-    addOptionWire(43, 'ea1', 44, 'de1', 'optionCacheAvailable');
-    addOptionWire(43, 'ee1', 44, 'de1', 'optionInternalChannels');
-    addOptionWire(43, 'dd2', 44, 'de1', 'optionExtendedKL');
-//  addOptionWire(43, 'de1', 44, 'de1', 'optionMasterOscillator');
-    addOptionWire(41, 'em2', 42, 'de1', 'serial2048');
-    addOptionWire(41, 'ea1', 42, 'de1', 'serial1024');
-    addOptionWire(41, 'ee1', 42, 'de1', 'serial512');
-    addOptionWire(41, 'dd2', 42, 'de1', 'serial256');
-//  addOptionWire(41, 'de1', 42, 'de1', 'serial128');
-//  addOptionWire(41, 'ef2', 42, 'de1', 'serial64');
-//  addOptionWire(39, 'em2', 40, 'de1', 'serial32');
-//  addOptionWire(39, 'ea1', 40, 'de1', 'serial16');
-//  addOptionWire(39, 'ee1', 40, 'de1', 'serial8');
-//  addOptionWire(39, 'dd2', 40, 'de1', 'serial4');
-//  addOptionWire(39, 'de1', 40, 'de1', 'serial2');
-//  addOptionWire(39, 'ef2', 40, 'de1', 'serial1');
+//  addBPWire(43, 'em2', 44, 'de1', 'option50Hz');
+    addBPWire(43, 'ea1', 44, 'de1', 'optionCacheAvailable');
+    addBPWire(43, 'ee1', 44, 'de1', 'optionInternalChannels');
+    addBPWire(43, 'dd2', 44, 'de1', 'optionExtendedKL');
+//  addBPWire(43, 'de1', 44, 'de1', 'optionMasterOscillator');
+    addBPWire(41, 'em2', 42, 'de1', 'serial2048');
+    addBPWire(41, 'ea1', 42, 'de1', 'serial1024');
+    addBPWire(41, 'ee1', 42, 'de1', 'serial512');
+    addBPWire(41, 'dd2', 42, 'de1', 'serial256');
+//  addBPWire(41, 'de1', 42, 'de1', 'serial128');
+//  addBPWire(41, 'ef2', 42, 'de1', 'serial64');
+//  addBPWire(39, 'em2', 40, 'de1', 'serial32');
+//  addBPWire(39, 'ea1', 40, 'de1', 'serial16');
+//  addBPWire(39, 'ee1', 40, 'de1', 'serial8');
+//  addBPWire(39, 'dd2', 40, 'de1', 'serial4');
+//  addBPWire(39, 'de1', 40, 'de1', 'serial2');
+//  addBPWire(39, 'ef2', 40, 'de1', 'serial1');
 
 
 ////////////////////////////////////////////////////////////////
@@ -225,6 +226,6 @@ function parseFile(f) {
 }
 
 
-function addOptionWire(srcSlot, srcPin, dstSlot, dstPin, name) {
-  console.log(`Option ${srcPin}[$srcSlot} = ${dstPin}[$dstSlot} ${name}`);
+function addBPWire(srcSlot, srcPin, dstSlot, dstPin, name) {
+  console.log(`BP ${srcPin}[$srcSlot} = ${dstPin}[$dstSlot} ${name}`);
 }
