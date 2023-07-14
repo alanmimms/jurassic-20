@@ -18,6 +18,8 @@
 
 
   function addNet(page, chip, pin, dir, bpPin, net) {
+    net = net.text;
+
     if (!nets[net]) nets[net] = [];
 
     const n = {net, page, chip, pin, dir, bpPin};
@@ -122,10 +124,10 @@ macroName = name:simpleID
 
 simpleID = $[a-zA-Z0-9]+
 
-net = '%NC%'	{ return AST('NoConnect', {}) }
-/	[01]	{ return AST('Value', {value: parseInt(text(), 2)}) }
+net = '%NC%'	{ return AST('NoConnect', {text: 'NC'}) }
+/	[01]	{ return AST('Value', {value: parseInt(text(), 2), text: text()}) }
 /	list:( macroRef / idWith_ )+
-		{ return AST('IDList', {list}) }
+		{ return AST('IDList', {list, text: text()}) }
 
 idWith_ = ( '\\' EOL _ )* id:id
 		{ return id }
