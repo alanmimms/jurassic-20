@@ -9,6 +9,8 @@ const logic = require('./logic.js');
 // Provided by caller of `compile()`.
 var options;
 
+var boards = {};
+
 
 function parseFile(parser, filename) {
   let fileAST;
@@ -68,6 +70,14 @@ function parseBackplanes(parser) {
       const boardAST = parseFile(parser, `board/${board.id}.board`);
       expandMacros(boardAST, bpAST, macroEnv);
       slot.board = {slotName, ... board, ... boardAST};
+
+      if (!boards[board.id]) {
+	boards[board.id] = [];
+	fs.writeFileSync(`${board.id}.nets`, util.inspect(boardAST.nets, {depth: 5}))
+	fs.writeFileSync(`${board.id}.bp-pins`, util.inspect(boardAST.bpPins, {depth: 5}))
+      }
+
+      boards[board.id].push(boardAST);
     });
 
   if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.after.evaluation`, util.inspect(bpAST, {depth: 9999}));

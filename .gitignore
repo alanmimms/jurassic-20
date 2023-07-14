@@ -48,3 +48,5 @@ cram-backplane.csv
 bp.cram-defs
 bp.verilog-names
 bp.pins
+*.bp-pins
+*.nets

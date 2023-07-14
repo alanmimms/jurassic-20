@@ -1,6 +1,12 @@
 {
   const util = require('util');
 
+  var chip;
+  var page;
+  var nets = {};
+  var bpPins = {};
+
+
   function AST(nodeType, props) {
 //    console.log(`${nodeType}: ${require('util').inspect(props, {depth: 9})}`);
     const loc = location();
@@ -8,6 +14,19 @@
       return `@${this.start.line}:${this.start.column}:${this.start.offset}..${this.end.line}:${this.end.column}:${this.end.offset}`;
     }
     return {nodeType, location: loc, ...props};
+  }
+
+
+  function addNet(page, chip, pin, dir, bpPin, net) {
+    if (!nets[net]) nets[net] = [];
+
+    const n = {net, page, chip, pin, dir, bpPin};
+    nets[net].push(n);
+
+    if (bpPin) {
+      if (!bpPins[bpPin]) bpPins[bpPin] = [];
+      bpPins[bpPin].push(n);
+    }
   }
 }
 
@@ -19,7 +38,6 @@ backplane = 'Backplane' _ ':' _
 	name:simpleID _ EOL
 	slots:slotDef+
                 { return AST('Backplane', {name, macros, slots}) }
-
 
 slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines wires:wireDef* blankLines?
                 { return AST('Slot', {n, board, wires, bpPins: {}}) }
@@ -37,22 +55,25 @@ wireDef = _ slotPin:bpPinID _ farPin:bpPinID '[' slot:number ']' _ name:id _ bla
 stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
 	    	{ return AST('Stub', {pages: p}) }
 
-board = pages:page+ { return AST('Board', {pages}) }
+board = pages:page+ { return AST('Board', {pages, nets, bpPins}) }
 
 page = p:pageDef n:chipDef*
 		{ p.chips = n; return p }
 
 pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  blankLines
-		{ return AST('Page', {name, pdfRef}) }
+		{ page = {name, pdfRef};
+		  return AST('Page', {name, pdfRef}); }
 
 chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }
 
 chipHead = !'Page' name:idChunk ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
-		{ return AST('Chip', {name, type, desc}) }
+		{ chip = {name, type, desc};
+		  return AST('Chip', {name, type, desc}); }
 
 pinDef = [ \t]+ pin:number _ dir:direction _ bpPin:bpPin? _ net:net blankLines
-		{ return AST('Pin', {pin, dir, bpPin: bpPin ? bpPin.trim() : null, net}) }
+		{ addNet(page, chip, pin, dir, bpPin, net);
+		  return AST('Pin', {pin, dir, bpPin: bpPin ? bpPin.trim() : null, net}); }
 
 direction = $('~>' / '~<')
 
