@@ -84,7 +84,7 @@ function parseBackplanes(parser) {
 				  const pdfRef = p.page.pdfRef.padEnd(7);
 				  const chipPin = `${p.chip.name.name}.${p.pin}`.padEnd(9);
 				  return `\
-${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${canonicalize(evalExpr(p.net, macroEnv))}`;
+${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${canonicalize(p.net)}`;
 				})
 				.join('\n')
 			       )
