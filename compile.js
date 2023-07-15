@@ -74,7 +74,22 @@ function parseBackplanes(parser) {
       if (!boards[board.id]) {
 	boards[board.id] = [];
 	fs.writeFileSync(`${board.id}.nets`, util.inspect(boardAST.nets, {depth: 5}))
-	fs.writeFileSync(`${board.id}.bp-pins`, util.inspect(boardAST.bpPins, {depth: 5}))
+
+	if (boardAST.bpPins) {
+	  fs.writeFileSync(`${board.id}.bp-pins`,
+			   Object.keys(boardAST.bpPins)
+			   .sort()
+			   .map(bpp => boardAST.bpPins[bpp]
+				.map(p => {
+				  const pdfRef = p.page.pdfRef.padEnd(7);
+				  const chipPin = `${p.chip.name.name}.${p.pin}`.padEnd(9);
+				  return `\
+${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${canonicalize(evalExpr(p.net, macroEnv))}`;
+				})
+				.join('\n')
+			       )
+			   .join('\n'));
+	}
       }
 
       boards[board.id].push(boardAST);
