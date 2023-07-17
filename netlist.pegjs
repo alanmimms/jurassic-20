@@ -57,14 +57,18 @@ wireDef = _ slotPin:bpPinID _ farPin:bpPinID '[' slot:number ']' _ name:id _ bla
 stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
 	    	{ return AST('Stub', {pages: p}) }
 
-board = pages:page+ { return AST('Board', {pages, nets, bpPins}) }
+board = pages:(page / warning)+ { return AST('Board', {pages, nets, bpPins}) }
 
 page = p:pageDef n:chipDef*
 		{ p.chips = n; return p }
 
 pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  blankLines
 		{ page = {name, pdfRef};
-		  return AST('Page', {name, pdfRef}); }
+		  return AST('Page', {name, pdfRef, chips: []}); }
+
+warning = _ '%warning' _ s:$( !EOL . )* blankLines
+		{ console.error(`= = = = WARNING: ${s}`);
+		  return AST('Page', {name: '%warning', pdfRef: 'none', chips: [], s}); }
 
 chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }

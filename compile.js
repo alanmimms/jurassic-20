@@ -84,7 +84,7 @@ function parseBackplanes(parser) {
 				  const pdfRef = p.page.pdfRef.padEnd(7);
 				  const chipPin = `${p.chip.name.name}.${p.pin}`.padEnd(9);
 				  return `\
-${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${canonicalize(p.net)}`;
+${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${p.net}`;
 				})
 				.join('\n')
 			       )
@@ -228,7 +228,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
     break;
 
   case 'Stub':
-    console.log(`================================================================ STUB`);
+    console.log(`= = = STUB`);
     cx.board = ast;
     break;
 
