@@ -288,4 +288,1073 @@ e89: 10136 binary counter
 
 Page: MTR2, PDF325
 
-%warning this is not completed
+e35: 10105 2-3-2 or/nor
+     9 ~< mtr4 pi level 4 h
+     10 ~< mtr4 pi level 2 h
+     11 ~< mtr4 pi level 1 h
+     6 ~> mtr2 pi in prog l
+     7 ~> mtr2 pi in prog h
+     4 ~< mtr2 time on h
+     5 ~< -mtr5 ebus 24 l
+     3 ~> mtr2-e35-3
+     2 ~> %NC%
+     12 ~< mtr3 clr time h
+     13 ~< mtr2 time on h
+     14 ~> mtr2-e35-14
+     15 ~> %NC%
+
+e55: 10101 quad or/nor
+     7 ~< {cu2} scd user a l
+     12 ~< %NC%
+     3 ~> mtr2-e55-3
+     6 ~> %NC%
+     13 ~< {df2} diag 05 b h
+     15 ~> mtr4 ds 05 l
+     9 ~> mtr4 ds 05 h
+     10 ~< {dd2} diag 06 b h
+     14 ~> mtr5 ds 06 l
+     11 ~> mtr5 ds 06 h
+     4 ~< {ct2} ctl3 diag rd func 11x l
+     2 ~> %NC%
+     5 ~> mtr5 read mtr b l
+
+e42: 10105 2-3-2 or/nor
+     4 ~< {dc1} -con ucode state 03 l
+     5 ~< {cj2} -con pi cycle b l
+     3 ~> mtr2-e42-3
+     2 ~> %NC%
+     12 ~< mtr2-e35-3
+     13 ~< mtr5 ebus 25 h
+     14 ~> %NC%
+     15 ~> mtr2-e42-15
+     9 ~< mtr3 interval match h
+     10 ~< mtr3 reset interval h
+     11 ~< mtr1 interval cry l
+     6 ~> mtr3-e42-6
+     7 ~> %NC%
+
+e38: 10121 4-wide or-and
+     4 ~< %NC%
+     5 ~< mtr2 acct on h
+     6 ~< %NC%
+     7 ~< mtr2 pi in prog l
+     9 ~< mtr2 pi acct en h
+     10 ~< mtr2-e55-3
+     11 ~< mtr2 pi in prog h
+     12 ~< mtr2 exec acct en h
+     13 ~< %NC%
+     14 ~< mtr2-e42-3
+     15 ~< %NC%
+     3 ~> mtr2 cache cnt en l
+     2 ~> %NC%
+
+e46: 10117 dual 2-3 or-and
+     4 ~< mtr3 clr cache cnt l
+     5 ~< %NC%
+     6 ~< {du2} clk mb xfer l
+     7 ~< mtr2 cache cnt en l
+     9 ~< %NC%
+     3 ~> mtr2-e46-3
+     2 ~> %NC%
+     13 ~< mtr3 clr ebox cnt l
+     12 ~< mtr2 ebox cnt clk h
+     11 ~< mtr2 ebox half count l
+     10 ~< mtr2 ebox cnt en l
+     9 ~< %NC%
+     14 ~> mtr2-e46-14
+     15 ~> %NC%
+
+e47: 10105 2-3-2 or/nor
+     9 ~< -mtr5 read mtr a l
+     10 ~< -mtr4 ebox waiting l
+     11 ~< mtr2 cache cnt en l
+     6 ~> mtr2-e47-6
+     7 ~> %NC%
+     12 ~< -mtr5 reset time l
+     13 ~< mtr2-e5-2
+     14 ~> mtr2-e47-14
+     15 ~> %NC%
+     4 ~< mtr3 reset interval h
+     5 ~< mtr3 interval match h
+     3 ~> mtr3 clr interval l
+     2 ~> %NC%
+
+e48: 10176 hex dff
+     9 ~< mtr2 mbox clk d h
+     6 ~< mtr2-e46-3
+     3 ~> mtr2 cache cnt clk h
+     12 ~< mtr2-e46-14
+     15 ~> mtr2 ebox cnt clk h
+     9 ~< mtr2 mbox clk d h
+     11 ~< mtr2-e47-14
+     14 ~> mtr2 time clk h
+     10 ~< mtr2-e43-3
+     13 ~> mtr2 interval clk h
+     5 ~< mtr4-e54-3
+     2 ~> mtr4 perf cnt clk h
+
+e39: 10176 hex dff
+     7 ~< mtr2-e47-6
+     9 ~< mtr2 mbox clk a h
+     4 ~> mtr2-e39-4
+     11 ~< mtr4-e36-1
+     14 ~> mtr4-e39-14
+     6 ~< mtr4-e36-2
+     3 ~> mtr4 pi level 4 h
+     12 ~< mtr4-e36-15
+     15 ~> mtr4 pi level 2 h
+     10 ~< mtr4-e36-14
+     13 ~> mtr4 pi level 1 h
+     5 ~< {ca1} probe h
+     2 ~> mtr4-e39-2
+
+e57: 10104 quad and/nand
+     12 ~< mtr2-e39-4
+     13 ~< mtr2-e39-4
+     9 ~> mtr2 ebox cnt en l
+     15 ~> mtr2 ebox cnt en h
+     4 ~< mtr3 cono tim, h
+     5 ~< mtr5 ebus 18 h
+     2 ~> mtr3-e57-2
+
+e52: 10113 quad 2 xor/xnor
+     12 ~< mtr2 ebox half count l
+     13 ~< mtr2 ebox cnt en h
+     9 ~< -mtr5 reset l
+     15 ~> mtr2-e52-15
+     5 ~< mtr4-e39-2
+     4 ~< mtr4 probe low pa en h
+     2 ~> mtr4-e52-2
+     7 ~< {cu2} scd user a l
+     6 ~< -mtr4 user pa en l
+     3 ~> mtr4-e52-3
+     10 ~< mtr4 perf cnt clk h
+     11 ~< -mtr3 reset a h
+     14 ~> mtr4 perf cnt clk l
+
+dl1: delay-line (PCB wired)
+     1 ~< {cr2} clk1 mtr h
+     2 ~> clk1 mtr delayed h
+
+e41: 10210 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< clk1 mtr delayed h
+     2 ~> mtr2 mbox clk a h
+     3 ~> mtr2 mbox clk b h
+     4 ~> mtr2 mbox clk c h
+     11 ~< %NC%
+     10 ~< clk1 mtr delayed h
+     9 ~< %NC%
+     14 ~> mtr2 mbox clk d h
+     13 ~> mtr2 mbox clk e h
+     12 ~> mtr2 mbox clk f h
+
+e6:  10117 dual 2-3 or-and
+     13 ~< mtr3 cono mtr, h
+     12 ~< mtr3 reset plsd h
+     11 ~< mtr3 reset plsd h
+     10 ~< mtr5 ebus 18 h
+     9 ~< %NC%
+     14 ~> %NC%
+     15 ~> mtr2-e6-15
+     4 ~< mtr3 cono tim, h
+     5 ~< mtr5 reset h
+     6 ~< mtr5 reset h
+     7 ~< mtr5 ebus 22 h
+     9 ~< %NC%
+     3 ~> %NC%
+     2 ~> mtr3-e6-2
+
+e16: 10176 hex dff
+     5 ~< %NC%
+     6 ~< mtr5 ebus 21 h
+     7 ~< mtr5 ebus 22 h
+     10 ~< mtr5 ebux 23 h
+     11 ~< %NC%
+     12 ~< %NC%
+     9 ~< mtr2-e6-15
+     2 ~> %NC%
+     3 ~> mtr2 pi acct en h
+     4 ~> mtr2 exec acct en h
+     13 ~> mtr2 acct on h
+     14 ~> %NC%
+     15 ~> %NC%
+
+e10: 10131 dual ms dff
+     7 ~< mtr2-e42-15
+     6 ~< mtr3 cono mtr, h
+     9 ~< %NC%
+     4 ~< mtr5 reset h
+     5 ~< %NC%
+     2 ~> mtr2 time on h
+     3 ~> mtr2 time on l
+     10 ~< mtr3 interval off h
+     11 ~< mtr2 interval clk h
+     9 ~< %NC%
+     13 ~< %NC%
+     12 ~< mtr3 cono tim, h
+     15 ~> mtr3 interval match inh h
+     14 ~> %NC%
+
+e88: 10136 binary counter
+     5 ~< -mtr5 reset h
+     6 ~< -mtr5 reset h
+     11 ~< -mtr5 reset h
+     12 ~< -mtr5 reset h
+     10 ~< %NC%
+     7 ~< %NC%
+     9 ~< mtr2 count ten usec h
+     13 ~< mtr2 interval clk h
+     4 ~> mtr2 ten usec l
+     3 ~> mtr2 count ten usec h
+
+// INSTALL PLUG JUMPERS
+// TO DIVID MBOX CLOCK
+// TO 1 MHZ AS FOLLOWS:
+//
+//  MBOX CLK   JUMPERS
+//   24 MHz    W1,W4
+//   25 MHz    W4
+//   26 MHz    W1,W2,W3
+//   27 MHz    W2,W3
+//   28 MHz    W1,W3
+//   29 MHz    W3
+//   30 MHz    W1,W2
+//   31 MHz    W2
+//   32 MHz    W1
+//   33 MHz    none
+
+e60: 10136 binary counter
+     5 ~< -mtr3 reset plsd h		// W4
+//   5 ~< %NC%				// W4
+//   6 ~< -mtr3 reset plsd h		// W3
+     6 ~< %NC%				// W3
+//   11 ~< -mtr3 reset plsd h		// W2
+     11 ~< %NC%				// W2
+//   12 ~< -mtr3 reset plsd h		// W1
+     12 ~< %NC%				// W1
+     10 ~< %NC%
+     7 ~< mtr5 reset h
+     9 ~< %NC%
+     13 ~< mtr2 mbox clk d h
+     4 ~> mtr2-e60-4
+     3 ~> %NC%
+     2 ~> %NC%
+     15 ~> %NC%
+     14 ~> %NC%
+
+e59: 10136 binary counter
+     5 ~< %NC%
+     6 ~< -mtr3 reset a h
+     11 ~< -mtr3 reset plsd h
+     12 ~< %NC%
+     10 ~< mtr2-e60-4
+     7 ~< mtr5 reset h
+     9 ~< %NC%
+     4 ~> %NC%
+     3 ~> mtr2 1 mhz h
+     2 ~> {ed2} mtr 1 mhz a l
+     15 ~> mtr2 1 mhz l
+     14 ~> %NC%
+
+e5:  10117 dual 2-3 or-and
+     4 ~< mtr2-e5-2
+     5 ~< -mtr2 time clk l
+     6 ~< %NC%
+     7 ~< mtr2-e35-14
+     9 ~< mtr2 1 mhz l
+     3 ~> %NC%
+     2 ~> mtr2-e5-2
+     13 ~< mtr2-e5-15
+     12 ~< -mtr2 interval clk l
+     11 ~< %NC%
+     10 ~< mtr2-e4-3
+     9 ~< mtr2 1 mhz l
+     14 ~> %NC%
+     15 ~> mtr2-e5-15
+
+e4:  10105 2-3-2 or/nor
+     4 ~< mtr3 interval on h
+     5 ~< mtr3 reset interval h
+     3 ~> mtr2-e4-3
+     2 ~> %NC%
+     12 ~< mtr3 interval overflo h
+     13 ~< mtr3-e42-6
+     14 ~> %NC%
+     15 ~> mtr3-e4-15
+     9 ~< mtr3 interval done h
+     10 ~< mtr3-e42-6
+     11 ~< mtr3 interval match h
+     6 ~> %NC%
+     7 ~> mtr3-e4-7
+
+e43: 10117 dual 2-3 or-and
+     4 ~< mtr2 1 mhz l
+     5 ~< mtr3 reset a l
+     6 ~< -mtr5 read interval l
+     7 ~< mtr2-e5-15
+     9 ~< %NC%
+     3 ~> mtr2-e43-3
+     2 ~> %NC%
+
+Page: MTR3, PDF326
+
+e45: 10176 hex dff
+     5 ~< mtr5 ebus 24 h
+     6 ~< mtr5 ebus 25 h
+     7 ~< mtr5 ebus 26 h
+     10 ~< mtr5 ebus 27 h
+     11 ~< mtr5 ebus 28 h
+     12 ~< mtr5 ebus 29 h
+     9 ~< mtr3 cono tim, h
+     2 ~> mtr3 period 06 h
+     3 ~> mtr3 period 07 h
+     4 ~> mtr3 period 08 h
+     13 ~> mtr3 period 09 h
+     14 ~> mtr3 period 10 h
+     15 ~> mtr3 period 11 h
+
+e82: 10176 hex dff
+     5 ~< mtr5 ebus 30 h
+     6 ~< mtr5 ebus 31 h
+     7 ~< mtr5 ebus 32 h
+     10 ~< mtr5 ebus 33 h
+     11 ~< mtr5 ebus 34 h
+     12 ~< mtr5 ebus 35 h
+     9 ~< mtr3 cono tim, h
+     2 ~> mtr3 period 12 h
+     3 ~> mtr3 period 13 h
+     4 ~> mtr3 period 14 h
+     13 ~> mtr3 period 15 h
+     14 ~> mtr3 period 16 h
+     15 ~> mtr3 period 17 h
+
+e28: 10113 quad 2 xor/xnor
+     7 ~< mtr3 period 06 h
+     6 ~< mtr1 interval 06 h
+     4 ~< mtr3 period 07 h
+     5 ~< mtr1 interval 07 h
+     13 ~< mtr3 period 08 h
+     12 ~< mtr1 interval 08 h
+     11 ~< mtr3 period 09 h
+     10 ~< mtr1 interval 09 h
+     3 ~> mtr3 no match 06-09 h
+     2 ~> mtr3 no match 06-09 h
+     15 ~> mtr3 no match 06-09 h
+     14 ~> mtr3 no match 06-09 h
+     9 ~< %NC%
+
+e87: 10113 quad 2 xor/xnor
+     7 ~< mtr3 period 10 h
+     6 ~< mtr1 interval 10 h
+     4 ~< mtr3 period 11 h
+     5 ~< mtr1 interval 11 h
+     13 ~< mtr3 period 12 h
+     12 ~< mtr1 interval 12 h
+     11 ~< mtr3 period 13 h
+     10 ~< mtr1 interval 13 h
+     3 ~> mtr3 no match 10-13 h
+     2 ~> mtr3 no match 10-13 h
+     15 ~> mtr3 no match 10-13 h
+     14 ~> mtr3 no match 10-13 h
+     9 ~< %NC%
+
+e84: 10113 quad 2 xor/xnor
+     7 ~< mtr3 period 14 h
+     6 ~< mtr1 interval 14 h
+     4 ~< mtr3 period 15 h
+     5 ~< mtr1 interval 15 h
+     13 ~< mtr3 period 16 h
+     12 ~< mtr1 interval 16 h
+     11 ~< mtr3 period 17 h
+     10 ~< mtr1 interval 17 h
+     3 ~> mtr3 no match 14-17 h
+     2 ~> mtr3 no match 14-17 h
+     15 ~> mtr3 no match 14-17 h
+     14 ~> mtr3 no match 14-17 h
+     9 ~< %NC%
+
+e51: 10109 4/5 or/nor
+     4 ~< mtr3 no match 14-17 h
+     5 ~< mtr3 no match 10-13 h
+     6 ~< mtr3 no match 06-09 h
+     7 ~< mtr3 interval match inh h
+     3 ~> mtr3 interval match h
+     2 ~> %NC%
+     9 ~< mtr4-e40-3
+     10 ~< {aj2} clk3 ebox sync c l
+     11 ~< {da1} con mbox wait l
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> mtr4 ebox waiting h
+     15 ~> mtr4 ebox waiting l
+
+e9:  10131 dual ms dff
+     10 ~< mtr5 ebus 21 h
+     11 ~< mtr3 cono tim, h
+     9 ~< %NC%
+     13 ~< mtr5 reset h
+     12 ~< %NC%
+     15 ~> mtr3 interval on h
+     14 ~> mtr3 interval off h
+     7 ~< mtr3 reset a h
+     6 ~< mtr2 interval clk h
+     9 ~< %NC%
+     5 ~< mtr3-e57-2
+     2 ~> mtr3 reset interval h
+     3 ~> %NC%
+
+e3:  10131 dual ms dff
+     7 ~< mtr3-e4-15
+     6 ~< %NC%
+     9 ~< mtr2 interval clk h
+     4 ~< mtr3-e6-2
+     5 ~< %NC%
+     2 ~> mtr3 interval overflo h
+     3 ~> %NC%
+     10 ~< mtr3-e4-7
+     11 ~< %NC%
+     9 ~< mtr2 interval clk h
+     13 ~< mtr3-e6-2
+     12 ~< %NC%
+     15 ~> mtr3 interval done h
+     14 ~> {ak2} mtr vector interrupt l
+
+// NOTE: After SPEC/MTR CTL, the
+//       next microcode word must
+//       maintain the same CRAM #
+//       bits 06,07,08 to avoid a
+//       race condition.
+
+e1:  10162 decoder
+     14 ~< {ae2} cram # 06 a h
+     9 ~< {ad2} cram # 07 a h
+     7 ~< {ah2} cram # 08 a h
+     15 ~< {af2} ctl1 spec mtr ctl l
+     2 ~< {aj2} clk3 ebox sync c l
+     6 ~> mtr3-e1-6
+     5 ~> mtr3-e1-5
+     4 ~> mtr3-e1-4
+     3 ~> mtr3-e1-3
+     13 ~> mtr3-e1-13
+     12 ~> mtr3-e1-12
+     11 ~> mtr3 cono mtr, h
+     10 ~> mtr3-e1-10
+
+e2:  10101 quad or/nor
+     10 ~< mtr3-e1-3
+     12 ~< mtr3 reset plsd h
+     14 ~> mtr3 clr cache cnt l
+     11 ~> %NC%
+     4 ~< mtr3-e1-13
+     2 ~> %NC%
+     5 ~> mtr3 load pa left h
+     7 ~< mtr3-e1-12
+     3 ~> %NC%
+     6 ~> mtr3 load pa right h
+     13 ~< mtr3-e1-10
+     15 ~> %NC%
+     9 ~> mtr3 cono tim, h
+
+e63: 10105 2-3-2 or/nor
+     12 ~< {aj2} clk3 ebox sync c l
+     13 ~< mtr5 reset l
+     14 ~> mtr3 reset plsd h
+     15 ~> mtr3 reset plsd l
+     9 ~< mtr4-e66-15
+     10 ~< mtr4 chan busy 8 h
+     11 ~< mtr4 chan busy 4 h
+     6 ~> mtr4-e63-6
+     7 ~> %NC%
+
+e11: 10101 quad or/nor
+     10 ~< mtr3 cono mtr, h
+     12 ~< mtr5 reset h
+     14 ~> {as2} mtr cono mtr, l
+     11 ~> %NC%
+     7 ~< %NC%
+     3 ~> mtr3 reset a l
+     6 ~> mtr3 reset a h
+     13 ~< mtr4-e66-15
+     15 ~> mtr4-e11-15
+     9 ~> %NC%
+
+e7:  10117 dual 2-3 or-and
+     13 ~< mtr3 cono mtr, h
+     12 ~< mtr3-e1-6
+     11 ~< mtr3-e1-6
+     10 ~< mtr5 ebus 26 h
+     9 ~< %NC%
+     14 ~> %NC%
+     15 ~> mtr3 reset time h
+     4 ~< mtr3 load pa right h
+     5 ~< mtr3-e1-5
+     6 ~< mtr3-e1-5
+     7 ~< mtr5 ebus 30 h
+     3 ~> %NC%
+     2 ~> mtr3 reset perf h
+
+e14: 10131 dual ms ff
+     12 ~< mtr3 reset perf h
+     10 ~< mtr3 reset a h
+     11 ~< mtr4 perf cnt clk h
+     9 ~< mtr3 reset plsd h
+     13 ~< %NC%
+     15 ~> %NC%
+     14 ~> mtr3 clr perf cnt l
+
+Page: MTR4, PDF327
+
+e26: 10176 hex dff
+     5 ~< mtr5 ebus 18 h
+     6 ~< mtr5 ebus 19 h
+     7 ~< mtr5 ebus 20 h
+     10 ~< mtr5 ebus 21 h
+     11 ~< mtr5 ebus 22 h
+     12 ~< mtr5 ebus 23 h
+     9 ~< mtr3 load pa right h
+     2 ~> mtr4 pi0 pa en h
+     3 ~> mtr4 pi1 pa en h
+     4 ~> mtr4 pi2 pa en h
+     13 ~> mtr4 pi3 pa en h
+     14 ~> mtr4 pi4 pa en h
+     15 ~> mtr4 pi5 pa en h
+
+e44: 10176 hex dff
+     5 ~< mtr5 ebus 24 h
+     6 ~< mtr5 ebus 25 h
+     7 ~< mtr5 ebus 26 h
+     10 ~< mtr5 ebus 27 h
+     11 ~< mtr5 ebus 28 h
+     12 ~< mtr5 ebus 29 h
+     9 ~< mtr3 load pa right h
+     2 ~> mtr4 pi6 pa en h
+     3 ~> mtr4 pi7 pa en h
+     4 ~> mtr4 no pi pa en h
+     13 ~> mtr4 user pa en h
+     14 ~> mtr4 mode pa dont care h
+     15 ~> mtr4 pa event mode h
+
+e36: 10158 4x2 mixer
+     5 ~< mtr4 no pi pa en h
+     6 ~< mtr4 pi0 pa en h
+     3 ~< {ck2} pi2 hold 4 h
+     4 ~< {cm2} pi2 pi4 a h
+     12 ~< {cp2} pi2 hold 2 h
+     13 ~< {cl2} pi2 pi2 a h
+     10 ~< {ch2} pi2 hold 1 h
+     11 ~< {cf2} pi2 pi1 a h
+     9 ~< {cj2} con pi cycle b h
+     1 ~> mtr4-e36-1
+     2 ~> mtr4-e36-2
+     15 ~> mtr4-e36-15
+     14 ~> mtr4-e36-14
+
+e31: 10164 8 mixer
+     6 ~< mtr4-e39-14
+     5 ~< mtr4 pi1 pa en h
+     4 ~< mtr4 pi2 pa en h
+     3 ~< mtr4 pi3 pa en h
+     11 ~< mtr4 pi4 pa en h
+     12 ~< mtr4 pi5 pa en h
+     13 ~< mtr4 pi6 pa en h
+     14 ~< mtr4 pi7 pa en h
+     10 ~< mtr4 pi level 4 h
+     9 ~< mtr4 pi level 2 h
+     7 ~< mtr4 pi level 1 h
+     2 ~< %NC%
+     15 ~> mtr4 current pi pa en h
+
+e58: 10121 4-wide or-and
+     4 ~< mtr4-e52-3
+     5 ~< mtr4 mode pa dont care h
+     6 ~< %NC%
+     7 ~< {dk2} con ucode state 01 h
+     9 ~< mtr4 ucode pa dont care h
+     10 ~< %NC%
+     11 ~< mtr4-e52-2
+     12 ~< mtr4 probe pa dont care h
+     13 ~< %NC%
+     14 ~< -mtr3 clr perf cnt h
+     15 ~< %NC%
+     3 ~> mtr4-e58-3
+     2 ~> %NC%
+
+e81: 10176 hex dff
+     5 ~< mtr5 ebus 30 h
+     6 ~< mtr5 ebus 31 h
+     7 ~< mtr5 ebus 32 h
+     10 ~< mtr5 ebus 33 h
+     11 ~< mtr5 ebus 34 h
+     12 ~< %NC%
+     9 ~< mtr3 load pa left h
+     2 ~> mtr4 cache ref pa en l
+     3 ~> mtr4 cache fill pa en l
+     4 ~> mtr4 cache ewb pa en l
+     13 ~> mtr4 cache swb pa en l
+     14 ~> mtr4 cache pa dont care h
+
+e40: 10101 quad or/nor
+     7 ~< {cc1} -vma1 ac ref a h
+     12 ~< %NC%
+     3 ~> mtr4-e40-3
+     6 ~> %NC%
+     4 ~< {de2} diag 04 b h
+     2 ~> mtr5 ds 04 l
+     5 ~> mtr5 ds 04 h
+     13 ~< {ct2} ctl3 diag rd func 11x l
+     15 ~> mtr5 read mtr a h
+     9 ~> mtr5 read mtr a l
+     10 ~< {dh2} mr reset 02 h
+     14 ~> mtr5 reset l
+     11 ~> mtr5 reset h
+
+e86: 10121 4-wide or-and
+     4 ~< mtr4 ebox waiting l
+     5 ~< %NC%
+     6 ~< mtr4 cache ref pa en l
+     7 ~< {fv2} csh7 fill cache rd l
+     9 ~< mtr4 cache fill pa en l
+     10 ~< mtr4 ebox waiting l
+     11 ~< {fp2} csh7 e writeback l
+     12 ~< mtr4 cache ewb pa en l
+     13 ~< mtr4 ebox waiting l
+     14 ~< {fk2} csh7 cca writeback l
+     15 ~< mtr4 cache swb pa en l
+     3 ~> mtr4-e86-3
+     2 ~> %NC%
+
+e72: 10121 4-wide or-and
+     4 ~< mtr4-e86-3
+     5 ~< mtr4 cache pa dont care h
+     6 ~< %NC%
+     7 ~< mtr4 current pi pa en h
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< mtr4 pa event mode h
+     12 ~< -mtr4 perf cnt clk h
+     13 ~< mtr4 chan busy 8 h
+     14 ~< mtr4 chan busy 4 h
+     15 ~< mtr4 chan pa dont care h
+     3 ~> mtr4-e72-3
+     2 ~> %NC%
+
+e54: 10117 dual 2-3 or-and
+     4 ~< -mtr4 perf cnt clk l
+     5 ~< mtr3 clr perf cnt l
+     6 ~< mtr4-e58-3
+     9 ~< -mtr5 read perf cnt l
+     3 ~> mtr4-e54-3
+     2 ~> %NC%
+
+// NOTE: For board wirelist B=1 and ofr
+// backpanel wirelist B=2. Backpanel
+// wirelist will complain about no source drive for
+// signals with MTR prefix but will connect them up.
+
+w1:  wire backplane pins together
+     1 ~< {fs2} csh7 fill cache rd l
+     2 ~> {fu2} mtr4 fill cache rd l
+
+w2:  wire backplane pins together
+     1 ~< {ft2} csh7 e writeback l
+     2 ~> {fr2} mtr4 e writeback l
+
+w3:  wire backplane pins together
+     1 ~< {fl2} mtr cca writeback l
+     2 ~> {fm2} csh7 cca writeback l
+
+// It looks like the idea is to connect eg
+// CSH7 FILL CACHE RD L to {fu2} MTR4 FILL CACHE RD L
+// and ALSO to connect these to {fs2} MTR4 T2.
+// Similar for CSH7 E WRITEBACK L and {fr2} MTR4 E WRITEBACK L and {ft1} MTR4 T1.
+// Similar for CSH7 CCA WRITEBACK L and {fl2} MTR CCA WRITEBACK L.
+
+// CSH7 FILL CACHE RD L is driven by CSH.
+// CSH7 E WRITEBACK L is driven by CSH.
+// CSH7 CCA WRITEBACK is driven by MTR.
+
+
+e61: 10176 hex dff
+     5 ~< mtr5 ebus 18 h
+     6 ~< mtr5 ebus 19 h
+     7 ~< mtr5 ebus 20 h
+     10 ~< mtr5 ebus 21 h
+     11 ~< mtr5 ebus 22 h
+     12 ~< mtr5 ebus 23 h
+     9 ~< mtr3 load pa left h
+     2 ~> mtr4 chan 0 pa en h
+     3 ~> mtr4 chan 1 pa en h
+     4 ~> mtr4 chan 2 pa en h
+     13 ~> mtr4 chan 3 pa en h
+     14 ~> mtr4 chan 4 pa en h
+     15 ~> mtr4 chan 5 pa en h
+
+e56: 10176 hex dff
+     5 ~< mtr5 ebus 24 h
+     6 ~< mtr5 ebus 25 h
+     7 ~< mtr5 ebus 26 h
+     10 ~< mtr5 ebus 27 h
+     11 ~< mtr5 ebus 28 h
+     12 ~< mtr5 ebus 29 h
+     9 ~< mtr3 load pa left h
+     2 ~> mtr4 chan 6 pa en h
+     3 ~> mtr4 chan 7 pa en h
+     4 ~> mtr4 chan pa dont care h
+     13 ~> mtr4 chan ucode pa dont care h
+     14 ~> mtr4 chan probe low pa en h
+     15 ~> mtr4 chan probe pa dont care h
+
+e66: 10164 8 mixer
+     14 ~< mtr4 chan 0 pa en h
+     13 ~< mtr4 chan 1 pa en h
+     12 ~< mtr4 chan 2 pa en h
+     11 ~< mtr4 chan 3 pa en h
+     3 ~< mtr4 chan 4 pa en h
+     4 ~< mtr4 chan 5 pa en h
+     5 ~< mtr4 chan 6 pa en h
+     6 ~< mtr4 chan 7 pa en h
+     10 ~< {eh2} crc sel 4d l
+     9 ~< {ej2} crc sel 2d l
+     7 ~< {em2} crc sel 1d l
+     2 ~< {ep2} chc1 cbus ready e l
+     15 ~> mtr4-e66-15
+
+
+
+e71: 10136 binary counter
+     5 ~< mtr4-e66-15
+     6 ~< mtr4-e66-15
+     11 ~< mtr4-e66-15
+     12 ~< mtr4-e66-15
+     10 ~< %NC%
+     7 ~< mtr4-e63-6
+     9 ~< mtr4-e11-15
+     13 ~< {es2} ch t1 h
+     4 ~> %NC%
+     3 ~> mtr4 chan busy 8 h
+     2 ~> mtr4 chan busy 4 h
+     15 ~> %NC%
+     14 ~> %NC%
+
+Page: MTR5, PDF328
+
+// NOTE: After a microcode "DIAG READ MTR" step, the
+//       next microcode word just maintain the
+//       same CRAM # bits 06,07,08, to avoid
+//       a race condition.
+
+e37: 10162 decoder
+     14 ~< mtr5 ds 04 h
+     9 ~< mtr5 ds 05 h
+     7 ~< mtr5 ds 06 h
+     15 ~< %NC%
+     2 ~< mtr5 read mtr a l
+     6 ~> mtr5 read time h
+     5 ~> mtr5 read perf cnt h
+     4 ~> %NC%
+     3 ~> %NC%
+     13 ~> mtr5 read interval h
+     12 ~> %NC%
+     11 ~> %NC%
+     10 ~> mtr5 hold interrupt sel h
+
+e18: 10165 priority encoder
+     5 ~< mtr1 time 02 h
+     7 ~< mtr1 perf count 02 h
+     13 ~< mtr1 ebox count 02 h
+     10 ~< mtr1 cache count 02 h
+     12 ~< %NC%
+     9 ~< %NC%
+     6 ~< %NC%
+     4 ~< mtr5 hold interrupt sel h
+     14 ~> {at2} mtr interrupt req h
+     15 ~> mtr5 vector req h
+     2 ~> mtr5 incr sel 2 h
+     3 ~> mtr5 incr sel 1 h
+
+e21: 10176 hex dff
+     9 ~< mtr2 mbox clk f h
+     10 ~< {bl2} ebus d18 e h
+     13 ~> mtr5 ebus 18 h
+     6 ~< {bk2} ebus d19 e h
+     3 ~> mtr5 ebus 19 h
+     7 ~< {bm2} ebus d20 e h
+     4 ~> mtr5 ebus 20 h
+     5 ~< {be2} ebus d21 e h
+     2 ~> mtr5 ebus 21 h
+     12 ~< {bf2} ebus d22 e h
+     15 ~> mtr5 ebus 22 h
+     11 ~< {bd2} ebus d23 e h
+     14 ~> mtr5 ebus 23 h
+
+e23: 10164 8 mixer
+     6 ~< mtr1 time 02 h
+     5 ~< mtr1 perf count 02 h
+     4 ~< mtr1 ebox count 02 h
+     3 ~< mtr1 cache count 02 h
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~< mtr5 vector req h
+     10 ~< mtr5 ds 04 h
+     9 ~< mtr5 ds 05 h
+     7 ~< mtr5 ds 06 h
+     2 ~< mtr5 read mtr a l
+     15 ~> {bm2} ebus d20 e h
+
+e22: 10164 8 mixer
+     6 ~< mtr1 time 03 h
+     5 ~< mtr1 perf count 03 h
+     4 ~< mtr1 ebox count 03 h
+     3 ~< mtr1 cache count 03 h
+     11 ~< %NC%
+     12 ~< mtr3 interval on h
+     13 ~< mtr2 pi acct en h
+     14 ~< mtr5 incr sel 2 h
+     10 ~< mtr5 ds 04 h
+     9 ~< mtr5 ds 05 h
+     7 ~< mtr5 ds 06 h
+     2 ~< mtr5 read mtr a l
+     15 ~> {be2} ebus d21 e h
+
+e17: 10164 8 mixer
+     6 ~< mtr1 time 04 h
+     5 ~< mtr1 perf count 04 h
+     4 ~< mtr1 ebox count 04 h
+     3 ~< mtr1 cache count 04 h
+     11 ~< %NC%
+     12 ~< mtr3 interval done h
+     13 ~< mtr2 exec acct en h
+     14 ~< mtr5 incr sel 1 h
+     10 ~< mtr5 ds 04 h
+     9 ~< mtr5 ds 05 h
+     7 ~< mtr5 ds 06 h
+     2 ~< mtr5 read mtr a l
+     15 ~> {bf2} ebus d22 e h
+
+e13: 10164 8 mixer
+     6 ~< mtr1 time 05 h
+     5 ~< mtr1 perf count 05 h
+     4 ~< mtr1 ebox count 05 h
+     3 ~< mtr1 cache count 05 h
+     11 ~< %NC%
+     12 ~< mtr3 interval overflo h
+     13 ~< mtr2 acct on h
+     14 ~< %NC%
+     10 ~< mtr5 ds 04 h
+     9 ~< mtr5 ds 05 h
+     7 ~< mtr5 ds 06 h
+     2 ~< mtr5 read mtr a l
+     15 ~> {bd2} ebus d23 e h
+
+e12: 10164 8 mixer
+     6 ~< mtr1 time 06 h
+     5 ~< mtr1 perf count 06 h
+     4 ~< mtr1 ebox count 06 h
+     3 ~< mtr1 cache count 06 h
+     11 ~< mtr1 interval 06 h
+     12 ~< mtr1 period 06 h
+     13 ~< %NC%
+     14 ~< %NC%
+     10 ~< mtr5 ds 04 h
+     9 ~< mtr5 ds 05 h
+     7 ~< mtr5 ds 06 h
+     2 ~< mtr5 read mtr a l
+     15 ~> {dm1} ebus d24 e h
+
+e50: 10176 hex dff
+     9 ~< mtr2 mbox clk a h
+     6 ~< {dm1} ebus d24 e h
+     3 ~> mtr5 ebus 24 h
+     10 ~< {dn1} ebus d25 e h
+     13 ~> mtr5 ebus 25 h
+     12 ~< {dl1} ebus d26 e h
+     15 ~> mtr5 ebus 26 h
+     11 ~< {dj1} ebus d27 e h
+     14 ~> mtr5 ebus 27 h
+     5 ~< {dj2} ebus d28 e h
+     2 ~> mtr5 ebus 28 h
+     7 ~< {dk1} ebus d29 e h
+     4  ~> mtr5 ebus 29 h
+
+e32: 10164 8 mixer
+     6 ~< mtr1 time 07 h
+     5 ~< mtr1 perf count 07 h
+     4 ~< mtr1 ebox count 07 h
+     3 ~< mtr1 cache count 07 h
+     11 ~< mtr1 interval 07 h
+     12 ~< mtr1 period 07 h
+     13 ~< mtr2 time on h
+     14 ~< -mtr cono mtr, h
+     10 ~< mtr5 ds 04 h
+     9 ~< mtr5 ds 05 h
+     7 ~< mtr5 ds 06 h
+     2 ~< mtr5 read mtr a l
+     15 ~> {dn1} ebus d25 e h
+
+e27: 10164 8 mixer
+     6 ~< mtr1 time 08 h
+     5 ~< mtr1 perf count 08 h
+     4 ~< mtr1 ebox count 08 h
+     3 ~< mtr1 cache count 08 h
+     11 ~< mtr1 interval 08 h
+     12 ~< mtr1 period 08 h
+     13 ~< %NC%
+     14 ~< %NC%
+     10 ~< mtr5 ds 04 h
+     9 ~< mtr5 ds 05 h
+     7 ~< mtr5 ds 06 h
+     2 ~< mtr5 read mtr a l
+     15 ~> {dl1} ebus d26 e h
+
+e33: 10164 8 mixer
+     14 ~< mtr1 time 09 h
+     13 ~< mtr1 perf count 09 h
+     12 ~< mtr1 ebox count 09 h
+     11 ~< mtr1 cache count 09 h
+     3 ~< mtr1 interval 09 h
+     4 ~< mtr1 period 09 h
+     5 ~< %NC%
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {dj1} ebus d27 e h
+
+e73: 10164 8 mixer
+     14 ~< mtr1 time 10 h
+     13 ~< mtr1 perf count 10 h
+     12 ~< mtr1 ebox count 10 h
+     11 ~< mtr1 cache count 10 h
+     3 ~< mtr1 interval 10 h
+     4 ~< mtr1 period 10 h
+     5 ~< %NC%
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {dj2} ebus d28 e h
+
+e62: 10164 8 mixer
+     14 ~< mtr1 time 11 h
+     13 ~< mtr1 perf count 11 h
+     12 ~< mtr1 ebox count 11 h
+     11 ~< mtr1 cache count 11 h
+     3 ~< mtr1 interval 11 h
+     4 ~< mtr1 period 11 h
+     5 ~< %NC%
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {dk1} ebus d29 e h
+
+e68: 10164 8 mixer
+     14 ~< mtr1 time 12 h
+     13 ~< mtr1 perf count 12 h
+     12 ~< mtr1 ebox count 12 h
+     11 ~< mtr1 cache count 12 h
+     3 ~< mtr1 interval 12 h
+     4 ~< mtr1 period 12 h
+     5 ~< %NC%
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {fa1} ebus d30 e h
+
+e67: 10164 8 mixer
+     14 ~< mtr1 time 13 h
+     13 ~< mtr1 perf count 13 h
+     12 ~< mtr1 ebox count 13 h
+     11 ~< mtr1 cache count 13 h
+     3 ~< mtr1 interval 13 h
+     4 ~< mtr1 period 13 h
+     5 ~< %NC%
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {fk1} ebus d31 e h
+
+e76: 10176 hex dff
+     9 ~< mtr2 mbox clk b h
+     10 ~< {fa1} ebus d30 e h
+     13 ~> mtr5 ebus 30 h
+     11 ~< {fk1} ebus d31 e h
+     14 ~> mtr5 ebus 31 h
+     7 ~< {fc1} ebus d32 e h
+     4 ~> mtr5 ebus 32 h
+     6 ~< {fh2} ebus d33 e h
+     3 ~> mtr5 ebus 33 h
+     5 ~< {fe2} ebus d34 e h
+     2 ~> mtr5 ebus 34 h
+     12 ~< {fj1} ebus d35 e h
+     15 ~> mtr5 ebus 35 h
+
+e77: 10164 8 mixer
+     14 ~< mtr1 time 14 h
+     13 ~< mtr1 perf count 14 h
+     12 ~< mtr1 ebox count 14 h
+     11 ~< mtr1 cache count 14 h
+     3 ~< mtr1 interval 14 h
+     4 ~< mtr1 period 14 h
+     5 ~< %NC%
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {fc1} ebus d32 e h
+
+e83: 10164 8 mixer
+     14 ~< mtr1 time 15 h
+     13 ~< mtr1 perf count 15 h
+     12 ~< mtr1 ebox count 15 h
+     11 ~< mtr1 cache count 15 h
+     3 ~< mtr1 interval 15 h
+     4 ~< mtr1 period 15 h
+     5 ~< {fj2} pi3 mtr pia 04 h
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {fh2} ebus d33 e h
+
+e79: 10164 8 mixer
+     14 ~< mtr1 time 16 h
+     13 ~< mtr1 perf count 16 h
+     12 ~< mtr1 ebox count 16 h
+     11 ~< mtr1 cache count 16 h
+     3 ~< mtr1 interval 16 h
+     4 ~< mtr1 period 16 h
+     5 ~< {ff2} pi3 mtr pia 02 h
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {fe2} ebus d34 e h
+
+e78: 10164 8 mixer
+     14 ~< mtr1 time 17 h
+     13 ~< mtr1 perf count 17 h
+     12 ~< mtr1 ebox count 17 h
+     11 ~< mtr1 cache count 17 h
+     3 ~< mtr1 interval 17 h
+     4 ~< mtr1 period 17 h
+     5 ~< {fd2} pi3 mtr pia 01 h
+     6 ~< %NC%
+     10 ~< mtr5 ds 04 l
+     9 ~< mtr5 ds 05 l
+     7 ~< mtr5 ds 06 l
+     2 ~< mtr5 read mtr b l
+     15 ~> {fj1} ebus d35 e h
