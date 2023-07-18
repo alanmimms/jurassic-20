@@ -479,7 +479,7 @@ ${util.inspect(chips[name].location)}`);
   dumpVerilogNames(bp);
   if (options.dumpBackplane) dumpNets(bp);
 
-  checkForSuspiciousSymbolNames(bp);
+  checkForMalformedSymbolNames(bp);
   
   return bp;
 }
@@ -577,8 +577,8 @@ function verilogifyNetNames(bp) {
 }
 
 
-function checkForSuspiciousSymbolNames(bp) {
-  const suspicious = Object.keys(bp.allNets)
+function checkForMalformedSymbolNames(bp) {
+  const malformed = Object.keys(bp.allNets)
 	.sort(netNameSort)
   // No connect
 	.filter(n => n != '%NC%')
@@ -591,15 +591,15 @@ function checkForSuspiciousSymbolNames(bp) {
 	.map(n => `'${n}'`)
 	.join('\n');
 
-  if (suspicious) {
+  if (malformed) {
     console.error(`\
 
-SUSPCIOUS symbol names:\n
-${suspicious}
+MALFORMED symbol names:\n
+${malformed}
 
 `);
   } else {
-    console.log(`[no suspicious symbol names found]`);
+    console.log(`[no malformed symbol names found]`);
   }
 }
 
