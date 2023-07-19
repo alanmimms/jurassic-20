@@ -18,13 +18,14 @@ function parseFile(parser, filename) {
   try {
     fileAST = parser.parse(fs.readFileSync(filename, 'utf8'));
   } catch (e) {
-    console.log("ERROR: Parsing Failure:", e.message);
+    console.log(`ERROR: Parsing Failure: ${e.message}`);
 
     if (e.location) {
-      console.log('       start:', e.location.start,
-		  '\n         end:', e.location.end);
+      console.log(`\
+       start: ${e.location.start}
+         end: ${e.location.end}`);
     } else {
-      console.log('Exception:', util.inspect(e));
+      console.log(`Exception: ${util.inspect(e)}`);
     }
 
     process.exit(1);
@@ -60,7 +61,7 @@ function parseBackplanes(parser) {
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
 
       // Each board macro env starts with copy of BP macro vars as
-      // base, then we add this board's values, possibly superseding
+      // base, then we add this board's values, possibly overriding
       // exiting ones.
       const macroEnv = {...bpMacroEnv};
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
@@ -333,8 +334,8 @@ function evalExpr(t, macroEnv) {
   case '/':
   case '*':
     // This is complicated by the need to keep the values as strings
-    // and to evaluate to the number ofdigits which is the max of
-    // the length of each of the operands.
+    // and to evaluate results to preserve the number of digits, which
+    // is the max of the length of each of the operands.
     const L = evalExpr(t.l, macroEnv);
     const R = evalExpr(t.r, macroEnv);
     const resultStr = Math.trunc(eval(`${parseInt(L, 10)} ${t.nodeType} ${parseInt(R, 10)}`));
@@ -496,7 +497,7 @@ function readCRAMBackplane(fn) {
       const bit = parseInt(bitExpr.split(/\+/)[1]) + slice;
       const slot = pinFull.slice(2, 4);
       const bpPinName = `${pinFull[1]}${pinFull.slice(4)}`.toLowerCase();
-      const pin = `crm.${bpPinName}[ebox.${slot}]`;
+      const pin = `crm.${bpPinName}[cpu.${slot}]`;
 
       if (isNaN(slot)) console.error(`${fn} bad slot number in line '${line}'`);
 
