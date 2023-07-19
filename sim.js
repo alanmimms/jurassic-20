@@ -8,7 +8,7 @@ const {compile} = require('./compile');
 CMDR
   .option('-t, --trace-parse', `Print trace while parsing netlist`)
   .option('-a, --dump-ast', `Dump AST after parsing`)
-  .option('-b, --dump-backplane', `Dump backplane slots and net name`)
+  .option('-b, --dump-backplane', `Dump backplane slots and net names`)
   .option('-s, --dump-signals', `Dump signals list after parsing`)
   .option('-n, --dump-nets', `Dump netlist`)
   .option('-u, --dump-undriven', `Dump list of undriven nets`)
