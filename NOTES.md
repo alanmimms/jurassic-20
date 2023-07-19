@@ -84,6 +84,20 @@
 * Finish defining signals for CRAM bits on backplane.
 
 
+# Hints and Kinks
+
+* For entertainment value and curiousity, I used this command to list
+  the unique backplane pin count of each module:
+
+```
+  for F in *.bp-pins; do
+    M=${F%.bp-pins}
+    echo ${M@U}: $( sort -k 1 $F | awk ' {print $1}' | uniq | wc -l )
+  done | sort -n -k 2
+```
+
+
+
 # Glossary
 
 AC                  Accumulator
