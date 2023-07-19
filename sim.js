@@ -6,6 +6,7 @@ const CMDR = require('commander').program;
 const {compile} = require('./compile');
 
 CMDR
+  .showHelpAfterError()
   .option('-t, --trace-parse', `Print trace while parsing netlist`)
   .option('-a, --dump-ast', `Dump AST after parsing`)
   .option('-b, --dump-backplane', `Dump backplane slots and net names`)
@@ -14,7 +15,7 @@ CMDR
   .option('-u, --dump-undriven', `Dump list of undriven nets`)
   .option('-o, --dump-wire-or', `Dump list of wire-ORed nets`)
   .option('-v, --verbose-errors', `Give more info for errors`)
-  .argument('<src>', `Source file to start parsing`)
+  .argument('[src]', `Source file to start parsing`, `kl10pv.backplane`)
   .action((src, options) => {
     options.src = src;
     const backplanes = compile(options);
