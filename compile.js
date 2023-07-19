@@ -9,7 +9,7 @@ const logic = require('./logic.js');
 // Provided by caller of `compile()`.
 var options;
 
-var boards = {};
+const boards = {};
 
 
 function parseFile(parser, filename) {
@@ -40,13 +40,43 @@ function parseBackplanes(parser) {
   const bpAST = parseFile(parser, filename)[0];
 
   if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.before.evaluation`, util.inspect(bpAST, {depth: 9999}));
-  console.log(`Backplane ${bpAST.name}:`);
 
-  const bpMacros = bpAST.macros || [];
-  const bpMacroDesc = bpMacros.map(macro => `${macro.id}=${macro.value}`).join (' ');
+  // Build bpMacroEnv which is the basis of macros used for each board.
   const bpMacroEnv = {};
+  (bpAST.macros || []).forEach(macro => bpMacroEnv[macro.id] = macro.value);
 
-  bpMacros.forEach(macro => bpMacroEnv[macro.id] = macro.value);
+  // For each slot we haven't already parsed the board netlist for,
+  // parse it and save it in `boards` indexed by board ID (e.g., 'edp').
+  bpAST.slots
+    .filter(slot => slot.board && slot.board.id != 'ignore' && !boards[slot.board.id])
+    .forEach(slot => {
+      const id = slot.board.id;
+      const boardPath = `board/${id}.board`;
+
+      console.log(`[parse ${boardPath}]`);
+      const ast = parseFile(parser, boardPath);
+
+      boards[id] = ast;
+      if (options.dumpNets) fs.writeFileSync(`${id}.nets`, util.inspect(ast.nets, {depth: 5}))
+
+      if (ast.bpPins && options.dumpBackplane) {
+	fs.writeFileSync(`${id}.bp-pins`,
+			 Object.keys(ast.bpPins)
+			 .sort()
+			 .map(bpp => ast.bpPins[bpp]
+			      .map(p => {
+				const pdfRef = p.page.pdfRef.padEnd(7);
+				const chipPin = `${p.chip.name.name}.${p.pin}`.padEnd(9);
+				return `\
+${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${p.net}`;
+			      })
+			      .join('\n')
+			     )
+			 .join('\n'));
+      }
+    });
+
+  console.log(`Backplane ${bpAST.name}:`);
 
   // For each slot, (re)parse the board definition and expand its
   // macros for the slot (and backplane, and CPU type) specifics.  The
@@ -57,6 +87,7 @@ function parseBackplanes(parser) {
       const slotNumber = slot.n;
       const slotName = `${bpAST.name}.${slotNumber.padStart(2, '0')}`;
       const board = slot.board;
+      const id = board.id;
       const macros = board.macros || [];
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
 
@@ -66,34 +97,11 @@ function parseBackplanes(parser) {
       const macroEnv = {...bpMacroEnv};
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
-      console.log(`  Slot ${slotName}: ${board.id.padEnd(4)} ${macroDesc.padEnd(12)} ${board.comments}`);
+      console.log(`  Slot ${slotName}: ${id.padEnd(4)} ${macroDesc.padEnd(12)} ${board.comments}`);
 
-      const boardAST = parseFile(parser, `board/${board.id}.board`);
+      const boardAST = boards[id];
       expandMacros(boardAST, bpAST, macroEnv);
       slot.board = {slotName, ... board, ... boardAST};
-
-      if (!boards[board.id]) {
-	boards[board.id] = [];
-	fs.writeFileSync(`${board.id}.nets`, util.inspect(boardAST.nets, {depth: 5}))
-
-	if (boardAST.bpPins) {
-	  fs.writeFileSync(`${board.id}.bp-pins`,
-			   Object.keys(boardAST.bpPins)
-			   .sort()
-			   .map(bpp => boardAST.bpPins[bpp]
-				.map(p => {
-				  const pdfRef = p.page.pdfRef.padEnd(7);
-				  const chipPin = `${p.chip.name.name}.${p.pin}`.padEnd(9);
-				  return `\
-${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${p.net}`;
-				})
-				.join('\n')
-			       )
-			   .join('\n'));
-	}
-      }
-
-      boards[board.id].push(boardAST);
     });
 
   if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.after.evaluation`, util.inspect(bpAST, {depth: 9999}));
