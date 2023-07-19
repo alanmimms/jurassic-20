@@ -392,7 +392,15 @@ function compile(simOptions) {
 
   // libreoffice --convert-to csv ./cram-backplane.ods
   const cramDefs = readCRAMBackplane('cram-backplane.csv');
-  fs.writeFileSync('bp.cram-defs', util.inspect(cramDefs, {depth: 99, breakLength: 90, maxArrayLength: null}));
+
+  if (options.dumpBackplane) {
+    fs.writeFileSync('bp.cram-defs',
+		     util.inspect(cramDefs, {
+		       depth: 99,
+		       breakLength: 90,
+		       maxArrayLength: null
+		     }));
+  }
 
   const needCheck =
         options.dumpNets ||
@@ -480,12 +488,12 @@ ${util.inspect(chips[name].location)}`);
       }, {});
     });
 
-  fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
+  if (options.dumpBackplane) fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
 
   definePinsAndNets(bp, cramDefs);
   verilogifyNetNames(bp);
-  dumpPins(bp);
-  dumpVerilogNames(bp);
+  if (options.dumpBackplane) dumpPins(bp);
+  if (options.dumpBackplane) dumpVerilogNames(bp);
   if (options.dumpBackplane) dumpNets(bp);
 
   checkForMalformedSymbolNames(bp);
