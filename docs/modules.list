@@ -1,0 +1,49 @@
+This is for KL10D, E, or R model B(PV) CPU-PV revision 4-4
+
+Slot	Module		Rev	Description
+9	CHC M8533	C	Channel control
+10	CRC M8535		Channel RAM control
+11	CCL M8536	D	Channel control logic
+12	CCW M8534	C,D	Channel control word
+
+14	MB0 M8517	B	Memory buffer
+15	MB0 M8517	B	Memory buffer
+16	MB0 M8517	B	Memory buffer
+17	CH0 M8549-YH	B	NO CACHE cache terminator (M8521 for cache)
+
+19	CH0 M8549-YH	B	NO CACHE cache terminator (M8521 for cache)
+20	MBZ M8537	D	MBOX control 4
+21	MBX M8529-YA	A	MBOX control logic
+22	MBC M8531-YA	A	MBOX control #3
+23	CSH M8513-YA	A	Cache control
+24	CH0 M8549-YH	B	NO CACHE cache terminator (M8521 for cache)
+25	CH0 M8549-YH	B	NO CACHE cache terminator (M8521 for cache)
+
+27	CH0 M8549-YE	A	NO CACHE cache terminator (M8514 for cache)
+28	CH0 M8549-YF	A	NO CACHE cache terminator (M8515 for cache)
+29	PMA M8518-YA	A	Physical memory address
+30	PAG M8520-YA	A	Paging board
+31	PIC M8532	D1,F	PI logic board
+32	CLK M8526-YA	A	CLK control
+33	MTR M8538	C,D	MTR board
+34	APR M8545	A	APR board
+35	CON M8525	H	EBOX control #2
+36	CTL M8543	A	EBOX control #1
+
+38	VMA M8542	A	Virtual memory address
+39	EDP M8512	B,C	Data path
+40	CRM M8548	A	Control RAM
+41	EDP M8512	B,C	Data path
+42	CRM M8548	A	Control RAM
+43	EDP M8512	B,C	Data path
+44	CRM M8548	A	Control RAM
+45	CRA M8541	A	Control RAM address
+46	SHM M8540	A	Shift matrix board
+47	MCL M8544	A	Memory control board
+48	IRD M8522	A	IR, DRAM & carry
+49	EDP M8512	B,C	Data path
+50	CRM M8548	A	Control RAM
+51	EDP M8512	B,C	Data path
+52	CRM M8548	A	Control RAM
+53	EDP M8512	B,C	Data path
+54	SCD M8524	D,E	SCAD, PC flags
