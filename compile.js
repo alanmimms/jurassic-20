@@ -26,7 +26,7 @@ function parseFile(parser, filename) {
        start: ${e.location.start}
          end: ${e.location.end}`);
     } else {
-      console.log(`Exception: ${util.inspect(e)}`);
+      console.log(`Exception: ${dumpThing(e)}`);
     }
 
     process.exit(1);
@@ -735,7 +735,7 @@ function testCanonicalize() {
   function test1(a, sb) {
 
     if (canonicalize(a) != sb) {
-      console.error(`ERROR: canonicalize('${a}') != '${sb}' is '${canonicalize(a)}'`);
+      console.error(`Unit test FAIL: canonicalize('${a}') != '${sb}' is '${canonicalize(a)}'`);
     }
   }
 }
@@ -763,7 +763,7 @@ function testPadValueToDigits() {
   function test1(v, d, sb) {
 
     if (padValueToDigits(v, d) !== sb) {
-      console.error(`ERROR: padValueToDigits(${v}, ${digits}) != '${sb}' is '${padValueToDigits(v, d)}'`);
+      console.error(`Unit test FAIL: padValueToDigits(${v}, ${digits}) != '${sb}' is '${padValueToDigits(v, d)}'`);
     }
   }
 }
