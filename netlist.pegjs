@@ -67,6 +67,7 @@ stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
 
 board = pages:(page / warning)+
 		{ const b = AST('Board', {pages, nets, wires, bpPins});
+		  // Cleanly reinitialize accumulators for next board.
 		  wires = {};
 		  nets = {};
 		  bpPins = {};

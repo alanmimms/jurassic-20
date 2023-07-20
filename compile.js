@@ -60,7 +60,7 @@ function parseBackplanes(parser) {
       const board = parseFile(parser, boardPath);
       boards[id] = board;
 
-      // Flatten the board AST into easier data structures.
+      // This is `board` data structure:
       //
       // * wires[${chipName}.${dir}.${pinNumber}]
       //   * pinNumber
@@ -73,8 +73,11 @@ function parseBackplanes(parser) {
       // * bpPins[${bpPin}][${chipName}.${dir}.${pinNumber}]
       //   * wires[] reference
 
-      if (options.dumpNets) fs.writeFileSync(`${id}.nets`, dumpThing(board.nets))
       if (options.dumpWires) fs.writeFileSync(`${id}.wires`, dumpThing(board.wires))
+
+      // Build `board.nets` indexed by canonicalized, verilogified network name:
+
+      if (options.dumpNets) fs.writeFileSync(`${id}.nets`, dumpThing(board.nets, '%NC%'))
 
       if (board.bpPins && options.dumpBpPins) {
 	fs.writeFileSync(`${id}.bp-pins`,
@@ -535,7 +538,13 @@ function readCRAMBackplane(fn) {
       if (isNaN(slot)) console.error(`${fn} bad slot number in line '${line}'`);
 
       const pPin = cram.bp[pin];
-      if (pPin) console.error(`${fn} duplicate '${net}' pin '${pin}', was ${pPin.bit.toString().padStart(3)} '${pPin.net}'`);
+
+      if (pPin) {
+	const pb = pPin.bit.toString();
+	const pn = pPin.net;
+	console.error(`${fn} duplicate '${net}' pin '${pin}', was ${pb.padStart(3)} '${pn}'`);
+      }
+
       if (cram.nets[net]) console.error(`${fn} defines net '${net}' more than once`);
       cram.bp[pin] = {net, pin, slot};
       if (!cram.slot[slot]) cram.slot[slot] = {};
@@ -720,8 +729,51 @@ function canonicalize(net) {
 }
 
 
-function dumpThing(thing) {
-  return util.inspect(thing, {depth: 5, maxArrayLength: Infinity});
+// Do standardized util.inspect() on `thing`. If `without` is not null
+// it is a string name of a key to not dump or it is an object whose
+// keys list things not to dump or it is an array whose elements are
+// strings to not dump.
+function dumpThing(thing, without) {
+  if (!without) without = {};
+  if (typeof without === 'string') without = {[without]: without};
+  if (Array.isArray(without)) without = without.reduce((cur, e) => ({ [e]: e, ...cur}), {});
+
+  // Now `without` is in canonical form: an object whose keys are the
+  // list of keys not to dump. Remove those keys from a copy of
+  // `thing` and dump it.
+  const cleanThing = {...thing};
+  Object.keys(without).forEach(k => delete cleanThing[k]);
+
+  return util.inspect(cleanThing, {depth: 5, maxArrayLength: Infinity});
+}
+
+
+function testDumpThing() {
+  const o = {a: 1, b: 2, c: 3};
+  const oo = {...o};
+  test1(o, 'b', '{ a: 1, c: 3 }');
+  if (!shallowEQ(oo, o)) console.error(`Unit test FAIL: dumpThing removed element from original object`);
+
+  test1(o, {b:'bbb'},			'{ a: 1, c: 3 }');
+  test1(o, {b:'bbb', a: 'aaa'},		'{ c: 3 }');
+  test1(o, {c:'ccc'},			'{ a: 1, b: 2 }');
+  test1(o, {c:'ccc', b:'bbb', a:'aaa'}, '{}');
+  test1(o, {a:'aaa'},			'{ b: 2, c: 3 }');
+
+  test1(o, ['b'], '{ a: 1, c: 3 }');
+  test1(o, ['b', 'a'], '{ c: 3 }');
+  test1(o, ['c', 'a'], '{ b: 2 }');
+  test1(o, ['c', 'a', 'b'], '{}');
+
+  function test1(o, without, sb) {
+    const s = dumpThing(o, without);
+    if (s != sb) console.error(`Unit test FAIL: dumpThing was '${s}' and should be '${sb}'`);
+  }
+
+
+  function shallowEQ(x, y) {
+    return [...Object.keys(x), ...Object.keys(y)].every(k => x[k] === y[k]);
+  }
 }
 
 
@@ -770,6 +822,7 @@ function testPadValueToDigits() {
 
 
 function doTests() {
+  testDumpThing();
   testCanonicalize();
   testPadValueToDigits();
 }
