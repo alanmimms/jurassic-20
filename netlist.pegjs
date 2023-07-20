@@ -141,7 +141,7 @@ macroName = name:simpleID
 
 simpleID = $[a-zA-Z0-9]+
 
-net = '%NC%'	{ return AST('NoConnect', {text: 'NC'}) }
+net = '%NC%'	{ return AST('NoConnect', {text: text()}) }
 /	[01]	{ return AST('Value', {value: parseInt(text(), 2), text: text()}) }
 /	list:( macroRef / idWith_ )+
 		{ return AST('IDList', {list, text: text()}) }
