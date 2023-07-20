@@ -16,7 +16,8 @@ function parseFile(parser, filename) {
   let fileAST;
 
   try {
-    fileAST = parser.parse(fs.readFileSync(filename, 'utf8'));
+    // Pass "options" so we can call our `astDirToDir()` function from parser.
+    fileAST = parser.parse(fs.readFileSync(filename, 'utf8'), {astDirToDir});
   } catch (e) {
     console.log(`ERROR: Parsing Failure: ${e.message}`);
 
@@ -45,8 +46,10 @@ function parseBackplanes(parser) {
   const bpMacroEnv = {};
   (bpAST.macros || []).forEach(macro => bpMacroEnv[macro.id] = macro.value);
 
-  // For each slot we haven't already parsed the board netlist for,
+  // For each slot for which we haven't already parsed the board netlist,
   // parse it and save it in `boards` indexed by board ID (e.g., 'edp').
+  // While we're at it, accumulate the board's list of net names and what
+  // is connected, remembering direction and PDF reference for each such.
   bpAST.slots
     .filter(slot => slot.board && slot.board.id != 'ignore' && !boards[slot.board.id])
     .forEach(slot => {
@@ -54,19 +57,33 @@ function parseBackplanes(parser) {
       const boardPath = `board/${id}.board`;
 
       console.log(`[parse ${boardPath}]`);
-      const ast = parseFile(parser, boardPath);
+      const board = parseFile(parser, boardPath);
+      boards[id] = board;
 
-      boards[id] = ast;
-      if (options.dumpNets) fs.writeFileSync(`${id}.nets`, util.inspect(ast.nets, {depth: 5}))
+      // Flatten the board AST into easier data structures.
+      //
+      // * wires[${chipName}.${dir}.${pinNumber}]
+      //   * pinNumber
+      //   * dir
+      //   * bpPin
+      //   * lNet (canonicalized local net name without macro expansion)
+      //   * pinNet (tree of macros to be expanded for slot-specific gNet name)
+      //   * pdfRef
+      //
+      // * bpPins[${bpPin}][${chipName}.${dir}.${pinNumber}]
+      //   * wires[] reference
 
-      if (ast.bpPins && options.dumpBackplane) {
+      if (options.dumpNets) fs.writeFileSync(`${id}.nets`, util.inspect(board.nets, {depth: 5}))
+      if (options.dumpWires) fs.writeFileSync(`${id}.wires`, util.inspect(board.wires, {depth: 9}))
+
+      if (board.bpPins && options.dumpBpPins) {
 	fs.writeFileSync(`${id}.bp-pins`,
-			 Object.keys(ast.bpPins)
+			 Object.keys(board.bpPins)
 			 .sort()
-			 .map(bpp => ast.bpPins[bpp]
+			 .map(bpp => Object.values(board.bpPins[bpp])
 			      .map(p => {
 				const pdfRef = p.page.pdfRef.padEnd(7);
-				const chipPin = `${p.chip.name.name}.${p.pin}`.padEnd(9);
+				const chipPin = `${p.chip.name}.${p.pin}`.padEnd(9);
 				return `\
 ${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${p.net}`;
 			      })
@@ -244,7 +261,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
   case 'Pin':
     cx.pin = ast;
     cx.pin.chip = cx.chip;
-    cx.pin.fullName = cx.pin.chip.page.name + '.' + cx.pin.chip.name.name + '.' + cx.pin.pin;
+    cx.pin.fullName = cx.pin.chip.page.name + '.' + cx.pin.chip.name + '.' + cx.pin.pin;
     cx.pin.symbol = Symbol(cx.pin.fullName);
     cx.net = '';
 
@@ -276,7 +293,7 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 
     if (!cx.chip.logic[cx.pin.dir] || !cx.chip.logic[cx.pin.dir][cx.pin.pin]) {
       console.log(`\
-======>  ${cx.chip.name.name} undefined pin ${cx.pin.pin} ${cx.pin.dir} for ${cx.chip.type}`);
+======>  ${cx.chip.name} undefined pin ${cx.pin.pin} ${cx.pin.dir} for ${cx.chip.type}`);
     }
 
     cx.pin.netName = cx.net.trim();
@@ -442,7 +459,7 @@ function compile(simOptions) {
       board.chips = slot.board.pages.reduce((chips, page) => {
 
 	(page.chips || []).forEach(astChip => {
-	  const name = astChip.name.name;
+	  const name = astChip.name;
 
 	  if (chips[name]) {
 	    console.error(`\

@@ -1,33 +1,41 @@
 {
   const util = require('util');
+  const astDirToDir = options.astDirToDir;
 
   var chip;
   var page;
+  var wires = {};
   var nets = {};
   var bpPins = {};
 
 
   function AST(nodeType, props) {
-//    console.log(`${nodeType}: ${require('util').inspect(props, {depth: 9})}`);
     const loc = location();
+
+    // So we can util.inspect() our location() values with readable results.
     loc[util.inspect.custom] = function() {
-      return `@${this.start.line}:${this.start.column}:${this.start.offset}..${this.end.line}:${this.end.column}:${this.end.offset}`;
-    }
+      const [s, e] = [this.start, this.end];
+      return `@${s.line}:${s.column}:${s.offset}..${e.line}:${e.column}:${e.offset}`;
+    };
+
     return {nodeType, location: loc, ...props};
   }
 
 
   function addNet(page, chip, pin, dir, bpPin, net) {
+    const pinNet = net.list;
     net = net.text;
 
     if (!nets[net]) nets[net] = [];
 
-    const n = {net, page, chip, pin, dir, bpPin};
+    const n = {net, bpPin, pinNet, page, chip, pin, dir};
+    const key = `${chip.name}.${astDirToDir(dir)}.${pin}`;
+    wires[key] = n;
     nets[net].push(n);
 
     if (bpPin) {
-      if (!bpPins[bpPin]) bpPins[bpPin] = [];
-      bpPins[bpPin].push(n);
+      if (!bpPins[bpPin]) bpPins[bpPin] = {};
+      bpPins[bpPin][key] = n;
     }
   }
 }
@@ -41,8 +49,8 @@ backplane = 'Backplane' _ ':' _
 	slots:slotDef+
                 { return AST('Backplane', {name, macros, slots}) }
 
-slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines wires:wireDef* blankLines?
-                { return AST('Slot', {n, board, wires, bpPins: {}}) }
+slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines slotWires:wireDef* blankLines?
+                { return AST('Slot', {n, board, slotWires, bpPins: {}}) }
 
 slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
 	id:simpleID _ comments:$( !EOL . )*
@@ -57,7 +65,12 @@ wireDef = _ slotPin:bpPinID _ farPin:bpPinID '[' slot:number ']' _ name:id _ bla
 stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
 	    	{ return AST('Stub', {pages: p}) }
 
-board = pages:(page / warning)+ { return AST('Board', {pages, nets, bpPins}) }
+board = pages:(page / warning)+
+		{ const b = AST('Board', {pages, nets, wires, bpPins});
+		  wires = {};
+		  nets = {};
+		  bpPins = {};
+		  return b; }
 
 page = p:pageDef n:chipDef*
 		{ p.chips = n; return p }
@@ -73,9 +86,9 @@ warning = _ '%warning' _ s:$( !EOL . )* blankLines
 chipDef = h:chipHead p:pinDef+
 		{ h.pins = p; return h }
 
-chipHead = !'Page' name:idChunk ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
+chipHead = !'Page' name:$idChunk ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
 		{ chip = {name, type, desc};
-		  return AST('Chip', {name, type, desc}); }
+		  return AST('Chip', chip); }
 
 pinDef = [ \t]+ pin:number _ dir:direction _ bpPin:bpPin? _ net:net blankLines
 		{ addNet(page, chip, pin, dir, bpPin, net);
