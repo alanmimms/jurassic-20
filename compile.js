@@ -40,7 +40,7 @@ function parseBackplanes(parser) {
   const filename = options.src;
   const bpAST = parseFile(parser, filename)[0];
 
-  if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.before.evaluation`, util.inspect(bpAST, {depth: 9999}));
+  if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.before.evaluation`, dumpThing(bpAST));
 
   // Build bpMacroEnv which is the basis of macros used for each board.
   const bpMacroEnv = {};
@@ -73,8 +73,8 @@ function parseBackplanes(parser) {
       // * bpPins[${bpPin}][${chipName}.${dir}.${pinNumber}]
       //   * wires[] reference
 
-      if (options.dumpNets) fs.writeFileSync(`${id}.nets`, util.inspect(board.nets, {depth: 5}))
-      if (options.dumpWires) fs.writeFileSync(`${id}.wires`, util.inspect(board.wires, {depth: 9}))
+      if (options.dumpNets) fs.writeFileSync(`${id}.nets`, dumpThing(board.nets))
+      if (options.dumpWires) fs.writeFileSync(`${id}.wires`, dumpThing(board.wires))
 
       if (board.bpPins && options.dumpBpPins) {
 	fs.writeFileSync(`${id}.bp-pins`,
@@ -121,7 +121,7 @@ ${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${p.net}`;
       slot.board = {slotName, ... board, ... boardAST};
     });
 
-  if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.after.evaluation`, util.inspect(bpAST, {depth: 9999}));
+  if (options.dumpAst) fs.writeFileSync(`${bpAST.name}.after.evaluation`, dumpThing(bpAST));
   return bpAST;
 }
 
@@ -415,7 +415,7 @@ function compile(simOptions) {
 		     util.inspect(cramDefs, {
 		       depth: 99,
 		       breakLength: 90,
-		       maxArrayLength: null
+		       maxArrayLength: Infinity,
 		     }));
   }
 
@@ -505,7 +505,7 @@ ${util.inspect(chips[name].location)}`);
       }, {});
     });
 
-  if (options.dumpBackplane) fs.writeFileSync('bp.dump', util.inspect(bp, {depth: 99}));
+  if (options.dumpBackplane) fs.writeFileSync('bp.dump', dumpThing(bp));
 
   definePinsAndNets(bp, cramDefs);
   verilogifyNetNames(bp);
@@ -717,6 +717,11 @@ function canonicalize(net) {
 
   // If not negated net name just return as-is.
   return net;
+}
+
+
+function dumpThing(thing) {
+  return util.inspect(thing, {depth: 5, maxArrayLength: Infinity});
 }
 
 
