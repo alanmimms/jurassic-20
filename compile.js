@@ -66,8 +66,8 @@ function parseBackplanes(parser) {
       //   * pinNumber
       //   * dir
       //   * bpPin
-      //   * lNet (canonicalized local net name without macro expansion)
-      //   * pinNet (tree of macros to be expanded for slot-specific gNet name)
+      //   * net (local net name without macro expansion)
+      //   * netAST (tree of macros to be expanded for slot-specific gNet name)
       //   * pdfRef
       //
       // * bpPins[${bpPin}][${chipName}.${dir}.${pinNumber}]

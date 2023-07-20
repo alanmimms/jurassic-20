@@ -23,12 +23,12 @@
 
 
   function addNet(page, chip, pin, dir, bpPin, net) {
-    const pinNet = net.list;
+    const netAST = net.list;
     net = net.text;
 
     if (!nets[net]) nets[net] = [];
 
-    const n = {net, bpPin, pinNet, page, chip, pin, dir};
+    const n = {net, bpPin, netAST, page, chip, pin, dir};
     const key = `${chip.name}.${astDirToDir(dir)}.${pin}`;
     wires[key] = n;
     nets[net].push(n);
