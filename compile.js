@@ -735,7 +735,7 @@ function netNameSort(a, b) {
 }
 
 
-// Convert a net name of the form '- xyz l' to 'xyz h' or '- xyz h' to 'xyz l'.
+// Convert a net name of the form '-xyz l' to 'xyz h' or '-xyz h' to 'xyz l'.
 function canonicalize(net) {
 
   if (net.slice(0, 1) == '-') {
