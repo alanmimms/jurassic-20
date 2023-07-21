@@ -133,8 +133,9 @@ function bindSlots(bp) {
 
 	if (!gNets.every(e => e == gNets[0])) {
 	  console.error(`
-Not all nets on ${slotName}.${id}.${bpp} are the same net:
-  ${gNets.join('\n  ')}`);
+ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
+  ${gNets.join('\n  ')}
+`);
 	}
 
 	slot.bpPins[bpp] = { gNet: gNets[0], wire: wires[0] };
