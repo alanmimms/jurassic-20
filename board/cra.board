@@ -319,7 +319,7 @@ e2:  10164 8 mixer
 e16: 10164 mixer
      6 ~< {bf1} scd2 fe sign h
      5 ~< {bf1} scd2 fe sign h
-     4 ~< {be2} ar 08 h
+     4 ~< {be2} ar 00 h
      3 ~< {bh2} dram b 08 h
      11 ~< {bc1} scd4 fpd h
      12 ~< {bd1} ir norm 08 h
