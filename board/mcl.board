@@ -99,7 +99,7 @@ e44: 10101 quad or/nor
      4 ~< {cr1} cram # 00 b h
      2 ~> mcl5 # 00 l
      5 ~> %NC%
-     13 ~< {ft2} cram # 08 h
+     13 ~< {ft2} cram # 08 b h
      15 ~> mcl5 # 08 l
      9 ~> %NC%
      7 ~< {ee2} mr reset 04 h
@@ -216,7 +216,7 @@ e26: 10164 8 mixer
      6 ~< {br1} vma held or pc 04 h
      5 ~< {br2} vma held or pc 10 h
      4 ~< {bs2} mcl4 xr previous h
-     3 ~< {ch2} mcl5 vma adr epr h
+     3 ~< {ch2} mcl5 vma adr err h
      11 ~< {bm1} -mcl5 vmax en h
      12 ~< {bn1} mcl4 vmax sel 2 h
      13 ~< {bp2} mcl4 vmax sel 1 h
@@ -658,7 +658,7 @@ e31: 10158 4x2 mixer
      10 ~< mcl3-e32-3
      9 ~< {ce1} con cond/sel vma l
      1 ~> {bf1} vma held or pc 09 h
-     2 ~> {bp2} vma held or pc 10 h
+     2 ~> {br2} vma held or pc 10 h
      15 ~> {cm2} vma held or pc 11 h
      14 ~> {ce2} vma held or pc 12 h
 
@@ -1107,7 +1107,7 @@ e22: 10105 2-3-2 or/nor
      10 ~< {aj1} -mcl6 page uebr ref l
      11 ~< {cc1} mcl6 ebox may be paged l
      6 ~> %NC%
-     7 ~> {ap1} mcl6 page fetch l
+     7 ~> {ap1} mcl6 paged fetch l
 
 e49: 10104 quad and/nand
      12 ~< {fd2} con cache load en h
