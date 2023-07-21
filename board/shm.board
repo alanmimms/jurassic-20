@@ -319,7 +319,7 @@ e62: 10174 2x4 mixer
      6 ~< %NC%
      13 ~< {es2} ar 18 b h
      11 ~< {fm1} ar 34 b h
-     12 ~< {dv2} arx 14 a h
+     12 ~< {dv2} arx 14 h
      10 ~< {fm1} ar 34 b h
      9 ~< shm1 shift 32 a h
      7 ~< shm1 shift 16 a h
@@ -334,7 +334,7 @@ e72: 10174 2x4 mixer
      6 ~< %NC%
      13 ~< {fp2} ar 19 b h
      11 ~< {fd1} ar 35 b h
-     12 ~< {ff1} arx 15 a h
+     12 ~< {ff1} arx 15 h
      10 ~< {fd1} ar 35 b h
      9 ~< shm1 shift 32 a h
      7 ~< shm1 shift 16 a h
@@ -347,7 +347,7 @@ e59: 10174 2x4 mixer
      5 ~< {ee2} ar 20 b h
      4 ~< {du2} arx 00 a h
      6 ~< {ee2} ar 20 b h
-     13 ~< {ee2} ar 19 b h
+     13 ~< {ee2} ar 20 b h
      11 ~< {du2} arx 00 a h
      12 ~< {ds2} arx 16 h
      10 ~< {ej2} ar 00 b h
@@ -403,7 +403,7 @@ e78: 10174 2x4 mixer
      15 ~> shm2 sh 23a h
 
 e54: 10174 2x4 mixer
-     3 ~< {ep2} ar 080 b h
+     3 ~< {ep2} ar 08 b h
      5 ~< {fj2} ar 24 b h
      4 ~< {dl1} arx 04 h
      6 ~< {fj2} ar 24 b h
