@@ -149,7 +149,7 @@ e34: 10164 8 mixer
      3 ~< {dl2} ctl mqm sel 1 h
      11 ~< {bv2} ctl mq sel 2 h
      12 ~< {bu2} ctl mq sel 1 h
-     13 ~< {bh2} ctl mqm en h
+     13 ~< {dh2} ctl mqm en h
      14 ~< {df1} -ctl3 diag ld ebus reg h
      10 ~< ctl3 ds 04 h
      9 ~< ctl3 ds 05 h
@@ -295,7 +295,7 @@ e11: 10121 4-wide or-and
      12 ~< ctl1 spec/save flags h
      13 ~< ctl1 spec/inh cry 18 h
      14 ~< ctl1 spec/save flags h
-     15 ~< {cn1} mcl2 short stack h
+     15 ~< {cn1} mcl4 short stack h
 
 e10: 10101 quad or/nor
      4 ~< {bd2} -cram ad cry l
@@ -537,7 +537,7 @@ e50: 10117 dual 2-3 or-and
      10 ~< ctl2-e44-2
      11 ~< {fl2} clk4 resp mbox h
      14 ~> %NC%
-     15 ~> {ee1} ctl arr sel 1 h
+     15 ~> {ef2} ctl arr sel 1 h
 
 e53: 10117 dual 2-3 or-and
      4 ~< {fu2} mcl load arx h
