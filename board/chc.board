@@ -197,7 +197,7 @@ e31: 10101 quad or/nor
      3 ~> {cv2} ch start intr l
      6 ~> %NC%
      13 ~< {cs2} ch done intr h
-     15 ~> {du2} ch done intr l
+     15 ~> {cu2} ch done intr l
      9 ~> %NC%
 
 e3:  10176 hex dff
@@ -1081,7 +1081,7 @@ e16: 10164 8 mixer
      11 ~< {be2} cbus ready e h
      12 ~< {bf2} cbus last word e h
      13 ~< {bh2} cbus error e h
-     14 ~< {bj2} ch bus req h
+     14 ~< {bj2} ch cbus req h
      10 ~< {cc1} ch diag 04 h
      9 ~< {ca1} ch diag 05 h
      7 ~< {aj1} ch diag 06 h

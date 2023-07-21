@@ -328,7 +328,7 @@ e26: 10174 2x4 mixer
      5 ~< {fr1} -mbox adr par err h
      4 ~< {cj1} -chan adr par err h
      6 ~< ebus reg 15 h
-     13 ~< {cf2} -char par err h
+     13 ~< {cf2} -chan par err h
      11 ~< {ce1} cbus par left te h
      12 ~< {cd1} cbus par right te h
      10 ~< ebus reg 16 h

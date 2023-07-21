@@ -116,7 +116,7 @@ e69: 10147 128x1 RAM
      13 ~< %NC%
      14 ~< %NC%
      12 ~< cha2 write 0 b l
-     11 ~< {dj1} pma 21 h
+     11 ~< {ej1} pma 21 h
      15 ~> {dk1} csh dir 21 0 h
 
 e89: 10147 128x1 RAM
@@ -272,7 +272,7 @@ e63: 10147 128x1 RAM
      13 ~< %NC%
      14 ~< %NC%
      12 ~< cha2 write 1 b l
-     11 ~< {ed2} pma 21 h
+     11 ~< {ed2} pma 20 h
      15 ~> {dm1} csh dir 20 1 h
 
 e68: 10147 128x1 RAM
@@ -286,7 +286,7 @@ e68: 10147 128x1 RAM
      13 ~< %NC%
      14 ~< %NC%
      12 ~< cha2 write 1 b l
-     11 ~< {dj1} pma 21 h
+     11 ~< {ej1} pma 21 h
      15 ~> {dm2} csh dir 21 1 h
 
 e88: 10147 128x1 RAM
@@ -512,7 +512,7 @@ e67: 10147 128x1 RAM
      13 ~< %NC%
      14 ~< %NC%
      12 ~< cha2 write 2 b l
-     11 ~< {dj1} pma 21 h
+     11 ~< {ej1} pma 21 h
      15 ~> {dv2} csh dir 21 2 h
 
 e72: 10147 128x1 RAM
@@ -668,7 +668,7 @@ e61: 10147 128x1 RAM
      13 ~< %NC%
      14 ~< %NC%
      12 ~< cha2 write 3 b l
-     11 ~< {ed2} pma 21 h
+     11 ~< {ed2} pma 20 h
      15 ~> {dr2} csh dir 20 3 h
 
 e66: 10147 128x1 RAM
@@ -682,7 +682,7 @@ e66: 10147 128x1 RAM
      13 ~< %NC%
      14 ~< %NC%
      12 ~< cha2 write 3 b l
-     11 ~< {dj1} pma 21 h
+     11 ~< {ej1} pma 21 h
      15 ~> {ds2} csh dir 21 3 h
 
 e86: 10147 128x1 RAM
@@ -1159,14 +1159,14 @@ e24: 10109 4/5 or/nor
      5 ~< cha3 csh 2 wd 1 wr h
      6 ~< cha3 csh 2 wd 2 wr h
      7 ~< cha3 csh 2 wd 3 wr h
-     3 ~> {al2} csh 2 any wr l
+     3 ~> {bl2} csh 2 any wr l
      2 ~> %NC%
      9 ~< %NC%
      10 ~< cha3 csh 3 wd 0 wr h
      11 ~< cha3 csh 3 wd 1 wr h
      12 ~< cha3 csh 3 wd 2 wr h
      13 ~< cha3 csh 3 wd 3 wr h
-     14 ~> {aj2} csh 3 any wr l
+     14 ~> {be2} csh 3 any wr l
      15 ~> %NC%
 
 e14: 10174 2x4 mixer

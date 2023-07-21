@@ -75,7 +75,7 @@ e48: 10113 quad 2 xor
      11 ~< {cf1} csh dir 17 1 h
      10 ~< {cr1} pt 17 b h
      14 ~> chx1-e48-3
-     9 ~< {fk1} force valid match 1 h
+     9 ~< {ck1} force valid match 1 h
 
 e57: 10113 quad 2 xor
      7 ~< {dt2} csh dir 18 1 h
@@ -90,7 +90,7 @@ e57: 10113 quad 2 xor
      11 ~< {dm2} csh dir 21 1 h
      10 ~< {dk2} pt 21 b h
      14 ~> chx1-e57-3
-     9 ~< {fk1} force valid match 1 h
+     9 ~< {ck1} force valid match 1 h
 
 e66: 10113 quad 2 xor
      7 ~< {ep2} csh dir 22 1 h
@@ -105,7 +105,7 @@ e66: 10113 quad 2 xor
      11 ~< {el1} csh dir 25 1 h
      10 ~< {em2} pt 25 b h
      14 ~> chx1-e66-3
-     9 ~< {fk1} force valid match 1 h
+     9 ~< {ck1} force valid match 1 h
 
 e76: 10113 quad 2 xor
      7 ~< {fl2} csh dir 26 1 h
@@ -120,7 +120,7 @@ e76: 10113 quad 2 xor
      11 ~< %NC%
      10 ~< %NC%
      14 ~> %NC%
-     9 ~< {fk1} force valid match 1 h
+     9 ~< {ck1} force valid match 1 h
 
 
 e52: 10113 quad 2 xor
@@ -169,7 +169,7 @@ e71: 10113 quad 2 xor
      9 ~< {dh2} force valid match 2 h
 
 e81: 10113 quad 2 xor
-     7 ~< {fl2} csh dir 26 2 h
+     7 ~< {fu2} csh dir 26 2 h
      6 ~< {fl1} pt 26 b h
      3 ~> chx1-e81-3
      4 ~< -csh 2 any val h
@@ -194,8 +194,8 @@ e47: 10113 quad 2 xor
      13 ~< {dc1} csh dir 16 3 h
      12 ~< {cn1} pt 16 b h
      15 ~> chx1-e47-3
-     11 ~< {ds2} csh dir 17 3 h
-     10 ~< {dd2} pt 17 b h
+     11 ~< {dd2} csh dir 17 3 h
+     10 ~< {cr1} pt 17 b h
      14 ~> chx1-e47-3
      9 ~< {dd1} force valid match 3 h
 
@@ -209,7 +209,7 @@ e56: 10113 quad 2 xor
      13 ~< {dr2} csh dir 20 3 h
      12 ~< {dj2} pt 20 b h
      15 ~> chx1-e56-3
-     11 ~< {dr2} csh dir 21 3 h
+     11 ~< {ds2} csh dir 21 3 h
      10 ~< {dk2} pt 21 b h
      14 ~> chx1-e56-3
      9 ~< {dd1} force valid match 3 h
@@ -221,7 +221,7 @@ e65: 10113 quad 2 xor
      4 ~< {er1} csh dir 23 3 h
      5 ~< {er2} pt 23 b h
      2 ~> chx1-e65-3
-     13 ~< {dl1} csh dir 24 3 h
+     13 ~< {el2} csh dir 24 3 h
      12 ~< {ed2} pt 24 b h
      15 ~> chx1-e65-3
      11 ~< {em1} csh dir 25 3 h
@@ -429,7 +429,7 @@ e59: 10174 2x4 mixer
 e73: 10174 2x4 mixer
      3 ~< {eh2} csh dir 22 0 h
      5 ~< {ep2} csh dir 22 1 h
-     4 ~< {ed1} csh dir 22 2 h
+     4 ~< {fd1} csh dir 22 2 h
      6 ~< {es2} csh dir 22 3 h
      13 ~< {ef2} csh dir 23 0 h
      11 ~< {ep1} csh dir 23 1 h
@@ -1152,16 +1152,16 @@ e60: 10160 parity
      2 ~> csh dir 2 par odd h
 
 e55: 10160 parity
-     3 ~< {dl2} csh dir 14 3 h
-     4 ~< {dl1} csh dir 15 3 h
-     5 ~< {ca1} csh dir 16 3 h
-     6 ~< {ce1} csh dir 17 3 h
-     7 ~< {ef1} csh dir 18 3 h
-     9 ~< {ee2} csh dir 19 3 h
-     10 ~< {du2} csh dir 20 3 h
-     11 ~< {dv2} csh dir 21 3 h
-     12 ~< {fd1} csh dir 22 3 h
-     13 ~< {fe1} csh dir 23 3 h
+     3 ~< {df2} csh dir 14 3 h
+     4 ~< {de1} csh dir 15 3 h
+     5 ~< {dc1} csh dir 16 3 h
+     6 ~< {dd2} csh dir 17 3 h
+     7 ~< {ea1} csh dir 18 3 h
+     9 ~< {ec1} csh dir 19 3 h
+     10 ~< {dr2} csh dir 20 3 h
+     11 ~< {ds2} csh dir 21 3 h
+     12 ~< {es2} csh dir 22 3 h
+     13 ~< {er1} csh dir 23 3 h
      14 ~< chx4-e79-15
      15 ~< chx4-e79-14
      2 ~> csh dir 3 par odd h

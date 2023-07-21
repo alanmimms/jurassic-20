@@ -180,11 +180,11 @@ e51: 10164 8 mixer
      6 ~< ccl err req h
      5 ~< ccl store ccw h
      4 ~< {ek2} ccl ccwf req h
-     3 ~< {cv2} ccl chan req h
+     3 ~< {dv2} ccl chan req h
      11 ~< {ds2} ccl ch mb sel 2 h
      12 ~< ccl chwf t2 h
      13 ~< ccl mb rip a h
-     14 ~< {dp2} ccl odd wc par h
+     14 ~< {dr2} ccl odd wc par h
      10 ~< {da1} -ch diag 04 h
      9 ~< {dc1} -ch diag 05 h
      7 ~< {de1} -ch diag 06 h
@@ -195,7 +195,7 @@ e56: 10164 8 mixer
      6 ~< -ccl csh chan cyc h
      5 ~< {ej1} ccl buf adr 3 h
      4 ~< ccl act flag req h
-     3 ~< {ah2} ccl chan ept h
+     3 ~< {eh2} ccl chan ept h
      11 ~< {ee2} ccl ch mb sel 1 h
      12 ~< ccl mb req t2 h
      13 ~< {ee1} -ccl alu minus h
@@ -329,7 +329,7 @@ e50: 10101 quad or/nor
      10 ~< {cm2} ccw buf 00 in h
      14 ~> {dr1} ccw buf 00 in l
      11 ~> %NC%
-     13 ~< {ds1} ccw buf 00 in h
+     13 ~< {ds1} ccw buf 01 in h
      15 ~> {dp1} ccw buf 01 in h
      9 ~> %NC%
 
@@ -803,7 +803,7 @@ e66: 10136 binary counter
      5 ~< %NC%
      6 ~< %NC%
      11 ~< {ep2} ccw cha 34 h
-     12 ~< {en1} ccw cha 34 h
+     12 ~< {en1} ccw cha 35 h
      10 ~< %NC%
      7 ~< ccl4-e61-15
      9 ~< ccl4-e61-2

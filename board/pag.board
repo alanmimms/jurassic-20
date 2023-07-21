@@ -1328,12 +1328,12 @@ e70: 10160 parity
      6 ~< {fv2} pt software h
      7 ~< {fa1} pt cache h
      9 ~< {df1} pt 14 b h
-     10 ~< {df1} pt 15 b h
-     11 ~< {df1} pt 16 b h
-     12 ~< {df1} pt 17 b h
-     13 ~< {df1} pt 18 b h
-     14 ~< {df1} pt 19 b h
-     15 ~< {df1} pt 20 b h
+     10 ~< {de2} pt 15 b h
+     11 ~< {cn1} pt 16 b h
+     12 ~< {cr1} pt 17 b h
+     13 ~< {dp2} pt 18 b h
+     14 ~< {dp1} pt 19 b h
+     15 ~< {dj2} pt 20 b h
      2 ~> pag5-e70-2
 
 e22: 10160 parity

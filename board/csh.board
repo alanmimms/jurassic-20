@@ -522,7 +522,7 @@ e4:  10121 4-wide or-and
 e14: 10176 hex dff
      5 ~< csh2-e4-2
      9 ~< csh1 clk e h
-     2 ~> {fs1} csh2 e core rd rq l
+     2 ~> {fs2} csh2 e core rd rq l
      12 ~< csh2-e4-2
      15 ~> csh2 e core rd rq a l
      11 ~< csh2-e9-15
@@ -624,7 +624,7 @@ e28: 10104 quad and/nand
      11 ~< csh3-e11-7
      14 ~> {br1} load ebus reg l
      4 ~< {bt2} csh5 page refill t12 l
-     5 ~< {cj2} csh5 page refill t9 l
+     5 ~< {cj1} csh5 page refill t9 l
      2 ~> csh5 page refill t9,12 l
 
 e38: 10121 4-wide or-and
@@ -700,7 +700,7 @@ e30: 10104 quad and/nand
      9 ~> csh6-e30-9
      15 ~> csh6 ki10 paging mode h
      10 ~< csh4 page fail t3 l
-     11 ~< {bt2} csh5 apge refill t12 l
+     11 ~< {bt2} csh5 page refill t12 l
      14 ~> csh6-e30-9
      4 ~< csh6-e30-9
      5 ~< csh6-e30-9
@@ -815,7 +815,7 @@ e5:  10101 quad or/nor
 
 e42: 10109 4/5 or/nor
      4 ~< csh5 page refill t11 h
-     5 ~< {fp1} csh6 wr from mem nxt h
+     5 ~< {fp1} csh6 wr from mem next h
      6 ~< csh3-e50-9
      7 ~< {ce1} chan read h
      3 ~> {fm2} csh3 mb wr rq clr nxt l
@@ -1022,7 +1022,7 @@ e25: 10117 dual 2-3 or-and
 e85: 10118 triple 4-2 or-and
      14 ~< csh5 page refill t10 l
      13 ~< {fv2} core busy l
-     12 ~< {du2} -mbx2 mb sel hold ff l
+     12 ~< {fu2} -mbx2 mb sel hold ff l
      11 ~< %NC%
      10 ~< csh5 page refill t13 l
      9 ~< %NC%
@@ -1094,7 +1094,7 @@ e1:  10121 4-wide or-and
      12 ~< %NC%
      13 ~< %NC%
      14 ~< -csh3 any written match h
-     15 ~< {ac1} -mbox1 csh cca val core h
+     15 ~< {ac1} -mbx1 csh cca val core h
      3 ~> csh6-e1-3
      2 ~> %NC%
 
@@ -1190,6 +1190,8 @@ e32: 10164 8 mixer
      2 ~< csh7-e56-6
      15 ~> {cd1} ebus d24 e h
 
+// There's a blank in PDF30 where the second digit of this reference
+// designator should be. I picked e27 because it's otherwise unused.
 e27: 10164 8 mixer
      14 ~< -csh2 wr test h
      13 ~< {cn1} csh6 ebox load reg h
@@ -1197,7 +1199,7 @@ e27: 10164 8 mixer
      11 ~< {cr1} csh lru 1 h
      3 ~< {cp1} -csh 3 any wr h
      4 ~< {cm2} -csh 1 any wr h
-     5 ~< {dl2} -csh 2 any wr h
+     5 ~< {cl2} -csh 2 any wr h
      6 ~< {ck2} -csh 0 any wr h
      10 ~< csh7-e50-3
      9 ~< csh7-e56-14

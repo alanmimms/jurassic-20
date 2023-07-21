@@ -189,7 +189,7 @@ e71: 10176 hex dff
      7 ~< {fk2} ccw mix 20 h
      10 ~< {fh2} ccw mix 21 h
      11 ~< {fj2} ccw mix 22 h
-     12 ~< {fe1} ccw mix 23 h
+     12 ~< {fe2} ccw mix 23 h
      9 ~< ccw reg load h
      2 ~> {ds2} ccw cha 18 h
      3 ~> {cp2} ccw cha 19 h
@@ -283,7 +283,7 @@ e33: 10158 4x2 mixer
      9 ~< ccw2-e55-3
      1 ~> {cj2} ccw cha 31 h
      2 ~> {ec1} ccw cha 32 h
-     15 ~> {cp1} ccw cha 34 h
+     15 ~> {cp1} ccw cha 33 h
      14 ~> {de1} ccw cha 35 h
 
 dl1: delay-line (PCB wired)
@@ -353,8 +353,8 @@ e67: 10181 ALU
      5 ~> ccw alu c16 h
      6 ~> {fp1} ccw buf 16 in h
      7 ~> {fs2} ccw buf 17 in h
-     3 ~> {fm1} ccw buf 14 in h
-     2 ~> {fn1} ccw buf 15 in h
+     3 ~> {fm1} ccw buf 18 in h
+     2 ~> {fn1} ccw buf 19 in h
      4 ~> %NC%
      8 ~> %NC%
 

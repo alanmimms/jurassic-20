@@ -778,11 +778,11 @@ Page: MB04, PDF77
 e57: 10158 4x2 mixer
      5 ~< {fc1} ar [n+00] a h
      6 ~< mb ch buf [n+00] h
-     3 ~< {fc1} ar [n+01] a h
+     3 ~< {fd1} ar [n+01] a h
      4 ~< mb ch buf [n+01] h
-     12 ~< {fc1} ar [n+02] a h
+     12 ~< {eu2} ar [n+02] a h
      13 ~< mb ch buf [n+02] h
-     10 ~< {fc1} ar [n+03] a h
+     10 ~< {ev2} ar [n+03] a h
      11 ~< mb ch buf [n+03] h
      9 ~< mb in sel 1 a h
      1 ~> mb [n+00] in a h
@@ -791,13 +791,13 @@ e57: 10158 4x2 mixer
      14 ~> mb [n+03] in a h
 
 e38: 10158 4x2 mixer
-     5 ~< {fc1} ar [n+04] a h
+     5 ~< {cv2} ar [n+04] a h
      6 ~< mb ch buf [n+04] h
-     3 ~< {fc1} ar [n+05] a h
+     3 ~< {bu2} ar [n+05] a h
      4 ~< mb ch buf [n+05] h
-     12 ~< {fc1} ar [n+18] a h
+     12 ~< {dd2} ar [n+18] a h
      13 ~< mb ch buf [n+18] h
-     10 ~< {fc1} ar [n+19] a h
+     10 ~< {cs2} ar [n+19] a h
      11 ~< mb ch buf [n+19] h
      9 ~< mb in sel 1 a h
      1 ~> mb [n+04] in a h
@@ -806,13 +806,13 @@ e38: 10158 4x2 mixer
      14 ~> mb [n+19] in a h
 
 e19: 10158 4x2 mixer
-     5 ~< {fc1} ar [n+20] a h
+     5 ~< {bp1} ar [n+20] a h
      6 ~< mb ch buf [n+20] h
-     3 ~< {fc1} ar [n+21] a h
+     3 ~< {bj2} ar [n+21] a h
      4 ~< mb ch buf [n+21] h
-     12 ~< {fc1} ar [n+22] a h
+     12 ~< {bm2} ar [n+22] a h
      13 ~< mb ch buf [n+22] h
-     10 ~< {fc1} ar [n+23] a h
+     10 ~< {bf1} ar [n+23] a h
      11 ~< mb ch buf [n+23] h
      9 ~< mb in sel 1 a h
      1 ~> mb [n+20] in a h
@@ -932,9 +932,9 @@ e66: 10158 4x2 mixer
      3 ~< mb04-e70-1
      4 ~< {dr2} mb [n+01] h
      12 ~< mb04-e70-15
-     13 ~< {dp2} mb [n+00] h
+     13 ~< {dp2} mb [n+02] h
      10 ~< mb04-e70-14
-     11 ~< {dm1} mb [n+00] h
+     11 ~< {dm1} mb [n+03] h
      9 ~< {es1} ccl mix mb sel h
      1 ~> {ek2} ccw mix [n+00] h
      2 ~> {eh2} ccw mix [n+01] h
@@ -1063,7 +1063,7 @@ e23: 10173 4x2 mixer latch
      12 ~< {be1} cbus d[n+22] re h
      13 ~< {br1} cbus d[n+04] re h
      10 ~< {bl1} cbus d[n+23] re h
-     11 ~< {bd2} cbus d[n+04] re h
+     11 ~< {bd2} cbus d[n+05] re h
      9 ~< {bd1} ch reverse h
      7 ~< ch reg hold h
      1 ~> ch reg [n+20] h

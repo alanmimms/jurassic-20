@@ -286,7 +286,7 @@ e80: 10110 or buffer
      12 ~> {ep2} cache data [n+01] a h
      13 ~> {ep1} cache data [n+01] b h
      14 ~> {er1} cache data [n+01] c h
-     5 ~< {er2} mem to cache [n+02] h
+     5 ~< {ff2} mem to cache [n+02] h
      6 ~< chd1 [n+02] a h
      7 ~< chd1 [n+02] b h
      2 ~> {es2} cache data [n+02] a h
@@ -562,7 +562,7 @@ e54: 10110 or buffer
      12 ~> {df1} cache data [n+03] a h
      13 ~> {df2} cache data [n+03] b h
      14 ~> {de1} cache data [n+03] c h
-     5 ~< {er2} mem to cache [n+04] h
+     5 ~< {cp1} mem to cache [n+04] h
      6 ~< chd2 [n+04] a h
      7 ~< chd2 [n+04] b h
      2 ~> {dm1} cache data [n+04] a h
@@ -1247,7 +1247,7 @@ e1:  10144 256x1 RAM
      15 ~> chd3 [n+08] b h
 
 e11: 10110 or buffer
-     9 ~< {cl1} mem to cache [n+07] h
+     9 ~< {av2} mem to cache [n+07] h
      10 ~< chd2 [n+07] a h
      11 ~< chd2 [n+07] b h
      12 ~> {ar1} cache data [n+07] a h
@@ -1475,4 +1475,4 @@ e83: 10144 256x1 RAM
      7 ~< -csh adr 35 a l
      14 ~< csh write b l
      13 ~< {fd1} csh par bit in h
-     15 ~> {dd1} csh par bit [n/9+00] b h
+     15 ~> {fa1} csh par bit [n/9+00] b h

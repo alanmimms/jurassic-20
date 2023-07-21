@@ -50,8 +50,8 @@ e4:  10141 shift register
 e10: 10141 shift register
      13 ~< %NC%
      12 ~< {al2} pma3 pa 31 h
-     11 ~< {ah2} pma3 pa 32 h
-     9 ~< {ae1} pma3 pa 33 h
+     11 ~< {ah2} pma4 pa 32 h
+     9 ~< {ae1} pma4 pa 33 h
      6 ~< %NC%
      5 ~< %NC%
      // Time critical
@@ -175,7 +175,7 @@ e7:  10174 2x4 mixer
      4 ~< mbc1 pma hold 31 h
      6 ~< %NC%
      13 ~< %NC%
-     11 ~< {ah2} pma3 pa 32 h
+     11 ~< {ah2} pma4 pa 32 h
      12 ~< mbc1 pma hold 32 h
      10 ~< %NC%
      9 ~< {aj1} mbx refill adr en h
@@ -186,7 +186,7 @@ e7:  10174 2x4 mixer
 
 e2:  10174 2x4 mixer
      3 ~< %NC%
-     5 ~< {ae1} pma3 pa 33 h
+     5 ~< {ae1} pma4 pa 33 h
      4 ~< mbc1 pma hold 33 h
      6 ~< %NC%
      13 ~< %NC%
@@ -240,7 +240,7 @@ e23: 10174 2x4 mixer
      11 ~< mbc1 pma 35 a h
      12 ~< mbc1 pma hold 35 h
      10 ~< {bs1} mb sel 1 h
-     9 ~< {aj1} mbx1 refill adr en h
+     9 ~< {aj1} mbx refill adr en h
      7 ~< -mbc3 first wd adr sel h
      14 ~< %NC%
      2 ~> {cf1} cache adr 34 h
@@ -349,7 +349,7 @@ e24: 10176 hex dff
      12 ~< {bm2} mbc2 csh data clr t2 l
      15 ~> mbc2-e24-15
      10 ~< mbc2-e27-2
-     13 ~> {cp2} csh sekl lru h
+     13 ~> {cp2} csh sel lru h
      7 ~< mbc2-e27-5
      4 ~> {dm1} csh sel lur l
 
@@ -465,7 +465,7 @@ e31: 10101 quad or/nor
      3 ~> {cl2} cache wr 00 a l
      6 ~> mbc2 cache wr 00 a h
      13 ~< %NC%
-     15 ~> {ck2} cache wr 09 a l
+     15 ~> {ck1} cache wr 09 a l
      9 ~> mbc2 cache wr 09 a h
      10 ~< %NC%
      14 ~> {ch2} cache wr 18 a l
@@ -1045,9 +1045,9 @@ e19: 10161 decoder
      15 ~< -mbc3 rd pause 2nd half l
      2 ~< {et2} -csh2 one word rd l
      6 ~> {br1} csh 0 wr en l
-     4 ~> {br1} csh 1 wr en l
-     4 ~> {br1} csh 2 wr en l
-     3 ~> {br1} csh 3 wr en l
+     4 ~> {bd1} csh 1 wr en l
+     4 ~> {dc1} csh 2 wr en l
+     3 ~> {cf2} csh 3 wr en l
      13 ~> %NC%
      12 ~> %NC%
      11 ~> %NC%

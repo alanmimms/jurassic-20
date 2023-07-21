@@ -815,7 +815,7 @@ e50: 10162 decoder
      9 ~< {dk2} pi3 apr pia 02 h
      7 ~< {dr1} pi3 apr pia 01 h
      15 ~< %NC%
-     2 ~< {dn1} apr apr interrupt l
+     2 ~< {ds2} apr apr interrupt l
      6 ~> -pi3 apr phy no. h
      5 ~> pi3 pi01 h
      4 ~> pi3 pi02 h
@@ -831,7 +831,7 @@ e46z: 10113 quad 2 xor
      6 ~< {fn1} pi2 pi4 a h
      9 ~< %NC%
      3 ~> -pi3 dk20 phy no. h
-     4 ~< {cu2} pi3 mtr pi 02 h
+     4 ~< {cu2} pi3 mtr pia 02 h
      5 ~< pi2 pi2 h
      2 ~> -pi3 dk20 phy no. h
      13 ~< {ct2} pi3 mtr pia 01 h

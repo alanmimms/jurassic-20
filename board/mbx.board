@@ -1194,7 +1194,7 @@ e30: 10164 8 mixer
      15 ~> {cc1} ebus d34 e h
 
 e16: 10164 8 mixer
-     6 ~< {bf2} mbx5 rq in h
+     6 ~< {bf2} mbx5 rq 1 in h
      5 ~< {bf1} mbx5 rq 2 in h
      4 ~< {be2} mbx5 rq 3 in h
      3 ~< {be1} sbus adr 34 h

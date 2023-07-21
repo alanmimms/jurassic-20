@@ -735,7 +735,7 @@ e49: 10141 shift register
      13 ~< %NC%
      12 ~< {de1} pma3 pa 26 h
      11 ~< {de2} pma3 pa 27 h
-     9 ~< {dt2} pma3 pa 27 h
+     9 ~< {dt2} pma3 pa 28 h
      6 ~< {ea1} pma3 pa 29 h
      5 ~< %NC%
      7 ~< {dj1} hold era h
@@ -1079,7 +1079,7 @@ e68: 10104 quad and/nand
      9 ~> pma5 14-26 sel 2 l
      15 ~> pma5 14-26 sel 2 h
      4 ~< {ft2} -csh1 ready to go h
-     5 ~< {ep2} -mbx4 writeback t h
+     5 ~< {ep2} -mbx4 writeback t2 h
      2 ~> {fr2} pma5 cyc type hold h
      6 ~< pma5 32-33 sel 4 h
      7 ~< {eu2} -pma5 csh writeback cyc h

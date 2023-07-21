@@ -632,7 +632,10 @@ e65: 10164 8 mixer
      5 ~< apr4 ac+1 11 h
      4 ~< {fp2} shm1 xr 02 h
      3 ~< {fp1} vma1 vma 34 b h
-     11 ~< {fd1} apr4 ac+2 11 h
+     // This is clearly shown on PDF385 as <FT2> but this pin is also
+     // called APR4 AC 12 H, so I reassigned this signal to an
+     // otherwise unused backplane pin here.
+     11 ~< apr4 ac+2 11 h
      12 ~< apr4 ac+3 11 h
      13 ~< apr4 ac+# 11 h
      14 ~< {ak2} cram # 07 d h
@@ -644,11 +647,19 @@ e65: 10164 8 mixer
 
 e59: 10164 8 mixer
      6 ~< apr4 ac 12 h
-     5 ~< {ft2} apr4 ac+1 12 h
+     // This is clearly shown on PDF385 as <FT2> but this pin is also
+     // called APR4 AC 12 H. This is caused by the wire on PDF385 at
+     // grid C6-7. I just removed the backplane pin number from this
+     // usage here to solve this.
+     5 ~< apr4 ac+1 12 h
      4 ~< {fu2} shm1 xr 01 h
      3 ~< {fv2} vma1 vma 35 b h
      11 ~< apr4 ac+2 12 h
-     12 ~< {ft2} apr4 ac+3 12 h
+     // This is clearly shown on PDF385 as <FT2> but this pin is also
+     // called APR4 AC 12 H. This is caused by the wire on PDF385 at
+     // grid C1-3. I just removed the backplane pin number from this
+     // usage here to solve this.
+     12 ~< apr4 ac+3 12 h
      13 ~< apr4 ac+# 12 h
      14 ~< {am1} cram # 08 d h
      10 ~< {ed2} cram fm adr sel 4 h
@@ -681,7 +692,7 @@ w2:  wire just a wire
      2 ~> apr4 ac+2 11 h
 
 w3:  wire just a wire
-     1 ~< apr4 ac 12 h
+     1 ~< {ft2} -apr4 ac 12 h
      2 ~> apr4 ac+2 12 h
 
 w4:  wire just a wire
@@ -774,7 +785,7 @@ e71: 10164 8 mixer
      11 ~< apr5 current block 1 h
      12 ~< apr5 current block 1 h
      13 ~< apr5 current block 1 h
-     14 ~< {ap1} cram # 04 d h
+     14 ~< {ar2} cram # 04 d h
      10 ~< {ed2} cram fm adr sel 4 h
      9 ~< {ee1} cram fm adr sel 2s h
      7 ~< {ef2} cram fm adr sel 1 h
@@ -788,8 +799,8 @@ e68: 10141 shift register
      9 ~< apr1 ebus 08 h
      6 ~< %NC%
      5 ~< %NC%
-     7 ~< {er1} con load ac blocks l
-     10 ~< {er1} con load ac blocks l
+     7 ~< {er2} con load ac blocks l
+     10 ~< {er2} con load ac blocks l
      4 ~< apr2 clk a h
      14 ~> apr5 current block 4 h
      15 ~> apr5 current block 2 h
@@ -803,8 +814,8 @@ e63: 10141 shift register
      9 ~< apr1 ebus 11 h
      6 ~< %NC%
      5 ~< %NC%
-     7 ~< {er1} con load ac blocks l
-     10 ~< {er1} con load ac blocks l
+     7 ~< {er2} con load ac blocks l
+     10 ~< {er2} con load ac blocks l
      4 ~< apr2 clk a h
      14 ~> apr5 prev block 4 h
      15 ~> apr5 prev block 2 h
@@ -1091,7 +1102,7 @@ e6:  10162 decoder
      2 ~< apr6 reg func en l
      10 ~> {cd1} apr6 ebox ebr h
      11 ~> {cd2} apr6 ebox ubr h
-     12 ~> {as2} apr6 ebox spare h
+     12 ~> {as2} apr ebox spare h
      13 ~> %NC%
      3 ~> apr6-e6-3
      4 ~> %NC%
