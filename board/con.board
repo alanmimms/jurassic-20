@@ -98,7 +98,7 @@ e6: 10164 8 mix
      11 ~< {cn1} con cond/load vma held h
      12 ~< {et2} -con load spec instr h
      13 ~< {an1} -con vma sel 2 h
-     14 ~< {ar2} -con vma sel 2 h
+     14 ~< {ar2} -con vma sel 1 h
      10 ~< con1 diag 04 h
      9 ~< con1 diag 05 h
      7 ~< con1 diag 06 h
@@ -317,7 +317,7 @@ e28: 10117 dual 2-3 or-and
      9 ~< con1 reset h
      3 ~> con2 int req l
      2 ~> con2 int req h
-     13 ~< {dl1} [a,crm hi 00 h,-mcl vma section 0 l]
+     13 ~< {cl1} [a,crm hi 00 h,-mcl vma section 0 l]
      12 ~< con1 cond/long en l
      11 ~< {ep1} -mcl mbox cyc req l
      10 ~< {dm1} con2 long en l
@@ -490,7 +490,7 @@ e33: 10165 pri enc
      13 ~< con2 mtr int req h
      10 ~< con2 int req h
      11 ~< con4 ucode state 05 h
-     12 ~< {de2} -vm ac ref h
+     12 ~< {de2} -vma ac ref h
      9 ~< %NC%
      6 ~< -con5 pi cycle h
      14 ~> %NC%
@@ -578,7 +578,7 @@ e47: 10161 decoder active low
      14 ~< {dt2} cram # 03 e h
      9 ~< {dn1} cram # 04 e h
      7 ~< {em1} cram # 05 e h
-     15 ~< {dl1} -cram # 02 e l
+     15 ~< {el1} -cram # 02 e l
      2 ~< {ee1} con cond/diag func l
      6 ~> %NC%
      5 ~> con3 # func 01x l
@@ -599,7 +599,7 @@ e59: 10105 2-3-2 or/nor
      11 ~< {ba1} clk ebox sync a l
      6 ~> con5 clr pi cycle h
      7 ~> {fe2} con set pih l
-     4 ~< {fd1} ctl spec/flag ctl h
+     4 ~< {fd1} ctl spec/flag ctl l
      5 ~< con3 # 02 l
      3 ~> con5 clr pi cycle h
      2 ~> con-e59-2
