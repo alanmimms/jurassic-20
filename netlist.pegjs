@@ -47,7 +47,7 @@ backplane = 'Backplane' _ ':' _
 	macros:( '{' _ m:macroDef* '}' _ {return m} )?
 	name:simpleID _ EOL
 	slots:slotDef+
-                { return AST('Backplane', {name, macros, slots}) }
+                { return AST('Backplane', {name, macros, slots, boards: {}}) }
 
 slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines slotWires:wireDef* blankLines?
                 { return AST('Slot', {n, board, slotWires, bpPins: {}}) }
