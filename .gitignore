@@ -51,3 +51,4 @@ bp.pins
 *.bp-pins
 *.nets
 *.wires
+*.slot

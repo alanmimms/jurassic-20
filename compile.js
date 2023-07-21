@@ -6,10 +6,9 @@ const PEG = require('pegjs');
 
 const logic = require('./logic.js');
 
+
 // Provided by caller of `compile()`.
 var options;
-
-const boards = {};
 
 
 function parseFile(parser, filename) {
@@ -43,18 +42,18 @@ function parseBackplanes(parser) {
   if (options.dumpAst) fs.writeFileSync(`${bp.name}.before.evaluation`, dumpThing(bp));
 
   // For each slot for which we haven't already parsed the board netlist,
-  // parse it and save it in `boards` indexed by board ID (e.g., 'edp').
+  // parse it and save it in `bp.boards` indexed by board ID (e.g., 'edp').
   // While we're at it, accumulate the board's list of net names and what
   // is connected, remembering direction and PDF reference for each such.
   bp.slots
-    .filter(slot => slot.board && slot.board.id != 'ignore' && !boards[slot.board.id])
+    .filter(slot => slot.board && slot.board.id != 'ignore' && !bp.boards[slot.board.id])
     .forEach(slot => {
       const id = slot.board.id;
       const boardPath = `board/${id}.board`;
 
       console.log(`[parse ${boardPath}]`);
       const board = parseFile(parser, boardPath);
-      boards[id] = board;
+      bp.boards[id] = board;
 
       // This is `board` data structure:
       //
@@ -104,18 +103,19 @@ function bindSlots(bp) {
 
   console.log(`Backplane ${bp.name}:`);
 
-  // For each slot, (re)parse the board definition and expand its
-  // macros for the slot (and backplane, and CPU type) specifics.  The
-  // re-parsing makes each board's data structures a unique deep copy.
+  // For each slot, expand the board's macros for the slot (and
+  // backplane, and CPU type) specifics.
   bp.slots
     .filter(slot => slot.board && slot.board.id != 'ignore')
     .forEach(slot => {
-      const slotNumber = slot.n;
-      const slotName = `${bp.name}.${slotNumber.padStart(2, '0')}`;
-      const board = slot.board;
-      const id = board.id;
-      const macros = board.macros || [];
+      const slotNumber = slot.n.padStart(2, '0');
+      const slotName = `${bp.name}.${slotNumber}`;
+      const id = slot.board.id;
+      const board = bp.boards[id];
+      const macros = slot.board.macros || [];
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
+
+      console.log(`  Slot ${slotName}: ${id.padEnd(4)} ${macroDesc.padEnd(12)} ${slot.board.comments}`);
 
       // Each board macro env starts with copy of BP macro vars as
       // base, then we add this board's values, possibly overriding
@@ -123,86 +123,34 @@ function bindSlots(bp) {
       const macroEnv = {...bpMacroEnv};
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
-      console.log(`  Slot ${slotName}: ${id.padEnd(4)} ${macroDesc.padEnd(12)} ${board.comments}`);
+      Object.keys(board.bpPins).forEach(bpp => {
+	const wires = board.bpPins[bpp];
 
-      const boardAST = boards[id];
-      expandMacros(boardAST, bp, macroEnv);
-      slot.board = {slotName, ... board, ... boardAST};
+	const gNets = Object.values(wires).
+	      map(wire => wire.netAST ?
+		  canonicalize(wire.netAST.map(e => evalExpr(e, macroEnv)).join('')) :
+		  wire.net);
+
+	if (!gNets.every(e => e == gNets[0])) {
+	  console.error(`
+Not all nets on ${slotName}.${id}.${bpp} are the same net:
+  ${gNets.join('\n  ')}`);
+	}
+
+	slot.bpPins[bpp] = { gNet: gNets[0], wire: wires[0] };
+      });
+
+      if (options.dumpSlots) {
+	fs.writeFileSync(`${slotNumber}.${id}.slot`,
+			 Object.keys(slot.bpPins)
+			 .sort()
+			 .map(bpp => slot.bpPins[bpp].gNet)
+			 .join('\n'));
+      }
     });
 
   if (options.dumpAst) fs.writeFileSync(`${bp.name}.after.evaluation`, dumpThing(bp));
   return bp;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-function xxx(bp) {
-  bp.slots
-    .filter(slot => slot.board && slot.board.pages && slot.board.id != 'ignore')
-    .forEach(slot => {
-      const slotName = slot.board.slotName;
-
-      const board = {
-	slotName,
-	id: slot.board.id,
-	comments: slot.board.comments,
-	location: slot.board.location,
-
-	macros: (slot.board.macros || []).reduce((macros, mac) =>
-	  macros.concat(`${mac.id}=${mac.value}`),
-	  []),
-
-      };
-
-      bp.slots[+slot.n] = board;
-      board.chips = slot.board.pages.reduce((chips, page) => {
-
-	(page.chips || []).forEach(astChip => {
-	  const name = astChip.name;
-
-	  if (chips[name]) {
-	    console.error(`\
-${slot.board.id}.${name} defined \
-${util.inspect(astChip.location)} and previously \
-${util.inspect(chips[name].location)}`);
-	  }
-
-	  chips[name] = {
-	    type: astChip.type,
-	    desc: astChip.desc,
-	    page: page.name,
-	    pdfRef: page.pdfRef,
-	    location: astChip.location,
-	    pins: astChip.pins,
-
-	    pins: astChip.pins.map(pin => {
-
-	      const pinsResult = {
-		pin: pin.pin,
-		dir: astDirToDir(pin.dir),
-		fullName: pin.fullName,
-		lNet: canonicalize(pin.netName),
-		pdfRef: page.pdfRef,
-		location: pin.location,
-	      };
-
-	      if (pin.bpPin) {	// If this local net connects to the backplane
-
-		// Define backplane pin as <board>.<pin>[<slotName>].
-		pinsResult.bpPin = `${slot.board.id}.${pin.bpPin}[${slotName}]`;
-
-		// Note that this pin's net name is global.
-		pinsResult.gNet = pinsResult.lNet;
-	      }
-
-	      return pinsResult;
-	    }),
-	  };
-	});
-
-	return chips;
-      }, {});
-    });
 }
 
 
@@ -485,19 +433,7 @@ Unhandled subtree node type in ${t.nodeType} macro: '${util.inspect(t, {depth: 9
 }
 
 
-// bp.netByName = { netName1: [{pin, dir, bpPin},  ... ],  ... }
-function dumpSignals(bp) {
-  fs.writeFileSync('symbols.dump',
-		   Object.entries(bp.netByName)
-		   .filter(([net, pinList]) => pinList)
-		   .sort((a, b) => ("" + a[0]).localeCompare(b[0], undefined, {numeric: true}))
-		   .map(([net, pinList]) => `\
-${net}: ${pinList.map(({pin, dir, bpPin}) => `${pin.fullName}${dir}${bpPin}`).join(', ')}`).join('\n'));
-}
-
-
 function compile(simOptions) {
-  const backplanes = {};
   options = simOptions;
 
   // libreoffice --convert-to csv ./cram-backplane.ods
@@ -526,12 +462,10 @@ function compile(simOptions) {
   // substructure into a list of chips on the board.
   const bp = parseBackplanes(parser);
 
-  // Bind each board into the slots it fits into, assigning
+  // Bind each board into the slot(s) it fits into, assigning
   // macro-expanded net names and pins.
   bindSlots(bp);
 
-//  xxx(bp);
-  
   if (options.dumpBackplane) fs.writeFileSync('bp.dump', dumpThing(bp));
 
 //  definePinsAndNets(bp, cramDefs);
@@ -647,13 +581,13 @@ function verilogifyNetNames(bp) {
 function checkForMalformedSymbolNames(bp) {
   const malformed = Object.keys(bp.allNets)
 	.sort(netNameSort)
-  // No connect
+  // Remove valid no connect symbol
 	.filter(n => n != '%NC%')
-  // xxx [hl]
+  // Remove valid xxx [hl]
 	.filter(n => !n.slice(-2).match(/ [hl]/))
-  // xxx hi
+  // Remove valid xxx hi for local logic 1 symbol used on some boards
 	.filter(n => n.slice(-3) != ' hi' && n != 'hi')
-  // local anonymous net naming convention
+  // Remove valid local anonymous net names mod-e99-99
 	.filter(n => !n.match(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/))
 	.map(n => `'${n}'`)
 	.join('\n');
