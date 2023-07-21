@@ -12,9 +12,9 @@
   function AST(nodeType, props) {
     const loc = location();
 
-    // So we can util.inspect() our location() values with readable results.
-    loc[util.inspect.custom] = function() {
-      const [s, e] = [this.start, this.end];
+    // So we can toString() and util.inspect() our location() values with readable results.
+    loc.__proto__.toString = loc[util.inspect.custom] = function() {
+      const [s, e] = [this.start ? this.start : this, this.end? this.end: this];
       return `@${s.line}:${s.column}:${s.offset}..${e.line}:${e.column}:${e.offset}`;
     };
 
@@ -111,12 +111,16 @@ selectorList = list:( ',' id:idList {return id} )*
 idList = list:( macroRef / idChunk )*
        		{ return AST('IDList', {list}) }
 
-idChunk = name:$[-/#%.+& <>()a-zA-Z0-9=]+
+NC = '%NC%'	{ return AST('IDChunk', {name: '%NC%'}) }
+
+idChunk = NC
+/       name:$[-/#%.+& <>()a-z0-9=]+
 		{ return AST('IDChunk', {name}) }
 
+
 // like idChunk but allows ',' in the identifier in non-macro context
-id = '%NC%'	{ return AST('IDChunk', {name: '%NC%'}) }
-/       name:[-/#%,.+*& <>()a-zA-Z0-9=^]+
+id = NC
+/       name:[-/#%,.+*& <>()a-z0-9=^]+
 		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
 
 expr = sum

@@ -82,11 +82,11 @@ Slot 41: {n=24} edp M8512
 Slot 42: {n=12 m=24} crm M8548
 
 Slot 43: {n=18} edp M8512
-//   em2 de1[44] option50Hz
-     ea1 de1[44] optionCacheAvailable
-     ee1 de1[44] optionInternalChannels
-     dd2 de1[44] optionExtendedKL
-//   de1 de1[44] optionMasterOscillator
+//   em2 de1[44] option 50 hz
+     ea1 de1[44] option cache avail
+     ee1 de1[44] option internal channels
+     dd2 de1[44] option extended kl
+//   de1 de1[44] option master osc
 
 Slot 44: {n=8 m=18} crm M8548
 Slot 45: {n=0} cra M8541
