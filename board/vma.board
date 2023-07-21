@@ -396,7 +396,7 @@ e11: 10136 binary counter
 
 e6:  10136 binary counter
      5 ~< {be1} vma4 vma 16 in h
-     5 ~< {fd1} vma4 vma 17 in h
+     6 ~< {fd1} vma4 vma 17 in h
      11 ~< vma2-e10-15
      12 ~< vma2-e10-14
      10 ~< vma2 cry 20 l
@@ -1004,60 +1004,40 @@ e12: 10174 2x4 mixer
      11 ~< vma3 pc 13 h
      12 ~< vma4 prev sec 13 h
      10 ~< {cj1} ad 13 h
-     15 ~> {bk1} armm 13 h
+     15 ~> {bk1} vma4 vma 13 in h
      9 ~< {am1} mcl4 vmax sel 2 h
      7 ~< {ap1} mcl4 vmax sel 1 h
      14 ~< vma4 vmax en l
-
-w1:  wire just a wire
-     1 ~< {bk1} armm 13 h
-     2 ~> vma4 vma 13 in h
 
 e17: 10174 2x4 mixer
      3 ~< {cd2} vma2 vma 14 a h
      5 ~< vma3 pc 14 h
      4 ~< vma4 prev sec 14 h
      6 ~< {ch2} ad 14 h
-     2 ~> {bh2} armm 14 h
+     2 ~> {bh2} vma4 vma 14 in h
      13 ~< {ca1} vma2 vma 15 a h
      11 ~< vma3 pc 15 h
      12 ~< vma4 prev sec 15 h
      10 ~< {cj2} ad 15 h
-     15 ~> {bf1} armm 15 h
+     15 ~> {bf1} vma4 vma 15 in h
      9 ~< {am1} mcl4 vmax sel 2 h
      7 ~< {ap1} mcl4 vmax sel 1 h
      14 ~< vma4 vmax en l
-
-w2: wire just a wire
-    1 ~< {bh2} armm 14 h
-    2 ~> vma4 vma 14 in h
-
-w3: wire just a wire
-    1 ~< {bf1} armm 15 h
-    2 ~> vma4 vma 15 in h
 
 e19: 10174 2x4 mixer
      3 ~< {bu2} vma2 vma 16 a h
      5 ~< vma3 pc 16 h
      4 ~< vma4 prev sec 16 h
      6 ~< {cm1} ad 16 a h
-     2 ~> {be1} armm 16 h
+     2 ~> {be1} vma4 vma 16 in h
      13 ~< {aa1} vma2 vma 17 a h
      11 ~< vma3 pc 17 h
      12 ~< vma4 prev sec 17 h
      10 ~< {au2} ad 17 a h
-     15 ~> {fd1} armm 17 h
+     15 ~> {fd1} vma4 vma 17 in h
      9 ~< {am1} mcl4 vmax sel 2 h
      7 ~< {ap1} mcl4 vmax sel 1 h
      14 ~< vma4 vmax en l
-
-w4: wire just a wire
-    1 ~< {be1} armm 16 h
-    2 ~> vma4 vma 16 in h
-
-w5: wire just a wire
-    1 ~< {fd1} armm 17 h
-    2 ~> vma4 vma 17 in h
 
 e32: 10141 shift register
      13 ~< %NC%
@@ -1110,7 +1090,7 @@ e38: 10164 8 mixer
      6 ~< vma3 adr brk 15 h
      5 ~< vma3 adr brk 14 h
      4 ~< vma3 adr brk 13 h
-     3 ~< {as1} -vma1 loca ac address h
+     3 ~< {as1} -vma1 local ac address h
      11 ~< {ca1} vma2 vma 15 a h
      12 ~< {cd2} vma2 vma 14 a h
      13 ~< {cf1} vma2 vma 13 a h
