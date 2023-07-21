@@ -458,7 +458,7 @@ e22: 10158 4x2 mixer
      15 ~> {bp2} ebus d06 e h
      14 ~> {bn1} ebus d07 e h
 
-E27: 10158 4x2 mixer
+e27: 10158 4x2 mixer
      5 ~< %NC%
      6 ~< ebus reg 08 h
      3 ~< %NC%
