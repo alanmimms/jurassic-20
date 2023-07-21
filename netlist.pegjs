@@ -28,7 +28,7 @@
 
     if (!nets[net]) nets[net] = [];
 
-    const n = {net, bpPin, netAST, page, chip, pin, dir};
+    const n = {net, bpPin, netAST, page, chip, pin, dir: astDirToDir(dir)};
     const key = `${chip.name}.${astDirToDir(dir)}.${pin}`;
     wires[key] = n;
     nets[net].push(n);
