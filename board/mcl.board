@@ -618,13 +618,13 @@ e8:  10141 shift register
      3 ~> mcl3-e8-3
 
 e17: 10158 4x2 mixer
-     6 ~< {bu2} scd4 cry0 h
+     6 ~< {bu2} scd5 user a h
      5 ~< mcl3-e8-14
-     4 ~< {bv2} scd4 cry1 h
+     4 ~< {bv2} scd5 user iot a h
      3 ~< mcl3-e8-15
-     13 ~< {bt2} scd4 fov h
+     13 ~< {bt2} scd5 public a h
      12 ~< mcl3-e8-2
-     11 ~< {bs1} scd4 fpd h
+     11 ~< {bs1} scd5 adr brk inh h
      10 ~< mcl3-e8-3
      9 ~< {ce1} con cond/sel vma l
      1 ~> {cl1} vma held or pc 05 h

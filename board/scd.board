@@ -1072,7 +1072,7 @@ e5: 10105 triple 2-3-2 or/nor
     15 ~> scd4-e5-15
 
 e4: 10104 quad and
-    4 ~< {ap2} scr4 fpd h
+    4 ~< {ap2} scd4 fpd h
     5 ~< scd4 clr fpd l
     2 ~> scd4-e4-3
     6 ~< {fk2} ar 04 c h
