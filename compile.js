@@ -87,7 +87,7 @@ ${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${p.net}`;
 			      })
 			      .join('\n')
 			     )
-			 .join('\n'));
+			 .join('\n') + '\n');
       }
     });
 
@@ -145,8 +145,8 @@ ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
 	fs.writeFileSync(`${slotNumber}.${id}.slot`,
 			 Object.keys(slot.bpPins)
 			 .sort()
-			 .map(bpp => slot.bpPins[bpp].gNet)
-			 .join('\n'));
+			 .map(bpp => `${slotNumber}.${bpp}: ${slot.bpPins[bpp].gNet}`)
+			 .join('\n') + '\n');
       }
     });
 
@@ -610,7 +610,7 @@ function dumpVerilogNames(bp) {
   fs.writeFileSync('bp.verilog-names',
 		   Object.keys(bp.n2v)
 		   .sort(netNameSort)
-		   .map(nName => `${nName.padStart(50)}: ${bp.n2v[nName]}`).join('\n'))
+		   .map(nName => `${nName.padStart(50)}: ${bp.n2v[nName]}`).join('\n') + '\n')
 }
 
 
@@ -623,7 +623,7 @@ ${bpPin}:
   ${Object.values(bp.allPins[bpPin])
     .map(pin => util.inspect(pin) /*`${pin.dir} ${pin.lNet.padEnd(35)}${pin.fullName}`*/)
     .join("\n  ")}`)
-		   .join("\n"));
+		   .join("\n") + '\n');
 
   function slotPinSort(a, b) {
     return a > b ? 1 : a < b ? -1 : 0;
@@ -646,7 +646,7 @@ ${netName}:
       return `${pin.dir} ${pinFullName.padEnd(20) + (pin.bpPin || '').padEnd(20)}${pin.pdfRef}`;
     })
 		   .join("\n  ")}`)
-		   .join("\n"));
+		   .join("\n") + '\n');
 
   // Sort e.g., "edp.aa1[38]" so the slot number
   // "38" is primary, module "edp" is next,
