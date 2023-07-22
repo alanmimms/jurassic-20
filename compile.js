@@ -145,7 +145,7 @@ ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
 	fs.writeFileSync(`${slotNumber}.${id}.slot`,
 			 Object.keys(slot.bpPins)
 			 .sort()
-			 .map(bpp => `${slotNumber}.${bpp}: ${slot.bpPins[bpp].gNet}`)
+			 .map(bpp => `${slotNumber}.${bpp}: ${verilogify(slot.bpPins[bpp].gNet)}`)
 			 .join('\n') + '\n');
       }
     });
@@ -532,50 +532,52 @@ function verilogifyNetNames(bp) {
       bp.n2v[netName] = vName;
     });
 
-  // Convert DEC nomenclature name `n` to Verilog identifier.
-  // Use the following mappings and rules:
-  //  * ` ` ==> _
-  //  * `<-` ==> GETS
-  //  * <digits>-<digits> ==> <digits>to<digits>
-  //  * i/o ==> IO
-  //  * xxx<digit>-e<digits>-<digits> ==> xxx<digits>_e<digits>_<digits>
-  //  * [/,*.-+=#()%^<>&] ==> SYMBOLNAME
-  //  * `-xxxx h` ==> `xxxx l`
-  //  * `-xxxx l` ==> `xxxx h`
-  function verilogify(n) {
+}
 
-    const characterSymbolNames = {
-      '-': 'MS',
-      '/': 'SL',
-      ',': 'CM',
-      '*': 'ST',
-      '.': 'DT',
-      '+': 'PL',
-      '=': 'EQ',
-      '#': 'NR',
-      '(': 'LP',
-      ')': 'RP',
-      '%': 'PC',
-      '^': 'CT',
-      '<': 'LT',
-      '>': 'GT',
-      '&': 'ND',
-      '[': 'LB',
-      ']': 'RB',
-    };
 
-    // First convert -xxxx [lh] to xxxx [hl].
-    n = canonicalize(n);
+// Convert DEC nomenclature name `n` to Verilog identifier.
+// Use the following mappings and rules:
+//  * ` ` ==> _
+//  * `<-` ==> GETS
+//  * <digits>-<digits> ==> <digits>to<digits>
+//  * i/o ==> IO
+//  * xxx<digit>-e<digits>-<digits> ==> xxx<digits>_e<digits>_<digits>
+//  * [/,*.-+=#()%^<>&] ==> SYMBOLNAME
+//  * `-xxxx h` ==> `xxxx l`
+//  * `-xxxx l` ==> `xxxx h`
+function verilogify(n) {
 
-    n = n.replace(/ /g, '_');
-    n = n.replace(/<-/g, 'GETS');
-    n = n.replace(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/g, '$1_$2_$3');
-    n = n.replace(/(\d+)-(\d+)/g, '$1to$2');
-    n = n.replace(/i\/o/g, 'IO');
-    n = n.replace(/10\/11/g, '10_11');
-    n = n.replace(/[-\/,*.+=#()%^<>&\[\]]/g, match => characterSymbolNames[match]);
-    return n;
-  }
+  const characterSymbolNames = {
+    '-': 'MS',
+    '/': 'SL',
+    ',': 'CM',
+    '*': 'ST',
+    '.': 'DT',
+    '+': 'PL',
+    '=': 'EQ',
+    '#': 'NR',
+    '(': 'LP',
+    ')': 'RP',
+    '%': 'PC',
+    '^': 'CT',
+    '<': 'LT',
+    '>': 'GT',
+    '&': 'ND',
+    '[': 'LB',
+    ']': 'RB',
+  };
+
+  // First convert -xxxx [lh] to xxxx [hl].
+  n = canonicalize(n);
+
+  n = n.replace(/ /g, '_');
+  n = n.replace(/<-/g, 'GETS');
+  n = n.replace(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/g, '$1_$2_$3');
+  n = n.replace(/(\d+)-(\d+)/g, '$1to$2');
+  n = n.replace(/i\/o/g, 'IO');
+  n = n.replace(/10\/11/g, '10_11');
+  n = n.replace(/[-\/,*.+=#()%^<>&\[\]]/g, match => characterSymbolNames[match]);
+  return n;
 }
 
 
