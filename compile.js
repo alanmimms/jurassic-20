@@ -124,12 +124,17 @@ function bindSlots(bp) {
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
       Object.keys(board.bpPins).forEach(bpp => {
-	const wires = board.bpPins[bpp];
+	const pinNets = board.bpPins[bpp];
 
-	const gNets = Object.values(wires).
-	      map(wire => wire.netAST ?
-		  canonicalize(wire.netAST.map(e => evalExpr(e, macroEnv)).join('')) :
-		  wire.net);
+	const gNets = Object.values(pinNets).
+	      map(pinNet => pinNet.netAST ?
+		  canonicalize(pinNet.netAST.map(e => evalExpr(e, macroEnv)).join('')) :
+		  pinNet.net);
+
+	const dirs = Object.values(pinNets)
+	      .map(pinNet => pinNet.dir)
+	      .sort().
+	      join('');
 
 	if (!gNets.every(e => e == gNets[0])) {
 	  console.error(`
@@ -138,14 +143,15 @@ ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
 `);
 	}
 
-	slot.bpPins[bpp] = { gNet: gNets[0], wire: wires[0] };
+	slot.bpPins[bpp] = { gNet: gNets[0], pinNets, dirs };
       });
 
       if (options.dumpSlots) {
 	fs.writeFileSync(`${slotNumber}.${id}.slot`,
 			 Object.keys(slot.bpPins)
 			 .sort()
-			 .map(bpp => `${slotNumber}.${bpp}: ${verilogify(slot.bpPins[bpp].gNet)}`)
+			 .map(bpp => `\
+${slotNumber}.${bpp}[${slot.bpPins[bpp].dirs}]: ${verilogify(slot.bpPins[bpp].gNet)}`)
 			 .join('\n') + '\n');
       }
     });
