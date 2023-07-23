@@ -551,27 +551,27 @@ function verilogifyNetNames(bp) {
 //  * [/,*.-+=#()%^<>&] ==> SYMBOLNAME
 //  * `-xxxx h` ==> `xxxx l`
 //  * `-xxxx l` ==> `xxxx h`
-function verilogify(n) {
+const charSymNames = {
+  '-': 'Mn',
+  '/': 'Sl',
+  ',': 'Cm',
+  '*': 'St',
+  '.': 'Dt',
+  '+': 'Pl',
+  '=': 'Eq',
+  '#': 'Nr',
+  '(': 'Lp',
+  ')': 'Rp',
+  '%': 'Pe',
+  '^': 'Ct',
+  '<': 'Lt',
+  '>': 'Gt',
+  '&': 'An',
+  '[': 'Lb',
+  ']': 'Rb',
+};
 
-  const characterSymbolNames = {
-    '-': 'MS',
-    '/': 'SL',
-    ',': 'CM',
-    '*': 'ST',
-    '.': 'DT',
-    '+': 'PL',
-    '=': 'EQ',
-    '#': 'NR',
-    '(': 'LP',
-    ')': 'RP',
-    '%': 'PC',
-    '^': 'CT',
-    '<': 'LT',
-    '>': 'GT',
-    '&': 'ND',
-    '[': 'LB',
-    ']': 'RB',
-  };
+function verilogify(n) {
 
   // First convert -xxxx [lh] to xxxx [hl].
   n = canonicalize(n);
@@ -582,7 +582,7 @@ function verilogify(n) {
   n = n.replace(/(\d+)-(\d+)/g, '$1to$2');
   n = n.replace(/i\/o/g, 'IO');
   n = n.replace(/10\/11/g, '10_11');
-  n = n.replace(/[-\/,*.+=#()%^<>&\[\]]/g, match => characterSymbolNames[match]);
+  n = n.split('').map(ch => charSymNames[ch] || ch).join('');
   return n;
 }
 
