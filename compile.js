@@ -101,6 +101,8 @@ function bindSlots(bp) {
   const bpMacroEnv = {};
   (bp.macros || []).forEach(macro => bpMacroEnv[macro.id] = macro.value);
 
+  bp.vNetToPins = {};
+
   console.log(`Backplane ${bp.name}:`);
 
   // For each slot, expand the board's macros for the slot (and
@@ -143,18 +145,46 @@ ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
 `);
 	}
 
-	slot.bpPins[bpp] = { gNet: gNets[0], pinNets, dirs };
+	const gNet = gNets[0];
+	const vNet = verilogify(gNet);
+
+	slot.bpPins[bpp] = {
+	  gNet,
+	  vNet,
+	  pinNets,
+	  dirs,
+	};
+
+	if (!bp.vNetToPins[vNet]) bp.vNetToPins[vNet] = {};
+	const d = dirs.includes('D') ? 'D' : 'i';
+	bp.vNetToPins[vNet][`${d}${slotNumber}.${bpp}`] = `${slotNumber}.${id}`;
       });
 
       if (options.dumpSlots) {
 	fs.writeFileSync(`${slotNumber}.${id}.slot`,
 			 Object.keys(slot.bpPins)
 			 .sort()
-			 .map(bpp => `\
-${slotNumber}.${bpp}[${slot.bpPins[bpp].dirs}]: ${verilogify(slot.bpPins[bpp].gNet)}`)
+			 .map(bpp => {
+			   const v = slot.bpPins[bpp];
+			   return `\
+${slotNumber}.${bpp}[${v.dirs}]: ${v.vNet}`;
+			 })
 			 .join('\n') + '\n');
       }
     });
+
+  if (options.dumpPins) {
+    fs.writeFileSync(`${bp.name}.wires`,
+		     Object.keys(bp.vNetToPins)
+		     .filter(vn => vn != '%NC%')
+		     .sort()
+		     .map(vn => {
+		       const pins = bp.vNetToPins[vn];
+		       return `\
+${vn.padStart(40)}: ${Object.keys(pins).join(' ')}`;
+		     })
+		     .join('\n') + '\n');
+  }
 
   if (options.dumpAst) fs.writeFileSync(`${bp.name}.after.evaluation`, dumpThing(bp));
   return bp;
@@ -552,7 +582,7 @@ function verilogifyNetNames(bp) {
 //  * `-xxxx h` ==> `xxxx l`
 //  * `-xxxx l` ==> `xxxx h`
 const charSymNames = {
-  '-': 'Mn',
+  '-': 'Ng',
   '/': 'Sl',
   ',': 'Cm',
   '*': 'St',
@@ -576,6 +606,7 @@ function verilogify(n) {
   // First convert -xxxx [lh] to xxxx [hl].
   n = canonicalize(n);
 
+  if (n == '%NC%') return n;
   n = n.replace(/ /g, '_');
   n = n.replace(/<-/g, 'GETS');
   n = n.replace(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/g, '$1_$2_$3');
@@ -623,6 +654,7 @@ function dumpVerilogNames(bp) {
 
 
 function dumpPins(bp) {
+  if (false) {
   fs.writeFileSync('bp.pins',
 		   Object.keys(bp.allPins)
 		   .sort(slotPinSort)
@@ -632,7 +664,8 @@ ${bpPin}:
     .map(pin => util.inspect(pin) /*`${pin.dir} ${pin.lNet.padEnd(35)}${pin.fullName}`*/)
     .join("\n  ")}`)
 		   .join("\n") + '\n');
-
+  }
+  
   function slotPinSort(a, b) {
     return a > b ? 1 : a < b ? -1 : 0;
   }
