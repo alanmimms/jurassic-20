@@ -83,7 +83,7 @@ function parseBackplanes(parser) {
 				const pdfRef = p.page.pdfRef.padEnd(7);
 				const chipPin = `${p.chip.name}.${p.pin}`.padEnd(9);
 				return `\
-${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${p.net}`;
+${bpp}  ${p.dir}  ${chipPin} ${pdfRef} ${p.net}`;
 			      })
 			      .join('\n')
 			     )
@@ -96,7 +96,7 @@ ${bpp}  ${astDirToDir(p.dir)}  ${chipPin} ${pdfRef} ${p.net}`;
 
 
 ////////////////////////////////////////////////////////////////////////////////
-function bindSlots(bp) {
+function bindSlots(bp, cramDefs) {
   // Build bpMacroEnv which is the basis of macros used for each board.
   const bpMacroEnv = {};
   (bp.macros || []).forEach(macro => bpMacroEnv[macro.id] = macro.value);
@@ -148,17 +148,31 @@ ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
 	const gNet = gNets[0];
 	const vNet = verilogify(gNet);
 
-	slot.bpPins[bpp] = {
-	  gNet,
-	  vNet,
-	  pinNets,
-	  dirs,
+	slot.bpPins[bpp] = { gNet, vNet, pinNets, dirs, bpp, };
+	addSlotVNet(bp, slot.bpPins[bpp], slotNumber, `${slotNumber}.${id}`);
+      });
+
+      // For pins driven from CRAM boards, define global net name from
+      // CRAM definitions, replacing the definition on the board.
+      // E.g., `crm.be2[cpu.44]`
+      const cramPinName = `${id}.{bpp}[${slotName}]`;
+      const cd = cramDefs.bp[cramPinName];
+
+      if (cd) {
+
+	if (!slot.bpPins[bpp]) slot.bpPins[bpp] = {};
+	if (!slot.bpPins[bpp][pinName]) slot.bpPins[bpp][pinName] = {};
+
+	const sv = {
+	  gNet: cd.net,
+	  vNet: verilogify(cd.net),
+	  pinNets: null,
+	  dirs: ['D'],
+	  bpp,
 	};
 
-	if (!bp.vNetToPins[vNet]) bp.vNetToPins[vNet] = {};
-	const d = dirs.includes('D') ? 'D' : 'i';
-	bp.vNetToPins[vNet][`${d}${slotNumber}.${bpp}`] = `${slotNumber}.${id}`;
-      });
+	addSlotVNet(bp, sv, slotNumber, `cram.${id}`);
+      }
 
       if (options.dumpSlots) {
 	fs.writeFileSync(`${slotNumber}.${id}.slot`,
@@ -191,70 +205,10 @@ ${vn.padStart(40)}: ${Object.keys(pins).join(' ')}`;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////
-// Define connections between pins and nets, including those on backplane.
-      // This is `board` data structure:
-      //
-      // * wires[${chipName}.${dir}.${pinNumber}]
-      //   * pinNumber
-      //   * dir
-      //   * bpPin
-      //   * net (local net name without macro expansion)
-      //   * netAST (tree of macros to be expanded for slot-specific gNet name)
-      //   * pdfRef
-      //
-      // * bpPins[${bpPin}][${chipName}.${dir}.${pinNumber}]
-      //   * wires[] reference
-
-function definePinsAndNets(bp, cramDefs) {
-  bp.allNets = {};
-  bp.allPins = {};
-
-  bp.slots.forEach(board => {
-
-    Object.values(board.chips).forEach(chip => {
-
-      chip.pins.forEach(pin => {
-
-	const newNet = {
-	  pin: pin.pin,
-	  dir: astDirToDir(pin.dir),
-	  fullName: pin.fullName,
-	  slotName: board.slotName,
-	  lNet: pin.lNet,
-	  gNet: pin.gNet,
-	  module: board.id,
-	};
-
-	if (!bp.allNets[newNet.lNet]) bp.allNets[newNet.lNet] = {};
-	bp.allNets[newNet.lNet][newNet.fullName] = newNet;
-
-	// This is not particularly DRY.
-	if (newNet.gNet) {
-	  if (!bp.allNets[newNet.gNet]) bp.allNets[newNet.gNet] = {};
-	  bp.allNets[pin.gNet][newNet.fullName] = newNet;
-	}
-	
-	bp.allPins[newNet.fullName] = newNet;
-      });
-    });
-  });
-
-  // For each slot we have in the CRAM-to-net mapping, for each
-  // net therein, install the net name in the slot.
-  if (false) {
-  Object.keys(cramDefs.slot)
-    .forEach(slot => {
-      Object.values(cramDefs.slot[slot])
-	.forEach(net => {
-
-	  bp.allNets[net.gNet][net.pin] = {
-	  };
-
-//	  bp.allPins[net.pin] = ;
-	});
-    });
-  }
+function addSlotVNet(bp, sv, slotNumber, vnv) {
+  if (!bp.vNetToPins[sv.vNet]) bp.vNetToPins[sv.vNet] = {};
+  const d = sv.dirs.includes('D') ? 'D' : 'i';
+  bp.vNetToPins[sv.vNet][`${d}${slotNumber}.${sv.bpp}`] = vnv;
 }
 
 
@@ -501,12 +455,10 @@ function compile(simOptions) {
 
   // Bind each board into the slot(s) it fits into, assigning
   // macro-expanded net names and pins.
-  bindSlots(bp);
+  bindSlots(bp, cramDefs);
 
   if (options.dumpBackplane) fs.writeFileSync('bp.dump', dumpThing(bp));
 
-//  definePinsAndNets(bp, cramDefs);
-//  verilogifyNetNames(bp);
   if (options.dumpPins) dumpPins(bp);
   if (options.dumpVerilog) dumpVerilogNames(bp);
   if (options.dumpNets) dumpNets(bp);
@@ -528,23 +480,23 @@ function readCRAMBackplane(fn) {
       const bit = parseInt(bitExpr.split(/\+/)[1]) + slice;
       const slot = pinFull.slice(2, 4);
       const bpPinName = `${pinFull[1]}${pinFull.slice(4)}`.toLowerCase();
-      const pin = `crm.${bpPinName}[cpu.${slot}]`;
+      const srcPin = `crm.${bpPinName}[crm.${slot}]`;
 
       if (isNaN(slot)) console.error(`${fn} bad slot number in line '${line}'`);
 
-      const pPin = cram.bp[pin];
+      const pPin = cram.bp[srcPin];
 
       if (pPin) {
 	const pb = pPin.bit.toString();
 	const pn = pPin.net;
-	console.error(`${fn} duplicate '${net}' pin '${pin}', was ${pb.padStart(3)} '${pn}'`);
+	console.error(`${fn} duplicate '${net}' srcPin '${srcPin}', was ${pb.padStart(3)} '${pn}'`);
       }
 
       if (cram.nets[net]) console.error(`${fn} defines net '${net}' more than once`);
-      cram.bp[pin] = {net, pin, slot};
+      cram.bp[srcPin] = {net, srcPin, bpp: bpPinName, slot};
       if (!cram.slot[slot]) cram.slot[slot] = {};
-      cram.slot[slot][pin] = cram.bp[pin];
-      cram.nets[net] = cram.bp[pin];
+      cram.slot[slot][srcPin] = cram.bp[srcPin];
+      cram.nets[net] = cram.bp[srcPin];
       return cram;
     }, {nets: {}, slot: {}, bp: {}, });
 }
