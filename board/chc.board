@@ -299,6 +299,9 @@ e20: 10101 quad or/nor
      4 ~< chc3-e44-15
      2 ~> {bm2} ch ctom l
      5 ~> {cd1} ch ctom h
+     13 ~< chc4-dl2-2
+     15 ~> %NC%
+     9 ~> {br2} ch buf wr 06 l
 
 Page: CHC2, PDF223
 

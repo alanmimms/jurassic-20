@@ -845,8 +845,8 @@ e16: 10110 or buffer
      10 ~< chd2 [n+05] a h
      11 ~< chd2 [n+05] b h
      12 ~> {be2} cache data [n+05] a h
-     13 ~> {be1} cache data [n+05] a h
-     14 ~> {bf2} cache data [n+05] a h
+     13 ~> {be1} cache data [n+05] b h
+     14 ~> {bf2} cache data [n+05] c h
      5 ~< {au2} mem to cache [n+06] h
      6 ~< chd3 [n+06] a h
      7 ~< chd3 [n+06] b h
@@ -1251,8 +1251,8 @@ e11: 10110 or buffer
      10 ~< chd2 [n+07] a h
      11 ~< chd2 [n+07] b h
      12 ~> {ar1} cache data [n+07] a h
-     13 ~> {ap2} cache data [n+07] a h
-     14 ~> {ar2} cache data [n+07] a h
+     13 ~> {ap2} cache data [n+07] b h
+     14 ~> {ar2} cache data [n+07] c h
      5 ~< {as2} mem to cache [n+08] h
      6 ~< chd3 [n+08] a h
      7 ~< chd3 [n+09] a h

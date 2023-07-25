@@ -330,7 +330,7 @@ e50: 10101 quad or/nor
      14 ~> {dr1} ccw buf 00 in l
      11 ~> %NC%
      13 ~< {ds1} ccw buf 01 in h
-     15 ~> {dp1} ccw buf 01 in h
+     15 ~> {dp1} ccw buf 01 in l
      9 ~> %NC%
 
 Page: CCL2, PDF268

@@ -20,7 +20,7 @@ e34: 10101 quad or/nor
      7 ~< {cm2} cra1 adr 02 [n/4+1,a l,b h,c l,d h,e l]
      3 ~> cr01 adr 02 a l
      6 ~> cr01 adr 02 a h
-     13 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
+     13 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
      15 ~> cr01 adr 10 c l
      9 ~> cr01 adr 10 c h
 
@@ -35,7 +35,7 @@ e35: 10101 quad or/nor
      7 ~< {cm2} cra1 adr 02 [n/4+1,a l,b h,c l,d h,e l]
      3 ~> cr01 adr 02 b l
      6 ~> cr01 adr 02 b h
-     13 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
+     13 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
      15 ~> cr01 adr 10 d l
      9 ~> cr01 adr 10 d h
 
@@ -46,10 +46,10 @@ e27: 10101 quad or/nor
      13 ~< {de2} cra1 adr 05 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 05 a l
      9 ~> cr01 adr 05 a h
-     7 ~< {cv2} cra1 adr 08 [n/4+1,a,b,c,d,e] h
+     7 ~< {cv2} cra2 adr 08 [n/4+1,a,b,c,d,e] h
      3 ~> cr01 adr 08 a l
      6 ~> cr01 adr 08 a h
-     4 ~< {dd2} cra1 adr 09 [n/4+1,a,b,c,d,e] h
+     4 ~< {dd2} cra2 adr 09 [n/4+1,a,b,c,d,e] h
      2 ~> cr01 adr 09 a l
      5 ~> cr01 adr 09 a h
      12 ~< %NC%
@@ -61,10 +61,10 @@ e28: 10101 quad or/nor
      13 ~< {de2} cra1 adr 05 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 05 b l
      9 ~> cr01 adr 05 b h
-     7 ~< {cv2} cra1 adr 08 [n/4+1,a,b,c,d,e] h
+     7 ~< {cv2} cra2 adr 08 [n/4+1,a,b,c,d,e] h
      3 ~> cr01 adr 08 b l
      6 ~> cr01 adr 08 b h
-     4 ~< {dd2} cra1 adr 09 [n/4+1,a,b,c,d,e] h
+     4 ~< {dd2} cra2 adr 09 [n/4+1,a,b,c,d,e] h
      2 ~> cr01 adr 09 b l
      5 ~> cr01 adr 09 b h
      12 ~< %NC%
@@ -76,10 +76,10 @@ e30: 10101 quad or/nor
      13 ~< {df2} cra1 adr 06 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 06 a l
      9 ~> cr01 adr 06 a h
-     10 ~< {dj2} cra1 adr 07 [n/4+1,a,b,c,d,e] h
+     10 ~< {dj2} cra2 adr 07 [n/4+1,a,b,c,d,e] h
      14 ~> cr01 adr 07 a l
      11 ~> cr01 adr 07 a h
-     4 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
+     4 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
      2 ~> cr01 adr 10 a l
      5 ~> cr01 adr 10 a h
      12 ~< %NC%
@@ -91,10 +91,10 @@ e31: 10101 quad or/nor
      13 ~< {df2} cra1 adr 06 [n/4+1,a l,b h,c l,d h,e l]
      15 ~> cr01 adr 06 b l
      9 ~> cr01 adr 06 b h
-     10 ~< {dj2} cra1 adr 07 [n/4+1,a,b,c,d,e] h
+     10 ~< {dj2} cra2 adr 07 [n/4+1,a,b,c,d,e] h
      14 ~> cr01 adr 07 b l
      11 ~> cr01 adr 07 b h
-     4 ~< {dk2} cra1 adr 10 [n/4+1,a,b,c,d,e] h
+     4 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
      2 ~> cr01 adr 10 b l
      5 ~> cr01 adr 10 b h
 

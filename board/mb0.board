@@ -1006,20 +1006,20 @@ e12: 10158 4x2 mixer
 e42: 10210 or buffer
      5 ~< %NC%
      6 ~< %NC%
-     7 ~< clk mb [n] delayed h
+     7 ~< clk mb [n+00] delayed h
      2 ~> clk a h
      3 ~> clk b h
      4 ~> clk c h
      9 ~< %NC%
-     10 ~< clk mb [n] delayed h
+     10 ~< clk mb [n+00] delayed h
      11 ~< %NC%
      12 ~> clk d h
      13 ~> clk e h
      14 ~> clk f h
 
 dl1: delay-line (PCB wired)
-     1 ~< {cr2} clk mb [n] h
-     2 ~> clk mb [n] delayed h
+     1 ~< {cr2} clk mb [n+00] h
+     2 ~> clk mb [n+00] delayed h
 
 Page: MB05, PDF78
 

@@ -921,7 +921,7 @@ e10: 10162 decoder
      14 ~< ccw ram adr 4 h
      9 ~< ccw ram adr 2 h
      7 ~< ccw ram adr 1 h
-     15 ~< {bu2} -ch mb req in l
+     15 ~< {bu2} -ch mb req inh l
      2 ~< {as2} crc mem store ena l
      6 ~> ccw0 mem store in h
      5 ~> ccw1 mem store in h

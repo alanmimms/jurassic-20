@@ -125,9 +125,15 @@ e44: 10110 or buffer
      5 ~< {dr2} cram j00 h
      6 ~< %NC%
      7 ~< cra1-e51-2
+     2 ~> {dl1} cra1 adr 00 a h
+     3 ~> {dp2} cra1 adr 00 b h
+     4 ~> {dk1} cra1 adr 00 c h
      11 ~< {dr2} cram j00 h
      10 ~< %NC%
      9 ~< cra1-e51-2
+     14 ~> {dj1} cra1 adr 00 d h
+     13 ~> {df2} cra1 adr 00 e h
+     12 ~> cra1 adr 00 f h
 
 e28: 10105 2-3-2 or/nor
      12 ~< {dr2} cram j00 h
@@ -695,10 +701,10 @@ e65: 10176 hex dff
 e60: 10176 hex dff
      5 ~< cra1 adr 05 f h
      6 ~< cra1 adr 06 f h
-     7 ~< cra1 adr 07 f h
-     10 ~< cra1 adr 08 f h
-     11 ~< cra1 adr 09 f h
-     12 ~< cra1 adr 10 f h
+     7 ~< cra2 adr 07 f h
+     10 ~< cra2 adr 08 f h
+     11 ~< cra2 adr 09 f h
+     12 ~< cra2 adr 10 f h
      9 ~< cra3 clk c h
      2 ~> cra3 loc 05 h
      3 ~> cra3 loc 06 h 
@@ -929,9 +935,9 @@ e9:  10415a 1kx1 RAM
      6 ~< cra1 adr 04 h
      7 ~< cra1 adr 05 h
      9 ~< cra1 adr 06 h
-     10 ~< cra1 adr 07 h
-     11 ~< cra1 adr 08 h
-     12 ~< cra1 adr 09 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 00 h
@@ -945,9 +951,9 @@ e4:  10415a 1kx1 RAM
      6 ~< cra1 adr 04 h
      7 ~< cra1 adr 05 h
      9 ~< cra1 adr 06 h
-     10 ~< cra1 adr 07 h
-     11 ~< cra1 adr 08 h
-     12 ~< cra1 adr 09 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 00 h
@@ -961,9 +967,9 @@ e29: 10415a 1kx1 RAM
      6 ~< cra1 adr 04 h
      7 ~< cra1 adr 05 h
      9 ~< cra1 adr 06 h
-     10 ~< cra1 adr 07 h
-     11 ~< cra1 adr 08 h
-     12 ~< cra1 adr 09 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 01 h
@@ -977,9 +983,9 @@ e24: 10415a 1kx1 RAM
      6 ~< cra1 adr 04 h
      7 ~< cra1 adr 05 h
      9 ~< cra1 adr 06 h
-     10 ~< cra1 adr 07 h
-     11 ~< cra1 adr 08 h
-     12 ~< cra1 adr 09 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 01 h
@@ -993,9 +999,9 @@ e14: 10415a 1kx1 RAM
      6 ~< cra1 adr 04 h
      7 ~< cra1 adr 05 h
      9 ~< cra1 adr 06 h
-     10 ~< cra1 adr 07 h
-     11 ~< cra1 adr 08 h
-     12 ~< cra1 adr 09 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 02 h
@@ -1009,9 +1015,9 @@ e19: 10415a 1kx1 RAM
      6 ~< cra1 adr 04 h
      7 ~< cra1 adr 05 h
      9 ~< cra1 adr 06 h
-     10 ~< cra1 adr 07 h
-     11 ~< cra1 adr 08 h
-     12 ~< cra1 adr 09 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 02 h
@@ -1026,9 +1032,9 @@ e25: 10415a 1kx1 RAM
      6 ~< cra1 adr 04 l
      7 ~< cra1 adr 05 l
      9 ~< cra1 adr 06 l
-     10 ~< cra1 adr 07 l
-     11 ~< cra1 adr 08 l
-     12 ~< cra1 adr 09 l
+     10 ~< cra2 adr 07 l
+     11 ~< cra2 adr 08 l
+     12 ~< cra2 adr 09 l
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 03 h
@@ -1042,9 +1048,9 @@ e30:  10415a 1kx1 RAM
      6 ~< cra1 adr 04 l
      7 ~< cra1 adr 05 l
      9 ~< cra1 adr 06 l
-     10 ~< cra1 adr 07 l
-     11 ~< cra1 adr 08 l
-     12 ~< cra1 adr 09 l
+     10 ~< cra2 adr 07 l
+     11 ~< cra2 adr 08 l
+     12 ~< cra2 adr 09 l
      14 ~< cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 03 h
@@ -1058,9 +1064,9 @@ e10: 10415a 1kx1 RAM
      6 ~< cra1 adr 04 l
      7 ~< cra1 adr 05 l
      9 ~< cra1 adr 06 l
-     10 ~< cra1 adr 07 l
-     11 ~< cra1 adr 08 l
-     12 ~< cra1 adr 09 l
+     10 ~< cra2 adr 07 l
+     11 ~< cra2 adr 08 l
+     12 ~< cra2 adr 09 l
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 04 h
@@ -1074,9 +1080,9 @@ e5:  10415a 1kx1 RAM
      6 ~< cra1 adr 04 l
      7 ~< cra1 adr 05 l
      9 ~< cra1 adr 06 l
-     10 ~< cra1 adr 07 l
-     11 ~< cra1 adr 08 l
-     12 ~< cra1 adr 09 l
+     10 ~< cra2 adr 07 l
+     11 ~< cra2 adr 08 l
+     12 ~< cra2 adr 09 l
      14 ~< cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 04 h
@@ -1090,9 +1096,9 @@ e15: 10415a 1kx1 RAM
      6 ~< cra1 adr 04 l
      7 ~< cra1 adr 05 l
      9 ~< cra1 adr 06 l
-     10 ~< cra1 adr 07 l
-     11 ~< cra1 adr 08 l
-     12 ~< cra1 adr 09 l
+     10 ~< cra2 adr 07 l
+     11 ~< cra2 adr 08 l
+     12 ~< cra2 adr 09 l
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 05 h
@@ -1106,9 +1112,9 @@ e20: 10415a 1kx1 RAM
      6 ~< cra1 adr 04 l
      7 ~< cra1 adr 05 l
      9 ~< cra1 adr 06 l
-     10 ~< cra1 adr 07 l
-     11 ~< cra1 adr 08 l
-     12 ~< cra1 adr 09 l
+     10 ~< cra2 adr 07 l
+     11 ~< cra2 adr 08 l
+     12 ~< cra2 adr 09 l
      14 ~< cra2 adr 10 l
      13 ~< cra5-e34-5
      14 ~< cra5 ebus 05 h

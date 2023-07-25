@@ -555,7 +555,7 @@ e10: 10141 shft reg
      10 ~< con3 cono pag l
      4 ~< con2 clk f h
      14 ~> con3 cache look en h
-     15 ~> con cache load en h
+     15 ~> {ar1} con cache load en h
      2 ~> con3 kl10 paging en h
      3 ~> {da1} con trap en h
 
