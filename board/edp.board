@@ -759,11 +759,11 @@ e19:  10174 2x4 mix
       15 ~> adb [n+05] h
 
 e9:   10174 2x4 mix
-      3 ~< {ar1} # [n+00] h
+      3 ~< {ar1} cram # [n+00] h
       5 ~< brx [n+01] h
       4 ~< {be2} brx [n+00] h
       6 ~< {dc1} arx [n+02] h
-      13 ~< {ap1} # [n+01] h
+      13 ~< {ap1} cram # [n+01] h
       11 ~< brx [n+02] h
       12 ~< brx [n+01] h
       10 ~< {aj2} arx [n+03] h
@@ -774,11 +774,11 @@ e9:   10174 2x4 mix
       15 ~> adxb [n+01] h
 
 e12:  10174 2x4 mix
-      3 ~< {ba1} # [n+02] h
+      3 ~< {ba1} cram # [n+02] h
       5 ~< brx [n+03] h
       4 ~< brx [n+02] h
       6 ~< {ac1} arx [n+04] h
-      13 ~< {ap2} # [n+03] h
+      13 ~< {ap2} cram # [n+03] h
       11 ~< brx [n+04] h
       12 ~< brx [n+03] h
       10 ~< {aa1} arx [n+05] h
@@ -789,11 +789,11 @@ e12:  10174 2x4 mix
       15 ~> adxb [n+03] h
 
 e6:   10174 2x4 mix
-      3 ~< {av2} # [n+04] h
+      3 ~< {av2} cram # [n+04] h
       5 ~< brx [n+05] h
       4 ~< brx [n+04] h
       6 ~< {ej1} arx [n+06] h
-      13 ~< {au2} # [n+05] h
+      13 ~< {au2} cram # [n+05] h
       11 ~< {be1} brx [n+06] h
       12 ~< brx [n+05] h
       10 ~< {bd1} arx [n+07] h
