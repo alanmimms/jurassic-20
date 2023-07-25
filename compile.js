@@ -197,6 +197,22 @@ ${vn.padStart(40)}: ${Object.keys(pins).join(' ')}`;
 		     })
 		     .join('\n') + '\n');
   }
+  
+  if (options.dumpUndriven) {
+    fs.writeFileSync(`${bp.name}.undriven`,
+		     Object.keys(bp.vNetToPins)
+		     .filter(vn => vn != '%NC%')
+		     .sort()
+		     .filter(vn => !Object.keys(bp.vNetToPins[vn])
+			     .some(e => e.match(/D[0-9]/)))
+		     .map(vn => {
+		       const pins = bp.vNetToPins[vn];
+		       return `\
+${vn.padStart(40)}: ${Object.keys(pins).join(' ')}`;
+		     })
+		     .join('\n') + '\n');
+
+  }
 
   if (options.dumpAst) fs.writeFileSync(`${bp.name}.after.evaluation`, dumpThing(bp));
   return bp;
@@ -366,8 +382,7 @@ function evalExpr(t, macroEnv) {
     //
     // 2. t.ids is a non-empty array, in which case t.head is a simple
     // expression macro whose value is the 1-origin member of t.ids[]
-    // to expand. Note that this t.ids[n-1] value might be a complex
-    // macro.
+    // to expand.
     result = evalExpr(t.head, macroEnv);
 
     if (t.ids.list.length) {		// It's a selector
@@ -378,7 +393,9 @@ function evalExpr(t, macroEnv) {
 	console.log(`ERROR: Selector produces undefined result t=\n${util.inspect(t, {depth:99})}`);
 	result = '%NC%';
       } else {
-	result = evalExpr(selected, macroEnv);
+	// Note that the selected value is not a macro to be expanded,
+	// so we use an empty macroEnv.
+	result = evalExpr(selected, {});
       }
     }
 
