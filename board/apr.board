@@ -417,7 +417,7 @@ e36: 10210 or buffer
      7 ~< clk3 apr delayed h
      2 ~> apr2 clk a h
      3 ~> apr2 clk b h
-     4 ~> apr2 clk c h
+     4 ~> {dj2} apr2 clk c h
      11 ~< %NC%
      10 ~< clk3 apr delayed h
      9 ~< %NC%
