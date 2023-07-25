@@ -145,34 +145,32 @@ ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
 `);
 	}
 
-	const gNet = gNets[0];
-	const vNet = verilogify(gNet);
+	// For pins driven from CRAM boards, define global net name from
+	// CRAM definitions, in preference to the definition on the board.
+	// E.g., `crm.be2[cpu.44]`
+	const cramPinName = `${id}.${bpp}[${id}.${slotNumber}]`;
+	const cd = cramDefs.bp[cramPinName];
 
-	slot.bpPins[bpp] = { gNet, vNet, pinNets, dirs, bpp, };
-	addSlotVNet(bp, slot.bpPins[bpp], slotNumber, `${slotNumber}.${id}`);
+	if (cd) {
+	  const gNet = cd.net;
+
+	  const sv = {
+	    gNet,
+	    vNet: verilogify(gNet),
+	    pinNets: null,
+	    dirs: ['D'],
+	    bpp,
+	  };
+
+	  addSlotVNet(bp, sv, slotNumber, `cram.${id}`);
+	} else {
+	  const gNet = gNets[0];
+	  const vNet = verilogify(gNet);
+
+	  slot.bpPins[bpp] = { gNet, vNet, pinNets, dirs, bpp, };
+	  addSlotVNet(bp, slot.bpPins[bpp], slotNumber, `${slotNumber}.${id}`);
+	}
       });
-
-      // For pins driven from CRAM boards, define global net name from
-      // CRAM definitions, replacing the definition on the board.
-      // E.g., `crm.be2[cpu.44]`
-      const cramPinName = `${id}.{bpp}[${slotName}]`;
-      const cd = cramDefs.bp[cramPinName];
-
-      if (cd) {
-
-	if (!slot.bpPins[bpp]) slot.bpPins[bpp] = {};
-	if (!slot.bpPins[bpp][pinName]) slot.bpPins[bpp][pinName] = {};
-
-	const sv = {
-	  gNet: cd.net,
-	  vNet: verilogify(cd.net),
-	  pinNets: null,
-	  dirs: ['D'],
-	  bpp,
-	};
-
-	addSlotVNet(bp, sv, slotNumber, `cram.${id}`);
-      }
 
       if (options.dumpSlots) {
 	fs.writeFileSync(`${slotNumber}.${id}.slot`,
