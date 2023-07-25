@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "./sim kl10pv.backplane",
-    "clean": "rm -f *.bp-pins *.wires *.nets bp.cram-defs bp.dump bp.nets bp.pins bp.verilog-names *.before.evaluation *.after.evaluation",
+    "clean": "rm -f *.bp-pins *.wires *.nets bp.cram-defs bp.dump bp.nets bp.pins bp.verilog-names *.slot *.before.evaluation *.after.evaluation",
     "test": "jest"
   },
   "dependencies": {
