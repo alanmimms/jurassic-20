@@ -52,3 +52,4 @@ bp.pins
 *.nets
 *.wires
 *.slot
+cpu.undriven
