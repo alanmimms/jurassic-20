@@ -13,6 +13,7 @@
 // CRAM names PDF398.
 
 Backplane: {a=2 b=1} cpu
+
 Slot  1: ignore cables BC11A M919, BC20C M9006, BC20C M9006
 Slot  2: ignore cables BC20C M9006, BC20C M9006, spare
 Slot  3: ignore cables BC20C M9006, BC20C M9006, spare
