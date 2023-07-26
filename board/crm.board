@@ -259,7 +259,7 @@ e13: 10110 or buffer
      7 ~< {cj2} cram [n+22] h
      2 ~> {bm2} cram [n+22] 00 h
      3 ~> {bl2} cram [n+22] 06 h
-     4 ~> {dm1} cram [n+22] 12 h
+     4 ~> {bm1} cram [n+22] 12 h
      9 ~< %NC%
      10 ~< {cj2} cram [n+22] h
      11 ~< %NC%
