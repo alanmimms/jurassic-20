@@ -49,7 +49,8 @@ backplane = 'Backplane' _ ':' _
 	slots:slotDef+
                 { return AST('Backplane', {name, macros, slots, boards: {}}) }
 
-slotDef = 'Slot' _ n:simpleID _ ':' _ board:slotContent blankLines slotWires:wireDef* blankLines?
+slotDef = blankLines? 'Slot' _ n:simpleID _ ':' _
+	board:slotContent blankLines slotWires:wireDef* blankLines?
                 { return AST('Slot', {n, board, slotWires, bpPins: {}}) }
 
 slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
