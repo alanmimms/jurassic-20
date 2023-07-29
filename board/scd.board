@@ -13,6 +13,9 @@ e53: 10101 quad or/nor
      13 ~< {dm1} ar 00 d h
      9 ~> scd3 ar 00 h
      15 ~> %NC%
+     10 ~< {dm1} ar 00 d h
+     14 ~> %NC%
+     11 ~> scd3 ar 00 h
 
 e54: 10109 dual 2/4 or/nor
      4 ~< scd1 scad 09 h
