@@ -3,7 +3,7 @@
 
 const util = require('util');
 const CMDR = require('commander').program;
-const {compile} = require('./compile');
+const {compile, doTests} = require('./compile');
 
 CMDR
   .showHelpAfterError()
@@ -19,10 +19,16 @@ CMDR
   .option('-v, --verbose-errors', `Give more info for errors`)
   .option('-V, --dump-verilog', `Dump Verilogified symbols`)
   .option('-w, --dump-wires', `Dump list of wires on each board`)
+  .option('-T, --run-tests', `Run built-in unit tests`)
   .argument('[src]', `Source file to start parsing`, `kl10pv.backplane`)
   .action((src, options) => {
-    options.src = src;
-    const backplanes = compile(options);
-    console.log(`[done]`);
+
+    if (options.runTests) {
+      doTests();
+    } else {
+      options.src = src;
+      const backplanes = compile(options);
+      console.log(`[done]`);
+    }
   })
   .parse();

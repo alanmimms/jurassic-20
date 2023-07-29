@@ -1,6 +1,6 @@
 {
   const util = require('util');
-  const astDirToDir = options.astDirToDir;
+  const {astDirToDir} = options;
 
   var chip;
   var page;
@@ -18,7 +18,11 @@
       return `@${s.line}:${s.column}:${s.offset}..${e.line}:${e.column}:${e.offset}`;
     };
 
-    return {nodeType, location: loc, ...props};
+    return {
+      nodeType,
+      location: loc,
+      ...props,
+    };
   }
 
 
@@ -103,11 +107,12 @@ bpPin = '{' pinID:bpPinID '}'
 
 bpPinID = $( [abcdef] [abcdefhjklmnprstuv] [12] )
 
-macroRef = '[' head:expr ids:selectorList ']'
-		{ return AST('Macro', {head, ids}) }
-
-selectorList = list:( ',' id:idList {return id} )*
-		{ return AST('SelectorList', {list}); }
+// ONLY the `head:expr` is to be expanded. If there are `macroRef`
+// instances inside the `selectorList`, those will have their own
+// `head:expr` within them. Otherwise, the `idChunk` instances in the
+// `selectorList` are symbols with no expansion.
+macroRef = '[' head:expr list:( ',' id:idList {return id} )* ']'
+		{ return AST(list.length > 0 ? 'Selector' : 'Macro', {head, list}) }
 
 idList = list:( macroRef / idChunk )*
        		{ return AST('IDList', {list}) }

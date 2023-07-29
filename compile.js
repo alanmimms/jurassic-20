@@ -130,7 +130,7 @@ function bindSlots(bp, cramDefs) {
 
 	const gNets = Object.values(pinNets).
 	      map(pinNet => pinNet.netAST ?
-		  canonicalize(pinNet.netAST.map(e => evalExpr(e, macroEnv)).join('')) :
+		  canonicalize(pinNet.netAST.map(e => evalExpr(e, macroEnv, true)).join('')) :
 		  pinNet.net);
 
 	const dirs = Object.values(pinNets)
@@ -145,7 +145,7 @@ ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
 `);
 	}
 
-	// For pins driven from CRAM boards, define global net name from
+	// For pins driven by CRAM boards, define global net name from
 	// CRAM definitions, in preference to the definition on the board.
 	// E.g., `crm.be2[cpu.44]`
 	const cramPinName = `${id}.${bpp}[${id}.${slotNumber}]`;
@@ -313,11 +313,11 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 
     switch (cx.pin.net.nodeType) {
     case 'Macro':
-      cx.net += evalExpr(cx.pin.net, macroEnv);	// Handles selectors and simple macros
+      cx.net += evalExpr(cx.pin.net, macroEnv, true);	// Handles selectors and simple macros
       break;
 
     case 'IDList':
-      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv)).join('');
+      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv, macrosAllowed)).join('');
       break;
 
     case 'IDChunk':
@@ -368,35 +368,30 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
 // with the corresponding value from 'macroEnv' and numerically
 // evaluate any expression. Returns the full expansion of the
 // resulting collapsed tree.
-function evalExpr(t, macroEnv) {
+function evalExpr(t, macroEnv, macrosAllowed) {
   let result;
 
   if (!t || !t.nodeType) debugger;
 
   switch (t.nodeType) {
   case 'Macro':
-    // Two cases:
-    // 
-    // 1. t.ids is an empty array, in which case t.head is a (possibly
-    // complex) macro to be expanded.
-    //
-    // 2. t.ids is a non-empty array, in which case t.head is a simple
-    // expression macro whose value is the 1-origin member of t.ids[]
-    // to expand.
-    result = evalExpr(t.head, macroEnv);
+    result = evalExpr(t.head, macroEnv, true);
+    break;
 
-    if (t.ids.list.length) {		// It's a selector
-      const sel = result;
-      const selected = t.ids.list[+result - 1]; // 1-origin indexing
+  case 'Selector':
+    result = evalExpr(t.head, macroEnv, true);
+    const selected = t.list[+result - 1]; // 1-origin indexing
 
-      if (result < 1 || selected == null) {
-	console.log(`ERROR: Selector produces undefined result t=\n${util.inspect(t, {depth:99})}`);
-	result = '%NC%';
-      } else {
-	// Note that the selected value is not a macro to be expanded,
-	// so we use an empty macroEnv.
-	result = evalExpr(selected, {});
-      }
+    if (result < 1 || selected == null) {
+      console.log(`ERROR: Selector produces undefined result=${result} selected=${selected}:
+${util.inspect(t, {depth:99})}`);
+      result = '%NC%';
+    } else {
+
+      // Note that the selected value may contain a macro to be
+      // expanded, but only within its own set of []s. It is only
+      // the `t.head` inside these []s that should be expanded.
+      result = evalExpr(selected, macroEnv, false);
     }
 
     break;
@@ -408,15 +403,15 @@ function evalExpr(t, macroEnv) {
     // This is complicated by the need to keep the values as strings
     // and to evaluate results to preserve the number of digits, which
     // is the max of the length of each of the operands.
-    const L = evalExpr(t.l, macroEnv);
-    const R = evalExpr(t.r, macroEnv);
+    const L = evalExpr(t.l, macroEnv, macrosAllowed);
+    const R = evalExpr(t.r, macroEnv, macrosAllowed);
     const resultStr = Math.trunc(eval(`${parseInt(L, 10)} ${t.nodeType} ${parseInt(R, 10)}`));
     const digits = Math.max(L.length, R.length);
     result = padValueToDigits(resultStr, digits)
     break;
 
   case 'IDList':
-    result = t.list.map(id => evalExpr(id, macroEnv)).join('');
+    result = t.list.map(id => evalExpr(id, macroEnv, macrosAllowed)).join('');
     break;
 
   case 'IDChunk':
@@ -671,6 +666,7 @@ ${netName}:
   }
 }
 
+
 function netNameSort(a, b) {
   a = a.replace(/^[^a-zA-Z]/g, '');
   b = b.replace(/^[^a-zA-Z]/g, '');
@@ -696,22 +692,26 @@ function canonicalize(net) {
 }
 
 
-// Do standardized util.inspect() on `thing`. If `without` is not null
-// it is a string name of a key to not dump or it is an object whose
-// keys list things not to dump or it is an array whose elements are
-// strings to not dump.
-function dumpThing(thing, without) {
-  if (!without) without = {};
-  if (typeof without === 'string') without = {[without]: without};
-  if (Array.isArray(without)) without = without.reduce((cur, e) => ({ [e]: e, ...cur}), {});
+// Do standardized util.inspect() on `thing`. See `without()`.
+function dumpThing(thing, dumpWithout) {
+  return util.inspect(without(thing, dumpWithout), {depth: 9, maxArrayLength: Infinity});
+}
 
-  // Now `without` is in canonical form: an object whose keys are the
+
+// If `toDrop` is not null it is a string name of a key to not dump or
+// it is an object whose keys list things not to dump or it is an
+// array whose elements are strings to not dump.
+function without(thing, toDrop) {
+  if (!toDrop) toDrop = {};
+  if (typeof toDrop === 'string') toDrop = {[toDrop]: toDrop};
+  if (Array.isArray(toDrop)) toDrop = toDrop.reduce((cur, e) => ({ [e]: e, ...cur}), {});
+
+  // Now `toDrop` is in canonical form: an object whose keys are the
   // list of keys not to dump. Remove those keys from a copy of
-  // `thing` and dump it.
+  // `thing`.
   const cleanThing = {...thing};
-  Object.keys(without).forEach(k => delete cleanThing[k]);
-
-  return util.inspect(cleanThing, {depth: 9, maxArrayLength: Infinity});
+  Object.keys(toDrop).forEach(k => delete cleanThing[k]);
+  return cleanThing;
 }
 
 
@@ -788,13 +788,39 @@ function testPadValueToDigits() {
 }
 
 
+function testMacrosAndSelectors() {
+  const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
+    output: 'parser',
+  })
+
+  const env = {a: 1, b: 2, c: 3, d: 4, e: 99, f: 999};
+  const t1 = `\
+Page: T1, PDF1
+
+t1: 10101 quad or/nor
+    4 ~< {ep1} [a,scd2 sc 36 to 63 h,%NC%]
+    2 ~> {aa1} a[a,a,aa,aaa,aaaa]a
+    5 ~> {ab1} [a,xa,xb,xc,xd]
+    7 ~< {ac1} test[b,xa,xb,xc,xd]
+    3 ~> {ad1} pin3[c,xa,xb,xc,xd]pin3
+    9 ~> {ae1} [d,xa,xb,xc,xd] pin9
+    13 ~< {af1} pin13 [e] pin13
+    15 ~> {ba1} pin15 [a+b+c/3,xa,xb,xc,xd]
+`;
+
+  const t1AST = parser.parse(t1, {astDirToDir});
+  console.log(util.inspect(t1AST));
+}
+
+
 function doTests() {
+  console.log(`[starting unit tests]`);
+  testMacrosAndSelectors();
   testDumpThing();
   testCanonicalize();
   testPadValueToDigits();
+  console.log(`[done]`);
 }
-
-doTests();
 
 module.exports.compile = compile;
 module.exports.doTests = doTests;
