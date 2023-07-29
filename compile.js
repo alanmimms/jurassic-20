@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const util = require('util');
+const assert = require('assert');
 const PEG = require('pegjs');
 
 const logic = require('./logic.js');
@@ -316,8 +317,13 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
       cx.net += evalExpr(cx.pin.net, macroEnv, true);	// Handles selectors and simple macros
       break;
 
+    case 'Selector':
+      const selected = evalExpr(cx.pin.net.head, macroEnv, true);
+      cx.net += evalExpr(cx.pin.net.list[+selected - 1], macroEnv, false);
+      break;
+
     case 'IDList':
-      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv, macrosAllowed)).join('');
+      cx.net = cx.pin.net.list.map(id => evalExpr(id, macroEnv, false)).join('');
       break;
 
     case 'IDChunk':
@@ -415,7 +421,7 @@ ${util.inspect(t, {depth:99})}`);
     break;
 
   case 'IDChunk':
-    result = macroEnv[t.name];
+    result = macrosAllowed ? macroEnv[t.name] : t.name;
     if (result === undefined) result = t.name;
     break;
 
@@ -794,7 +800,7 @@ function testMacrosAndSelectors() {
   })
 
   const env = {a: 1, b: 2, c: 3, d: 4, e: 99, f: 999};
-  const t1 = `\
+  const t1src = `\
 Page: T1, PDF1
 
 t1: 10101 quad or/nor
@@ -808,8 +814,34 @@ t1: 10101 quad or/nor
     15 ~> {ba1} pin15 [a+b+c/3,xa,xb,xc,xd]
 `;
 
-  const t1AST = parser.parse(t1, {astDirToDir});
-  console.log(util.inspect(t1AST));
+  const t1 = parser.parse(t1src, {astDirToDir});
+//  console.log(`testMacrosAndSelectors: ${dumpThing(t1)}`);
+  const t1nets = {};
+  expandMacros(t1, t1nets, env);
+
+  const pins = t1.pages[0].chips[0].pins;
+//  console.log(`testMacrosAndSelectors: ${pins.map(p => `${p.pin}:${p.netName}`).join('\n')}`);
+
+  const netNameSB = {
+    4: 'scd2 sc 36 to 63 h',
+    2: 'aaa',
+    5: 'xa',
+    7: 'testxb',
+    3: 'pin3xcpin3',
+    9: 'xd pin9',
+    13: 'pin13 99 pin13',
+    15: 'pin15 xd',
+  };
+
+  pins.map(p => {
+
+    if (p.netName != netNameSB[+p.pin]) {
+      console.error(`${p.pin}:  was '${p.netName}'  sb '${netNameSB[+p.pin]}'`);
+      console.error(`text='${p.net.text}':
+${dumpThing(p.net)}
+`);
+    }
+  });
 }
 
 
