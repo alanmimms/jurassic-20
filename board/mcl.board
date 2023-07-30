@@ -648,7 +648,7 @@ e32: 10141 shift register
      3 ~> mcl3-e32-3
 
 e31: 10158 4x2 mixer
-     6 ~< {cs2} scd4 trape req 2 h
+     6 ~< {cs2} scd4 trap req 2 h
      5 ~< mcl3-e32-14
      4 ~< {dh2} scd4 trap req 1 h
      3 ~< mcl3-e32-15

@@ -395,7 +395,7 @@ e36: 10109 4/5 or/nor
      6 ~< -pma2 cca 29 l
      7 ~< pma2-e36-15
      3 ~> %NC%
-     2 ~> {bf1} pma cca cry out l
+     2 ~> {bf1} pma2 cca cry out l
 
 e65: 10117 dual 2-3 or-and
      4 ~< {em2} -mbx1 cca all pages cyc l

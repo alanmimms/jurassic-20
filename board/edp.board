@@ -291,7 +291,7 @@ e30: 10164 8 mix
      15 ~> arxm [n+05] h
 
 e38: 10101 or buffer
-     4 ~< {dm1} ctl mqm setl 2 h
+     4 ~< {dm1} ctl mqm sel 2 h
      12 ~< %NC%
      2 ~> %NC%
      5 ~> edp-e38-5

@@ -656,7 +656,7 @@ e32: 10101 quad or/nor
      12 ~< %NC%
      7 ~< {ce2} diag 05 a h
      13 ~< {bp1} diag 06 a h
-     10 ~< {bn1} diag read func 13 l
+     10 ~< {bn1} diag read func 13x l
      2 ~> scd3 diag 04 l
      5 ~> scd3 diag 04 h
      3 ~> scd3 diag 05 l
@@ -980,7 +980,7 @@ e19: 10104 quad and
 e9: 10176 hex dff
     9 ~< scd2 clk f h
     5 ~< scd4 trap req 2 en h
-    2 ~> scd4 tap req 2 h
+    2 ~> {ad1} scd4 trap req 2 h
     6 ~< scd4-e14-3
     3 ~> scd4 trap cyc 2 h
     7 ~< scd4 trap req 1 en h
@@ -1132,7 +1132,7 @@ e2:  10101 quad or/nor
      6 ~> {af1} scd user iot a l
      13 ~< scd5 public l
      15 ~> {dp2} scd5 public a h
-     9 ~> scd public a l
+     9 ~> {ae1} scd public a l
      4 ~< {ae2} ctl spec/save flags l
      14 ~> scd5 disp/save flags h
      11 ~> %NC%

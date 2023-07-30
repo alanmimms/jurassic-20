@@ -473,6 +473,7 @@ e17: 10118 triple 4-2 or-and
      14 ~< {dd2} pma3 pa 24 h
      10 ~< pag2-e11-15
      11 ~< pag2-e10-15
+     15 ~> {ed2} pt 24 b h
 
 e12: 10101 quad or/nor
      4 ~< {er2} pt 23 b h

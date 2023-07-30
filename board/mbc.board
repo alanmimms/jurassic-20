@@ -148,7 +148,7 @@ e13: 10174 2x4 mixer
      11 ~< {ar1} pma3 pa 28 h
      12 ~< mbc1 pma hold 28 h
      10 ~< %NC%
-     9 ~< {aj1} mbx refill adr en h
+     9 ~< {aj1} mbx1 refill adr en h
      7 ~< {am1} csh3 adr pma en h
      14 ~< %NC%
      2 ~> {av2} mbx csh adr 27 h
@@ -163,7 +163,7 @@ e14: 10174 2x4 mixer
      11 ~< {af1} pma3 pa 30 h
      12 ~< mbc1 pma hold 30 h
      10 ~< %NC%
-     9 ~< {aj1} mbx refill adr en h
+     9 ~< {aj1} mbx1 refill adr en h
      7 ~< {am1} csh3 adr pma en h
      14 ~< %NC%
      2 ~> {ar2} mbx csh adr 29 h
@@ -178,7 +178,7 @@ e7:  10174 2x4 mixer
      11 ~< {ah2} pma4 pa 32 h
      12 ~< mbc1 pma hold 32 h
      10 ~< %NC%
-     9 ~< {aj1} mbx refill adr en h
+     9 ~< {aj1} mbx1 refill adr en h
      7 ~< {am1} csh3 adr pma en h
      14 ~< %NC%
      2 ~> {al1} mbx csh adr 31 h
@@ -193,7 +193,7 @@ e2:  10174 2x4 mixer
      11 ~< %NC%
      12 ~< %NC%
      10 ~< %NC%
-     9 ~< {aj1} mbx refill adr en h
+     9 ~< {aj1} mbx1 refill adr en h
      7 ~< {am1} csh3 adr pma en h
      14 ~< %NC%
      2 ~> {ad1} mbx csh adr 33 h
@@ -208,7 +208,7 @@ e8:  10173 4x2 mixer latch
      13 ~< mbc1 hold 29 h
      10 ~< {af1} pma3 pa 30 h
      11 ~< mbc1 pma hold 30 h
-     9 ~< {aj1} mbx refill adr en h
+     9 ~< {aj1} mbx1 refill adr en h
      7 ~< %NC%
      1 ~> {aj2} cache adr 27 h
      2 ~> {ak1} cache adr 28 h
@@ -224,7 +224,7 @@ e3:  10173 4x2 mixer latch
      13 ~< mbc1 pma hold 33 h
      10 ~< %NC%
      11 ~< %NC%
-     9 ~< {aj1} mbx refill adr en h
+     9 ~< {aj1} mbx1 refill adr en h
      7 ~< %NC%
      1 ~> {aa1} cache adr 31 h
      2 ~> {ac1} cache adr 32 h
@@ -240,7 +240,7 @@ e23: 10174 2x4 mixer
      11 ~< mbc1 pma 35 a h
      12 ~< mbc1 pma hold 35 h
      10 ~< {bs1} mb sel 1 h
-     9 ~< {aj1} mbx refill adr en h
+     9 ~< {aj1} mbx1 refill adr en h
      7 ~< -mbc3 first wd adr sel h
      14 ~< %NC%
      2 ~> {cf1} cache adr 34 h
@@ -351,7 +351,7 @@ e24: 10176 hex dff
      10 ~< mbc2-e27-2
      13 ~> {cp2} csh sel lru h
      7 ~< mbc2-e27-5
-     4 ~> {dm1} csh sel lur l
+     4 ~> {dm1} csh sel lru l
 
 e20: 10176 hex dff
      5 ~< mbc2-e29-2

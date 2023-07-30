@@ -848,7 +848,7 @@ e43: 10104 quad and/nand
      6 ~< {df1} -con cono apr h
      7 ~< -pi4 mr reset h
      3 ~> pic3-e43-3
-     4 ~< {dj2} -mtr cono mtr. h
+     4 ~< {dj2} -mtr cono mtr, h
      5 ~< -pi4 mr reset h
      2 ~> pic3-e43-2
 
@@ -875,7 +875,7 @@ e49z: 10141 shift register
      9 ~< pi4 iob 17 h
      6 ~< %NC%
      5 ~< %NC%
-     7 ~< {dj2} -mtr cono mtr. h
+     7 ~< {dj2} -mtr cono mtr, h
      10 ~< pic3-e43-2
      4 ~< pi2 clk c h
      14 ~> {dj1} pi3 mtr pia 04 h
@@ -963,7 +963,7 @@ e48: 10105 2-3-2 or/nor
      12 ~< {dl2} mr reset 02 h
      14 ~> %NC%
      15 ~> pi4 sys clr h
-     9 ~< {dm1} read func 10x l
+     9 ~< {dm1} diag read func 10x l
      10 ~< %NC%
      11 ~< {dm2} -diag 04 b l
      6 ~> pi4 bus en h

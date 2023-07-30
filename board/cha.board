@@ -1099,7 +1099,7 @@ e70: 10147 128x1 RAM
 
 e22: 10101 quad or/nor
      4 ~< {al1} csh 0 wr en l
-     12 ~< {bf2} wr wr pulse l
+     12 ~< {bf2} csh wr wr pulse l
      2 ~> %NC%
      5 ~> cha3 csh 0 wr wr l
      7 ~< {am1} csh 1 wr en l

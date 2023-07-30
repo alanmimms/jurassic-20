@@ -65,7 +65,7 @@ e23: 10162 decoder
       13 ~> {cm1} ctl1 spec/clr fpd h
       12 ~> ctl1 spec/load pc h
       11 ~> ctl1 spec/xcry ar0 h
-      10 ~> ctl1 spec/gen cry 18 h
+      10 ~> {aa2} ctl spec/gen cry 18 h
 
 e26: 10162 decoder
       14 ~< {df2} cra3 disp 02 h
@@ -200,7 +200,7 @@ e20: 10101 quad or/nor
      4 ~< {af1} -clk sbr call l
      12 ~< %NC%
      2 ~> %NC%
-     5 ~> -ctl1 disp ret h
+     5 ~> {cs2} -ctl1 disp ret h
      7 ~< ctl1 disp/return h
      3 ~> -ctl1 disp ret h
      6 ~> %NC%
@@ -220,9 +220,9 @@ e16: 10105 quad or buffer
      7 ~> ctl3-e16-7
 
 e12: 10117 dual 2-3 or-and
-     4 ~< ctl1 spec/gen cry 18 h
+     4 ~< {aa2} ctl spec/gen cry 18 h
      5 ~< ctl1 spec/stack update h
-     6 ~< ctl1 spec/gen cry 18 h
+     6 ~< {aa2} ctl spec/gen cry 18 h
      7 ~< {cn1} mcl4 short stack h
      9 ~< %NC%
      3 ~> %NC%
@@ -296,6 +296,8 @@ e11: 10121 4-wide or-and
      13 ~< ctl1 spec/inh cry 18 h
      14 ~< ctl1 spec/save flags h
      15 ~< {cn1} mcl4 short stack h
+     3 ~> {bl1} ctl inh cry 18 l
+     2 ~> %NC%
 
 e10: 10101 quad or/nor
      4 ~< {bd2} -cram ad cry l

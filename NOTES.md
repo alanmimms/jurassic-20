@@ -8,6 +8,20 @@
 
 * This decouples uses of netlist structure from AST structure.
 
+
+# Outstanding Questions
+
+* WTF is e.g., `-APR APR PAR CHK EN H\#400\`?
+  * What does `\#400\` mean?
+  * There was some note somewhere that said it was a notation
+    selecting a particular type of wire for the signal on the
+    backplane? Coax?
+  * There is some evidence these signals are to be driven externally
+    into the backplane. This comes from, e.g., PDF344 CRA2 e32.14 `ea
+    type 07 h\#400\`.
+  * On clk3 we see clock buffers driving backplane pins with `\#20\`
+    notation.
+
 # Data
 
 ## Data Needed
@@ -55,6 +69,65 @@
     * ' ' ==> _
 	* '<-' ==> GETS
 	* [/,*.-+=#()%^<>&] ==> SYMBOLNAME
+
+
+# Notes for Backplane _Undriven_ Nets
+* TODO: Should we connect `adx cp M h` and `adx cg h`?
+  For `M` in {03,09,15,21,27,33}
+
+* What are unlabeled nets `i48.er2` and `i48.es2`?
+
+* `brx 36 h` appears to be supposed to unconnected?
+
+* TODO: `ccl ch buf en l` probably needs to be connected?
+
+* `ccw buf adr 3 h` does not exist.
+
+* `clk1 clk h` is the clock after it has been output from `clk1 clk
+  out h\#20\` and routed all the way around the backplane to
+  compensate for line length delay.
+
+* `external clk h` is the external clock input, which is unused?
+
+* The signals `clk3 fs en M h` for `M` in `{a,b,c,d,e,f}` are clock
+  sources for debugging, right?
+
+* `clk resp sim h` is unused?
+  * This appears in context with `clk4 resp mbox h` as another OR term
+    for various ARX selectors.
+
+* `cram # 09 h` through `cram # 35 h` are supposed to be zero because
+  `#` is only 9 bits wide.
+  
+* TODO: `crc buf mb sel h` is not driven and I cannot find who should
+  drive it.
+  * Is this part of the MASSBUS channel signal set?
+
+* TODO: `crobar e h` should be driven by power on reset circuitry.
+
+* TODO: `pwr warn e h` should be driven by power fail warning circuitry.
+
+* `ebus *` signals are EBUS cabled from frontend.
+
+* `mem *` signals are memory bus signals.
+
+* TODO: `csh7 cca writeback l` and `mtr cca writeback l` need to be
+  the same net on the backplane.
+
+* `probe h\#400\` on PDF327 MTR4 is a backplane test point.
+
+* `synchronize clk h` is a backplane test point.
+
+* `force valid match M h` for `M` in `[0-3]` is for testing and
+  troubleshooting only?
+  
+* `ctl spec/gen cry 18 h` on e23.10 PDF364 CTL1 is used in EDP, so I
+  added it on `{aa2}` and renamed the local symbol from `ctl1 spec/gen
+  cry 18 h`.
+
+* Presumably `deskew clk h` is only used in factory deskew adjustment.
+
+* Presumably all of the `spare` signals are actually unused.
 
 
 # TODO:

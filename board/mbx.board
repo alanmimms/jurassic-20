@@ -16,11 +16,6 @@ e83: 10121 4-wide or-and
      3 ~> {fr2} mbx1 refill adr en nxt h
      2 ~> %NC%
 
-e95: 10176 hex dff
-     11 ~< {fr2} mbx1 refill adr en nxt h
-     9 ~< mbx4 clk c h
-     14 ~> {fn1} mbx1 refill adr en h
-
 e84: 10101 quad or/nor
      13 ~< {fn1} mbx1 refill adr en h
      12 ~< %NC%
@@ -168,6 +163,9 @@ e85: 10176 hex dff
      4 ~> mbx1 cca hold adr l
      10 ~< {fp1} csh3 mb wr rq clr nxt l
      13 ~> mbx2 mb wr rq clr ff l
+     11 ~< {fr2} mbx1 refill adr en nxt h
+     9 ~< mbx4 clk c h
+     14 ~> {fn1} mbx1 refill adr en h
 
 e80: 10118 triple 4-2 or-and
      3 ~< {fk2} pag1 pt cache l
@@ -414,6 +412,9 @@ e49: 10101 quad or/nor
      10 ~< {cj2} csh2 e core rd rq l
      14 ~> mbx4 e core rd rq a h
      11 ~> mbx4 e core rd rq a l
+     13 ~< {dv2} csh wr out en l
+     15 ~> {dt2} mbx4 writeback t2 h
+     9 ~> {bc1} mbx4 writeback t2 l
 
 e3:  10118 triple 4-2 or-and
      3 ~< mbx2 core wd 0 coming h

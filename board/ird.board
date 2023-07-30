@@ -971,7 +971,7 @@ e2: 10179 carry
 
 e6: 10179 carry
      5 ~< {an1} ctl inh cry 18 l
-     13 ~< {al1} ctl spec/gen crh 18 h
+     13 ~< {al1} ctl spec/gen cry 18 h
      9 ~< {an1} ctl inh cry 18 l
      12 ~< %NC%
      7 ~< {ap1} ad cg 18 h

@@ -548,7 +548,7 @@ e1:  10101 quad or/nor
      12 ~< %NC%
      2 ~> %NC%
      5 ~> mb0 hold h
-     7 ~< {ad1} mb1 hold h
+     7 ~< {ad1} mb1 hold in h
      3 ~> %NC%
      6 ~> mb1 hold h
      13 ~< {aa1} mb2 hold in h
