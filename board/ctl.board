@@ -371,7 +371,7 @@ e45: 10109 4/5 or/nor
      7 ~< ctl2-e38-14
      3 ~> {dm1} ctl ar 00-08 load l
      2 ~> %NC%
-     9 ~< {eu2} cram arxml sel 4 h
+     9 ~< {eu2} cram arxm sel 4 h
      10 ~< {fd1} ctl arxr sel 2 h
      11 ~< {fa1} ctl arxr sel 1 h
      12 ~< ctl2 arx clr h

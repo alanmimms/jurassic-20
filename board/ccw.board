@@ -860,7 +860,7 @@ e19: 10161 decoder
      9 ~< ccw ram adr 2 h
      7 ~< ccw ram adr 1 h
      15 ~< {bp2} ch t0 l
-     2 ~< {au2} crc act flag clr l
+     2 ~< {au2} ccl act flag clr l
      6 ~> -ccw0 act flag in h
      5 ~> -ccw1 act flag in h
      4 ~> -ccw2 act flag in h
