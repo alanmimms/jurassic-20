@@ -14,14 +14,14 @@
 
 Backplane: {a=2 b=1} cpu
 
-Slot  1: ignore cables BC11A M919, BC20C M9006, BC20C M9006
-Slot  2: ignore cables BC20C M9006, BC20C M9006, spare
-Slot  3: ignore cables BC20C M9006, BC20C M9006, spare
-Slot  4: ignore TR0 E&C BUS TRAN M8516
-Slot  5: ignore TR0 E&C BUS TRAN M8516
-Slot  6: ignore TR0 E&C BUS TRAN M8516
-Slot  7: ignore TR0 S BUS TRAN M8519
-Slot  8: ignore TR0 S BUS TRAN M8519
+Slot  1: ignore DTE EBUS/CBUS cables PDF399-401		AB: BC11A M919		CD: BC20C M9006		EF: BC20C M9006
+Slot  2: ignore {n=0} SBUS int mem cables PDF402	AB: BC20C M9006		CD: BC20C M9006		EF: spare
+Slot  3: ignore {n=1} SBUS int mem/DMA20 cables PDF402	AB: BC20C M9006		CD: BC20C M9006		EF: spare
+Slot  4: {n=24} ignore TR0 EBUS/CBUS translator M8516
+Slot  5: {n=12} ignore TR0 EBUS/CBUS translator M8516
+Slot  6: {n=00} ignore TR0 EBUS/CBUS translator M8516
+Slot  7: {k=00} ignore MT0 SBUS translator M8519
+Slot  8: {k=01} ignore MT0 SBUS translator M8519
 
 Slot  9: {m=0} chc M8533
 Slot 10: crc M8535
