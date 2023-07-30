@@ -27,7 +27,7 @@ e84: 10105 2-3-2 or/nor
      3 ~> %NC%
      2 ~> csh2 e req en clr h
      12 ~< csh5 t1 l
-     13 ~< {fp1} -csh6 wr from mem next l
+     13 ~< {fp1} -csh6 wr from mem nxt l
      14 ~> csh5 t2 in h
      15 ~> csh5-e84-15
 
@@ -37,7 +37,7 @@ e49: 10109 4/5 or/nor
      6 ~< csh2 ebox req en l
      // Time critical
      7 ~< {fe1} -ccl chan req l
-     3 ~> csh1 ebox req grant h
+     3 ~> {ek2} csh1 ebox req grant h
      2 ~> csh1 ebox req grant l
      9 ~< {ba1} apr6 ebox era l
      10 ~< {fe1} -ccl chan req l
@@ -45,7 +45,7 @@ e49: 10109 4/5 or/nor
      12 ~< {ee1} clk4 ebox req l
      13 ~< -csh1 mb req l
      // Time critical
-     14 ~> csh1 ebox era grant h
+     14 ~> {aa1} csh1 ebox era grant h
      15 ~> %NC%
 
 e50: 10101 quad or/nor
@@ -70,7 +70,7 @@ e55: 10109 4/5 or/nor
      12 ~< {ee1} clk4 ebox req l
      13 ~< -csh1 mb req l
      // Time critical
-     14 ~> csh1 ebox cca grant h
+     14 ~> {ca1} csh1 ebox cca grant h
      15 ~> %NC%
      4 ~< -csh1 ebox cyc a l
      5 ~< {fd1} -csh4 ebox t0 in l
@@ -385,6 +385,11 @@ e61: 10105 2-3-2 or/nor
      5 ~< %NC%
      3 ~> csh1 ready to go a l
      2 ~> csh1 ready to go a h
+     9 ~< {dv2} mcl2 vma write l
+     10 ~< {du2} csh ebox cyc a l
+     11 ~< -csh4 ebox read a l
+     6 ~> {em2} csh2 e cache wr cyc h
+     7 ~> {bh2} e cache wr cyc l
      12 ~< {dt2} ccl chan to mem l
      13 ~< {ds2} csh5 chan t4 l
      14 ~> {dr2} csh5 chan wr t5 in h
@@ -425,7 +430,7 @@ e17: 10121 4-wide or-and
      14 ~< csh1 cache idle in b l
      15 ~< csh1 ebox cyc b l
      // Time critical
-     3 ~> csh2 mbox resp in h
+     3 ~> {bd1} csh2 mbox resp in h
      2 ~> csh2-e17-2
 
 e8:  10176 hex dff
@@ -609,8 +614,8 @@ e47: 10117 dual 2-3 or-and
      11 ~< csh5 t1 l
      10 ~< {bp2} csh1 mb cyc l
      9 ~< -csh1 reset b l
-     14 ~> {fp1} csh6 wr from mem next h
-     15 ~> csh6 wr from mem next l
+     14 ~> {fp1} csh6 wr from mem nxt h
+     15 ~> csh6 wr from mem nxt l
 
 e28: 10104 quad and/nand
      12 ~< {ck1} csh4 clear wr t0 l
@@ -815,7 +820,7 @@ e5:  10101 quad or/nor
 
 e42: 10109 4/5 or/nor
      4 ~< csh5 page refill t11 h
-     5 ~< {fp1} csh6 wr from mem next h
+     5 ~< {fp1} csh6 wr from mem nxt h
      6 ~< csh3-e50-9
      7 ~< {ce1} chan read h
      3 ~> {fm2} csh3 mb wr rq clr nxt l
@@ -1011,6 +1016,13 @@ e18: 10176 hex dff
 Page: CSH5, PDF28
 
 e25: 10117 dual 2-3 or-and
+     13 ~< csh1 ebox cyc b l
+     12 ~< csh4 writeback t1 l
+     11 ~< %NC%
+     10 ~< csh2 ebox retry next l
+     9 ~< -csh1 reset a l
+     14 ~> %NC%
+     15 ~> {as1} csh2 ebox retry req l
      4 ~< csh5 page refill t10 l
      5 ~< {ec1} -core busy l
      6 ~< -csh2 ebox restart l
@@ -1123,7 +1135,7 @@ e10: 10121 4-wide or-and
      11 ~< csh4 hi
      12 ~< %NC%
      13 ~< -csh1 reset a l
-     14 ~< csh6 wr from mem next l
+     14 ~< csh6 wr from mem nxt l
      15 ~< %NC%
      3 ~> {am2} csh6 cache wr in h
      2 ~> %NC%
