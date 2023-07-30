@@ -412,7 +412,7 @@ ${util.inspect(t, {depth:99})}`);
     const L = evalExpr(t.l, macroEnv, macrosAllowed);
     const R = evalExpr(t.r, macroEnv, macrosAllowed);
     const resultStr = Math.trunc(eval(`${parseInt(L, 10)} ${t.nodeType} ${parseInt(R, 10)}`));
-    const digits = Math.max(L.length, R.length);
+    const digits = (t.nodeType == '-' || t.nodeType == '+') ? Math.max(L.length, R.length) : 0;
     result = padValueToDigits(resultStr, digits)
     break;
 
