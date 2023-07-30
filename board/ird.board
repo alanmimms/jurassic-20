@@ -1039,7 +1039,7 @@ e21: 10179 carry
      3 ~> adx cg 00-11 h
      15 ~> adx cp 00-11 h
      3 ~> %NC%
-     6 ~> adx cry 06 h
+     6 ~> {cd2} adx cry 06 h
 
 e26: 10179 carry
      5 ~< {bu2} adx cg 12 h

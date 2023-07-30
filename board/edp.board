@@ -605,8 +605,8 @@ e4:   10181 alu
       7 ~> adx [n+03] h
       3 ~> {dk1} adx [n+04] h
       2 ~> {es1} adx [n+05] h
-      4 ~> {ak2} ad cg [n+03] h
-      8 ~> {af2} ad cp [n+03] h
+      4 ~> {ak2} adx cg [n+03] h
+      8 ~> {af2} adx cp [n+03] h
 
 e22:  10164 8 mix
       6 ~< fm [n+00] h
