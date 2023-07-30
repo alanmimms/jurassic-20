@@ -1387,28 +1387,28 @@ e14: 10110 or buffer
      14 ~> csh adr 34 f h
 
 e69: 10110 or buffer
-     5 ~< {ej1} csh 0 [n/18*18]-[n/18*18+17] sel a l
+     5 ~< {ej1} csh 0 [n/18*18+00]-[n/18*18+17] sel a l
      6 ~< %NC%
-     7 ~< csh [n/18*18]-[n/18*18+17] en csh data l
+     7 ~< csh [n/18*18+00]-[n/18*18+17] en csh data l
      2 ~> c match 0 a l
      3 ~> c match 0 b l
      4 ~> c match 0 c l
-     9 ~< {ee1} csh 1 [n/18*18]-[n/18*18+17] sel a l
-     10 ~< csh [n/18*18]-[n/18*18+17] en csh data l
+     9 ~< {ee1} csh 1 [n/18*18+00]-[n/18*18+17] sel a l
+     10 ~< csh [n/18*18+00]-[n/18*18+17] en csh data l
      11 ~< %NC%
      12 ~> c match 1 a l
      13 ~> c match 1 b l
      14 ~> c match 1 c l
 
 e15: 10110 or buffer
-     5 ~< {bj2} csh 2 [n/18*18]-[n/18*18+17] sel a l
+     5 ~< {bj2} csh 2 [n/18*18+00]-[n/18*18+17] sel a l
      6 ~< %NC%
-     7 ~< csh [n/18*18]-[n/18*18+17] en csh data l
+     7 ~< csh [n/18*18+00]-[n/18*18+17] en csh data l
      2 ~> c match 2 a l
      3 ~> c match 2 b l
      4 ~> c match 2 c l
-     9 ~< {bj1} csh 3 [n/18*18]-[n/18*18+17] sel a l
-     10 ~< csh [n/18*18]-[n/18*18+17] en csh data l
+     9 ~< {bj1} csh 3 [n/18*18+00]-[n/18*18+17] sel a l
+     10 ~< csh [n/18*18+00]-[n/18*18+17] en csh data l
      11 ~< %NC%
      12 ~> c match 3 a l
      13 ~> c match 3 b l
