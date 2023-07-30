@@ -72,12 +72,11 @@
 
 
 # Notes for Backplane _Undriven_ Nets
-* TODO: Should we connect `adx cp M h` and `adx cg h`?
-  For `M` in {03,09,15,21,27,33}
+* `arx 36 h` and `arx 37 h` are not driven anywhere. Should they be?
 
 * What are unlabeled nets `i48.er2` and `i48.es2`?
 
-* `brx 36 h` appears to be supposed to unconnected?
+* `brx 36 h` is supposed to be unconnected?
 
 * TODO: `ccl ch buf en l` probably needs to be connected?
 
