@@ -1,228 +1,140 @@
-p.400
-EBUS ACKN
-EBUS NC
-EBUS SPARE T1
-GND
-EBUS DATA DISABLE
-GND
-EBUS CS03
-EBUS CS02
-EBUS PI01
-EBUS PI02
-EBUS CS03
-EBUS CS02
-EBUS CS01
-EBUS CS00
-EBUS DS01
-EBUS F01
-EBUS PI05
-EBUS F02
-EBUS D28
-EBUS D27
-EBUS D29
-EBUS D26
-EBUS PI06
-EBUS F00
-GND
-EBUS PI07
-GND
-EBUS PI04
-GND
-EBUS CS06
-GND
-EBUS CS04
-GND
-EBUS D02
-EBUS PI03
-EBUS D01
-EBUS D00
-GND
-
-EBUS CS05
-EBUS NC
-EBUS D05
-GND
-EBUS D06
-GND
-GND
-EBUS D32
-GND
-EBUS D33
-EBUS D04
-EBUS D03
-EBUS DS06
-EBUS D31
-EBUS D30
-EBUS D34
-EBUS D35
-EBUS D16
-EBUS D17
-EBUS D15
-EBUS D10
-EBUS D14
-EBUS DS07?
-EBUS DIAG STROBE
-EBUS D24
-EBUS D09
-EBUS D19
-EBUS D21
-EBUS D23
-EBUS D20
-GND
-EBUS D18
-EBUS D07
-EBUS D25
-EBUS D22
-GND
-
-
-p.401
-GND
-GND
-GND
-GND
-EBUS D08
-GND
-CBUS LAST WORD
-GND
-CBUS D25
-CBUS READY
-CBUS D28
-GND
-GND
-CBUS D35
-CBUS D29
-CBUS D31
-GND
-GND
-CBUS D27
-CBUS D32
-CBUS D33
-CBUS D22
-GND
-GND
-CBUS D19
-CBUS REQUEST
-CBUS D20
-CBUS CTOM
-CBUS D20
-CBUS ERROR
-GND
-CBUS D21
-GND
-CBUS D18
-GND
-GND
-
-
-GND
-GND
-GND
-GND
-CBUS D14
-GND
-CBUS D05
-GND
-CBUS D04
-CBUS D12
-CBUS D10
-GND
-GND
-CBUS D09
-CBUS D07
-CBUS D08
-GND
-GND
-CBUS D02
-CBUS D03
-CBUS PARITY LEFT
-CBUS START
-CBUS DONE
-GND
-GND
-CBUS D16
-CBUS D17
-CBUS RESET
-CBUS STORE
-CBUS PARITY RIGHT
-GND
-CBUS D30
-GND
-CBUS D23
-GND
-GND
-
-GND
-GND
-GND
-GND
-CBUS SEL 0
-GND
-CBUS SEL 1
-CBUS SEL 2
-CBUS SEL 3
-CBUS SEL 4
-GND
-GND
-CBUS SEL 5
-CBUS SEL 6
-CBUS SEL 7
-GND
-GND
-CBUS D34
-CBUS D24
-CBUS D01
-CBUS D06
-CBUS D13
-GND
-GND
-CBUS D11
-CBUS D15
-CBUS D00
-EBUS D12
-EBUS DS02
-GND
-EBUS DS00
-GND
-EBUS PARITY
-GND
-GND
-
-GND
-GND
-GND
-GND
-EBUS D11
-GND
-EBUS D13
-GND
-EBUS PI00
-EBUS REMOVE DS STATUS
-EBUS RESET
-GND
-GND
-EBUS DS05
-CBUS SPARE 5
-EBUS PARITY ACTIVE
-GND
-GND
-EBUS DS03
-EBUS XFER
-EBUS SPARE DR 3
-EBUS SPARE DR 2
-EBUS SPARE DR 1
-GND
-GND
-EBUS DEMAND
-EBUS CLK
-EBUS 10/11 CLK
-CBUS SPARE 1
-CBUS SPARE 2
-GND
-CBUS SPARE 3
-GND
-CROBAR
-GND
-GND
-
-
+cbus_ctom
+cbus_d00
+cbus_d01
+cbus_d02
+cbus_d03
+cbus_d04
+cbus_d05
+cbus_d06
+cbus_d07
+cbus_d08
+cbus_d09
+cbus_d10
+cbus_d11
+cbus_d12
+cbus_d13
+cbus_d14
+cbus_d15
+cbus_d16
+cbus_d17
+cbus_d18
+cbus_d19
+cbus_d20
+cbus_d20
+cbus_d21
+cbus_d22
+cbus_d23
+cbus_d24
+cbus_d25
+cbus_d27
+cbus_d28
+cbus_d29
+cbus_d30
+cbus_d31
+cbus_d32
+cbus_d33
+cbus_d34
+cbus_d35
+cbus_done
+cbus_error
+cbus_last_word
+cbus_parity_left
+cbus_parity_right
+cbus_ready
+cbus_request
+cbus_reset
+cbus_sel_0
+cbus_sel_1
+cbus_sel_2
+cbus_sel_3
+cbus_sel_4
+cbus_sel_5
+cbus_sel_6
+cbus_sel_7
+cbus_spare_1
+cbus_spare_2
+cbus_spare_3
+cbus_spare_5
+cbus_start
+cbus_store
+crobar
+ebus_10Sl11_clk
+ebus_ackn
+ebus_clk
+ebus_cs00
+ebus_cs01
+ebus_cs02
+ebus_cs02
+ebus_cs03
+ebus_cs03
+ebus_cs04
+ebus_cs05
+ebus_cs06
+ebus_d00
+ebus_d01
+ebus_d02
+ebus_d03
+ebus_d04
+ebus_d05
+ebus_d06
+ebus_d07
+ebus_d08
+ebus_d09
+ebus_d10
+ebus_d11
+ebus_d12
+ebus_d13
+ebus_d14
+ebus_d15
+ebus_d16
+ebus_d17
+ebus_d18
+ebus_d19
+ebus_d20
+ebus_d21
+ebus_d22
+ebus_d23
+ebus_d24
+ebus_d25
+ebus_d26
+ebus_d27
+ebus_d28
+ebus_d29
+ebus_d30
+ebus_d31
+ebus_d32
+ebus_d33
+ebus_d34
+ebus_d35
+ebus_data_disable
+ebus_demand
+ebus_diag_strobe
+ebus_ds00
+ebus_ds01
+ebus_ds02
+ebus_ds03
+ebus_ds05
+ebus_ds06
+ebus_ds07
+ebus_f00
+ebus_f01
+ebus_f02
+ebus_nc
+ebus_nc
+ebus_parity
+ebus_parity_active
+ebus_pi00
+ebus_pi01
+ebus_pi02
+ebus_pi03
+ebus_pi04
+ebus_pi05
+ebus_pi06
+ebus_pi07
+ebus_remove_ds_status
+ebus_reset
+ebus_spare_dr_1
+ebus_spare_dr_2
+ebus_spare_dr_3
+ebus_spare_t1
+ebus_xfer
