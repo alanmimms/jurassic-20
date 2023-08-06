@@ -3,7 +3,6 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include "Vmc10101.h"
-#include "Vmc10101___024root.h"
 
 #define MAX_SIM_TIME 35
 vluint64_t sim_time = 0;
