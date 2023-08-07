@@ -1,15 +1,11 @@
-MODULE = mc10101
-EXE = V$(MODULE)
+MODS = mc10101 mc10103 mc10104 mc10105 mc10107
 
 .PHONY:	all clean
 
-all:	$(EXE)
+all:	$(MODS)
 
-$(EXE):	obj_dir/$(EXE).mk
-	$(MAKE) -C obj_dir -f $@.mk
-
-obj_dir/$(EXE).mk:
-	verilator -Wall --trace --cc $(MODULE).sv --exe $(MODULE)-tb.cc
+$(MODS):
+	$(MAKE) -f module.mk MODULE=$@
 
 clean:
 	@rm -fr obj_dir
