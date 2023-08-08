@@ -1,4 +1,4 @@
-module top(input clk);
+module top(input clk60);
 
    
 

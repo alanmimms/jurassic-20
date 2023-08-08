@@ -1,0 +1,1013 @@
+
+Node: Top		Up: (DIR)		By: Walter Haas (HAAS@UTAH-20)							Revised: 7 May 1979
+
+RSX20F is the name of the software for the PDP-11 front end for the
+DECsystem-20.  This documentation has been prepared to help the programmer
+who wishes to modify RSX20F.
+
+* Menu:
+* Getting started::	This is the place to begin, if you are a novice
+* Files under RSX20F::	Introduction to the RSX20F internal file system
+* PIP::			How to copy, delete and rename RSX20F files
+* Transferring files::	How to transfer files between the PDP-11 and
+			TOPS-20
+* Rebuilding RSX20F::	How to build a new version of RSX20F
+* TSK and SYS files::	How to deal with the PDP-11 core image files
+* Autobaud 1200::	Extending dialup autobaud support to 1200 baud
+
+Node: Getting started		Up: Top		Next: Files under RSX20F
+
+<<reference to a manual describing basic architecture of -20 goes here>>
+
+RSX20F is a hacked version of RSX-11D, a multitasking operating system
+for the PDP-11.  RSX20F maintains its own file system on a disc which
+is shared with TOPS-20.  Optionally, the front end PDP-11 may also be
+interfaced to additional discs which are independent of TOPS-20.  RSX20F
+does not normally access its portion of the shared disc during operation.
+This is an important specification, because the disc is shared by
+contention with the PDP-11 having priority.  If you try to do development
+work on the front end while TOPS-20 is actively using the shared disc,
+the message %PROBLEM ON DEVICE etc. will be printed on the console at
+frequent intervals.  Additionally, TOPS-20 performance will be severely
+degraded.  Therefore, you should plan on doing development either
+1) when TOPS-20 is down or 2) on a separate disc not used by TOPS-20.
+
+Maintaining RSX20F at a TOPS-20 installation is not a joyful task.  The system
+appears to have been designed by Rube Goldberg at 3 AM after too much beer and
+pizza.  It is very clear that RSX20F was not developed under either TOPS-20
+or RSX20F itself.  Apparently, an RSX-11D or RSX-11M configuration was used for
+program development.  Many of the command files provided on the source disc
+will not run under RSX20F.  Furthermore, many of the listing files on the
+source disc contain cross-references; there is no CRF under RSX20F.
+
+It is possible to modify RSX20F at the source, object or core image level.
+A utility program called ZAP is used to modify core image files on disc.
+This program has the usual self non-documenting feature common to such
+programs, and so is shunned by all programmers who concern themselves with
+their future sanity.  FILDDT under TOPS-20 can also be used to alter RSX20F
+core image files.
+
+A program called the task builder (TKB) is used to link object modules together
+into a core image, known in the RSX world as a task.  The task builder will
+optionally accept as input patches to be applied to the output core image as it
+is being built.  If you wish to use this feature, you can document the fact by
+taking advantage of the indirect command file facility.
+
+The source code for RSX20F can be edited to produce a modified version, which
+can then be assembled and taskbuilt into the system.  Editing can be carried
+out on RSX20F, or files can be transferred to the 20, editted, and transferred
+back to the PDP-11.
+
+If you do any serious work on RSX20F, you will definitely need to obtain
+the sources from DEC.  The sources, as distributed for version 3A of TOPS-20,
+contain only one editor, a program called SLIPR.  SLIPR is very bad for
+interactive editing; however, it is useful for documenting and distributing
+updates.  If you want to do any serious interactive editing, you will want to
+do it on the 20 and transfer the result to the 11.  It is also possible to
+assemble source code on the 20 and transfer the object code to the 11.  The
+crossassembler is named MACY11.
+
+The documentation for RSX20F ranges from sketchy to nonexistant.  The only
+document which specifically describes RSX20F is AA-H213A-TK, "RSX-20F
+System Specifications".  However, the RSX-11D operating system is fairly
+well documented; if you can, you will want to obtain a set of -11D manuals.
+
+Before doing any serious work on RSX20F, you will need to make a number of
+minor "repairs" to the source disc.  To make these repairs, you will need
+to use the various utility programs described later in this document.  If
+you are completely unfamiliar with RSX, it would probably be best to study
+the rest of this tree first and then come back here.  The necessary repairs
+are as follows:
+
+1. Copy some non-privileged programs into [5,5] where INSTAL can find them,
+   and the executive assembly parameter file to the place where it's supposed
+   to be:
+
+	(^\ to invoke the parser)
+	tell PAR to run PIP	PAR>M PIP
+	tell PIP to copy files	PIP>=[20,5]LBR.TSK,MAC,SLP,TKB
+				PIP>[20,30]=[20,5]RSXFC.MAC
+	^Z to exit		PIP>^Z
+
+2. Transfer [20,40]PRVBLD.CMD to the 20, edit it to remove the reference to
+   [100,40]EXEBLD.CMD, and transfer the corrected file back to the PDP-11.
+   Apparently [100,40]EXEBLD.CMD existed in some previous release, and its
+   functions have been assumed by [100,40]T10BLD.CMD and [100,40]T20BLD.CMD.
+
+3. Assemble TKTN and KLRING:
+
+	(^\ to invoke the parser)
+	tell PAR to run MAC	PAR>M MAC
+	assemble TKTN		MAC>@[47,10]TKTASM
+	assemble KLRING		MAC>@[54,40]KLRASM
+	^Z to exit		MAC>^Z
+
+4. Build the library needed to taskbuild KLINIT:
+
+	(^\ to invoke the parser)
+	tell PAR to run PIP	PAR>M PIP
+	catenate object files	PIP>@[50,40]KLIPIP
+	^Z to exit		PIP>^Z
+	(^\ to invoke the parser)
+	tell PAR to run LBR	PAR>M LBR
+	build library		LBR>@[50,40]KLILBR
+	^Z to exit		LBR>^Z
+
+Node: Files under RSX20F	 Up: Top	Previous: Getting started							Next: PIP
+
+The RSX20F file system is a subset of the RSX-11 file system, which bears a
+strong family resemblance to the TOPS-20 file system.  There are, however, just
+enough subtle differences to comletely louse up the unwary programmer.
+
+An RSX file is specified by a string of the following form:
+
+		ddu:[x,y]filename.ext;v
+
+	where:
+		dd	is the device code.  Some common values are:
+			TT	teletypewriter terminal
+			DB	RP04/6 disc
+			DX	floppy disc
+			CR	card reader
+			LP	line printer
+			SY	system pseudo-device
+			FE	DTE20 pseudo-device
+
+		u	is the device unit number.  It is an octal number
+			in the range 0 to the number of units of the specified
+			device type.  Omitting u is equivalent to specifying
+			a value of 0.  For example, TT: is the same as TT0:,
+			which is the RSX20F file system name for the console
+			LA36 (TOPS-20 device CTY:). If both dd and u are
+			omitted, the colon must also be omitted; this is
+			equivalent to specifying SY0:
+
+		[x,y]	is called the UIC (User Identification Code]. It is
+			equivalent to a TOPS-20 directory.  x and y are octal
+			numbers in the range 1:377.  UIC [0,0] is also legal
+			for certain purposes, and has a special significance.
+			Omitting the UIC is equivalent to specifying a UIC of
+			[5,5].
+
+		filename is a string of zero to nine alphanumeric characters.
+			If filename is omitted, the following period must
+			always appear to indicate that the null filename string
+			is specified.
+
+		ext	is a string of zero to three alphanumeric characters.
+			The effect of omitting ext depends on the context.
+
+		v	is the version number.  RSX version numbers are octal
+			numbers in the range 1 to 32000.  Omitting the version
+			number is equivalent to specifying the latest (highest
+			numbered) version.  Specifying a version number of 0 is
+			also equivalent to specifying the latest version.
+			Specifying a version number of -1 is equivalent to
+			specifying the earliest version (smallest version
+			number).  When omitting the version number, the
+			semicolon before it must also be omitted.
+
+The jargon for a file specification is "filespec".  Some sample filespecs are:
+
+	SY:			the device RSX20F was booted from
+
+	SY0:			equivalent to above
+
+	DB2:[20,5]RSX20F.MAP	the latest version of file RSX20F.MAP to be
+				found in directory [20,5] on disc DB2.
+
+	KLINIT.TSK		the latest version of file KLINIT.TSK to be
+				found in directory [5,5] on disc SY0.
+
+The various RSX utility programs have certain defaults which they apply if the
+ext portion of a filespec happens to be omitted.  By convention, ext is used to
+indicate the type of file (source, object, etc.) and so ext is sometimes
+referred to as "filetype".  The assembler, for example, expects input files to
+be named something.MAC, and will produce object and list files named
+something.OBJ and something.LST respectively.  These defaults can be overridden
+by specifying any legal value of ext.  For example:
+
+	MAC>SCOMM=SCOMM		takes SCOMM.MAC as input and produces
+				SCOMM.OBJ as output
+
+	MAC>SCOMM=SCOMM.P11	takes SCOMM.P11 as input and produces
+				SCOMM.OBJ as output
+
+	MAC>SCOMM=SCOMM.	takes SCOMM. as input (ext is a null string)
+				and produces SCOMM.OBJ as output
+
+The effect of completely omitting the filespec depends on the context.  In the
+case of the assembler, the list of input and output filespecs defines the work
+to be done.  The assembler takes a command of the form:
+
+		object,listing=source1,source2,source3,...,sourcen
+
+	where:
+		object	is a filespec specifying the output file to receive the
+			object code.  If this filespec is omitted, the
+			assembler will not produce any object code
+
+		listing	is a filespec specifying the output file to receive the
+			listing.  If this filespec is omitted, the assembler
+			will not produce any listing
+
+		source1,..,sourcen are filespecs specifying the input file(s)
+			to be assembled.  If there is more than one filespec
+			in this list, then the assembler will effectively
+			catenate these files together and assemble them as a
+			single input file.
+
+If both object and listing filespecs are omitted, only error messages (if any)
+will be output by the assembler.  It is an error to omit all input filespecs.
+If only a listing is to be produced, omit the first output filespec, code the
+following comma, and specify the listing output file.  For example:
+
+		MAC>,SCOMM=SCOMM
+
+will assemble file SCOMM.MAC and produce listing file SCOMM.LST but no object
+file.
+
+The assembler has been used as an illustrative example because it is typical
+of RSX utilities which convert files from one form to another.  In general,
+the commands to RSX utilities adhere much more closely to the canonical form
+than do the commands to TOPS-20 utilities.  In the case of PIP, there are
+commands which refer to all files in a directory, or to all files with some
+attribute; these commands have a form which is a simple extension of the form
+illustrated above.  Detailed descriptions of the commands accepted by the
+various utilties will be found in the documentation for the individual utility.
+
+Node: PIP			Up: Top		Previous: Files under RSX20F							Next: Transferring files
+
+PIP (Peripheral Interchange Program) is a utility program which permits the
+user to copy, delete and rename a file or group of files; list the files in a
+directory; and set the protection status of a file or group of files.
+
+PIP commands are of the form
+
+		filespec/sw
+
+or of the form
+
+		filespec/sw=filespec/sw,filespec/sw,...,filespec/sw
+
+PIP filespecs accept the wild card (*) notation in the UIC, filename, ext and
+version number positions.  The * means "all files that meet the rest of the
+specification".  For example, the filespec SCOMM.* refers to the latest
+version of files SCOMM.MAC, SCOMM.OBJ, SCOMM.LST, etc. which are to be found
+in UIC [5,5] on disc SY0:.  The filespec DB2:[*,40]*.MAC;* refers to all
+versions of files having the ext of MAC which are to be found under UICs
+[1,40], [2,40], ..., [377,40] on disc DB2:.  Unfortunately, it is necessary
+to apply the wild card to an entire field; the notation AB* of TOPS-20,
+meaning any file with a name beginning AB, is not legal under RSX.
+
+The UIC [0,0] may be referenced using PIP.  This UIC contains the directory
+files for the other UICs, plus some files used by the system.  By listing
+[0,0] it is possible to see what directories exist on any disc.  The directory
+for UIC [x,y] has a filename of six octal digits; the first three are the
+value of x, and the last three are the value of y.  The ext is .DIR and there
+would normally be only version 1.  For example, the directory for UIC [17,32]
+on disc DB2 would be file DB2:[0,0]017032.DIR;1.  PIP cannot create these
+directories; this is done only by a utility program called UFD.
+
+The various functions of PIP are described individually in the subnodes
+indicated in the menu.
+
+* Menu:
+* Copying files::			Equivalent to COPY
+* Renaming files::			Equivalent to RENAME
+* Appending a file::			Equivalent to APPEND
+* Deleting files::			Equivalent to DELETE
+* Protecting files::
+* Listing a directory::			Equivalent to DIR
+* Typing files::			Equivalent to TYPE
+* Purging obsolete versions::
+* Unlocking files::
+
+Node: Copying files		Up: PIP		Next: Renaming files
+
+The basic copy command is simply
+
+		PIP>destination=source
+
+	where:
+		destination is the filespec to receive a copy of the source
+			file(s)
+		source	is the filespec of the file(s) to be copied.  The
+			source file in a copy operation is not altered.
+
+Example:
+		PIP>DB0:[20,30]FOO.BAR=DB2:[100,10]GRETCH.NRD
+
+If no filename or ext is specified on the destination side, the source
+filename, ext and version number will be preserved across the copy.
+
+Example:
+		PIP>DB0:[20,30]=DB2:[100,10]FOO.BAR;3
+
+would produce an output file named FOO.BAR;3 in directory [20,30] on DB0:.
+If there were already such a file, a diagnostic would be printed and the
+operation would be aborted.  Two switches may be used to deal with this
+situation: /SU will cause the old file to be superseded, and /NV will cause
+the destination file to become a newer version of any existing file by that
+name (ie. the destination version number will be made one greater than the
+highest version number of an existing file of the same name).
+
+Examples:
+		PIP>DB0:[20,30]/SU=DB2:[100,10]FOO.BAR;3
+		PIP>DB0:[20,30]/NV=DB2:[100,10]FOO.BAR;3
+
+It is possible to copy the entire contents of one directory into another
+directory with one command:
+
+		PIP>DB0:[20,30]=DB2:[100,10]
+
+The above will copy all versions of all files.  However, the following
+command will copy only the latest versions of the specified files:
+
+		PIP>DB0:[20,30]=DB2:[100,10]*.MAC
+
+To copy all versions of only those files with an ext of MAC specify:
+
+		PIP>DB0:[20,30]=DB2:[100,10]*.MAC;*
+
+The copy command can be used to create an output file which is the catenation
+of two or more input files.  For example:
+
+	PIP>[20,30]SOURCE.MAC/NV=[100,10]ASMPARMS.MAC,[100,20]PRDL.MAC
+
+would create a new version of file SOURCE.MAC in UIC [20,30] consisting of
+a copy of [100,10]ASMPARMS.MAC followed by a copy of [100,20]PRDL.MAC.
+
+Node: Renaming files		Up: PIP		Previous: Copying files								Next: Appending a file
+
+Files may be renamed across directories, but not across devices (an RSX
+directory specifies files on only one device).  The command is of the form
+
+		PIP>newname/RE=oldname
+
+or of the form
+
+		PIP>newname=oldname/RE
+
+	where:
+		oldname	is a filespec giving the current file name(s)
+		newname is a filespec giving the new name(s)
+
+If there is already a file of the new name, a diagnostic message will be
+printed and the operation will be aborted.  Two switches may be used to deal
+with this situation: /SU will cause the old file to be superseded, and /NV
+will cause the renamed file to become a newer version of any existing file by
+that name (ie. the renamed file's version number will be made one greater than
+the highest version number of an existing file of the same name).
+
+Examples:
+		PIP>FOO.BAR/RE/SU=GRETCH.NRD
+		PIP>FOO.BAR/RE/NV=GRETCH.NRD
+
+It is possible to apply wild cards to the rename operation:
+
+		PIP>*.OLD/RE=*.MAC
+
+If there is only one version of each file in some collection, it is even
+possible to rename them all to a given version number:
+
+		PIP>*.*;1=*.*;*/RE
+
+The above command is a quick way to find out if there really IS only one
+version of each file.
+
+Node: Appending a file		Up: PIP		Previous: Renaming files							Next: Deleting files
+
+PIP can append a copy of a file to an existing file without making a new
+copy of the target file.  The form of the command is:
+
+		PIP>target/AP=newfile1,newfile2,newfile3,...,newfilen
+
+	where:
+		target	is the file to be appended to
+		newfile1,...,newfilen are the files to be appended to the
+			target file
+
+The appended files (newfilex) are not altered.  No new version of the target
+file is created; the existing version is updated directly.
+
+Node: Deleting files		Up: PIP		Previous: Appending a file							Next: Protecting files
+
+PIP can be used to delete a file or group of files from a directory.  The form
+of the command is:
+
+	PIP>filespec1/DE,filespec2,filespec3,...,filespec4
+
+PIP will delete all files which conform to the filespec(s).  If more than one
+filespec is given, PIP will process the filespecs in left to right order.  An
+error encountered in processing will abort processing of all filespecs to the
+right on the same command line.
+
+The version number MUST be specified explicitly in a delete command.  PIP will
+NOT delete the latest version of a file if the version number is omitted;
+instead, it will print a diagnostic message and abort the operation.  To delete
+the latest version without knowing what it is, specify ;0.  To delete the
+earliest version, specify ;-1.  To delete all versions specify ;*.
+
+Examples:
+
+		PIP>DB2:[20,30]*.LST;*/DE
+		PIP>FOO.BAR;0/DE
+		PIP>[20,3]*.OBJ;*/DE,*.MAP;*,*.TSK;*
+
+Exercise great care when deleting files under RSX.  This process is permanent;
+there is no way to undelete a file under RSX.  Do not allow yourself to lapse
+into careless habits based on familiarity with the forgiving delete command in
+TOPS-20!
+
+Node: Protecting files		Up: PIP		Previous: Deleting files							Next: Listing a directory
+
+RSX-11D contains a fairly elaborate scheme for protecting files from
+unauthorized use.  A vestigial remnant of this scheme appears in RSX20F,
+where it can be used to make it harder to clobber files by accident.  A file or
+group of files can be made read-only by the PIP command:
+
+		PIP>filespec/PR/SY:R/OW:R/GR:R
+
+or the shorter equivalent:
+
+		PIP>filespec/PR:167356
+
+This protection can be removed by the command:
+
+		PIP>filespec/PR/SY:RWED/OW:RWED/GR:RWE
+
+or the shorter equivalent:
+
+		PIP>filespec/PR:164000
+
+Example: Make it impossible to delete the original version by accident:
+	
+		PIP>*.*;1/PR:167356
+
+To find out what protection a given file has, list it with the /FU option
+of the PIP directory listing function.
+
+Node: Listing a directory	Up: PIP		Previous: Protecting files							Next: Typing files
+
+PIP can generate a file listing the files in a directory or group of
+directories.  The general form of the command is:
+
+		PIP>target=source/LI
+
+which places the listing in the file specified by filespec target.  The short
+form of the command is:
+
+		PIP>source/LI
+
+which sends the listing to TT0: (the console LA36).  Hence the short form is
+equivalent to:
+
+		PIP>TT0:=source/LI
+
+The usual defaults apply; if the filename, ext and version are omitted, all
+files in the indicated directory on the indicated device will be listed.
+
+Example:
+	PIP>[100,10]DIRLST.FIL=[20,30]*.MAC/LI
+
+	lists the latest version of files with ext MAC in SY0:[20,30].  The
+	listing file is written into SY0:[5,5]DIRLST.FIL.
+
+	PIP/LI
+
+	lists all files in SY0:[5,5] on the console LA36
+
+When using the long form of the command, the default output filename and ext
+are null, and a new version of the listing file is produced.
+
+The listing produced by the /LI switch has the form:
+
+DIRECTORY DB2:[5,5]
+18-APR-79 17:28
+
+SRCDSK.LST;1        273.    CL 19-MAR-79 14:35
+SRCDSK.LST;2        275.       19-MAR-79 14:42
+
+	TOTAL OF 548. BLOCKS IN 2. FILES
+
+where:
+	Line 1:		Device and directory being listed
+
+	Line 2:		Date and time listing produced
+
+	Lines 3 to (n-1): Filename.ext;version.
+			Number of 512-byte blocks used by the file.
+			CL: C and L are two independent flags.  C, if present,
+			    indicates that the blocks allocated to the file are
+			    physically contiguous on the disc.  Task image
+			    files must have this attribute.  L, if present,
+			    indicates that the file is locked.  A file becomes
+			    locked when a task opens it for write or extend
+			    access; the file becomes unlocked when the task
+			    closes it.  A file can be left in the locked
+			    condtion if the using program blows up, or the
+			    system crashes, while the file is locked.
+			Date and time file created.
+
+	Line n:		Total number of blocks used and number of files IN THIS
+			LIST (NOT in the UIC)
+
+There are two alternative forms of the listing which can be produced.  The
+brief form is produced by using switch /BR instead of (or in addition to, if
+you like to type) switch /LI.  For example:
+
+	PIP>/BR
+
+produces something that looks like:
+
+DIRECTORY DB2:[5,5]
+
+SRCDSK.LST;1
+SRCDSK.LST;2
+
+The other alternative form is the full listing, produced by the /FU switch.
+The command:
+
+	PIP>/FU
+
+produces something like:
+
+DIRECTORY DB2:[5,5]
+18-APR-79 17:28
+
+SRCDSK.LST;1        (2247,2)        275./273.    CL 19-MAR-79 14:35
+  [5,5]    [RWED,RWED,RWE,R]     19-MAR-79 14:36(2.)
+SRCDSK.LST;2        (3174,6)        275./275.       19-MAR-79 14:42
+  [5,5]    [RWED,RWED,RWE,R]     19-MAR-79 14:43(2.)
+
+	TOTAL OF 550./548. BLOCKS IN 2. FILES
+
+where the new information is:
+
+    (first line per file):
+	parenthesized number is (file id,sequence number).  The file id
+		identifies the file by its offset in the system index file.
+		The sequence number tells how many files in times past have
+		occupied this index file block.  The two numbers together
+		uniquely identify an instance of a file.
+
+	number/number is the blocks used by/blocks allocated to the file (the
+		shorter form of the listing gives only the blocks used).
+
+    (second line per file):
+	[5,5]	UIC which owns the access rights to the file (file owner).
+		In RSX, the directory which contains a file does not determine
+		the access rights to a file; indeed, the containing directory
+		may HAVE no access rights.  The file owner UIC controls access.
+
+	[RWED,etc] specifies which UIC's can do what to the file.  The four
+		groups of letters specify the rights of [system,owner,group,
+		world] respectively.  The system is defined to be any program
+		running under UIC [x,*] where x is 1 to 7.  The owner is any
+		program running under the file owner UIC.  The group is any
+		program running under UIC [x,*] where x is the same as the
+		first number of the owner UIC.  The world is any program.
+		The access rights which may be granted are: R=program can read,
+		W=program can write, E=program can extend, D=program can delete
+		this file.  The presence of a letter indicates that the
+		specified class of users has the specified right.  The default
+		is [RWED,RWED,RWE,R].  All this is largely irrelevant, because
+		[5,5] is the only UIC a program can run under in RSX20F.
+
+	date time is the date and time that the file was last updated.
+
+    (summary line):
+	TOTAL OF number/number BLOCKS indicates the total blocks used by/
+		total blocks allocated to the LISTED files (NOT all files in
+		the UIC).
+
+If you only want to know the amount of space being used by a collection of
+files there is a fourth alternative form:
+
+		PIP>filespec/TB
+
+which produces something that looks like:
+
+STORAGE USED/ALLOCATED FOR DIRECTORY DB2:[5,5]
+19-APR-79 15:31
+
+
+	TOTAL OF 1213./1213. BLOCKS IN 34. FILES
+
+giving the number of blocks used by/allocated to the specified file(s).
+
+Node: Typing files		Up: PIP		Previous: Listing a directory							Next: Purging obsolete versions
+
+There is no special command to type files.  To print a file on the system
+console, give the command:
+
+		PIP>TT:=filespec
+
+Before giving this command, be sure that you want to! There is no way to cancel
+this (or any) command while it is executing.  However, striking CTRL/O on the
+LA36 keyboard will turn printing off or on.  Turning printing off will not
+drastically reduce execution time.
+
+Node: Purging obsolete versions	       Up: PIP		Next: Unlocking files
+							Previous: Typing files
+
+The RSX file system does not automatically delete obsolete versions of files.
+This housekeeping chore must be performed by the user.  To help with this, PIP
+provides the PURGE facility.  This facility deletes all but the latest version
+(highest version number) of the specified file(s).  The form of the command
+is:
+
+		PIP>filespec1/PU,filespec2,...,filespecn
+
+where filespec1,...,filespecn specify the file collections to be purged.
+
+Examples:
+
+		PIP>[20,30]*.MAC/PU
+		PIP>[130,*]*.*/PU
+
+Purging is permanent.  There is no way to unpurge a file which has been purged
+by accident.  Therefore, exercise great care when purging files. In particular:
+
+1.  Periodic blanket purges are apt to be troublesome, since the latest version
+    of a file may not be the only one needed.
+
+2.  Be sure that the latest version is indeed good.  Some utilities will leave
+    useless zero-length output files if they terminate abnormally.  There are
+    usually a few of these on any development system.
+
+Node: Unlocking files	     Up: PIP	    Previous: Purging obsolete versions
+
+Files become locked when a program opens them for write or extend access.
+Normally, a file will become unlocked when the program closes it.  Sometimes a
+program will blow up or the system will crash while a file is locked.  In this
+case, it is impossible for a program to access the file until a programmer
+manually unlocks the file with PIP.  This condition should be suspected when
+a program complains that it is UNABLE TO ACCESS FILE xyz.  The /LI function of
+PIP will show an L flag for any file which is locked.  To unlock the file, give
+the PIP command:
+
+		PIP>filespec/UN
+
+Node: Transferring files		Up: Top		Previous: PIP									Next: Rebuilding RSX20F
+
+Files may be transferred between TOPS-20 and the RSX20F file system by copying
+them across the DTE20 interface.  A format conversion is necessary; it is done
+on the TOPS-20 side by a program called RSXFMT.  The process is controlled from
+the front end by the RSX utility program PIP.  A program called FE runs under
+TOPS-20 and acts as a daemon to handle the 20 side of the interface according
+to commands passed to it from PIP.
+
+To transfer files, it is first necessary to translate the TOPS-20 directory
+to/from which files are to be transferred into an RSX UIC.  A UIC is a string
+of the form [x,y] where x and y are octal numbers in the range 1:377 (the
+UIC [0,0] is also legal for some purposes; it has a special meaning).  Within
+RSX, a UIC defines a directory.  Every file in the RSX file system is stored
+under some UIC.  When PIP transfers a file across the DTE20, however, the UIC
+specified for the DTE20 indicates a TOPS-20 directory rather than an RSX
+directory.
+
+If the TOPS-20 directory is:<SYSTEM>	then the UIC is:[1,1]
+			    <OPERATOR>			[1,2]
+			    <SUBSYS>			[1,4]
+			    <FRONT-END>			[5,5]
+
+If the directory is not one of the above, then the UIC must be calculated
+according to the following algorithm:
+
+1.  Use the TOPS-20 TRANSLATE command to convert the directory to a project-
+    programmer number [proj,prog].
+
+2.  Divide prog by 400 octal, and add 340 octal to the quotient.  The resulting
+    sum is the x in UIC [x,y].  The remainder found when prog was divided by
+    400 is the y.
+
+Example: Transfer to/from PS:<ROBISON>
+
+@TRANSLATE <ROBISON>
+PS:<ROBISON> (IS) PS:[4,454]
+
+	x = 340 + (454/400) = 341
+	y = 454 - (1*400) = 54
+	UIC = [341,54]
+
+When the necessary UICs are known, start the protocol programs on the two sides
+of the interface.  First, start the TOPS-20 daemon by logging in under an
+account with operator privileges, ENABLEing, and running FE:
+
+	@LOG FOO
+	@ena
+	$r fe
+
+Next, go to the CTY and mount the FE: device by invoking the parser, running
+MOU and specifying FE: :
+
+	(type CTRL/\ to invoke the parser)
+	tell parser to run MOU		PAR>M MOU
+	tell MOU to mount device FE:	MOU>FE:
+	after a while, MOU finishes	MOU -- MOUNT COMPLETE
+	type CTRL/Z to get out		MOU>^Z
+
+If you don't get FE running on TOPS-20 first, MOU will not be able to mount
+FE:.  MOU will simply hang indefinitely; there is no way to get rid of it from
+the PDP-11 side.  If you get into this situation, however, running FE under
+TOPS-20 will cause MOU to terminate with an error message.
+
+To transfer files from the PDP-11 to TOPS-20, do the following:
+
+	(type CTRL/\ to invoke the parser)
+	tell parser to run PIP		PAR>M PIP
+	tell PIP to transfer to FE:	PIP>FE:[x,y]=filespec[,filespec]
+	exit from PIP, if desired	PIP>^Z
+	run RSXFMT under TOPS-20	@rsxfmt
+	set format of RSX files		RSXFMT>crlf spec
+	specify files to convert	RSXFMT>con filespec
+
+Example: Transfer [20,5]RSX20F.MAP to PS:<ROBISON>
+
+	PIP>FE:[341,54]=[20,5]RSX20F.MAP
+	PIP>^Z
+	@rsxfmt
+	RSXFMT>con rsx20f.map
+	RSX20F.MAP.1 [RSX-ASCII] ==> RSX20F.MAP.2 [7-BIT-ASCII]
+	RSXFMT>^C
+
+RSX files exist in several formats, and RSXFMT must be told which format a
+file is in to perform the correct conversion.  Text files are in either
+imbedded carriage control or implied carriage control format.  You can
+infer the format from the filetype; files with filetype .MAP are normally
+in imbedded format, while files with filetype .MAC or .LST are in implied
+format.  If you use the PIP /LI command to produce a file containing a
+directory listing, the output file will be in imbedded carriage control format
+(and the extension will default to the null string).   Tell RSXFMT the format
+of the file as follow:
+
+	for implied carriage control	RSXFMT>cr imp
+	for imbedded carriage control	RSXFMT>cr imb
+
+The default is imbedded (as shown in the example).
+
+To transfer files from TOPS-20 to the PDP-11, the procedure is reversed.
+First, run RSXFMT to convert the file(s) to be transferred:
+
+	@rsxfmt
+	RSXFMT>crlf spec
+	RSXFMT>con filespec
+	RSXFMT>^C
+
+Then, run PIP to transfer the converted files across the DTE20:
+
+	(type CTRL/\ to invoke parser)
+	tell parser to run PIP		PAR>M PIP
+	tell PIP to transfer files	PIP>filespec=FE:[x,y]filename.ext;v
+	type CTRL/Z to exit PIP		PIP>^Z
+
+Node: Rebuilding RSX20F		 Up: Top	  Previous: Transferring files							  Next: TSK and SYS files
+
+All of the privileged tasks used by RSX20F contain pointers to addresses inside
+the RSX20F executive.  Therefore, it is necessary to rebuild these tasks if a
+change to the executive results in a change in any of the addresses pointed to
+by the privileged tasks.  For safty's sake, assume that any global symbol
+defined inside the executive is referenced by at least one privileged task.
+Assuming that you have editted your change into the RSX20F source code and have
+on the source disc a complete set of correct object modules, follow the step-
+-by-step procedure below.  Times are given for some of the longer steps; these
+times assume that the disc device is an RP06, that the PDP-11 is the only
+user of this disc, and that the front end is not very busy.
+
+1. If you have not already done so, apply the fixes to the source disc
+   described previously in node "Getting started".
+
+2. Use PIP to produce a file containing the executive object modules
+   concatenated together:
+
+	(^\ to invoke the parser)
+	tell PAR to run PIP	PAR>M PIP
+	catenate object modules	PIP>@[100,40]EXEPIP
+	^Z to exit		PIP>^Z
+
+3. Use the librarian program (LBR) to build a library file containing the
+   object modules which make up the executive [80 seconds]:
+
+	(^\ to invoke the parser)
+	tell PAR to run LBR	PAR>M LBR
+	tell LBR to build file	LBR>@[100,40]EXELBR
+	^Z to exit		LBR>^Z
+
+4. Use the taskbuilder (TKB) to taskbuild the executive [6 minutes]:
+
+	(^\ to invoke the parser)
+	tell PAR to run TKB	PAR>M TKB
+	tell TKB to build exec	TKB>@[100,40]T20BLD
+	^Z to exit		TKB>^Z
+
+5. If necessary, use TKB to taskbuild the privileged tasks [80 minutes]:
+
+	(^\ to invoke the parser)
+	tell PAR to run TKB	PAR>M TKB
+	tell TKB to build tasks	TKB>@[20,40]PRVBLD
+	^Z to exit		TKB>^Z
+
+6. Obtain two blank floppy discs.  Place one each in drives 0 and 1.  Then
+   initialize them as follows:
+
+	(^\ to invoke the parser)
+	tell PAR to run INI	PAR>M INI
+	tell INI to label DX0	INI>DX:
+	(^\ to invoke the parser)
+	tell PAR to run INI	PAR>M INI
+	tell INI to label DX1	INI>DX1:
+	(^\ to invoke the parser)
+	tell PAR to run MOU	PAR>M MOU
+	tell MOU to mount DX0	MOU>DX:
+				MOU -- MOUNT COMPLETE
+	tell MOU to mount DX1	MOU>DX1:
+				MOU -- MOUNT COMPLETE
+	^Z to exit		MOU>^Z
+	(^\ to invoke the parser)
+	tell PAR to run UFD	PAR>M UFD
+	tell UFD to create a
+	 directory on DX0	UFD>DX:[5,5]
+	(^\ to invoke the parser)
+	tell PAR to run UFD	PAR>M UFD
+	tell UFD to create a
+	 directory on DX1	UFD>DX1:[5,5]
+
+7. Copy the new system image and privileged tasks to the floppies by the
+   commands below.  It is crucial that F11ACP.TSK begin at logical block 5
+   of DX0, since the executive expects to find it there.  The other task
+   allocations shown below could be altered somewhat, if you have need to;
+   but the commands shown will work reliably if given exactly as shown:
+
+	(^\ to invoke the parser)
+	tell PAR to run PIP	PAR>M PIP
+	tell PIP to copy the necessary files onto the floppies:
+
+		PIP>DX:=[40,10]F11ACP.TSK
+		PIP>DX:=[54,10]KLDISC.TSK,KLRING,MIDNIT
+		PIP>DX:=[47,10]KLXFER.TSK,SETSPD,TKTN
+		PIP>DX:=[57,10]KLE.TSK
+		PIP>DX:=[50,10]KLI.TSK
+		PIP>DX:=[20,5]BF16N1.A11,[5,5]MTBOOT.EXB,BOOT,KLA.MCB,KLX
+		PIP>DX1:=[51,10]PARSER.TSK
+		PIP>DX1:=[53,10]DMO.TSK,INI,MOU,T20ACP,UFD,BAD
+		PIP>DX1:=[47,10]RED.TSK,REX
+		PIP>DX1:=[52,10]BOO.TSK,SAV
+		PIP>DX1:=[20,5]COP.TSK,PIP,ZAP
+		PIP>DX1:=[100,10]RSXT20.SYS
+
+	^Z to exit		PIP>^Z
+
+8. Boot the new system from the floppies:
+
+	(^\ to invoke the parser)
+	tell PAR to run BOO	PAR>M BOO
+	tell BOO to boot system	BOO>DX1:RSXT20
+
+9. Save the new system onto the floppies:
+
+	(^\ to invoke the parser)
+				INS -- SY MOUNTED  TSK=PARSER
+	tell PAR to run SAV	PAR>M SAV
+	tell SAV to save system	SAV>SY:/WB
+				[DX0: DISMOUNTED]
+				[DX1: DISMOUNTED]
+
+	the new system starts	RSX-20F VB...
+
+				[SY0: REDIRECTED TO DX0:]
+				[DX0: MOUNTED]
+				[DX1: MOUNTED]
+
+After this procedure, the new system can be run off floppies indefinitely.  You
+will probably wish to transfer the new system to the shared RP0x drive at some
+point. Do so as follows:
+
+	(^\ to invoke the parser)
+	tell PAR to run MOU	PAR>M MOU
+	tell MOU to mount DB0	MOU>DB0:
+				MOU -- MOUNT COMPLETE
+	^Z to exit		MOU>^Z
+	(^\ to invoke the parser)
+	tell PAR to run PIP	PAR>M PIP
+	tell PIP to copy files	PIP>DB:/NV=*.TSK
+				PIP>DB:/NV=DX1:*.TSK,RSX20F.SYS
+	^Z to exit		PIP>^Z
+	(^\ to invoke the parser)
+	tell PAR to run RED	PAR>M RED
+	redirect SY to DB	RED>DB:=SY:
+	^Z to exit		RED>^Z
+	(^\ to invoke the parser)
+	tell PAR to run SAV	PAR>M SAV
+	save onto DB0		SAV>SY:/WB
+
+The system will now boot itself and run from DB0.
+
+Node: TSK and SYS files		 Up: Top	   Previous: Rebuilding RSX20F							   Next: Autobaud 1200
+
+RSX20F files of types .TSK and .SYS can be easily manipulated on the 20 side
+by the use of FILDDT.  The procedure is as follows:
+
+1. Transfer the files by the normal method to the 20 side.  However, do NOT
+   attempt to convert these files with RSXFMT.
+
+2. Using FILDDT, GET the file in question.  The file is stored as two PDP-11
+   words in a DEC20 word.  The first, or low address PDP-11 word is in bits
+   2-17 of the 20 word; the second, or high address PDP-11 word is in bits
+   20-35 of the 20 word.  In human terms, this means that the FILDDT display
+   looks almost the same as the MACRO-11 listing.
+
+3. The file addresses must be converted.  To convert a given PDP-11 address,
+   divide it by 4 and add 400 (octal) for a .SYS file or a .TSK file built
+   without a task header (ie. /-HD was specified at taskbuild time).  If the
+   task has a header, add another 400 octal (I think!).
+
+4. Don't forget that PDP-11 bytes are stored with the low-order byte in the
+   low-order bits.  Thus the assembler instrucion
+
+		.BYTE	15,12
+
+   appears in core as 5015, not 6412.
+
+Node: Autobaud 1200		Up: Top		    Previous: TSK and SYS files
+
+A simple modification can be applied to RSX20F to extend support for the
+autobaud feature to 1200 baud.  The modification is applied to the source pack
+as distributed by DEC, and RSX20F is then reassembled and retaskbuilt.  The
+modification is supplied as a SLIPR command file to modify [100,30]TTYDRR.MAC.
+The step-by-step procedure is as follows:
+
+1. If you have not already applied the corrections to the source pack described
+   above in "Getting started", do so now.
+
+2. Transfer files AB1200.CMD and TTYDRRASM.CMD to the source pack (they may be
+   stored in any UIC which you find convenient; [5,5] is assumed in the
+   example).
+
+3. Apply the modification as follows:
+
+	(^\ to invoke the parser)
+	tell PAR to run SLP	PAR>M SLP
+	apply modification	SLP>@AB1200
+	^Z to exit		SLP>^Z
+
+4. Assemble the modified module:
+
+	(^\ to invoke the parser)
+	tell PAR to run MAC	PAR>M MAC
+	assemble TTYDRR		MAC>@TTYDRRASM
+	^Z to exit		MAC>^Z
+
+5. Rebuild RSX20F according to the directions in node "Rebuilding RSX20F".
+
+The autobaud feature works by reading at 300 baud the first character received
+on a line.  When autobaud is in effect, the first character received is
+compared to a table of bit patterns.  If a match is found, it is assumed that
+the match occurred because a ^C or carriage return was received at some baud
+rate which can be deduced from the bit pattern.  If no match is found, the
+input character is ignored.  Notice that this scheme can be fooled; if the
+first character is not, in fact, ^C or carriage return, then the wrong
+inference may well be taken based on the bit pattern received.
+
+The autobaud feature could be extended to 1200 baud by one or the other of two
+basic strategies; raise the initial input baud rate to 1200, or attempt to see
+a 1200 baud character with a receiver set to 300 baud.  The first strategy
+does not work very reliably, apparently because it makes the receiver too
+sensitive to noise.  The second strategy has certain practical difficulties
+because the start bit of a 1200 baud character is not long enough to be
+recognized by a receiver set for 300 baud.
+
+The method actually used consists of receiving the first input character at
+300 baud, and adding one entry to the bit pattern table which will permit the
+recognition of many characters which come in at 1200 baud.  The modification
+does not, unfortunately, permit the use of ^C or carriage return as the 1200
+baud character to be recognized; the ideal first input character is @ (at
+sign), but any character with a zero in the low order bit and most of the high
+order bits turned off will probably work.  This approach has one limitation, in
+that it cannot distinguish between 600 baud and 1200 baud or higher; this is
+not a serious limitation in practice, because nobody actually uses 600 baud.
+The approach has one major advantage; it is highly unlikely to ever affect
+an established community of users at 110 to 300 baud.
+
+The content of file AB1200.CMD is:
+
+	[100,30]TTYDRR.MAC/AU:72.:8.=[100,30]TTYDRR.MAC
+	-/MODIFICATIONS:/
+	-/013/,,/;**WH001/
+	;
+	;   WH001	EXTEND AUTOBAUD FEATURE TO 1200 BAUD
+	;		4-MAY-79 BY WALTER O. HAAS (HAAS@UTAH-20) 
+	-/$DHINP::/
+	-/55$:/
+	-/#11,R1/,.,/;**WH001/
+		MOV	#12,R1		;;; LOOP COUNT
+	-/CHTBL:/,,/;**WH001/
+		.BYTE	376		; CR OR ^C AT 1200 BAUD
+	-/BAUDTB:/,,/;**WH001/
+		.WORD	23107		;1200 BAUD
+	/
+
+The content of file TTYDRRASM.CMD is:
+
+[100,10]TTYDRR,[100,20]TTYDRR/-SP=[20,30]RSXFC/PA:1,[100,30]DTESSS,TTYDRR,END
