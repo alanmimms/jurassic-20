@@ -53,5 +53,3 @@ bp.pins
 *.wires
 *.slot
 cpu.undriven
-obj_dir
-waveform.vcd
