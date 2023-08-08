@@ -481,15 +481,32 @@ function compile(simOptions) {
 
 //  checkForMalformedSymbolNames(bp);
   
+  if (options.createBoilerplateModules) genModules(bp);
   if (options.genSV) genSV(bp);
 
   return bp;
 }
 
 
+function genModules(bp) {
+
+  bp.slots
+    .filter(slot => slot.board.id !== 'ignore')
+    .forEach(slot => {
+      const id = slot.board.id;
+      fs.writeFileSync(`./rtl/${id}.sv`, `\
+module ${id};
+\`include "${id}.svh"
+endmodule	// ${id}
+`, 'utf8');
+    });
+}
+
+
 function genSV(bp) {
   fs.writeFileSync(`./grtl/kl-backplane.svh`, `\
-// Someday this will define all backplane nets and connect the slots together.
+// Define each net in the backplane.
+${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  logic ${n};`).join('\n')}
 `, 'utf8');
 }
 
