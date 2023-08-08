@@ -10,6 +10,7 @@ CMDR
   .option('-a, --dump-ast', `Dump AST after parsing`)
   .option('-b, --dump-backplane', `Dump backplane slots and net names`)
   .option('-c, --dump-cram', `Dump CRAM definitions`)
+  .option('-g, --genSV', `Generate SystemVerilog code for backplane and modules`)
   .option('-n, --dump-nets', `Dump netlist`)
   .option('-o, --dump-wire-or', `Dump list of wire-ORed nets`)
   .option('-p, --dump-pins', `Dump board pins and backplane pins for each board`)

@@ -481,7 +481,16 @@ function compile(simOptions) {
 
 //  checkForMalformedSymbolNames(bp);
   
+  if (options.genSV) genSV(bp);
+
   return bp;
+}
+
+
+function genSV(bp) {
+  fs.writeFileSync(`./grtl/kl-backplane.svh`, `\
+// Someday this will define all backplane nets and connect the slots together.
+`, 'utf8');
 }
 
 
