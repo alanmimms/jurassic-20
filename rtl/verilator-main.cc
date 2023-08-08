@@ -3,7 +3,7 @@
 #include <signal.h>
 
 #include <verilated.h>
-#include "Vtop.h"
+#include "Vkl10pv.h"
 
 #define TRACECLASS      VerilatedVcdC
 #include <verilated_vcd_c.h>
@@ -63,7 +63,7 @@ public: double nsPerClock;
 };
 
 
-TESTBENCH<Vtop> *tb;
+TESTBENCH<Vkl10pv> *tb;
 
 
 double sc_time_stamp () {       // Called by $time in Verilog
@@ -93,9 +93,9 @@ static const double endTime = 1.5 * 1000 * 1000; // 1.5 ms
 
 int main(int argc, char **argv) {
   Verilated::commandArgs(argc, argv);
-  tb = new TESTBENCH<Vtop>();
+  tb = new TESTBENCH<Vkl10pv>();
   Verilated::traceEverOn(true);
-  Vtop *top = tb->mod;
+  Vkl10pv *kl10pv = tb->mod;
 
   tb->opentrace("kl10pv-trace.vcd");
 

@@ -2,10 +2,12 @@ MODS = \
     mc10101 mc10103 mc10104 mc10105 mc10107 mc10109 \
     mc10110 mc10113 mc10117 mc10118 mc10121 mc10131
 
+TOP = kl10pv
+
 VERILATORROOT = $(HOME)/verilator
 VOBJDIR = ./obj_dir
 
-SVHFILES = top.sv $(DTEINTF)
+SVHFILES = $(TOP).sv $(DTEINTF)
 CXXFILES = verilator-main.cc
 CFILES = fe.c
 HFILES =
@@ -54,7 +56,7 @@ logic-tb: $(MODS)
 include $(VERILATORROOT)/include/verilated.mk
 
 $(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES)
-	$(VERILATOR) $(VFLAGS) $(filter-out %.h, $^) --top-module top -o $(@F)
+	$(VERILATOR) $(VFLAGS) $(filter-out %.h, $^) --top-module $(TOP) -o $(@F)
 
 $(DTEINTF): dte-interface.js
 	node dte-interface.js -- $(DTEINTF)
