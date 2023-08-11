@@ -54,3 +54,4 @@ bp.pins
 *.slot
 cpu.undriven
 grtl/*
+*.junk
