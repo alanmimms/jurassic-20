@@ -187,7 +187,7 @@ ${slotNumber}.${bpp}[${v.dirs}]: ${v.vNet}`;
     });
 
   if (options.dumpPins) {
-    fs.writeFileSync(`${bp.name}.wires`,
+    fs.writeFileSync(`bp.wires`,
 		     Object.keys(bp.vNetToPins)
 		     .filter(vn => vn != '%NC%')
 		     .sort()
@@ -504,10 +504,20 @@ endmodule	// ${id}
 
 
 function genSV(bp) {
+  genBackplaneSV(bp);
+  bp.slots.filter(s => s.board.id !== 'ignore').forEach(slot => genSlotSV(slot));
+}
+
+
+function genBackplaneSV(bp) {
   fs.writeFileSync(`./grtl/kl-backplane.svh`, `\
 // Define each net in the backplane.
-${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  logic ${n};`).join('\n')}
-`, 'utf8');
+${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${n};`).join('\n')}
+`);
+}
+
+
+function genSlotSV(slot) {
 }
 
 
