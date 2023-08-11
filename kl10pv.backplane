@@ -19,8 +19,8 @@ Slot  2: ignore {n=0} SBUS int mem cables PDF402	AB: BC20C M9006		CD: BC20C M900
 Slot  3: ignore {n=1} SBUS int mem/DMA20 cables PDF402	AB: BC20C M9006		CD: BC20C M9006		EF: spare
 Slot  4: {n=24} ignore TR0 EBUS/CBUS translator M8516
 Slot  5: {n=12} ignore TR0 EBUS/CBUS translator M8516
-Slot  6: {n=00} ignore TR0 EBUS/CBUS translator M8516
-Slot  7: {k=00} ignore MT0 SBUS translator M8519
+Slot  6: {i=0 n=00 p=00} ignore TR0 EBUS/CBUS translator M8516
+Slot  7: {i=1 n=18 p=12} ignore MT0 SBUS translator M8519
 Slot  8: {k=01} ignore MT0 SBUS translator M8519
 
 Slot  9: {m=0} chc M8533
@@ -31,8 +31,8 @@ Slot 12: {n=0} ccw M8534
 Slot 13: ignore blank
 
 Slot 14: {n=12} mb0 M8517
-Slot 15: {n=6}  mb0 M8517
-Slot 16: {n=0}  mb0 M8517
+Slot 15: {n=06}  mb0 M8517
+Slot 16: {n=00}  mb0 M8517
 Slot 17: {n=27} cac M8521 (cache) // ch0 M8549YH (no cache)
 
 Slot 18: ignore blank
@@ -42,13 +42,13 @@ Slot 20: mbz M8537
 Slot 21: {n=30} mbx M8529YA
 Slot 22: {n=22} mbc M8531YA
 Slot 23: {k=22} csh M8513YA
-Slot 24: {n=9}  cac M8521 (cache) // ch0 M8549YH (no cache)
-Slot 25: {n=0}  cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 24: {n=09}  cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 25: {n=00}  cac M8521 (cache) // ch0 M8549YH (no cache)
 
 Slot 26: ignore blank
 
 Slot 27: cha M8514 (cache) // ch0a M8549YE (no cache)
-Slot 28: {n=0} chx M8515 (cache) // ch0x M8549YF (no cache)
+Slot 28: {n=20} chx M8515 (cache) // ch0x M8549YF (no cache)
 Slot 29: pma M8518YA
 Slot 30: pag M8520YA
 Slot 31: pic M8532
@@ -89,17 +89,17 @@ Slot 43: {n=18} edp M8512
      dd2 de1[44] option extended kl
 //   de1 de1[44] option master osc
 
-Slot 44: {n=8 m=18} crm M8548
-Slot 45: {n=0} cra M8541
+Slot 44: {n=08 m=18} crm M8548
+Slot 45: {n=00} cra M8541
 Slot 46: shm M8540
 Slot 47: {n=18} mcl M8544
 Slot 48: {n=12} ird M8522
 Slot 49: {n=12} edp M8512
-Slot 50: {n=4 m=12} crm M8548
-Slot 51: {n=6} edp M8512
-Slot 52: {n=0 m=6} crm M8548
-Slot 53: {n=0} edp M8512
-Slot 54: {n=2} scd M8524
+Slot 50: {n=04 m=12} crm M8548
+Slot 51: {n=06} edp M8512
+Slot 52: {n=00 m=06} crm M8548
+Slot 53: {n=00} edp M8512
+Slot 54: {n=02} scd M8524
 
 ////////////////////////////////////////////////////////////////
 // Bay 1 module chart PDF488
