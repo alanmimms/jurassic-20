@@ -1,18 +1,21 @@
-# Thoughts:
+# TODO:
 
-* It's better to transform AST into netlist structure at top level
-    production of each parse (sub)tree.
+* Set up mux for EBUS driving instead of tri-stated bus.
 
-* This decouples netlist structure from AST structure near where AST
-    structure is defined.
+* Detect wire-OR nets automatically and generate explicit OR in RTL.
 
-* This decouples uses of netlist structure from AST structure.
+* Create a separate board SystemVerilog model for each slot. Signal
+  names are different depending on which slot the board is in. So
+  `edp.sv` instead must be slot specific `EDP39.sv.sv`, `EDP41.sv`,
+  `EDP43.sv`, `EDP49.sv`, `EDP51.sv`, and `EDP53.sv`.
 
 
 # Outstanding Questions
 
 * WTF is e.g., `-APR APR PAR CHK EN H\#400\`?
   * What does `\#400\` mean?
+  * Clearly the `\` character isn't being used as an escape. It's
+    being used as an enclosing pair like brackets.
   * There was some note somewhere that said it was a notation
     selecting a particular type of wire for the signal on the
     backplane? Coax?
