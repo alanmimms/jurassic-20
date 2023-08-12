@@ -481,31 +481,60 @@ function compile(simOptions) {
 
 //  checkForMalformedSymbolNames(bp);
   
-  if (options.createBoilerplateModules) genModules(bp);
+  if (options.createBoilerplateModules) genBoilerplateModules(bp);
   if (options.genSV) genSV(bp);
 
   return bp;
 }
 
 
-function genModules(bp) {
+function genBoilerplateModules(bp) {
 
   bp.slots
-    .filter(slot => slot.board.id !== 'ignore')
+    .filter(s => s.board.id !== 'ignore')
     .forEach(slot => {
       const id = slot.board.id;
-      fs.writeFileSync(`./rtl/${id}.sv`, `\
-module ${id};
-\`include "${id}.svh"
-endmodule	// ${id}
-`, 'utf8');
+      const slotNumber = slot.n.padStart(2, '0');
+      const modName = id + slotNumber;
+
+      const modParams = Object.keys(slot.bpPins)
+	    .filter(bpp => slot.bpPins[bpp].gNet !== '%NC%')
+	    .sort((a, b) => {
+	      const aSym = slot.bpPins[a].vNet;
+	      const bSym = slot.bpPins[b].vNet;
+	      return aSym < bSym ? -1 : aSym > bSym ? +1 : 0;
+	    })
+	    .map(bpPin => {
+	      const p = slot.bpPins[bpPin];
+	      const dir = vDirForNets(Object.values(p.pinNets));
+	      return `\
+/* <${bpPin}> */ ${dir.padStart(6)} ${p.vNet}`;
+	    })
+	    .join(',\n  ');
+
+      fs.writeFileSync(`./rtl/${modName}.sv`, `\
+module ${modName}(
+  ${modParams}
+);
+
+\`include "${modName}.svh"
+
+endmodule	// ${modName}
+`);
     });
+}
+
+
+function vDirForNets(nets) {
+  return nets.some(net => net.dir === 'D') ? 'output' : 'input';
 }
 
 
 function genSV(bp) {
   genBackplaneSV(bp);
-  bp.slots.filter(s => s.board.id !== 'ignore').forEach(slot => genSlotSV(slot));
+  bp.slots
+    .filter(s => s.board.id !== 'ignore')
+    .forEach(slot => genSlotSV(slot));
 }
 
 
