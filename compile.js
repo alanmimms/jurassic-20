@@ -493,9 +493,7 @@ function genBoilerplateModules(bp) {
   bp.slots
     .filter(s => s.board.id !== 'ignore')
     .forEach(slot => {
-      const id = slot.board.id;
-      const slotNumber = slot.n.padStart(2, '0');
-      const modName = id + slotNumber;
+      const modName = modNameForSlot(slot);
 
       const modParams = Object.keys(slot.bpPins)
 	    .filter(bpp => slot.bpPins[bpp].gNet !== '%NC%')
@@ -517,7 +515,7 @@ module ${modName}(
   ${modParams}
 );
 
-\`include "${modName}.svh"
+\`include "${modName}nets.svh"
 
 endmodule	// ${modName}
 `);
@@ -530,23 +528,70 @@ function vDirForNets(nets) {
 }
 
 
+function modNameForSlot(slot) {
+  const id = slot.board.id;
+  const slotNumber = slot.n.padStart(2, '0');
+  return id + slotNumber;
+}
+
+
 function genSV(bp) {
   genBackplaneSV(bp);
   bp.slots
     .filter(s => s.board.id !== 'ignore')
-    .forEach(slot => genSlotSV(slot));
+    .forEach(slot => {
+      const modName = modNameForSlot(slot);
+      const nets = genSlotNets(bp, slot, modName);
+      const chips = genSlotChips(bp, slot, modName);
+      fs.writeFileSync(`./grtl/${modName}nets.svh`, chips + nets);
+    });
 }
 
 
 function genBackplaneSV(bp) {
-  fs.writeFileSync(`./grtl/kl-backplane.svh`, `\
+  fs.writeFileSync(`./grtl/kl-backplane-nets.svh`, `\
 // Define each net in the backplane.
 ${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${n};`).join('\n')}
 `);
 }
 
 
-function genSlotSV(slot) {
+// Emit the module instances to represent the chips on the board in a slot.
+function genSlotChips(bp, slot, modName) {
+  const board = bp.boards[slot.board.id];
+  const chips = board.pages.flatMap(page => page.chips);
+
+  const allChips = chips
+	.sort((a, b) => a.name > b.name ? +1 : a.name < b.name ? -1 : 0)
+	.map(chip => `\
+    ${chipTypeToModName(chip)} ${chip.name}(
+      ${genChipPins(bp, slot, chip)});
+`).join('\n');
+
+  return `\
+// Chips in ${modName} instance
+${allChips}
+`;
+}
+
+
+// Emit the wiring between chips within a slot.
+function genSlotNets(bp, slot, modName) {
+  return `
+  // Wires in ${modName} instance
+  /* wires go here *./
+`;
+}
+
+
+function genChipPins(bp, slot, chip) {
+  return '/* chip pins go here */';
+}
+
+
+function chipTypeToModName(chip) {
+  const n = chip.type.replace(/-/g, '_');
+  return chip.type.match(/^[0-9].*/) ? `mc${n}` : n;
 }
 
 
