@@ -155,6 +155,6 @@ module csh23(
   /* <de1> */  input vma1_ac_ref_a_h
 );
 
-`include "csh23.svh"
+`include "csh23nets.svh"
 
 endmodule	// csh23

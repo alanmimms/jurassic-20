@@ -136,6 +136,6 @@ module scd54(
   /* <al2> */ output vma_held_or_pc_00_h
 );
 
-`include "scd54.svh"
+`include "scd54nets.svh"
 
 endmodule	// scd54

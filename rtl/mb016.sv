@@ -161,6 +161,6 @@ module mb016(
   /* <bt2> */ output pt_in_23_h
 );
 
-`include "mb016.svh"
+`include "mb016nets.svh"
 
 endmodule	// mb016

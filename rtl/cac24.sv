@@ -55,6 +55,6 @@ module cac24(
   /* <as2> */  input mem_to_cache_17_h
 );
 
-`include "cac24.svh"
+`include "cac24nets.svh"
 
 endmodule	// cac24

@@ -159,6 +159,6 @@ module edp43(
   /* <bc1> */  input vma_held_or_pc_23_h
 );
 
-`include "edp43.svh"
+`include "edp43nets.svh"
 
 endmodule	// edp43

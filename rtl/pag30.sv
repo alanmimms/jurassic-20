@@ -145,6 +145,6 @@ module pag30(
   /* <ea1> */  input vma2_vma_26_h
 );
 
-`include "pag30.svh"
+`include "pag30nets.svh"
 
 endmodule	// pag30

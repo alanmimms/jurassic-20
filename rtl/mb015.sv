@@ -161,6 +161,6 @@ module mb015(
   /* <bt2> */ output pt_in_29_h
 );
 
-`include "mb015.svh"
+`include "mb015nets.svh"
 
 endmodule	// mb015

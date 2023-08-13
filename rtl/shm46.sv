@@ -137,6 +137,6 @@ module shm46(
   /* <bd1> */ output shm4_sh_03_a_h
 );
 
-`include "shm46.svh"
+`include "shm46nets.svh"
 
 endmodule	// shm46

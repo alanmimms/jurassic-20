@@ -120,6 +120,6 @@ module clk32(
   /* <al2> */  input vma1_ac_ref_h
 );
 
-`include "clk32.svh"
+`include "clk32nets.svh"
 
 endmodule	// clk32

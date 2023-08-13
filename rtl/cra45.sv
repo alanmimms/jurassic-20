@@ -157,6 +157,6 @@ module cra45(
   /* <ch2> */  input vma1_local_ac_address_l
 );
 
-`include "cra45.svh"
+`include "cra45nets.svh"
 
 endmodule	// cra45

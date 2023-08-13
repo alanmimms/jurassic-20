@@ -91,6 +91,6 @@ module pic31(
   /* <bj1> */ output pi_xor_on_bus_l
 );
 
-`include "pic31.svh"
+`include "pic31nets.svh"
 
 endmodule	// pic31

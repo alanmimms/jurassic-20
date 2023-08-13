@@ -146,6 +146,6 @@ module vma38(
   /* <fj1> */ output vma_held_or_pc_35_h
 );
 
-`include "vma38.svh"
+`include "vma38nets.svh"
 
 endmodule	// vma38

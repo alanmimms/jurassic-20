@@ -159,6 +159,6 @@ module edp49(
   /* <bc1> */  input vma_held_or_pc_17_h
 );
 
-`include "edp49.svh"
+`include "edp49nets.svh"
 
 endmodule	// edp49

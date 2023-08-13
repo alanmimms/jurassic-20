@@ -152,6 +152,6 @@ module mbz20(
   /* <cr1> */  input sh_ar_par_odd_a_h
 );
 
-`include "mbz20.svh"
+`include "mbz20nets.svh"
 
 endmodule	// mbz20

@@ -148,6 +148,6 @@ module mcl47(
   /* <ce2> */ output vma_held_or_pc_12_h
 );
 
-`include "mcl47.svh"
+`include "mcl47nets.svh"
 
 endmodule	// mcl47

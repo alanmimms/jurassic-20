@@ -158,6 +158,6 @@ module chx28(
   /* <bj1> */  input vma_33_g_h
 );
 
-`include "chx28.svh"
+`include "chx28nets.svh"
 
 endmodule	// chx28

@@ -154,6 +154,6 @@ module mbx21(
   /* <bd2> */ output sbus_adr_35_h
 );
 
-`include "mbx21.svh"
+`include "mbx21nets.svh"
 
 endmodule	// mbx21

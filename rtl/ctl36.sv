@@ -152,6 +152,6 @@ module ctl36(
   /* <bk2> */  input shm1_ar_par_odd_a_l
 );
 
-`include "ctl36.svh"
+`include "ctl36nets.svh"
 
 endmodule	// ctl36

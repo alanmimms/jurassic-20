@@ -55,6 +55,6 @@ module cac19(
   /* <as2> */  input mem_to_cache_26_h
 );
 
-`include "cac19.svh"
+`include "cac19nets.svh"
 
 endmodule	// cac19

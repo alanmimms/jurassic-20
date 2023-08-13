@@ -104,6 +104,6 @@ module chc09(
   /* <cd2> */  input mr_reset_05_h
 );
 
-`include "chc09.svh"
+`include "chc09nets.svh"
 
 endmodule	// chc09

@@ -31,6 +31,6 @@ module crm52(
   /* <al2> */  input mr_reset_01_h
 );
 
-`include "crm52.svh"
+`include "crm52nets.svh"
 
 endmodule	// crm52

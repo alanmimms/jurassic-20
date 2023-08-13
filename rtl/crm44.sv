@@ -32,6 +32,6 @@ module crm44(
   /* <al2> */  input mr_reset_01_h
 );
 
-`include "crm44.svh"
+`include "crm44nets.svh"
 
 endmodule	// crm44

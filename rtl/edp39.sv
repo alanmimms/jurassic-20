@@ -159,6 +159,6 @@ module edp39(
   /* <bc1> */  input vma_held_or_pc_35_h
 );
 
-`include "edp39.svh"
+`include "edp39nets.svh"
 
 endmodule	// edp39

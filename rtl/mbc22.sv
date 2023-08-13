@@ -149,6 +149,6 @@ module mbc22(
   /* <dt2> */ output sbus_adr_hold_h
 );
 
-`include "mbc22.svh"
+`include "mbc22nets.svh"
 
 endmodule	// mbc22

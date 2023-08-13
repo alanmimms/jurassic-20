@@ -142,6 +142,6 @@ module ccl11(
   /* <al2> */  input mr_reset_05_h
 );
 
-`include "ccl11.svh"
+`include "ccl11nets.svh"
 
 endmodule	// ccl11

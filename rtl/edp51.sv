@@ -159,6 +159,6 @@ module edp51(
   /* <bc1> */  input vma_held_or_pc_11_h
 );
 
-`include "edp51.svh"
+`include "edp51nets.svh"
 
 endmodule	// edp51

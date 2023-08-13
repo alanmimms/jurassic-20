@@ -145,6 +145,6 @@ module ccw12(
   /* <ad2> */  input mb3_hold_in_h
 );
 
-`include "ccw12.svh"
+`include "ccw12nets.svh"
 
 endmodule	// ccw12

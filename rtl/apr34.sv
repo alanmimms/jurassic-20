@@ -138,6 +138,6 @@ module apr34(
   /* <fv2> */  input vma1_vma_35_b_h
 );
 
-`include "apr34.svh"
+`include "apr34nets.svh"
 
 endmodule	// apr34

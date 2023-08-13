@@ -75,6 +75,6 @@ module mtr33(
   /* <cc1> */  input vma1_ac_ref_a_l
 );
 
-`include "mtr33.svh"
+`include "mtr33nets.svh"
 
 endmodule	// mtr33

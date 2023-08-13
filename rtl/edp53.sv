@@ -160,6 +160,6 @@ module edp53(
   /* <bc1> */  input vma_held_or_pc_05_h
 );
 
-`include "edp53.svh"
+`include "edp53nets.svh"
 
 endmodule	// edp53

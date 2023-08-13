@@ -109,6 +109,6 @@ module cha27(
   /* <bj1> */  input vma_33_g_h
 );
 
-`include "cha27.svh"
+`include "cha27nets.svh"
 
 endmodule	// cha27

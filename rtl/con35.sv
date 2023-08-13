@@ -149,6 +149,6 @@ module con35(
   /* <de2> */  input vma_ac_ref_l
 );
 
-`include "con35.svh"
+`include "con35nets.svh"
 
 endmodule	// con35

@@ -153,6 +153,6 @@ module ird48(
   /* <ee2> */ output ir_test_satisfied_l
 );
 
-`include "ird48.svh"
+`include "ird48nets.svh"
 
 endmodule	// ird48

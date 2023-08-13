@@ -159,6 +159,6 @@ module edp41(
   /* <bc1> */  input vma_held_or_pc_29_h
 );
 
-`include "edp41.svh"
+`include "edp41nets.svh"
 
 endmodule	// edp41

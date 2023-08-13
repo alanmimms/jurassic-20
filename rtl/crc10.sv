@@ -64,6 +64,6 @@ module crc10(
   /* <ap2> */  input crc_wr_ram_l
 );
 
-`include "crc10.svh"
+`include "crc10nets.svh"
 
 endmodule	// crc10

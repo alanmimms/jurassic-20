@@ -154,6 +154,6 @@ module pma29(
   /* <ad2> */  input vma_20_a_h
 );
 
-`include "pma29.svh"
+`include "pma29nets.svh"
 
 endmodule	// pma29

@@ -55,6 +55,6 @@ module cac25(
   /* <as2> */  input mem_to_cache_08_h
 );
 
-`include "cac25.svh"
+`include "cac25nets.svh"
 
 endmodule	// cac25
