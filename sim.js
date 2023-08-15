@@ -24,13 +24,9 @@ CMDR
   .option('-Z, --create-boilerplate-modules', `Create an empty SystemVerilog module source file for each board in ./rtl/xxx.sv`)
   .argument('[src]', `Source file to start parsing`, `kl10pv.backplane`)
   .action((src, options) => {
-
-    if (options.runTests) {
-      doTests();
-    } else {
-      options.src = src;
-      const backplanes = compile(options);
-      console.log(`[done]`);
-    }
+    options.src = src;
+    if (options.runTests) doTests();
+    const backplanes = compile(options);
+    console.log(`[done]`);
   })
   .parse();
