@@ -506,7 +506,7 @@ function genBoilerplateModules(bp) {
 	      const p = slot.bpPins[bpPin];
 	      const dir = vDirForNets(Object.values(p.pinNets));
 	      return `\
-/* <${bpPin}> */ ${dir.padStart(6)} ${p.vNet}`;
+/* <${bpPin}> */ ${dir.padEnd(6)} ${p.vNet}`;
 	    })
 	    .join(',\n  ');
 
