@@ -4,6 +4,8 @@
 
 * Detect wire-OR nets automatically and generate explicit OR in RTL.
 
+* Implement `slotWires`.
+
 * Create a separate board SystemVerilog model for each slot. Signal
   names are different depending on which slot the board is in. So
   `edp.sv` instead must be slot specific `EDP39.sv.sv`, `EDP41.sv`,
