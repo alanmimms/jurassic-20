@@ -577,13 +577,13 @@ function genSV(bp) {
       const modName = modNameForSlot(slot);
       const nets = genSlotNets(bp, slot, modName);
       const chips = genSlotChips(bp, slot, modName);
-      fs.writeFileSync(`./grtl/${modName}nets.svh`, chips + nets);
+      fs.writeFileSync(`./grtl/${modName}nets.svh`, nets + chips);
     });
 }
 
 
 function genBackplaneSV(bp) {
-  fs.writeFileSync(`./grtl/kl-backplane-nets.svh`, `\
+  fs.writeFileSync(`./grtl/kl-backplane.svh`, `\
 // Define each net in the backplane.
 ${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${n};`).join('\n')}
 `);
@@ -600,7 +600,7 @@ function genSlotChips(bp, slot, modName) {
       ${genChipPins(bp, slot, chip)});
 `).join('\n');
 
-  return `\
+  return `
 // Chips in ${modName} instance
 ${allChips}
 `;
@@ -609,9 +609,20 @@ ${allChips}
 
 // Emit the wiring between chips within a slot.
 function genSlotNets(bp, slot, modName) {
-  return `
+  const wires = {};
+
+  Object.values(slot.chips)
+    .forEach(chip => {
+
+      Object.values(chip.pins)
+	.forEach(pin => {
+	  if (pin.net !== '0' && pin.net !== '1' && pin.net !== '%NC%') wires[pin.net] = pin;
+	});
+    });
+
+  return `\
   // Wires in ${modName} instance
-  /* wires go here *./
+  ${Object.keys(wires).sort().map(w => `bit ${w};`).join('\n  ')}
 `;
 }
 
@@ -622,7 +633,10 @@ function genChipPins(bp, slot, chip) {
     .map(pinName => {
       const pin = chip.pins[pinName];
       let value = pin.net;
-      if (value === '0' || value === '1') value = `'` + value;
+
+      if (value === '0' || value === '%NC%') value = `'0`;
+      else if (value === '1') value = `'1`;
+
       return `.${verilogify(pinName)}(${value})`;
     })
     .join(',\n      ');
