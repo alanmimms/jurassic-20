@@ -340,8 +340,8 @@ const logic = {
   },
 
   '10141': {
-    desc: 'shft reg',
-    '~<': expand('shft 0in=13, d0=12,d1=11,d2=9,d3=6, shft 3in=5, op1=10,op2=7, clk=4'),
+    desc: 'shift reg',
+    '~<': expand('shft0in=13, d0=12,d1=11,d2=9,d3=6, shft3in=5, op1=10,op2=7, clk=4'),
     '~>': expand('q0=14,q1=15,q2=2,q3=3'),
 
     fn({i}) {
@@ -359,14 +359,14 @@ const logic = {
         this.d0 = this.d1;
         this.d1 = this.d2;
         this.d2 = this.d3;
-        this.d3 = i['shft 3in'];
+        this.d3 = i.shft3in;
         break;
 
       case 2:                 // Shift left
         this.d3 = this.d2;
         this.d2 = this.d1;
         this.d1 = this.d0;
-        this.d0 = i['shft 0in'];
+        this.d0 = i.shft0in;
         break;
 
       case 3:                 // Stop shift
