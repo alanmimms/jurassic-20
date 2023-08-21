@@ -38,6 +38,7 @@ VFLAGS = \
 	--default-language 1800-2017 +1800-2017ext+sv \
 	-CFLAGS \
 	-MMD \
+	-I../grtl \
 	$(KILLWARNINGS) \
 	--timescale 1ns/1ps --timescale-override 1ns/1ps \
 	--x-initial 0 \
