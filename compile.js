@@ -621,7 +621,9 @@ function genChipPins(bp, slot, chip) {
   return Object.keys(chip.pins)
     .map(pinName => {
       const pin = chip.pins[pinName];
-      return `.${pinName}(${pin.net})`;
+      let value = pin.net;
+      if (value === '0' || value === '1') value = `'` + value;
+      return `.${verilogify(pinName)}(${value})`;
     })
     .join(',\n      ');
 }  
