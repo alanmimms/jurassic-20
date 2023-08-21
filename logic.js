@@ -4,30 +4,35 @@
 // These properties have object values of the form
 // {
 //   desc: 'short description',
-//   '~<': ['input pin name1', 'input pin name 2', ...],
-//   '~>': ['output pin name1', 'output pin name 2', ...],
-// )
+//   '~<': {...},
+//   '~>': {...},
+// }
+// 
+// The `~<` and `~>` properties are objects indexed both by pin number
+// string and by pin name.
+//
+// THEREFORE, PIN NAMES AND NUMBERS MUST BE UNIQUE IN A GIVEN CHIP TYPE.
+function expand(s) {
+  const split = s.split(/,\s*/);
+  const pins = split.map(el => {
+    let m;
 
-const expand = s => s.split(/,\s*/).map(el => {
-  let m;
+    // Form 'xxx=p' where xxx is pin name and p is pin number.
+    // Syntax DOES NOT permit whitespace surrounding the '='.
+    if ((m = el.match(/(?<name>[^=]+)=(?<pin>\d+)/))) {
+      const {name, pin} = m.groups;
+      return {name, pin};
+    } else {
+      console.error(`Bad pin definition syntax "${el}".`);
+      return {name: '???', pin: 0};
+    }
+  });
 
-  // Form 'xxx=p' where xxx is pin name and p is pin number.
-  // Syntax DOES NOT permit whitespace surrounding the '='.
-  if ((m = el.match(/(?<name>[^=]+)=(?<pin>\d+)/))) {
-    const {name, pin} = m.groups;
-    return {name, pin};
-  } else {
-    console.error(`Bad pin definition syntax "${el}".`);
-    return {name: '???', pin: 0};
-  }
-})
-      .reduce((o, e) => {o[e.pin] = e; return o}, {});
-
-
-function dev(desc, inputs, outputs) {
-  return {desc,
-          '~<': expand(inputs),
-          '~>': expand(outputs)};
+  return pins.reduce((o, e) => {
+    o[e.pin] = e;
+    o[e.name] = e;
+    return o;
+  }, {});
 }
 
 
@@ -961,6 +966,9 @@ const logic = {
     init() {},
   },
 
+  pinToName(type, pinNumString, dir) {
+    return logic[type][dir][pinNumString].name;
+  },
 };
 
 

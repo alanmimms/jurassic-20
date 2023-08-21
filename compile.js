@@ -126,6 +126,32 @@ function bindSlots(bp, cramDefs) {
       const macroEnv = {...bpMacroEnv};
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
+      // Create a slot-unique copy of each board's chips and interconnecting nets.
+      slot.chips = {};
+
+      board.pages
+	.flatMap(page => page.chips)
+	.forEach(chip => {
+
+	  slot.chips[chip.name] = {
+	    type: chip.type,
+	    desc: chip.desc,
+	    refDes: chip.name,
+
+	    pins: chip.pins.reduce((cur, pin) => {
+
+	      cur[logic.pinToName(chip.type, pin.pin, pin.dir)] =  {
+		dir: astDirToDir(pin.dir),
+		net: verilogify(canonicalize(evalExpr(pin.net, macroEnv, true))),
+		name: chip.name,
+	      };
+	      return cur;
+	    }, {}),
+	  };
+	});
+      
+
+      // Bind backplane pins to their nets.
       Object.keys(board.bpPins).forEach(bpp => {
 	const pinNets = board.bpPins[bpp];
 
@@ -429,6 +455,14 @@ ${util.inspect(t, {depth:99})}`);
     result = t.value;
     break;
 
+  case 'NoConnect':
+    result = '0';
+    break;
+
+  case 'Value':
+    result = t.value;
+    break;
+
   default:
     console.log(`\
 Unhandled subtree node type in ${t.nodeType} macro: '${util.inspect(t, {depth: 999})}'.`);
@@ -558,13 +592,11 @@ ${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${
 
 // Emit the module instances to represent the chips on the board in a slot.
 function genSlotChips(bp, slot, modName) {
-  const board = bp.boards[slot.board.id];
-  const chips = board.pages.flatMap(page => page.chips);
 
-  const allChips = chips
+  const allChips = Object.values(slot.chips)
 	.sort((a, b) => a.name > b.name ? +1 : a.name < b.name ? -1 : 0)
 	.map(chip => `\
-    ${chipTypeToModName(chip)} ${chip.name}(
+    ${chipTypeToModName(chip)} ${chip.refDes}(
       ${genChipPins(bp, slot, chip)});
 `).join('\n');
 
@@ -585,8 +617,14 @@ function genSlotNets(bp, slot, modName) {
 
 
 function genChipPins(bp, slot, chip) {
-  return '/* chip pins go here */';
-}
+
+  return Object.keys(chip.pins)
+    .map(pinName => {
+      const pin = chip.pins[pinName];
+      return `.${pinName}(${pin.net})`;
+    })
+    .join(',\n      ');
+}  
 
 
 function chipTypeToModName(chip) {
