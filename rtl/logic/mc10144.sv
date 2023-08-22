@@ -1,4 +1,3 @@
-`timescale 1ns/1ns
 module mc10144(input bit a0, a1, a2, a3, a4, a5, a6, a7,
 	       input bit d, nen1, nen2, nen3, nwrite,
 	       output bit q);
