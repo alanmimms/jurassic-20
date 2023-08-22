@@ -615,9 +615,10 @@ function genSlotNets(bp, slot, modName) {
     .forEach(chip => {
 
       Object.values(chip.pins)
-	.forEach(pin => {
-	  if (pin.net !== '0' && pin.net !== '1' && pin.net !== '%NC%') wires[pin.net] = pin;
-	});
+        .filter(pin => pin.net !== '0' && pin.net !== '1' && pin.net !== '%NC%')
+        // Filter out backplane signals since they will be declared for module input/output.
+        .filter(pin => !Object.values(slot.bpPins).some(bpp => bpp.vNet == pin.net))
+	.forEach(pin => wires[pin.net] = pin);
     });
 
   return `\
