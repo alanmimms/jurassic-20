@@ -6,15 +6,18 @@ TOP = kl10pv
 
 VERILATORROOT = $(HOME)/verilator
 VOBJDIR = ./obj_dir
+LOGICDIR = logic
 
 SVHFILES = $(TOP).sv $(DTEINTF)
 CXXFILES = verilator-main.cc
 CFILES = fe.c
 HFILES =
+TBDIR = tb
 TBOBJS = $(foreach F,$(CFILES:.c=.o) $(CXXFILES:.cc=.o),$(VOBJDIR)/$F)
 DTEINTF = dte.h dte.svh
 
 EXE = $(VOBJDIR)/kl10pvtb
+LOGICEXEs = $(foreach M,$(MODS),$(VOBJDIR)/V$(M)-tb)
 
 DEBUG = -g
 OPTIMIZE =
@@ -46,7 +49,7 @@ VFLAGS = \
 
 .PHONY:	all logic-tb clean
 
-all:	$(EXE)
+all:	$(EXE) $(LOGICEXEs)
 
 logic-tb: $(MODS)
 
@@ -62,8 +65,14 @@ $(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES)
 $(DTEINTF): dte-interface.js
 	node dte-interface.js -- $(DTEINTF)
 
-$(MODS):
-	$(MAKE) -f module.mk MODULE=$@
+$(MODS):	$(foreach M,$(MODS),$(VOBJDIR)/V$(M))
+
+# Holy fucknoodles! These two steps were complicated to get "right".
+$(foreach M,$(MODS),$(VOBJDIR)/V$(M).mk): $(VOBJDIR)/V%.mk: $(LOGICDIR)/%.sv
+	$(VERILATOR) -Wall --trace --cc $< --exe $(TBDIR)/$*-tb.cc
+
+$(foreach M,$(MODS),$(VOBJDIR)/V$(M)-tb): $(VOBJDIR)/V%-tb: $(TBDIR)/%-tb.cc $(VOBJDIR)/V%.mk
+	$(MAKE) -C $(VOBJDIR) -f V$*.mk
 
 clean:
 	@rm -fr obj_dir
