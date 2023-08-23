@@ -69,7 +69,7 @@ $(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES)
 $(DTEINTF): dte-interface.js
 	node dte-interface.js -- $(DTEINTF)
 
-$(MODS):	$(foreach M,$(MODS),$(VOBJDIR)/V$(M))
+$(MODS) oscillator:	$(foreach M,$(MODS),$(VOBJDIR)/V$(M))
 
 # Holy fucknoodles! These two steps were complicated to get "right".
 $(foreach M,$(MODS),$(VOBJDIR)/V$(M).mk): $(VOBJDIR)/V%.mk: $(LOGICDIR)/%.sv

@@ -647,7 +647,7 @@ function genChipPins(bp, slot, chip) {
 // For chip types that start with numbers, assume they are mcXXX.
 // Substitute "_" for "-" in chip types to make valid identifiers.
 function chipTypeToModName(chip) {
-  const n = chip.type.replace(/-/g, '_');
+  let n = chip.type.replace(/-/g, '_');
   if (n === 'wire') n = 'just_a_wire';
   return chip.type.match(/^[0-9].*/) ? `mc${n}` : n;
 }

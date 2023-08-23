@@ -242,7 +242,8 @@ const logic = {
 
   'oscillator': {
     desc: 'clock oscillator',
-    '~>': expand('out=1'),
+    '~<': expand('clk=1'),
+    '~>': expand('out=2'),
   },
 
   'wire': {
