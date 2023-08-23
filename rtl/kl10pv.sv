@@ -2,7 +2,7 @@
 // peripherals, and power system.
 module kl10pv(input clk60, crobar);
 
-`include "../grtl/kl-backplane.svh"
+`include "kl-backplane.svh"
 
    assign crobar_e_h = crobar;
 
