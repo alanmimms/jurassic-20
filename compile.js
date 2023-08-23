@@ -577,13 +577,13 @@ function genSV(bp) {
       const modName = modNameForSlot(slot);
       const nets = genSlotNets(bp, slot, modName);
       const chips = genSlotChips(bp, slot, modName);
-      fs.writeFileSync(`./grtl/${modName}nets.svh`, nets + chips);
+      fs.writeFileSync(`./rtl/gen/${modName}nets.svh`, nets + chips);
     });
 }
 
 
 function genBackplaneSV(bp) {
-  fs.writeFileSync(`./grtl/kl-backplane.svh`, `\
+  fs.writeFileSync(`./rtl/gen/kl-backplane.svh`, `\
 // Define each net in the backplane.
 ${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${n};`).join('\n')}
 `);

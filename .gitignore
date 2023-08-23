@@ -53,5 +53,5 @@ bp.pins
 *.wires
 *.slot
 cpu.undriven
-grtl/*
+rtl/gen/*
 *.junk
