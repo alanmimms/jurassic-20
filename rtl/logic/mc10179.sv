@@ -1,24 +1,17 @@
-`timescale 1ns/1ns
-module mc10179(input bit [0:3] G,
-               input bit [0:3] P,
-               input bit CIN,
+module mc10179(input bit g8,g4,g2,g1, p8,p4,p2,p1, cin,
+               output bit gout, pout, c8out, c2out);
 
-               output bit GG,
-               output bit PG,
-               output bit C8OUT,
-               output bit C2OUT);
-
-  assign C8OUT = ~|{~G[3],
-                    ~|{P[3], G[2]},
-                    ~|{P[3], P[2], G[1]},
-                    ~|{P[3], P[2], P[1], G[0]},
-                    ~|{P[3], P[2], P[1], P[0], CIN}};
-  assign C2OUT = ~|{~G[1],
-                    ~|{P[1], G[0]},
-                    ~|{P[1], P[0], CIN}};
-  assign GG = ~|{~G[3],
-                 ~|{P[3], G[2]},
-                 ~|{P[3], P[2], G[1]},
-                 ~|{P[3], P[2], P[1], G[0]}};
-  assign PG = P[3] | P[2] | P[1] | P[0];
+  assign c8out = ~|{~g1,
+                    ~|{p1, g2},
+                    ~|{p1, p2, g4},
+                    ~|{p1, p2, p4, g8},
+                    ~|{p1, p2, p4, p8, cin}};
+  assign c2out = ~|{~g4,
+                    ~|{p4, g8},
+                    ~|{p4, p8, cin}};
+  assign gout = ~|{~g1,
+                   ~|{p1, g2},
+                   ~|{p1, p2, g4},
+                   ~|{p1, p2, p4, g8}};
+  assign pout = p1 | p2 | p4 | p8;
 endmodule // mc10179
