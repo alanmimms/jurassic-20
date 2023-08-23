@@ -19,42 +19,42 @@
 //  1  1  0  1    A&~B        (A&~B)-1     A&~B
 //  1  1  1  0    A&B         (A&B)-1      A&B
 //  1  1  1  1    A           A-1          A
-module mc10181(input bit [0:3] S,
-               input bit M,
-               input bit [0:3] A,
-               input bit [0:3] B,
-               input bit CIN,
-               output bit [0:3] F,
-               output bit CG,
-               output bit CP,
-               output bit COUT);
+module mc10181(input bit s8,s4,s2,s1, boole, cin,
+               input bit a8,a4,a2,a1, b8,b4,b2,b1,
+               output bit f8,f4,f2,f1, cg, cp, cout);
 
   bit [3:0] G, P;
   bit notGG;
 
-  assign G = ~(~({4{S[3]}} | B | A) | ~({4{S[2]}} | A  | ~B));
-  assign P = ~(~({4{S[1]}} | ~B   ) | ~({4{S[0]}} | B) | ~A);
-  assign F = ~(G ^ P ^
-               {~(M | G[2]) |
-                ~(M | P[2] | G[1]) |
-                ~(M | P[2] | P[1] | G[0]) |
-                ~(M | P[2] | P[1] | P[0] | CIN),
+  bit [3:0] A = {a8,a4,a2,a1};
+  bit [3:0] B = {b8,b4,b2,b1};
 
-                ~(M | G[1]) |
-                ~(M | P[1] | G[0]) |
-                ~(M | P[1] | P[0] | CIN),
+  assign G = ~(~({4{s1}} | B | A) | ~({4{s4}} | A  | ~B));
+  assign P = ~(~({4{s2}} | ~B   ) | ~({4{s8}} | B) | ~A);
 
-                ~(M | G[0]) |
-                ~(M | P[0] | CIN),
+  assign {f8,f4,f2,f1} = ~(G ^ P ^
+			   {~(boole | G[2]) |
+			    ~(boole | P[2] | G[1]) |
+			    ~(boole | P[2] | P[1] | G[0]) |
+			    ~(boole | P[2] | P[1] | P[0] | cin),
 
-                ~(M | CIN)});
-  assign notGG = ~G[3] |
+			    ~(boole | G[1]) |
+			    ~(boole | P[1] | G[0]) |
+			    ~(boole | P[1] | P[0] | cin),
+
+			    ~(boole | G[0]) |
+			    ~(boole | P[0] | cin),
+
+			    ~(boole | cin)});
+
+  assign notGG = ~G[3]  |
                  ~(P[3] | G[2]) |
-                 ~(P[3] | P[2] | G[1]) |
-                 ~(P[3] | P[2] | P[1] | G[0]);
-  assign CG = ~notGG;
-  assign CP = ~|P;
-  assign COUT = ~(notGG | ~(CP | CIN));
+                 ~(P[3] | P[2]  | G[1]) |
+                 ~(P[3] | P[2]  | P[1]  | G[0]);
+
+  assign cg = ~notGG;
+  assign cp = ~|P;
+  assign cout = ~(notGG | ~(cp | cin));
 endmodule // mc10181
 
 
@@ -64,12 +64,12 @@ module mc10181_tb;
   bit clk;
   bit [3:0] S, A, B;
   bit [3:0] F;
-  bit M, CIN;
+  bit M, cin;
   bit CG, CP, COUT;
   bit [31:0] s, a, b;
   bit [31:0] m, cin;
 
-  mc10181 mc10181(.S(S), .M(M), .A(A), .B(B), .CIN(CIN), .F(F), .CG(CG), .CP(CP), .COUT(COUT));
+  mc10181 mc10181(.S(S), .M(M), .A(A), .B(B), .cin(cin), .F(F), .CG(CG), .CP(CP), .COUT(COUT));
 
   always #1 clk = ~clk;
 
@@ -89,7 +89,7 @@ module mc10181_tb;
           for (a = 0; a < 16; a = a + 1) begin
             #1 A = a;
             cin = ~cin;
-            CIN = cin;
+            cin = cin;
           end
         end
       end
@@ -97,8 +97,8 @@ module mc10181_tb;
   end
 
   initial begin
-    $monitor("T=%-6D M=%b S=%4b A=%4b B=%4b CIN=%b F=%4b CG=%b CP=%b COUT=%b",
-             $time, M, S, A, B, CIN, F, CG, CP, COUT);
+    $monitor("T=%-6D M=%b S=%4b A=%4b B=%4b cin=%b F=%4b CG=%b CP=%b COUT=%b",
+             $time, M, S, A, B, cin, F, CG, CP, COUT);
     $dumpfile("mc10181_tb.vcd");
     $dumpvars(0, mc10181_tb);
   end
