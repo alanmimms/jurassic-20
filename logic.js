@@ -206,8 +206,8 @@ const logic = {
 
   '10179': {
     desc: 'carry skipper',
-    '~<': expand('g8=5,p8=13,g4=9,p4=12, g2=7,p2=10,g1=4,p1=14, c in=11'),
-    '~>': expand('c8 out=3, c2 out=6, g out=2, p out=15'),
+    '~<': expand('g8=5,p8=13,g4=9,p4=12, g2=7,p2=10,g1=4,p1=14, cin=11'),
+    '~>': expand('c8out=3, c2out=6, gout=2, pout=15'),
   },
 
   '10181': {
