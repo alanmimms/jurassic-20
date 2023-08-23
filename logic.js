@@ -251,11 +251,6 @@ const logic = {
     '~>': expand('out=2'),
   },
 
-  'logic': {
-    desc: 'produce logic 1 and 0 on some pins 1 and 2, respectively',
-    '~>': expand('hi=1,lo=2'),
-  },
-
   pinToName(type, pinNumString, dir) {
     return logic[type][dir][pinNumString].name;
   },

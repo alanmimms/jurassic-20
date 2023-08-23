@@ -644,8 +644,11 @@ function genChipPins(bp, slot, chip) {
 }  
 
 
+// For chip types that start with numbers, assume they are mcXXX.
+// Substitute "_" for "-" in chip types to make valid identifiers.
 function chipTypeToModName(chip) {
   const n = chip.type.replace(/-/g, '_');
+  if (n === 'wire') n = 'just_a_wire';
   return chip.type.match(/^[0-9].*/) ? `mc${n}` : n;
 }
 
@@ -739,7 +742,7 @@ function verilogify(n) {
   // First convert -xxxx [lh] to xxxx [hl].
   n = canonicalize(n);
 
-  if (n == '%NC%') return n;
+  if (n == '%NC%' || n == '1' || n == '0') return n;
   n = n.replace(/ /g, '_');
   n = n.replace(/<-/g, 'GETS');
   n = n.replace(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/g, '$1_$2_$3');
@@ -848,7 +851,8 @@ function netNameSort(a, b) {
 // Convert a net name of the form '-xyz l' to 'xyz h' or '-xyz h' to 'xyz l'.
 function canonicalize(net) {
 
-  if (net.slice(0, 1) == '-') {
+  // Some nets aren't strings, so only do this if they are.
+  if (net.slice && net.slice(0, 1) == '-') {
     const lastChars = net.slice(-2);
 
     if (lastChars == ' h') {		// Switch to 'l'

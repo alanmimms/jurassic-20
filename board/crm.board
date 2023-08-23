@@ -101,8 +101,9 @@ e31: 10101 quad or/nor
 
 Page: CRM2, PDF393
 
-d1d2: logic logic 1 on pin 1
-      1 ~> {de1} crm hi [n+00] h
+d1d2: wire to get logic 1
+      1 ~< 1
+      2 ~> {de1} crm hi [n+00] h
 
 e36:  10174 2x4 mix
       6 ~< {dr2} cram [n+60] h
