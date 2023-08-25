@@ -523,26 +523,36 @@ function compile(simOptions) {
 
 
 function genBoilerplateModules(bp) {
+  // Accumulator indexed by vNet name of list of backplane pins
+  // attached to the signal.
 
   bp.slots
     .filter(s => s.board.id !== 'ignore')
     .forEach(slot => {
       const modName = modNameForSlot(slot);
+      const modPins = {};
 
-      const modParams = Object.keys(slot.bpPins)
-	    .filter(bpp => slot.bpPins[bpp].gNet !== '%NC%')
-	    .sort((a, b) => {
-	      const aSym = slot.bpPins[a].vNet;
-	      const bSym = slot.bpPins[b].vNet;
-	      return aSym < bSym ? -1 : aSym > bSym ? +1 : 0;
-	    })
-	    .map(bpPin => {
-	      const p = slot.bpPins[bpPin];
-	      const dir = vDirForNets(Object.values(p.pinNets));
-	      return `\
-/* <${bpPin}> */ ${dir.padEnd(6)} ${p.vNet}`;
-	    })
-	    .join(',\n  ');
+      // Build modPins list.
+      Object.keys(slot.bpPins)
+	.filter(bpp => slot.bpPins[bpp].gNet !== '%NC%')
+	.sort((a, b) => {
+	  const aSym = slot.bpPins[a].vNet;
+	  const bSym = slot.bpPins[b].vNet;
+	  return aSym < bSym ? -1 : aSym > bSym ? +1 : 0;
+	})
+	.forEach(bpPin => {
+	  const p = slot.bpPins[bpPin];
+	  const dir = vDirForNets(Object.values(p.pinNets));
+
+	  if (!modPins[p.vNet]) modPins[p.vNet] = [];
+	  modPins[p.vNet].push({vNet: p.vNet, bpPin, dir});
+	});
+
+      const modParams = Object.values(modPins)
+	    .sort(vSort)
+	    .map(v => `\
+    ${v[0].dir.padEnd(6)} ${v[0].vNet.padEnd(30)}    /* <${v.map(p => p.bpPin).join('><')}> */`)
+	.join(',\n  ');
 
       fs.writeFileSync(`./rtl/${modName}.sv`, `\
 module ${modName}(
@@ -554,6 +564,10 @@ module ${modName}(
 endmodule	// ${modName}
 `);
     });
+
+  function vSort(a, b) {
+    return a[0].vNet > b[0].vNet ? +1 : a[0].vNet < b[0].vNet ? -1 : 0;
+  }
 }
 
 
@@ -615,9 +629,15 @@ function genSlotNets(bp, slot, modName) {
     .forEach(chip => {
 
       Object.values(chip.pins)
+      // Filter out constant value nets.
         .filter(pin => pin.net !== '0' && pin.net !== '1' && pin.net !== '%NC%')
-        // Filter out backplane signals since they will be declared for module input/output.
-        .filter(pin => !Object.values(slot.bpPins).some(bpp => bpp.vNet == pin.net))
+      // Filter out backplane signals by vNet name since they will
+      // be declared for module input/output.
+        .filter(pin => {
+	  const v = !Object.values(slot.bpPins)
+		.some(bpp => bpp.vNet === pin.net);
+	  return v;
+	})
 	.forEach(pin => wires[pin.net] = pin);
     });
 
