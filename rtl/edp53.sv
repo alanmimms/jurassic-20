@@ -110,7 +110,6 @@ module edp53(
   /* <bj1> */ input  cram_ada_sel_1_00_h,
   /* <bf2> */ input  cram_ada_sel_2_00_h,
   /* <bt2> */ input  cram_adb_sel_1_00_h,
-  /* <bt1> */ input  cram_adb_sel_1_00_h,
   /* <bs1> */ input  cram_adb_sel_2_00_h,
   /* <ff1> */ input  cram_arxm_sel_4_00_h,
   /* <dj2> */ input  cram_br_load_a_h,

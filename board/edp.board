@@ -723,7 +723,7 @@ e23:  10174 2x4 mix
       12 ~< br [n+01] h
       10 ~< ar [n+03] h
       9 ~< {bs1} cram adb sel 2 [n+00] h
-      7 ~< {bt1} cram adb sel 1 [n+00] h
+      7 ~< {bt2} cram adb sel 1 [n+00] h
       14 ~< %NC%
       2 ~> adb [n+00] h
       15 ~> adb [n+01] h
@@ -738,7 +738,7 @@ e26:  10174 2x4 mix
       12 ~< br [n+03] h
       10 ~< ar [n+05] h
       9 ~< {bs1} cram adb sel 2 [n+00] h
-      7 ~< {bt1} cram adb sel 1 [n+00] h
+      7 ~< {bt2} cram adb sel 1 [n+00] h
       14 ~< %NC%
       2 ~> adb [n+02] h
       15 ~> adb [n+03] h
@@ -753,7 +753,7 @@ e19:  10174 2x4 mix
       12 ~< br [n+05] h
       10 ~< {bl1} [n/30+1,ar [n+07] h,arx 01 h]
       9 ~< {bs1} cram adb sel 2 [n+00] h
-      7 ~< {bt1} cram adb sel 1 [n+00] h
+      7 ~< {bt2} cram adb sel 1 [n+00] h
       14 ~< %NC%
       2 ~> adb [n+04] h
       15 ~> adb [n+05] h
@@ -768,7 +768,7 @@ e9:   10174 2x4 mix
       12 ~< brx [n+01] h
       10 ~< {aj2} arx [n+03] h
       9 ~< {bs1} cram adb sel 2 [n+00] h
-      7 ~< {bt1} cram adb sel 1 [n+00] h
+      7 ~< {bt2} cram adb sel 1 [n+00] h
       14 ~< %NC%
       2 ~> adxb [n+00] h
       15 ~> adxb [n+01] h
@@ -783,7 +783,7 @@ e12:  10174 2x4 mix
       12 ~< brx [n+03] h
       10 ~< {aa1} arx [n+05] h
       9 ~< {bs1} cram adb sel 2 [n+00] h
-      7 ~< {bt1} cram adb sel 1 [n+00] h
+      7 ~< {bt2} cram adb sel 1 [n+00] h
       14 ~< %NC%
       2 ~> adxb [n+02] h
       15 ~> adxb [n+03] h
@@ -798,7 +798,7 @@ e6:   10174 2x4 mix
       12 ~< brx [n+05] h
       10 ~< {bd1} arx [n+07] h
       9 ~< {bs1} cram adb sel 2 [n+00] h
-      7 ~< {bt1} cram adb sel 1 [n+00] h
+      7 ~< {bt2} cram adb sel 1 [n+00] h
       14 ~< %NC%
       2 ~> adxb [n+04] h
       15 ~> adxb [n+05] h

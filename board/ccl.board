@@ -476,7 +476,7 @@ e18: 10104 quad and/nand
 e49: 10105 2-3-2 or/nor
      9 ~< {dh2} -crc act ctr 1 l
      10 ~< {dj2} -crc act ctr 2 l
-     11 ~< {ad1} ccl act flag req l
+     11 ~< {bd1} ccl act flag req l
      6 ~> ccl ac=4 h
      7 ~> %NC%
      12 ~< ccl t1 l
@@ -1042,7 +1042,7 @@ e39: 10173 4x2 mixer latch
      6 ~< hi
      3 ~< {ck2} ccw mix 01 h
      4 ~< ccl mem par err in h
-     12 ~< {ck1} ccw mix 03 h
+     12 ~< {ck1} ccw mix 02 h
      13 ~< -ccl adr par err in h
      10 ~< %NC%
      11 ~< %NC%

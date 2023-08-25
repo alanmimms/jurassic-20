@@ -4,6 +4,7 @@ module clk32(
   /* <dj2> */ input  apr5_pt_wr_l,
   /* <ea1> */ input  apr5_set_page_fail_l,
   /* <cp2> */ input  apr_apr_par_chk_en_l,
+  /* <ab1> */ input  clk,
   /* <dd2> */ output clk1_chc_h,
   /* <cr2> */ input  clk1_clk_h,
   /* <fr2> */ output clk1_clk_out_h,

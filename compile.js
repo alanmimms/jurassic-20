@@ -623,7 +623,12 @@ function genSlotNets(bp, slot, modName) {
 
   return `\
   // Wires in ${modName} instance
-  ${Object.keys(wires).sort().map(w => `bit ${w};`).join('\n  ')}
+  ${Object.keys(wires)
+    .filter(w => w !== '1' && w !== '0')
+    .sort()
+    .map(w => `bit ${w};`)
+    .join('\n  ')
+  }
 `;
 }
 

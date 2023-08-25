@@ -1,7 +1,6 @@
 module ccl11(
   /* <be2> */ output ccl_act_flag_clr_l,
   /* <bd1> */ output ccl_act_flag_req_l,
-  /* <ad1> */ input  ccl_act_flag_req_l,
   /* <fc1> */ output ccl_af_wd0_req_h,
   /* <fa1> */ output ccl_af_wd1_req_h,
   /* <fh2> */ output ccl_af_wd2_req_h,
@@ -86,7 +85,7 @@ module ccl11(
   /* <bv2> */ input  ccw_mem_store_ena_h,
   /* <cj2> */ input  ccw_mix_00_h,
   /* <ck2> */ input  ccw_mix_01_h,
-  /* <ck1> */ input  ccw_mix_03_h,
+  /* <ck1> */ input  ccw_mix_02_h,
   /* <du2> */ input  ccw_mix_03_h,
   /* <dn1> */ input  ccw_mix_04_h,
   /* <dt2> */ input  ccw_mix_05_h,

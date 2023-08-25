@@ -920,9 +920,9 @@ e49: 10101 quad or/nor
      10 ~< {du2} diag 05 a l
      14 ~> %NC%
      11 ~> cra5 diag 05 l
-     4 ~< {ds1} diag 05 a l
+     4 ~< {ds1} diag 06 a l
      2 ~> %NC%
-     5 ~> cra5 diag read l
+     5 ~> cra5 diag 06 l
      13 ~< {ea1} ebus d05 e h
      15 ~> %NC%
      9 ~> cra5 ebus 05 h

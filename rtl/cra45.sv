@@ -108,7 +108,7 @@ module cra45(
   /* <af1> */ input  cram_j10_h,
   /* <dv2> */ input  diag_04_a_l,
   /* <du2> */ input  diag_05_a_l,
-  /* <ds1> */ input  diag_05_a_l,
+  /* <ds1> */ input  diag_06_a_l,
   /* <bn1> */ input  diag_read_func_14x_l,
   /* <bm1> */ input  dram_a_00_h,
   /* <bj2> */ input  dram_a_01_h,

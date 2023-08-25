@@ -108,7 +108,6 @@ module edp39(
   /* <bj1> */ input  cram_ada_sel_1_30_h,
   /* <bf2> */ input  cram_ada_sel_2_30_h,
   /* <bt2> */ input  cram_adb_sel_1_30_h,
-  /* <bt1> */ input  cram_adb_sel_1_30_h,
   /* <bs1> */ input  cram_adb_sel_2_30_h,
   /* <er1> */ input  cram_arm_sel_4_a_h,
   /* <ff1> */ input  cram_arxm_sel_4_06_h,

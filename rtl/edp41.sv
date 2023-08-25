@@ -109,7 +109,6 @@ module edp41(
   /* <bj1> */ input  cram_ada_sel_1_24_h,
   /* <bf2> */ input  cram_ada_sel_2_24_h,
   /* <bt2> */ input  cram_adb_sel_1_24_h,
-  /* <bt1> */ input  cram_adb_sel_1_24_h,
   /* <bs1> */ input  cram_adb_sel_2_24_h,
   /* <er1> */ input  cram_arm_sel_4_a_h,
   /* <ff1> */ input  cram_arxm_sel_4_06_h,
