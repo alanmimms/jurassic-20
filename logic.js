@@ -44,13 +44,13 @@ function expand(s) {
 const logic = {
   '10101': {
     desc: '4xor/nor',
-    '~<': expand('a1=4, b=7, c1=10, d1=13, abcd2=12'),
+    '~<': expand('a1=4, b1=7, c1=10, d1=13, abcd2=12'),
     '~>': expand('nqa=2, qa=5, nqb=3, qb=6, nqc=14, qc=11, nqd=15, qd=9'),
   },
 
   '10103': {
     desc: '4xor',
-    '~<': expand('a1=4, a2=5, b1=6, b2=7, c1=12, c2=13, d1=10, d2=11'),
+    '~<': expand('a1=4,a2=5, b1=6,b2=7, c1=12,c2=13, d1=10,d2=11'),
     '~>': expand('qa=2, qb=3, qc=15, nqc=9, qd=14'),
   },
 
@@ -92,7 +92,7 @@ const logic = {
 
   '10117': {
     desc: '2x2-3 or-and/or-and',
-    '~<': expand('a1=4,a2=5, b1=6,b2=7, c1=10,c2=11, d1=12,d2=13, b3d3=9'),
+    '~<': expand('a1=4,a2=5, b1=6,b2=7, b3c3=9, c1=10,c2=11, d1=12,d2=13'),
     '~>': expand('nqa=3, qa=2, nqb=14, qb=15'),
   },
 
@@ -188,7 +188,7 @@ const logic = {
 
   '10173': {
     desc: '2x4 mix latch',
-    '~<': expand('d00=5,d01=6, d10=3,d11=4, d20=12,d21=13, d30=10,d31=11, sel1=9, hold=7'),
+    '~<': expand('d00=5,d01=6, d10=3,d11=4, d20=12,d21=13, d30=10,d31=11, sel=9, nen=7'),
     '~>': expand('b0=1,b1=2,b2=15,b3=14'),
   },
 
@@ -213,7 +213,7 @@ const logic = {
   '10181': {
     desc: 'alu',
     '~<': expand('a8=10,a4=16,a2=18,a1=21, b8=9,b4=11,b2=19,b1=20, s8=13,s4=15,s2=17,s1=14, boole=23, cin=22'),
-    '~>': expand('f8=6,f4=7,f2=3,f1=2, cg=4, cp=8, cout=5'),
+    '~>': expand('f8=6,f4=7,f2=3,f1=2, cg=4,cp=8, cout=5'),
   },
 
   '10210': {
@@ -248,8 +248,8 @@ const logic = {
 
   'wire': {
     desc: 'just a wire',
-    '~<': expand('in=1'),
-    '~>': expand('out=2'),
+    '~<': expand('b=1'),
+    '~>': expand('q=2'),
   },
 
   pinToName(type, pinNumString, dir) {

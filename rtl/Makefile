@@ -11,6 +11,17 @@ TOP = kl10pv
 VERILATORROOT = $(HOME)/verilator
 VOBJDIR = ./obj_dir
 LOGICDIR = logic
+GENDIR = ./gen
+
+SLOTNAMES = \
+    apr34 cac17 cac19 cac24 cac25 ccl11 ccw12 cha27 chc09 chx28 clk32 \
+    con35 cra45 crc10 crm40 crm42 crm44 crm50 crm52 csh23 ctl36 edp39 \
+    edp41 edp43 edp49 edp51 edp53 ird48 mb014 mb015 mb016 mbc22 mbx21 \
+    mbz20 mcl47 mtr33 pag30 pic31 pma29 scd54 shm46 vma38
+
+SVFILES = \
+	$(foreach M,$(MODS),$(LOGICDIR)/$(M).sv) \
+	$(foreach M,$(SLOTNAMES),$(M).sv) \
 
 SVHFILES = $(TOP).sv $(DTEINTF)
 CXXFILES = verilator-main.cc
@@ -45,7 +56,7 @@ VFLAGS = \
 	--default-language 1800-2017 +1800-2017ext+sv \
 	-CFLAGS \
 	-MMD \
-	-I./gen \
+	-I$(GENDIR) \
 	$(KILLWARNINGS) \
 	--timescale 1ns/1ps --timescale-override 1ns/1ps \
 	--x-initial 0 \

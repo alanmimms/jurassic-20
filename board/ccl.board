@@ -39,11 +39,19 @@ e19: 10117 dual 2-3 or/and
      9 ~< ccl ccwf req l
      3 ~> ccl mem par err en h
      2 ~> ccl mem par err en l
+     12 ~< ccl ccwf t0 l
+     13 ~< ccl mb rip a l
+     10 ~< {dj1} ccw wd ready l
+     11 ~< -ccl t0 a l
+     9 ~< ccl ccwf req l
+     14 ~> ccl3-e19-14
+     15 ~> ccl3-e19-15
 
 e10: 10117 dual 2-3 or/and
      4 ~< {ak2} chan nxm err l
      5 ~< %NC%
      6 ~< -ccl mem err clr l
+     7 ~< ccl nxm err en l
      9 ~< %NC%
      3 ~> ccl nxm err en h
      2 ~> ccl nxm err en l
@@ -91,6 +99,16 @@ e33: 10176 hex dff
      11 ~< ccl1-e5-14
      9 ~< ccl clk a h
      14 ~> ccl mem err clr h
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     10 ~< %NC%
+     12 ~< %NC%
+     2 ~> %NC%
+     3 ~> %NC%
+     4 ~> %NC%
+     13 ~> %NC%
+     15 ~> %NC%
 
 e15: 10109 4/5 or nor
      4 ~< %NC%
@@ -317,6 +335,9 @@ e31: 10104 quad and/nand
      10 ~< ccl mb req t2 h
      11 ~< {dl1} -ccl mem store req h
      14 ~> {cf2} ccl mix mb sel h
+     4 ~< ccl ccwf t1 h
+     5 ~< ccl mb cyc h
+     2 ~> ccl3-e31-2
 
 e50: 10101 quad or/nor
      4 ~< ccl st/res intr h

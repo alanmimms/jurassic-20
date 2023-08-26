@@ -97,6 +97,7 @@ e20: 10117 dual 2-3 or-and
      4 ~< {ek2} con sel en l
      5 ~< apr1 ebus 08 l
      6 ~< apr1 i/o pf err int en l
+     7 ~< apr1-e43-15
      9 ~< -apr5 reset b l
      3 ~> apr1 i/o pf err en in h
      2 ~> apr1-e20-2
@@ -158,6 +159,7 @@ e47: 10176 hex dff
      11 ~< apr1-e38-2
      14 ~> {fa1} apr mb par err l
      6 ~< apr2-e42-2
+     3 ~> apr2 c dir p err int en l
      5 ~< apr2-e52-15
      2 ~> apr2 sweep done int en l
      7 ~< apr2-e45-2
@@ -406,6 +408,10 @@ e27: 10105 2-3-2 or/nor
      11 ~< {df1} apr3 spare l
      6 ~> %NC%
      7 ~> apr3-e27-7
+     13 ~< %NC%
+     12 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 dl1: delay-line (PCB wired)
      1 ~< {cr2} clk3 apr h
@@ -549,6 +555,9 @@ e23: 10113 quad 2 xor
      7 ~< -apr5 reset a h
      6 ~< {ak2} cram # 07 d h
      3 ~> -apr6 # 07 h
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 e64: 10160 parity
      3 ~< %NC%
@@ -562,7 +571,7 @@ e64: 10160 parity
      12 ~< {de2} apr fm 36 h
      13 ~< %NC%
      14 ~< %NC%
-     14 ~< %NC%
+     15 ~< %NC%
      2 ~> apr3-e64-2
 
 e69: 10105 2-3-2 or/nor
@@ -708,6 +717,11 @@ e55: 10105 quad 2-3-2 or/nor
      13 ~< {ft2} apr4 ac 12 l
      14 ~> apr4 ac 3,7 h
      15 ~> apr4 ac 7 l
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     6 ~> %NC%
+     7 ~> %NC%
 
 e61: 10181 ALU
      10 ~< apr4 ac 09 h
@@ -729,6 +743,8 @@ e61: 10181 ALU
      7 ~> apr4 ac+# 10 h
      3 ~> apr4 ac+# 11 h
      2 ~> apr4 ac+# 12 h
+     4 ~> %NC%
+     8 ~> %NC%
 
 Page: APR5, PDF386
 
@@ -970,7 +986,7 @@ e37: 10174 2x4 mixer
      10 ~< %NC%
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
-     4 ~< -apr6 ds 04 l
+     14 ~< -apr6 ds 04 l
      2 ~> {cm1} ebus d01 e h
      15 ~> {cm2} ebus d06 e h
 
