@@ -660,7 +660,8 @@ function genChipPins(bp, slot, chip) {
       const pin = chip.pins[pinName];
       let value = pin.net;
 
-      if (value === '0' || value === '%NC%') value = `'0`;
+      if (value === '0') value = `'0`;
+      else if (value === '%NC%') value = ``;
       else if (value === '1') value = `'1`;
 
       return `.${verilogify(pinName)}(${value})`;
