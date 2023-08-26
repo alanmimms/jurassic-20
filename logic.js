@@ -45,37 +45,37 @@ const logic = {
   '10101': {
     desc: '4xor/nor',
     '~<': expand('a1=4, b1=7, c1=10, d1=13, abcd2=12'),
-    '~>': expand('nqa=2, qa=5, nqb=3, qb=6, nqc=14, qc=11, nqd=15, qd=9'),
+    '~>': expand('nqa=2,qa=5, nqb=3,qb=6, nqc=14,qc=11, nqd=15,qd=9'),
   },
 
   '10103': {
     desc: '4xor',
     '~<': expand('a1=4,a2=5, b1=6,b2=7, c1=12,c2=13, d1=10,d2=11'),
-    '~>': expand('qa=2, qb=3, qc=15, nqc=9, qd=14'),
+    '~>': expand('qa=2, qb=3, qc=15,nqc=9, qd=14'),
   },
 
   '10104': {
     desc: '4xand', 
     '~<': expand('a1=4,a2=5, b1=6,b2=7, c1=10,c2=11, d1=12,d2=13'),
-    '~>': expand('qa=2, qb=3, qc=14, qd=15, nqd=9'),
+    '~>': expand('qa=2, qb=3, qc=14, qd=15,nqd=9'),
   },
 
   '10105': {
     desc: '2-3-2 or/nor',
     '~<': expand('a1=4,a2=5, b1=9,b2=10,b3=11, c1=13,c2=12'),
-    '~>': expand('nqa=3, qa=2, nqb=6, qb=7, nqc=14, qc=15'),
+    '~>': expand('nqa=3,qa=2, nqb=6,qb=7, nqc=14,qc=15'),
   },
 
   '10107': {
-    desc: '3xxor/xnor',
+    desc: 'triple xor/xnor',
     '~<': expand('a1=4,a2=5, b1=9,b2=7, c1=14,c2=15'),
-    '~>': expand('nqa=2, qa=3, nqb=11, qb=10, nqc=12, qc=13'),
+    '~>': expand('nqa=2,qa=3, nqb=11,qb=10, nqc=12,qc=13'),
   },
 
   '10109': {
     desc: '4/5 or/nor',
     '~<': expand('a1=4,a2=5,a3=6,a4=7, b1=9,b2=10,b3=11,b4=12,b5=13'),
-    '~>': expand('nqa=3, qa=2, nqb=14, qb=15'),
+    '~>': expand('nqa=3,qa=2, nqb=14,qb=15'),
   },
 
   '10110': {
@@ -93,7 +93,7 @@ const logic = {
   '10117': {
     desc: '2x2-3 or-and/or-and',
     '~<': expand('a1=4,a2=5, b1=6,b2=7, b3c3=9, c1=10,c2=11, d1=12,d2=13'),
-    '~>': expand('nqa=3, qa=2, nqb=14, qb=15'),
+    '~>': expand('nqa=3,qa=2, nqb=14,qb=15'),
   },
 
   '10118': {
@@ -105,12 +105,12 @@ const logic = {
   '10121': {
     desc: '4-wide or-and/or-and',
     '~<': expand('a1=4,a2=5,a3=6, b1=7,b2=9, c1=11,c2=12, d1=13,d2=14,d3=15, b3c3=10'),
-    '~>': expand('nqa=3, qa=2'),
+    '~>': expand('nqa=3,qa=2'),
   },
 
   '10131': {
     desc: 'dual d ms ff',
-    '~<': expand('da=7,cea=6,sa=5,ra=4, db=10,ncb=11,sb=12,rb=13, clk=9'),
+    '~<': expand('da=7,cea=6,sa=5,ra=4, db=10,ceb=11,sb=12,rb=13, clk=9'),
     '~>': expand('qa=2,nqa=3, qb=15,nqb=14'),
   },
 
