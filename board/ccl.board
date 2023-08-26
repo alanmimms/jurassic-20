@@ -117,6 +117,13 @@ e15: 10109 4/5 or nor
      7 ~< ccl adr par err in h
      3 ~> %NC%
      2 ~> {ba1} ccl error h
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e27: 10101 quad or/nor
      4 ~< ccl t0 l
@@ -193,6 +200,7 @@ e3:  10173 4x2 mixer latch
      1 ~> -ccl nxm err h
      2 ~> -ccl mem par err h
      15 ~> -ccl adr par err h
+     14 ~> %NC%
 
 e51: 10164 8 mixer
      6 ~< ccl err req h
@@ -247,6 +255,13 @@ e40: 10118 triple 4-2 or-and
      11 ~< -ccl mem ptr en l
      9 ~< {bm2} ccl mb rip l
      15 ~> ccl1-e40-15
+     3 ~< {df1} ccl chan to mem l
+     4 ~< {bd1} ccl act flag req l
+     5 ~< ccl req ctr=1 l
+     6 ~< ccl af t2 l
+     7 ~< %NC%
+     9 ~< {bm2} ccl mb rip l
+     2 ~> ccl1-e40-2
 
 e35: 10176 hex dff
      11 ~< ccl1-e40-15
@@ -290,6 +305,8 @@ e58: 10105 2-3-2 or/nor
      9 ~< -ccl req ctr 0 l
      10 ~< -ccl req ctr 1 l
      11 ~< -ccl req ctr 2 l
+     6 ~> ccl req ctr=0 h
+     7 ~> %NC%
 
 e7:  10101 quad or/nor
      4 ~< {al2} mr reset 05 h
@@ -442,6 +459,10 @@ e63: 10105 2-3-2 or/nor
      11 ~< ccl reverse l
      6 ~> %NC%
      7 ~> {ee1} ccl alu minus l
+     13 ~< %NC%
+     12 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e36: 10105 2-3-2 or/nor
      4 ~< {bm2} ccl mb rip l
@@ -469,6 +490,9 @@ e30: 10101 quad or/nor
      13 ~< %NC%
      15 ~> hi
      9 ~> %NC%
+     10 ~< %NC%
+     14 ~> %NC%
+     11 ~> %NC%
 
 e23: 10109 4-5 or/nor
      4 ~< {bm2} ccl mb rip l
@@ -493,6 +517,12 @@ e18: 10104 quad and/nand
      13 ~< {ek1} -ccl mb req t2 h
      9 ~> ccl init mb cyc l
      15 ~> ccl init mb cyc h
+     6 ~< ccl4-e23-15
+     7 ~< ccl t0 a h
+     3 ~> ccl mb rip clr h
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 e49: 10105 2-3-2 or/nor
      9 ~< {dh2} -crc act ctr 1 l
@@ -777,7 +807,7 @@ e25: 10121 4-wide or-and
 e44: 10117 dual 2-3 or-and
      4 ~< ccl4-e49-15
      5 ~< ccl data en l
-     7 ~< {bm2} ccl mb rip l
+     6 ~< {bm2} ccl mb rip l
      7 ~< ccl store ccw l
      9 ~< %NC%
      3 ~> ccl store ccw h
@@ -812,13 +842,13 @@ e61: 10117 dual 2-3 or-and
      11 ~< %NC%
      9 ~< {em2} ccl req ctr en l
      14 ~> %NC%
-     15 ~> ccl4-e61-15
+     15 ~> ccl mb sel sub l
      4 ~< ccl init mb cyc l
      5 ~< ccl t0 a l
      6 ~< -ccl reverse l
      7 ~< %NC%
-     9 ~< {em2} ccl req ctr en l
-     15 ~> ccl4-e61-2
+     3 ~> %NC%
+     2 ~> ccl4-e61-2
 
 e66: 10136 binary counter
      5 ~< %NC%
@@ -826,7 +856,7 @@ e66: 10136 binary counter
      11 ~< {ep2} ccw cha 34 h
      12 ~< {en1} ccw cha 35 h
      10 ~< %NC%
-     7 ~< ccl4-e61-15
+     7 ~< ccl mb sel sub l
      9 ~< ccl4-e61-2
      13 ~< ccl clk d h
      4 ~> %NC%
@@ -906,6 +936,7 @@ e60: 10131 dual ms dff
      15 ~> ccl reverse h
      14 ~> ccl reverse l
      5 ~< %NC%
+     4 ~< -ccl mb rip a h
      7 ~< hi
      6 ~< ccl6-e35-4
      2 ~> {ef1} ccl csh chan cyc h

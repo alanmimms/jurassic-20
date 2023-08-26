@@ -1138,6 +1138,9 @@ e1:  10113 quad xor/xnor
      13 ~< {ad2} con wr even par dir l
      12 ~< {ae2} -pma 14-26 par l
      15 ~> cha4-e1-15
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 e9:  10109 4/5 or/nor
      4 ~< cha3 csh 0 wd 0 wr h

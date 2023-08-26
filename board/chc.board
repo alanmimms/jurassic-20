@@ -13,8 +13,8 @@ e36: 10173 4x2 mixer latch
      9 ~< chc1 t2 a h
      7 ~< %NC%
      1 ~> chc1-e36-1
-     1 ~> chc1-e36-1
-     1 ~> chc1-e36-1
+     2 ~> chc1-e36-2
+     15 ~> chc1-e36-15
      14 ~> %NC%
 
 e41: 10145 16x4 RAM
@@ -224,6 +224,7 @@ e12: 10141 shift register
      5 ~< %NC%
      7 ~< %NC%
      10 ~< chc1-e11-9
+     4 ~< chc2 clk d h
      14 ~> chc1 t0 a h
      15 ~> chc1 t1 a h
      2 ~> chc1 t2 a h
@@ -276,6 +277,7 @@ e35: 10176 hex dff
 
 e30: 10101 quad or/nor
      4 ~< chc1-e35-2
+     12 ~< %NC%
      2 ~> chc1 chx start l
      5 ~> chc1 chx start h
      13 ~< chc1-e35-3
@@ -372,7 +374,7 @@ e24: 10101 quad or/nor
      6 ~> chc2 mr reset h
      4 ~< chc2 mr reset h
      2 ~> %NC%
-     3 ~> chc2 mr reset a h
+     5 ~> chc2 mr reset a h
      10 ~< chc2-e66-15
      14 ~> chc2 start intr ena l
      11 ~> chc2 start intr ena h
@@ -1186,6 +1188,12 @@ e6:  10110 or buffer
      2 ~> {ck2} ch diag read a l
      3 ~> {as1} ch diag read b l
      4 ~> {ar1} ch diag read c l
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~> %NC%
+     13 ~> %NC%
+     14 ~> %NC%
 
 e2:  10162 decoder
      14 ~< chc5 sel 4a h

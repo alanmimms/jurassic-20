@@ -88,8 +88,10 @@ module ccw12(
       output ccw_cha_34_h                      /* <dm1> */,
       output ccw_cha_35_h                      /* <de1> */,
       output ccw_diag_load_func_070_h          /* <aa1> */,
+      input  ccw_fast_mode_tp_h                /* <dd2> */,
       output ccw_mem_adrEq0_l                  /* <fe1> */,
       output ccw_mem_store_ena_h               /* <ee1> */,
+      input  ccw_mem_store_tp_h                /* <bd2> */,
       input  ccw_mix_14_h                      /* <cd2> */,
       input  ccw_mix_15_h                      /* <bv2> */,
       input  ccw_mix_16_h                      /* <bs2> */,
@@ -142,6 +144,7 @@ module ccw12(
       output ebus_d05_e_h                      /* <df2> */,
       input  mb0_hold_in_h                     /* <ap2> */,
       input  mb1_hold_in_h                     /* <ae2> */,
+      input  mb2_hold_in_h                     /* <am2> */,
       input  mb3_hold_in_h                     /* <ad2> */
 );
 

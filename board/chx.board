@@ -784,14 +784,16 @@ e46: 10131 dual ms dff
      6 ~< %NC%
      9 ~< clk a h
      4 ~< chx2-dl1-2
+     5 ~< %NC%
      2 ~> chx2-e46-2
      3 ~> wr use bits a l
      10 ~< {br2} csh use wr en h
      9 ~< clk a h
      11 ~< %NC%
+     12 ~< %NC%
      13 ~< chx2-dl1-2
      15 ~> chx2-e46-2
-     3 ~> wr use bits b l
+     14 ~> wr use bits b l
 
 e45: 10121 4-wide or-and
      4 ~< chx2-e80-2
@@ -828,6 +830,15 @@ e80: 10101 quad or/nor
      12 ~< %NC%
      2 ~> chx2-e80-2
      5 ~> chx2-e80-5
+     7 ~< {ft2} diag 04 b h
+     3 ~> %NC%
+     6 ~> chx diag 04 h
+     13 ~< {fs1} diag 05 b h
+     15 ~> %NC%
+     9 ~> chx diag 05 h
+     10 ~< {fr1} diag 06 b h
+     14 ~> %NC%
+     11 ~> chx diag 06 h
 
 e11: 10110 or buffer
      5 ~< {ar1} vma 27 g h

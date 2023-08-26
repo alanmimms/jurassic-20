@@ -239,6 +239,9 @@ e18: 10101 quad or/nor
      10 ~< {ar1} ccl csh chan cyc h
      14 ~> ccw csh chan cyc l
      11 ~> ccw csh chan cyc h
+     4 ~< {bd2} ccw mem store tp h
+     2 ~> %NC%
+     5 ~> ccw2 mem store in h
 
 e45: 10101 quad or/nor
      7 ~< {dk2} ccl alu minus l
@@ -248,6 +251,12 @@ e45: 10101 quad or/nor
      13 ~< {dd1} ccl alu plus l
      15 ~> ccw alu plus h
      9 ~> %NC%
+     4 ~< {dd2} ccw fast mode tp h
+     2 ~> %NC%
+     5 ~> ccw2 ccwf in h
+     10 ~< {dd2} ccw fast mode tp h
+     14 ~> %NC%
+     11 ~> ccw3 ccwf in h
 
 e53: 10101 quad or/nor
      7 ~< {ed1} ccl mb rip h
@@ -262,6 +271,7 @@ e53: 10101 quad or/nor
      9 ~> %NC%
      10 ~< {ea1} crc ram adr 4r l
      14 ~> ccw ram adr 4 h
+     11 ~> %NC%
 
 e70: 10103 quad or
      4 ~< ccw cha 31 ena h
@@ -270,6 +280,13 @@ e70: 10103 quad or
      6 ~< ccw2-e55-14
      7 ~< {dr2} ccl zero fill h
      3 ~> {dl2} ccw cha 30 h
+     12 ~< %NC%
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 e33: 10158 4x2 mixer
      5 ~< ccw2-e70-2
@@ -317,7 +334,7 @@ e63: 10181 ALU
      9 ~< %NC%
      16 ~< %NC%
      11 ~< %NC%
-     10 ~< {em1} ccw cha 14 h
+     18 ~< {em1} ccw cha 14 h
      19 ~< %NC%
      21 ~< {da1} ccw cha 15 h
      20 ~< %NC%
@@ -340,7 +357,7 @@ e67: 10181 ALU
      9 ~< %NC%
      16 ~< {es1} ccw cha 17 h
      11 ~< %NC%
-     10 ~< {ds2} ccw cha 18 h
+     18 ~< {ds2} ccw cha 18 h
      19 ~< %NC%
      21 ~< {cp2} ccw cha 19 h
      20 ~< %NC%
@@ -363,7 +380,7 @@ e76: 10181 ALU
      9 ~< %NC%
      16 ~< {dc1} ccw cha 21 h
      11 ~< %NC%
-     10 ~< {dp1} ccw cha 22 h
+     18 ~< {dp1} ccw cha 22 h
      19 ~< %NC%
      21 ~< {dh2} ccw cha 23 h
      20 ~< %NC%
@@ -386,7 +403,7 @@ e59: 10181 ALU
      9 ~< %NC%
      16 ~< {el2} ccw cha 25 h
      11 ~< %NC%
-     10 ~< {em2} ccw cha 26 h
+     18 ~< {em2} ccw cha 26 h
      19 ~< %NC%
      21 ~< ccw cha 27 ena h
      20 ~< %NC%
@@ -409,7 +426,7 @@ e60: 10181 ALU
      9 ~< %NC%
      16 ~< ccw cha 29 ena h
      11 ~< %NC%
-     10 ~< ccw cha 30 ena h
+     18 ~< ccw cha 30 ena h
      19 ~< %NC%
      21 ~< ccw cha 31 ena h
      20 ~< %NC%
@@ -432,7 +449,7 @@ e66: 10181 ALU
      9 ~< %NC%
      16 ~< ccw cha 33 ena h
      11 ~< {fd2} ccl cons 0 h
-     10 ~< ccw cha 34 ena h
+     18 ~< ccw cha 34 ena h
      19 ~< {ep1} ccl cons 1 h
      21 ~< ccw cha 35 ena h
      20 ~< {ep2} ccl cons 2 h
@@ -465,7 +482,11 @@ e31: 10105 2-3-2 or/nor
      6 ~> ccw wd2 req in l
      7 ~> %NC%
 
-e68: 10107 quad xor/xnor
+e68: 10107 triple quad xor/xnor
+     14 ~< {ff1} ccl wc=3 h
+     15 ~< %NC%
+     12 ~> ccw wc=3 l
+     13 ~> %NC%
      9 ~< {fj1} ccw buf 02 in h
      7 ~< {fk1} ccw buf 34 in h
      11 ~> ccw data adr 34 l
@@ -481,7 +502,7 @@ e64: 10103 quad or
      2 ~> ccw data adr=0 l
      6 ~< -ccw data adr 34 l
      7 ~< ccw data adr 35 l
-     2 ~> ccw data adr=1 l
+     3 ~> ccw data adr=1 l
      10 ~< ccw data adr 34 l
      11 ~< -ccw data adr 35 l
      14 ~> ccw data adr=2 l
@@ -571,6 +592,7 @@ e2:  10117 dual 2-3 or-and
 e1:  10117 dual 2-3 or-and
      4 ~< ccw csh chan cyc l
      5 ~< ccw wd2 avail l
+     6 ~< {am2} -mb2 hold in l
      7 ~< {al2} -ccl chan to mem l
      9 ~< ccw csh chan cyc l
      3 ~> %NC%
@@ -616,6 +638,7 @@ e17: 10117 dual 2-3 or-and
      4 ~< ccw wd0 req in l
      5 ~< ccw mb cyc t3 l
      6 ~< -ccw wd0 taken l
+     7 ~< ccw wd0 req l
      9 ~< ccw mb rip l
      3 ~> ccw4-e17-3
      2 ~> %NC%
@@ -623,7 +646,6 @@ e17: 10117 dual 2-3 or-and
      13 ~< ccw mb cyc t3 l
      10 ~< -ccw wd1 taken l
      11 ~< ccw wd1 req l
-     9 ~< ccw mb rip l
      14 ~> ccw4-e17-14
      15 ~> %NC%
 
@@ -830,7 +852,7 @@ e25: 10141 shift register
      12 ~< ccw0 act flag in h
      11 ~< ccw1 act flag in h
      9 ~< ccw2 act flag in h
-     5 ~< ccw3 act flag in h
+     6 ~< ccw3 act flag in h
      5 ~< %NC%
      7 ~< %NC%
      10 ~< {bt2} ch mr reset b h
@@ -990,6 +1012,7 @@ e51: 10164 8 mixer
      10 ~< ccw ram adr 4 h
      9 ~< ccw ram adr 2 h
      7 ~< ccw ram adr 1 h
+     2 ~< %NC%
      15 ~> {de2} ccw ccwf waiting h
 
 e46: 10165 priority encoder

@@ -14,10 +14,14 @@ e68:  10131 dual dff
       6 ~< clk1-osc60-1
       2 ~> clk1-e68-2
       3 ~> clk1-e68-3
+      4 ~< %NC%
+      5 ~< %NC%
       10 ~< clk1-e68-3
       11 ~< clk1-osc62-1
       15 ~> clk1-e68-15
       14 ~> clk1-e68-14
+      12 ~< %NC%
+      13 ~< %NC%
 
 e67: 10164 8 mixer
      6 ~< clk1-e68-2
@@ -98,9 +102,15 @@ e56: 10131 dual ms d ff
      6 ~< clk1 main source c h
      9 ~< %NC%
      5 ~< %NC%
-     5 ~< %NC%
+     4 ~< %NC%
      2 ~> clk1-e56-2
      3 ~> %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 dl5001: delay-line 5.0ns
      1 ~< clk1 main source c h
@@ -117,6 +127,9 @@ e51: 10104 quad and/nand
      13 ~< clk2 crobar l
      9 ~> %NC%
      15 ~> clk2-e51-15
+     6 ~< ctl3 diag ctl func 00x l
+     7 ~< ctl3 diag ld func 04x l
+     3 ~> clk1-e51-3
 
 dl1: tapped-delay-20-2 20ns 2ns/tap
      3 ~< clk1 gated h
@@ -142,6 +155,9 @@ e73: 10101 quad or/nor
      4 ~< clk1-dl3-7
      2 ~> %NC%
      5 ~> clk1-e73-5
+     10 ~< %NC%
+     14 ~> %NC%
+     11 ~> %NC%
 
 dl2: tapped-delay-50-10 50ns 10ns/tap
      1 ~< clk1-e73-3
@@ -333,7 +349,7 @@ e64: 10141 shift reg
      13 ~< %NC%
      12 ~< clk2-e64-14
      11 ~< clk2-e64-15
-     9 ~< clk2 15 mhz free h
+     9 ~< clk1-e51-3
      6 ~< clk2 hi
      5 ~< {fm2} synchronize clk h
      7 ~< clk2 16 mhz free h
