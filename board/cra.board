@@ -89,7 +89,7 @@ e21: 10101 quad or/nor
      11 ~> cra1-e21-11
      7 ~< {ba1} cram j08 h
      3 ~> %NC%
-     2 ~> cra1-e21-6
+     6 ~> cra1-e21-6
 
 e77: 10101 quad or/nor
      4 ~< cra1-e21-9
@@ -161,6 +161,9 @@ e34: 10101 quad or/nor
      7 ~< {at2} cr02 dia func 053 08 l
      3 ~> %NC%
      6 ~> cra5-e34-6
+     10 ~< %NC%
+     14 ~> %NC%
+     11 ~> %NC%
 
 e51: 10174 2x4 mixer
      3 ~< cra3 diag adr 00 h
@@ -266,6 +269,7 @@ e32: 10164 8 mixer
      9 ~< cra3 disp 03 c h
      7 ~< cra3 disp 04 c h
      2 ~< cra3 disp en 30-37 l
+     15 ~> cra1-e32-15
 
 e8:  10105 2-3-2 or/nor
      4 ~< {cv2} arx 00 b h
@@ -277,6 +281,10 @@ e8:  10105 2-3-2 or/nor
      11 ~< cra1-e26-15
      6 ~> cra2 adr 09 l
      7 ~> cra2 adr 09 h
+     12 ~< cra4 ret and -1777 h
+     13 ~< cra4 reset h
+     14 ~> cra4-e8-14
+     15 ~> cra4-e8-15
 
 e11: 10110 or buffer
      5 ~< cra1-e21-6
@@ -335,6 +343,7 @@ e16: 10164 mixer
      9 ~< cra3 disp 03 a h
      7 ~< cra3 disp 04 a h
      2 ~< cra3 disp en 30-37 l
+     15 ~> cra1-e16-15
 
 e18: 10101 quad or/nor
      10 ~< {dm1} -arx 01 b l
@@ -347,6 +356,9 @@ e18: 10101 quad or/nor
      4 ~< {bn1} diag read func 14x l
      2 ~> %NC%
      5 ~> cra5 diag read l
+     7 ~< %NC%
+     3 ~> %NC%
+     6 ~> %NC%
 
 e33: 10101 quad or/nor
      4 ~< {ae2} cram j09 h
@@ -940,7 +952,7 @@ e9:  10415a 1kx1 RAM
      12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 00 h
+     15 ~< cra5 ebus 00 h
      1 ~> cra5 out 80 h
 
 e4:  10415a 1kx1 RAM
@@ -956,7 +968,7 @@ e4:  10415a 1kx1 RAM
      12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 00 h
+     15 ~< cra5 ebus 00 h
      1 ~> cra5 out 80 h
 
 e29: 10415a 1kx1 RAM
@@ -972,7 +984,7 @@ e29: 10415a 1kx1 RAM
      12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 01 h
+     15 ~< cra5 ebus 01 h
      1 ~> cra5 out 81 h
 
 e24: 10415a 1kx1 RAM
@@ -988,7 +1000,7 @@ e24: 10415a 1kx1 RAM
      12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 01 h
+     15 ~< cra5 ebus 01 h
      1 ~> cra5 out 81 h
 
 e14: 10415a 1kx1 RAM
@@ -1004,7 +1016,7 @@ e14: 10415a 1kx1 RAM
      12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 02 h
+     15 ~< cra5 ebus 02 h
      1 ~> cra5 out 82 h
 
 e19: 10415a 1kx1 RAM
@@ -1020,7 +1032,7 @@ e19: 10415a 1kx1 RAM
      12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 02 h
+     15 ~< cra5 ebus 02 h
      1 ~> cra5 out 82 h
 
 // Bottom half
@@ -1037,7 +1049,7 @@ e25: 10415a 1kx1 RAM
      12 ~< cra2 adr 09 l
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 03 h
+     15 ~< cra5 ebus 03 h
      1 ~> cra5 out 83 h
 
 e30:  10415a 1kx1 RAM
@@ -1053,7 +1065,7 @@ e30:  10415a 1kx1 RAM
      12 ~< cra2 adr 09 l
      14 ~< cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 03 h
+     15 ~< cra5 ebus 03 h
      1 ~> cra5 out 83 h
 
 e10: 10415a 1kx1 RAM
@@ -1069,7 +1081,7 @@ e10: 10415a 1kx1 RAM
      12 ~< cra2 adr 09 l
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 04 h
+     15 ~< cra5 ebus 04 h
      1 ~> cra5 out 84 h
 
 e5:  10415a 1kx1 RAM
@@ -1085,7 +1097,7 @@ e5:  10415a 1kx1 RAM
      12 ~< cra2 adr 09 l
      14 ~< cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 04 h
+     15 ~< cra5 ebus 04 h
      1 ~> cra5 out 84 h
 
 e15: 10415a 1kx1 RAM
@@ -1101,7 +1113,7 @@ e15: 10415a 1kx1 RAM
      12 ~< cra2 adr 09 l
      14 ~< -cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 05 h
+     15 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h
 
 e20: 10415a 1kx1 RAM
@@ -1117,7 +1129,7 @@ e20: 10415a 1kx1 RAM
      12 ~< cra2 adr 09 l
      14 ~< cra2 adr 10 l
      13 ~< cra5-e34-5
-     14 ~< cra5 ebus 05 h
+     15 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h
 
 e50: 10164 8 mixer

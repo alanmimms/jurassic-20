@@ -206,11 +206,15 @@ e13: 10101 quad or/nor
      13 ~< ebus d19 e h
      9 ~> con1 ebus 19 h
      15 ~> con1 ebus 19 l
+     4 ~< %NC%
+     2 ~> %NC%
+     5 ~> %NC%
 
 e22: 10101 quad or/nor
      10 ~< diag read func 13x l
      12 ~< %NC%
      11 ~> con1 diag read l
+     14 ~> %NC%
      7 ~< ebus d20 e h
      6 ~> con1 ebus 20 h
      3 ~> con1 ebus 20 l
@@ -248,6 +252,8 @@ e7: 10105 2-3-2 or/nor
     7 ~> con-e7-7
     12 ~< con1 cond/vma inc h
     13 ~< {al1} mcl load vma h
+    4 ~< con1 cond/vma inc h
+    5 ~< {al1} mcl load vma h
     3 ~> {ar2} con vma sel 1 l
     2 ~> %NC%
 
@@ -276,7 +282,7 @@ e34: 10176 hex dff
      3 ~> con-e34-3
      12 ~< con-e37-6
      15 ~> con-e34-15
-     11 ~< con-e28-15
+     11 ~< con2-e28-15
      14 ~> {dm1} con2 long en l
      7 ~< con1 nicond h
      4 ~> con2 nicond or load ir delayed h
@@ -293,6 +299,10 @@ e37: 10105 2-3-2 or/nor
      11 ~< {fd1} ctl spec/flag ctl l
      6 ~> con-e37-6
      7 ~> %NC%
+     13 ~< %NC%
+     12 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e20: 10117 dual 2-3 or-and
      4 ~< con2 diag continue l
@@ -321,6 +331,9 @@ e28: 10117 dual 2-3 or-and
      12 ~< con1 cond/long en l
      11 ~< {ep1} -mcl mbox cyc req l
      10 ~< {dm1} con2 long en l
+     9 ~< -con1 reset l
+     14 ~> %NC%
+     15 ~> con2-e28-15
 
 e29: 10105 2-3-2 or/nor
      4 ~< con2 diag dram strobe h
@@ -387,7 +400,7 @@ dl1: delay-line (PCB wired)
 
 e16: 10176 hex dff
      9 ~< con2 clk e h
-     6 ~< con-e20-14
+     5 ~< con-e20-14
      2 ~> con-e16-2
      6 ~< con-e16-2
      3 ~> con-e16-3
@@ -456,6 +469,9 @@ e1: 10101 quad or/nor
     10 ~< con3 kl10 paging en h
     14 ~> {aa1} -con ki10 paging mode l
     11 ~> {bl2} -con ki10 paging mode h
+    13 ~< %NC%
+    15 ~> %NC%
+    9 ~> %NC%
 
 e39: 10162 decoder
      14 ~< {dr1} ebus ds04 e h
@@ -483,6 +499,9 @@ e23: 10104 quad and/nand
      13 ~< -scd public a h
      9 ~> con2 kernel mode l
      15 ~> con2 kernel mode h
+     4 ~< %NC%
+     5 ~< %NC%
+     2 ~> %NC%
 
 e33: 10165 pri enc
      5 ~< con5 pi cycle h
@@ -528,6 +547,8 @@ e57: 10176 hex dff
      13 ~> con5 mem cycle in h
      11 ~< con-e53-3
      14 ~> con5 mem cycle in h
+     7 ~< %NC%
+     4 ~> %NC%
 
 e14: 10141 shft reg
      13 ~< %NC%
@@ -568,7 +589,7 @@ e43: 10174 2x4 mix
      13 ~< -con ebus 19 h
      11 ~< {dp1} cram # 08 e h
      12 ~< -con3 # func 02x h
-     13 ~< -con3 # func 02x h
+     10 ~< -con3 # func 02x h
      15 ~> {eh2} con load prev context l
      9 ~< -con3 # func 02x h
      7 ~< {dk1} cram # 06 e h
@@ -658,6 +679,11 @@ e30: 10105 2-3-2 or/nor
      13 ~< clk ebox sync a l
      14 ~> %NC%
      15 ~> {aj1} con cono pi l
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     6 ~> %NC%
+     7 ~> %NC%
 
 e35: 10101 quad or/nor
      4 ~< con1 ebus 20 l
@@ -715,6 +741,9 @@ e55: 10101 quad or/nor
      7 ~< con5 pi cycle in h
      3 ~> {er2} con pi cycle b l
      6 ~> {ep2} con pi cycle b h
+     4 ~< %NC%
+     2 ~> %NC%
+     5 ~> %NC%
 
 e42: 10101 quad or/nor
      7 ~< {el1} cram # 02 e h
@@ -739,6 +768,12 @@ e54: 10101 quad or/nor
      4 ~< con5 mem cycle in h
      2 ~> con5 mem cycle l
      5 ~> %NC%
+     7 ~< %NC%
+     3 ~> %NC%
+     6 ~> %NC%
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
 
 Page: CON4, PDF161
 
@@ -840,9 +875,11 @@ e66: 10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> %NC%
      2 ~> {aj2} con arx 36 h
-     12 ~< {fs2} mcl vma fetch l
-     13 ~< con5 mem cycle l
-     14 ~> con5 fetch cycle h
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
      15 ~> %NC%
 
 e64: 10176 hex dff
@@ -885,6 +922,10 @@ e68: 10105 2-3-2 or/nor
      11 ~< {ba1} clk ebox sync a l
      6 ~> %NC%
      7 ~> {fk2} con pi dismiss l
+     12 ~< {fs2} mcl vma fetch l
+     13 ~< con5 mem cycle l
+     14 ~> con5 fetch cycle h
+     15 ~> %NC%
 
 e61: 10109 4/5 or/nor
      4 ~< con5 xfer l
@@ -921,6 +962,15 @@ e70: 10104 quad and/nand
      13 ~< con4 ar from mem l
      9 ~> con4 ar loaded h
      15 ~> {el2} con ar loaded l
+     4 ~< %NC%
+     5 ~< %NC%
+     2 ~> %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 Page: CON5, PDF162
 

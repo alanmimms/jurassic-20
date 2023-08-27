@@ -22,6 +22,7 @@ e68:  10131 dual dff
       14 ~> clk1-e68-14
       12 ~< %NC%
       13 ~< %NC%
+      9 ~< %NC%
 
 e67: 10164 8 mixer
      6 ~< clk1-e68-2
@@ -162,17 +163,17 @@ e73: 10101 quad or/nor
 dl2: tapped-delay-50-10 50ns 10ns/tap
      1 ~< clk1-e73-3
      2 ~> clk1-dl2-2
-     2 ~> clk1-dl2-3
-     2 ~> clk1-dl2-5
-     2 ~> clk1-dl2-6
+     3 ~> clk1-dl2-3
+     5 ~> clk1-dl2-5
+     6 ~> clk1-dl2-6
      7 ~> clk1-dl2-7
 
 dl3: tapped-delay-50-10 50ns 10ns/tap
      1 ~< clk1-e73-15
      2 ~> clk1-dl3-2
-     2 ~> clk1-dl3-3
-     2 ~> clk1-dl3-5
-     2 ~> clk1-dl3-6
+     3 ~> clk1-dl3-3
+     5 ~> clk1-dl3-5
+     6 ~> clk1-dl3-6
      7 ~> clk1-dl3-7
 
 dlpcb2501: delay-line 2.5ns
@@ -254,7 +255,7 @@ e70: 10131 dual ms d ff
      14 ~> %NC%
      7 ~< clk1-e70-15
      6 ~< %NC%
-     9 ~< clk1 gated h
+     5 ~< %NC%
      4 ~< clk2 func clr reset h
      2 ~> {ca1} clk sbus clk h
      3 ~> clk1-e70-3
@@ -400,6 +401,10 @@ e32: 10176 hex d ff
      13 ~> {am2} clk4 resp mbox h
      11 ~< clk3 ebox clk en l
      14 ~> clk4 ebox clk l
+     12 ~< %NC%
+     15 ~> %NC%
+     7 ~< %NC%
+     4 ~> %NC%
 
 e43: 10105 2-3-2 or/nor
      4 ~< {dm1} apr5 pt dir wr l
@@ -419,8 +424,9 @@ e43: 10105 2-3-2 or/nor
 e16: 10101 quad or/nor
      7 ~< clk3 sync h
      12 ~< %NC%
-     2 ~> %NC%
+     3 ~> %NC%
      6 ~> clk2 sync hold h
+     10 ~< {am2} clk4 resp mbox h
      14 ~> {al1} clk mb xfer l
      11 ~> {bl1} clk mb xfer h
      13 ~< {bu2} ebus ds04 e h
@@ -431,12 +437,14 @@ e16: 10101 quad or/nor
      5 ~> clk5 diag read l
 
 e69: 10110 or buffer
+     5 ~< %NC%
+     6 ~< %NC%
      7 ~< clk2 reset h
      2 ~> {fc1} mr reset 01 h
      3 ~> {fa1} mr reset 02 h
      4 ~> clk2 sync hold h
      11 ~< %NC%
-     10 ~< %NC%
+     10 ~< clk2 reset h
      9 ~< %NC%
      14 ~> {et2} mr reset 04 h
      13 ~> {eu2} mr reset 05 h
@@ -581,6 +589,8 @@ e45: 10176 hex d ff
      3 ~> clk4 pf dlyd a h
      5 ~< clk4 pf dlyd a h
      2 ~> clk4 pf dlyd b h
+     12 ~< %NC%
+     15 ~> %NC%
 
 e57: 10109 4/5 or/nor
      4 ~< {em1} clk3 fs en a h
@@ -650,6 +660,12 @@ e2:  10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> clk3 sync en h
      2 ~> clk3 sync en l
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e10: 10176 hex d ff
      5 ~< clk3 sync en l
@@ -674,6 +690,12 @@ e22: 10109 4/5 or/nor
      13 ~< -clk5 ebox crm dis l
      14 ~> clk3-e22-14
      15 ~> %NC%
+     4 ~< %NC%
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> %NC%
 
 e18: 10109 4/5 or/nor
      9 ~< clk3-e17-3
@@ -716,6 +738,9 @@ e11: 10104 quad and/nand
      4 ~< clk4 page fail en h
      5 ~< -clk2 reset h
      2 ~> clk4-e11-2
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 e7:  10105 2-3-2 or/nor
      12 ~< clk4 1777 en h
@@ -796,6 +821,7 @@ e34: 10210 or buffer
      4 ~> {cj2} clk3 vma h
      11 ~< %NC%
      10 ~< clk3-dlpcb4-2
+     9 ~< %NC%
      14 ~> {cf2} clk3 mcl h
      13 ~> {ce2} clk ir h
      12 ~> {cd2} clk3 scd h
@@ -820,10 +846,17 @@ e1:  10121 4-wide or-and
 e3:  10131 dual ms d ff
      10 ~< clk4-e1-2
      11 ~< clk2 mbox clk f h
+     9 ~< %NC%
      13 ~< %NC%
      12 ~< %NC%
      14 ~> {bm1} clk4 ebox req h
      15 ~> {aj1} clk4 ebox req l
+     7 ~< %NC%
+     6 ~< %NC%
+     5 ~< %NC%
+     4 ~< %NC%
+     2 ~> %NC%
+     3 ~> %NC%
 
 e4:  10117 dual 2-3 or-and
      4 ~< {ak2} -clk instr 1777 h
@@ -892,6 +925,7 @@ e30: 10141 shift reg
      11 ~< clk4-e26-15
      9 ~< clk4-e38-2
      6 ~< clk4-e38-15
+     5 ~< %NC%
      7 ~< clk4 page fail l
      10 ~< clk4 page fail l
      4 ~< clk1 odd c h
