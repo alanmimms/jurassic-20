@@ -6,6 +6,7 @@ module mbz20(
       input  apr_ebox_sbus_diag_l              /* <eu2> */,
       input  apr_mb_par_err_l                  /* <au2> */,
       input  apr_nxm_err_l                     /* <dl1> */,
+      input  apr_s_adr_p_err_l                 /* <aj1> */,
       input  apr_sbus_err_l                    /* <at2> */,
       input  cache_to_mb_t4_l                  /* <br1> */,
       input  cbus_par_left_re_h                /* <dk1> */,

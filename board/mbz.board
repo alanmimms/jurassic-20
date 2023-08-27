@@ -69,7 +69,7 @@ e52: 10176 hex dff
      14 ~> {dm2} core busy h
      6 ~< nxm flg h
      3 ~> mbz4-e52-3
-     12 ~< mbz4-e69-2
+     5 ~< mbz4-e69-2
      2 ~> mbz4-e52-2
      7 ~< {em2} crc ch buf adr 6 h
      4 ~> ch buf adr 6 h
@@ -101,6 +101,7 @@ e48: 10118 triple 4-2 or-and
      6 ~< -mbz4 core busy a l
      7 ~< {ds1} mbz1 rd-pse-wr ref l
      9 ~< -mr reset a l
+     2 ~> mbz1-e48-2
      14 ~< nxm cry a l
      13 ~< nxm cry b l
      12 ~< mem start c l
@@ -530,6 +531,10 @@ e63: 10101 quad or/nor
      6 ~> %NC%
      4 ~< nxm t6 h
      2 ~> mbz4-e63-2
+     5 ~> %NC%
+     13 ~< {ed2} mtr cca writeback l
+     15 ~> mbz6-e63-15
+     9 ~> %NC%
 
 e57: 10117 dual 2-3 or-and
      12 ~< mem start c l
@@ -598,6 +603,15 @@ e5: 10105 2-3-2 or/nor
     5 ~< err hold h
     3 ~> %NC%
     2 ~> hold err reg h
+    9 ~< %NC%
+    10 ~< %NC%
+    11 ~< %NC%
+    6 ~> %NC%
+    7 ~> %NC%
+    13 ~< %NC%
+    12 ~< %NC%
+    14 ~> %NC%
+    15 ~> %NC%
 
 e61: 10109 4/5 or/nor
      9 ~< err hold h
@@ -822,6 +836,9 @@ e9:  10101 quad or/nor
      13 ~< {aj2} mem rd rq b h
      15 ~> mem rd rq a l
      9 ~> mem rd rq a h
+     10 ~< {aj1} apr s adr p err l
+     14 ~> mbz4-e9-14
+     11 ~> %NC%
 
 e14: 10117 dual 2-3 or-and
      4 ~< mbz4-e8-2
@@ -890,8 +907,8 @@ e46: 10147 128x1 RAM
      4 ~< ch buf adr 0 h
      3 ~< ch buf adr 1 h
      2 ~< ch buf adr 2 h
-     4 ~< ch buf adr 3 h
-     5 ~< ch buf adr 4 h
+     5 ~< ch buf adr 3 h
+     6 ~< ch buf adr 4 h
      7 ~< ch buf adr 5 h
      10 ~< ch buf adr 6 h
      13 ~< %NC%
@@ -904,8 +921,8 @@ e47: 10147 128x1 RAM
      4 ~< ch buf adr 0 h
      3 ~< ch buf adr 1 h
      2 ~< ch buf adr 2 h
-     4 ~< ch buf adr 3 h
-     5 ~< ch buf adr 4 h
+     5 ~< ch buf adr 3 h
+     6 ~< ch buf adr 4 h
      7 ~< ch buf adr 5 h
      10 ~< ch buf adr 6 h
      13 ~< %NC%

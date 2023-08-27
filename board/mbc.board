@@ -678,7 +678,7 @@ e55: 10105 2-3-2 or/nor
      15 ~> mbc3 clk a phase coming h
      9 ~< %NC%
      10 ~< %NC%
-     11 <~ %NC%
+     11 ~< %NC%
      6 ~> %NC%
      7 ~> %NC%
 

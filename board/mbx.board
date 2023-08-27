@@ -119,6 +119,7 @@ e74: 10104 quad and/nand
      15 ~> mbx1 cca sel 1 l
      6 ~< {eu2} csh6 cca inval t4 l
      7 ~< mbx1 cca hold adr l
+     3 ~> mbx1-e74-3
 
 e79: 10101 quad or/nor
      4 ~< mbx2 any val hold h
@@ -171,6 +172,7 @@ e80: 10118 triple 4-2 or-and
      3 ~< {fk2} pag1 pt cache l
      4 ~< {fa1} pma5 ebox paged l
      5 ~< {fk1} mcl6 ebox cache l
+     6 ~< {fk1} mcl6 ebox cache l
      7 ~< -mbx1 ebox paged a l
      9 ~< %NC%
      2 ~> mbx1-e80-2
@@ -236,6 +238,12 @@ e86: 10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> mbx1-e86-3
      2 ~> %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 Page: MBX2, PDF179
 
@@ -339,6 +347,10 @@ e57: 10105 2-3-2 or/nor
      13 ~< mbx3 sbus diag 0 l
      14 ~> %NC%
      15 ~> {ce2} mem diag l
+     4 ~< %NC%
+     5 ~< %NC%
+     3 ~> %NC%
+     2 ~> %NC%
 
 e7:  10101 quad or/nor
      7 ~< mbx4 wd 0 needed l
@@ -766,6 +778,8 @@ e70: 10117 dual 2-3 or-and
      11 ~< -mbx3 diag cyc done l
      10 ~< mbx3 sbus diag cyc l
      9 ~< -mbx1 reset l
+     14 ~> mbx3-e70-14
+     15 ~> mbx3-e70-15
 
 e71: 10176 hex dff
      6 ~< mbx3 mb req allow l
@@ -779,6 +793,8 @@ e71: 10176 hex dff
      2 ~> mbx6 core data valid -1 b l
      12 ~< mbx6 core data valid -1 b l
      15 ~> mbx6 core data valid b l
+     7 ~< %NC%
+     4 ~> %NC%
 
 e54: 10105 2-3-2 or/nor
      4 ~< {dp2} pma5 csh ebox cyc l
@@ -804,6 +820,7 @@ e67: 10141 shift register
      5 ~< %NC%
      7 ~< mbx3-e65-3
      10 ~< mbx3-e70-14
+     4 ~< mbx4 clk a h
      14 ~> mbx3 sbus diag 0 l
      15 ~> mbx3 sbus diag 1 l
      2 ~> mbx3 sbus diag 2 l
