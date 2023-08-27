@@ -195,6 +195,12 @@ e28: 10109 4/5 or/nor
      13 ~< ctl1 spec/mq shift h
      14 ~> %NC%
      15 ~> {bl2} ctl ad long h
+     4 ~< %NC%
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> %NC%
 
 e20: 10101 quad or/nor
      4 ~< {af1} -clk sbr call l
@@ -207,6 +213,9 @@ e20: 10101 quad or/nor
      10 ~< {bn1} [b,%NC%,diag read func 10x l]
      14 ~> %NC%
      11 ~> ctl3 diag read l
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
 
 e16: 10105 quad or buffer
      4 ~< ctl1 spec/mtr ctl l
@@ -218,6 +227,10 @@ e16: 10105 quad or buffer
      11 ~< {aa1} -apr2 clk c l
      6 ~> %NC%
      7 ~> ctl3-e16-7
+     12 ~< ctl1 spec/load pc h
+     13 ~< {bj1} ctl disp/nicond h
+     14 ~> ctl1-e16-14
+     15 ~> %NC%
 
 e12: 10117 dual 2-3 or-and
      4 ~< {aa2} ctl spec/gen cry 18 h
@@ -258,6 +271,12 @@ e8:  10113 quad 2 xor
      9 ~< ctl1 pi cycle save flags h
      2 ~> {bs2} ctl adx cry 36 a h
      3 ~> {bt2} ctl adx cry 36 h
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     15 ~> %NC%
 
 e7:  10104 quad and
      4 ~< {er1} ar 00 c h
@@ -270,6 +289,9 @@ e7:  10104 quad and
      13 ~< {cc1} ebus ds03 e h
      9 ~> ctl3-e7-9
      15 ~> %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 e19: 10104 quad and
      10 ~< {es2} con pc+1 inh h
@@ -290,6 +312,8 @@ e11: 10121 4-wide or-and
      4 ~< ctl1 spec/inh cry 18 h
      5 ~< ctl1 spec/save flags h
      6 ~< ctl1 spec/stack update h
+     7 ~< ctl1 spec/inh cry 18 h
+     9 ~< ctl1 spec/save flags h
      10 ~< ctl1-e10-2
      11 ~< ctl1 spec/inh cry 18 h
      12 ~< ctl1 spec/save flags h
@@ -354,6 +378,12 @@ e43: 10109 4/5 or/nor
      13 ~< ctl2 cond/arr load h
      14 ~> ctl2-e43-14
      15 ~> %NC%
+     4 ~< {ef1} ctl ar 00-11 clr h
+     5 ~< {ed2} ctl arl sel 4 h
+     6 ~< {ec1} ctl arl sel 2 h
+     7 ~< {ee1} ctl arl sel 1 h
+     3 ~> %NC%
+     2 ~> ctl2-e43-2
 
 e44: 10105 or buffer
      9 ~< ctl2 cond/arlr load h
@@ -365,6 +395,10 @@ e44: 10105 or buffer
      5 ~< ctl3 diag ar load h
      3 ~> %NC%
      2 ~> ctl2-e44-2
+     13 ~< %NC%
+     12 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e45: 10109 4/5 or/nor
      4 ~< ctl2-e43-2
@@ -402,6 +436,7 @@ e51: 10104 quad and
      14 ~> ctl2-e51-14
      4 ~< {fv2} con fm xfer h
      5 ~< {fl1} mcl load ar h
+     2 ~> ctl2-e51-2
      6 ~< {fv2} con fm xfer h
      7 ~< {fu2} mcl load arx h
      3 ~> ctl2-e51-3
@@ -450,6 +485,10 @@ e31: 10105 or buffer
      11 ~< ctl2 cond/arl ind h
      6 ~> %NC%
      7 ~> ctl2 arl ind h
+     13 ~< %NC%
+     12 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e39: 10158 4x2 mixer
      5 ~< ctl1 spec/sbr call h
@@ -700,6 +739,12 @@ e4:  10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> ctl3 ad to ebus l l
      2 ~> {br1} ctl ad to ebus l h
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e15: 10109 4/5 or/nor
      4 ~< {dd1} con cond/diag func l

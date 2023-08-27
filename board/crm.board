@@ -97,6 +97,7 @@ e31: 10101 quad or/nor
      4 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
      2 ~> cr01 adr 10 b l
      5 ~> cr01 adr 10 b h
+     12 ~< %NC%
 
 
 Page: CRM2, PDF393
@@ -133,6 +134,7 @@ e33: 10101 quad or/nor
      10 ~< {du2} ebus d[m+05] e h
      14 ~> %NC%
      11 ~> cr02 ebus [m+05] h
+     12 ~< %NC%
 
 e23:  10174 2x4 mix
       6 ~< {cf2} cram [n+62] h
@@ -214,7 +216,7 @@ dl1: delay-line (PCB wired)
      1 ~< {cr2} clk crm [n+00] h
      2 ~> clk crm delayed h
 
-e3: 10101 quad or/nor
+e3:  10101 quad or/nor
      10 ~< {al2} mr reset 01 h
      12 ~< %NC%
      14 ~> %NC%
@@ -225,6 +227,9 @@ e3: 10101 quad or/nor
      7 ~< {av2} cram [n+43] h
      3 ~> {ap2} cram [n+43] a l
      6 ~> {au2} cram [n+43] a h
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
 
 e54: 10110 or buffer
      5 ~< %NC%
@@ -290,6 +295,12 @@ e58: 10101 quad or/nor
      7 ~< {fk2} cram [n+41] h
      3 ~> {fr2} cram [n+41] a l
      6 ~> {fl2} cram [n+41] a h
+     4 ~< %NC%
+     2 ~> %NC%
+     5 ~> %NC%
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
 
 e50: 10141 shft reg
      13 ~< %NC%

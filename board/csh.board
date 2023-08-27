@@ -196,6 +196,9 @@ e79: 10104 quad and/nand
      6 ~< csh4 ebox t2 l
      7 ~< {em1} csh5 t2 l
      3 ~> {fj1} csh3 adr ready l
+     4 ~< %NC%
+     5 ~< %NC%
+     2 ~> %NC%
 
 e72: 10141 shift register
      13 ~< %NC%
@@ -581,7 +584,7 @@ e74: 10176 hex dff
      4 ~> csh6 ebox sync hold h
      6 ~< csh7-e80-2
      3 ~> {ft2} csh7 fill cache rd l
-     6 ~< csh7-e75-2
+     11 ~< csh7-e75-2
      14 ~> {el1} csh7 cca writeback l
      5 ~< csh7-e80-15
      2 ~> {fk1} csh7 e writeback l
@@ -802,6 +805,7 @@ e26: 10174 2x4 mixer
      7 ~< {cr1} csh lru 1 h
      14 ~< %NC%
      2 ~> csh3 lru any wr l
+     15 ~> %NC%
 
 e5:  10101 quad or/nor
      7 ~< csh3 lru any wr l
@@ -825,6 +829,13 @@ e42: 10109 4/5 or/nor
      7 ~< {ce1} chan read h
      3 ~> {fm2} csh3 mb wr rq clr nxt l
      2 ~> %NC%
+     9 ~< csh4 e t2 mem ref l
+     10 ~< {ec1} -core busy l
+     11 ~< -csh4 ebox pause write l
+     12 ~< {ed1} pag4 page ok l
+     13 ~< {ce2} mbx1 cache bit l
+     14 ~> %NC%
+     15 ~> csh3-e42-15
 
 e39: 10101 quad or/nor
      4 ~< {de2} csh 0 wd val h
@@ -901,7 +912,7 @@ e24: 10118 triple 4-2 or-and
      14 ~< csh3 any written match l
      13 ~< {ac1} mbx1 csh cca val core l
      12 ~< csh5 cca t3 l
-     11 ~< csh4-e42-15
+     11 ~< csh3-e42-15
      10 ~< csh3 lru any wr l
      9 ~< -csh3 any valid match l
      15 ~> csh4-e24-15
@@ -951,6 +962,7 @@ e48: 10105 2-3-2 or/nor
      12 ~< csh6 ebox sync seen l
      13 ~< csh2 one word rd a l
      14 ~> csh6-e48-14
+     15 ~> %NC%
 
 e63: 10117 dual 2-3 or-and
      4 ~< csh4 data clr t4 l

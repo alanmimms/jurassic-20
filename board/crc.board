@@ -346,6 +346,9 @@ e48: 10101 quad or/nor
      12 ~< %NC%
      2 ~> crc af req ena l
      5 ~> %NC%
+     13 ~< crc req e h
+     15 ~> %NC%
+     9 ~> {dv2} crc buf mb sel h
      10 ~< {du2} ch store h
      14 ~> crc4-e48-14
      11 ~> %NC%
@@ -420,6 +423,15 @@ e31: 10105 2-3-2 or/nor
      13 ~< %NC%
      14 ~> crc2-e31-14
      15 ~> %NC%
+     4 ~< %NC%
+     5 ~< %NC%
+     3 ~> %NC%
+     2 ~> %NC%
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     6 ~> %NC%
+     7 ~> %NC%
 
 e50: 10141 shift register
      13 ~< %NC%
@@ -523,7 +535,7 @@ e60: 10104 quad and/nand
      7 ~< {em2} crc long wc err h
      3 ~> crc long wc err in h
      4 ~< crc t0 l
-     4 ~< crc t3 l
+     5 ~< crc t3 l
      2 ~> crc5-e60-2
 
 e17: 10145 16x4 RAM
@@ -565,7 +577,7 @@ e13: 10176 hex dff
      15 ~> {bd2} crc act ctr 2 h
      5 ~< crc3-e12-2
      2 ~> crc3-e13-2
-     5 ~< crc3-e12-1
+     6 ~< crc3-e12-1
      3 ~> crc3-e13-3
      7 ~< crc3-e12-15
      4 ~> {ek2} crc reset l
@@ -608,6 +620,14 @@ e69: 10176 hex dff
      14 ~> crc req e h
      12 ~< crc2-e65-9
      15 ~> {fv2} crc req e l
+     5 ~< crc6-e58-3
+     2 ~> crc ch adr 0e l
+     6 ~< crc6-e58-13
+     3 ~> crc ch adr 1e l
+     7 ~< crc6-e58-15
+     4 ~> crc ch adr 2e l
+     10 ~< crc6-e42-15
+     13 ~> crc ch adr 3e l
 
 e8:  10136 binary counter
      5 ~< crc mem ptr0 h
@@ -772,6 +792,15 @@ e62: 10101 quad or/nor
      12 ~< %NC%
      14 ~> crc op code 00 l
      11 ~> crc op code 00 h
+     4 ~< crc6-e57-3
+     2 ~> {fj2} crc sel 4c h
+     5 ~> crc sel 4c l
+     7 ~< crc6-e57-13
+     3 ~> {fh2} crc sel 2c h
+     6 ~> crc sel 2c l
+     13 ~< crc6-e57-15
+     15 ~> {fe2} crc sel 1c h
+     9 ~> crc sel 1c l
 
 Page: CRC4, PDF248
 
@@ -801,6 +830,10 @@ e42: 10176 hex dff
      4 ~> {eu2} crc short wc err h
      10 ~< crc4-e22-14
      13 ~> crc ovn err l
+     11 ~< crc ch ptr3 h
+     14 ~> crc6-e42-14
+     12 ~< crc ch adr 3c l
+     15 ~> crc6-e42-15
 
 e53: 10117 dual 2-3 or-and
      12 ~< {el1} ch reset intr l
@@ -928,12 +961,12 @@ e51: 10164 8 mixer
 
 e61: 10164 8 mixer
      6 ~< {ff1} crc ch buf adr 0 h
-     6 ~< {fj1} crc ch buf adr 1 h
-     6 ~< {fk1} crc ch buf adr 2 h
-     6 ~< {fl1} crc ch buf adr 3 h
-     6 ~< {fa1} crc ch buf adr 4 h
-     6 ~< {fd1} crc ch buf adr 5 h
-     6 ~< {fc1} crc ch buf adr 6 h
+     5 ~< {fj1} crc ch buf adr 1 h
+     4 ~< {fk1} crc ch buf adr 2 h
+     3 ~< {fl1} crc ch buf adr 3 h
+     11 ~< {fa1} crc ch buf adr 4 h
+     12 ~< {fd1} crc ch buf adr 5 h
+     13 ~< {fc1} crc ch buf adr 6 h
      14 ~< crc ptr dif=0 h
      10 ~< {dk2} ch diag 04 h
      9 ~< {dl2} ch diag 05 h
@@ -1019,3 +1052,170 @@ e25: 10176 hex dff
      13 ~> -crc t3 h
      14 ~> -crc t0 h
      15 ~> -crc t0+t1 h
+
+Page: CRC6, PDF250
+
+e58: 10176 hex dff
+     5 ~< crc ch ptr0 h
+     9 ~< crc t2 h
+     2 ~> crc6-e58-2
+     6 ~< crc ch adr 0c l
+     3 ~> crc6-e58-3
+     7 ~< crc ch ptr1 h
+     4 ~> crc6-e58-4
+     10 ~< crc ch adr 1c l
+     13 ~> crc6-e58-13
+     11 ~< crc ch ptr2 h
+     14 ~> crc6-e58-14
+     12 ~< crc ch adr 2c l
+     15 ~> crc6-e58-15
+
+e59: 10101 quad or/nor
+     4 ~< crc6-e58-2
+     12 ~< %NC%
+     2 ~> crc ch adr 0c l
+     5 ~> %NC%
+     7 ~< crc6-e58-4
+     3 ~> crc ch adr 1c l
+     6 ~> %NC%
+     13 ~< crc6-e58-14
+     15 ~> crc ch adr 2c l
+     9 ~> %NC%
+     10 ~< crc6-e42-14
+     14 ~> crc ch adr 3c l
+     11 ~> %NC%
+
+e57: 10176 hex dff
+     5 ~< {es2} ch sel 4b en l
+     9 ~< crc t0 h
+     2 ~> crc sel 4b l
+     6 ~< crc sel 4b l
+     3 ~> crc6-e57-3
+     7 ~< {et2} ch sel 2b en l
+     4 ~> crc sel 2b l
+     10 ~< crc sel 2b l
+     13 ~> crc6-e57-13
+     11 ~< {er2} ch sel 1b en l
+     14 ~> crc sel 1b l
+     12 ~< crc sel 1b l
+     15 ~> crc6-e57-15
+
+e67: 10176 hex dff
+     5 ~< crc sel 4c l
+     9 ~< crc t0 h
+     2 ~> {er1} crc sel 4d l
+     6 ~< {er1} crc sel 4d l
+     3 ~> {ft2} crc sel 4e l
+     7 ~< crc sel 2c l
+     4 ~> {ea1} crc sel 2d l
+     10 ~< {ea1} crc sel 2d l
+     13 ~> {fs1} crc sel 2e l
+     11 ~< crc sel 1c l
+     14 ~> {dm2} crc sel 1d l
+     12 ~< {dm2} crc sel 1d l
+     15 ~> {fr2} crc sel 1e l
+
+e73: 10121 4-wide or-and
+     4 ~< {fm2} ccw buf adr 0 l
+     5 ~< %NC%
+     6 ~< crc t3 l
+     7 ~< {fv2} crc req e l
+     9 ~< {ft2} crc sel 4e l
+     10 ~< crc t0+t1 l
+     11 ~< {fm2} ccw buf adr 0 l
+     12 ~< -crc req e l
+     13 ~< %NC%
+     14 ~< {fu2} crc ram adr 4r l
+     15 ~< crc t2 l
+     3 ~> {ff1} crc ch buf adr 0 h
+     2 ~> %NC%
+
+e71: 10121 4-wide or-and
+     4 ~< {fp1} ccw buf adr 1 l
+     5 ~< %NC%
+     6 ~< crc t3 l
+     7 ~< {fv2} crc req e l
+     9 ~< {fs1} crc sel 2e l
+     10 ~< crc t0+t1 l
+     11 ~< {fp1} ccw buf adr 1 l
+     12 ~< -crc req e l
+     13 ~< %NC%
+     14 ~< {fp2} crc ram adr 2r l
+     15 ~< crc t2 l
+     3 ~> {fj1} crc ch buf adr 1 h
+     2 ~> %NC%
+
+e72: 10121 4-wide or-and
+     4 ~< {fk2} ccw buf adr 2 l
+     5 ~< %NC%
+     6 ~< crc t3 l
+     7 ~< {fv2} crc req e l
+     9 ~< {fr2} crc sel 1e l
+     10 ~< crc t0+t1 l
+     11 ~< {fk2} ccw buf adr 2 l
+     12 ~< -crc req e l
+     13 ~< %NC%
+     14 ~< {fs2} crc ram adr 1r l
+     15 ~< crc t2 l
+     3 ~> {fk1} crc ch buf adr 2 h
+     2 ~> %NC%
+
+e75: 10121 4-wide or-and
+     4 ~< crc af mem ptr0 l
+     5 ~< %NC%
+     6 ~< crc t3 l
+     7 ~< {fv2} crc req e l
+     9 ~< crc adr 0e l
+     10 ~< crc t0+t1 l
+     11 ~< crc af mem ptr0 l
+     12 ~< -crc req e l
+     13 ~< %NC%
+     14 ~< crc ch adr 0c l
+     15 ~< crc t2 l
+     3 ~> {fl1} crc ch buf adr 3 h
+     2 ~> %NC%
+
+e74: 10121 4-wide or-and
+     4 ~< crc af mem ptr1 l
+     5 ~< %NC%
+     6 ~< crc t3 l
+     7 ~< {fv2} crc req e l
+     9 ~< crc adr 1e l
+     10 ~< crc t0+t1 l
+     11 ~< crc af mem ptr1 l
+     12 ~< -crc req e l
+     13 ~< %NC%
+     14 ~< crc ch adr 1c l
+     15 ~< crc t2 l
+     3 ~> {fa1} crc ch buf adr 4 h
+     2 ~> %NC%
+
+e64: 10121 4-wide or-and
+     4 ~< crc af mem ptr2 l
+     5 ~< %NC%
+     6 ~< crc t3 l
+     7 ~< {fv2} crc req e l
+     9 ~< crc adr 2e l
+     10 ~< crc t0+t1 l
+     11 ~< crc af mem ptr2 l
+     12 ~< -crc req e l
+     13 ~< %NC%
+     14 ~< crc ch adr 2c l
+     15 ~< crc t2 l
+     3 ~> {fd1} crc ch buf adr 5 h
+     2 ~> %NC%
+
+e78: 10121 4-wide or-and
+     4 ~< crc af mem ptr3 l
+     5 ~< %NC%
+     6 ~< crc t3 l
+     7 ~< {fv2} crc req e l
+     9 ~< crc adr 3e l
+     10 ~< crc t0+t1 l
+     11 ~< crc af mem ptr3 l
+     12 ~< -crc req e l
+     13 ~< %NC%
+     14 ~< crc ch adr 3c l
+     15 ~< crc t2 l
+     3 ~> {fc1} crc ch buf adr 6 h
+     2 ~> %NC%

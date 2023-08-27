@@ -199,6 +199,9 @@ e60: 10101 or buffer
      13 ~< {fj1} [n/18+1,ctl arxl sel 1 h,ctl arxr sel 1 h]
      15 ~> %NC%
      9 ~> edp-e60-9
+     10 ~< %NC%
+     14 ~> %NC%
+     11 ~> %NC%
 
 e55: 10164 8 mix
      6 ~< %NC%
@@ -925,6 +928,9 @@ e66: 10101 or buffer
      13 ~< {fr1} apr fm block 1 h
      15 ~> %NC%
      9 ~> edp [n+00] apr fm block 1 h
+     10 ~< %NC%
+     14 ~> %NC%
+     11 ~> %NC%
 
 e67: 10101 or buffer
      4 ~< {fr2} apr fm adr 10 h
@@ -936,7 +942,7 @@ e67: 10101 or buffer
      6 ~> edp [n+00] apr fm adr 4 h
      13 ~< {fs1} apr fm adr 2 h
      15 ~> %NC%
-     6 ~> edp [n+00] apr fm adr 2 h
+     9 ~> edp [n+00] apr fm adr 2 h
      10 ~< {fp2} apr fm adr 1 h
      14 ~> %NC%
      11 ~> edp [n+00] apr fm adr 1 h
