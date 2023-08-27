@@ -173,6 +173,10 @@ e34: 10103 quad or
      10 ~< crc req allow l
      11 ~< {ct2} -ccl wc=0 in l
      14 ~> crc4-e34-14
+     12 ~< {cs2} crc ram cyc l
+     13 ~< crc1-dl1-2
+     9 ~> crc wr ram h
+     15 ~> {ap2} crc wr ram l
 
 e10: 10173 4x2 mixer latch
      5 ~< crc ch ptr0 h
@@ -271,8 +275,12 @@ e44: 10105 2-3-2 or/nor
      11 ~< {fn1} crc mb cyc l
      6 ~> crc mem ptr en h
      7 ~> crc mem ptr en l
+     12 ~< crc t3 l
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> crc1-e44-15
 
-dl1: delay-line (PCB wired)
+dlpcb1: delay-line (PCB wired)
      1 ~< {cr2} clk crc h
      2 ~> clk crc delayed h
 
@@ -341,6 +349,9 @@ e48: 10101 quad or/nor
      10 ~< {du2} ch store h
      14 ~> crc4-e48-14
      11 ~> %NC%
+     7 ~< {ee2} ch ctom h
+     3 ~> crc ctom l
+     6 ~> crc ctom h
 
 Page: CRC2, PDF246
 
@@ -511,6 +522,9 @@ e60: 10104 quad and/nand
      6 ~< -crc st/res intr b h
      7 ~< {em2} crc long wc err h
      3 ~> crc long wc err in h
+     4 ~< crc t0 l
+     4 ~< crc t3 l
+     2 ~> crc5-e60-2
 
 e17: 10145 16x4 RAM
      5 ~< -crc store in h
@@ -569,6 +583,9 @@ e18: 10101 quad or/nor
      10 ~< {bd2} crc act ctr 2 h
      14 ~> {bk2} crc act ctr 2r l
      11 ~> crc act ctr 2r h
+     13 ~< crc t1 h
+     15 ~> crc t1 l
+     9 ~> %NC%
 
 e65: 10101 quad or/nor
      13 ~< {ff2} ch req d l
@@ -581,6 +598,9 @@ e65: 10101 quad or/nor
      10 ~< crc st/res intr a h
      14 ~> crc st/res intr b l
      11 ~> crc st/res intr b h
+     4 ~< crc t2 h
+     2 ~> crc t2 l
+     5 ~> %NC%
 
 e69: 10176 hex dff
      11 ~< {dt2} crc req d h
@@ -843,3 +863,159 @@ e45: 10109 4-5 or/nor
      7 ~< crc ready l
      3 ~> crc long wc err in h
      2 ~> %NC%
+
+Page: CRC5, PDF249
+
+e43: 10164 8 mixer
+     6 ~< -crc reset in h
+     5 ~< {dr2} crc rh20 err in h
+     4 ~< {dr1} crc ready in h
+     3 ~< crc act ctr 0r h
+     11 ~< crc act flag ena h
+     12 ~< {dm2} -crc sel 1d h
+     13 ~< crc mem ptr0 h
+     14 ~< -crc ch adr 0c h
+     10 ~< {dk2} ch diag 04 h
+     9 ~< {dl2} ch diag 05 h
+     7 ~< {ds1} ch diag 06 h
+     2 ~< {dp2} ch diag read c l
+     15 ~> {dp1} ebus d[n+01] e h
+
+e47: 10164 8 mixer
+     6 ~< {ed1} -crc mem store ena h
+     5 ~< {el2} crc ovn err in h
+     4 ~< {ed2} crc last word in h
+     3 ~< crc act ctr 1r h
+     11 ~< {ap2} -crc wr ram h
+     12 ~< {ea1} -crc sel 2d h
+     13 ~< crc mem ptr1 h
+     14 ~< -crc ch adr 1c h
+     10 ~< {dk2} ch diag 04 h
+     9 ~< {dl2} ch diag 05 h
+     7 ~< {ds1} ch diag 06 h
+     2 ~< {dp2} ch diag read c l
+     15 ~> {ec1} ebus d[n+02] e h
+
+e56: 10164 8 mixer
+     6 ~< crc done in h
+     5 ~< {eu2} crc short wc err h
+     4 ~< {ev2} crc err in h
+     3 ~< crc act ctr 2r h
+     11 ~< crc op code 00 h
+     12 ~< {er1} -crc sel 4d h
+     13 ~< crc mem ptr2 h
+     14 ~< -crc ch adr 2c h
+     10 ~< {dk2} ch diag 04 h
+     9 ~< {dl2} ch diag 05 h
+     7 ~< {ds1} ch diag 06 h
+     2 ~< {dp2} ch diag read c l
+     15 ~> {es1} ebus d[n+03] e h
+
+e51: 10164 8 mixer
+     6 ~< crc store in h
+     5 ~< {em2} crc long wc err h
+     4 ~< {em1} crc reverse in h
+     3 ~< crc ram cyc h
+     11 ~< crc op code 01 h
+     12 ~< -crc af req ena h
+     13 ~< crc mem ptr3 h
+     14 ~< -crc ch adr 3c h
+     10 ~< {dk2} ch diag 04 h
+     9 ~< {dl2} ch diag 05 h
+     7 ~< {ds1} ch diag 06 h
+     2 ~< {dp2} ch diag read c l
+     15 ~> {ej1} ebus d[n+04] e h
+
+e61: 10164 8 mixer
+     6 ~< {ff1} crc ch buf adr 0 h
+     6 ~< {fj1} crc ch buf adr 1 h
+     6 ~< {fk1} crc ch buf adr 2 h
+     6 ~< {fl1} crc ch buf adr 3 h
+     6 ~< {fa1} crc ch buf adr 4 h
+     6 ~< {fd1} crc ch buf adr 5 h
+     6 ~< {fc1} crc ch buf adr 6 h
+     14 ~< crc ptr dif=0 h
+     10 ~< {dk2} ch diag 04 h
+     9 ~< {dl2} ch diag 05 h
+     7 ~< {ds1} ch diag 06 h
+     2 ~< {dp2} ch diag read c l
+     15 ~> {fe1} ebus d[n+00] e h
+
+e68: 10121 4-wide or-and/or-and
+     4 ~< crc cbus req cyc l
+     5 ~< crc sel 4c l
+     6 ~< crc t1 l
+     7 ~< {fr1} crc cbus contr cyc l
+     9 ~< {fl2} ch contr 4 l
+     10 ~< crc t1 l
+     11 ~< {fn1} crc mb cyc l
+     12 ~< {fm2} ccw buf adr 0 l
+     13 ~< -crc t1 l
+     14 ~< %NC%
+     15 ~< {fu2} crc ram adr 4r l
+     3 ~> {am2} crc ram adr 4r h
+     2 ~> {fu2} crc ram adr 4r l
+
+dl1: delay-line 13ns
+     1 ~< crc1-e44-15
+     2 ~> crc1-dl1-2
+
+e63: 10121 4-wide or-and
+     4 ~< crc cbus req cyc l
+     5 ~< crc sel 1c l
+     6 ~< crc t1 l
+     7 ~< {fr1} crc cbus contr cyc l
+     9 ~< {fd2} ch contr 1 l
+     10 ~< crc t1 l
+     11 ~< {fn1} crc mb cyc l
+     12 ~< {fk2} ccw buf adr 2 l
+     13 ~< -crc t1 l
+     14 ~< %NC%
+     15 ~< {fs2} crc ram adr 1r l
+     3 ~> {as2} crc ram adr 1r h
+     2 ~> {fs2} crc ram adr 1r l
+
+e66: 10121 4-wide or-and
+     4 ~< crc cbus req cyc l
+     5 ~< crc sel 2c l
+     6 ~< crc t1 l
+     7 ~< {fr1} crc cbus contr cyc l
+     9 ~< {fm1} ch contr 2 l
+     10 ~< crc t1 l
+     11 ~< {fn1} crc mb cyc l
+     12 ~< {fp1} ccw buf adr 1 l
+     13 ~< -crc t1 l
+     14 ~< %NC%
+     15 ~< {fp2} crc ram adr 2r l
+     3 ~> {ar2} crc ram adr 2r h
+     2 ~> {fp2} crc ram adr 2r l
+
+e68: 10121 4-wide or-and
+     4 ~< crc cbus req cyc l
+     5 ~< crc sel 4c l
+     6 ~< crc t1 l
+     7 ~< {fr1} crc cbus contr cyc l
+     9 ~< {fl2} ch contr 4 l
+     10 ~< crc t1 l
+     11 ~< {fn1} crc mb cyc l
+     12 ~< {fm2} ccw buf adr 0 l
+     13 ~< -crc t1 l
+     14 ~< %NC%
+     15 ~< {fu2} crc ram adr 4r l
+     3 ~> {am2} crc ram adr 4r h
+     2 ~> {fu2} crc ram adr 4r l
+
+e25: 10176 hex dff
+     5 ~< {bs1} ch t3 h
+     6 ~< {bu2} ch t0 h
+     7 ~< {bv2} ch t1 h
+     10 ~< {br1} -ch t2 h
+     11 ~< {bp1} -ch t3 h
+     12 ~< crc5-e60-2
+     9 ~< crc clk c h
+     2 ~> crc t0 h
+     3 ~> crc t1 h
+     4 ~> crc t2 h
+     13 ~> -crc t3 h
+     14 ~> -crc t0 h
+     15 ~> -crc t0+t1 h
