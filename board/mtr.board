@@ -1004,7 +1004,7 @@ w2:  wire backplane pins together
 
 w3:  wire backplane pins together
      1 ~< {fl2} mtr cca writeback l
-     2 ~> {fm2} csh7 cca writeback l
+     2 ~> {fk2} csh7 cca writeback l
 
 // It looks like the idea is to connect eg
 // CSH7 FILL CACHE RD L to {fu2} MTR4 FILL CACHE RD L

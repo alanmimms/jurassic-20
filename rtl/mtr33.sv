@@ -14,7 +14,7 @@ module mtr33(
       input  crc_sel_1d_l                      /* <em2> */,
       input  crc_sel_2d_l                      /* <ej2> */,
       input  crc_sel_4d_l                      /* <eh2> */,
-      input  csh7_cca_writeback_l              /* <fk2><fm2> */,
+      output csh7_cca_writeback_l              /* <fk2> */,
       input  csh7_e_writeback_l                /* <fp2><ft2> */,
       input  csh7_fill_cache_rd_l              /* <fv2><fs2> */,
       input  ctl1_spec_mtr_ctl_l               /* <af2> */,
