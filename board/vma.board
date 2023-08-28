@@ -24,7 +24,6 @@ e1:  10181 ALU
      4 ~> %NC%
      8 ~> %NC%
 
-
 e48: 10181 ALU
      10 ~< vma3 pc 20 h
      9 ~< %NC%
@@ -34,6 +33,7 @@ e48: 10181 ALU
      19 ~< %NC%
      21 ~< vma3 pc 23 h
      20 ~< %NC%
+     22 ~< vma1 ad cry 24 h
      13 ~< {fr2} con cond/vma<-# h
      15 ~< %NC%
      17 ~< {fr2} con cond/vma<-# h
@@ -63,6 +63,12 @@ e59: 10181 ALU
      14 ~< %NC%
      23 ~< vma1 spec/vma<-# h
      5 ~> %NC%
+     6 ~> vma1 ad 24 h
+     7 ~> vma1 ad 25 h
+     3 ~> vma1 ad 26 h
+     2 ~> vma1 ad 27 h
+     4 ~> vma1 ad 24-27 cg h
+     8 ~> vma1 ad 24-27 cp h
 
 e85: 10181 ALU
      10 ~< vma3 pc 28 h
@@ -107,6 +113,8 @@ e84: 10181 ALU
      7 ~> vma1 ad 33 h
      3 ~> vma1 ad 34 h
      2 ~> vma1 ad 35 h
+     4 ~> %NC%
+     8 ~> %NC%
 
 e79: 10179 carry skipper
      5 ~< vma1 ad 20-23 cg h
@@ -157,8 +165,8 @@ e27: 10109 4/5 or/nor
      9 ~< vma1 20-27=0 l
      10 ~< vma1 misc=0 l
      11 ~< {as2} -mcl6 page uebr ref a l
-     11 ~< {al2} mcl2 vma read or write l
-     10 ~< vma1 local l
+     12 ~< {al2} mcl2 vma read or write l
+     13 ~< vma1 local l
      14 ~> {bm1} vma1 ac ref h
      15 ~> {ar2} vma ac ref l
      4 ~< vma4-e24-3
@@ -270,6 +278,7 @@ e73: 10158 4x2 mixer
      13 ~< {ea1} vma2 vma 32 h
      10 ~< %NC%
      11 ~< {dt2} vma2 vma 33 h
+     9 ~< {es1} csh3 gate vma 27-33 h
      1 ~> {em1} vma 30 g h
      2 ~> {fa1} vma 31 g h
      15 ~> {eu2} vma 32 g h
@@ -363,6 +372,9 @@ e74: 10101 quad or/nor
      13 ~< {dr2} vma2 vma 31 h
      15 ~> %NC%
      9 ~> vma2 vma 31 a h
+     4 ~< %NC%
+     2 ~> %NC%
+     5 ~> %NC%
 
 e63: 10101 quad or/nor
      4 ~< {ea1} vma2 vma 32 h
@@ -493,6 +505,7 @@ e20: 10158 4x2 mixer
      13 ~< {av2} ad 22 a h
      10 ~< vma1 ad 23 h
      11 ~< {ba1} ad 23 a h
+     9 ~< {bc1} mcl4 vma<-ad h
      1 ~> vma2-e20-1
      2 ~> vma2-e20-2
      15 ~> vma2-e20-15
@@ -507,6 +520,7 @@ e43: 10158 4x2 mixer
      13 ~< {bs1} ad 26 h
      10 ~< vma1 ad 27 h
      11 ~< {bp2} ad 27 h
+     9 ~< {bc1} mcl4 vma<-ad h
      1 ~> vma2-e43-1
      2 ~> vma2-e43-2
      15 ~> vma2-e43-15
@@ -521,6 +535,7 @@ e80: 10158 4x2 mixer
      13 ~< {ep2} ad 30 a h
      10 ~< vma1 ad 31 h
      11 ~< {er2} ad 31 h
+     9 ~< {bc1} mcl4 vma<-ad h
      1 ~> vma2-e80-1
      2 ~> vma2-e80-2
      15 ~> vma2-e80-15
@@ -535,6 +550,7 @@ e53: 10158 4x2 mixer
      13 ~< {dk2} ad 34 a h
      10 ~< vma1 ad 35 h
      11 ~< {dm1} ad 35 a h
+     9 ~< {bc1} mcl4 vma<-ad h
      1 ~> vma2-e53-1
      2 ~> vma2-e53-2
      15 ~> vma2-e53-15
