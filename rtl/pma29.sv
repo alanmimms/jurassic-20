@@ -142,6 +142,7 @@ module pma29(
       input  vma2_vma_25_a_h                   /* <au2> */,
       input  vma2_vma_26_a_h                   /* <ar1> */,
       input  vma2_vma_27_h                     /* <fs2> */,
+      input  vma2_vma_28_h                     /* <bf2> */,
       input  vma2_vma_29_h                     /* <bl1> */,
       input  vma2_vma_30_h                     /* <cl2> */,
       input  vma2_vma_31_h                     /* <ed2> */,
