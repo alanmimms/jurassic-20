@@ -336,6 +336,9 @@ e47:  10101 quad or/nor
       13 ~< {ds1} pma3 pa 15 h
       15 ~> %NC%
       9 ~> {cs1} pma 15 h
+      4 ~< %NC%
+      2 ~> %NC%
+      5 ~> %NC%
 
 e40: 10136 binary counter
      5 ~< %NC%
@@ -632,6 +635,7 @@ e45: 10164 8 mixer
      3 ~< {bj2} ccw cha 28 h
      11 ~< pma2 cca 28 h
      12 ~< pma2 cca 28 h
+     13 ~< {bf2} vma2 vma 28 h
      14 ~< %NC%
      10 ~< pma5 27 sel 4 h
      9 ~< pma5 27 sel 2 h
@@ -966,6 +970,12 @@ e67: 10104 quad and/nand
      13 ~< -pma1 va 18 h
      9 ~> pma5-e67-9
      15 ~> pma5-e67-15
+     4 ~< %NC%
+     5 ~< %NC%
+     2 ~> %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> %NC%
 
 e66: 10105 2-3-2 or/nor
      4 ~< {fd1} csh5 page refill t4 l
@@ -1000,6 +1010,7 @@ e59: 10109 4/5 or/nor
 e52: 10117 dual 2-3 or-and
      4 ~< {fp2} csh1 chan req grant h
      5 ~< pma5 page refill t4 a h
+     6 ~< pma5 page refill t4 a h
      7 ~< {ec1} ccl chan ept h
      9 ~< %NC%
      3 ~> %NC%
@@ -1172,7 +1183,7 @@ e63: 10141 shift register
      5 ~< %NC%
      7 ~< {ft2} -csh1 ready to go h
      10 ~< {ft2} -csh1 ready to go h
-     5 ~< pma2 clock c h
+     4 ~< pma2 clock c h
      14 ~> pma5 28-31 sel 1 h
      15 ~> pma5 32-33 sel 4 h
      2 ~> pma5 32-33 sel 2 h
