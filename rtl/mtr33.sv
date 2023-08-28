@@ -64,6 +64,7 @@ module mtr33(
       input  pi2_pi1_a_h                       /* <cf2> */,
       input  pi2_pi2_a_h                       /* <cl2> */,
       input  pi2_pi4_a_h                       /* <cm2> */,
+      input  pi3_mtr_honor_h                   /* <au2> */,
       input  pi3_mtr_pia_01_h                  /* <fd2> */,
       input  pi3_mtr_pia_02_h                  /* <ff2> */,
       input  pi3_mtr_pia_04_h                  /* <fj2> */,
