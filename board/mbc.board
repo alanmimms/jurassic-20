@@ -354,7 +354,7 @@ e26: 10117 2-3 or-and
      9 ~< {be1} mbx1 cca all pages cyc l
      14 ~> {ca1} force valid match 2 h
      15 ~> %NC%
-     4 ~< {cf2} csh3 wr en l
+     4 ~< {cf2} csh 3 wr en l
      5 ~< mbc2-e32-2
      6 ~< mbc1 pma 34 a l
      7 ~< mbc1 pma 35 a l
