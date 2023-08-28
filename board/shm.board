@@ -225,6 +225,11 @@ e57: 10105 2-3-2 or/nor
      5 ~< {ej2} -ar 00 b l
      3 ~> {dc1} shm1 ar extended h
      2 ~> %NC%
+     9 ~< {ef1} -con2 long en h
+     10 ~< %NC%
+     11 ~< {du2} arx 00 a h
+     6 ~> %NC%
+     7 ~> shm1 instr format h
 
 e51: 10158 4x2 mixer
      5 ~< {cr1} arx 02 h
@@ -279,6 +284,12 @@ e85: 10109 4/5 or/nor
      13 ~< {fj1} ar 15 b h
      14 ~> shm1-e85-14
      15 ~> %NC%
+     4 ~< %NC%
+     5 ~< %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> %NC%
+     2 ~> %NC%
 
 Page: SHM2, PDF335
 

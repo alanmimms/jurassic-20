@@ -71,6 +71,7 @@ module shm46(
       input  arx_33_h                          /* <dp1> */,
       input  arx_34_h                          /* <dj2> */,
       input  arx_35_h                          /* <dk2> */,
+      input  con2_long_en_l                    /* <ef1> */,
       input  con_ar_36_h                       /* <et2> */,
       input  con_arx_36_h                      /* <fn1> */,
       input  cram_shNgarmm_sel_1_a_h           /* <de1> */,
