@@ -137,6 +137,14 @@ e58: 10101 quad or/nor
      6 ~> %NC%
      10 ~< pi4 iob 17 l
      14 ~> pi1-e58-14
+     11 ~> %NC%
+     // Note it looks like E58 has been re-pinned, or reference designator changed
+     // from another part. There are TWO locations where pins 4, 12, 2, and 5 are
+     // connected in PIC: PDF199 and PDF203. I chose to move the PDF203 instance to
+     // a spare section of E80 where pin 12 is left %NC% as required there.
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
 
 e69: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
@@ -209,6 +217,13 @@ e64: 10117 dual 2-3 or-and
      7 ~< pi1 on 7 l
      3 ~> pi1 on 7 h
      2 ~> pi1 on 7 l
+     12 ~< pi4 gen set l
+     13 ~< pi4 iob 17 l
+     10 ~< pi1-e63-14
+     9 ~< -pi4 sys clr l
+     11 ~< pi1 gen 7 l
+     14 ~> pi1 gen 7 h
+     15 ~> pi1 gen 7 l
 
 e59: 10117 dual 2-3 or-and
      4 ~< pi1 gen 7 l
@@ -248,11 +263,13 @@ e82: 10131 dual ms dff
      9 ~< pi2 clk a h
      4 ~< pi4 sys clr b h
      2 ~> pi1 pih1 h
+     3 ~> %NC%
      12 ~< %NC%
      10 ~< pi2 pi2 req set h
      11 ~< %NC%
      13 ~< pi2 pi3 req set h
      15 ~> pi1 pih2 h
+     14 ~> %NC%
 
 e87: 10131 dual ms dff
      5 ~< %NC%
@@ -261,10 +278,13 @@ e87: 10131 dual ms dff
      9 ~< pi2 clk a h
      4 ~< pi4 sys clr b h
      2 ~> pi1 pih3 h
+     3 ~> %NC%
      12 ~< %NC%
      10 ~< pi2 pi4 req set h
      11 ~< %NC%
+     13 ~< pi4 sys clr b h
      15 ~> pi1 pih4 h
+     14 ~> %NC%
 
 e85: 10104 quad and/nand
      4 ~< pi1 pih4 h
@@ -288,11 +308,13 @@ e84: 10131 dual ms dff
      9 ~< pi2 clk b h
      4 ~< pi4 sys clr h
      2 ~> pi1 pih5 h
+     3 ~> %NC%
      12 ~< %NC%
      10 ~< pi2 pi6 req set h
      11 ~< %NC%
      13 ~< pi4 sys clr h
      15 ~> pi1 pih6 h
+     14 ~> %NC%
 
 e83: 10131 dual ms dff
      12 ~< %NC%
@@ -301,6 +323,7 @@ e83: 10131 dual ms dff
      9 ~< pi2 clk b h
      13 ~< pi4 sys clr h
      15 ~> pi1 pih7 h
+     14 ~> %NC%
      4 ~< %NC%
      7 ~< {fr2} con cono pi l
      6 ~< %NC%
@@ -382,6 +405,10 @@ e80: 10101 quad or/nor
      13 ~< pic2 pi4 l
      15 ~> {fh1} -pi2 pi4 a l
      9 ~> {fe2} -pi2 pi4 a h
+     // Moved here for PDF203 use case of E58 that appears to have been renumbered.
+     10 ~< -pic5 gen int h
+     11 ~> pic5 gen int h
+     14 ~> %NC%
 
 e78: 10165 priority encoder
      5 ~< {cs1} apr ebox disable cs h
@@ -414,20 +441,21 @@ e49: 10103 quad or
      15 ~> %NC%
 
 // Why is e77 very clearly defined on multiple pages of this module?
+// This one is the 10165 on PDF200.
 e77z: 10165 priority encoder
      5 ~< pic2-e49-3
-     14 ~> pic2 pi4 l
-     15 ~> pic2-e78-15
-     2 ~> pic2-e78-2
-     3 ~> pic2-e78-3
-     7 ~< pi1 pir4 h
+     7 ~< pic1 pir4 h
+     13 ~< pic1 pih5 h
+     10 ~< pic1 pir5 h
+     11 ~< pic1 pih6 h
+     12 ~< pic1 pir6 h
+     9 ~< pic1 pih7 h
+     6 ~< pic1 pir7 h
+     4 ~< %NC%
      14 ~> %NC%
      15 ~> pic2 pi2 h
      2 ~> pic2 pi1 h
      3 ~> pic2 req h
-     9 ~< pic1 pih7 h
-     6 ~< pic1 pir7 h
-     4 ~< %NC%
 
 e35: 10165 priority encoder
      5 ~< pic2-e49-14
@@ -438,6 +466,7 @@ e35: 10165 priority encoder
      12 ~< pic2 phy no. 05 h
      9 ~< pic2 phy no. 06 h
      6 ~< pic2 phy no. 07 h
+     4 ~< %NC%
      14 ~> pic2-e35-14
      15 ~> pic2 sel phy 4 h
      2 ~> pic2 sel phy 2 h
@@ -452,6 +481,7 @@ e40: 10165 priority encoder
      12 ~< pic2 phy no. 13 h
      9 ~< pic2 phy no. 14 h
      6 ~< pic2 phy no. 15 h
+     4 ~< %NC%
      14 ~> %NC%
      15 ~> pic2 sel phy 4 h
      2 ~> pic2 sel phy 2 h
@@ -479,6 +509,15 @@ e45: 10104 quad and/nand
      13 ~< pic4 mr reset l
      9 ~> pic2 tim1 h
      15 ~> %NC%
+     4 ~< %NC%
+     5 ~< %NC%
+     2 ~> %NC%
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 e21: 10101 quad or/nor
      10 ~< pic2 tim4 h
@@ -526,6 +565,7 @@ e14: 10104 quad and/nand
      14 ~> pic5-e14-14
 
 // Why is e82 very clearly defined on multiple pages of this module?
+// PDF200 instance is shown here.
 e82z: 10165 priority encoder
      5 ~< %NC%
      7 ~< pic1 pih1 h
@@ -535,6 +575,7 @@ e82z: 10165 priority encoder
      12 ~< pic1 pih5 h
      9 ~< pic1 pih6 h
      6 ~< pic1 pih7 h
+     4 ~< %NC%
      14 ~> %NC%
      15 ~> {fd1} pi2 hold 4 h
      2 ~> {fd2} pi2 hold 2 h
@@ -614,6 +655,9 @@ e24: 10103 quad or
      13 ~< {fr2} con cono pi l
      9 ~> pic4-e24-9
      15 ~> %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
 
 e7:  10105 2-3-2 or/nor
      12 ~< pic2 tim5 h
@@ -747,6 +791,7 @@ e4:  10101 quad or/nor
      14 ~> pic2 tran rec l
      11 ~> {aa1} pi2 ext tran rec h
      4 ~< -pi3 dk20 phy no. h
+     13 ~< pic2-e18-3     
      15 ~> pic2-e4-15
      9 ~> %NC%
      4 ~< -pi3 dk20 phy no. h
@@ -762,6 +807,14 @@ e46: 10105 2-3-2 or/nor
      11 ~< pic5 cyc start h
      6 ~> pic2-e46-6
      7 ~> %NC%
+     4 ~< %NC%
+     5 ~< %NC%
+     3 ~> %NC%
+     2 ~> %NC%
+     13 ~< %NC%
+     12 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e10: 10136 binary counter
      5 ~< pic2-e8-3
@@ -770,6 +823,7 @@ e10: 10136 binary counter
      12 ~< pic2-e4-15
      10 ~< pic2-e9-2
      7 ~< pic2-e46-6
+     9 ~< %NC%
      13 ~< pic2 clk f h
      4 ~> pic2-e10-4
      3 ~> %NC%
@@ -784,6 +838,7 @@ e15: 10136 binary counter
      12 ~< -pic2 tim1 h
      10 ~< pic2-e10-4
      7 ~< pic2-e46-6
+     9 ~< %NC%
      13 ~< pic2 clk f h
      4 ~> %NC%
      3 ~> %NC%
@@ -851,6 +906,10 @@ e43: 10104 quad and/nand
      4 ~< {dj2} -mtr cono mtr, h
      5 ~< -pi4 mr reset h
      2 ~> pic3-e43-2
+     12 ~< %NC%
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
 
 e54: 10141 shift register
      13 ~< %NC%
@@ -911,6 +970,9 @@ e56: 10101 quad or/nor
      10 ~< {dr2} apr ebox send f02 h
      14 ~> pic4-e56-14
      11 ~> %NC%
+     4 ~< %NC%
+     2 ~> %NC%
+     5 ~> %NC%
 
 Page: PIC4, PDF202
 
@@ -950,6 +1012,7 @@ e26: 10104 quad and/nand
      3 ~> pic4-e26-3
      10 ~< {da1} ebus d09 e h
      11 ~< pic4-e4-3
+     14 ~> pi4 off h
      12 ~< {dd2} ebus d10 e h
      13 ~< pic4-e4-3
      9 ~> pi4 on l
@@ -1147,8 +1210,14 @@ e52: 10105 2-3-2 or/nor
      12 ~< pi3 pi05 h
      14 ~> pi4 io req5 l
      15 ~> %NC%
+     9 ~< %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     6 ~> %NC%
+     7 ~> %NC%
 
 // Why is e44 very clearly defined on multiple pages of this module?
+// This is from bottom-right PDF202 PIC4.
 e44z: 10105 2-3-2 or/nor
       4 ~< {dh2} ebus pi06 e h
       5 ~< pi3 pi06 h
@@ -1158,6 +1227,11 @@ e44z: 10105 2-3-2 or/nor
       12 ~< pi3 pi07 h
       14 ~> pi4 io req7 h
       15 ~> %NC%
+      9 ~< %NC%
+      10 ~< %NC%
+      11 ~< %NC%
+      6 ~> %NC%
+      7 ~> %NC%
 
 Page: PIC5, PDF203
 
@@ -1168,6 +1242,14 @@ e54z: 10105 2-3-2 or/nor
       11 ~< -pic5 wait2 l
       6 ~> pic5-e54-6
       7 ~> %NC%
+      4 ~< %NC%
+      5 ~< %NC%
+      3 ~> %NC%
+      2 ~> %NC%
+      13 ~< %NC%
+      12 ~< %NC%
+      14 ~> %NC%
+      15 ~> %NC%
 
 e30: 10141 shift register
      13 ~< pic5-e54-6
@@ -1192,6 +1274,12 @@ e42: 10131 dual ms dff
      12 ~< %NC%
      14 ~> %NC%
      15 ~> pic5 pi disable l
+     7 ~< %NC%
+     6 ~< %NC%
+     5 ~< %NC%
+     4 ~< %NC%
+     2 ~> %NC%
+     3 ~> %NC%
 
 e20: 10104 quad and/nand
      10 ~< pic5 pi disable l
@@ -1289,16 +1377,36 @@ e67z: 10113 quad 2 xor
       9 ~< %NC%
 
 // Why is e58 very clearly defined on multiple pages of this module?
+// This is PDF203.
 e58z: 10101 quad or/nor
       4 ~< -pic5 gen int h
       12 ~< %NC%
       2 ~> pic5 gen int h
       5 ~> %NC%
+      7 ~< %NC%
+      3 ~> %NC%
+      6 ~> %NC%
+      10 ~< %NC%
+      14 ~> %NC%
+      11 ~> %NC%
+      13 ~< %NC%
+      15 ~> %NC%
+      9 ~> %NC%
 
 e5:  10104 quad and/nand
      4 ~< pic2 honor internal h
      5 ~< pic5 ebus pi grant h
      2 ~> pic5 xfer force h
+     6 ~< %NC%
+     7 ~< %NC%
+     3 ~> %NC%
+     10 ~< %NC%
+     11 ~< %NC%
+     14 ~> %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
 
 e1:  10136 binary counter
      5 ~< %NC%
