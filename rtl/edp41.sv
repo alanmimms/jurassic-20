@@ -1,6 +1,6 @@
 module edp41(
-      input  ad_22_h                           /* <cp2> */,
-      input  ad_23_h                           /* <el2> */,
+      output ad_22_h                           /* <cv2> */,
+      output ad_23_h                           /* <cr1> */,
       output ad_24_a_h                         /* <ck1> */,
       output ad_24_a_l                         /* <cn1> */,
       output ad_24_h                           /* <ep2> */,
@@ -20,8 +20,6 @@ module edp41(
       output ad_cry_25_h                       /* <cu2> */,
       output ad_cry_25_l                       /* <ct2> */,
       input  ad_cry_30_h                       /* <al1> */,
-      output ad_ex_22_h                        /* <cv2> */,
-      output ad_ex_23_h                        /* <cr1> */,
       output ad_overflow_24_l                  /* <cl2> */,
       input  adx_23_h                          /* <es2> */,
       output adx_24_a_h                        /* <cf1> */,

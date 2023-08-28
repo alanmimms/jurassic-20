@@ -1,6 +1,6 @@
 module edp39(
-      input  ad_28_h                           /* <cp2> */,
-      input  ad_29_h                           /* <el2> */,
+      output ad_28_h                           /* <cv2> */,
+      output ad_29_h                           /* <cr1> */,
       output ad_30_a_h                         /* <ck1> */,
       output ad_30_a_l                         /* <cn1> */,
       output ad_30_h                           /* <ep2> */,
@@ -20,8 +20,6 @@ module edp39(
       output ad_cry_31_l                       /* <ct2> */,
       input  ad_cry_36_b_h                     /* <al1> */,
       input  ad_cry_Ng02_a_h                   /* <cd1> */,
-      output ad_ex_28_h                        /* <cv2> */,
-      output ad_ex_29_h                        /* <cr1> */,
       output ad_overflow_30_l                  /* <cl2> */,
       input  adx_00_h                          /* <ep1> */,
       input  adx_29_h                          /* <es2> */,

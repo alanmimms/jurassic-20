@@ -1,6 +1,6 @@
 module edp51(
-      input  ad_04_h                           /* <cp2> */,
-      input  ad_05_h                           /* <el2> */,
+      output ad_04_h                           /* <cv2> */,
+      output ad_05_h                           /* <cr1> */,
       output ad_06_a_h                         /* <ck1> */,
       output ad_06_a_l                         /* <cn1> */,
       output ad_06_h                           /* <ep2> */,
@@ -20,8 +20,6 @@ module edp51(
       output ad_cry_07_h                       /* <cu2> */,
       output ad_cry_07_l                       /* <ct2> */,
       input  ad_cry_12_h                       /* <al1> */,
-      output ad_ex_04_h                        /* <cv2> */,
-      output ad_ex_05_h                        /* <cr1> */,
       output ad_overflow_06_l                  /* <cl2> */,
       input  adx_05_h                          /* <es2> */,
       output adx_06_a_h                        /* <cf1> */,

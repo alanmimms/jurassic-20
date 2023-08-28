@@ -1,6 +1,6 @@
 module edp43(
-      input  ad_16_h                           /* <cp2> */,
-      input  ad_17_h                           /* <el2> */,
+      output ad_16_h                           /* <cv2> */,
+      output ad_17_h                           /* <cr1> */,
       output ad_18_a_h                         /* <ck1> */,
       output ad_18_a_l                         /* <cn1> */,
       output ad_18_h                           /* <ep2> */,
@@ -20,8 +20,6 @@ module edp43(
       output ad_cry_19_h                       /* <cu2> */,
       output ad_cry_19_l                       /* <ct2> */,
       input  ad_cry_24_h                       /* <al1> */,
-      output ad_ex_16_h                        /* <cv2> */,
-      output ad_ex_17_h                        /* <cr1> */,
       output ad_overflow_18_l                  /* <cl2> */,
       input  adx_17_h                          /* <es2> */,
       output adx_18_a_h                        /* <cf1> */,

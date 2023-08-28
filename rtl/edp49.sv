@@ -1,6 +1,6 @@
 module edp49(
-      input  ad_10_h                           /* <cp2> */,
-      input  ad_11_h                           /* <el2> */,
+      output ad_10_h                           /* <cv2> */,
+      output ad_11_h                           /* <cr1> */,
       output ad_12_a_h                         /* <ck1> */,
       output ad_12_a_l                         /* <cn1> */,
       output ad_12_h                           /* <ep2> */,
@@ -20,8 +20,6 @@ module edp49(
       output ad_cry_13_h                       /* <cu2> */,
       output ad_cry_13_l                       /* <ct2> */,
       input  ad_cry_18_h                       /* <al1> */,
-      output ad_ex_10_h                        /* <cv2> */,
-      output ad_ex_11_h                        /* <cr1> */,
       output ad_overflow_12_l                  /* <cl2> */,
       input  adx_11_h                          /* <es2> */,
       output adx_12_a_h                        /* <cf1> */,

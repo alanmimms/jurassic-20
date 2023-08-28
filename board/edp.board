@@ -32,7 +32,10 @@ e53: 10164 8 mix
      11 ~< {ed1} sh [n+00] h
      12 ~< {dl1} ad [n+01] h
      13 ~< {cj2} adx [n+00] h
-     14 ~< {cp2} [n/6+1,ad ex -02 h,ad 04 h,ad 10 h,ad 16 h,ad 22 h,ad 28 h]
+     // I decided to make this single pin carry ad ex -02 instead of
+     // having one output pin <cv2> for the signal and a separate one as
+     // input pin <cp2> for the same signal.
+     14 ~< {cv2} [n/6+1,ad ex -02 h,ad 04 h,ad 10 h,ad 16 h,ad 22 h,ad 28 h]
      10 ~< edp-e52-5
      9 ~< edp-e52-6
      7 ~< edp-e52-9
@@ -47,7 +50,10 @@ e46: 10164 8 mix
      11 ~< {ec1} sh [n+01] h
      12 ~< {dr2} ad [n+02] h
      13 ~< adx [n+01] h
-     14 ~< {el2} [n/6+1,ad ex -01 h,ad 05 h,ad 11 h,ad 17 h,ad 23 h,ad 29 h]
+     // I decided to make this single pin carry ad ex -01 instead of
+     // having one output pin <cr1> for the signal and a separate one as
+     // input <el2> for the same signal.
+     14 ~< {cr1} [n/6+1,ad ex -01 h,ad 05 h,ad 11 h,ad 17 h,ad 23 h,ad 29 h]
      10 ~< edp-e52-5
      9 ~< edp-e52-6
      7 ~< edp-e52-9
