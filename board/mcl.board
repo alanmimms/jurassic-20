@@ -59,7 +59,7 @@ e74: 10101 quad or/nor
      11 ~> %NC%
      4 ~< {fr2} ad 07 h
      2 ~> mcl6 ad 07 l
-     6 ~> %NC%
+     5 ~> %NC%
 
 e7:  10101 quad or/nor
      13 ~< {df2} diag 04 a h
@@ -286,6 +286,7 @@ e76: 10104 quad and/nand
      3 ~> mcl2-e76-2
      12 ~< {fs2} ad 04 a h
      13 ~< mcl1 mem/ea calc h
+     9 ~> %NC%
      15 ~> mcl2-e76-15
 
 e73: 10109 4/5 or/nor
@@ -358,6 +359,10 @@ e3:  10105 2-3-2 or/nor
      11 ~< mcl2-e13-3
      6 ~> {bf2} mcl2 vma read or write l
      7 ~> %NC%
+     4 ~< %NC%
+     5 ~< %NC%
+     3 ~> %NC%
+     2 ~> %NC%
 
 e2:  10109 4/5 or/nor
      4 ~< mcl2-e13-2
@@ -368,6 +373,7 @@ e2:  10109 4/5 or/nor
      2 ~> {av2} mcl store ar l
      9 ~< mcl3 ept en h
      10 ~< mcl3 upt en h
+     11 ~< mcl6 phys ref h
      12 ~< %NC%
      13 ~< %NC%
      14 ~> %NC%
@@ -552,6 +558,9 @@ e10: 10101 quad or/nor
      4 ~< {bt2} scd5 public a h
      2 ~> mcl6 public l
      5 ~> %NC%
+     10 ~< %NC%
+     14 ~> %NC%
+     11 ~> %NC%
 
 e18: 10105 2-3-2 or/nor
      9 ~< mcl2 vma public l
@@ -923,7 +932,7 @@ e52: 10101 quad or/nor
      4 ~< mcl4-e50-14
      12 ~< mcl4 pxct l
      2 ~> mcl4 pxct b09 h
-     3 ~> mcl4 pxct b09 l
+     5 ~> mcl4 pxct b09 l
      7 ~< mcl4-e50-15
      3 ~> %NC%
      6 ~> mcl4 pxct b10 l
@@ -989,6 +998,12 @@ e68: 10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> mcl5 ad long en h
      2 ~> mcl5 ad long en l
+     10 ~< %NC%
+     11 ~< %NC%
+     12 ~< %NC%
+     13 ~< %NC%
+     14 ~> %NC%
+     15 ~> %NC%
 
 e65: 10104 quad and/nand
      10 ~< -mcl6 reg func l
@@ -1073,6 +1088,12 @@ e39: 10101 quad or/nor
      13 ~< {ff2} cram # 07 b h
      15 ~> mcl5 # 07 l
      9 ~> %NC%
+     7 ~< {ed2} ctl1 spec/sp mem cycle h
+     3 ~> mcl5 spec/sp mem cycle l
+     6 ~> mcl5 spec/sp mem cycle h
+     4 ~< %NC%
+     2 ~> %NC%
+     5 ~> %NC%
 
 dl1: delay-line (PCB wired)
      1 ~< {cr2} clk3 mcl h
@@ -1113,6 +1134,7 @@ e49: 10104 quad and/nand
      12 ~< {fd2} con cache load en h
      13 ~< {fd2} con cache load en h
      9 ~> mcl6-e49-9
+     15 ~> %NC%
      4 ~< mcl5 spec/sp mem cycle h
      5 ~< {ff2} cram # 07 b h
      2 ~> mcl6-e49-9

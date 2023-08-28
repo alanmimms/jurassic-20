@@ -46,6 +46,7 @@ module mcl47(
       input  cram_shNgarmm_sel_2_a_l           /* <ed1> */,
       input  cram_vma_sel_1_h                  /* <ef2> */,
       input  cram_vma_sel_2_h                  /* <eh2> */,
+      input  ctl1_specSlsp_mem_cycle_h         /* <ed2> */,
       input  ctl3_diag_force_extend_h          /* <ec1> */,
       input  diag_04_a_h                       /* <df2> */,
       input  diag_05_a_h                       /* <de2> */,
