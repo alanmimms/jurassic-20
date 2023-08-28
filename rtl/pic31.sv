@@ -74,7 +74,7 @@ module pic31(
       output pi2_pi1_a_l                       /* <fl1> */,
       output pi2_pi2_a_h                       /* <fh2> */,
       output pi2_pi2_a_l                       /* <fk2> */,
-      input  pi2_pi4_a_h                       /* <fn1><fh1> */,
+      output pi2_pi4_a_h                       /* <fn1> */,
       output pi2_pi4_a_l                       /* <fe2> */,
       output pi2_ready_h                       /* <ca1> */,
       output pi3_apr_pia_01_h                  /* <dr1> */,

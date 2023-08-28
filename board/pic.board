@@ -403,7 +403,7 @@ e80: 10101 quad or/nor
      3 ~> {fk2} pi2 pi2 a l
      6 ~> {fh2} pi2 pi2 a h
      13 ~< pic2 pi4 l
-     15 ~> {fh1} -pi2 pi4 a l
+     15 ~> {fn1} -pi2 pi4 a l
      9 ~> {fe2} -pi2 pi4 a h
      // Moved here for PDF203 use case of E58 that appears to have been renumbered.
      10 ~< -pic5 gen int h
