@@ -98,7 +98,7 @@ module mb014(
       input  mb1_hold_in_h                     /* <ad1> */,
       input  mb2_hold_in_h                     /* <aa1> */,
       input  mb3_hold_in_h                     /* <ac1> */,
-      input  mb_12_h                           /* <fc2><fd2> */,
+      output mb_12_h                           /* <fd2> */,
       output mb_12to17_par_odd_h               /* <ds2> */,
       output mb_13_h                           /* <dr2> */,
       output mb_14_h                           /* <dp2> */,

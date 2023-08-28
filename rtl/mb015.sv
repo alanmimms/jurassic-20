@@ -98,7 +98,7 @@ module mb015(
       input  mb1_hold_in_h                     /* <ad1> */,
       input  mb2_hold_in_h                     /* <aa1> */,
       input  mb3_hold_in_h                     /* <ac1> */,
-      input  mb_06_h                           /* <fc2><fd2> */,
+      output mb_06_h                           /* <fd2> */,
       output mb_06to11_par_odd_h               /* <ds2> */,
       output mb_07_h                           /* <dr2> */,
       output mb_08_h                           /* <dp2> */,

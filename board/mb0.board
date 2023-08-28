@@ -3,7 +3,7 @@ Page: MB01, PDF74
 
 e61: 10174 2x4 mixer
      3 ~< {fc1} ar [n+00] a h
-     5 ~< {fc2} mb [n+00] h
+     5 ~< {fd2} mb [n+00] h
      4 ~< {em2} mem data in [n+00] h
      6 ~< ch reg [n+00] h
      13 ~< {fd1} ar [n+01] a h

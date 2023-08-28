@@ -98,7 +98,7 @@ module mb016(
       input  mb1_hold_in_h                     /* <ad1> */,
       input  mb2_hold_in_h                     /* <aa1> */,
       input  mb3_hold_in_h                     /* <ac1> */,
-      input  mb_00_h                           /* <fc2><fd2> */,
+      output mb_00_h                           /* <fd2> */,
       output mb_00to05_par_odd_h               /* <ds2> */,
       output mb_01_h                           /* <dr2> */,
       output mb_02_h                           /* <dp2> */,
