@@ -27,6 +27,9 @@ e83: 10117 dual 2-3 or-and
      2 ~> {dt2} pt access h
      12 ~< {fj2} mcl2 vma write l
      13 ~< {fm2} -csh6 page refill error l
+     10 ~< {fm2} -csh6 page refill error l
+     11 ~< pag4 pf code 2x l
+     9 ~< %NC%
      14 ~> {fn1} pf hold 05 in h
      15 ~> %NC%
 
@@ -1260,7 +1263,7 @@ e23: 10113 quad xor/xnor
      14 ~> pag5-e23-14
      13 ~< pag4-e23-14
      12 ~< pag4-e13-15
-     14 ~> {bk2} pag mb 00-17 par h
+     15 ~> {bk2} pag mb 00-17 par h
 
 e88: 10101 quad or/nor
      4 ~< pag3 pt adr 18 h
