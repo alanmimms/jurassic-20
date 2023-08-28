@@ -456,7 +456,7 @@ ${util.inspect(t, {depth:99})}`);
     break;
 
   case 'NoConnect':
-    result = '0';
+    result = '%NC%';
     break;
 
   case 'Value':
@@ -661,7 +661,7 @@ function genChipPins(bp, slot, chip) {
       let value = pin.net;
 
       if (value === '0') value = `'0`;
-      else if (value === '%NC%') value = ``;
+      else if (value === '%NC%') value = pin.dir == 'I' ? `'0` : ``;
       else if (value === '1') value = `'1`;
 
       return `.${verilogify(pinName)}(${value})`;
