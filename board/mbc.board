@@ -119,9 +119,11 @@ e39: 10210 or buffer
      9 ~< %NC%
      10 ~< clk mbc delayed h
      11 ~< %NC%
+     // This was a wire-OR of three output pins 12,13,14.
+     // This is not necessary and makes Verilog unhappy.
      12 ~> mbc1 clk d h
-     13 ~> mbc1 clk d h
-     14 ~> mbc1 clk d h
+     13 ~> %NC%
+     14 ~> %NC%
 
 dl1: delay-line (PCB wired)
      1 ~< {cr2} clk1 mbc h
