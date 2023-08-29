@@ -112,7 +112,7 @@ function bindSlots(bp, cramDefs) {
     .filter(slot => slot.board && slot.board.id != 'ignore')
     .forEach(slot => {
       const slotNumber = slot.n.padStart(2, '0');
-      const slotName = `${bp.name}.${slotNumber}`;
+      const slotName = slotNumber;
       const id = slot.board.id;
       const board = bp.boards[id];
       const macros = slot.board.macros || [];
@@ -167,7 +167,7 @@ function bindSlots(bp, cramDefs) {
 
 	if (!gNets.every(e => e == gNets[0])) {
 	  console.error(`
-ERROR: Not all nets on ${slotName}.${id}.${bpp} are the same net:
+ERROR: Not all nets on ${id}.${bpp} are the same net:
   ${gNets.join('\n  ')}
 `);
 	}
