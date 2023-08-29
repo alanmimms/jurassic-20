@@ -482,11 +482,11 @@ e27: 10101 4xor/nor
       6 ~> {cf1} adx [n+00] a h
 
 e33:  10107 3x2 xor/xnor
-      4 ~< {cv2} ad ex [n-02] h
-      5 ~< {cr1} ad ex [n-01] h
+      4 ~< {cv2} [n/6+1,ad ex -02 h,ad 04 h,ad 10 h,ad 16 h,ad 22 h,ad 28 h]
+      5 ~< {cr1} [n/6+1,ad ex -01 h,ad 05 h,ad 11 h,ad 17 h,ad 23 h,ad 29 h]
       2 ~> %NC%
       3 ~> edp-e33-3
-      9 ~< {cr1} ad ex [n-01] h
+      9 ~< {cr1} [n/6+1,ad ex -01 h,ad 05 h,ad 11 h,ad 17 h,ad 23 h,ad 29 h]
       7 ~< {ep2} ad [n+00] h
       11 ~> %NC%
       10 ~> edp-e33-10
@@ -541,8 +541,8 @@ e1:   10181 alu
       14 ~< {ad2} cram ad sel 1 [n+00] h
       23 ~< {an1} cram ad boole [n+00] h
       5 ~> ad cry [n-02] h
-      6 ~> {cv2} ad ex [n-02] h
-      7 ~> {cr1} ad ex [n-01] h
+      6 ~> {cv2} [n/6+1,ad ex -02 h,ad 04 h,ad 10 h,ad 16 h,ad 22 h,ad 28 h]
+      7 ~> {cr1} [n/6+1,ad ex -01 h,ad 05 h,ad 11 h,ad 17 h,ad 23 h,ad 29 h]
       3 ~> {ep2} ad [n+00] h
       2 ~> {dl1} ad [n+01] h
       4 ~> {am1} ad cg [n+00] h
