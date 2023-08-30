@@ -623,11 +623,12 @@ ${allChips}
 
 // Emit the wiring between chips within a slot.
 function genSlotNets(bp, slot, modName) {
-  const wires = {};
+  const wires = {};		// Indexed by verilogified signal name
 
   Object.values(slot.chips)
     .forEach(chip => {
 
+      // Gather in `wires[vNet]` a list of attached pins.
       Object.values(chip.pins)
       // Filter out constant value nets.
         .filter(pin => pin.net !== '0' && pin.net !== '1' && pin.net !== '%NC%')
@@ -638,17 +639,42 @@ function genSlotNets(bp, slot, modName) {
 		.some(bpp => bpp.vNet === pin.net);
 	  return v;
 	})
-	.forEach(pin => wires[pin.net] = pin);
+	.filter(pin => pin.net != '1' && pin.net != '0')
+	.forEach(pin => wires[pin.net] = (wires[pin.net] || []).concat(pin));
     });
 
+  // Walk through the nets in this slot and find multiple drivers of, e.g., `a signal h`.
+  // Change drivers to drive new signals `a signal h$1`, `a signal h$2`, etc.
+  // (We use the index in `wires[]` as the uniquifier integer for the signal name.)
+  // OR these together producing `a signal h`.
+  // Inputs continue to use `a signal h`, which is now the output of the OR.
+
+  const bitDecls = Object.keys(wires)
+	.sort()
+	.map(w => {
+	  const isWireOR = wires[w].filter(v => v.dir === 'D').length > 1;
+
+	  // Generate the list of new signal names, while replacing
+	  // driving pin target wire names with the new ones.
+	  const values = wires[w].map((pin, pinX) => {
+	    const newName = w + '$' + (pinX+1);
+	    if (pin.dir === 'D' && isWireOR) wires[w][pinX].net = newName;
+	    return newName;
+	  });
+
+	  if (isWireOR) {
+	    return `\
+bit ${values.join(', ')};
+  bit ${w} = ${values.join(' | ')};`
+	  } else {
+	    return `bit ${w};`
+	  }
+	})
+	.join('\n  ');
+
   return `\
-  // Wires in ${modName} instance
-  ${Object.keys(wires)
-    .filter(w => w !== '1' && w !== '0')
-    .sort()
-    .map(w => `bit ${w};`)
-    .join('\n  ')
-  }
+  // Wires and wire-ORs in ${modName} instance
+  ${bitDecls}
 `;
 }
 
@@ -661,7 +687,7 @@ function genChipPins(bp, slot, chip) {
       let value = pin.net;
 
       if (value === '0') value = `'0`;
-      else if (value === '%NC%') value = pin.dir == 'I' ? `'0` : ``;
+      else if (value === '%NC%') value = pin.dir === 'I' ? `'0` : ``;
       else if (value === '1') value = `'1`;
 
       return `.${verilogify(pinName)}(${value})`;
