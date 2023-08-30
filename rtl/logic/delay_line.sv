@@ -1,3 +1,3 @@
 module delay_line(input bit in, output bit out);
-  assign out = in;
+  always_comb out = in;
 endmodule // delay_line

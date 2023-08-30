@@ -32,29 +32,29 @@ module mc10181(input bit s8,s4,s2,s1, boole, cin,
   assign G = ~(~({4{s1}} | B | A) | ~({4{s4}} | A  | ~B));
   assign P = ~(~({4{s2}} | ~B   ) | ~({4{s8}} | B) | ~A);
 
-  assign {f8,f4,f2,f1} = ~(G ^ P ^
-			   {~(boole | G[2]) |
-			    ~(boole | P[2] | G[1]) |
-			    ~(boole | P[2] | P[1] | G[0]) |
-			    ~(boole | P[2] | P[1] | P[0] | cin),
+  always_comb {f8,f4,f2,f1} = ~(G ^ P ^
+			       {~(boole | G[2]) |
+				~(boole | P[2] | G[1]) |
+				~(boole | P[2] | P[1] | G[0]) |
+				~(boole | P[2] | P[1] | P[0] | cin),
 
-			    ~(boole | G[1]) |
-			    ~(boole | P[1] | G[0]) |
-			    ~(boole | P[1] | P[0] | cin),
+				~(boole | G[1]) |
+				~(boole | P[1] | G[0]) |
+				~(boole | P[1] | P[0] | cin),
 
-			    ~(boole | G[0]) |
-			    ~(boole | P[0] | cin),
+				~(boole | G[0]) |
+				~(boole | P[0] | cin),
 
-			    ~(boole | cin)});
+				~(boole | cin)});
 
   assign notGG = ~G[3]  |
                  ~(P[3] | G[2]) |
                  ~(P[3] | P[2]  | G[1]) |
                  ~(P[3] | P[2]  | P[1]  | G[0]);
 
-  assign cg = ~notGG;
-  assign cp = ~|P;
-  assign cout = ~(notGG | ~(cp | cin));
+  always_comb cg = ~notGG;
+  always_comb cp = ~|P;
+  always_comb cout = ~(notGG | ~(cp | cin));
 endmodule // mc10181
 
 

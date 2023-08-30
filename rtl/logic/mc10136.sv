@@ -10,7 +10,7 @@ module mc10136(input bit  d8, d4, d2, d1, nCryIn,
   // nCryIn overrides clk when in INC or DEC mode. This signal is the
   // real clock we have to pay attention to as a result.
   bit carryClk;
-  assign carryClk = incOrDec ? nCryIn : clk;
+  always_comb carryClk = incOrDec ? nCryIn : clk;
 
   always_comb begin
     unique case (sel[1:0])

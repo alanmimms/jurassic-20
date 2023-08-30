@@ -2,8 +2,8 @@
 module mc10131(input bit sa, da, cea, ra, clk, sb, db, ceb, rb,
 	       output bit qa, nqa, qb, nqb);
 
-   assign nqa = !qa;
-   assign nqb = !qb;
+   always_comb nqa = !qa;
+   always_comb nqb = !qb;
    
    always_ff @(posedge clk | cea, posedge ra, posedge sa)
      if (ra) qa <= '0;
