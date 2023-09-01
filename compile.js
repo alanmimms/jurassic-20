@@ -533,14 +533,27 @@ function compile(simOptions) {
 
 //  checkForMalformedSymbolNames(bp);
   
-  if (options.createBoilerplateModules) genBoilerplateModules(bp);
   if (options.genSV) genSV(bp);
 
   return bp;
 }
 
 
-function genBoilerplateModules(bp) {
+function vDirForNets(nets) {
+  return nets.some(net => net.dir === 'D') ? 'output' : 'input';
+}
+
+
+function modNameForSlot(slot) {
+  const id = slot.module.id;
+  const slotNumber = slot.n.padStart(2, '0');
+  return id + slotNumber;
+}
+
+
+function genSV(bp) {
+  genBackplaneSV(bp);
+
   // Accumulator indexed by vNet name of list of backplane pins
   // attached to the signal.
 
@@ -573,15 +586,18 @@ function genBoilerplateModules(bp) {
 	.join(',\n  ');
 
       const modV = bp.boards[slot.module.id].verilog;
+      const nets = genSlotNets(bp, slot, modName);
+      const chips = genSlotChips(bp, slot, modName);
 
-      fs.writeFileSync(`./rtl/${modName}.sv`, `\
+      fs.writeFileSync(`./rtl/gen/${modName}.sv`, `\
 module ${modName}(
   ${modParams}
   ${(modV || '').trimEnd()}
 );
 
-\`include "${modName}nets.svh"
+  ${nets}
 
+  ${chips}
 endmodule	// ${modName}
 `);
     });
@@ -589,31 +605,6 @@ endmodule	// ${modName}
   function vSort(a, b) {
     return a[0].vNet > b[0].vNet ? +1 : a[0].vNet < b[0].vNet ? -1 : 0;
   }
-}
-
-
-function vDirForNets(nets) {
-  return nets.some(net => net.dir === 'D') ? 'output' : 'input';
-}
-
-
-function modNameForSlot(slot) {
-  const id = slot.module.id;
-  const slotNumber = slot.n.padStart(2, '0');
-  return id + slotNumber;
-}
-
-
-function genSV(bp) {
-  genBackplaneSV(bp);
-  bp.slots
-    .filter(s => s.module.id !== 'ignore')
-    .forEach(slot => {
-      const modName = modNameForSlot(slot);
-      const nets = genSlotNets(bp, slot, modName);
-      const chips = genSlotChips(bp, slot, modName);
-      fs.writeFileSync(`./rtl/gen/${modName}nets.svh`, nets + chips);
-    });
 }
 
 

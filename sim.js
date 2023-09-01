@@ -21,7 +21,6 @@ CMDR
   .option('-V, --dump-verilog', `Dump Verilogified symbols`)
   .option('-w, --dump-wires', `Dump list of wires on each board`)
   .option('-T, --run-tests', `Run built-in unit tests`)
-  .option('-Z, --create-boilerplate-modules', `Create an empty SystemVerilog module source file for each board in ./rtl/xxx.sv`)
   .argument('[src]', `Source file to start parsing`, `kl10pv.backplane`)
   .action((src, options) => {
     options.src = src;
