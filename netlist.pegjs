@@ -45,54 +45,66 @@
 }
 
 
-compileable = blankLines? b:(stubBoard / backplane+ / board) { return b }
+compileable = blankLines? c:(stubBoard / backplane+ / board) { return c }
 
 backplane = 'Backplane' _ ':' _
 	macros:( '{' _ m:macroDef* '}' _ {return m} )?
 	name:simpleID _ EOL
 	slots:slotDef+
-                { return AST('Backplane', {name, macros, slots, boards: {}}) }
+                { return AST('Backplane', {name, macros, slots}); }
 
 slotDef = blankLines? 'Slot' _ n:simpleID _ ':' _
-	board:slotContent blankLines slotWires:wireDef* blankLines?
-                { return AST('Slot', {n, board, slotWires, bpPins: {}}) }
+	module:module blankLines slotWires:wireDef* blankLines?
+                { return AST('Slot', {n, module, slotWires, bpPins: {}}); }
 
-slotContent = macros:( '{' _ m:macroDef* '}' {return m} )? _
+module = macros:( '{' _ m:macroDef* '}' {return m} )? _
 	id:simpleID _ comments:$( !EOL . )*
-                { return AST('ModuleID', {macros, id, comments}) }
+                { return AST('ModuleID', {macros, id, comments}); }
 
 macroDef = id:simpleID _ '=' _ value:$(number / simpleID) _
-                { return AST('MacroDef', {id, value}) }
+                { return AST('MacroDef', {id, value}); }
 
 wireDef = _ slotPin:bpPinID _ farPin:bpPinID '[' slot:number ']' _ name:id _ blankLines
-	        { return AST('Wire', {slotPin, farPin, slot, name}) }
+	        { return AST('Wire', {slotPin, farPin, slot, name}); }
 
 stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
-	    	{ return AST('Stub', {pages: p}) }
+	    	{ return AST('Stub', {pages: p}); }
 
-board = pages:(page / warning)+
-		{ const b = AST('Board', {pages, nets, wires, bpPins});
+board = verilog:verilogDef? pages:(page / warning)+
+		{ const m = AST('Board', {pages, nets, wires, bpPins,
+					  verilog: verilog && verilog.v[0] || undefined});
+		  if (verilog) console.error('Verilog:', m.verilog);
 		  // Cleanly reinitialize accumulators for next board.
 		  wires = {};
 		  nets = {};
 		  bpPins = {};
-		  return b; }
+		  return m; }
 
 page = p:pageDef n:chipDef*
-		{ p.chips = n; return p }
+		{ p.chips = n; return  p; }
 
 pageDef = 'Page' _ ':' _ name:$( [^\r\n, ]+ ) _ ',' _ pdfRef:$( ( !EOL . )+ )  blankLines
 		{ page = {name, pdfRef};
 		  return AST('Page', {name, pdfRef, chips: []}); }
 
-warning = _ '%warning' _ s:$( !EOL . )* blankLines
+warning = '%warning' _ s:$( !EOL . )* blankLines
 		{ console.error(`= = = = WARNING: ${s}`);
 		  return AST('Page', {name: '%warning', pdfRef: 'none', chips: [], s}); }
 
-chipDef = h:chipHead p:pinDef+
-		{ h.pins = p; return h }
+verilogDef = '%verilog' _ EOL
+	     v:verilogLines+
+	     '%endverilog' _ EOL blankLines
+		{ return AST('Verilog', {v}); }
 
-chipHead = !'Page' name:$idChunk ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
+verilogLines = (!'%endverilog' (!EOL .)* EOL)+
+		{ return text(); }
+
+chipDef = verilogDef
+/	h:chipHead p:pinDef+
+		{ h.pins = p; return h; }
+
+chipHead = !'Page' !'%verilog' !'%warning'
+	name:$idChunk ':' _ type:$([^ \t]+) _ desc:$( (!EOL . )+ ) blankLines
 		{ chip = {name, type, desc};
 		  return AST('Chip', chip); }
 
@@ -112,53 +124,53 @@ bpPinID = $( [abcdef] [abcdefhjklmnprstuv] [12] )
 // `head:expr` within them. Otherwise, the `idChunk` instances in the
 // `selectorList` are symbols with no expansion.
 macroRef = '[' head:expr list:( ',' id:idList {return id} )* ']'
-		{ return AST(list.length > 0 ? 'Selector' : 'Macro', {head, list}) }
+		{ return AST(list.length > 0 ? 'Selector' : 'Macro', {head, list}); }
 
 idList = list:( macroRef / idChunk )*
-       		{ return AST('IDList', {list}) }
+       		{ return AST('IDList', {list}); }
 
-NC = '%NC%'	{ return AST('IDChunk', {name: '%NC%'}) }
+NC = '%NC%'	{ return AST('IDChunk', {name: '%NC%'}); }
 
 idChunk = NC
 /       name:$[-/#%.+& <>()a-z0-9=]+
-		{ return AST('IDChunk', {name}) }
+		{ return AST('IDChunk', {name}); }
 
 
 // like idChunk but allows ',' in the identifier in non-macro context
 id = NC
 /       name:[-/#%,.+*& <>()a-z0-9=^]+
-		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}) }
+		{ return AST('IDChunk', {name: text().replace(/\\[\n\r]\s*/g, '')}); }
 
 expr = sum
 
 sum = l:product _ op:$[-+] _ r:sum
-		{ return AST(op, {l, r}) }
+		{ return AST(op, {l, r}); }
 /	product
 
 product = l:primary _ op:$[*/] _ r:product
-		{ return AST(op, {l, r}) }
+		{ return AST(op, {l, r}); }
 /	primary
 
 primary = value:$number
-		{ return AST('Value', {value}) }
+		{ return AST('Value', {value}); }
 /	'(' _ val:sum _ ')'
-		{ return val }
+		{ return val; }
 /	macroName
 
 number = $[0-9]+
 
 macroName = name:simpleID
-		{ return AST('IDChunk', {name}) }
+		{ return AST('IDChunk', {name}); }
 
 simpleID = $[a-zA-Z0-9]+
 
-net = '%NC%'	{ return AST('NoConnect', {text: text(), value: text()}) }
-/	[01]	{ return AST('Value', {value: parseInt(text(), 2), text: text()}) }
+net = '%NC%'	{ return AST('NoConnect', {text: text(), value: text()}); }
+/	[01]	{ return AST('Value', {value: parseInt(text(), 2), text: text()}); }
 /	list:( macroRef / idWith_ )+
-		{ return AST('IDList', {list, text: text()}) }
+		{ return AST('IDList', {list, text: text()}); }
 
 idWith_ = ( '\\' EOL _ )* id:id
-		{ return id }
+		{ return id; }
 
 EOL "end of line" = '\r\n' / '\r' / '\n'
 

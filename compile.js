@@ -42,14 +42,16 @@ function parseBackplanes(parser) {
 
   if (options.dumpAst) fs.writeFileSync(`${bp.name}.before.evaluation`, dumpThing(bp));
 
+  bp.boards = {};
+
   // For each slot for which we haven't already parsed the board netlist,
-  // parse it and save it in `bp.boards` indexed by board ID (e.g., 'edp').
+  // parse it and save it in `bp.boards` indexed by module ID (e.g., 'edp').
   // While we're at it, accumulate the board's list of net names and what
   // is connected, remembering direction and PDF reference for each such.
   bp.slots
-    .filter(slot => slot.board && slot.board.id != 'ignore' && !bp.boards[slot.board.id])
+    .filter(slot => slot.module && slot.module.id != 'ignore' && !bp.boards[slot.module.id])
     .forEach(slot => {
-      const id = slot.board.id;
+      const id = slot.module.id;
       const boardPath = `board/${id}.board`;
 
       console.log(`[parse ${boardPath}]`);
@@ -109,44 +111,60 @@ function bindSlots(bp, cramDefs) {
   // For each slot, expand the board's macros for the slot (and
   // backplane, and CPU type) specifics.
   bp.slots
-    .filter(slot => slot.board && slot.board.id != 'ignore')
+    .filter(slot => slot.module && slot.module.id != 'ignore')
     .forEach(slot => {
       const slotNumber = slot.n.padStart(2, '0');
       const slotName = slotNumber;
-      const id = slot.board.id;
+      const id = slot.module.id;
       const board = bp.boards[id];
-      const macros = slot.board.macros || [];
+      const macros = slot.module.macros || [];
       const macroDesc = macros.map(macro => `${macro.id}=${macro.value}`).join (' ');
 
-      console.log(`  Slot ${slotName}: ${id.padEnd(4)} ${macroDesc.padEnd(12)} ${slot.board.comments}`);
+      console.log(`  Slot ${slotName}: ${id.padEnd(4)} ${macroDesc.padEnd(12)} ${slot.module.comments}`);
 
-      // Each board macro env starts with copy of BP macro vars as
-      // base, then we add this board's values, possibly overriding
+      // Each module macro env starts with copy of BP macro vars as
+      // base, then we add this module's values, possibly overriding
       // exiting ones.
       const macroEnv = {...bpMacroEnv};
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
       // Create a slot-unique copy of each board's chips and interconnecting nets.
       slot.chips = {};
+      slot.verilogRefNum = 0;
 
       board.pages
 	.flatMap(page => page.chips)
 	.forEach(chip => {
 
-	  slot.chips[chip.name] = {
-	    type: chip.type,
-	    desc: chip.desc,
-	    refDes: chip.name,
+	  if (chip.nodeType === 'Verilog') {
+	    slot.verilogRefNum = slot.verilogRefNum + 1;
+	    chip.name = `verilog${slot.verilogRefNum}`;
 
-	    pins: chip.pins.reduce((cur, pin) => {
+	    slot.chips[chip.name] = {
+	      type: 'verilog',
+	      desc: '',
+	      refDes: chip.name,
+	      verilog: chip.v,
+	      pins: [],
+	    };
+	  } else {
 
-	      cur[logic.pinToName(chip.type, pin.pin, pin.dir)] =  {
-		dir: astDirToDir(pin.dir),
-		net: verilogify(canonicalize(evalExpr(pin.net, macroEnv, true))),
-		name: chip.name,
-	      };
-	      return cur;
-	    }, {}),
+	    slot.chips[chip.name] = {
+	      type: chip.type,
+	      desc: chip.desc,
+	      refDes: chip.name,
+
+	      pins: chip.pins.reduce((cur, pin) => {
+
+		cur[logic.pinToName(chip.type, pin.pin, pin.dir)] =  {
+		  dir: astDirToDir(pin.dir),
+		  net: verilogify(canonicalize(evalExpr(pin.net, macroEnv, true))),
+		  name: chip.name,
+		};
+
+		return cur;
+	      }, {}),
+	    }
 	  };
 	});
       
@@ -172,8 +190,8 @@ ERROR: Not all nets on ${id}.${bpp} are the same net:
 `);
 	}
 
-	// For pins driven by CRAM boards, define global net name from
-	// CRAM definitions, in preference to the definition on the board.
+	// For pins driven by CRAM modules, define global net name from
+	// CRAM definitions, in preference to the definition on the module.
 	// E.g., `crm.be2[cpu.44]`
 	const cramPinName = `${id}.${bpp}[${id}.${slotNumber}]`;
 	const cd = cramDefs.bp[cramPinName];
@@ -527,7 +545,7 @@ function genBoilerplateModules(bp) {
   // attached to the signal.
 
   bp.slots
-    .filter(s => s.board.id !== 'ignore')
+    .filter(s => s.module.id !== 'ignore')
     .forEach(slot => {
       const modName = modNameForSlot(slot);
       const modPins = {};
@@ -554,9 +572,12 @@ function genBoilerplateModules(bp) {
     ${v[0].dir.padEnd(6)} ${v[0].vNet.padEnd(30)}    /* <${v.map(p => p.bpPin).join('><')}> */`)
 	.join(',\n  ');
 
+      const modV = bp.boards[slot.module.id].verilog;
+
       fs.writeFileSync(`./rtl/${modName}.sv`, `\
 module ${modName}(
   ${modParams}
+  ${(modV || '').trimEnd()}
 );
 
 \`include "${modName}nets.svh"
@@ -577,7 +598,7 @@ function vDirForNets(nets) {
 
 
 function modNameForSlot(slot) {
-  const id = slot.board.id;
+  const id = slot.module.id;
   const slotNumber = slot.n.padStart(2, '0');
   return id + slotNumber;
 }
@@ -586,7 +607,7 @@ function modNameForSlot(slot) {
 function genSV(bp) {
   genBackplaneSV(bp);
   bp.slots
-    .filter(s => s.board.id !== 'ignore')
+    .filter(s => s.module.id !== 'ignore')
     .forEach(slot => {
       const modName = modNameForSlot(slot);
       const nets = genSlotNets(bp, slot, modName);
@@ -604,15 +625,26 @@ ${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${
 }
 
 
-// Emit the module instances to represent the chips on the board in a slot.
+// Emit the board instances to represent the chips on the board in a slot.
 function genSlotChips(bp, slot, modName) {
 
   const allChips = Object.values(slot.chips)
 	.sort((a, b) => a.name > b.name ? +1 : a.name < b.name ? -1 : 0)
-	.map(chip => `\
+	.map(chip => {
+
+	  if (chip.type === 'verilog') {
+	    return `
+// Inline verilog
+${chip.verilog}\
+// End inline verilog
+`;
+	  } else {
+	    return `\
     ${chipTypeToModName(chip)} ${chip.refDes}(
       ${genChipPins(bp, slot, chip)});
-`).join('\n');
+`;
+	  }
+	}).join('\n');
 
   return `
 // Chips in ${modName} instance
@@ -629,7 +661,7 @@ function genSlotNets(bp, slot, modName) {
     .forEach(chip => {
 
       // Gather in `wires[vNet]` a list of attached pins.
-      Object.values(chip.pins)
+      Object.values(chip.pins || {})
       // Filter out constant value nets.
         .filter(pin => pin.net !== '0' && pin.net !== '1' && pin.net !== '%NC%')
       // Filter out backplane signals by vNet name since they will
