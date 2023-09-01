@@ -1,3 +1,8 @@
+%verilog
+,
+  output bit EBUSdrive
+%endverilog
+
 Page: CHC1, PDF222
 // M8533 TBD
 

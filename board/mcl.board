@@ -1,3 +1,8 @@
+%verilog
+,
+  output bit EBUSdrive
+%endverilog
+
 Page: MCL1, PDF371
 // M8544 TBD
 

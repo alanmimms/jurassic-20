@@ -1,3 +1,8 @@
+%verilog
+,
+  output bit EBUSdrive
+%endverilog
+
 // M8543
 
 // MQ CONTROL

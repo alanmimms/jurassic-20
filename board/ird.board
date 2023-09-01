@@ -1,3 +1,8 @@
+%verilog
+,
+  output bit EBUSdrive
+%endverilog
+
 Page: IR1, PDF128
 
 e52: 10173 4x2 mix latch

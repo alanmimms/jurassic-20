@@ -1,3 +1,8 @@
+%verilog
+,
+  output bit EBUSdrive
+%endverilog
+
 Page: SCD1, PDF138
 
 e53: 10101 quad or/nor

@@ -1,3 +1,8 @@
+%verilog
+,
+  output bit EBUSdrive
+%endverilog
+
 Page: MBX1, PDF178
 // M8529YA TBD
 
