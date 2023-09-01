@@ -73,7 +73,6 @@ stubBoard = 'STUB IMPLEMENTATION' EOL p:pageDef*
 board = verilog:verilogDef? pages:(page / warning)+
 		{ const m = AST('Board', {pages, nets, wires, bpPins,
 					  verilog: verilog && verilog.v[0] || undefined});
-		  if (verilog) console.error('Verilog:', m.verilog);
 		  // Cleanly reinitialize accumulators for next board.
 		  wires = {};
 		  nets = {};
