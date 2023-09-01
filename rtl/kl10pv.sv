@@ -4,10 +4,12 @@ module kl10pv(input clk60, crobar);
 
 `include "kl-backplane.svh"
 
+  bit APR_EBUSdrive;
+
   assign clk = clk60;
   assign crobar_e_h = crobar;
 
-  apr34 apr_34(.*);
+  apr34 apr_34(.EBUSdrive(APR_EBUSdrive), .*);
   cac17 cac_17(.*);
   cac19 cac_19(.*);
   cac24 cac_24(.*);

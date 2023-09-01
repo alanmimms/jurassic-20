@@ -22,7 +22,7 @@ SLOTNAMES = \
 
 SVFILES = \
 	$(foreach M,$(MODS),$(LOGICDIR)/$(M).sv) \
-	$(foreach M,$(SLOTNAMES),$(M).sv) \
+	$(foreach M,$(SLOTNAMES),$(GENDIR)/$(M).sv) \
 
 SVHFILES = $(TOP).sv $(DTEINTF)
 CXXFILES = verilator-main.cc
