@@ -1,3 +1,8 @@
+%verilog
+,
+  output bit EBUSdrive
+%endverilog
+
 Page: APR1, PDF382
 // M8545 TBD
 
@@ -914,6 +919,10 @@ e22: 10164 8 mixer
      7 ~< apr6 ds 06 h
      2 ~< apr6 read 110-117 l
      15 ~> {ds1} ebus d11 e h
+
+%verilog
+  always_comb EBUSdrive = !apr6_read_110to117_l | !apr6_ds_05_h;
+%endverilog
 
 e21: 10164 8 mixer
      6 ~< apr2 pwr fail in h
