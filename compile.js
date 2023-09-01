@@ -183,7 +183,7 @@ function bindSlots(bp, cramDefs) {
 	      .sort().
 	      join('');
 
-	if (!gNets.every(e => e == gNets[0])) {
+	if (!gNets.every(e => e === gNets[0])) {
 	  console.error(`
 ERROR: Not all nets on ${id}.${bpp} are the same net:
   ${gNets.join('\n  ')}
@@ -280,8 +280,8 @@ function checkNetConnectivity(netByName) {
 
   Object.keys(netByName).forEach(netName => {
     if (netName === '%NC%') return;
-    if (netName === '0') return;
-    if (netName === '1') return;
+    if (netName == 0) return;
+    if (netName == 1) return;
 
     const pins = netByName[netName];
 
@@ -374,6 +374,10 @@ function expandMacros(ast, nets, macroEnv, cx = {}) {
       cx.net += cx.pin.net.name;
       break;
 
+    case 'VerilogChunk':
+      cx.net += cx.pin.net.name.slice(1);
+      break;
+
     case 'NoConnect':
       cx.net += '%NC%';
       break;
@@ -432,7 +436,7 @@ function evalExpr(t, macroEnv, macrosAllowed) {
     result = evalExpr(t.head, macroEnv, true);
     const selected = t.list[+result - 1]; // 1-origin indexing
 
-    if (result < 1 || selected == null) {
+    if (result < 1 || selected === null) {
       console.log(`ERROR: Selector produces undefined result=${result} selected=${selected}:
 ${util.inspect(t, {depth:99})}`);
       result = '%NC%';
@@ -456,7 +460,7 @@ ${util.inspect(t, {depth:99})}`);
     const L = evalExpr(t.l, macroEnv, macrosAllowed);
     const R = evalExpr(t.r, macroEnv, macrosAllowed);
     const resultStr = Math.trunc(eval(`${parseInt(L, 10)} ${t.nodeType} ${parseInt(R, 10)}`));
-    const digits = (t.nodeType == '-' || t.nodeType == '+') ? Math.max(L.length, R.length) : 0;
+    const digits = (t.nodeType === '-' || t.nodeType === '+') ? Math.max(L.length, R.length) : 0;
     result = padValueToDigits(resultStr, digits)
     break;
 
@@ -467,6 +471,10 @@ ${util.inspect(t, {depth:99})}`);
   case 'IDChunk':
     result = macrosAllowed ? macroEnv[t.name] : t.name;
     if (result === undefined) result = t.name;
+    break;
+
+  case 'VerilogChunk':
+    result = t.name;
     break;
 
   case 'Value':
@@ -590,6 +598,8 @@ function genSV(bp) {
       const chips = genSlotChips(bp, slot, modName);
 
       fs.writeFileSync(`./rtl/gen/${modName}.sv`, `\
+\`include "kl10pv.svh"
+
 module ${modName}(
   ${modParams}
   ${(modV || '').trimEnd()}
@@ -654,7 +664,7 @@ function genSlotNets(bp, slot, modName) {
       // Gather in `wires[vNet]` a list of attached pins.
       Object.values(chip.pins || {})
       // Filter out constant value nets.
-        .filter(pin => pin.net !== '0' && pin.net !== '1' && pin.net !== '%NC%')
+        .filter(pin => pin.net != 0 && pin.net != 1 && pin.net !== '%NC%')
       // Filter out backplane signals by vNet name since they will
       // be declared for module input/output.
         .filter(pin => {
@@ -711,7 +721,7 @@ function genChipPins(bp, slot, chip) {
 
       if (value === '0') value = `'0`;
       else if (value === '%NC%') value = pin.dir === 'I' ? `'0` : ``;
-      else if (value === '1') value = `'1`;
+      else if (value == 1) value = `'1`;
 
       return `.${verilogify(pinName)}(${value})`;
     })
@@ -762,7 +772,7 @@ function readCRAMBackplane(fn) {
 
 
 function astDirToDir(d) {
-  return (d == '~<') ? 'I' : (d == '~>') ? 'D' : `???${d}`;
+  return (d === '~<') ? 'I' : (d === '~>') ? 'D' : `???${d}`;
 }
 
 
@@ -813,11 +823,12 @@ const charSymNames = {
 };
 
 function verilogify(n) {
+  if (n[0] === '`') return n.slice(1);
 
   // First convert -xxxx [lh] to xxxx [hl].
   n = canonicalize(n);
 
-  if (n == '%NC%' || n == '1' || n == '0') return n;
+  if (n === '%NC%' || n == 1 || n == 0) return n;
   n = n.replace(/ /g, '_');
   n = n.replace(/<-/g, 'GETS');
   n = n.replace(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/g, '$1_$2_$3');
@@ -927,12 +938,12 @@ function netNameSort(a, b) {
 function canonicalize(net) {
 
   // Some nets aren't strings, so only do this if they are.
-  if (net.slice && net.slice(0, 1) == '-') {
+  if (net.slice && net.slice(0, 1) === '-') {
     const lastChars = net.slice(-2);
 
-    if (lastChars == ' h') {		// Switch to 'l'
+    if (lastChars === ' h') {		// Switch to 'l'
       return `${net.slice(1, -2)} l`;
-    } else if (lastChars == ' l') {	// Switch to 'h'
+    } else if (lastChars === ' l') {	// Switch to 'h'
       return `${net.slice(1, -2)} h`;
     }
   }
