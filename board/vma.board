@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: VMA1, PDF354
@@ -1105,7 +1105,8 @@ e33: 10164 8 mixer
      9 ~< vma5 diag 05 h
      7 ~< vma5 diag 06 h
      2 ~< vma5 read vma a l
-     15 ~> {bl1} ebus d13 e h
+//     15 ~> {bl1} ebus d13 e h
+     15 ~> `EBUSdriver.data[13]
 
 e38: 10164 8 mixer
      6 ~< vma3 adr brk 15 h
@@ -1120,7 +1121,8 @@ e38: 10164 8 mixer
      9 ~< vma5 diag 05 h
      7 ~< vma5 diag 06 h
      2 ~< vma5 read vma a l
-     15 ~> {bt2} ebus d15 e h
+//     15 ~> {bt2} ebus d15 e h
+     15 ~> `EBUSdriver.data[15]
 
 e9:  10164 8 mixer
      6 ~< vma3 pc 19 h
@@ -1135,7 +1137,8 @@ e9:  10164 8 mixer
      9 ~< vma5 diag 05 h
      7 ~< vma5 diag 06 h
      2 ~< vma5 read vma a l
-     15 ~> {af2} ebus d17 e h
+//     15 ~> {af2} ebus d17 e h
+     15 ~> `EBUSdriver.data[17]
 
 e28: 10164 8 mixer
      6 ~< vma3 adr brk 19 h
@@ -1150,7 +1153,8 @@ e28: 10164 8 mixer
      9 ~< vma5 diag 05 h
      7 ~< vma5 diag 06 h
      2 ~< vma5 read vma a l
-     15 ~> {be2} ebus d19 e h
+//     15 ~> {be2} ebus d19 e h
+     15 ~> `EBUSdriver.data[19]
 
 e35: 10164 8 mixer
      6 ~< vma3 pc 23 h
@@ -1165,7 +1169,8 @@ e35: 10164 8 mixer
      9 ~< vma5 diag 05 h
      7 ~< vma5 diag 06 h
      2 ~< vma5 read vma a l
-     15 ~> {cs1} ebus d21 e h
+//     15 ~> {cs1} ebus d21 e h
+     15 ~> `EBUSdriver.data[21]
 
 e34: 10164 8 mixer
      6 ~< vma3 adr brk 23 h
@@ -1180,7 +1185,8 @@ e34: 10164 8 mixer
      9 ~< vma5 diag 05 h
      7 ~< vma5 diag 06 h
      2 ~< vma5 read vma a l
-     15 ~> {bf2} ebus d23 e h
+//     15 ~> {bf2} ebus d23 e h
+     15 ~> `EBUSdriver.data[23]
 
 e51: 10101 quad or/nor
      4 ~< {cp1} diag 04 b h
@@ -1225,4 +1231,5 @@ e22: 10164 8 mixer
      9 ~< vma5 diag 05 l
      7 ~< vma5 diag 06 l
      2 ~< vma5 read vma a l
-     15 ~> {ed1} ebus d11 e h
+//     15 ~> {ed1} ebus d11 e h
+     15 ~> `EBUSdriver.data[11]
