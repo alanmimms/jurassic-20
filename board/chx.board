@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CHX1, PDF47
@@ -1047,6 +1047,10 @@ e24: 10147 128x1 RAM
 
 Page: CHX4, PDF50
 
+%verilog
+  always_comb EBUSdriver.driving = !diag_read_func_17x_l;
+%endverilog
+
 e50: 10164 8 mixer
      6 ~< -csh 0 any val h
      5 ~< -csh 1 any val h
@@ -1060,7 +1064,8 @@ e50: 10164 8 mixer
      9 ~< chx diag 05 h
      7 ~< chx diag 06 h
      2 ~< {bn1} diag read func 17x l
-     15 ~> {ch2} ebus d[n+00] e h
+//     15 ~> {ch2} ebus d[n+00] e h
+     15 ~> `EBUSdriver.data[n+0]
 
 e30: 10164 8 mixer
      6 ~< csh use in 0 h
@@ -1075,7 +1080,8 @@ e30: 10164 8 mixer
      9 ~< chx diag 05 h
      7 ~< chx diag 06 h
      2 ~< {bn1} diag read func 17x l
-     15 ~> {cf2} ebus d[n+01] e h
+//     15 ~> {cf2} ebus d[n+01] e h
+     15 ~> `EBUSdriver.data[n+1]
 
 e84: 10113 quad 2 xor/xnor
      7 ~< {ed1} csh dir 24 0 h

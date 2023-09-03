@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CCW1, PDF234
@@ -746,6 +746,10 @@ e13: 10104 quad and/nand
      15 ~> ccw wd3 taken h
 
 Page: CCW5, PDF238
+
+%verilog
+  always_comb EBUSdriver.driving = !ch_diag_read_b_l;
+%endverilog
 
 e49: 10164 8 mixer
      6 ~< ccw ram adr 1 h

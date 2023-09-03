@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: APR1, PDF382
@@ -921,7 +921,7 @@ e22: 10164 8 mixer
      15 ~> {ds1} ebus d11 e h
 
 %verilog
-  always_comb EBUSdrive = !apr6_read_110to117_l | !apr6_ds_05_h;
+  always_comb EBUSdriver.driving = !apr6_read_110to117_l | !apr6_ds_05_h;
 %endverilog
 
 e21: 10164 8 mixer

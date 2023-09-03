@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CRM1, PDF392
@@ -111,6 +111,10 @@ d1d2: wire to get logic 1
       1 ~< 1
       2 ~> {de1} crm hi [n+00] h
 
+%verilog
+  always_comb EBUSdriver.driving = !diag_read_func_14x_l;
+%endverilog
+
 e36:  10174 2x4 mix
       6 ~< {dr2} cram [n+60] h
       4 ~< {fp2} cram [n+40] h
@@ -123,8 +127,10 @@ e36:  10174 2x4 mix
       9 ~< {dm2} diag 05 a l
       7 ~< {ds2} diag 06 a l
       14 ~< {ce2} diag read func 14x l
-      2 ~> {dt2} ebus d[m+02] e h
-      15 ~> {dp1} ebus d[m+03] e h
+//      2 ~> {dt2} ebus d[m+02] e h
+      2 ~> `EBUSdriver.data[m+2]
+//      15 ~> {dp1} ebus d[m+03] e h
+      15 ~> `EBUSdriver.data[m+3]
 
 e33: 10101 quad or/nor
      4 ~< {dt2} ebus d[m+02] e h
@@ -153,8 +159,10 @@ e23:  10174 2x4 mix
       9 ~< {af1} diag 05 b l
       7 ~< {aj2} diag 06 b l
       14 ~< {ce2} diag read func 14x l
-      2 ~> {dp2} ebus d[m+04] e h
-      15 ~> {du2} ebus d[m+05] e h
+//      2 ~> {dp2} ebus d[m+04] e h
+      2 ~> `EBUSdriver.data[4]
+//      15 ~> {du2} ebus d[m+05] e h
+      15 ~> `EBUSdriver.data[5]
 
 e1: 10161 decoder
     14 ~< {ad1} diag 04 b l

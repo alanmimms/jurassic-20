@@ -1092,6 +1092,10 @@ e24: 10141 shift register
 
 Page: VMA5, PDF358
 
+%verilog
+  always_comb EBUSdriver.driving = !vma5_read_vma_a_l | !vma5_read_vma_l;
+%endverilog
+
 e33: 10164 8 mixer
      6 ~< vma3 pc 15 h
      5 ~< vma3 pc 14 h
@@ -1233,3 +1237,99 @@ e22: 10164 8 mixer
      2 ~< vma5 read vma a l
 //     15 ~> {ed1} ebus d11 e h
      15 ~> `EBUSdriver.data[11]
+
+e52: 10164 8 mixer
+     14 ~< vma3 pc 27 h
+     13 ~< vma3 pc 26 h
+     12 ~< vma3 pc 25 h
+     11 ~< vma3 pc 24 h
+     3 ~< vma3 held 27 h
+     4 ~< vma3 held 26 h
+     5 ~< vma3 held 25 h
+     6 ~< vma3 held 24 h
+     10 ~< vma5 diag 04 l
+     9 ~< vma5 diag 05 l
+     7 ~< vma5 diag 06 l
+     2 ~< vma5 read vma l
+//     15 ~> {cv2} ebus d25 e h
+     15 ~> `EBUSdriver.data[25]
+
+e50: 10164 8 mixer
+     14 ~< vma3 adr brk 27 h
+     13 ~< vma3 adr brk 26 h
+     12 ~< vma3 adr brk 25 h
+     11 ~< vma3 adr brk 24 h
+     3 ~< vma3 vma 27 a h
+     4 ~< vma3 vma 26 a h
+     5 ~< vma3 vma 25 a h
+     6 ~< vma3 vma 24 a h
+     10 ~< vma5 diag 04 l
+     9 ~< vma5 diag 05 l
+     7 ~< vma5 diag 06 l
+     2 ~< vma5 read vma l
+//     15 ~> {ds1} ebus d27 e h
+     15 ~> `EBUSdriver.data[27]
+
+e61: 10164 8 mixer
+     14 ~< vma3 pc 31 h
+     13 ~< vma3 pc 30 h
+     12 ~< vma3 pc 29 h
+     11 ~< vma3 pc 27 h
+     3 ~< vma3 held 31 h
+     4 ~< vma3 held 30 h
+     5 ~< vma3 held 29 h
+     6 ~< vma3 held 28 h
+     10 ~< vma5 diag 04 l
+     9 ~< vma5 diag 05 l
+     7 ~< vma5 diag 06 l
+     2 ~< vma5 read vma l
+//     15 ~> {dp2} ebus d29 e h
+     15 ~> `EBUSdriver.data[29]
+
+e71: 10164 8 mixer
+     14 ~< vma3 adr brk 31 h
+     13 ~< vma3 adr brk 30 h
+     12 ~< vma3 adr brk 29 h
+     11 ~< vma3 adr brk 27 h
+     3 ~< vma3 vma 31 a h
+     4 ~< vma3 vma 30 a h
+     5 ~< vma3 vma 29 a h
+     6 ~< vma3 vma 28 a h
+     10 ~< vma5 diag 04 l
+     9 ~< vma5 diag 05 l
+     7 ~< vma5 diag 06 l
+     2 ~< vma5 read vma l
+//     15 ~> {ek1} ebus d31 e h
+     15 ~> `EBUSdriver.data[31]
+
+e76: 10164 8 mixer
+     14 ~< vma3 pc 35 h
+     13 ~< vma3 pc 34 h
+     12 ~< vma3 pc 33 h
+     11 ~< vma3 pc 32 h
+     3 ~< vma3 held 35 h
+     4 ~< vma3 held 34 h
+     5 ~< vma3 held 33 h
+     6 ~< vma3 held 32 h
+     10 ~< vma5 diag 04 l
+     9 ~< vma5 diag 05 l
+     7 ~< vma5 diag 06 l
+     2 ~< vma5 read vma l
+//     15 ~> {en1} ebus d33 e h
+     15 ~> `EBUSdriver.data[33]
+
+e60: 10164 8 mixer
+     14 ~< vma3 adr brk 35 h
+     13 ~< vma3 adr brk 34 h
+     12 ~< vma3 adr brk 33 h
+     11 ~< vma3 adr brk 32 h
+     3 ~< vma3 vma 35 a h
+     4 ~< vma3 vma 34 a h
+     5 ~< vma3 vma 33 a h
+     6 ~< vma3 vma 32 a h
+     10 ~< vma5 diag 04 l
+     9 ~< vma5 diag 05 l
+     7 ~< vma5 diag 06 l
+     2 ~< vma5 read vma l
+//     15 ~> {dr1} ebus d35 e h
+     15 ~> `EBUSdriver.data[35]

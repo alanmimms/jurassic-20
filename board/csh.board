@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CSH1, PDF24
@@ -1174,6 +1174,10 @@ e13: 10121 4-wide or-and
 
 Page: CSH7, PDF30
 
+%verilog
+  always_comb EBUSdriver.driving = !csh7_e56_6;
+%endverilog
+
 e12: 10164 8 mixer
      14 ~< -csh5 page refill comp h
      13 ~< {ee2} -csh5 chan rd t5 h
@@ -1187,7 +1191,8 @@ e12: 10164 8 mixer
      9 ~< csh7-e56-14
      7 ~< csh7-e56-15
      2 ~< csh7-e56-6
-     15 ~> {al1} ebus d22 e h
+//     15 ~> {al1} ebus d22 e h
+     15 ~> `EBUSdriver.data[22]
 
 e7:  10164 8 mixer
      14 ~< {am2} csh6 cache wr in h
@@ -1202,7 +1207,8 @@ e7:  10164 8 mixer
      9 ~< csh7-e56-14
      7 ~< csh7-e56-15
      2 ~< csh7-e56-6
-     15 ~> {am1} ebus d23 e h
+//     15 ~> {am1} ebus d23 e h
+     15 ~> `EBUSdriver.data[23]
 
 e32: 10164 8 mixer
      14 ~< {cd2} -csh6 mbox pt dir wr h
@@ -1218,6 +1224,7 @@ e32: 10164 8 mixer
      7 ~< csh7-e56-15
      2 ~< csh7-e56-6
      15 ~> {cd1} ebus d24 e h
+     15 ~> `EBUSdriver.data[24]
 
 // There's a blank in PDF30 where the second digit of this reference
 // designator should be. I picked e27 because it's otherwise unused.
@@ -1235,6 +1242,7 @@ e27: 10164 8 mixer
      7 ~< csh7-e56-15
      2 ~< csh7-e56-6
      15 ~> {cm1} ebus d25 e h
+     15 ~> `EBUSdriver.data[25]
 
 e78: 10164 8 mixer
      6 ~< {ff1} csh3 any val hold in h
@@ -1249,7 +1257,8 @@ e78: 10164 8 mixer
      9 ~< csh7-e56-11
      7 ~< csh7-e56-9
      2 ~< csh7-e56-6
-     15 ~> {fd2} ebus d26 e h
+//     15 ~> {fd2} ebus d26 e h
+     15 ~> `EBUSdriver.data[26]
 
 e71: 10164 8 mixer
      6 ~< {er2} -csh4 data clr done h
@@ -1264,7 +1273,8 @@ e71: 10164 8 mixer
      9 ~< csh7-e56-11
      7 ~< csh7-e56-9
      2 ~< csh7-e56-6
-     15 ~> {el2} ebus d27 e h
+//     15 ~> {el2} ebus d27 e h
+     15 ~> `EBUSdriver.data[27]
 
 e73: 10164 8 mixer
      6 ~< {fl2} -csh refill ram wr h
@@ -1279,7 +1289,8 @@ e73: 10164 8 mixer
      9 ~< csh7-e56-11
      7 ~< csh7-e56-9
      2 ~< csh7-e56-6
-     15 ~> {er1} ebus d28 e h
+//     15 ~> {er1} ebus d28 e h
+     15 ~> `EBUSdriver.data[28]
 
 e57: 10164 8 mixer
      6 ~< {au2} -csh4 ebox t3 h
@@ -1294,7 +1305,8 @@ e57: 10164 8 mixer
      9 ~< csh7-e56-11
      7 ~< csh7-e56-9
      2 ~< csh7-e56-6
-     15 ~> {dk2} ebus d29 e h
+//     15 ~> {dk2} ebus d29 e h
+     15 ~> `EBUSdriver.data[29]
 
 e80: 10117 dual 2-3 or-and
      4 ~< csh7 e core rd t3 l

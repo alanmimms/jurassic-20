@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 // M8543
@@ -102,6 +102,10 @@ e21: 10161 decoder
       11 ~> %NC%
       10 ~> %NC%
 
+%verilog
+  always_comb EBUSdriver.driving = !ctl3_diag_read_l;
+%endverilog
+
 e22: 10164 8 mixer
      6 ~< {cl2} ctl1 spec/scm alt h
      5 ~< {cm1} ctl1 spec/clr fpd h
@@ -115,7 +119,8 @@ e22: 10164 8 mixer
      9 ~< ctl3 ds 05 h
      7 ~< ctl3 ds 06 h
      2 ~< ctl3 diag read l
-     15 ~> {dr2} ebus d24 e h
+//     15 ~> {dr2} ebus d24 e h
+     15 ~> `EBUSdriver.data[24]
 
 e18: 10164 8 mixer
      6 ~< {cr2} -ctl spec/save flags h
@@ -130,7 +135,8 @@ e18: 10164 8 mixer
      9 ~< ctl3 ds 05 h
      7 ~< ctl3 ds 06 h
      2 ~< ctl3 diag read l
-     15 ~> {ds1} ebus d25 e h
+//     15 ~> {ds1} ebus d25 e h
+     15 ~> `EBUSdriver.data[25]
 
 e42: 10164 8 mixer
      6 ~< {ec1} ctl arl sel 2 h
@@ -145,7 +151,8 @@ e42: 10164 8 mixer
      9 ~< ctl3 ds 05 h
      7 ~< ctl3 ds 06 h
      2 ~< ctl3 diag read l
-     15 ~> {ds2} ebus d26 e h
+//     15 ~> {ds2} ebus d26 e h
+     15 ~> `EBUSdriver.data[26]
 
 e34: 10164 8 mixer
      6 ~< {ed1} -ctl arr load a h
@@ -160,7 +167,8 @@ e34: 10164 8 mixer
      9 ~< ctl3 ds 05 h
      7 ~< ctl3 ds 06 h
      2 ~< ctl3 diag read l
-     15 ~> {dt2} ebus d27 e h
+//     15 ~> {dt2} ebus d27 e h
+     15 ~> `EBUSdriver.data[27]
 
 e41: 10164 8 mixer
      6 ~< {dm1} -ctl ar 00-08 load h
@@ -175,7 +183,8 @@ e41: 10164 8 mixer
      9 ~< ctl3 ds 05 h
      7 ~< ctl3 ds 06 h
      2 ~< ctl3 diag read l
-     15 ~> {du2} ebus d28 e h
+//     15 ~> {du2} ebus d28 e h
+     15 ~> `EBUSdriver.data[28]
 
 e30: 10101 quad or/nor
      10 ~< {et2} cra3 disp 00 h

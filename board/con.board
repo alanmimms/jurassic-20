@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CON1, PDF158      // Also PDF148?
@@ -80,6 +80,10 @@ e2: 10162 decoder
      11 ~> con1 cond/vma inc h
      10 ~> {cn1} con cond/load vma held h
 
+%verilog
+  always_comb EBUSdriver.driving = !con1_diag_read_l;
+%endverilog
+
 e9: 10164 8 mix
      6 ~< {am2} con wr even par adr h
      5 ~< con3 cache look en h
@@ -93,7 +97,9 @@ e9: 10164 8 mix
      9 ~< con1 diag 05 h
      7 ~< con1 diag 06 h
      2 ~< con1 diag read l
-     15 ~> {ca1} ebus d18 e h
+//     15 ~> {ca1} ebus d18 e h
+     15 ~> `EBUSdriver.data[18]
+
 
 e6: 10164 8 mix
      6 ~< con3 wr even par data h
@@ -108,7 +114,8 @@ e6: 10164 8 mix
      9 ~< con1 diag 05 h
      7 ~< con1 diag 06 h
      2 ~< con1 diag read l
-     15 ~> {cd2} ebus d19 e h
+//     15 ~> {cd2} ebus d19 e h
+     15 ~> `EBUSdriver.data[19]
 
 e36: 10164 8 mix
      6 ~< con3 wr even par dir h
@@ -123,7 +130,8 @@ e36: 10164 8 mix
      9 ~< con1 diag 05 h
      7 ~< con1 diag 06 h
      2 ~< con1 diag read l
-     15 ~> {ce2} ebus d20 e h
+//     15 ~> {ce2} ebus d20 e h
+     15 ~> `EBUSdriver.data[20]
 
 e17: 10164 8 mix
      6 ~< %NC%
@@ -138,7 +146,8 @@ e17: 10164 8 mix
      9 ~< con1 diag 05 h
      7 ~< con1 diag 06 h
      2 ~< con1 diag read l
-     15 ~> {cc1} ebus d21 e h
+//     15 ~> {cc1} ebus d21 e h
+     15 ~> `EBUSdriver.data[21]
 
 e21: 10164 8 mix
      6 ~< %NC%
@@ -153,7 +162,8 @@ e21: 10164 8 mix
      9 ~< con1 diag 05 h
      7 ~< con1 diag 06 h
      2 ~< con1 diag read l
-     15 ~> {cu2} ebus d22 e h
+//     15 ~> {cu2} ebus d22 e h
+     15 ~> `EBUSdriver.data[22]
 
 e48: 10164 8 mix
      6 ~< %NC%
@@ -168,7 +178,8 @@ e48: 10164 8 mix
      9 ~< con1 diag 05 h
      7 ~< con1 diag 06 h
      2 ~< con1 diag read l
-     15 ~> {cv2} ebus d23 e h
+//     15 ~> {cv2} ebus d23 e h
+     15 ~> `EBUSdriver.data[23]
 
 e56: 10164 8 mix
      6 ~< %NC%
@@ -183,7 +194,8 @@ e56: 10164 8 mix
      9 ~< con1 diag 05 h
      7 ~< con1 diag 06 h
      2 ~< con1 diag read l
-     15 ~> {dv2} ebus d24 e h
+//     15 ~> {dv2} ebus d24 e h
+     15 ~> `EBUSdriver.data[24]
 
 e5: 10101 quad or/nor
     4 ~< diag 04 a h

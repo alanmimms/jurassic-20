@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: MTR1, PDF324
@@ -1136,6 +1136,10 @@ e21: 10176 hex dff
      11 ~< {bd2} ebus d23 e h
      14 ~> mtr5 ebus 23 h
 
+%verilog
+  always_comb EBUSdriver.driving = !mtr5_read_mtr_a_l | !mtr5_read_mtr_b_l;
+%endverilog
+
 e23: 10164 8 mixer
      6 ~< mtr1 time 02 h
      5 ~< mtr1 perf count 02 h
@@ -1149,7 +1153,8 @@ e23: 10164 8 mixer
      9 ~< mtr5 ds 05 h
      7 ~< mtr5 ds 06 h
      2 ~< mtr5 read mtr a l
-     15 ~> {bm2} ebus d20 e h
+//     15 ~> {bm2} ebus d20 e h
+     15 ~> `EBUSdriver.data[20]
 
 e22: 10164 8 mixer
      6 ~< mtr1 time 03 h
@@ -1164,7 +1169,8 @@ e22: 10164 8 mixer
      9 ~< mtr5 ds 05 h
      7 ~< mtr5 ds 06 h
      2 ~< mtr5 read mtr a l
-     15 ~> {be2} ebus d21 e h
+//     15 ~> {be2} ebus d21 e h
+     15 ~> `EBUSdriver.data[21]
 
 e17: 10164 8 mixer
      6 ~< mtr1 time 04 h
@@ -1179,7 +1185,8 @@ e17: 10164 8 mixer
      9 ~< mtr5 ds 05 h
      7 ~< mtr5 ds 06 h
      2 ~< mtr5 read mtr a l
-     15 ~> {bf2} ebus d22 e h
+//     15 ~> {bf2} ebus d22 e h
+     15 ~> `EBUSdriver.data[22]
 
 e13: 10164 8 mixer
      6 ~< mtr1 time 05 h
@@ -1194,7 +1201,8 @@ e13: 10164 8 mixer
      9 ~< mtr5 ds 05 h
      7 ~< mtr5 ds 06 h
      2 ~< mtr5 read mtr a l
-     15 ~> {bd2} ebus d23 e h
+//     15 ~> {bd2} ebus d23 e h
+     15 ~> `EBUSdriver.data[23]
 
 e12: 10164 8 mixer
      6 ~< mtr1 time 06 h
@@ -1209,7 +1217,8 @@ e12: 10164 8 mixer
      9 ~< mtr5 ds 05 h
      7 ~< mtr5 ds 06 h
      2 ~< mtr5 read mtr a l
-     15 ~> {dm1} ebus d24 e h
+//     15 ~> {dm1} ebus d24 e h
+     15 ~> `EBUSdriver.data[24]
 
 e50: 10176 hex dff
      9 ~< mtr2 mbox clk a h
@@ -1239,7 +1248,8 @@ e32: 10164 8 mixer
      9 ~< mtr5 ds 05 h
      7 ~< mtr5 ds 06 h
      2 ~< mtr5 read mtr a l
-     15 ~> {dn1} ebus d25 e h
+//     15 ~> {dn1} ebus d25 e h
+     15 ~> `EBUSdriver.data[25]
 
 e27: 10164 8 mixer
      6 ~< mtr1 time 08 h
@@ -1254,7 +1264,8 @@ e27: 10164 8 mixer
      9 ~< mtr5 ds 05 h
      7 ~< mtr5 ds 06 h
      2 ~< mtr5 read mtr a l
-     15 ~> {dl1} ebus d26 e h
+//     15 ~> {dl1} ebus d26 e h
+     15 ~> `EBUSdriver.data[26]
 
 e33: 10164 8 mixer
      14 ~< mtr1 time 09 h
@@ -1269,7 +1280,8 @@ e33: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {dj1} ebus d27 e h
+//     15 ~> {dj1} ebus d27 e h
+     15 ~> `EBUSdriver.data[27]
 
 e73: 10164 8 mixer
      14 ~< mtr1 time 10 h
@@ -1284,7 +1296,8 @@ e73: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {dj2} ebus d28 e h
+//     15 ~> {dj2} ebus d28 e h
+     15 ~> `EBUSdriver.data[28]
 
 e62: 10164 8 mixer
      14 ~< mtr1 time 11 h
@@ -1299,7 +1312,8 @@ e62: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {dk1} ebus d29 e h
+//     15 ~> {dk1} ebus d29 e h
+     15 ~> `EBUSdriver.data[29]
 
 e68: 10164 8 mixer
      14 ~< mtr1 time 12 h
@@ -1314,7 +1328,8 @@ e68: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {fa1} ebus d30 e h
+//     15 ~> {fa1} ebus d30 e h
+     15 ~> `EBUSdriver.data[30]
 
 e67: 10164 8 mixer
      14 ~< mtr1 time 13 h
@@ -1329,7 +1344,8 @@ e67: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {fk1} ebus d31 e h
+//     15 ~> {fk1} ebus d31 e h
+     15 ~> `EBUSdriver.data[31]
 
 e76: 10176 hex dff
      9 ~< mtr2 mbox clk b h
@@ -1359,7 +1375,8 @@ e77: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {fc1} ebus d32 e h
+//     15 ~> {fc1} ebus d32 e h
+     15 ~> `EBUSdriver.data[32]
 
 e83: 10164 8 mixer
      14 ~< mtr1 time 15 h
@@ -1374,7 +1391,8 @@ e83: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {fh2} ebus d33 e h
+//     15 ~> {fh2} ebus d33 e h
+     15 ~> `EBUSdriver.data[33]
 
 e79: 10164 8 mixer
      14 ~< mtr1 time 16 h
@@ -1389,7 +1407,8 @@ e79: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {fe2} ebus d34 e h
+//     15 ~> {fe2} ebus d34 e h
+     15 ~> `EBUSdriver.data[34]
 
 e78: 10164 8 mixer
      14 ~< mtr1 time 17 h
@@ -1404,4 +1423,5 @@ e78: 10164 8 mixer
      9 ~< mtr5 ds 05 l
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
-     15 ~> {fj1} ebus d35 e h
+//     15 ~> {fj1} ebus d35 e h
+     15 ~> `EBUSdriver.data[31]

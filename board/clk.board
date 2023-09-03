@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 // M8526 TBD
@@ -956,6 +956,10 @@ e39: 10121 4-wide or-and
 
 Page: CLK5, PDF172
 
+%verilog
+  always_comb EBUSdriver.driving = !clk5_diag_read_l;
+%endverilog
+
 e54: 10164 8 mixer
      6 ~< {bk1} clk ebus clk h
      5 ~< clk5 burst 32 h
@@ -970,6 +974,7 @@ e54: 10164 8 mixer
      7 ~< clk5 diag 06 h
      2 ~< clk5 diag read l
      15 ~> {cl1} ebus d30 e h
+     15 ~> `EBUSdriver.data[30]
 
 e35: 10164 8 mixer
      6 ~< {ca1} clk sbus clk h
@@ -984,7 +989,8 @@ e35: 10164 8 mixer
      9 ~< clk5 diag 05 h
      7 ~< clk5 diag 06 h
      2 ~< clk5 diag read l
-     15 ~> {cl2} ebus d31 e h
+//     15 ~> {cl2} ebus d31 e h
+     15 ~> `EBUSdriver.data[31]
 
 e19: 10164 8 mixer
      6 ~< clk4 instr 1777 h
@@ -999,7 +1005,8 @@ e19: 10164 8 mixer
      9 ~< clk5 diag 05 h
      7 ~< clk5 diag 06 h
      2 ~< clk5 diag read l
-     15 ~> {dc1} ebus d32 e h
+//     15 ~> {dc1} ebus d32 e h
+     15 ~> `EBUSdriver.data[32]
 
 e23: 10164 8 mixer
      6 ~< clk5 burst cnt=0 h
@@ -1014,7 +1021,8 @@ e23: 10164 8 mixer
      9 ~< clk5 diag 05 h
      7 ~< clk5 diag 06 h
      2 ~< clk5 diag read l
-     15 ~> {dj1} ebus d33 e h
+//     15 ~> {dj1} ebus d33 e h
+     15 ~> `EBUSdriver.data[33]
 
 e49: 10164 8 mixer
      6 ~< clk5 burst 128 h
@@ -1030,6 +1038,7 @@ e49: 10164 8 mixer
      7 ~< clk5 diag 06 h
      2 ~< clk5 diag read l
      15 ~> {dk1} ebus d34 e h
+     15 ~> `EBUSdriver.data[34]
 
 e28: 10164 8 mixer
      6 ~< clk5 burst 64 h
@@ -1044,7 +1053,8 @@ e28: 10164 8 mixer
      9 ~< clk5 diag 05 h
      7 ~< clk5 diag 06 h
      2 ~< clk5 diag read l
-     15 ~> {dl1} ebus d35 e h
+//     15 ~> {dl1} ebus d35 e h
+     15 ~> `EBUSdriver.data[35]
 
 e15: 10136 binary counter
      5 ~< clk5 ebus 32 h

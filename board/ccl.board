@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CCL1, PDF267
@@ -206,6 +206,10 @@ e3:  10173 4x2 mixer latch
      2 ~> -ccl mem par err h
      15 ~> -ccl adr par err h
      14 ~> %NC%
+
+%verilog
+  always_comb EBUSdriver.driving = !ch_diag_read_a_l;
+%endverilog
 
 e51: 10164 8 mixer
      6 ~< ccl err req h

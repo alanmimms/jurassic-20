@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: MCL1, PDF371
@@ -172,6 +172,10 @@ e59: 10117 dual 2-3 or-and
      14 ~> %NC%
      15 ~> {bm1} mcl5 vmax en l
 
+%verilog
+  always_comb EBUSdriver.driving = !mcl1_diag_read_l;
+%endverilog
+
 e6:  10164 8 mixer
      6 ~< {be2} vma held or pc 01 h
      5 ~< {bd2} vma held or pc 07 h
@@ -185,7 +189,8 @@ e6:  10164 8 mixer
      9 ~< mcl1 ds 05 h
      7 ~< mcl1 ds 06 h
      2 ~< mcl1 diag read l
-     15 ~> {dj1} ebus d18 e h
+//     15 ~> {dj1} ebus d18 e h
+     15 ~> `EBUSdriver.data[18]
 
 e11: 10164 8 mixer
      6 ~< {bk1} vma held or pc 02 h
@@ -200,7 +205,8 @@ e11: 10164 8 mixer
      9 ~< mcl1 ds 05 h
      7 ~< mcl1 ds 06 h
      2 ~< mcl1 diag read l
-     15 ~> {df1} ebus d19 e h
+//     15 ~> {df1} ebus d19 e h
+     15 ~> `EBUSdriver.data[19]
 
 e16: 10164 8 mixer
      6 ~< {bj1} vma held or pc 03 h
@@ -215,7 +221,8 @@ e16: 10164 8 mixer
      9 ~< mcl1 ds 05 h
      7 ~< mcl1 ds 06 h
      2 ~< mcl1 diag read l
-     15 ~> {de1} ebus d20 e h
+//     15 ~> {de1} ebus d20 e h
+     15 ~> `EBUSdriver.data[20]
 
 e26: 10164 8 mixer
      6 ~< {br1} vma held or pc 04 h
@@ -230,7 +237,8 @@ e26: 10164 8 mixer
      9 ~< mcl1 ds 05 h
      7 ~< mcl1 ds 06 h
      2 ~< mcl1 diag read l
-     15 ~> {dd1} ebus d21 e h
+//     15 ~> {dd1} ebus d21 e h
+     15 ~> `EBUSdriver.data[21]
 
 e36: 10164 8 mixer
      6 ~< {cl1} vma held or pc 05 h
@@ -245,7 +253,8 @@ e36: 10164 8 mixer
      9 ~< mcl1 ds 05 h
      7 ~< mcl1 ds 06 h
      2 ~< mcl1 diag read l
-     15 ~> {dc1} ebus d22 e h
+//     15 ~> {dc1} ebus d22 e h
+     15 ~> `EBUSdriver.data[22]
 
 e27: 10164 8 mixer
      6 ~< {cf1} vma held or pc 06 h
@@ -260,7 +269,8 @@ e27: 10164 8 mixer
      9 ~< mcl1 ds 05 h
      7 ~< mcl1 ds 06 h
      2 ~< mcl1 diag read l
-     15 ~> {da1} ebus d23 e h
+//     15 ~> {da1} ebus d23 e h
+     15 ~> `EBUSdriver.data[23]
 
 Page: MCL2, PDF372
 

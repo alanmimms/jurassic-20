@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: DP01,PDF15
@@ -838,6 +838,10 @@ e59: 10101 or buffer
      15 ~> %NC%
      9 ~> edp-e59-9
 
+%verilog
+  always_comb EBUSdriver.driving = !edp_e59_14;
+%endverilog
+
 e57: 10164 8 mix
      6 ~< {bk2} ar [n+00] h
      5 ~< br [n+00] h
@@ -851,7 +855,8 @@ e57: 10164 8 mix
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {dv2} ebus d[n+00] e h
+//     15 ~> {dv2} ebus d[n+00] e h
+     15 ~> `EBUSdriver.data[n+0]
 
 e50: 10164 8 mix
      6 ~< {bl2} ar [n+01] h
@@ -866,7 +871,8 @@ e50: 10164 8 mix
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {ds2} ebus d[n+01] e h
+//     15 ~> {ds2} ebus d[n+01] e h
+     15 ~> `EBUSdriver.data[n+1]
 
 e43: 10164 8 mix
      6 ~< ar [n+02] h
@@ -881,7 +887,8 @@ e43: 10164 8 mix
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {dt2} ebus d[n+02] e h
+//     15 ~> {dt2} ebus d[n+02] e h
+     15 ~> `EBUSdriver.data[n+2]
 
 e44: 10164 8 mix
      6 ~< ar [n+03] h
@@ -896,7 +903,8 @@ e44: 10164 8 mix
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {dp1} ebus d[n+03] e h
+//     15 ~> {dp1} ebus d[n+03] e h
+     15 ~> `EBUSdriver.data[n+3]
 
 e36: 10164 8 mix
      6 ~< ar [n+04] h
@@ -911,7 +919,8 @@ e36: 10164 8 mix
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {dp2} ebus d[n+04] e h
+//     15 ~> {dp2} ebus d[n+04] e h
+     15 ~> `EBUSdriver.data[n+4]
 
 e37: 10164 8 mix
      6 ~< ar [n+05] h
@@ -926,7 +935,8 @@ e37: 10164 8 mix
      9 ~< edp-e59-6
      7 ~< edp-e59-9
      2 ~< edp-e59-14
-     15 ~> {du2} ebus d[n+05] e h
+//     15 ~> {du2} ebus d[n+05] e h
+     15 ~> `EBUSdriver.data[n+5]
 
 e66: 10101 or buffer
      4 ~< {fp1} apr fm block 4 h

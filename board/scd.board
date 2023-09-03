@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: SCD1, PDF138
@@ -536,6 +536,10 @@ e61: 10174 2x4 mix
 
 Page: SCD3, PDF140
 
+%verilog
+  always_comb EBUSdriver.driving = !scd3_diag_en_l;
+%endverilog
+
 e13: 10164 8 mix
      14 ~< {ad1} scd4 trap req 2 h
      13 ~< scd4 ov h
@@ -549,7 +553,8 @@ e13: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {ce1} ebus d02 e h
+//     15 ~> {ce1} ebus d02 e h
+     15 ~> `EBUSdriver.data[2]
 
 e28: 10164 8 mix
      14 ~< scd4 trap cyc 2 h
@@ -564,7 +569,8 @@ e28: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {cf1} ebus d03 e h
+//     15 ~> {cf1} ebus d03 e h
+     15 ~> `EBUSdriver.data[3]
 
 e31: 10164 8 mix
      14 ~< scd4 trap cyc 1 h
@@ -579,7 +585,8 @@ e31: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {cd1} ebus d04 e h
+//     15 ~> {cd1} ebus d04 e h
+     15 ~> `EBUSdriver.data[4]
 
 e17: 10164 8 mix
      14 ~< {bc1} scd4 trap req 1 h
@@ -594,7 +601,8 @@ e17: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {cc1} ebus d05 e h
+//     15 ~> {cc1} ebus d05 e h
+     15 ~> `EBUSdriver.data[5]
 
 e12: 10164 8 mix
      14 ~< {ap2} scd4 fpd h
@@ -609,7 +617,8 @@ e12: 10164 8 mix
      9 ~< scd3 diag 05 l
      7 ~< scd3 diag 06 l
      2 ~< scd3 diag en l
-     15 ~> {ca1} ebus d06 e h
+//     15 ~> {ca1} ebus d06 e h
+     15 ~> `EBUSdriver.data[6]
 
 e63: 10164 8 mix
      14 ~< -scd4 trap clear h
@@ -624,7 +633,8 @@ e63: 10164 8 mix
      9 ~< scd3 diag 05 h
      7 ~< scd3 diag 06 h
      2 ~< scd3 diag en l
-     15 ~> {ea1} ebus d07 e h
+//     15 ~> {ea1} ebus d07 e h
+     15 ~> `EBUSdriver.data[7]
 
 e58: 10174 2x4 mix
      3 ~< {dk2} scd2 sc 07 h
@@ -638,8 +648,10 @@ e58: 10174 2x4 mix
      9 ~< scd3 diag 05 h
      7 ~< scd3 diag 06 h
      14 ~< scd3 diag en l
-     2 ~> {dv2} ebus d09 e h
-     15 ~> {dt2} ebus d08 e h
+//     2 ~> {dv2} ebus d09 e h
+     2 ~> `EBUSdriver.data[9]
+//     15 ~> {dt2} ebus d08 e h
+     15 ~> `EBUSdriver.data[8]
 
 e59: 10174 2x4 mix
      3 ~< {ef2} scd2 sc 09 h
@@ -653,8 +665,10 @@ e59: 10174 2x4 mix
      9 ~< scd3 diag 05 h
      7 ~< scd3 diag 06 h
      14 ~< scd3 diag en l
-     2 ~> {du2} ebus d11 e h
-     15 ~> {ds2} ebus d10 e h
+//     2 ~> {du2} ebus d11 e h
+     2 ~> `EBUSdriver.data[11]
+//     15 ~> {ds2} ebus d10 e h
+     15 ~> `EBUSdriver.data[10]
 
 e32: 10101 quad or/nor
      4 ~< {cf2} diag 04 a h

@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: MBX1, PDF178
@@ -1141,6 +1141,10 @@ e39: 10105 2-3-2 or/nor
 
 Page: MBX6, PDF183
 
+%verilog
+  always_comb EBUSdriver.driving = !mbx6_diag_en_l;
+%endverilog
+
 e43: 10164 8 mixer
      6 ~< {de2} mbx1 cache bit h
      5 ~< {fl2} mbx2 cache to mb 34 h
@@ -1154,7 +1158,8 @@ e43: 10164 8 mixer
      9 ~< mbx6 diag 05 h
      7 ~< mbx6 diag 06 h
      2 ~< mbx6 diag en l
-     15 ~> {da1} ebus d30 e h
+//     15 ~> {da1} ebus d30 e h
+     15 ~> `EBUSdriver.data[30]
 
 e38: 10164 8 mixer
      6 ~< {df1} -mbx1 cca req h
@@ -1169,7 +1174,8 @@ e38: 10164 8 mixer
      9 ~< mbx6 diag 05 h
      7 ~< mbx6 diag 06 h
      2 ~< mbx6 diag en l
-     15 ~> {dc1} ebus d31 e h
+//     15 ~> {dc1} ebus d31 e h
+     15 ~> `EBUSdriver.data[31]
 
 e11: 10164 8 mixer
      6 ~< {ba1} csh wr wd 2 en h
@@ -1184,7 +1190,8 @@ e11: 10164 8 mixer
      9 ~< mbx6 diag 05 h
      7 ~< mbx6 diag 06 h
      2 ~< mbx6 diag en l
-     15 ~> {dd2} ebus d32 e h
+//     15 ~> {dd2} ebus d32 e h
+     15 ~> `EBUSdriver.data[32]
 
 e35: 10164 8 mixer
      6 ~< {ce1} mbx5 mb req in h
@@ -1199,7 +1206,8 @@ e35: 10164 8 mixer
      9 ~< mbx6 diag 05 h
      7 ~< mbx6 diag 06 h
      2 ~< mbx6 diag en l
-     15 ~> {df2} ebus d33 e h
+//     15 ~> {df2} ebus d33 e h
+     15 ~> `EBUSdriver.data[33]
 
 e30: 10164 8 mixer
      6 ~< {cd1} -mbx5 mem to c en h
@@ -1214,7 +1222,8 @@ e30: 10164 8 mixer
      9 ~< mbx6 diag 05 h
      7 ~< mbx6 diag 06 h
      2 ~< mbx6 diag en l
-     15 ~> {cc1} ebus d34 e h
+//     15 ~> {cc1} ebus d34 e h
+     15 ~> `EBUSdriver.data[34]
 
 e16: 10164 8 mixer
      6 ~< {bf2} mbx5 rq 1 in h
@@ -1229,7 +1238,8 @@ e16: 10164 8 mixer
      9 ~< mbx6 diag 05 h
      7 ~< mbx6 diag 06 h
      2 ~< mbx6 diag en l
-     15 ~> {ca1} ebus d35 e h
+//     15 ~> {ca1} ebus d35 e h
+     15 ~> `EBUSdriver.data[35]
 
 e32: 10164 8 mixer
      6 ~< {fl2} mbx2 cache to mb 34 h

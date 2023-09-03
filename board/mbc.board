@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: MBC1, PDF189
@@ -985,6 +985,10 @@ e71: 10173 4x2 mixer latch
 
 Page: MBC5, PDF193
 
+%verilog
+  always_comb EBUSdriver.driving = !mbc5_diag_read_func_16x_l;
+%endverilog
+
 e38: 10164 8 mixer
      6 ~< {cu2} force valid match 0 h
      5 ~< {cv2} -mbc2 csh data clr t1 h
@@ -998,7 +1002,8 @@ e38: 10164 8 mixer
      9 ~< mbc5 diag 05 h
      7 ~< mbc5 diag 06 h
      2 ~< mbc5 diag read func 16x l
-     15 ~> {cj1} ebus d27 e h
+//     15 ~> {cj1} ebus d27 e h
+     15 ~> `EBUSdriver.data[27]
 
 e16: 10164 8 mixer
      6 ~< {bm1} force valid match 1 h
@@ -1013,7 +1018,8 @@ e16: 10164 8 mixer
      9 ~< mbc5 diag 05 h
      7 ~< mbc5 diag 06 h
      2 ~< mbc5 diag read func 16x l
-     15 ~> {cl1} ebus d28 e h
+//     15 ~> {cl1} ebus d28 e h
+     15 ~> `EBUSdriver.data[28]
 
 e30: 10164 8 mixer
      6 ~< {ca1} force valid match 2 h
@@ -1028,7 +1034,8 @@ e30: 10164 8 mixer
      9 ~< mbc5 diag 05 h
      7 ~< mbc5 diag 06 h
      2 ~< mbc5 diag read func 16x l
-     15 ~> {ct2} ebus d29 e h
+//     15 ~> {ct2} ebus d29 e h
+     15 ~> `EBUSdriver.data[29]
 
 e35: 10164 8 mixer
      6 ~< {cm1} force valid match 3 h
@@ -1043,7 +1050,8 @@ e35: 10164 8 mixer
      9 ~< mbc5 diag 05 h
      7 ~< mbc5 diag 06 h
      2 ~< mbc5 diag read func 16x l
-     15 ~> {dd1} ebus d30 e h
+//     15 ~> {dd1} ebus d30 e h
+     15 ~> `EBUSdriver.data[30]
 
 e11: 10101 quad or/nor
      4 ~< {bc1} diag 04 b h
@@ -1073,7 +1081,8 @@ e48: 10164 8 mixer
      9 ~< mbc5 diag 05 h
      7 ~< mbc5 diag 06 h
      2 ~< mbc5 diag read func 16x l
-     15 ~> {dd2} ebus d31 e h
+//     15 ~> {dd2} ebus d31 e h
+     15 ~> `EBUSdriver.data[31]
 
 e52: 10164 8 mixer
      6 ~< mbc2 csh adr wr pulse h
@@ -1088,7 +1097,8 @@ e52: 10164 8 mixer
      9 ~< mbc5 diag 05 h
      7 ~< mbc5 diag 06 h
      2 ~< mbc5 diag read func 16x l
-     15 ~> {dj1} ebus d32 e h
+//     15 ~> {dj1} ebus d32 e h
+     15 ~> `EBUSdriver.data[32]
 
 e21: 10164 8 mixer
      6 ~< {bp2} -mbc2 data clr done in h
@@ -1103,7 +1113,8 @@ e21: 10164 8 mixer
      9 ~< mbc5 diag 05 h
      7 ~< mbc5 diag 06 h
      2 ~< mbc5 diag read func 16x l
-     15 ~> {dk1} ebus d33 e h
+//     15 ~> {dk1} ebus d33 e h
+     15 ~> `EBUSdriver.data[33]
 
 e12: 10173 4x2 mix latch
      5 ~< {be2} csh3 match hold 2 in h

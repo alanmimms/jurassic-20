@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CRA1, PDF343
@@ -1137,6 +1137,10 @@ e20: 10415a 1kx1 RAM
      15 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h
 
+%verilog
+  always_comb EBUSdriver.driving = !cra5_diag_read_l;
+%endverilog
+
 e50: 10164 8 mixer
      14 ~< -cra3 disp en 00-07 h
      13 ~< cra3 call, reset h
@@ -1150,7 +1154,8 @@ e50: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {dk2} ebus d00 e h
+//     15 ~> {dk2} ebus d00 e h
+     15 ~> `EBUSdriver.data[0]
 
 e64: 10164 8 mixer
      14 ~< -cra3 disp en 00-03 h
@@ -1165,7 +1170,8 @@ e64: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {dj2} ebus d01 e h
+//     15 ~> {dj2} ebus d01 e h
+     15 ~> `EBUSdriver.data[1]
 
 e46: 10101 quad or/nor
      13 ~< {dj2} ebus d01 e h
@@ -1195,7 +1201,8 @@ e80: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {df1} ebus d02 e h
+//     15 ~> {df1} ebus d02 e h
+     15 ~> `EBUSdriver.data[2]
 
 e70: 10164 8 mixer
      14 ~< cra4 stack adr 04 h
@@ -1210,7 +1217,8 @@ e70: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {ed1} ebus d03 e h
+//     15 ~> {ed1} ebus d03 e h
+     15 ~> `EBUSdriver.data[3]
 
 e79: 10164 8 mixer
      14 ~< cra4 stack adr 02 h
@@ -1225,7 +1233,8 @@ e79: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {ec1} ebus d04 e h
+//     15 ~> {ec1} ebus d04 e h
+     15 ~> `EBUSdriver.data[4]
 
 e75: 10164 8 mixer
      14 ~< cra4 stack adr 01 h
@@ -1240,4 +1249,5 @@ e75: 10164 8 mixer
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
      2 ~< cra5 diag read l
-     15 ~> {ea1} ebus d05 e h
+//     15 ~> {ea1} ebus d05 e h
+     15 ~> `EBUSdriver.data[5]

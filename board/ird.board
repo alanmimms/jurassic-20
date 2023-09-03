@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: IR1, PDF128
@@ -918,6 +918,10 @@ e46: 10101 quad or/nor
      15 ~> %NC%
      9 ~> dr ebus [n+05] h
 
+%verilog
+  always_comb EBUSdriver.driving = !dr_diag_read_l;
+%endverilog
+
 e36: 10164 8 mix
      6 ~< ir norm 08 h
      5 ~< dr adr 03 a h
@@ -931,7 +935,8 @@ e36: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {dd1} ebus d[n+00] e h
+//     15 ~> {dd1} ebus d[n+00] e h
+     15 ~> `EBUSdriver.data[n+0]
 
 e31: 10164 8 mix
      6 ~< ir norm 09 h
@@ -946,7 +951,8 @@ e31: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {de2} ebus d[n+01] e h
+//     15 ~> {de2} ebus d[n+01] e h
+     15 ~> `EBUSdriver.data[n+1]
 
 e39: 10164 8 mix
      6 ~< ir norm 10 h
@@ -961,7 +967,8 @@ e39: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {cu2} ebus d[n+02] e h
+//     15 ~> {cu2} ebus d[n+02] e h
+     15 ~> `EBUSdriver.data[n+2]
 
 e32: 10164 8 mix
      6 ~< dr adr 00 a h
@@ -976,7 +983,8 @@ e32: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {cv2} ebus d[n+03] e h
+//     15 ~> {cv2} ebus d[n+03] e h
+     15 ~> `EBUSdriver.data[n+3]
 
 e49: 10164 8 mix
      6 ~< dr adr 01 a h
@@ -991,7 +999,8 @@ e49: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {dj1} ebus d[n+04] e h
+//     15 ~> {dj1} ebus d[n+04] e h
+     15 ~> `EBUSdriver.data[n+4]
 
 e44: 10164 8 mix
      6 ~< dr adr 02 a h
@@ -1006,7 +1015,8 @@ e44: 10164 8 mix
      9 ~< dr diag 05 h
      7 ~< dr diag 06 h
      2 ~< dr diag read l
-     15 ~> {cs2} ebus d[n+05] e h
+//     15 ~> {cs2} ebus d[n+05] e h
+     15 ~> `EBUSdriver.data[n+5]
 
 Page: IR4, PDF131
 

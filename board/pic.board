@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: PIC1, PDF199
@@ -1056,6 +1056,10 @@ e53: 10101 quad or/nor
      15 ~> pi4 iob 17 l
      9 ~> pi4 iob 17 h
 
+%verilog
+  always_comb EBUSdriver.driving = pi4_diag_10_h | pic5_e19_2;
+%endverilog
+
 e38: 10104 quad and/nand
      12 ~< {cd2} ebus d04 e h
      13 ~< pic4-e4-3
@@ -1063,13 +1067,16 @@ e38: 10104 quad and/nand
      15 ~> %NC%
      4 ~< pi1 pih1 h
      5 ~< pi4 diag 10 h
-     2 ~> {ce2} ebus d03 e h
+//     2 ~> {ce2} ebus d03 e h
+     2 ~> `EBUSdriver.data[3]
      6 ~< pi1 pih2 h
      7 ~< pi4 diag 10 h
-     3 ~> {cd2} ebus d04 e h
+//     3 ~> {cd2} ebus d04 e h
+     3 ~> `EBUSdriver.data[4]
      10 ~< pi1 pih3 h
      11 ~< pi4 diag 10 h
-     14 ~> {cd1} ebus d05 e h
+//     14 ~> {cd1} ebus d05 e h
+     14 ~> `EBUSdriver.data[5]
 
 e41: 10104 quad and/nand
      12 ~< {cr1} ebus d06 e h
@@ -1078,13 +1085,16 @@ e41: 10104 quad and/nand
      15 ~> %NC%
      4 ~< pi1 pih4 h
      5 ~< pi4 diag 10 h
-     2 ~> {cr1} ebus d06 e h
+//     2 ~> {cr1} ebus d06 e h
+     2 ~> `EBUSdriver.data[6]
      6 ~< pi1 pih5 h
      7 ~< pi4 diag 10 h
-     3 ~> {df2} ebus d07 e h
+//     3 ~> {df2} ebus d07 e h
+     3 ~> `EBUSdriver.data[7]
      10 ~< pi1 pih6 h
      11 ~< pi4 diag 10 h
-     14 ~> {de2} ebus d08 e h
+//     14 ~> {de2} ebus d08 e h
+     14 ~> `EBUSdriver.data[8]
 
 e19: 10104 quad and/nand
      12 ~< {de2} ebus d08 e h
@@ -1104,10 +1114,12 @@ e19: 10104 quad and/nand
 e22: 10104 quad and/nand
      4 ~< pi1 pih7 h
      5 ~< pi4 diag 10 h
-     2 ~> {da1} ebus d09 e h
+//     2 ~> {da1} ebus d09 e h
+     2 ~> `EBUSdriver.data[9]
      6 ~< pi1 active h
      7 ~< pi4 diag 10 h
-     3 ~> {dd2} ebus d10 e h
+//     3 ~> {dd2} ebus d10 e h
+     3 ~> `EBUSdriver.data[10]
      10 ~< pi5 bus en l
      11 ~< pi4 bus en l
      14 ~> {bj1} pi xor on bus l
@@ -1144,7 +1156,8 @@ e32: 10174 2x4 mixer
      7 ~< pi4 diag 06 h
      14 ~< pi4 bus en l
      2 ~> pi4 diag 10 h
-     15 ~> {cp2} ebus d11 e h
+//     15 ~> {cp2} ebus d11 e h
+     15 ~> `EBUSdriver.data[11]
 
 e27: 10174 2x4 mixer
      3 ~< pi1 on 2 h
@@ -1158,8 +1171,10 @@ e27: 10174 2x4 mixer
      9 ~< pi4 diag 05 h
      7 ~< pi4 diag 06 h
      14 ~< pi4 bus en l
-     2 ~> {cl2} ebus d12 e h
-     15 ~> {ck2} ebus d13 e h
+//     2 ~> {cl2} ebus d12 e h
+     2 ~> `EBUSdriver.data[12]
+//     15 ~> {ck2} ebus d13 e h
+     15 ~> `EBUSdriver.data[13]
 
 e33: 10174 2x4 mixer
      3 ~< pi1 on 4 h
@@ -1173,8 +1188,10 @@ e33: 10174 2x4 mixer
      9 ~< pi4 diag 05 h
      7 ~< pi4 diag 06 h
      14 ~< pi4 bus en l
-     2 ~> {cj2} ebus d14 e h
-     15 ~> {du2} ebus d15 e h
+//     2 ~> {cj2} ebus d14 e h
+     2 ~> `EBUSdriver.data[14]
+//     15 ~> {du2} ebus d15 e h
+     15 ~> `EBUSdriver.data[15]
 
 e28: 10174 2x4 mixer
      3 ~< pi1 on 6 h
@@ -1188,8 +1205,10 @@ e28: 10174 2x4 mixer
      9 ~< pi4 diag 05 h
      7 ~< pi4 diag 06 h
      14 ~< pi4 bus en l
-     2 ~> {dv2} ebus d16 e h
-     15 ~> {dt2} ebus d17 e h
+//     2 ~> {dv2} ebus d16 e h
+     2 ~> `EBUSdriver.data[16]
+//     15 ~> {dt2} ebus d17 e h
+     15 ~> `EBUSdriver.data[17]
 
 e39: 10101 quad or/nor
      4 ~< {cp2} ebus d11 e h
@@ -1438,7 +1457,11 @@ e25: 10158 4x2 mixer
      10 ~< %NC%
      11 ~< pic2 sel phy 1 h
      9 ~< pic5-e19-2
-     1 ~> {df2} ebus d07 e h
-     2 ~> {de2} ebus d08 e h
-     15 ~> {da1} ebus d09 e h
-     14 ~> {dd2} ebus d10 e h
+//     1 ~> {df2} ebus d07 e h
+     1 ~> `EBUSdriver.data[7]
+//     2 ~> {de2} ebus d08 e h
+     2 ~> `EBUSdriver.data[8]
+//     15 ~> {da1} ebus d09 e h
+     15 ~> `EBUSdriver.data[9]
+//     14 ~> {dd2} ebus d10 e h
+     14 ~> `EBUSdriver.data[10]

@@ -1,6 +1,6 @@
 %verilog
 ,
-  output bit EBUSdrive
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CHC1, PDF222
@@ -1035,6 +1035,10 @@ e45: 10101 quad or/nor
      3 ~> %NC%
      6 ~> chc5 cbus store h
 
+%verilog
+  always_comb EBUSdriver.driving = !ch_diag_read_a_l;
+%endverilog
+
 e21: 10164 8 mixer
      6 ~< chc1 chx reset h
      5 ~< chc1 chx start h
@@ -1049,7 +1053,8 @@ e21: 10164 8 mixer
      7 ~< {aj1} ch diag 06 h
      2 ~< {ck2} ch diag read a l
      // bit 13
-     15 ~> {bv2} ebus d[m+02] e h
+//     15 ~> {bv2} ebus d[m+02] e h
+     15 ~> `EBUSdriver.data[m+02]
 
 e26: 10164 8 mixer
      6 ~< {cp2} ch reset intr h
@@ -1065,7 +1070,8 @@ e26: 10164 8 mixer
      7 ~< {aj1} ch diag 06 h
      2 ~< {ck2} ch diag read a l
      // bit 14
-     15 ~> {ce2} ebus d[m+03] e h
+//     15 ~> {ce2} ebus d[m+03] e h
+     15 ~> `EBUSdriver.data[m+03]
 
 e1:  10164 8 mixer
      6 ~< {ak1} cbus sel 0 e h
@@ -1081,7 +1087,8 @@ e1:  10164 8 mixer
      7 ~< {aj1} ch diag 06 h
      2 ~< {ck2} ch diag read a l
      // bit 12
-     15 ~> {aa1} ebus d[m+01] e h
+//     15 ~> {aa1} ebus d[m+01] e h
+     15 ~> `EBUSdriver.data[m+01]
 
 e16: 10164 8 mixer
      6 ~< {bk1} ch t0 h
@@ -1097,7 +1104,8 @@ e16: 10164 8 mixer
      7 ~< {aj1} ch diag 06 h
      2 ~< {ck2} ch diag read a l
      // bit 11
-     15 ~> {bk2} ebus d[m+00] e h
+//     15 ~> {bk2} ebus d[m+00] e h
+     15 ~> `EBUSdriver.data[m+00]
 
 e7:  10131 dual ms dff
      12 ~< %NC%
