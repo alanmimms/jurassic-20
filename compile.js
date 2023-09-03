@@ -621,7 +621,7 @@ endmodule	// ${modName}
 function genBackplaneSV(bp) {
   fs.writeFileSync(`./rtl/gen/kl-backplane.svh`, `\
 // Define each net in the backplane.
-${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${n};`).join('\n')}
+${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${untickify(n)};`).join('\n')}
 `);
 }
 
@@ -681,7 +681,6 @@ function genSlotNets(bp, slot, modName) {
   // (We use the index in `wires[]` as the uniquifier integer for the signal name.)
   // OR these together producing `a signal h`.
   // Inputs continue to use `a signal h`, which is now the output of the OR.
-
   const bitDecls = Object.keys(wires)
 	.sort()
 	.map(w => {
@@ -699,7 +698,7 @@ function genSlotNets(bp, slot, modName) {
 	    return `\
 bit ${values.join(', ')};
   bit ${w} = ${values.join(' | ')};`
-	  } else {
+	  } else if (!isTicked(w)) {
 	    return `bit ${w};`
 	  }
 	})
@@ -709,6 +708,17 @@ bit ${values.join(', ')};
   // Wires and wire-ORs in ${modName} instance
   ${bitDecls}
 `;
+}
+
+
+function isTicked(s) {
+  if (!s.slice) return false;
+  return s.slice(0, 1) === '`';
+}
+
+
+function untickify(s) {
+  return isTicked(s) ? s.slice(1) : s;
 }
 
 
@@ -723,7 +733,7 @@ function genChipPins(bp, slot, chip) {
       else if (value === '%NC%') value = pin.dir === 'I' ? `'0` : ``;
       else if (value == 1) value = `'1`;
 
-      return `.${verilogify(pinName)}(${value})`;
+      return `.${verilogify(pinName)}(${untickify(value)})`;
     })
     .join(',\n      ');
 }  
@@ -776,22 +786,6 @@ function astDirToDir(d) {
 }
 
 
-function verilogifyNetNames(bp) {
-  bp.v2n = {};
-  bp.n2v = {};
-
-  Object.keys(bp.allNets)
-    .filter(netName => netName != '%NC%')
-    .forEach(netName => {
-      const net = bp.allNets[netName];
-      const vName = verilogify(netName);
-      bp.v2n[vName] = netName;
-      bp.n2v[netName] = vName;
-    });
-
-}
-
-
 // Convert DEC nomenclature name `n` to Verilog identifier.
 // Use the following mappings and rules:
 //  * ` ` ==> _
@@ -823,7 +817,7 @@ const charSymNames = {
 };
 
 function verilogify(n) {
-  if (n[0] === '`') return n.slice(1);
+  if (isTicked(n)) return n;
 
   // First convert -xxxx [lh] to xxxx [hl].
   n = canonicalize(n);
