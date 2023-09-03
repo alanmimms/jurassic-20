@@ -1424,4 +1424,4 @@ e78: 10164 8 mixer
      7 ~< mtr5 ds 06 l
      2 ~< mtr5 read mtr b l
 //     15 ~> {fj1} ebus d35 e h
-     15 ~> `EBUSdriver.data[31]
+     15 ~> `EBUSdriver.data[35]

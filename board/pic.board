@@ -6,6 +6,11 @@
 Page: PIC1, PDF199
 // M8532 TBD
 
+%verilog
+  bit localEBUS7a, localEBUS8a, localEBUS9a, localEBUS10a;
+  bit localEBUS7b, localEBUS8b, localEBUS9b, localEBUS10b;
+%endverilog
+
 e66: 10101 quad or/nor
      4 ~< pi4 iob 11 l
      12 ~< pi4 on clr l
@@ -1058,6 +1063,11 @@ e53: 10101 quad or/nor
 
 %verilog
   always_comb EBUSdriver.driving = pi4_diag_10_h | pic5_e19_2;
+
+  always_comb EBUSdriver.data[7] = localEBUS7a | localEBUS7b;
+  always_comb EBUSdriver.data[8] = localEBUS8a | localEBUS8b;
+  always_comb EBUSdriver.data[9] = localEBUS9a | localEBUS9b;
+  always_comb EBUSdriver.data[10] = localEBUS10a | localEBUS10b;
 %endverilog
 
 e38: 10104 quad and/nand
@@ -1090,11 +1100,11 @@ e41: 10104 quad and/nand
      6 ~< pi1 pih5 h
      7 ~< pi4 diag 10 h
 //     3 ~> {df2} ebus d07 e h
-     3 ~> `EBUSdriver.data[7]
+     3 ~> `localEBUS7a
      10 ~< pi1 pih6 h
      11 ~< pi4 diag 10 h
 //     14 ~> {de2} ebus d08 e h
-     14 ~> `EBUSdriver.data[8]
+     14 ~> `localEBUS8a
 
 e19: 10104 quad and/nand
      12 ~< {de2} ebus d08 e h
@@ -1115,11 +1125,11 @@ e22: 10104 quad and/nand
      4 ~< pi1 pih7 h
      5 ~< pi4 diag 10 h
 //     2 ~> {da1} ebus d09 e h
-     2 ~> `EBUSdriver.data[9]
+     2 ~> `localEBUS9a
      6 ~< pi1 active h
      7 ~< pi4 diag 10 h
 //     3 ~> {dd2} ebus d10 e h
-     3 ~> `EBUSdriver.data[10]
+     3 ~> `localEBUS10a
      10 ~< pi5 bus en l
      11 ~< pi4 bus en l
      14 ~> {bj1} pi xor on bus l
@@ -1458,10 +1468,10 @@ e25: 10158 4x2 mixer
      11 ~< pic2 sel phy 1 h
      9 ~< pic5-e19-2
 //     1 ~> {df2} ebus d07 e h
-     1 ~> `EBUSdriver.data[7]
+     1 ~> `localEBUS7b
 //     2 ~> {de2} ebus d08 e h
-     2 ~> `EBUSdriver.data[8]
+     2 ~> `localEBUS8b
 //     15 ~> {da1} ebus d09 e h
-     15 ~> `EBUSdriver.data[9]
+     15 ~> `localEBUS9b
 //     14 ~> {dd2} ebus d10 e h
-     14 ~> `EBUSdriver.data[10]
+     14 ~> `localEBUS10b
