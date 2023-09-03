@@ -60,23 +60,39 @@ module kl10pv(input clk60, crobar);
   vma38 vma_38(.EBUSdriver(vmaEBUSdriver), .*);
 
   // Mux for EBUS data lines
-  always_comb unique case (1)
-              default: EBUS.data = '0;
-              aprEBUSdriver.driving:        EBUS.data = aprEBUSdriver.data;
-              conEBUSdriver.driving:        EBUS.data = conEBUSdriver.data;
-              craEBUSdriver.driving:        EBUS.data = craEBUSdriver.data;
-              ctlEBUSdriver.driving:        EBUS.data = ctlEBUSdriver.data;
-              edpEBUSdriver.driving:        EBUS.data = edpEBUSdriver.data;
-              irEBUSdriver.driving:         EBUS.data =  irEBUSdriver.data;
-              mbzEBUSdriver.driving:        EBUS.data = mbzEBUSdriver.data;
-              mtrEBUSdriver.driving:        EBUS.data = mtrEBUSdriver.data;
-              picEBUSdriver.driving:        EBUS.data = picEBUSdriver.data;
-              scdEBUSdriver.driving:        EBUS.data = scdEBUSdriver.data;
-              shmEBUSdriver.driving:        EBUS.data = shmEBUSdriver.data;
-              vmaEBUSdriver.driving:        EBUS.data = vmaEBUSdriver.data;
-`ifdef KL10PV_TB
-              kl10pv_tb0.EBUSdriver.driving: EBUS.data = kl10pv_tb0.EBUSdriver.data;
-`endif
-              endcase
+  always_comb
+    unique case (1)
+      default: EBUS.data = '0;
+      aprEBUSdriver.driving:	EBUS.data = aprEBUSdriver.data;
+      cclEBUSdriver.driving:	EBUS.data = cclEBUSdriver.data;
+      ccwEBUSdriver.driving:	EBUS.data = ccwEBUSdriver.data;
+      chcEBUSdriver.driving:	EBUS.data = chcEBUSdriver.data;
+      chxEBUSdriver.driving:	EBUS.data = chxEBUSdriver.data;
+      clkEBUSdriver.driving:	EBUS.data = clkEBUSdriver.data;
+      conEBUSdriver.driving:	EBUS.data = conEBUSdriver.data;
+      craEBUSdriver.driving:	EBUS.data = craEBUSdriver.data;
+      crm40EBUSdriver.driving:	EBUS.data = crm40EBUSdriver.data;
+      crm42EBUSdriver.driving:	EBUS.data = crm42EBUSdriver.data;
+      crm44EBUSdriver.driving:	EBUS.data = crm44EBUSdriver.data;
+      crm50EBUSdriver.driving:	EBUS.data = crm50EBUSdriver.data;
+      crm52EBUSdriver.driving:	EBUS.data = crm52EBUSdriver.data;
+      cshEBUSdriver.driving:	EBUS.data = cshEBUSdriver.data;
+      ctlEBUSdriver.driving:	EBUS.data = ctlEBUSdriver.data;
+      edp39EBUSdriver.driving:	EBUS.data = edp39EBUSdriver.data;
+      edp41EBUSdriver.driving:	EBUS.data = edp41EBUSdriver.data;
+      edp43EBUSdriver.driving:	EBUS.data = edp43EBUSdriver.data;
+      edp49EBUSdriver.driving:	EBUS.data = edp49EBUSdriver.data;
+      edp51EBUSdriver.driving:	EBUS.data = edp51EBUSdriver.data;
+      edp53EBUSdriver.driving:	EBUS.data = edp53EBUSdriver.data;
+      irdEBUSdriver.driving:	EBUS.data = irdEBUSdriver.data;
+      mbcEBUSdriver.driving:	EBUS.data = mbcEBUSdriver.data;
+      mbxEBUSdriver.driving:	EBUS.data = mbxEBUSdriver.data;
+      mbzEBUSdriver.driving:	EBUS.data = mbzEBUSdriver.data;
+      mclEBUSdriver.driving:	EBUS.data = mclEBUSdriver.data;
+      mtrEBUSdriver.driving:	EBUS.data = mtrEBUSdriver.data;
+      picEBUSdriver.driving:	EBUS.data = picEBUSdriver.data;
+      scdEBUSdriver.driving:	EBUS.data = scdEBUSdriver.data;
+      vmaEBUSdriver.driving:	EBUS.data = vmaEBUSdriver.data;
+    endcase
   
 endmodule // kl10pv
