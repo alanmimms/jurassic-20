@@ -128,6 +128,9 @@ function bindSlots(bp, cramDefs) {
       const macroEnv = {...bpMacroEnv};
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
+      // Remember this slot's macros so we can generate Verilog `defines for them.
+      slot.macroEnv = macroEnv;
+
       // Create a slot-unique copy of each board's chips and interconnecting nets.
       slot.chips = {};
       slot.verilogRefNum = 0;
@@ -593,6 +596,7 @@ function genSV(bp) {
     ${v[0].dir.padEnd(6)} ${v[0].vNet.padEnd(30)}    /* <${v.map(p => p.bpPin).join('><')}> */`)
 	.join(',\n  ');
 
+      const macros = genSlotMacros(bp, slot, modName);
       const modV = bp.boards[slot.module.id].verilog;
       const nets = genSlotNets(bp, slot, modName);
       const chips = genSlotChips(bp, slot, modName);
@@ -600,7 +604,7 @@ function genSV(bp) {
       fs.writeFileSync(`./rtl/gen/${modName}.sv`, `\
 \`include "kl10pv.svh"
 
-module ${modName}(
+module ${modName} ${macros} (
   ${modParams}
   ${(modV || '').trimEnd()}
 );
@@ -615,6 +619,16 @@ endmodule	// ${modName}
   function vSort(a, b) {
     return a[0].vNet > b[0].vNet ? +1 : a[0].vNet < b[0].vNet ? -1 : 0;
   }
+}
+
+
+function genSlotMacros(bp, slot, modName) {
+  if (Object.keys(slot.macroEnv).length == 0) return ``;
+  return `#(
+    parameter ${Object.keys(slot.macroEnv)
+    .map(mac => `${mac} = ${slot.macroEnv[mac]}`)
+    .join(',\n    ')})
+`;
 }
 
 
