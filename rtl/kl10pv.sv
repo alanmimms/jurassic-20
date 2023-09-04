@@ -4,17 +4,60 @@ module kl10pv(input clk60, crobar);
 
 `include "kl-backplane.svh"
 
-  bit aprEBUSdriver, cclEBUSdriver, ccwEBUSdriver, chcEBUSdriver, chxEBUSdriver;
-  bit clkEBUSdriver, conEBUSdriver, craEBUSdriver;
-  bit crm40EBUSdriver, crm42EBUSdriver, crm44EBUSdriver, crm50EBUSdriver, crm52EBUSdriver;
-  bit cshEBUSdriver, ctlEBUSdriver;
-  bit edp39EBUSdriver, edp41EBUSdriver, edp43EBUSdriver, edp49EBUSdriver, edp51EBUSdriver, edp53EBUSdriver;
-  bit irdEBUSdriver, mbcEBUSdriver, mbxEBUSdriver;
-  bit mbzEBUSdriver, mclEBUSdriver, mtrEBUSdriver, picEBUSdriver, scdEBUSdriver;
-  bit vmaEBUSdriver;
+  tEBUSdriver aprEBUSdriver, cclEBUSdriver, ccwEBUSdriver, chcEBUSdriver, chxEBUSdriver;
+  tEBUSdriver clkEBUSdriver, conEBUSdriver, craEBUSdriver;
+  tEBUSdriver crm40EBUSdriver, crm42EBUSdriver, crm44EBUSdriver, crm50EBUSdriver, crm52EBUSdriver;
+  tEBUSdriver cshEBUSdriver, ctlEBUSdriver;
+  tEBUSdriver edp39EBUSdriver, edp41EBUSdriver, edp43EBUSdriver, edp49EBUSdriver, edp51EBUSdriver, edp53EBUSdriver;
+  tEBUSdriver irdEBUSdriver, mbcEBUSdriver, mbxEBUSdriver;
+  tEBUSdriver mbzEBUSdriver, mclEBUSdriver, mtrEBUSdriver, picEBUSdriver, scdEBUSdriver;
+  tEBUSdriver vmaEBUSdriver;
+
+  struct {
+    bit [35:0] data;
+  } EBUS;
 
   assign clk = clk60;
   assign crobar_e_h = crobar;
+
+  // Pass output of our EBUS driving mux back into the KL10 symbol
+  // naming system for modules to read the EBUS data.
+  assign ebus_d00_e_h = EBUS.data[00];
+  assign ebus_d01_e_h = EBUS.data[01];
+  assign ebus_d02_e_h = EBUS.data[02];
+  assign ebus_d03_e_h = EBUS.data[03];
+  assign ebus_d04_e_h = EBUS.data[04];
+  assign ebus_d05_e_h = EBUS.data[05];
+  assign ebus_d06_e_h = EBUS.data[06];
+  assign ebus_d07_e_h = EBUS.data[07];
+  assign ebus_d08_e_h = EBUS.data[08];
+  assign ebus_d09_e_h = EBUS.data[09];
+  assign ebus_d10_e_h = EBUS.data[10];
+  assign ebus_d11_e_h = EBUS.data[11];
+  assign ebus_d12_e_h = EBUS.data[12];
+  assign ebus_d13_e_h = EBUS.data[13];
+  assign ebus_d14_e_h = EBUS.data[14];
+  assign ebus_d15_e_h = EBUS.data[15];
+  assign ebus_d16_e_h = EBUS.data[16];
+  assign ebus_d17_e_h = EBUS.data[17];
+  assign ebus_d18_e_h = EBUS.data[18];
+  assign ebus_d19_e_h = EBUS.data[19];
+  assign ebus_d20_e_h = EBUS.data[20];
+  assign ebus_d21_e_h = EBUS.data[21];
+  assign ebus_d22_e_h = EBUS.data[22];
+  assign ebus_d23_e_h = EBUS.data[23];
+  assign ebus_d24_e_h = EBUS.data[24];
+  assign ebus_d25_e_h = EBUS.data[25];
+  assign ebus_d26_e_h = EBUS.data[26];
+  assign ebus_d27_e_h = EBUS.data[27];
+  assign ebus_d28_e_h = EBUS.data[28];
+  assign ebus_d29_e_h = EBUS.data[29];
+  assign ebus_d30_e_h = EBUS.data[30];
+  assign ebus_d31_e_h = EBUS.data[31];
+  assign ebus_d32_e_h = EBUS.data[32];
+  assign ebus_d33_e_h = EBUS.data[33];
+  assign ebus_d34_e_h = EBUS.data[34];
+  assign ebus_d35_e_h = EBUS.data[35];
 
   apr34 apr_34(.EBUSdriver(aprEBUSdriver), .*);
   cac17 cac_17(.*);
