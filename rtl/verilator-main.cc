@@ -27,7 +27,10 @@ public: double nsPerClock;
     tickcount = 0ll;
     trace = (TRACECLASS *) 0;
     done = false;
-    nsPerClock = 1.0e9/100.0e6; // 100MHz clock (simplifies mental math)
+    nsPerClock = 1.0;		// Simpler mental math and WOW
+
+    // Initial conditions
+    mod->crobar = 1;
   }
 
   virtual ~TESTBENCH(void) {
@@ -49,13 +52,16 @@ public: double nsPerClock;
     // Toggle the clock
     // Falling edge
     mod->clk60 = 0;
+    if (tickcount == 10ull) mod->crobar = 0;
+    if (tickcount == 100ull) mod->crobar = 1;
+    if (tickcount == 1000ull) mod->crobar = 0;
     mod->eval();
     if (trace) trace->dump(tickcount * nsPerClock);
 
     // Rising edge
     mod->clk60 = 1;
     mod->eval();
-    if (trace) trace->dump(((double) tickcount + 0.5) * nsPerClock);
+    //    if (trace) trace->dump(((double) tickcount + 0.5) * nsPerClock);
 
     if (Verilated::gotFinish()) done = true;
     return ++tickcount;
@@ -103,7 +109,7 @@ int main(int argc, char **argv) {
     LL ticks = tb->tick();
     double ns = ticks * tb->nsPerClock;
 
-    if ((LL) ns % 500000 == 0)
+    if ((LL) ns % 5000 == 0)
       std::cout << (ns/1000.0) << "us" << std::endl;
 
     if (ns >= endTime) break;
