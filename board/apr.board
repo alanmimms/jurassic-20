@@ -918,10 +918,11 @@ e22: 10164 8 mixer
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
      2 ~< apr6 read 110-117 l
-     15 ~> {ds1} ebus d11 e h
+//     15 ~> {ds1} ebus d11 e h
+     15 ~> `EBUSdriver.data[11]
 
 %verilog
-  always_comb EBUSdriver.driving = !apr6_read_110to117_l | !apr6_ds_05_h;
+  always_comb EBUSdriver.driving = !apr6_read_110to117_l | !apr6_ds_04_h | !apr6_ds_05_h;
 %endverilog
 
 e21: 10164 8 mixer
@@ -937,7 +938,8 @@ e21: 10164 8 mixer
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
      2 ~< apr6 read 110-117 l
-     15 ~> {cs1} ebus d12 e h
+//     15 ~> {cs1} ebus d12 e h
+     15 ~> `EBUSdriver.data[12]
 
 e11: 10164 8 mixer
      6 ~< apr2 sweep done in h
@@ -952,7 +954,8 @@ e11: 10164 8 mixer
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
      2 ~< apr6 read 110-117 l
-     15 ~> {cs2} ebus d13 e h
+//     15 ~> {cs2} ebus d13 e h
+     15 ~> `EBUSdriver.data[13]
 
 e34: 10174 2x4 mixer
      3 ~< apr2 apr interrupt h
@@ -966,8 +969,10 @@ e34: 10174 2x4 mixer
      9 ~< apr6 ds 04 h
      7 ~< apr6 ds 06 h
      14 ~< -apr6 ds 05 l
-     2 ~> {dk1} ebus d14 e h
-     15 ~> {dl1} ebus d15 e h
+//     2 ~> {dk1} ebus d14 e h
+     2 ~> `EBUSdriver.data[14]
+//     15 ~> {dl1} ebus d15 e h
+     15 ~> `EBUSdriver.data[15]
 
 e39: 10174 2x4 mixer
      3 ~< {dh2} pi3 apr pia 02 h
@@ -981,8 +986,10 @@ e39: 10174 2x4 mixer
      9 ~< apr6 ds 04 h
      7 ~< apr6 ds 06 h
      14 ~< -apr6 ds 05 l
-     2 ~> {dl2} ebus d16 e h
-     15 ~> {dp1} ebus d17 e h
+//     2 ~> {dl2} ebus d16 e h
+     2 ~> `EBUSdriver.data[16]
+//     15 ~> {dp1} ebus d17 e h
+     15 ~> `EBUSdriver.data[17]
 
 e37: 10174 2x4 mixer
      3 ~< apr1 sweep busy en h
@@ -996,8 +1003,10 @@ e37: 10174 2x4 mixer
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
      14 ~< -apr6 ds 04 l
-     2 ~> {cm1} ebus d01 e h
-     15 ~> {cm2} ebus d06 e h
+//     2 ~> {cm1} ebus d01 e h
+     2 ~> `EBUSdriver.data[1]
+//     15 ~> {cm2} ebus d06 e h
+     15 ~> `EBUSdriver.data[6]
 
 e13: 10164 8 mixer
      6 ~< apr1 nxm err in h
@@ -1012,7 +1021,8 @@ e13: 10164 8 mixer
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
      2 ~< apr6 read 110-117 l
-     15 ~> {cp1} ebus d07 e h
+//     15 ~> {cp1} ebus d07 e h
+     15 ~> `EBUSdriver.data[7]
 
 e19: 10164 8 mixer
      6 ~< apr1 i/o pf err in h
@@ -1027,7 +1037,8 @@ e19: 10164 8 mixer
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
      2 ~< apr6 read 110-117 l
-     15 ~> {cp2} ebus d08 e h
+//     15 ~> {cp2} ebus d08 e h
+     15 ~> `EBUSdriver.data[8]
 
 e18: 10164 8 mixer
      6 ~< apr1 mb par err in h
@@ -1042,7 +1053,8 @@ e18: 10164 8 mixer
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
      2 ~< apr6 read 110-117 l
-     15 ~> {cl2} ebus d09 e h
+//     15 ~> {cl2} ebus d09 e h
+     15 ~> `EBUSdriver.data[9]
 
 e17: 10164 8 mixer
      6 ~< apr2 c dir p err in h
@@ -1057,7 +1069,8 @@ e17: 10164 8 mixer
      9 ~< apr6 ds 05 h
      7 ~< apr6 ds 06 h
      2 ~< apr6 read 110-117 l
-     15 ~> {cr1} ebus d10 e h
+//     15 ~> {cr1} ebus d10 e h
+     15 ~> `EBUSdriver.data[10]
 
 e16: 10101 quad or/nor
      4 ~< {bl2} -diag 04 b l
