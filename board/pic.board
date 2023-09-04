@@ -1062,7 +1062,7 @@ e53: 10101 quad or/nor
      9 ~> pi4 iob 17 h
 
 %verilog
-  always_comb EBUSdriver.driving = pi4_diag_10_h | pic5_e19_2;
+  always_comb EBUSdriver.driving = pi4_diag_10_h | pic5_e19_2 | !pi4_bus_en_l;
 
   always_comb EBUSdriver.data[7] = localEBUS7a | localEBUS7b;
   always_comb EBUSdriver.data[8] = localEBUS8a | localEBUS8b;
