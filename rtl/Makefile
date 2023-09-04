@@ -41,10 +41,12 @@ VERILATOR ?= verilator
 
 KILLWARNINGS = \
 	-Wno-LITENDIAN \
-#	-Wno-UNOPTFLAT \
+	-Wno-UNOPTFLAT \
 #	-Wno-DECLFILENAME \
 #	-Wno-CLKDATA \
 #	-Wno-TIMESCALEMOD
+
+DEBUG_DIDNOTCONVERGE = --prof-cfuncs -CFLAGS -DVL_DEBUG
 
 INCDIR = $(VERILATORROOT)/include
 CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG)
@@ -59,6 +61,7 @@ VFLAGS = \
 	-MMD \
 	-I$(GENDIR) \
 	$(KILLWARNINGS) \
+	$(DEBUG_DIDNOTCONVERGE) \
 	--timescale 1ns/1ps --timescale-override 1ns/1ps \
 	--x-initial 0 \
 	-cc --build --exe -j 9
