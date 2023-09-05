@@ -1,3 +1,5 @@
+`include "kl10pv.svh"
+
 // The top of the hierarchy for KL10PV CPU and its front end, memory,
 // peripherals, and power system.
 module kl10pv(input clk60);

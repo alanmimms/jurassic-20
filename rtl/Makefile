@@ -62,6 +62,7 @@ VFLAGS = \
 	--default-language 1800-2017 +1800-2017ext+sv \
 	-CFLAGS \
 	-MMD \
+	-I. \
 	-I$(GENDIR) \
 	$(KILLWARNINGS) \
 	$(DEBUG_DIDNOTCONVERGE) \

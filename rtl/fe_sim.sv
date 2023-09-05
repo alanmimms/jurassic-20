@@ -24,10 +24,12 @@ module fe_sim(input bit clk,
   end
 
   initial begin
-    crobar_e_h <= '1;
-    #1000 crobar_e_h <= '0;
+    crobar_e_h = '1;
+    repeat (100) @(negedge clk) ;
+    crobar_e_h = '0;
 
-    #100 KLMasterReset();
+    repeat (10) @(negedge clk) ;
+    KLMasterReset();
   end
 
 
@@ -57,11 +59,11 @@ module fe_sim(input bit clk,
     // Loop up to three times:
     //   Do diag function 162 via $DFRD test (A CHANGE COMING A L)=EBUS[32]
     //   If not set, $DFXC(.SSCLK=002) to single step the MBOX
-    $display($time, " [step up to 5 clocks to syncronize MBOX]");
+    $display($time, " [step up to 5 clocks to synchronize MBOX]");
     repeat (5) begin
-      #500 ;
+      repeat (5) @(negedge clk) ;
       if (!a_change_coming) break;
-      #500 ;
+      repeat (5) @(negedge clk) ;
       doDiagFunc(diagfSTEP_CLOCK);
     end
 
