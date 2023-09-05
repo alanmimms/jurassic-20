@@ -2,7 +2,9 @@
 
 * Set up mux for EBUS driving instead of tri-stated bus.
 
-* Detect wire-OR nets automatically and generate explicit OR in RTL.
+* Change name of `sim` to `compile` and merge the two files. This
+  separation is silly. Besides, the damned thing isn't a simulator,
+  it's a compiler.
 
 * Implement `slotWires`.
 
@@ -64,6 +66,96 @@
 
 ## Data Available
 
+
+# Verilator
+
+## Random Notes
+* You can use, e.g., `mod->rootp->kl10pv__DOT__a_change_coming_in_l`
+  to refer to a top level signal in C++.
+  * See `obj_dir/Vkl10pv___024root.h` for the entire list.
+
+
+# Front End System Initialization and Management
+
+## KL Master Reset
+Note the functions used here are defined in `dte.h` and `dte.svh` in
+the `tDiagFunction` enum.
+   
+1. `diagfCLR_RUN`: Clear RUN flag.
+   
+1. `diagfCLR_CLK_SRC_RATE`: Set the default clock source.
+
+1. `diagfSTOP_CLOCK`: Stop the KL clock.
+
+1. `diagfRESET_PAR_REGS`: Load clock parity check and "fs check" (what is this?).
+
+1. `diagfCLR_MBOXDIS_PARCHK_ERRSTOP`: Load clock MBOX cycle disables
+   for parity check and error stop enable.
+
+1. `diagfCLR_BURST_CTR_RH` and `diagfCLR_BURST_CTR_LH`: Load both
+   halves of the burst counter (8,4,2,1) with zero.
+
+1. `diagfSET_EBOX_CLK_DISABLES`: Disable EBOX clock.
+
+1. `diagfSTART_CLOCK`: Start The Clock.
+
+1. `diagfINIT_CHANNELS`: Initialize the I/O channels.
+
+1. `diagfCLR_BURST_CTR_RH`: Load Burst Counter right half (8,4,2,1)
+   with zero again.
+
+// Loop up to three times:
+//   Do diag function 162 via $DFRD test (A CHANGE COMING A L)=EBUS[32]
+//   If not set, $DFXC(.SSCLK=002) to single step the MBOX
+
+
+$display($time, " [step up to 5 clocks to syncronize MBOX]");
+repeat (5) begin
+  #500 ;
+  if (!mbox0.mbc0.MBC.A_CHANGE_COMING) break;
+  #500 ;
+  doDiagFunc(diagfSTEP_CLOCK);
+end
+
+if (mbox0.mbc0.MBC.A_CHANGE_COMING) begin
+  $display($time, " ERROR: STEP of MBOX five times did not clear MBC.A_CHANGE_COMING");
+end
+
+// Phase 2 from DMRMRT table operations.
+doDiagFunc(diagfCOND_STEP);          // CONDITIONAL SINGLE STEP
+doDiagFunc(diagfCLR_RESET);          // CLEAR RESET
+doDiagWrite(diagfENABLE_KL, '0);     // ENABLE KL STL DECODING OF CODES & AC'S
+doDiagWrite(diagfEBUS_LOAD, '0);     // SET KL10 MEM RESET FLOP
+doDiagWrite(diagfWRITE_MBOX, 'o120); // WRITE M-BOX
+
+$display($time, " DONE");
+
+
+
+
+
+
+## Front End PDP-11 Code Notes
+
+The primary reference is in `rtl/doc/klinit.l20`.
+
+* `LQSHWE` displays the hardware environment of the KL10.
+
+* `HLTNOE` halts KL and turns off DTE protocol to avoid interference.
+  * `..DTSP` turns off protocols (see `rsxt20.l20` for this).
+    * Disable DTE interrupts.
+	* Clear EF.PR1=0o100000 | EF.PR2=0o020000 in .COMEF+2 to disable protocol.
+  * `.CLRUN` in R0 and `$DFXC` halts the KL if it's running.
+
+* `$DFXC` executes the diagnostic function code in R0.
+  * This also maintains a status flag in `.CKSW` of -1 for clock
+    stopped, +1 for started.
+  * As it progresses, `$TRACK` is called to show progress on console.
+
+* `$MCBLD` loads the CRAM and DRAM from their image files.
+
+* `$KLDFX` (in `rsxt20.l20`) manipulates the EBUS to execute a
+  diagnostic function.
 
 # Modeling
 * Use SystemVerilog

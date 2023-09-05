@@ -21,10 +21,12 @@ SLOTNAMES = \
     mbz20 mcl47 mtr33 pag30 pic31 pma29 scd54 shm46 vma38
 
 SVFILES = \
+	kl10pv.sv \
+	fe_sim.sv \
 	$(foreach M,$(MODS),$(LOGICDIR)/$(M).sv) \
 	$(foreach M,$(SLOTNAMES),$(GENDIR)/$(M).sv) \
 
-SVHFILES = $(TOP).sv $(DTEINTF)
+SVHFILES = $(TOP).svh $(DTEINTF)
 CXXFILES = verilator-main.cc
 CFILES = fe.c
 HFILES =
@@ -42,6 +44,7 @@ VERILATOR ?= verilator
 KILLWARNINGS = \
 	-Wno-LITENDIAN \
 	-Wno-UNOPTFLAT \
+	-Wno-INITIALDLY \
 #	-Wno-DECLFILENAME \
 #	-Wno-CLKDATA \
 #	-Wno-TIMESCALEMOD
@@ -63,6 +66,7 @@ VFLAGS = \
 	$(KILLWARNINGS) \
 	$(DEBUG_DIDNOTCONVERGE) \
 	--timescale 1ns/1ps --timescale-override 1ns/1ps \
+	--timing \
 	--x-initial 0 \
 	-cc --build --exe -j 9
 
