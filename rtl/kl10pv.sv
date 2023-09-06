@@ -19,7 +19,6 @@ module kl10pv(input clk60);
   assign clk = clk60;
 
   iEBUS ebus();
-
   fe_sim feSim (.EBUSdriver(feEBUSdriver), .clk(clk_10_11_clk_h), .*);
 
   apr34 apr_34(.EBUSdriver(aprEBUSdriver), .*);
@@ -103,6 +102,35 @@ module kl10pv(input clk60);
   assign ebus_d33_e_h = ebus.data[33];
   assign ebus_d34_e_h = ebus.data[34];
   assign ebus_d35_e_h = ebus.data[35];
+
+  assign ebus_ds_strobe_e_h = ebus.diagStrobe;
+  assign ebus_demand_e_h = ebus.demand;
+  assign ebus_xfer_e_h = ebus.xfer;
+
+  assign ebus_ds00_e_h = ebus.ds[0];
+  assign ebus_ds01_e_h = ebus.ds[1];
+  assign ebus_ds02_e_h = ebus.ds[2];
+  assign ebus_ds03_e_h = ebus.ds[3];
+  assign ebus_ds04_e_h = ebus.ds[4];
+  assign ebus_ds05_e_h = ebus.ds[5];
+  assign ebus_ds06_e_h = ebus.ds[6];
+
+  assign ebus_cs00_e_h = ebus.cs[0];
+  assign ebus_cs01_e_h = ebus.cs[1];
+  assign ebus_cs02_e_h = ebus.cs[2];
+  assign ebus_cs03_e_h = ebus.cs[3];
+  assign ebus_cs04_e_h = ebus.cs[4];
+  assign ebus_cs05_e_h = ebus.cs[5];
+  assign ebus_cs06_e_h = ebus.cs[6];
+
+  assign ebus_pi00_e_h = ebus.pi[0];
+  assign ebus_pi01_e_h = ebus.pi[1];
+  assign ebus_pi02_e_h = ebus.pi[2];
+  assign ebus_pi03_e_h = ebus.pi[3];
+  assign ebus_pi04_e_h = ebus.pi[4];
+  assign ebus_pi05_e_h = ebus.pi[5];
+  assign ebus_pi06_e_h = ebus.pi[6];
+  assign ebus_pi07_e_h = ebus.pi[7];
 
   // Mux for EBUS data lines
   always_comb

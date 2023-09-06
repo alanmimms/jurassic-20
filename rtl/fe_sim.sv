@@ -7,6 +7,7 @@
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
 	      iEBUS ebus,
+	      output ebus_ds_strobe_e_h,
 	      output tEBUSdriver EBUSdriver,
 	      input mbc3_a_change_coming_a_l,
 	      input a_change_coming_in_l,
@@ -24,11 +25,15 @@ module fe_sim(input bit clk,
   end
 
   initial begin
+    $display($time, " CROBAR assert");
     crobar_e_h = '1;
-    repeat (100) @(negedge clk) ;
+    repeat (100) @(negedge clk);
+    $display($time, " CROBAR deassert");
     crobar_e_h = '0;
+  end
 
-    repeat (10) @(negedge clk) ;
+  always @(negedge crobar_e_h) begin
+    repeat (10) @(negedge clk);
     KLMasterReset();
   end
 
@@ -60,10 +65,16 @@ module fe_sim(input bit clk,
     //   Do diag function 162 via $DFRD test (A CHANGE COMING A L)=EBUS[32]
     //   If not set, $DFXC(.SSCLK=002) to single step the MBOX
     $display($time, " [step up to 5 clocks to synchronize MBOX]");
+
+    // Wait for several clocks after CROBAR assert and deassert before trying.
+    @(posedge crobar_e_h);
+    @(negedge crobar_e_h);
+    repeat (100) @(negedge clk);
+
     repeat (5) begin
-      repeat (5) @(negedge clk) ;
+      repeat (5) @(negedge clk);
       if (!a_change_coming) break;
-      repeat (5) @(negedge clk) ;
+      repeat (5) @(negedge clk);
       doDiagFunc(diagfSTEP_CLOCK);
     end
 
@@ -106,10 +117,10 @@ module fe_sim(input bit clk,
       ebus.ds <= func;
       ebus.diagStrobe <= 1;            // Strobe this
       EBUSdriver.driving <= 1;
-      $display($time, " %sASSERT ds=%s [EBUS.data.rh=%06o]", indent, shortName, ebusRH);
+      $display($time, " %s  ASSERT ds=%s [EBUS.data.rh=%06o]", indent, shortName, ebusRH);
     end
 
-    repeat (8) @(negedge clk) ;
+    repeat (8) @(negedge clk);
 
     @(negedge clk) begin
       string shortName;
@@ -120,7 +131,7 @@ module fe_sim(input bit clk,
       $display($time, " %sDEASSERT ds=%s", indent, shortName);
     end
 
-    repeat(4) @(posedge clk) ;
+    repeat(4) @(posedge clk);
   endtask
 
 
@@ -137,7 +148,7 @@ module fe_sim(input bit clk,
       if (func !== diagfSTEP_CLOCK) $display($time, " %sASSERT ds=%s", indent, shortName);
     end
 
-    repeat (8) @(negedge clk) ;
+    repeat (8) @(negedge clk);
 
     @(negedge clk) begin
       string shortName;
@@ -147,7 +158,7 @@ module fe_sim(input bit clk,
       if (func !== diagfSTEP_CLOCK) $display($time, " %sDEASSERT ds=%s", indent, shortName);
     end
 
-    repeat(4) @(posedge clk) ;
+    repeat(4) @(posedge clk);
   endtask
 
 

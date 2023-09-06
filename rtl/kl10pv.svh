@@ -7,7 +7,7 @@
 // EBUS
 
 // Each driver of EBUS gets its own instance of this. These are all
-// muxed onto the iEBUS.data member based on the one-hot
+// muxed onto the EBUS.data member based on the one-hot
 // tEBUSdriver.driving indicator.
 
 typedef struct packed {
@@ -16,13 +16,13 @@ typedef struct packed {
 } tEBUSdriver;
 
 typedef enum bit [0:2] {
-                ebusfCONO = 3'b000,
-                ebusfCONI = 3'b001,
-                ebusfDATAO = 3'b010,
-                ebusfDATAI = 3'b011,
-                ebusfPIserved = 3'b100,
-                ebusfPIaddrIn = 3'b101
-                } tEBUSfunction;
+  ebusfCONO = 3'b000,
+  ebusfCONI = 3'b001,
+  ebusfDATAO = 3'b010,
+  ebusfDATAI = 3'b011,
+  ebusfPIserved = 3'b100,
+  ebusfPIaddrIn = 3'b101
+} tEBUSfunction;
 
 interface iEBUS;
   bit [0:35] data;            // Driven by EBUS mux
@@ -37,6 +37,6 @@ interface iEBUS;
   tDiagFunction ds;           // DTE -> EBOX Diagnostic Select
   bit diagStrobe;             // DTE -> EBOX Diagnostic strobe
   bit dfunc;                  // Dev -> EBOX Diagnostic function
-endinterface
+endinterface;
 
 `endif //  `ifndef _KL10PV_SVH_

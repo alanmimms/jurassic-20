@@ -66,7 +66,7 @@ VFLAGS = \
 	-I$(GENDIR) \
 	$(KILLWARNINGS) \
 	$(DEBUG_DIDNOTCONVERGE) \
-	--timescale 1ns/1ps --timescale-override 1ns/1ps \
+	--timescale 1ns --timescale-override 1ns \
 	--timing \
 	--x-initial 0 \
 	-cc --build --exe -j 9
