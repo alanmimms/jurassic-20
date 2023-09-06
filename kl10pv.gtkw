@@ -1,45 +1,36 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Wed Sep  6 00:53:23 2023
+[*] Wed Sep  6 01:34:28 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Sep  6 00:50:31 2023"
-[dumpfile_size] 4767943
+[dumpfile_mtime] "Wed Sep  6 01:32:45 2023"
+[dumpfile_size] 3588219
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 350
-[size] 2104 994
+[timestart] 0
+[size] 2402 994
 [pos] -1 -1
-*-8.125512 2051 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[treeopen] kl10pv.
-[treeopen] kl10pv.kl10pv.
-[treeopen] kl10pv.kl10pv.feSim.
+*-9.125512 2641 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.kl10pv.
+[treeopen] top.kl10pv.mbx_21.
 [sst_width] 226
-[signals_width] 237
+[signals_width] 363
 [sst_expanded] 1
 [sst_vpaned_height] 277
+@29
+[color] 1
+top.kl10pv.crobar_e_h
 @28
-[color] 1
-kl10pv.kl10pv.crobar_e_h
-kl10pv.kl10pv.clk_32.clk2_func_burst_l
-[color] 1
-kl10pv.kl10pv.clk_32.clk2_func_set_reset_l
-[color] 1
-kl10pv.kl10pv.clk_32.clk2_func_clr_reset_h
-kl10pv.kl10pv.clk_32.clk2_func_single_step_l
-[color] 4
-kl10pv.kl10pv.clk_32.clk2_func_cond_ss_l
-[color] 4
-kl10pv.kl10pv.clk_32.clk2_func_ebox_ss_l
-[color] 4
-kl10pv.kl10pv.clk_32.clk2_func_start_l
-@30
-[color] 3
-kl10pv.kl10pv.ebus.data[0:35]
-@28
-[color] 3
-kl10pv.kl10pv.ebus.diagStrobe
-@30
-[color] 3
-kl10pv.kl10pv.ebus.ds[0:6]
+top.kl10pv.mbx_21.e48.clk
+top.kl10pv.mbx_21.e48.d0
+top.kl10pv.mbx_21.e48.d1
+top.kl10pv.mbx_21.e48.d2
+top.kl10pv.mbx_21.e48.d3
+top.kl10pv.mbx_21.e48.op1
+top.kl10pv.mbx_21.e48.op2
+top.kl10pv.mbx_21.e48.q0
+top.kl10pv.mbx_21.e48.q1
+top.kl10pv.mbx_21.e48.q2
+top.kl10pv.mbx_21.e48.q3
 [pattern_trace] 1
 [pattern_trace] 0

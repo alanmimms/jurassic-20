@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
   contextp->commandArgs(argc, argv);
   contextp->timeunit(-9);	// Timeunit is ns
 
-  const std::unique_ptr<Vkl10pv> kl10pv{new Vkl10pv{contextp.get(), "kl10pv"}};
+  const std::unique_ptr<Vkl10pv> top{new Vkl10pv{contextp.get(), "top"}};
 
   VerilatedVcdC* trace = nullptr;
 #if VM_TRACE
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
   if (true || 0 == std::strcmp(flag, "+trace")) {
     contextp->traceEverOn(true);
     trace = new VerilatedVcdC;
-    kl10pv->trace(trace, 99);
+    top->trace(trace, 99);
     trace->spTrace()->set_time_resolution("ns");
     trace->spTrace()->set_time_unit("ns");
     trace->open("kl10pv-trace.vcd");
@@ -55,14 +55,16 @@ int main(int argc, char **argv) {
 
   while (!contextp->gotFinish()) {
     const uint64_t t = contextp->time();
+
     if (t % 10000ull == 0) std::cout << ((double) t/1000.0) << "us" << std::endl;
-
-    if (trace) trace->dump(t);
-    contextp->timeInc(1);  // 1 timeprecision period passes...
-    kl10pv->clk60 = !kl10pv->clk60;
-    kl10pv->eval();
-
     if (t >= endTime) break;
+
+    top->eval();
+    if (trace) trace->dump(t);
+
+    top->clk60 = !top->clk60;
+
+    contextp->timeInc(1);
   }
 
   return 0;
