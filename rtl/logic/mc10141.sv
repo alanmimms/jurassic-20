@@ -1,4 +1,3 @@
-`timescale 1ns/1ns
 // This is like MC10141 ECL universal shift register
 module mc10141(input bit shft0in,
                input bit d0, d1, d2, d3,

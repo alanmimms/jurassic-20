@@ -1,4 +1,3 @@
-`timescale 1ns/1ns
 // MC10181 from Fairchild ECL datasheet F10181.pdf.
 //
 // S3 S2 S1 S0    M=1 C0=X    M=0 C0=0     M=0 C0=1

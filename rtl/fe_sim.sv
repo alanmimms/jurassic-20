@@ -66,11 +66,6 @@ module fe_sim(input bit clk,
     //   If not set, $DFXC(.SSCLK=002) to single step the MBOX
     $display($time, " [step up to 5 clocks to synchronize MBOX]");
 
-    // Wait for several clocks after CROBAR assert and deassert before trying.
-    @(posedge crobar_e_h);
-    @(negedge crobar_e_h);
-    repeat (100) @(negedge clk);
-
     repeat (5) begin
       repeat (5) @(negedge clk);
       if (!a_change_coming) break;
@@ -79,7 +74,7 @@ module fe_sim(input bit clk,
     end
 
     if (a_change_coming) begin
-      $display($time, " ERROR: STEP of MBOX five times did not clear a_change_coming");
+      $display("===ERROR=== Step MBOX five times did not clear a_change_coming");
     end
 
     // Phase 2 from DMRMRT table operations.

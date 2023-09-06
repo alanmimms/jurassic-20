@@ -1,0 +1,45 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Wed Sep  6 00:53:23 2023
+[*]
+[dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
+[dumpfile_mtime] "Wed Sep  6 00:50:31 2023"
+[dumpfile_size] 4767943
+[savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
+[timestart] 350
+[size] 2104 994
+[pos] -1 -1
+*-8.125512 2051 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] kl10pv.
+[treeopen] kl10pv.kl10pv.
+[treeopen] kl10pv.kl10pv.feSim.
+[sst_width] 226
+[signals_width] 237
+[sst_expanded] 1
+[sst_vpaned_height] 277
+@28
+[color] 1
+kl10pv.kl10pv.crobar_e_h
+kl10pv.kl10pv.clk_32.clk2_func_burst_l
+[color] 1
+kl10pv.kl10pv.clk_32.clk2_func_set_reset_l
+[color] 1
+kl10pv.kl10pv.clk_32.clk2_func_clr_reset_h
+kl10pv.kl10pv.clk_32.clk2_func_single_step_l
+[color] 4
+kl10pv.kl10pv.clk_32.clk2_func_cond_ss_l
+[color] 4
+kl10pv.kl10pv.clk_32.clk2_func_ebox_ss_l
+[color] 4
+kl10pv.kl10pv.clk_32.clk2_func_start_l
+@30
+[color] 3
+kl10pv.kl10pv.ebus.data[0:35]
+@28
+[color] 3
+kl10pv.kl10pv.ebus.diagStrobe
+@30
+[color] 3
+kl10pv.kl10pv.ebus.ds[0:6]
+[pattern_trace] 1
+[pattern_trace] 0
