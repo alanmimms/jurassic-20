@@ -58,7 +58,6 @@ CPPFLAGS += -DVL_DEBUG
 
 VFLAGS = \
 	--stats \
-	--trace --trace-structs \
 	--default-language 1800-2017 +1800-2017ext+sv \
 	-CFLAGS \
 	-MMD \
@@ -68,6 +67,8 @@ VFLAGS = \
 	$(DEBUG_DIDNOTCONVERGE) \
 	--timescale 1ns --timescale-override 1ns \
 	--timing \
+	--trace --trace-structs \
+	--clk clk60 \
 	--x-initial 0 \
 	-cc --build --exe -j 9
 
