@@ -3,7 +3,7 @@ module mc10141(input bit shft0in,
                input bit d0, d1, d2, d3,
                input bit shft3in,
                input bit op1, op2,
-               input bit clk,
+               input bit clk /*verilator clocker*/,
                output bit q0, q1, q2, q3);
 
   always_ff @(posedge clk) begin
