@@ -25,6 +25,9 @@
 
 # Documentation Pointers
 
+* The KLX.RAM file is ASCII formatted according to the description in
+  `doc/convert.txt` sections 3.0 and 6.0.
+
 * DTE20 is where the 10/11 interface lives
   * Documented in `EK-DTE20-UD-003_Oct76.pdf`.
   * Also from SAIL in ETHDES.txt.
