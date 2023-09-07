@@ -1075,7 +1075,8 @@ t1: 10101 quad or/nor
     9 ~> {ae1} [d,xa,xb,xc,xd] pin9
     13 ~< {af1} pin13 [e] pin13
     15 ~> {ba1} pin15 [a+b+c/3,xa,xb,xc,xd]
-    6 ~> {ak1} [n/30+1,adx cry [n+06] h,ctl adx cry 36 h]
+    6 ~> {ak1} [a,adx cry [n+06] h,ctl adx cry 36 h]
+    14 ~> {ak1} [b,adx cry [n+06] h,ctl adx cry 36 h]
 `;
 
   const t1 = parser.parse(t1src, {astDirToDir});
@@ -1096,6 +1097,7 @@ t1: 10101 quad or/nor
     13: 'pin13 99 pin13',
     15: 'pin15 xd',
     6: 'adx cry 06 h',
+    14: 'ctl adx cry 36 h',
   };
 
   pins.map(p => {
