@@ -228,7 +228,7 @@ e13: 10101 quad or/nor
      5 ~> %NC%
 
 e22: 10101 quad or/nor
-     10 ~< diag read func 13x l
+     10 ~< {bn1} diag read func 13x l
      12 ~< %NC%
      11 ~> con1 diag read l
      14 ~> %NC%
