@@ -131,10 +131,6 @@ doDiagWrite(diagfWRITE_MBOX, 'o120); // WRITE M-BOX
 $display($time, " DONE");
 
 
-
-
-
-
 ## Front End PDP-11 Code Notes
 
 The primary reference is in `rtl/doc/klinit.l20`.
@@ -156,6 +152,7 @@ The primary reference is in `rtl/doc/klinit.l20`.
 
 * `$KLDFX` (in `rsxt20.l20`) manipulates the EBUS to execute a
   diagnostic function.
+
 
 # Modeling
 * Use SystemVerilog
