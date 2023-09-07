@@ -59,11 +59,14 @@ int main(int argc, char **argv) {
     if (t % 10000ull == 0) std::cout << ((double) t/1000.0) << "us" << std::endl;
     if (t >= endTime) break;
 
+    top->clk60 = 0;
     top->eval();
-    if (trace) trace->dump(t);
+    if (trace) trace->dump(contextp->time());
+    contextp->timeInc(1);
 
-    top->clk60 = !top->clk60;
-
+    top->clk60 = 1;
+    top->eval();
+    if (trace) trace->dump(contextp->time());
     contextp->timeInc(1);
   }
 
