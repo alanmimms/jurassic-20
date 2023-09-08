@@ -11,7 +11,7 @@
 
 
 static const double nsPerClock = 1.0;
-static const double endTime = 1.5 * 1000 * 1000; // 1.5 ms
+static const double endTime = 50 * 1000; // 50us
 
 
 extern "C" void FEinitial(double nsPerClock);

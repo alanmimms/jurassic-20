@@ -3,7 +3,6 @@
 `include "kl10pv.svh"
 `include "dte.svh"
 
-
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
 	      iEBUS ebus,
@@ -36,7 +35,7 @@ module fe_sim(input bit clk,
   //
   // Indeed, the intrepid microcoders bore the brunt of that
   // complexity.
-  bit [] dram[];
+  bit [25:0] dram[511:0];
 
   bit [83:0] cram[2047:0];
 
@@ -44,12 +43,162 @@ module fe_sim(input bit clk,
     con_cono_200000_h = '0;
   end
 
-  initial begin
-    $display($time, " Reading CRAM and DRAM image files");
-    $readmemh("../images/DRAM.mem", ebox0.ir0.dram.mem);
-    $readmemh("../images/CRAM.mem", ebox0.crm0.cram.mem);
-    $display($time, " DONE");
-  end
+  // From `images/ucode/convrt/convrt.txt`
+  //
+  // 3.0	FILE FORMATS
+  //
+  // 	THE PROGRAM FILES CONSIST OF BINARY DATA WHICH HAS BEEN
+  // 	"ASCIIZED", THAT IS, MANIPULATED SUCH THAT 6 OR LESS BITS
+  // 	OF THE BINARY DATA ARE REPRESENTED BY A 7-BIT CHARACTER
+  // 	WHOSE VALUE RANGES FROM OCTAL 075 TO OCTAL 174.  THIS
+  // 	PROCESS IS EMPLOYED TO AVOID THE PROBLEMS WHICH WOULD BE
+  // 	ENCOUNTERED IF CERTIAN 7-BIT COMBINATIONS WERE ALLOWED
+  // 	(E.G., OCTAL 003 WOULD BE INTERPRETED AS "CONTROL C").
+  //
+  // 	"ASCIIZED" DATA IS PRODUCED FROM THE SOURCE BINARY DATA AS
+  // 	FOLLOWS:
+  //
+  // 	1.  DIVIDE THE BINARY DATA INTO 6-BIT FIELDS, STARTING WITH
+  // 	    THE LEAST SIGNIFICANT 6 BITS.  DEPENDING ON THE NUMBER
+  // 	    OF BITS IN THE SOURCE DATA, THE MOST SIGNIFICANT FIELD
+  // 	    MAY BE COMPOSED OF FROM 1 TO 6 BITS.
+  //
+  // 	2.  CONVERT EACH FIELD INTO A 7-BIT CHARACTER USING THE
+  // 	    FOLLOWING PROCEDURE:
+  //
+  // 	   2A.	IF THE FIELD HAS A VALUE LESS THAN OCTAL 75, ADD
+  // 		OCTAL 100 (PRODUCING 7-BIT VALUES RANGING FROM
+  // 		OCTAL 100 TO OCTAL 174).
+  //
+  // 	   2B.	IF THE FIELD HAS VALUES OCTAL 75, 76, OR 77 USE
+  // 		THE FIELD DIRECTLY (PRODUCING 7-BIT VALUES 075,
+  // 		076, OR 077).
+  //
+  // 	EXAMPLE:
+  //
+  // 	A 16 BIT WORD CONTAINING OCTAL 176076 IS DIVIDED INTO 3 FIELDS
+  // 	(ONE 4-BIT AND TWO 6-BIT):
+  //
+  // 		17, 60, 76
+  //
+  // 	THE FIELDS ARE CONVERTED INTO 7-BIT CHARACTERS:
+  //
+  // 		117, 160, 076
+  //
+  // 	WHICH ARE THE ASCII CODES FOR THE GRAPHICS:
+  //
+  // 		O, LOWER CASE P, >
+
+  ////////////////////////////////////////////////////////////////
+
+  // 6.0	KL10 MICRO CODE FILE FORMATS
+
+  // 	THE KL10 MICRO CODE FILE CONSISTS OF TWO DIFFERENT TYPES
+  // 	OF DATA.
+  //
+  // 	THE CONTROL RAM CONSISTS OF 80 BITS PLUS A 5 BIT SPECIAL
+  // 	FIELD PER CONTROL RAM LOCATION.  THIS THEN REQUIRES SIX
+  // 	16 BIT WORDS TO REPRESENT THE CONTROL RAM DATA.  THE LOAD
+  // 	FILE IS ARRANGED SO AS FACILITATE LOADING OF THE C-RAM WITH
+  // 	THE "WCRAM" ROUTINE.
+  //
+  // 	THE DISPATCH RAM CONSISTS OF PAIRS OF LOCATIONS.  THIS
+  // 	THEN REQUIRES THREE 16 BIT WORDS PER PAIR OF D-RAM LOCATIONS.
+  // 	THIS FILE IS ARRANGED TO FACILITATE LOADING OF THE D-RAM 
+  // 	WITH THE "WDRAM" ROUTINE.
+  //
+  // 	BOTH THE C-RAM AND D-RAM DATA ARE COMBINED INTO A SINGLE
+  // 	LOAD FILE TO FACILITATE HANDLING AND TO KEEP THE ASSOCIATED
+  // 	VERSIONS TOGETHER.
+  //
+  // 	THE MICRO CODE LOAD FILE ALSO CONTAINS A C-RAM ZERO LINE
+  // 	USED TO ZERO THE CONTROL RAM BEFORE LOADING ANY DATA INTO
+  // 	IT.  THE C-RAM IS ZEROED FROM LOCATION ZERO UP TO THE HIGHEST
+  // 	USED C-RAM LOCATION.
+  //
+  // 	IF THE MICRO-CODE DOES NOT CONTAIN ANY DATA IN C-RAM LOCATION
+  // 	0, THE "Z" BLOCK IS NOT DONE WHICH PREVENTS C-RAM ZEROING AND
+  // 	ALLOWS FOR MICRO-CODE OVERLAYS TO BE GENERATED.
+  //
+  // 	EXAMPLE FILE:
+  //
+  // 	Z WC,ADR,COUNT,CKS
+  // 	C WC,ADR,DATA,DATA,...,CKSUM
+  // 	C  "
+  // 	C  "
+  // 	C ,,
+  // 	D WC,ADR,DATA,DATA,...,CKSUM
+  // 	D  "
+  // 	D  "
+  // 	D ,,
+  //
+  // 	CONTROL RAM FORMAT
+  // 	------------------
+  //
+  // 	Z WC,ADR,COUNT,CKSUM
+  //
+  // 	Z	;C-RAM ZERO
+  // 		;SPACE, ASCIIZED FORMAT
+  // 	WC	;WORD COUNT = 1
+  // 	ADR	;ZERO START ADDRESS = 0
+  // 	COUNT	;ZERO COUNT, DERIVED FROM HIGHEST USED ADDRESS
+  //
+  // 	C WC,ADR,64-79,48-63,32-47,16-31,00-15,0-4,.....,CKSUM
+  //
+  // 	C	;C-RAM FILE IDENTIFIER
+  // 		;SPACE, ASCIIZED FILE TYPE
+  // 	WC	;WORD COUNT, C-RAM WORD COUNT TIMES 6, 6 PDP-11
+  // 		; WORDS PER C-RAM WORD
+  // 	ADR	;C-RAM ADDRESS FOR THIS LOAD FILE LINE
+  // 	64-79	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
+  // 	48-63	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
+  // 	32-47	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
+  // 	16-31	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
+  // 	00-15	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
+  // 	0-4	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
+  // 	CKSUM	;16 BIT NEGATED CHECKSUM OF WC, ADR & DATA
+  //
+  // 	C ,,
+  //
+  // 	C	;C-RAM FILE IDENTIFIER
+  // 		;SPACE, ASCIIZED FILE FORMAT
+  // 	,	;WC = 0, END OF FILE
+  // 	,	;ADR = 0, NO START ADDRESS
+  //
+  // 	A C-RAM LOAD FILE LINE MAY CONTAIN UP TO 5 C-RAM LOCATIONS.
+  // 	THE FILE LINE CHECKSUM IS THE 16 BIT NEGATED CHECKSUM OF
+  // 	THE WORD COUNT, THE LOAD ADDRESS AND THE C-RAM DATA
+  // 	REPRESENTED IN 16 BIT FORMAT.
+  //
+  // 6.0	KL10 MICRO CODE FILE FORMATS (CON'T)
+  //
+  // 	D-RAM FORMAT
+  // 	------------
+  //
+  // 	D WC,ADR,EVEN,ODD,COMMON,.......,CKSUM
+  //
+  // 	D	;D-RAM FILE IDENTIFIER
+  // 		;SPACE, ASCIIZED FILE TYPE
+  // 	WC	;WORD COUNT, D-RAM LOCATION PAIRS TIMES 3, 3 PDP-11
+  // 		; 16 BIT WORDS PER PAIR OF LOCATIONS.
+  // 	EVEN	;D-RAM EVEN BITS AS SPECIFIES UNDER "WDRAM"
+  // 	ODD	;D-RAM ODD BITS AS SPECIFIED UNDER "WDRAM"
+  // 	COMMON	;D-RAM COMMON BITS AS SPECIFIED UNDER "WDRAM"
+  // 	CKSUM	;16 BIT NEGATED CHECKSUM OF WC, ADR & DATA
+  //
+  // 	D ,,
+  //
+  // 	D	;D-RAM FILE IDENTIFIER
+  // 		;SPACE, ASCIIZED FILE FORMAT
+  // 	,	;WC = 0, END OF FILE
+  // 	,	;ADR = 0, NO START ADDRESS
+  //
+  // 	A D-RAM LOAD FILE LINE MAY CONSIST OF UP TO 10
+  // 	PAIRS OF D-RAM LOCATIONS.
+  // 	THE FILE LINE CHECKSUM IS THE 16 BIT NEGATED CHECKSUM OF
+  // 	THE WORD COUNT, THE LOAD ADDRESS AND THE D-RAM DATA
+  // 	REPRESENTED IN 16 BIT FORMAT.
+  //
 
   initial begin
     $display($time, " CROBAR assert");
@@ -62,6 +211,9 @@ module fe_sim(input bit clk,
   always @(negedge crobar_e_h) begin
     repeat (10) @(negedge clk);
     KLMasterReset();
+
+    // Debugging sentinel
+    doDiagFunc(diagfCLR_RUN);
     KLLoadRAMs();
   end
 
@@ -76,18 +228,17 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCLR_RUN);
 
     // This is the first phase of DMRMRT table operations.
-    doDiagWrite(diagfCLR_CLK_SRC_RATE, '0);           // CLOCK LOAD FUNC #44
+    doDiagWrite(diagfCLK_SRC_RATE, '0);		      // CLOCK LOAD FUNC #44
     doDiagFunc(diagfSTOP_CLOCK);                      // STOP THE CLOCK
     doDiagFunc(diagfSET_RESET);                       // SET RESET
     doDiagWrite(diagfRESET_PAR_REGS, '0);             // LOAD CLK PARITY CHECK & FS CHECK
-    doDiagWrite(diagfCLR_MBOXDIS_PARCHK_ERRSTOP, '0); // LOAD CLK MBOX CYCLE DISABLES,
-    // PARITY CHECK, ERROR STOP ENABLE
-    doDiagWrite(diagfCLR_BURST_CTR_RH, '0);           // LOAD BURST COUNTER (8,4,2,1)
-    doDiagWrite(diagfCLR_BURST_CTR_LH, '0);           // LOAD BURST COUNTER (128,64,32,16)
+    doDiagWrite(diagfMBOXDIS_PARCHK_ERRSTOP, '0);     // LOAD CLK MBOX CYCLE DISABLES,
+    doDiagWrite(diagfBURST_CTR_RH, '0);		      // LOAD BURST COUNTER (8,4,2,1)
+    doDiagWrite(diagfBURST_CTR_LH, '0);		      // LOAD BURST COUNTER (128,64,32,16)
     doDiagWrite(diagfSET_EBOX_CLK_DISABLES, '0);      // LOAD EBOX CLOCK DISABLE
     doDiagFunc(diagfSTART_CLOCK);                     // START THE CLOCK
     doDiagWrite(diagfINIT_CHANNELS, '0);              // INIT CHANNELS
-    doDiagWrite(diagfCLR_BURST_CTR_RH, '0);           // LOAD BURST COUNTER (8,4,2,1)
+    doDiagWrite(diagfBURST_CTR_RH, '0);		      // LOAD BURST COUNTER (8,4,2,1)
 
     // Loop up to three times:
     //   Do diag function 162 via $DFRD test (A CHANGE COMING A L)=EBUS[32]
@@ -129,37 +280,124 @@ module fe_sim(input bit clk,
 
   
   ////////////////////////////////////////////////////////////////
-  // Functions from KLINIT.L20 $KLMR (DO A MASTER RESET ON THE KL)
-  task KLLoadRAMs;
+  typedef bit [15:0] W16;
+  task automatic KLLoadRAMs;
+    int fd;
+    string line, recType, rec;
+    string words[$];
+    W16 adr, count, cksum;
+    W16 lastAdr = 0;
+
     $display($time, " KLLoadRAMs() START");
-    indent = "  ";
 
+    $display("[Reading KLX.RAM for CRAM and DRAM]");
 
-    $display($time, " DONE");
-    indent = "";
+    fd = $fopen("./images/ucode/klx.ram", "r");
+    if (fd == 0) $display("Could not open KLX.RAM file");
+
+    // Read header line
+    $fgets(line, fd);
+    $display(line);
+
+    while (1) begin
+      $fgets(line, fd);
+      if ($feof(fd)) break;
+
+      line = trimString(line);
+      recType = line.substr(0, 0);
+      rec = line.substr(2, line.len() - 1);
+      words = split(rec, ",");
+
+      case (recType)
+	"Z": begin  		// Zero a range
+	  adr = unASCIIize(words[1]);
+	  cksum = unASCIIize(words[2]);
+	  count = unASCIIize(words[3]);
+	  $display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
+	end
+
+	"C": begin		// CRAM record
+	  bit [0:85] cw;
+	  count = unASCIIize(words[0]);
+	  adr = unASCIIize(words[1]);
+
+	  if (count == 0 && adr == 0) begin
+	    $display("CRAM EOF");
+	    lastAdr = 0;
+	  end else begin
+	    if (adr == 0) adr = lastAdr;
+	    lastAdr = adr + count;
+//	    $display("CRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
+
+	    for (int k = 2; k < count; ) begin
+	      cw[64:79] = 16'(unASCIIize(words[k++]));
+	      cw[48:63] = 16'(unASCIIize(words[k++]));
+	      cw[32:47] = 16'(unASCIIize(words[k++]));
+	      cw[16:31] = 16'(unASCIIize(words[k++]));
+	      cw[00:15] = 16'(unASCIIize(words[k++]));
+	      cw[80:85] = 6'(unASCIIize(words[k++]));
+	      writeCRAM(12'(adr), cw);
+	    end
+	  end
+	end
+
+	"D": begin		// DRAM record
+	  count = unASCIIize(words[0]);
+	  adr = unASCIIize(words[1]);
+
+	  if (count == 0 && adr == 0) begin
+	    $display("DRAM EOF");
+	    lastAdr = 0;
+	  end else begin
+	    if (adr == 0) adr = lastAdr;
+	    lastAdr = adr + count;
+//	    $display("DRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
+	  end
+	end
+
+	";": ;			// Comment - ignore
+
+	default:
+	  $display("ERROR: Unknown record type '%s' in KLX.RAM file", recType);
+      endcase
+    end
+
+    $fclose(fd);
+    $display("[done]");
   endtask
 
 
   ////////////////////////////////////////////////////////////////
-  // Write specified CRAM word to specified CRAM address.
-  // Composed while looking at klinit.l20 $WCRAM.
-  task writeCRAMWord(input bit[0:95] word, input bit [11:0] addr);
+  // Write specified CRAM word to specified CRAM address.  Composed
+  // while looking at klinit.l20 $WCRAM and various other sources..
+  // 
+  // CRM4 is PDF395. See decoder E1 on PDF393 for diag func decode and
+  // corresponding bits.
+  //
+  // CRA5 is PDF347. This for the CALL+DISP[0:5] bits.
+  task automatic writeCRAM(input bit [11:0] addr, input bit[0:85] cw);
+    doDiagWrite(diagfCRAM_WRITE4, W36'(cw[60:79]) << 8);  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE3, W36'(cw[40:49]) << 8);  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE2, W36'(cw[20:39]) << 8);  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE1, W36'(cw[0:19])  << 8);  // CRM4,5 CRAM[0:19]  <- EBUS[8:27]
+    doDiagWrite(diagfCRAM_WRITE5, W36'(cw[80:85]) << 30); // CRA5   CRAM[80:85] <- EBUS[0:5]
   endtask
   
 
   ////////////////////////////////////////////////////////////////
   // Write the specified CLK module diagnostic function with data on
   // ebusRH as if we were the front-end setting up a KL10-PV.
-  task doDiagWrite(input tDiagFunction func, input bit [18:35] ebusRH);
+  task doDiagWrite(input tDiagFunction func, input W36 ebusData);
 
     @(negedge clk) begin
       string shortName;
       shortName = replace(func.name, "diagf", "");
-      EBUSdriver.data[18:35] = ebusRH;
+      EBUSdriver.data = ebusData;
       ebus.ds <= func;
       ebus.diagStrobe <= 1;            // Strobe this
       EBUSdriver.driving <= 1;
-      $display($time, " %s  ASSERT ds=%s [EBUS.data.rh=%06o]", indent, shortName, ebusRH);
+      $display($time, " %s  ASSERT ds=%s [EBUS.data=%06o,,%06o]", indent, shortName,
+	       ebusData >> 18, ebusData & 36'o777777);
     end
 
     repeat (8) @(negedge clk);
@@ -199,7 +437,62 @@ module fe_sim(input bit clk,
     end
 
     repeat(4) @(negedge clk);
-  endtask
+  endtask // doDiagFunc
+
+
+  // Decode a single word (i.e., from `convrt.txt` section 3.0) and
+  // return its value.
+  function automatic W16 unASCIIize(string s);
+    W16 v = 0;
+    int ch;
+
+    for (int k = s.len() - 1; k >= 0; --k) begin
+      v = v << 6;
+      ch = int'(s[k]);
+      v = v | W16'(ch <= 32'o174 ? (ch & ~32'o100) : ch);
+    end
+
+    return v;
+  endfunction // unASCIIize
+
+
+  // Trim a string
+  function string trimString(string s);
+    int first;
+    int last;
+    first = 0;
+    last  = s.len-1;
+    while ((first <= last) && isSpace(s[first])) first++;
+    while ((first <= last) && isSpace(s[last])) last--;
+    return s.substr(first, last);
+  endfunction
+
+
+  function automatic bit isSpace(byte unsigned ch);
+    return ch == "\t" || ch == "\n" || ch == " " || ch == 13;
+  endfunction: isSpace
+
+
+  // Split a string on every occurrence of a given character
+  typedef string qs[$];
+  function automatic qs split(string s, string splitset="");
+    int anchor = 0;
+    bit splitchars[string];
+    qs result = {};
+
+    foreach (splitset[i]) splitchars[splitset[i]] = 1;
+
+    foreach (s[i]) begin
+
+      if (splitchars.exists(s[i]) != 0) begin
+        result.push_back(s.substr(anchor, i - 1));
+        anchor = i + 1;
+      end
+    end
+
+    result.push_back(s.substr(anchor, s.len() - 11));
+    return result;
+  endfunction
 
 
   // Replace the first instance of `find` in `s` with `repl` or return
@@ -227,6 +520,5 @@ module fe_sim(input bit clk,
 
     return s;                   // Not found, return s unmodified
   endfunction
-
 
 endmodule; // fe_sim

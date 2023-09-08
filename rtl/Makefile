@@ -51,7 +51,8 @@ KILLWARNINGS = \
 
 DEBUG_DIDNOTCONVERGE = --prof-cfuncs -CFLAGS -DVL_DEBUG
 
-INCDIR = $(VERILATORROOT)/include
+SVLIBDIR = ./lib/svlib/src
+INCDIR = $(VERILATORROOT)/include $(LIBDIR)/svlib/src
 CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG)
 CXXFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd $(DEBUG)
 CPPFLAGS += -DVL_DEBUG
@@ -63,6 +64,7 @@ VFLAGS = \
 	-MMD \
 	-I. \
 	-I$(GENDIR) \
+	-I$(SVLIBDIR) \
 	$(KILLWARNINGS) \
 	$(DEBUG_DIDNOTCONVERGE) \
 	--timescale 1ns --timescale-override 1ns \
