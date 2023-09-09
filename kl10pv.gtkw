@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Sep  9 01:18:53 2023
+[*] Sat Sep  9 17:59:21 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Sep  9 01:18:51 2023"
-[dumpfile_size] 7225696
+[dumpfile_mtime] "Sat Sep  9 17:59:21 2023"
+[dumpfile_size] 10814024
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 3268
+[timestart] 4580
 [size] 2130 1197
 [pos] -1 -1
-*-7.125511 3598 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.125511 5088 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
@@ -37,7 +37,9 @@ top.kl10pv.anyEBUSdriving
 @30
 [color] 3
 top.kl10pv.ebus.diagStrobe
+@2030
 [color] 3
+^1 /home/alan/dec20/kl10-schematics/rtl/dte.tff
 top.kl10pv.ebus.ds[0:6]
 @800030
 top.kl10pv.feEBUSdriver.data[0:35]
@@ -116,7 +118,9 @@ top.kl10pv.ctl_36.ebus_ds00_e_h
 top.kl10pv.ctl_36.ebus_ds01_e_h
 top.kl10pv.ctl_36.ebus_ds02_e_h
 top.kl10pv.ctl_36.ebus_ds03_e_h
+@29
 top.kl10pv.ctl_36.ebus_ds04_e_h
+@28
 top.kl10pv.ctl_36.ebus_ds05_e_h
 top.kl10pv.ctl_36.ebus_ds06_e_h
 top.kl10pv.ctl_36.ebus_ds_strobe_e_h

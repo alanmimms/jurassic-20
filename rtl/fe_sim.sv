@@ -333,8 +333,9 @@ module fe_sim(input bit clk,
 	      cw[16:31] = 16'(unASCIIize(words[k++]));
 	      cw[00:15] = 16'(unASCIIize(words[k++]));
 	      cw[80:85] = 6'(unASCIIize(words[k++]));
-	      writeCRAM(11'(adr), cw);
 	    end
+
+	    writeCRAM(11'(adr), cw);
 	  end
 	end
 
@@ -373,8 +374,9 @@ module fe_sim(input bit clk,
   //
   // CRA5 is PDF347. This for the CALL+DISP[0:5] bits.
   task automatic writeCRAM(input bit [10:0] addr, input bit[0:85] cw);
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, W36'(addr[10:5]) << 30); // CRAM address[10:5]
-    doDiagWrite(diagfCRAM_DIAG_ADR_LH, W36'(addr[4:0]) << 30);  // CRAM address[0:4]
+//    $display($time, " writeCRAM addr=%04o  cw=%029o", addr, cw);
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, W36'(addr[4:0]) << 30);  // CRAM address[0:4]
+    doDiagWrite(diagfCRAM_DIAG_ADR_LH, W36'(addr[10:5]) << 30); // CRAM address[10:5]
     doDiagWrite(diagfCRAM_WRITE4, W36'(cw[60:79]) << 8);  // CRM4,5
     doDiagWrite(diagfCRAM_WRITE3, W36'(cw[40:49]) << 8);  // CRM4,5
     doDiagWrite(diagfCRAM_WRITE2, W36'(cw[20:39]) << 8);  // CRM4,5
