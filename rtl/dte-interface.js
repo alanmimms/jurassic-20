@@ -27,15 +27,20 @@ const diagFuncTypes = `\
   SET_RUN = 0o011,                              \
   CONTINUE = 0o012,                             \
                                                 \
-  CLR_BURST_CTR_RH = 0o042,                     \
-  CLR_BURST_CTR_LH = 0o043,                     \
-  CLR_CLK_SRC_RATE = 0o044,                     \
+  BURST_CTR_RH = 0o042,				\
+  BURST_CTR_LH = 0o043,				\
+  CLK_SRC_RATE = 0o044,				\
   SET_EBOX_CLK_DISABLES = 0o045,                \
   RESET_PAR_REGS = 0o046,                       \
-  CLR_MBOXDIS_PARCHK_ERRSTOP = 0o047,           \
+  MBOXDIS_PARCHK_ERRSTOP = 0o047,		\
                                                 \
-  CLR_CRAM_DIAG_ADR_RH = 0o051,                 \
-  CLR_CRAM_DIAG_ADR_LH = 0o052,                 \
+  CRAM_DIAG_ADR_RH = 0o051,			\
+  CRAM_DIAG_ADR_LH = 0o052,			\
+  CRAM_WRITE5 = 0o53,				\
+  CRAM_WRITE4 = 0o54,				\
+  CRAM_WRITE3 = 0o55,				\
+  CRAM_WRITE2 = 0o56,				\
+  CRAM_WRITE1 = 0o57,				\
                                                 \
   ENABLE_KL = 0o067,                            \
                                                 \

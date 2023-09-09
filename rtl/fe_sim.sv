@@ -5,8 +5,7 @@
 
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
-	      iEBUS ebus,
-	      output ebus_ds_strobe_e_h,
+	      inout iEBUS ebus,
 	      output tEBUSdriver EBUSdriver,
 	      input mbc3_a_change_coming_a_l,
 	      input a_change_coming_in_l,
@@ -201,10 +200,8 @@ module fe_sim(input bit clk,
   //
 
   initial begin
-    $display($time, " CROBAR assert");
     crobar_e_h = '1;
     repeat (100) @(negedge clk);
-    $display($time, " CROBAR deassert");
     crobar_e_h = '0;
   end
 
@@ -313,7 +310,7 @@ module fe_sim(input bit clk,
 	  adr = unASCIIize(words[1]);
 	  cksum = unASCIIize(words[2]);
 	  count = unASCIIize(words[3]);
-	  $display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
+//	  $display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
 	end
 
 	"C": begin		// CRAM record
@@ -322,7 +319,7 @@ module fe_sim(input bit clk,
 	  adr = unASCIIize(words[1]);
 
 	  if (count == 0 && adr == 0) begin
-	    $display("CRAM EOF");
+//	    $display("CRAM EOF");
 	    lastAdr = 0;
 	  end else begin
 	    if (adr == 0) adr = lastAdr;
@@ -336,7 +333,7 @@ module fe_sim(input bit clk,
 	      cw[16:31] = 16'(unASCIIize(words[k++]));
 	      cw[00:15] = 16'(unASCIIize(words[k++]));
 	      cw[80:85] = 6'(unASCIIize(words[k++]));
-	      writeCRAM(12'(adr), cw);
+	      writeCRAM(11'(adr), cw);
 	    end
 	  end
 	end
@@ -346,7 +343,7 @@ module fe_sim(input bit clk,
 	  adr = unASCIIize(words[1]);
 
 	  if (count == 0 && adr == 0) begin
-	    $display("DRAM EOF");
+//	    $display("DRAM EOF");
 	    lastAdr = 0;
 	  end else begin
 	    if (adr == 0) adr = lastAdr;
@@ -375,7 +372,9 @@ module fe_sim(input bit clk,
   // corresponding bits.
   //
   // CRA5 is PDF347. This for the CALL+DISP[0:5] bits.
-  task automatic writeCRAM(input bit [11:0] addr, input bit[0:85] cw);
+  task automatic writeCRAM(input bit [10:0] addr, input bit[0:85] cw);
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, W36'(addr[10:5]) << 30); // CRAM address[10:5]
+    doDiagWrite(diagfCRAM_DIAG_ADR_LH, W36'(addr[4:0]) << 30);  // CRAM address[0:4]
     doDiagWrite(diagfCRAM_WRITE4, W36'(cw[60:79]) << 8);  // CRM4,5
     doDiagWrite(diagfCRAM_WRITE3, W36'(cw[40:49]) << 8);  // CRM4,5
     doDiagWrite(diagfCRAM_WRITE2, W36'(cw[20:39]) << 8);  // CRM4,5
@@ -392,12 +391,12 @@ module fe_sim(input bit clk,
     @(negedge clk) begin
       string shortName;
       shortName = replace(func.name, "diagf", "");
-      EBUSdriver.data = ebusData;
       ebus.ds <= func;
-      ebus.diagStrobe <= 1;            // Strobe this
+      ebus.diagStrobe <= 1;
+      EBUSdriver.data <= ebusData;
       EBUSdriver.driving <= 1;
-      $display($time, " %s  ASSERT ds=%s [EBUS.data=%06o,,%06o]", indent, shortName,
-	       ebusData >> 18, ebusData & 36'o777777);
+//      $display($time, " %s  ASSERT ds=%s [EBUS.data=%06o,,%06o]", indent, shortName,
+//	       ebusData >> 18, ebusData & 36'o777777);
     end
 
     repeat (8) @(negedge clk);
@@ -407,7 +406,7 @@ module fe_sim(input bit clk,
       shortName = replace(func.name, "diagf", "");
       ebus.diagStrobe <= 0;
       EBUSdriver.driving <= 0;
-      $display($time, " %sDEASSERT ds=%s", indent, shortName);
+//      $display($time, " %sDEASSERT ds=%s", indent, shortName);
     end
 
     repeat(4) @(posedge clk);
@@ -424,7 +423,7 @@ module fe_sim(input bit clk,
       shortName = replace(func.name, "diagf", "");
       ebus.ds <= func;
       ebus.diagStrobe <= 1;            // Strobe this
-      if (func !== diagfSTEP_CLOCK) $display($time, " %sASSERT ds=%s", indent, shortName);
+//      if (func !== diagfSTEP_CLOCK) $display($time, " %sASSERT ds=%s", indent, shortName);
     end
 
     repeat (8) @(negedge clk);
@@ -433,7 +432,7 @@ module fe_sim(input bit clk,
       string shortName;
       shortName = replace(func.name, "diagf", "");
       ebus.diagStrobe <= 0;
-      if (func !== diagfSTEP_CLOCK) $display($time, " %sDEASSERT ds=%s", indent, shortName);
+//      if (func !== diagfSTEP_CLOCK) $display($time, " %sDEASSERT ds=%s", indent, shortName);
     end
 
     repeat(4) @(negedge clk);

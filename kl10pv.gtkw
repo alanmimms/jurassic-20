@@ -1,23 +1,23 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Thu Sep  7 00:29:46 2023
+[*] Sat Sep  9 01:18:53 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Thu Sep  7 00:23:34 2023"
-[dumpfile_size] 3981453
+[dumpfile_mtime] "Sat Sep  9 01:18:51 2023"
+[dumpfile_size] 7225696
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 2250
-[size] 2207 1268
+[timestart] 3268
+[size] 2130 1197
 [pos] -1 -1
-*-7.125511 94 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.125511 3598 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
-[sst_width] 226
-[signals_width] 479
+[sst_width] 246
+[signals_width] 513
 [sst_expanded] 1
-[sst_vpaned_height] 835
+[sst_vpaned_height] 729
 @28
 [color] 1
 top.kl10pv.crobar_e_h
@@ -31,6 +31,8 @@ top.kl10pv.clk_32.e68.clk
 top.kl10pv.clk_32.clk1_main_source_c_h
 [color] 2
 top.kl10pv.clk_32.clk_10_11_clk_h
+[color] 2
++{top.kl10pv.feSim.clk} top.kl10pv.feSim.clk
 top.kl10pv.anyEBUSdriving
 @30
 [color] 3
@@ -52,37 +54,9 @@ top.kl10pv.feEBUSdriver.data[0:35]
 (33)top.kl10pv.feEBUSdriver.data[0:35]
 @800030
 top.kl10pv.ebus.data[0:35]
-@28
-[color] 7
-(30)top.kl10pv.ebus.data[0:35]
-[color] 7
-(31)top.kl10pv.ebus.data[0:35]
-[color] 7
-(32)top.kl10pv.ebus.data[0:35]
-[color] 7
-(33)top.kl10pv.ebus.data[0:35]
 @1001200
 -group_end
-@28
-[color] 6
-top.kl10pv.ctl_36.diag_load_func_071_l
-[color] 2
-top.kl10pv.diag_read_func_13x_l
-[color] 1
-top.kl10pv.con_35.con1_diag_read_l
-[color] 2
-+{top.kl10pv.feSim.clk} top.kl10pv.feSim.clk
-top.kl10pv.mbx_21.e48.clk
-top.kl10pv.mbx_21.e48.d0
-top.kl10pv.mbx_21.e48.d1
-top.kl10pv.mbx_21.e48.d2
-top.kl10pv.mbx_21.e48.d3
-top.kl10pv.mbx_21.e48.op1
-top.kl10pv.mbx_21.e48.op2
-top.kl10pv.mbx_21.e48.q1
-top.kl10pv.mbx_21.e48.q2
-top.kl10pv.mbx_21.e48.q3
-@800200
+@c00200
 -EBUSdrivers
 @28
 top.kl10pv.aprEBUSdriver.driving
@@ -91,9 +65,7 @@ top.kl10pv.ccwEBUSdriver.driving
 top.kl10pv.chcEBUSdriver.driving
 top.kl10pv.chxEBUSdriver.driving
 top.kl10pv.clkEBUSdriver.driving
-@29
 top.kl10pv.conEBUSdriver.driving
-@28
 top.kl10pv.craEBUSdriver.driving
 top.kl10pv.crm40EBUSdriver.driving
 top.kl10pv.crm42EBUSdriver.driving
@@ -118,7 +90,37 @@ top.kl10pv.mtrEBUSdriver.driving
 top.kl10pv.picEBUSdriver.driving
 top.kl10pv.scdEBUSdriver.driving
 top.kl10pv.vmaEBUSdriver.driving
-@1000200
+@1401200
 -EBUSdrivers
+@800200
+-CRA diag stuff
+@800022
+#{top.kl10pv.cra_45.cra3_diag_adr_[10:00]_h} top.kl10pv.cra_45.cra3_diag_adr_10_h top.kl10pv.cra_45.cra3_diag_adr_09_h top.kl10pv.cra_45.cra3_diag_adr_08_h top.kl10pv.cra_45.cra3_diag_adr_07_h top.kl10pv.cra_45.cra3_diag_adr_06_h top.kl10pv.cra_45.cra3_diag_adr_05_h top.kl10pv.cra_45.cra3_diag_adr_04_h top.kl10pv.cra_45.cra3_diag_adr_03_h top.kl10pv.cra_45.cra3_diag_adr_02_h top.kl10pv.cra_45.cra3_diag_adr_01_h top.kl10pv.cra_45.cra3_diag_adr_00_h
+@1001200
+-group_end
+@28
+top.kl10pv.crm_44.cr02_dia_func_050_08_l
+top.kl10pv.crm_44.cr02_dia_func_051_08_l
+top.kl10pv.crm_44.cr02_dia_func_052_08_l
+top.kl10pv.crm_44.cr02_dia_func_053_08_l
+top.kl10pv.cra_45.cra5_ebus_00_h
+top.kl10pv.cra_45.cra5_ebus_01_h
+top.kl10pv.cra_45.cra5_ebus_02_h
+top.kl10pv.cra_45.cra5_ebus_03_h
+top.kl10pv.cra_45.cra5_ebus_04_h
+top.kl10pv.cra_45.cra5_ebus_05_h
+@1000200
+-CRA diag stuff
+@28
+top.kl10pv.ctl_36.ebus_ds00_e_h
+top.kl10pv.ctl_36.ebus_ds01_e_h
+top.kl10pv.ctl_36.ebus_ds02_e_h
+top.kl10pv.ctl_36.ebus_ds03_e_h
+top.kl10pv.ctl_36.ebus_ds04_e_h
+top.kl10pv.ctl_36.ebus_ds05_e_h
+top.kl10pv.ctl_36.ebus_ds06_e_h
+top.kl10pv.ctl_36.ebus_ds_strobe_e_h
+@30
+top.kl10pv.ebus.ds[0:6]
 [pattern_trace] 1
 [pattern_trace] 0

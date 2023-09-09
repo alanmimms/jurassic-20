@@ -649,8 +649,8 @@ e45: 10176 hex dff
      12 ~< cra5 ebus 05 h
      9 ~< {ee1} -cr02 dia func 052 08 h
      2 ~> %NC%
-     3 ~> cra3 diag adr 00 h 
-     4 ~> cra3 diag adr 01 h 
+     3 ~> cra3 diag adr 00 h
+     4 ~> cra3 diag adr 01 h
      13 ~> cra3 diag adr 02 h
      14 ~> cra3 diag adr 03 h
      15 ~> cra3 diag adr 04 h
@@ -709,8 +709,8 @@ e65: 10176 hex dff
      12 ~< cra1 adr 04 f h
      9 ~< cra3 clk c h
      2 ~> %NC%
-     3 ~> cra3 loc 00 h 
-     4 ~> cra3 loc 01 h 
+     3 ~> cra3 loc 00 h
+     4 ~> cra3 loc 01 h
      13 ~> cra3 loc 02 h
      14 ~> cra3 loc 03 h
      15 ~> cra3 loc 04 h
@@ -724,8 +724,8 @@ e60: 10176 hex dff
      12 ~< cra2 adr 10 f h
      9 ~< cra3 clk c h
      2 ~> cra3 loc 05 h
-     3 ~> cra3 loc 06 h 
-     4 ~> cra3 loc 07 h 
+     3 ~> cra3 loc 06 h
+     4 ~> cra3 loc 07 h
      13 ~> cra3 loc 08 h
      14 ~> cra3 loc 09 h
      15 ~> cra3 loc 10 h
@@ -1149,7 +1149,7 @@ e50: 10164 8 mixer
      3 ~< cra1 adr 05 f h
      4 ~< {dl2} cra3 disp parity h
      5 ~< cra3 loc 05 h
-     6 ~< %NC%
+     6 ~< %NC% 
      10 ~< cra5 diag 04 l
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l

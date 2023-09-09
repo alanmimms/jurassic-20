@@ -363,7 +363,7 @@ static void klReset() {
 
   // This is the first phase of DMRMRT table operations.
   FELOG("[clear clock source rate]\n");
-  doWrite(diagfCLR_CLK_SRC_RATE, 0);
+  doWrite(diagfCLK_SRC_RATE, 0);
   FELOG("[stop clocks]\n");
   doDiagFunc(diagfSTOP_CLOCK);
   FELOG("[set reset]\n");
@@ -371,14 +371,14 @@ static void klReset() {
   FELOG("[reset parity registers]\n");
   doWrite(diagfRESET_PAR_REGS, 0);
   FELOG("[clear MBOX parity checkstops]\n");
-  doWrite(diagfCLR_MBOXDIS_PARCHK_ERRSTOP, 0);
+  doWrite(diagfMBOXDIS_PARCHK_ERRSTOP, 0);
   FELOG("[clear EBOX parity checkstops]\n");
   doWrite(diagfRESET_PAR_REGS, 0);
                                                   // PARITY CHECK, ERROR STOP ENABLE
   FELOG("[clear clock burst counter RH]\n");
-  doWrite(diagfCLR_BURST_CTR_RH, 0);          // LOAD BURST COUNTER (8,4,2,1)
+  doWrite(diagfBURST_CTR_RH, 0);          // LOAD BURST COUNTER (8,4,2,1)
   FELOG("[clear clock burst counter LH]\n");
-  doWrite(diagfCLR_BURST_CTR_LH, 0);          // LOAD BURST COUNTER (128,64,32,16)
+  doWrite(diagfBURST_CTR_LH, 0);          // LOAD BURST COUNTER (128,64,32,16)
   FELOG("[load EBOX clock disable]\n");
   doWrite(diagfSET_EBOX_CLK_DISABLES, 0);     // LOAD EBOX CLOCK DISABLE
   FELOG("[start clock]\n");
@@ -386,7 +386,7 @@ static void klReset() {
   FELOG("[init channels]\n");
   doWrite(diagfINIT_CHANNELS, 0);             // INIT CHANNELS
   FELOG("[clear clock burst counter RH]\n");
-  doWrite(diagfCLR_BURST_CTR_RH, 0);          // LOAD BURST COUNTER (8,4,2,1)
+  doWrite(diagfBURST_CTR_RH, 0);          // LOAD BURST COUNTER (8,4,2,1)
 
   // Loop up to three times:
   //   Do diag function 162 via $DFRD test (A CHANGE COMING A L)=EBUS[32]

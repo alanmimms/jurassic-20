@@ -107,13 +107,13 @@ module kl10pv(input clk60);
   assign ebus_demand_e_h = ebus.demand;
   assign ebus_xfer_e_h = ebus.xfer;
 
-  assign ebus_ds00_e_h = ebus.ds[0];
-  assign ebus_ds01_e_h = ebus.ds[1];
-  assign ebus_ds02_e_h = ebus.ds[2];
-  assign ebus_ds03_e_h = ebus.ds[3];
-  assign ebus_ds04_e_h = ebus.ds[4];
-  assign ebus_ds05_e_h = ebus.ds[5];
-  assign ebus_ds06_e_h = ebus.ds[6];
+  always_comb ebus_ds00_e_h = ebus.ds[0];
+  always_comb ebus_ds01_e_h = ebus.ds[1];
+  always_comb ebus_ds02_e_h = ebus.ds[2];
+  always_comb ebus_ds03_e_h = ebus.ds[3];
+  always_comb ebus_ds04_e_h = ebus.ds[4];
+  always_comb ebus_ds05_e_h = ebus.ds[5];
+  always_comb ebus_ds06_e_h = ebus.ds[6];
 
   assign ebus_cs00_e_h = ebus.cs[0];
   assign ebus_cs01_e_h = ebus.cs[1];
