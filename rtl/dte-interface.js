@@ -58,10 +58,10 @@ const diagFuncTypes = `\
       }, {});
 
 
-const [, , hFileName, svhFileName] = process.argv.slice(1);
-console.log(`hFileName=${hFileName}, svhFileName=${svhFileName}`);
+const [, , hFileName, svhFileName, tffName] = process.argv.slice(1);
+console.log(`hFileName=${hFileName}, svhFileName=${svhFileName} tffName=${tffName}`);
 
-const hFileContent = `
+const hContent = `
 ${defCXXEnum('tReqType', FEreqTypes)};
 
 ${defCXXNames('reqTypeNames', FEreqTypes)};
@@ -76,10 +76,10 @@ ${defCXXSparseEnum('tDiagFunction', diagFuncTypes, 7)};
 
 ${defCXXSparseNames('diagFuncNames', diagFuncTypes)};
 `;
-fs.writeFileSync(hFileName, hFileContent);
+fs.writeFileSync(hFileName, hContent);
 
 
-const svhFileContent = `
+const svhContent = `
 \`ifndef __DTE_SVH__
 \`define __DTE_SVH__ 1
 ${defCXXEnum('tReqType', FEreqTypes)};
@@ -89,7 +89,16 @@ ${defCXXEnum('tMiscFuncType', miscFuncTypes)};
 ${defSVHSparseEnum('tDiagFunction', diagFuncTypes, 'bit [0:6]', 7)};
 \`endif
 `;
-fs.writeFileSync(svhFileName, svhFileContent);
+fs.writeFileSync(svhFileName, svhContent);
+
+
+const tffContent = `\
+${Object.entries(diagFuncTypes)
+    .map(([k, v]) => `\
+${v.toString(8).padStart(3, '0')} ${k.replace('diagf', '').toLowerCase()}`)
+    .join('\n')}
+`;
+fs.writeFileSync(tffName, tffContent);
 
 
 function defCXXEnum(enumName, items) {

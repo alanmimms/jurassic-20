@@ -33,6 +33,7 @@ HFILES =
 TBDIR = tb
 TBOBJS = $(foreach F,$(CFILES:.c=.o) $(CXXFILES:.cc=.o),$(VOBJDIR)/$F)
 DTEINTF = dte.h dte.svh
+DTETFF = dte.tff
 
 EXE = $(VOBJDIR)/kl10pvtb
 LOGICEXEs = $(foreach M,$(MODS),$(VOBJDIR)/V$(M)-tb)
@@ -89,8 +90,8 @@ include $(VERILATORROOT)/include/verilated.mk
 $(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES)
 	$(VERILATOR) $(VFLAGS) $(filter-out %.h, $^) --top-module $(TOP) -o $(@F)
 
-$(DTEINTF): dte-interface.js
-	node dte-interface.js -- $(DTEINTF)
+$(DTEINTF) $(DTETFF): dte-interface.js
+	node dte-interface.js -- $(DTEINTF) $(DTETFF)
 
 $(MODS) oscillator:	$(foreach M,$(MODS),$(VOBJDIR)/V$(M))
 
@@ -103,4 +104,4 @@ $(foreach M,$(MODS),$(VOBJDIR)/V$(M)-tb): $(VOBJDIR)/V%-tb: $(TBDIR)/%-tb.cc $(V
 
 clean:
 	@rm -fr obj_dir
-	rm -rf $(VOBJDIR) $(DTEINTF) $(foreach F,$(EXE),tb/$(EXE))
+	rm -rf $(VOBJDIR) $(DTEINTF) $(DTETFF) $(foreach F,$(EXE),tb/$(EXE))
