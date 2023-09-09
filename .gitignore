@@ -57,3 +57,4 @@ rtl/gen/*
 *.junk
 .sim.build
 *.vcd
+gmon.out
