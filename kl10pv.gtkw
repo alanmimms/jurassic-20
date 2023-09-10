@@ -2,6 +2,7 @@
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [*] Tue Sep 12 04:21:25 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
@@ -27,11 +28,22 @@
 [dumpfile_size] 17548245
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
 >>>>>>> 0535f30 (update gtkw setup)
+=======
+[*] Sun Sep 10 20:46:51 2023
+[*]
+[dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
+[dumpfile_mtime] "Sun Sep 10 20:07:11 2023"
+[dumpfile_size] 17548245
+[savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
+>>>>>>> 0535f30 (update gtkw setup)
 [timestart] 300877
 [size] 2130 1197
 [pos] -1 -1
 *-7.125511 301540 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 0535f30 (update gtkw setup)
+=======
 >>>>>>> 0535f30 (update gtkw setup)
 =======
 >>>>>>> 0535f30 (update gtkw setup)
@@ -100,6 +112,7 @@ top.kl10pv.vmaEBUSdriver.driving
 @1401200
 -EBUSdrivers
 @28
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 top.kl10pv.clk_32.clk1_main_source_c_h
@@ -197,6 +210,8 @@ top.kl10pv.clk_32.e66.sb
 =======
 =======
 >>>>>>> 0535f30 (update gtkw setup)
+=======
+>>>>>>> 0535f30 (update gtkw setup)
 top.kl10pv.crm_40.cram_37_h
 top.kl10pv.crm_40.cram_38_h
 top.kl10pv.crm_40.cram_39_h
@@ -252,6 +267,9 @@ top.kl10pv.clk_32.clk1_main_source_c_h
 top.kl10pv.clk_32.clk1_gated_en_h
 top.kl10pv.clk_32.clk1_gated_h
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 0535f30 (update gtkw setup)
+=======
 >>>>>>> 0535f30 (update gtkw setup)
 =======
 >>>>>>> 0535f30 (update gtkw setup)
