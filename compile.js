@@ -122,9 +122,9 @@ function bindSlots(bp, cramDefs) {
 
       console.log(`  Slot ${slotName}: ${id.padEnd(4)} ${macroDesc.padEnd(12)} ${slot.module.comments}`);
 
-      // Each module macro env starts with copy of BP macro vars as
-      // base, then we add this module's values, possibly overriding
-      // exiting ones.
+      // Each board macro env starts with copy of BP macro vars as
+      // base, then we add this board's values, possibly overriding
+      // existing ones.
       const macroEnv = {...bpMacroEnv};
       macros.forEach(macro => macroEnv[macro.id] = macro.value);
 
