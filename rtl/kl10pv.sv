@@ -132,74 +132,50 @@ module kl10pv(input clk60);
   assign ebus_pi06_e_h = ebus.pi[6];
   assign ebus_pi07_e_h = ebus.pi[7];
 
-  bit anyEBUSdriving;
-  assign anyEBUSdriving = feEBUSdriver.driving |
-			  aprEBUSdriver.driving |
-			  cclEBUSdriver.driving |
-			  ccwEBUSdriver.driving |
-			  chcEBUSdriver.driving |
-			  chxEBUSdriver.driving |
-			  clkEBUSdriver.driving |
-			  conEBUSdriver.driving |
-			  craEBUSdriver.driving |
-			  crm40EBUSdriver.driving |
-			  crm42EBUSdriver.driving |
-			  crm44EBUSdriver.driving |
-			  crm50EBUSdriver.driving |
-			  crm52EBUSdriver.driving |
-			  cshEBUSdriver.driving |
-			  ctlEBUSdriver.driving |
-			  edp39EBUSdriver.driving |
-			  edp41EBUSdriver.driving |
-			  edp43EBUSdriver.driving |
-			  edp49EBUSdriver.driving |
-			  edp51EBUSdriver.driving |
-			  edp53EBUSdriver.driving |
-			  irdEBUSdriver.driving |
-			  mbcEBUSdriver.driving |
-			  mbxEBUSdriver.driving |
-			  mbzEBUSdriver.driving |
-			  mclEBUSdriver.driving |
-			  mtrEBUSdriver.driving |
-			  picEBUSdriver.driving |
-			  scdEBUSdriver.driving |
-			  vmaEBUSdriver.driving;
+  // "Mux" for EBUS data lines
+  always_comb begin
+    if (feEBUSdriver.driving) ebus.data = feEBUSdriver.data;
+    else if (aprEBUSdriver.driving) ebus.data = aprEBUSdriver.data;
+    else if (cclEBUSdriver.driving) ebus.data = cclEBUSdriver.data;
+    else if (ccwEBUSdriver.driving) ebus.data = ccwEBUSdriver.data;
+    else if (chcEBUSdriver.driving) ebus.data = chcEBUSdriver.data;
+    else if (chxEBUSdriver.driving) ebus.data = chxEBUSdriver.data;
+    else if (clkEBUSdriver.driving) ebus.data = clkEBUSdriver.data;
+    else if (conEBUSdriver.driving) ebus.data = conEBUSdriver.data;
 
-  // Mux for EBUS data lines
-  always_ff @(posedge anyEBUSdriving) begin
-    unique case (1)
-      feEBUSdriver.driving:	ebus.data <= feEBUSdriver.data;
-      aprEBUSdriver.driving:	ebus.data <= aprEBUSdriver.data;
-      cclEBUSdriver.driving:	ebus.data <= cclEBUSdriver.data;
-      ccwEBUSdriver.driving:	ebus.data <= ccwEBUSdriver.data;
-      chcEBUSdriver.driving:	ebus.data <= chcEBUSdriver.data;
-      chxEBUSdriver.driving:	ebus.data <= chxEBUSdriver.data;
-      clkEBUSdriver.driving:	ebus.data <= clkEBUSdriver.data;
-      conEBUSdriver.driving:	ebus.data <= conEBUSdriver.data;
-      craEBUSdriver.driving:	ebus.data <= craEBUSdriver.data;
-      crm40EBUSdriver.driving:	ebus.data <= crm40EBUSdriver.data;
-      crm42EBUSdriver.driving:	ebus.data <= crm42EBUSdriver.data;
-      crm44EBUSdriver.driving:	ebus.data <= crm44EBUSdriver.data;
-      crm50EBUSdriver.driving:	ebus.data <= crm50EBUSdriver.data;
-      crm52EBUSdriver.driving:	ebus.data <= crm52EBUSdriver.data;
-      cshEBUSdriver.driving:	ebus.data <= cshEBUSdriver.data;
-      ctlEBUSdriver.driving:	ebus.data <= ctlEBUSdriver.data;
-      edp39EBUSdriver.driving:	ebus.data <= edp39EBUSdriver.data;
-      edp41EBUSdriver.driving:	ebus.data <= edp41EBUSdriver.data;
-      edp43EBUSdriver.driving:	ebus.data <= edp43EBUSdriver.data;
-      edp49EBUSdriver.driving:	ebus.data <= edp49EBUSdriver.data;
-      edp51EBUSdriver.driving:	ebus.data <= edp51EBUSdriver.data;
-      edp53EBUSdriver.driving:	ebus.data <= edp53EBUSdriver.data;
-      irdEBUSdriver.driving:	ebus.data <= irdEBUSdriver.data;
-      mbcEBUSdriver.driving:	ebus.data <= mbcEBUSdriver.data;
-      mbxEBUSdriver.driving:	ebus.data <= mbxEBUSdriver.data;
-      mbzEBUSdriver.driving:	ebus.data <= mbzEBUSdriver.data;
-      mclEBUSdriver.driving:	ebus.data <= mclEBUSdriver.data;
-      mtrEBUSdriver.driving:	ebus.data <= mtrEBUSdriver.data;
-      picEBUSdriver.driving:	ebus.data <= picEBUSdriver.data;
-      scdEBUSdriver.driving:	ebus.data <= scdEBUSdriver.data;
-      vmaEBUSdriver.driving:	ebus.data <= vmaEBUSdriver.data;
-    endcase // unique case (1)
-  end // always_ff @ (posedge anyEBUSdriving)
+    else if (crm40EBUSdriver.driving | crm40EBUSdriver.driving |
+	     crm40EBUSdriver.driving | crm40EBUSdriver.driving |
+	     crm40EBUSdriver.driving)
+    begin
+      ebus.data[30:35] = crm40EBUSdriver.data[30:35];
+      ebus.data[24:29] = crm42EBUSdriver.data[24:29];
+      ebus.data[18:23] = crm44EBUSdriver.data[18:23];
+      ebus.data[12:17] = crm50EBUSdriver.data[12:17];
+      ebus.data[06:11] = crm52EBUSdriver.data[06:11];
+      ebus.data[0:5] = craEBUSdriver.data[0:5];
+    end else if (cshEBUSdriver.driving) ebus.data = cshEBUSdriver.data;
+    else if (ctlEBUSdriver.driving) ebus.data = ctlEBUSdriver.data;
+
+    else if (edp39EBUSdriver.driving | edp41EBUSdriver.driving |
+	     edp43EBUSdriver.driving | edp49EBUSdriver.driving |
+	     edp51EBUSdriver.driving | edp53EBUSdriver.driving)
+    begin
+      ebus.data[30:35] = edp39EBUSdriver.data[30:35];
+      ebus.data[24:29] = edp41EBUSdriver.data[24:29];
+      ebus.data[18:23] = edp43EBUSdriver.data[18:23];
+      ebus.data[12:17] = edp49EBUSdriver.data[12:17];
+      ebus.data[06:11] = edp51EBUSdriver.data[06:11];
+      ebus.data[00:05] = edp53EBUSdriver.data[00:05];
+    end else if (irdEBUSdriver.driving) ebus.data = irdEBUSdriver.data;
+    else if (mbcEBUSdriver.driving) ebus.data = mbcEBUSdriver.data;
+    else if (mbxEBUSdriver.driving) ebus.data = mbxEBUSdriver.data;
+    else if (mbzEBUSdriver.driving) ebus.data = mbzEBUSdriver.data;
+    else if (mclEBUSdriver.driving) ebus.data = mclEBUSdriver.data;
+    else if (mtrEBUSdriver.driving) ebus.data = mtrEBUSdriver.data;
+    else if (picEBUSdriver.driving) ebus.data = picEBUSdriver.data;
+    else if (scdEBUSdriver.driving) ebus.data = scdEBUSdriver.data;
+    else if (vmaEBUSdriver.driving) ebus.data = vmaEBUSdriver.data;
+    else ebus.data = '0;
+  end // always_comb
   
 endmodule // kl10pv

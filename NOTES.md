@@ -1,17 +1,10 @@
 # TODO:
 
-* Set up mux for EBUS driving instead of tri-stated bus.
-
 * Change name of `sim` to `compile` and merge the two files. This
   separation is silly. Besides, the damned thing isn't a simulator,
   it's a compiler.
 
 * Implement `slotWires`.
-
-* Create a separate board SystemVerilog model for each slot. Signal
-  names are different depending on which slot the board is in. So
-  `edp.sv` instead must be slot specific `EDP39.sv.sv`, `EDP41.sv`,
-  `EDP43.sv`, `EDP49.sv`, `EDP51.sv`, and `EDP53.sv`.
 
 
 # Outstanding Questions
@@ -152,6 +145,27 @@ The primary reference is in `rtl/doc/klinit.l20`.
 
 * `$KLDFX` (in `rsxt20.l20`) manipulates the EBUS to execute a
   diagnostic function.
+  
+* `RDMCV` reads the microcode version/edit level.
+  * Major		{cram[136][29:31],cram[136][33:35]}
+  * Subversion	cram[136][37:39]
+  * Edit level	{cram[137][29:31],cram[137][33:35],cram[137][37:39]}
+
+* `$RCRAM` reads a specified address in CRAM to 6 word buffer `DCBCBF`.
+  * `$DFRD` does diagnostic read
+
+* `$ACRAM` sets the CRAM starting address.
+
+* `$DFXC` starts the KL clock.
+
+## CRAM Loading from KLX.RAM file
+* Documentation for the text file format is now in `fe_sim.v` comments.
+  * One thing that appears to be wrong is "THE CONTROL RAM CONSISTS OF
+    80 BITS PLUS A 5 BIT SPECIAL FIELD PER CONTROL RAM LOCATION." This
+    seems inaccurate since PDF347 CRA5 documents _six_ bits of what
+    appears to be the special field: `{CALL,DISP[0:4]}` which come
+    from `EBUS[00:05]` on diagnostic function 053 (which I call
+    `CRAM_WRITE_80_85` for this reason).
 
 
 # Modeling

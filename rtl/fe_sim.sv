@@ -12,7 +12,9 @@ module fe_sim(input bit clk,
 	      output bit crobar_e_h,
 	      output bit con_cono_200000_h);
 
-  var string indent = "";
+  string indent = "";
+
+  int dumpLogFD;
 
   bit a_change_coming, a_change_coming_in;
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
@@ -34,9 +36,6 @@ module fe_sim(input bit clk,
   //
   // Indeed, the intrepid microcoders bore the brunt of that
   // complexity.
-  bit [25:0] dram[511:0];
-
-  bit [83:0] cram[2047:0];
 
   initial begin
     con_cono_200000_h = '0;
@@ -95,11 +94,12 @@ module fe_sim(input bit clk,
   // 	THE KL10 MICRO CODE FILE CONSISTS OF TWO DIFFERENT TYPES
   // 	OF DATA.
   //
-  // 	THE CONTROL RAM CONSISTS OF 80 BITS PLUS A 5 BIT SPECIAL
-  // 	FIELD PER CONTROL RAM LOCATION.  THIS THEN REQUIRES SIX
-  // 	16 BIT WORDS TO REPRESENT THE CONTROL RAM DATA.  THE LOAD
-  // 	FILE IS ARRANGED SO AS FACILITATE LOADING OF THE C-RAM WITH
-  // 	THE "WCRAM" ROUTINE.
+  //	THE CONTROL RAM CONSISTS OF 80 BITS PLUS A 5 BIT SPECIAL FIELD
+  //	[I say this is actually six bits: {CALL,DISP[0:4]}] PER
+  //	CONTROL RAM LOCATION.  THIS THEN REQUIRES SIX 16 BIT WORDS TO
+  //	REPRESENT THE CONTROL RAM DATA.  THE LOAD FILE IS ARRANGED SO
+  //	AS [to] FACILITATE LOADING OF THE C-RAM WITH THE "WCRAM"
+  //	ROUTINE.
   //
   // 	THE DISPATCH RAM CONSISTS OF PAIRS OF LOCATIONS.  THIS
   // 	THEN REQUIRES THREE 16 BIT WORDS PER PAIR OF D-RAM LOCATIONS.
@@ -121,7 +121,7 @@ module fe_sim(input bit clk,
   //
   // 	EXAMPLE FILE:
   //
-  // 	Z WC,ADR,COUNT,CKS
+  // 	Z WC,ADR,COUNT,CKS			[added COUNT]
   // 	C WC,ADR,DATA,DATA,...,CKSUM
   // 	C  "
   // 	C  "
@@ -203,6 +203,10 @@ module fe_sim(input bit clk,
     crobar_e_h = '1;
     repeat (100) @(negedge clk);
     crobar_e_h = '0;
+  end
+
+  initial begin
+    dumpLogFD = $fopen("dump.log", "w");
   end
 
   always @(negedge crobar_e_h) begin
@@ -294,7 +298,7 @@ module fe_sim(input bit clk,
 
     // Read header line
     $fgets(line, fd);
-    $display(line);
+    $display(line);		// TEMPORARY
 
     while (1) begin
       $fgets(line, fd);
@@ -310,7 +314,7 @@ module fe_sim(input bit clk,
 	  adr = unASCIIize(words[1]);
 	  cksum = unASCIIize(words[2]);
 	  count = unASCIIize(words[3]);
-//	  $display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
+	  $display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
 	end
 
 	"C": begin		// CRAM record
@@ -319,7 +323,6 @@ module fe_sim(input bit clk,
 	  adr = unASCIIize(words[1]);
 
 	  if (count == 0 && adr == 0) begin
-//	    $display("CRAM EOF");
 	    lastAdr = 0;
 	  end else begin
 	    if (adr == 0) adr = lastAdr;
@@ -327,14 +330,20 @@ module fe_sim(input bit clk,
 //	    $display("CRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
 
 	    for (int k = 2; k < count; ) begin
+	      // These hard coded ranges of destination bits come from
+	      // comment above on KLX.RAM format, except that the last
+	      // piece appears to need to be six bits and not five
+	      // based on PDF347 CRA5 {CALL,DISP[0:4]} "special"
+	      // field.
 	      cw[64:79] = 16'(unASCIIize(words[k++]));
 	      cw[48:63] = 16'(unASCIIize(words[k++]));
 	      cw[32:47] = 16'(unASCIIize(words[k++]));
 	      cw[16:31] = 16'(unASCIIize(words[k++]));
 	      cw[00:15] = 16'(unASCIIize(words[k++]));
-	      cw[80:85] = 6'(unASCIIize(words[k++]));
+	      cw[80:85] =  6'(unASCIIize(words[k++]));
 	    end
 
+	    $fwrite(dumpLogFD, "%04o: %030o\n", adr, cw);
 	    writeCRAM(11'(adr), cw);
 	  end
 	end
@@ -361,7 +370,7 @@ module fe_sim(input bit clk,
     end
 
     $fclose(fd);
-    $display("[done]");
+    $display("CRAM version: %s", getCRAMVersionString());
   endtask
 
 
@@ -375,40 +384,68 @@ module fe_sim(input bit clk,
   // CRA5 is PDF347. This for the CALL+DISP[0:5] bits.
   task automatic writeCRAM(input bit [10:0] addr, input bit[0:85] cw);
 //    $display($time, " writeCRAM addr=%04o  cw=%029o", addr, cw);
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, W36'(addr[4:0]) << 30);  // CRAM address[0:4]
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, W36'(addr[4:0]) << 30);  // CRAM address[4:0]
     doDiagWrite(diagfCRAM_DIAG_ADR_LH, W36'(addr[10:5]) << 30); // CRAM address[10:5]
-    doDiagWrite(diagfCRAM_WRITE4, W36'(cw[60:79]) << 8);  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE3, W36'(cw[40:49]) << 8);  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE2, W36'(cw[20:39]) << 8);  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE1, W36'(cw[0:19])  << 8);  // CRM4,5 CRAM[0:19]  <- EBUS[8:27]
-    doDiagWrite(diagfCRAM_WRITE5, W36'(cw[80:85]) << 30); // CRA5   CRAM[80:85] <- EBUS[0:5]
-  endtask
+    doDiagWrite(diagfCRAM_WRITE_60_79, W36'(cw[60:79]) << 8);  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE_40_59, W36'(cw[40:59]) << 8);  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE_20_39, W36'(cw[20:39]) << 8);  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE_00_19, W36'(cw[0:19])  << 8);  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE_80_85, W36'(cw[80:85]) << 30); // CRA5   CRAM[80:85] <- EBUS[0:5]
+  endtask // writeCRAM
+
+
+  // From `klinit.l20` routine `RDMCV`:
+  // MAJOR VERSION IS IN BITS 29-31 33-35 OF CRAM ADDRESS 136
+  // SUB-VERSION IS IN BITS 37-39 OF CRAM ADDRESS 136
+  // EDIT LEVEL IS IN BITS 29-31 33-35 37-39 OF CRAM ADDRESS 137
+  function automatic string getCRAMVersionString();
+    W36 readResult;
+    bit [20:39] cwBits;
+    bit [0:5] majver;
+    bit [0:2] minver;
+    bit [0:8] edit;
+    string majS, minS, editS;
+
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o136);
+    doDiagWrite(diagfCRAM_DIAG_ADR_LH, '0);
+    doDiagRead(diagfCRAM_READ_20_39, readResult);
+    cwBits = 20'(readResult);
+    majver = {cwBits[29:31], cwBits[33:35]};
+    minver = cwBits[37:39];
+    $display("136: readResult=%07o cwBits=%07o majver=%o minver=%o",
+	     readResult, cwBits, majver, minver);
+
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o137);
+    doDiagRead(diagfCRAM_READ_20_39, readResult);
+    cwBits = 20'(readResult);
+    edit = {cwBits[29:31], cwBits[33:35], cwBits[37:39]};
+    $display("137: readResult=%07o cwBits=%07o edit=%o", readResult, cwBits, edit);
+
+    majS.octtoa(majver);
+    minS.octtoa(minver);
+    editS.octtoa(edit);
+
+    return {majS, ".", minS, ".", editS};
+  endfunction // getCRAMVersion
   
 
   ////////////////////////////////////////////////////////////////
-  // Write the specified CLK module diagnostic function with data on
-  // ebusRH as if we were the front-end setting up a KL10-PV.
+  // Write the specified diagnostic function with data on ebus as if
+  // we were the front-end setting up a KL10-PV.
   task doDiagWrite(input tDiagFunction func, input W36 ebusData);
 
     @(negedge clk) begin
-      string shortName;
-      shortName = replace(func.name, "diagf", "");
       ebus.ds <= func;
       ebus.diagStrobe <= 1;
       EBUSdriver.data <= ebusData;
       EBUSdriver.driving <= 1;
-//      $display($time, " %s  ASSERT ds=%s [EBUS.data=%06o,,%06o]", indent, shortName,
-//	       ebusData >> 18, ebusData & 36'o777777);
     end
 
     repeat (8) @(negedge clk);
 
     @(negedge clk) begin
-      string shortName;
-      shortName = replace(func.name, "diagf", "");
       ebus.diagStrobe <= 0;
       EBUSdriver.driving <= 0;
-//      $display($time, " %sDEASSERT ds=%s", indent, shortName);
     end
 
     repeat(4) @(posedge clk);
@@ -416,41 +453,56 @@ module fe_sim(input bit clk,
 
 
   ////////////////////////////////////////////////////////////////
-  // Request the specified CLK module diagnostic function as if we
-  // were the front-end setting up a KL10pv.
+  // Request the specified diagnostic function as if we were the
+  // front-end setting up a KL10-PV.
   task doDiagFunc(input tDiagFunction func);
 
     @(negedge clk) begin
-      string shortName;
-      shortName = replace(func.name, "diagf", "");
       ebus.ds <= func;
       ebus.diagStrobe <= 1;            // Strobe this
-//      if (func !== diagfSTEP_CLOCK) $display($time, " %sASSERT ds=%s", indent, shortName);
     end
 
     repeat (8) @(negedge clk);
 
     @(negedge clk) begin
-      string shortName;
-      shortName = replace(func.name, "diagf", "");
       ebus.diagStrobe <= 0;
-//      if (func !== diagfSTEP_CLOCK) $display($time, " %sDEASSERT ds=%s", indent, shortName);
     end
 
     repeat(4) @(negedge clk);
   endtask // doDiagFunc
 
 
+  ////////////////////////////////////////////////////////////////
+  // Read using the specified diagnostic function with data on ebus as
+  // if we were the front-end.
+  task automatic doDiagRead(input tDiagFunction func, output W36 result);
+
+    @(negedge clk) begin
+      ebus.ds <= func;
+      ebus.diagStrobe <= 1;
+    end
+
+    repeat (8) @(negedge clk);
+
+    @(negedge clk) begin
+      result <= ebus.data;
+      ebus.diagStrobe <= 0;
+    end
+
+    repeat(4) @(posedge clk);
+  endtask
+
+
   // Decode a single word (i.e., from `convrt.txt` section 3.0) and
   // return its value.
   function automatic W16 unASCIIize(string s);
     W16 v = 0;
-    int ch;
+    int shift = 0;
 
     for (int k = s.len() - 1; k >= 0; --k) begin
-      v = v << 6;
-      ch = int'(s[k]);
-      v = v | W16'(ch <= 32'o174 ? (ch & ~32'o100) : ch);
+      int ch = int'(s[k]);
+      v = v | (W16'(ch >= 'o100 && ch <= 32'o175 ? (ch & ~'o100) : ch)) << shift;
+      shift += 6;
     end
 
     return v;

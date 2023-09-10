@@ -18,6 +18,7 @@ const diagFuncTypes = `\
   STOP_CLOCK = 0o000,                           \
   START_CLOCK = 0o001,                          \
   STEP_CLOCK = 0o002,                           \
+  STEP_EBUS_CLOCK = 0o003,			\
   COND_STEP = 0o004,                            \
   BURST = 0o005,                                \
                                                 \
@@ -36,11 +37,11 @@ const diagFuncTypes = `\
                                                 \
   CRAM_DIAG_ADR_RH = 0o051,			\
   CRAM_DIAG_ADR_LH = 0o052,			\
-  CRAM_WRITE5 = 0o53,				\
-  CRAM_WRITE4 = 0o54,				\
-  CRAM_WRITE3 = 0o55,				\
-  CRAM_WRITE2 = 0o56,				\
-  CRAM_WRITE1 = 0o57,				\
+  CRAM_WRITE_80_85 = 0o53,			\
+  CRAM_WRITE_60_79 = 0o54,			\
+  CRAM_WRITE_40_59 = 0o55,			\
+  CRAM_WRITE_20_39 = 0o56,			\
+  CRAM_WRITE_00_19 = 0o57,			\
                                                 \
   ENABLE_KL = 0o067,                            \
                                                 \
@@ -48,7 +49,14 @@ const diagFuncTypes = `\
   WRITE_MBOX = 0o071,                           \
   EBUS_LOAD = 0o076,                            \
                                                 \
-  Idle = 0o077`
+  Idle = 0o077,					\
+						\
+  CRAM_READ_00_19 = 0o147,			\
+  CRAM_READ_20_39 = 0o146,			\
+  CRAM_READ_40_59 = 0o145,			\
+  CRAM_READ_60_79 = 0o144,			\
+  CRAM_READ_80_85 = 0o141			\
+`
 
       .trim()
       .split(/,\s*/)
