@@ -698,21 +698,30 @@ function genSlotNets(bp, slot, modName) {
   const bitDecls = Object.keys(wires)
 	.sort()
 	.map(w => {
-	  const isWireOR = wires[w].filter(v => v.dir === 'D').length > 1;
+	  const driving = wires[w].filter(v => v.dir === 'D');
 
-	  // Generate the list of new signal names, while replacing
-	  // driving pin target wire names with the new ones.
-	  const values = wires[w].map((pin, pinX) => {
-	    const newName = w + '$' + (pinX+1);
-	    if (pin.dir === 'D' && isWireOR) wires[w][pinX].net = newName;
-	    return newName;
-	  });
+	  if (driving.length > 1) { // Has two or more wire-ORed drivers
 
-	  if (isWireOR) {
+	    // Generate the list of new signal names, while replacing
+	    // driving pin target wire names with the new ones.  Must
+	    // use wires[] and not driving[] because we are changing
+	    // wires at specified index in wires[].
+	    const drivers = wires[w].flatMap((pin, pinX) => {
+
+	      if (pin.dir === 'D') {
+		const newName = w + '$' + (pinX+1);
+		wires[w][pinX].net = newName;
+		return newName;
+	      } else {
+		return [];
+	      }
+	    });
+
 	    return `\
-bit ${values.join(', ')};
-  bit ${w} = ${values.join(' | ')};`
-	  } else if (!isTicked(w)) {
+bit ${drivers.join(', ')};
+  bit ${w};
+  always_comb ${w} = ${drivers.join(' | ')};`
+	  } else if (!isTicked(w)) { // Just pass raw verilog expressions or names through
 	    return `bit ${w};`
 	  }
 	})
