@@ -1,38 +1,32 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Sep 10 20:46:51 2023
+[*] Tue Sep 12 04:21:25 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sun Sep 10 20:07:11 2023"
-[dumpfile_size] 17548245
+[dumpfile_mtime] "Tue Sep 12 04:05:02 2023"
+[dumpfile_size] 22119619
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 300877
-[size] 2130 1197
+[timestart] 0
+[size] 1920 1045
 [pos] -1 -1
-*-7.125511 301540 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.125511 301556 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 246
-[signals_width] 560
+[signals_width] 405
 [sst_expanded] 1
 [sst_vpaned_height] 729
 @28
-[color] 1
-top.kl10pv.crobar_e_h
 top.clk60
 [color] 1
-top.kl10pv.clk_32.e68.cea
-[color] 1
-top.kl10pv.clk_32.e68.ceb
-[color] 1
 top.kl10pv.clk_32.e68.clk
-top.kl10pv.clk_32.clk1_main_source_c_h
-[color] 2
-top.kl10pv.clk_32.clk_10_11_clk_h
-[color] 2
-+{top.kl10pv.feSim.clk} top.kl10pv.feSim.clk
+[color] 1
+top.kl10pv.crm_40.cr03_reset_h
+[color] 1
+top.kl10pv.crm_40.mr_reset_01_h
 @30
 [color] 3
 top.kl10pv.ebus.diagStrobe
@@ -44,9 +38,6 @@ top.kl10pv.ebus.ds[0:6]
 top.kl10pv.feEBUSdriver.data[0:35]
 @1001200
 -group_end
-@28
-[color] 1
-top.kl10pv.feSim.trigger
 @c00200
 -EBUSdrivers
 @28
@@ -84,59 +75,97 @@ top.kl10pv.vmaEBUSdriver.driving
 @1401200
 -EBUSdrivers
 @28
-top.kl10pv.crm_40.cram_37_h
-top.kl10pv.crm_40.cram_38_h
-top.kl10pv.crm_40.cram_39_h
-@800200
--CRM40_e20
-@28
-top.kl10pv.crm_40.e20.clk
-top.kl10pv.crm_40.e20.d0
-top.kl10pv.crm_40.e20.d1
-top.kl10pv.crm_40.e20.d2
-top.kl10pv.crm_40.e20.d3
-top.kl10pv.crm_40.e20.op1
-top.kl10pv.crm_40.e20.op2
-top.kl10pv.crm_40.e20.q0
-top.kl10pv.crm_40.e20.q1
-top.kl10pv.crm_40.e20.q2
-top.kl10pv.crm_40.e20.q3
-top.kl10pv.crm_40.e20.shft0in
-top.kl10pv.crm_40.e20.shft3in
-@1000200
--CRM40_e20
-@28
-top.kl10pv.crm_40.clk_crm_delayed_h
-@800200
--CLK-e12
-@28
-top.kl10pv.clk_32.e12.clk
-top.kl10pv.clk_32.e12.d0
-top.kl10pv.clk_32.e12.d1
-top.kl10pv.clk_32.e12.d2
-top.kl10pv.clk_32.e12.d3
-top.kl10pv.clk_32.e12.op1
-top.kl10pv.clk_32.e12.op2
-top.kl10pv.clk_32.e12.q0
-top.kl10pv.clk_32.e12.q1
-top.kl10pv.clk_32.e12.q2
-top.kl10pv.clk_32.e12.q3
-top.kl10pv.clk_32.e12.shft0in
-top.kl10pv.clk_32.e12.shft3in
-@1000200
--CLK-e12
-@28
-top.kl10pv.clk_32.dlpcb1.in
-top.kl10pv.clk_32.dlpcb1.out
-@29
-top.kl10pv.clk_32.e72.qa2
-@28
-top.kl10pv.clk_32.clk1_mbox_b_h
-top.kl10pv.clk_32.clk1_clk_on_h
-top.kl10pv.clk_32.clk1_source_delayed_h
-top.kl10pv.clk_32.clk1_ebus_clk_source_h
 top.kl10pv.clk_32.clk1_main_source_c_h
 top.kl10pv.clk_32.clk1_gated_en_h
 top.kl10pv.clk_32.clk1_gated_h
+top.kl10pv.clk_32.clk2_func_start_l
+top.kl10pv.clk_32.clk2_go_l
+[color] 1
+top.kl10pv.clk_32.clk2_crobar_l
+top.kl10pv.clk_32.clk2_func_gate_l
+@c00200
+-e64
+@28
+[color] 2
+top.kl10pv.clk_32.e64.d0
+[color] 2
+top.kl10pv.clk_32.e64.q0
+[color] 3
+top.kl10pv.clk_32.e64.d1
+[color] 3
+top.kl10pv.clk_32.e64.q1
+[color] 4
+top.kl10pv.clk_32.e64.d2
+[color] 4
+top.kl10pv.clk_32.e64.q2
+[color] 5
+top.kl10pv.clk_32.e64.d3
+[color] 5
+top.kl10pv.clk_32.e64.q3
+@8000a8
+#{e64-op} top.kl10pv.clk_32.e64.op2 top.kl10pv.clk_32.e64.op1
+@30
+[color] 3
+top.kl10pv.clk_32.e64.op1
+[color] 3
+top.kl10pv.clk_32.e64.op2
+@1001200
+-group_end
+@28
+[color] 3
+top.kl10pv.clk_32.e64.shft0in
+[color] 3
+top.kl10pv.clk_32.e64.shft3in
+@1401200
+-e64
+@c00200
+-e60
+@28
+[color] 2
+top.kl10pv.clk_32.e60.d0
+[color] 2
+top.kl10pv.clk_32.e60.q0
+[color] 3
+top.kl10pv.clk_32.e60.d1
+[color] 3
+top.kl10pv.clk_32.e60.q1
+[color] 4
+top.kl10pv.clk_32.e60.d2
+[color] 4
+top.kl10pv.clk_32.e60.q2
+[color] 5
+top.kl10pv.clk_32.e60.d3
+[color] 5
+top.kl10pv.clk_32.e60.q3
+[color] 7
+top.kl10pv.clk_32.e60.d4
+[color] 7
+top.kl10pv.clk_32.e60.q4
+[color] 2
+top.kl10pv.clk_32.e60.d5
+[color] 2
+top.kl10pv.clk_32.e60.q5
+@1401200
+-e60
+@800200
+-clk-e66
+@29
+[color] 3
+top.kl10pv.clk_32.e66.ceb
+@28
+[color] 3
+top.kl10pv.clk_32.e66.clk
+[color] 3
+top.kl10pv.clk_32.e66.db
+[color] 3
+top.kl10pv.clk_32.e66.nqb
+[color] 3
+top.kl10pv.clk_32.e66.qb
+[color] 3
+top.kl10pv.clk_32.e66.rb
+[color] 3
+top.kl10pv.clk_32.e66.sb
+@1000200
+-clk-e66
 [pattern_trace] 1
 [pattern_trace] 0
