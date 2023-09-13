@@ -382,15 +382,28 @@ module fe_sim(input bit clk,
   // corresponding bits.
   //
   // CRA5 is PDF347. This for the CALL+DISP[0:5] bits.
-  task automatic writeCRAM(input bit [10:0] addr, input bit[0:85] cw);
+  task automatic writeCRAM(input bit [0:10] addr, input bit[0:85] cw);
 //    $display($time, " writeCRAM addr=%04o  cw=%029o", addr, cw);
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, W36'(addr[4:0]) << 30);  // CRAM address[4:0]
-    doDiagWrite(diagfCRAM_DIAG_ADR_LH, W36'(addr[10:5]) << 30); // CRAM address[10:5]
-    doDiagWrite(diagfCRAM_WRITE_60_79, W36'(cw[60:79]) << 8);  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE_40_59, W36'(cw[40:59]) << 8);  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE_20_39, W36'(cw[20:39]) << 8);  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE_00_19, W36'(cw[0:19])  << 8);  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE_80_85, W36'(cw[80:85]) << 30); // CRA5   CRAM[80:85] <- EBUS[0:5]
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, {addr[05:10], 30'o0}); // CRAM address[05:10]
+    doDiagWrite(diagfCRAM_DIAG_ADR_LH, {1'o0, addr[00:04], 30'o0}); // CRAM address[00:04]
+    doDiagWrite(diagfCRAM_WRITE_60_79, {8'o0,
+					cw[60], 1'o0, cw[62], 3'o0, cw[64], 1'o0,
+					cw[66], 3'o0, cw[68], 1'o0, cw[70], 3'o0,
+					cw[72], 1'o0, cw[74], 3'o0, cw[76], 1'o0,
+					cw[78], 1'o0});  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE_40_59, {8'o0,
+					cw[40:43], 2'o0, cw[44:47], 2'o0,
+					cw[48:51], 2'o0, cw[52:55], 2'o0,
+					cw[56:59]});  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE_20_39, {8'o0,
+					cw[20:23], 2'o0, cw[24:27], 2'o0,
+					cw[28:31], 2'o0, cw[32:35], 2'o0,
+					cw[36:39]});  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE_00_19, {8'o0,
+					cw[00:03], 2'o0, cw[04:07], 2'o0,
+					cw[08:11], 2'o0, cw[12:15], 2'o0,
+					cw[16:19]});  // CRM4,5
+    doDiagWrite(diagfCRAM_WRITE_80_85, {cw[80:85], 30'o0}); // CRA5   CRAM[80:85] <- EBUS[0:5]
   endtask // writeCRAM
 
 
@@ -406,8 +419,8 @@ module fe_sim(input bit clk,
     bit [0:8] edit;
     string majS, minS, editS;
 
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o136);
-    doDiagWrite(diagfCRAM_DIAG_ADR_LH, '0);
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o36 << 30);
+    doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o01 << 30);
     doDiagRead(diagfCRAM_READ_20_39, readResult);
     cwBits = 20'(readResult);
     majver = {cwBits[29:31], cwBits[33:35]};
@@ -415,7 +428,8 @@ module fe_sim(input bit clk,
     $display("136: readResult=%07o cwBits=%07o majver=%o minver=%o",
 	     readResult, cwBits, majver, minver);
 
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o137);
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o37 << 30);
+    doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o01 << 30);
     doDiagRead(diagfCRAM_READ_20_39, readResult);
     cwBits = 20'(readResult);
     edit = {cwBits[29:31], cwBits[33:35], cwBits[37:39]};
