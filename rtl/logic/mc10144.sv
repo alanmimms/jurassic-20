@@ -3,9 +3,13 @@ module mc10144(input bit a0, a1, a2, a3, a4, a5, a6, a7,
 	       output bit q);
 
   bit ram[255:0];
-  bit we = !nen1 && !nen2 && !nen3 && !nwrite;
-  bit re = !nen1 && !nen2 && !nen3 && nwrite;
-  bit [7:0] addr = {a0,a1,a2,a3,a4,a5,a6,a7};
+  bit [7:0] addr;
+  bit we, re;
+
+  always_comb we = !nen1 && !nen2 && !nen3 && !nwrite;
+  always_comb re = !nen1 && !nen2 && !nen3 && nwrite;
+  always_comb addr = {a0,a1,a2,a3,a4,a5,a6,a7};
+
 
   always_ff @(posedge re, posedge we) begin
 

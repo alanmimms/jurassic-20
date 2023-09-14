@@ -3,9 +3,12 @@ module mc10147(input bit a0, a1, a2, a3, a4, a5, a6,
 	       output bit q);
 
   bit ram[127:0];
-  bit we = !nen1 && !nen2 && !nwrite;
-  bit re = !nen1 && !nen2 && nwrite;
-  bit [6:0] addr = {a0,a1,a2,a3,a4,a5,a6};
+  bit we, re;
+  bit [6:0] addr;
+
+  always_comb we = !nen1 && !nen2 && !nwrite;
+  always_comb re = !nen1 && !nen2 && nwrite;
+  always_comb addr = {a0,a1,a2,a3,a4,a5,a6};
 
   always_ff @(posedge re, posedge we) begin
 

@@ -2,17 +2,19 @@ module mc10136(input bit  d8, d4, d2, d1, nCryIn,
 	       input bit  sel2, sel1, clk,
 	       output bit q8, q4, q2, q1, nCryOut);
   
-  bit [1:0] sel = {sel2, sel1};
+  bit [1:0] sel;
+  bit incOrDec;
+  bit carryClk;
+  bit carryOut, carryIn;
+  
+  always_comb sel = {sel2, sel1};
 
   // Not LOAD or HOLD
-  bit incOrDec = sel[0] ^ sel[1];
+  always_comb incOrDec = sel[0] ^ sel[1];
 
   // nCryIn overrides clk when in INC or DEC mode. This signal is the
   // real clock we have to pay attention to as a result.
-  bit carryClk;
-
-  bit carryOut, carryIn;
-  assign carryIn = !nCryIn;
+  always_comb carryIn = !nCryIn;
 
   always_comb nCryOut = !carryOut;
   always_comb carryClk = incOrDec ? clk : !nCryIn;

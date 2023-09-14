@@ -25,8 +25,11 @@ module mc10181(input bit s8,s4,s2,s1, boole, cin,
   bit [3:0] G, P;
   bit notGG;
 
-  bit [3:0] A = {a8,a4,a2,a1};
-  bit [3:0] B = {b8,b4,b2,b1};
+  bit [3:0] A;
+  bit [3:0] B;
+
+  always_comb A = {a8,a4,a2,a1};
+  always_comb B = {b8,b4,b2,b1};
 
   assign G = ~(~({4{s1}} | B | A) | ~({4{s4}} | A  | ~B));
   assign P = ~(~({4{s2}} | ~B   ) | ~({4{s8}} | B) | ~A);
