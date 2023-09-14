@@ -5,18 +5,18 @@
 
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
-	      inout iEBUS ebus,
-	      output tEBUSdriver EBUSdriver,
-	      input mbc3_a_change_coming_a_l,
-	      input a_change_coming_in_l,
+	      inout 	 iEBUS ebus,
+	      output 	 tEBUSdriver EBUSdriver,
+	      input 	 mbc3_a_change_coming_a_l,
+	      input 	 a_change_coming_in_l,
 	      output bit crobar_e_h,
 	      output bit con_cono_200000_h);
 
-  string indent = "";
+  string 		 indent = "";
 
-  int dumpLogFD;
+  int 			 dumpLogFD;
 
-  bit a_change_coming, a_change_coming_in;
+  bit 			 a_change_coming, a_change_coming_in;
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
   always_comb a_change_coming_in = !a_change_coming_in_l;
 
@@ -310,62 +310,61 @@ module fe_sim(input bit clk,
       words = split(rec, ",");
 
       case (recType)
-	"Z": begin  		// Zero a range
-	  adr = unASCIIize(words[1]);
-	  cksum = unASCIIize(words[2]);
-	  count = unASCIIize(words[3]);
-	  $display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
-	end
+      "Z": begin  		// Zero a range
+	adr = unASCIIize(words[1]);
+	cksum = unASCIIize(words[2]);
+	count = unASCIIize(words[3]);
+	$display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
+      end
 
-	"C": begin		// CRAM record
-	  bit [0:85] cw;
-	  count = unASCIIize(words[0]);
-	  adr = unASCIIize(words[1]);
+      "C": begin		// CRAM record
+	bit [0:85] cw;
+	count = unASCIIize(words[0]);
+	adr = unASCIIize(words[1]);
 
-	  if (count == 0 && adr == 0) begin
-	    lastAdr = 0;
-	  end else begin
-	    if (adr == 0) adr = lastAdr;
-	    lastAdr = adr + count;
-//	    $display("CRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
+	if (count == 0 && adr == 0) begin
+	  lastAdr = 0;
+	end else begin
+	  if (adr == 0) adr = lastAdr;
+	  lastAdr = adr;
+	  // $display("CRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
 
-	    for (int k = 2; k < count; ) begin
-	      // These hard coded ranges of destination bits come from
-	      // comment above on KLX.RAM format, except that the last
-	      // piece appears to need to be six bits and not five
-	      // based on PDF347 CRA5 {CALL,DISP[0:4]} "special"
-	      // field.
-	      cw[64:79] = 16'(unASCIIize(words[k++]));
-	      cw[48:63] = 16'(unASCIIize(words[k++]));
-	      cw[32:47] = 16'(unASCIIize(words[k++]));
-	      cw[16:31] = 16'(unASCIIize(words[k++]));
-	      cw[00:15] = 16'(unASCIIize(words[k++]));
-	      cw[80:85] =  6'(unASCIIize(words[k++]));
-	    end
-
+	  for (int k = 2; k < count; ) begin
+	    // These hard coded ranges of destination bits come from
+	    // comment above on KLX.RAM format, except that the last
+	    // piece appears to need to be six bits and not five based
+	    // on PDF347 CRA5 {CALL,DISP[0:4]} "special" field.
+	    cw[64:79] = 16'(unASCIIize(words[k++]));
+	    cw[48:63] = 16'(unASCIIize(words[k++]));
+	    cw[32:47] = 16'(unASCIIize(words[k++]));
+	    cw[16:31] = 16'(unASCIIize(words[k++]));
+	    cw[00:15] = 16'(unASCIIize(words[k++]));
+	    cw[80:85] =  6'(unASCIIize(words[k++]));
 	    $fwrite(dumpLogFD, "%04o: %030o\n", adr, cw);
 	    writeCRAM(11'(adr), cw);
+	    ++adr;
 	  end
 	end
+      end
 
-	"D": begin		// DRAM record
-	  count = unASCIIize(words[0]);
-	  adr = unASCIIize(words[1]);
+      "D": begin		// DRAM record
+	count = unASCIIize(words[0]);
+	adr = unASCIIize(words[1]);
 
-	  if (count == 0 && adr == 0) begin
-//	    $display("DRAM EOF");
-	    lastAdr = 0;
-	  end else begin
-	    if (adr == 0) adr = lastAdr;
-	    lastAdr = adr + count;
-//	    $display("DRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
-	  end
+	if (count == 0 && adr == 0) begin
+	  //	    $display("DRAM EOF");
+	  lastAdr = 0;
+	end else begin
+	  if (adr == 0) adr = lastAdr;
+	  lastAdr = adr + count;
+	  //	    $display("DRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
 	end
+      end
 
-	";": ;			// Comment - ignore
+      ";": ;			// Comment - ignore
 
-	default:
-	  $display("ERROR: Unknown record type '%s' in KLX.RAM file", recType);
+      default:
+	$display("ERROR: Unknown record type '%s' in KLX.RAM file", recType);
       endcase
     end
 
@@ -383,7 +382,7 @@ module fe_sim(input bit clk,
   //
   // CRA5 is PDF347. This for the CALL+DISP[0:5] bits.
   task automatic writeCRAM(input bit [0:10] addr, input bit[0:85] cw);
-//    $display($time, " writeCRAM addr=%04o  cw=%029o", addr, cw);
+    //    $display($time, " writeCRAM addr=%04o  cw=%029o", addr, cw);
     doDiagWrite(diagfCRAM_DIAG_ADR_RH, {addr[05:10], 30'o0}); // CRAM address[05:10]
     doDiagWrite(diagfCRAM_DIAG_ADR_LH, {1'o0, addr[00:04], 30'o0}); // CRAM address[00:04]
     doDiagWrite(diagfCRAM_WRITE_60_79, {8'o0,
@@ -414,10 +413,10 @@ module fe_sim(input bit clk,
   function automatic string getCRAMVersionString();
     W36 readResult;
     bit [20:39] cwBits;
-    bit [0:5] majver;
-    bit [0:2] minver;
-    bit [0:8] edit;
-    string majS, minS, editS;
+    bit [0:5] 	majver;
+    bit [0:2] 	minver;
+    bit [0:8] 	edit;
+    string 	majS, minS, editS;
 
     doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o36 << 30);
     doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o01 << 30);
@@ -525,8 +524,8 @@ module fe_sim(input bit clk,
 
   // Trim a string
   function string trimString(string s);
-    int first;
-    int last;
+    int   first;
+    int   last;
     first = 0;
     last  = s.len-1;
     while ((first <= last) && isSpace(s[first])) first++;
@@ -543,8 +542,8 @@ module fe_sim(input bit clk,
   // Split a string on every occurrence of a given character
   typedef string qs[$];
   function automatic qs split(string s, string splitset="");
-    int anchor = 0;
-    bit splitchars[string];
+    int 	 anchor = 0;
+    bit 	 splitchars[string];
     qs result = {};
 
     foreach (splitset[i]) splitchars[splitset[i]] = 1;
