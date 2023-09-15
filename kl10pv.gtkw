@@ -1,17 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Thu Sep 14 03:30:45 2023
+[*] Fri Sep 15 02:44:26 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Thu Sep 14 03:23:04 2023"
-[dumpfile_size] 80466306
+[dumpfile_mtime] "Fri Sep 15 02:43:41 2023"
+[dumpfile_size] 50973866
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 1447863
+[timestart] 804700
 [size] 1920 1045
 [pos] -1 -1
-*-7.125511 1448281 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.125511 804997 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.cra_45.
 [treeopen] top.kl10pv.crm_40.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -22,10 +23,6 @@
 @28
 top.clk60
 [color] 1
-top.kl10pv.clk_32.e68.clk
-[color] 1
-top.kl10pv.crm_40.cr03_reset_h
-[color] 1
 top.kl10pv.crm_40.mr_reset_01_h
 @30
 [color] 3
@@ -34,9 +31,9 @@ top.kl10pv.ebus.diagStrobe
 [color] 3
 ^1 /home/alan/dec20/kl10-schematics/rtl/dte.tff
 top.kl10pv.ebus.ds[0:6]
-@800031
+@800030
 top.kl10pv.feEBUSdriver.data[0:35]
-@1001201
+@1001200
 -group_end
 @c00200
 -EBUSdrivers
@@ -76,17 +73,6 @@ top.kl10pv.vmaEBUSdriver.driving
 -EBUSdrivers
 @28
 top.kl10pv.clk_32.clk1_main_source_c_h
-top.kl10pv.clk_32.clk1_gated_en_h
-top.kl10pv.clk_32.clk1_gated_h
-top.kl10pv.clk_32.clk2_func_start_l
-top.kl10pv.clk_32.clk2_go_l
-[color] 1
-top.kl10pv.clk_32.clk2_crobar_l
-top.kl10pv.clk_32.clk2_func_gate_l
-top.kl10pv.crm_40.cr02_ebus_32_h
-top.kl10pv.crm_40.cr02_ebus_33_h
-top.kl10pv.crm_40.cr02_ebus_34_h
-top.kl10pv.crm_40.cr02_ebus_35_h
 @c00200
 -CRM40-out
 @28
@@ -138,6 +124,8 @@ top.kl10pv.crm_40.cr02_write_Lp00to19Rp_l
 top.kl10pv.crm_40.cr02_write_Lp20to39Rp_l
 top.kl10pv.crm_40.cr02_write_Lp40to59Rp_l
 top.kl10pv.crm_40.cr02_write_Lp60to79Rp_l
+@c00200
+-e22
 @30
 top.kl10pv.crm_40.e22.addr[9:0]
 @28
@@ -147,5 +135,90 @@ top.kl10pv.crm_40.e22.nwrite
 top.kl10pv.crm_40.e22.q
 top.kl10pv.crm_40.e22.re
 top.kl10pv.crm_40.e22.we
+@1401200
+-e22
+@c00200
+-e25
+@30
+top.kl10pv.crm_40.e25.addr[9:0]
+@28
+top.kl10pv.crm_40.e25.d
+top.kl10pv.crm_40.e25.nen
+top.kl10pv.crm_40.e25.q
+top.kl10pv.crm_40.e25.re
+top.kl10pv.crm_40.e25.we
+@1401200
+-e25
+@c000b1
+:{cra-addr} top.kl10pv.cra_45.cra2_adr_10_l 0 69 top.kl10pv.cra_45.cra2_adr_09_l 0 69 top.kl10pv.cra_45.cra2_adr_08_l 0 69 top.kl10pv.cra_45.cra2_adr_07_l 0 69 top.kl10pv.cra_45.cra1_adr_06_a_l 0 69 top.kl10pv.cra_45.cra1_adr_05_a_l 0 69 top.kl10pv.cra_45.cra1_adr_04_a_l 0 69 top.kl10pv.cra_45.cra1_adr_03_a_l 0 69 top.kl10pv.cra_45.cra1_adr_02_a_l 0 69 top.kl10pv.cra_45.cra1_adr_01_a_l 0 69 top.kl10pv.cra_45.cra1_adr_00_a_h 0 69
+@800200
+-CRA-adr
+@68
+top.kl10pv.cra_45.cra1_adr_00_a_h
+top.kl10pv.cra_45.cra1_adr_01_a_l
+top.kl10pv.cra_45.cra1_adr_02_a_l
+top.kl10pv.cra_45.cra1_adr_03_a_l
+top.kl10pv.cra_45.cra1_adr_04_a_l
+top.kl10pv.cra_45.cra1_adr_05_a_l
+top.kl10pv.cra_45.cra1_adr_06_a_l
+top.kl10pv.cra_45.cra2_adr_07_l
+top.kl10pv.cra_45.cra2_adr_08_l
+top.kl10pv.cra_45.cra2_adr_09_l
+top.kl10pv.cra_45.cra2_adr_10_l
+@1000200
+-CRA-adr
+@1401281
+-group_end
+@c000b0
+#{cra-diag-adr} top.kl10pv.cra_45.cra3_diag_adr_10_h top.kl10pv.cra_45.cra3_diag_adr_09_h top.kl10pv.cra_45.cra3_diag_adr_08_h top.kl10pv.cra_45.cra3_diag_adr_07_h top.kl10pv.cra_45.cra3_diag_adr_06_h top.kl10pv.cra_45.cra3_diag_adr_05_h top.kl10pv.cra_45.cra3_diag_adr_04_h top.kl10pv.cra_45.cra3_diag_adr_03_h top.kl10pv.cra_45.cra3_diag_adr_02_h top.kl10pv.cra_45.cra3_diag_adr_01_h top.kl10pv.cra_45.cra3_diag_adr_00_h
+@28
+top.kl10pv.cra_45.cra3_diag_adr_00_h
+top.kl10pv.cra_45.cra3_diag_adr_01_h
+top.kl10pv.cra_45.cra3_diag_adr_02_h
+top.kl10pv.cra_45.cra3_diag_adr_03_h
+top.kl10pv.cra_45.cra3_diag_adr_04_h
+top.kl10pv.cra_45.cra3_diag_adr_05_h
+top.kl10pv.cra_45.cra3_diag_adr_06_h
+top.kl10pv.cra_45.cra3_diag_adr_07_h
+top.kl10pv.cra_45.cra3_diag_adr_08_h
+top.kl10pv.cra_45.cra3_diag_adr_09_h
+top.kl10pv.cra_45.cra3_diag_adr_10_h
+@1401290
+-group_end
+@28
+top.kl10pv.cra_45.cr02_dia_func_051_08_l
+top.kl10pv.cra_45.cr02_dia_func_052_08_l
+top.kl10pv.cra_45.cr02_dia_func_053_08_l
+top.kl10pv.cra_45.e37.clk
+@8000b0
+#{e37-d} top.kl10pv.cra_45.e37.d5 top.kl10pv.cra_45.e37.d4 top.kl10pv.cra_45.e37.d3 top.kl10pv.cra_45.e37.d2 top.kl10pv.cra_45.e37.d1 top.kl10pv.cra_45.e37.d0
+@28
+[color] 2
+top.kl10pv.cra_45.e37.d0
+[color] 2
+top.kl10pv.cra_45.e37.d1
+[color] 2
+top.kl10pv.cra_45.e37.d2
+[color] 2
+top.kl10pv.cra_45.e37.d3
+[color] 2
+top.kl10pv.cra_45.e37.d4
+[color] 2
+top.kl10pv.cra_45.e37.d5
+@1001200
+-group_end
+@28
+[color] 3
+top.kl10pv.cra_45.e37.q0
+[color] 3
+top.kl10pv.cra_45.e37.q1
+[color] 3
+top.kl10pv.cra_45.e37.q2
+[color] 3
+top.kl10pv.cra_45.e37.q3
+[color] 3
+top.kl10pv.cra_45.e37.q4
+[color] 3
+top.kl10pv.cra_45.e37.q5
 [pattern_trace] 1
 [pattern_trace] 0
