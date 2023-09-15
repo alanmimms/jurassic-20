@@ -288,8 +288,33 @@ module fe_sim(input bit clk,
     string words[$];
     W16 adr, count, cksum;
     W16 lastAdr = 0;
+    bit [0:85] cw;
 
     $display($time, " KLLoadRAMs() START");
+
+    // For now, just load and read back one-hot walking bit pattern
+    // into CRAM to debug write and read.
+    $display("[Load walking one-hot bit pattern into CRAM for testing]");
+    doDiagFunc(diagfSTART_CLOCK); // START THE CLOCK.
+
+    for (bit [0:10] a = 0; a < 86; ++a) begin
+      W36 readResult;
+
+      cw[0:85] = '0;
+      cw[a] = '1;
+      writeCRAM(a, cw);
+
+      doDiagRead(diagfCRAM_READ_00_19, readResult);
+      cw[00:19] = readResult[00:19];
+      doDiagRead(diagfCRAM_READ_20_39, readResult);
+      cw[20:39] = readResult[00:19];
+      doDiagRead(diagfCRAM_READ_40_59, readResult);
+      cw[40:59] = readResult[00:19];
+      doDiagRead(diagfCRAM_READ_60_79, readResult);
+      cw[60:79] = readResult[00:19];
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+      cw[80:85] = readResult[00:05];
+    end
 
     $display("[Reading KLX.RAM for CRAM and DRAM]");
 
@@ -318,7 +343,6 @@ module fe_sim(input bit clk,
       end
 
       "C": begin		// CRAM record
-	bit [0:85] cw;
 	count = unASCIIize(words[0]);
 	adr = unASCIIize(words[1]);
 
