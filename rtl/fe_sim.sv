@@ -421,7 +421,7 @@ module fe_sim(input bit clk,
     doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o36 << 30);
     doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o01 << 30);
     doDiagRead(diagfCRAM_READ_20_39, readResult);
-    cwBits = 20'(readResult);
+    cwBits = readResult[00:19];
     majver = {cwBits[29:31], cwBits[33:35]};
     minver = cwBits[37:39];
     $display("136: readResult=%07o cwBits=%07o majver=%o minver=%o",
@@ -430,7 +430,7 @@ module fe_sim(input bit clk,
     doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o37 << 30);
     doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o01 << 30);
     doDiagRead(diagfCRAM_READ_20_39, readResult);
-    cwBits = 20'(readResult);
+    cwBits = readResult[00:19];
     edit = {cwBits[29:31], cwBits[33:35], cwBits[37:39]};
     $display("137: readResult=%07o cwBits=%07o edit=%o", readResult, cwBits, edit);
 
@@ -454,14 +454,11 @@ module fe_sim(input bit clk,
       EBUSdriver.driving <= 1;
     end
 
-    repeat (8) @(negedge clk);
+    repeat (4) @(negedge clk);
 
-    @(negedge clk) begin
-      ebus.diagStrobe <= 0;
-      EBUSdriver.driving <= 0;
-    end
-
-    repeat(4) @(posedge clk);
+    @(negedge clk) ebus.diagStrobe <= 0;
+    @(negedge clk) EBUSdriver.driving <= 0;
+    @(posedge clk) ;
   endtask
 
 
@@ -475,13 +472,9 @@ module fe_sim(input bit clk,
       ebus.diagStrobe <= 1;            // Strobe this
     end
 
-    repeat (8) @(negedge clk);
-
-    @(negedge clk) begin
-      ebus.diagStrobe <= 0;
-    end
-
-    repeat(4) @(negedge clk);
+    repeat (4) @(negedge clk);
+    @(negedge clk) ebus.diagStrobe <= 0;
+    @(posedge clk);
   endtask // doDiagFunc
 
 
@@ -495,14 +488,10 @@ module fe_sim(input bit clk,
       ebus.diagStrobe <= 1;
     end
 
-    repeat (8) @(negedge clk);
+    repeat (4) @(negedge clk);
 
-    @(negedge clk) begin
-      result <= ebus.data;
-      ebus.diagStrobe <= 0;
-    end
-
-    repeat(4) @(posedge clk);
+    @(negedge clk) result <= ebus.data;
+    @(posedge clk) ebus.diagStrobe <= 0;
   endtask
 
 
