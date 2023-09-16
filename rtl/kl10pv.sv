@@ -17,6 +17,7 @@ module kl10pv(input clk60);
   tEBUSdriver feEBUSdriver;
 
   assign clk = clk60;
+  always_comb clk1_clk_h = clk1_clk_out_h;
 
   iEBUS ebus();
   fe_sim feSim (.EBUSdriver(feEBUSdriver), .clk(!clk_10_11_clk_h), .*);
