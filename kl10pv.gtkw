@@ -1,6 +1,6 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Sep 16 02:54:46 2023
+[*] Sat Sep 16 02:57:41 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
 [dumpfile_mtime] "Sat Sep 16 02:52:37 2023"
@@ -27,7 +27,7 @@ top.kl10pv.crm_40.mr_reset_01_h
 @30
 [color] 3
 top.kl10pv.ebus.diagStrobe
-@2031
+@2030
 [color] 3
 ^1 /home/alan/dec20/kl10-schematics/rtl/dte.tff
 top.kl10pv.ebus.ds[0:6]
@@ -118,148 +118,5 @@ top.kl10pv.cra_45.cr02_dia_func_051_08_l
 top.kl10pv.cra_45.cr02_dia_func_052_08_l
 top.kl10pv.cra_45.cr02_dia_func_053_08_l
 top.kl10pv.cra_45.diag_read_func_14x_l
-[color] 1
-top.kl10pv.clk_32.clk1_odd_a_h
-[color] 3
-top.kl10pv.clk_32.clk4_page_fail_h
-[color] 3
-top.kl10pv.clk_32.clk4_pf_dlyd_a_h
-[color] 1
-top.kl10pv.clk_32.clk3_sync_l
-[color] 1
-top.kl10pv.clk_32.clk_cra_h
-[color] 1
-top.kl10pv.cra_45.cra3_clk_f_h
-top.kl10pv.clk_32.clk4_pf_dlyd_b_h
-top.kl10pv.clk_32.clk5_arSlarx_par_check_l
-top.kl10pv.clk_32.apr_apr_par_chk_en_l
-[color] 1
-top.kl10pv.clk_32.clk5_arSlarx_par_check_l
-[color] 1
-top.kl10pv.clk_32.e7.qb
-[color] 1
-top.kl10pv.clk_32.e38.qb
-top.kl10pv.clk_32.clk3_ebox_source_h
-top.kl10pv.clk_32.clk4_instr_1777_h
-top.kl10pv.clk_32.clk4_1777_en_h
-top.kl10pv.clk_32.clk_page_error_h
-top.kl10pv.clk_32.clk2_reset_h
-top.kl10pv.clk_32.clk4_e4_2
-top.kl10pv.clk_32.clk4_page_fail_en_l
-top.kl10pv.clk_32.csh6_page_fail_hold_h
-top.kl10pv.clk_32.clk4_page_fail_h
-top.kl10pv.clk_32.con_arx_loaded_l
-top.kl10pv.clk_32.shm1_arx_par_odd_h
-top.kl10pv.clk_32.con_ar_loaded_l
-top.kl10pv.con_35.con2_clk_a_h
-top.kl10pv.clk_32.clk3_ebox_clk_en_l
-top.kl10pv.clk_32.clk3_sync_en_h
-top.kl10pv.clk_32.e31.b
-top.kl10pv.clk_32.clk2_mbox_clk_e_h
-@c00200
--clk-e2
-@28
-top.kl10pv.clk_32.e2.a1
-top.kl10pv.clk_32.e2.a2
-top.kl10pv.clk_32.e2.b1
-top.kl10pv.clk_32.e2.b2
-top.kl10pv.clk_32.e2.b3c3
-top.kl10pv.clk_32.e2.c1
-top.kl10pv.clk_32.e2.c2
-top.kl10pv.clk_32.e2.d1
-top.kl10pv.clk_32.e2.d2
-top.kl10pv.clk_32.e2.nqa
-top.kl10pv.clk_32.e2.nqb
-top.kl10pv.clk_32.e2.qa
-top.kl10pv.clk_32.e2.qb
-@1401200
--clk-e2
-@c00200
--clk-e25
-@28
-top.kl10pv.clk_32.e25.carryClk
-top.kl10pv.clk_32.e25.carryIn
-top.kl10pv.clk_32.e25.carryOut
-top.kl10pv.clk_32.e25.clk
-top.kl10pv.clk_32.e25.incOrDec
-top.kl10pv.clk_32.e25.d1
-top.kl10pv.clk_32.e25.d2
-top.kl10pv.clk_32.e25.d4
-top.kl10pv.clk_32.e25.d8
-top.kl10pv.clk_32.e25.q1
-top.kl10pv.clk_32.e25.q2
-top.kl10pv.clk_32.e25.q4
-top.kl10pv.clk_32.e25.q8
-top.kl10pv.clk_32.e25.sel1
-top.kl10pv.clk_32.e25.sel2
-@1401200
--clk-e25
-@c00200
--clk-e12
-@28
-top.kl10pv.clk_32.e12.clk
-top.kl10pv.clk_32.e12.d0
-top.kl10pv.clk_32.e12.d1
-top.kl10pv.clk_32.e12.d2
-top.kl10pv.clk_32.e12.d3
-top.kl10pv.clk_32.e12.op1
-top.kl10pv.clk_32.e12.op2
-top.kl10pv.clk_32.e12.q0
-top.kl10pv.clk_32.e12.q1
-top.kl10pv.clk_32.e12.q2
-top.kl10pv.clk_32.e12.q3
-top.kl10pv.clk_32.e12.shft0in
-top.kl10pv.clk_32.e12.shft3in
-@1401200
--clk-e12
-@c00200
--clk-e39
-@28
-[color] 2
-top.kl10pv.clk_32.e39.a1
-[color] 2
-top.kl10pv.clk_32.e39.a2
-[color] 2
-top.kl10pv.clk_32.e39.a3
-[color] 2
-top.kl10pv.clk_32.e39.b1
-[color] 2
-top.kl10pv.clk_32.e39.b2
-[color] 2
-top.kl10pv.clk_32.e39.b3c3
-[color] 2
-top.kl10pv.clk_32.e39.c1
-[color] 2
-top.kl10pv.clk_32.e39.c2
-[color] 2
-top.kl10pv.clk_32.e39.d1
-[color] 2
-top.kl10pv.clk_32.e39.d2
-[color] 2
-top.kl10pv.clk_32.e39.d3
-[color] 1
-top.kl10pv.clk_32.e39.nqa
-[color] 2
-top.kl10pv.clk_32.e39.qa
-@1401200
--clk-e39
-@c00200
--CON-e69
-@28
-top.kl10pv.con_35.e69.clk
-top.kl10pv.con_35.e69.d0
-top.kl10pv.con_35.e69.d1
-top.kl10pv.con_35.e69.d2
-top.kl10pv.con_35.e69.d3
-top.kl10pv.con_35.e69.d4
-top.kl10pv.con_35.e69.d5
-top.kl10pv.con_35.e69.q0
-top.kl10pv.con_35.e69.q1
-top.kl10pv.con_35.e69.q2
-top.kl10pv.con_35.e69.q3
-top.kl10pv.con_35.e69.q4
-top.kl10pv.con_35.e69.q5
-@1401200
--CON-e69
 [pattern_trace] 1
 [pattern_trace] 0

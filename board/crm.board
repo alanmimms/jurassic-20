@@ -133,16 +133,20 @@ e36:  10174 2x4 mix
       15 ~> `EBUSdriver.data[m+3]
 
 e33: 10101 quad or/nor
-     4 ~< {dt2} ebus d[m+02] e h
+//     4 ~< {dt2} ebus d[m+02] e h
+     4 ~< `EBUSdriver.data[m+2]
      2 ~> %NC%
      5 ~> cr02 ebus [m+02] h
-     7 ~< {dp1} ebus d[m+03] e h
+//     7 ~< {dp1} ebus d[m+03] e h
+     7 ~< `EBUSdriver.data[m+3]
      3 ~> %NC%
      6 ~> cr02 ebus [m+03] h
-     13 ~< {dp2} ebus d[m+04] e h
+//     13 ~< {dp2} ebus d[m+04] e h
+     13 ~< `EBUSdriver.data[4]
      15 ~> %NC%
      9 ~> cr02 ebus [m+04] h
-     10 ~< {du2} ebus d[m+05] e h
+//     10 ~< {du2} ebus d[m+05] e h
+     10 ~< `EBUSdriver.data[5]
      14 ~> %NC%
      11 ~> cr02 ebus [m+05] h
      12 ~< %NC%
