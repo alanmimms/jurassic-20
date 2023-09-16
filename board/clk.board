@@ -769,7 +769,9 @@ e12: 10141 shift reg
      9 ~< clk3-e27-14
      6 ~< clk3 ebox src en h
      5 ~< %NC%
-     7 ~< clk4 page fail h
+// TEMPORARY TESTING
+//     7 ~< clk4 page fail h
+     7 ~< %NC%
      10 ~< clk4 pf dlyd a h
      4 ~< clk1 odd a h
      14 ~> clk3-e12-14
