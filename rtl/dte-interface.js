@@ -49,7 +49,7 @@ const diagFuncTypes = `\
   WRITE_MBOX = 0o071,                           \
   EBUS_LOAD = 0o076,                            \
                                                 \
-  Idle = 0o077,					\
+  LOAD_AR = 0o077,				\
 						\
   CRAM_READ_00_19 = 0o147,			\
   CRAM_READ_20_39 = 0o146,			\

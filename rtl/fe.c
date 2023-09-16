@@ -201,7 +201,7 @@ static const char *pipeN(int fd) {
 static W36 sendAndGetResult(LL aTicks,
                             LL duration,
                             tReqType aType,
-                            int aDiag = diagfIdle,
+                            int aDiag = 0,
                             W36 aData1 = 0,
                             W36 aData2 = 0) {
   tPipeRequest req;

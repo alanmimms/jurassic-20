@@ -292,6 +292,10 @@ module fe_sim(input bit clk,
 
     $display($time, " KLLoadRAMs() START");
 
+    // We have to write the AR register so its parity is correct to
+    // avoid getting wrongheaded parity errors.
+    doDiagWrite(diagfLOAD_AR, '0);
+
     // For now, just load and read back one-hot walking bit pattern
     // into CRAM to debug write and read.
     $display("[Load walking one-hot bit pattern into CRAM for testing]");

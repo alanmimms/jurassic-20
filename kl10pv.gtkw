@@ -1,13 +1,13 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Sep 16 02:57:41 2023
+[*] Sat Sep 16 21:20:23 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Sep 16 02:52:37 2023"
-[dumpfile_size] 17794017
+[dumpfile_mtime] "Sat Sep 16 21:20:13 2023"
+[dumpfile_size] 20399308
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
 [timestart] 4731
-[size] 1920 1045
+[size] 1992 1173
 [pos] -1 -1
 *-6.125511 2333 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
@@ -19,7 +19,7 @@
 [sst_width] 246
 [signals_width] 432
 [sst_expanded] 1
-[sst_vpaned_height] 366
+[sst_vpaned_height] 414
 @28
 top.clk60
 [color] 1
