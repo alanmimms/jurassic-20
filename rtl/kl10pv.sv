@@ -154,7 +154,8 @@ module kl10pv(input clk60);
       ebus.data[12:17] = crm50EBUSdriver.data[12:17];
       ebus.data[06:11] = crm52EBUSdriver.data[06:11];
       ebus.data[0:5] = craEBUSdriver.data[0:5];
-    end else if (cshEBUSdriver.driving) ebus.data = cshEBUSdriver.data;
+    end
+    else if (cshEBUSdriver.driving) ebus.data = cshEBUSdriver.data;
     else if (ctlEBUSdriver.driving) ebus.data = ctlEBUSdriver.data;
 
     else if (edp39EBUSdriver.driving | edp41EBUSdriver.driving |
