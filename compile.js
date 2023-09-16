@@ -879,7 +879,7 @@ function dumpVerilogNames(bp) {
   fs.writeFileSync('bp.verilog-names',
 		   Object.keys(bp.n2v)
 		   .sort(netNameSort)
-		   .map(nName => `${nName.padStart(50)}: ${bp.n2v[nName]}`).join('\n') + '\n')
+		   .map(nName => `${nName.padStart(50)}: ${bp.n2v[nName]}`).join("\n") + "\n")
 }
 
 
@@ -893,7 +893,7 @@ ${bpPin}:
   ${Object.values(bp.allPins[bpPin])
     .map(pin => util.inspect(pin) /*`${pin.dir} ${pin.lNet.padEnd(35)}${pin.fullName}`*/)
     .join("\n  ")}`)
-		   .join("\n") + '\n');
+		   .join("\n") + "\n");
   }
   
   function slotPinSort(a, b) {
@@ -917,7 +917,7 @@ ${netName}:
       return `${pin.dir} ${pinFullName.padEnd(20) + (pin.bpPin || '').padEnd(20)}${pin.pdfRef}`;
     })
 		   .join("\n  ")}`)
-		   .join("\n") + '\n');
+		   .join("\n") + "\n");
 
   // Sort e.g., "edp.aa1[38]" so the slot number
   // "38" is primary, module "edp" is next,
