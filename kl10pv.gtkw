@@ -1,21 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Sep 17 21:43:31 2023
+[*] Sun Sep 17 23:15:48 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sun Sep 17 21:43:24 2023"
-[dumpfile_size] 197800632
+[dumpfile_mtime] "Sun Sep 17 23:15:43 2023"
+[dumpfile_size] 191852874
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 804898
+[timestart] 3155
 [size] 1992 1173
 [pos] -1 -1
-*-5.125511 804908 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.125511 3188 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 246
-[signals_width] 432
+[signals_width] 550
 [sst_expanded] 1
 [sst_vpaned_height] 414
 @28
@@ -25,7 +26,7 @@ top.kl10pv.crm_40.mr_reset_01_h
 @30
 [color] 3
 top.kl10pv.ebus.diagStrobe
-@2030
+@2031
 [color] 3
 ^1 /home/alan/dec20/kl10-schematics/rtl/dte.tff
 top.kl10pv.ebus.ds[0:6]
@@ -93,5 +94,110 @@ top.kl10pv.cra_45.cra2_adr_09_h
 top.kl10pv.cra_45.cra2_adr_10_h
 @1401200
 -group_end
+@c00200
+-cra-80:85 out
+@28
+top.kl10pv.cra_45.cra5_out_80_h
+top.kl10pv.cra_45.cra5_out_81_h
+top.kl10pv.cra_45.cra5_out_82_h
+top.kl10pv.cra_45.cra5_out_83_h
+top.kl10pv.cra_45.cra5_out_84_h
+top.kl10pv.cra_45.cra5_out_85_h
+@1401200
+-cra-80:85 out
+@c00200
+-cra-e64
+@28
+top.kl10pv.cra_45.e64.b
+top.kl10pv.cra_45.e64.d0
+top.kl10pv.cra_45.e64.d1
+top.kl10pv.cra_45.e64.d2
+top.kl10pv.cra_45.e64.d3
+top.kl10pv.cra_45.e64.d4
+top.kl10pv.cra_45.e64.d5
+top.kl10pv.cra_45.e64.d6
+top.kl10pv.cra_45.e64.d7
+top.kl10pv.cra_45.e64.nen
+@68
+top.kl10pv.cra_45.e64.sel1
+top.kl10pv.cra_45.e64.sel2
+top.kl10pv.cra_45.e64.sel4
+@1401200
+-cra-e64
+@c00200
+-cra-e3
+@28
+top.kl10pv.cra_45.e3.clk
+top.kl10pv.cra_45.e3.d0
+top.kl10pv.cra_45.e3.d1
+top.kl10pv.cra_45.e3.d2
+top.kl10pv.cra_45.e3.d3
+top.kl10pv.cra_45.e3.op1
+top.kl10pv.cra_45.e3.op2
+top.kl10pv.cra_45.e3.q0
+top.kl10pv.cra_45.e3.q1
+top.kl10pv.cra_45.e3.q2
+top.kl10pv.cra_45.e3.q3
+top.kl10pv.cra_45.e3.shft0in
+top.kl10pv.cra_45.e3.shft3in
+@1401200
+-cra-e3
+@28
+top.kl10pv.clk_32.clk_cra_h
+top.kl10pv.clk_32.clk1_odd_a_h
+top.kl10pv.clk_32.clk1_source_delayed_h
+top.kl10pv.clk_32.clk1_gated_en_h
+top.kl10pv.clk_32.clk1_gated_h
+top.kl10pv.clk_32.clk1_main_source_c_h
+@800200
+-clk-e29
+@28
+top.kl10pv.clk_32.e29.a1
+top.kl10pv.clk_32.e29.a2
+top.kl10pv.clk_32.e29.a3
+top.kl10pv.clk_32.e29.b1
+top.kl10pv.clk_32.e29.b2
+top.kl10pv.clk_32.e29.b3c3
+top.kl10pv.clk_32.e29.c1
+top.kl10pv.clk_32.e29.c2
+top.kl10pv.clk_32.e29.d1
+top.kl10pv.clk_32.e29.d2
+top.kl10pv.clk_32.e29.d3
+top.kl10pv.clk_32.e29.nqa
+top.kl10pv.clk_32.e29.qa
+@1000200
+-clk-e29
+@28
+top.kl10pv.clk_32.clk2_go_l
+top.kl10pv.clk_32.clk1_rate_selected_l
+top.kl10pv.clk_32.clk5_burst_cntEq0_h
+top.kl10pv.clk_32.clk2_burst_l
+top.kl10pv.clk_32.clk4_ebox_clk_l
+top.kl10pv.clk_32.clk2_func_cond_ss_l
+top.kl10pv.clk_32.clk3_sync_h
+top.kl10pv.clk_32.clk2_func_ebox_ss_l
+top.kl10pv.clk_32.clk2_func_single_step_l
+top.kl10pv.clk_32.clk2_func_gate_l
+[color] 1
+top.kl10pv.crobar_e_h
+top.kl10pv.clk_32.clk2_func_start_l
+@800200
+-clk-e42
+@28
+top.kl10pv.clk_32.e42.clk
+top.kl10pv.clk_32.e42.d0
+top.kl10pv.clk_32.e42.d1
+top.kl10pv.clk_32.e42.d2
+top.kl10pv.clk_32.e42.d3
+top.kl10pv.clk_32.e42.op1
+top.kl10pv.clk_32.e42.op2
+top.kl10pv.clk_32.e42.q0
+top.kl10pv.clk_32.e42.q1
+top.kl10pv.clk_32.e42.q2
+top.kl10pv.clk_32.e42.q3
+top.kl10pv.clk_32.e42.shft0in
+top.kl10pv.clk_32.e42.shft3in
+@1000200
+-clk-e42
 [pattern_trace] 1
 [pattern_trace] 0
