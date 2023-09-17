@@ -16,6 +16,9 @@ module fe_sim(input bit clk,
 
   int 			 dumpLogFD;
 
+  bit [20:39] cram136;
+  bit [20:39] cram137;
+
   bit 			 a_change_coming, a_change_coming_in;
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
   always_comb a_change_coming_in = !a_change_coming_in_l;
@@ -468,6 +471,23 @@ module fe_sim(input bit clk,
 					cw[08:11], 2'o0, cw[12:15], 2'o0,
 					cw[16:19]});  // CRM4,5
     doDiagWrite(diagfCRAM_WRITE_80_85, {cw[80:85], 30'o0}); // CRA5   CRAM[80:85] <- EBUS[0:5]
+
+    if (addr == 11'o136) begin
+      cram136 = cw[20:39];
+    end else if (addr == 11'o137) begin
+      bit [0:5] 	majver;
+      bit [0:2] 	minver;
+      bit [0:8] 	edit;
+
+      cram137 = cw[20:39];
+
+      majver = {cram136[29:31], cram136[33:35]};
+      minver = cram136[37:39];
+      edit = {cram137[29:31], cram137[33:35], cram137[37:39]};
+      $display("136: cram136=%0o majver=%o minver=%o", cram136, majver, minver);
+      $display("137: cram137=%0o edit=%o", cram137, edit);
+      $display("CRAM version: %o.%o(%o)", majver, minver, edit);
+    end
   endtask // writeCRAM
 
 
@@ -503,7 +523,7 @@ module fe_sim(input bit clk,
     minS.octtoa(minver);
     editS.octtoa(edit);
 
-    return {majS, ".", minS, ".", editS};
+    return {majS, ".", minS, "(", editS, ")"};
   endfunction // getCRAMVersion
   
 
@@ -519,8 +539,7 @@ module fe_sim(input bit clk,
       EBUSdriver.driving <= 1;
     end
 
-    repeat (4) @(negedge clk);
-
+    @(negedge clk) ;
     @(negedge clk) ebus.diagStrobe <= 0;
     @(negedge clk) EBUSdriver.driving <= 0;
     @(posedge clk) ;
@@ -537,7 +556,7 @@ module fe_sim(input bit clk,
       ebus.diagStrobe <= 1;            // Strobe this
     end
 
-    repeat (4) @(negedge clk);
+    @(negedge clk) ;
     @(negedge clk) ebus.diagStrobe <= 0;
     @(posedge clk);
   endtask // doDiagFunc
@@ -553,8 +572,7 @@ module fe_sim(input bit clk,
       ebus.diagStrobe <= 1;
     end
 
-    repeat (4) @(negedge clk);
-
+    @(negedge clk) ;
     @(negedge clk) result <= ebus.data;
     @(posedge clk) ebus.diagStrobe <= 0;
   endtask
