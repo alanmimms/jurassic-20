@@ -10,7 +10,7 @@ module mc10415a(input bit a0, a1, a2, a3, a4, a5, a6, a7, a8, a9,
   always_comb we = cs && !nwrite;
   always_comb addr = {a0,a1,a2,a3,a4,a5,a6,a7,a8,a9};
 
-  always_ff @(addr, posedge cs, posedge we) begin
+  always_ff @(addr, cs, we) begin
 
     if (cs) begin
 

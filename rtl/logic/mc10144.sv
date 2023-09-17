@@ -4,17 +4,26 @@ module mc10144(input bit a0, a1, a2, a3, a4, a5, a6, a7,
 
   bit ram[255:0];
   bit [7:0] addr;
-  bit we, re;
+  bit cs, we, re;
 
-  always_comb we = !nen1 && !nen2 && !nen3 && !nwrite;
-  always_comb re = !nen1 && !nen2 && !nen3 && nwrite;
+  always_comb cs = !nen1 && !nen2 && !nen3;
+  always_comb we = cs && !nwrite;
+  always_comb re = cs && nwrite;
   always_comb addr = {a0,a1,a2,a3,a4,a5,a6,a7};
 
+  always_ff @(cs, re, we) begin
 
-  always_ff @(posedge re, posedge we) begin
+    if (cs) begin
 
-    if (re) ram[addr] <= d;
-    else if (we) q <= ram[addr];
-    else q <= '0;
+      if (we) begin
+	ram[addr] <= d;
+	q <= '0;
+      end else if (re)
+	q <= ram[addr];
+      else
+	q <= '0;
+
+    end else
+      q <= '0;
   end
 endmodule
