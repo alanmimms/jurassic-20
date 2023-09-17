@@ -376,7 +376,7 @@ module fe_sim(input bit clk,
 
   ////////////////////////////////////////////////////////////////
   task automatic TestCRAM;
-    bit doOneHotCRAM80_85 = 0;
+    bit doOneHotCRAM80_85 = 1;
     bit doOneHotCRAMAll = 0;
 
     $display($time, " TestCRAM() START");
@@ -396,23 +396,31 @@ module fe_sim(input bit clk,
       doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o0); // CRAM address[00:04]
 
       doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 35);
+      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
       doDiagRead(diagfCRAM_READ_80_85, readResult);
 
       doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 34);
+      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
       doDiagRead(diagfCRAM_READ_80_85, readResult);
 
       doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 33);
+      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
       doDiagRead(diagfCRAM_READ_80_85, readResult);
 
       doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 32);
+      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
       doDiagRead(diagfCRAM_READ_80_85, readResult);
 
       doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 31);
+      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
       doDiagRead(diagfCRAM_READ_80_85, readResult);
 
       doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 30);
+      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
       doDiagRead(diagfCRAM_READ_80_85, readResult);
     end
+
+    doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
 
     // For now, just load and read back one-hot walking bit pattern
     // into CRAM to debug write and read.
@@ -484,9 +492,7 @@ module fe_sim(input bit clk,
       majver = {cram136[29:31], cram136[33:35]};
       minver = cram136[37:39];
       edit = {cram137[29:31], cram137[33:35], cram137[37:39]};
-      $display("136: cram136=%0o majver=%o minver=%o", cram136, majver, minver);
-      $display("137: cram137=%0o edit=%o", cram137, edit);
-      $display("CRAM version: %o.%o(%o)", majver, minver, edit);
+      $display("CRAM version: %o.%02o(%o)", majver, minver, edit);
     end
   endtask // writeCRAM
 
