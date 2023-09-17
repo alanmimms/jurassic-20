@@ -215,6 +215,7 @@ module fe_sim(input bit clk,
 
     // Debugging sentinel
     doDiagFunc(diagfCLR_RUN);
+    TestCRAM();
     KLLoadRAMs();
   end
 
@@ -281,7 +282,6 @@ module fe_sim(input bit clk,
 
   
   ////////////////////////////////////////////////////////////////
-  typedef bit [15:0] W16;
   task automatic KLLoadRAMs;
     int fd;
     string line, recType, rec;
@@ -290,84 +290,7 @@ module fe_sim(input bit clk,
     W16 lastAdr = 0;
     bit [0:85] cw;
 
-    $display($time, " KLLoadRAMs() START");
-
-    // We have to write the AR register so its parity is correct to
-    // avoid getting wrongheaded parity errors.
-    doDiagWrite(diagfLOAD_AR, '0);
-
-
-    begin
-      W36 readResult;
-
-      cw[0:85] = '0;
-      cw[85] = '1;
-      writeCRAM('0, cw);
-
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-      cw[80:85] = readResult[00:05];
-
-      cw[0:85] = '0;
-      cw[84] = '1;
-      writeCRAM('0, cw);
-
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-      cw[80:85] = readResult[00:05];
-
-      cw[0:85] = '0;
-      cw[83] = '1;
-      writeCRAM('0, cw);
-
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-      cw[80:85] = readResult[00:05];
-
-      cw[0:85] = '0;
-      cw[82] = '1;
-      writeCRAM('0, cw);
-
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-      cw[80:85] = readResult[00:05];
-
-      cw[0:85] = '0;
-      cw[81] = '1;
-      writeCRAM('0, cw);
-
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-      cw[80:85] = readResult[00:05];
-
-      cw[0:85] = '0;
-      cw[80] = '1;
-      writeCRAM('0, cw);
-
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-      cw[80:85] = readResult[00:05];
-    end
-
-    // For now, just load and read back one-hot walking bit pattern
-    // into CRAM to debug write and read.
-    $display("[Load walking one-hot bit pattern into CRAM for testing]");
-    doDiagFunc(diagfSTART_CLOCK); // START THE CLOCK.
-
-    for (bit [0:10] a = 0; a < 86; ++a) begin
-      W36 readResult;
-
-      cw[0:85] = '0;
-      cw[a] = '1;
-      writeCRAM(a, cw);
-
-      doDiagRead(diagfCRAM_READ_00_19, readResult);
-      cw[00:19] = readResult[00:19];
-      doDiagRead(diagfCRAM_READ_20_39, readResult);
-      cw[20:39] = readResult[00:19];
-      doDiagRead(diagfCRAM_READ_40_59, readResult);
-      cw[40:59] = readResult[00:19];
-      doDiagRead(diagfCRAM_READ_60_79, readResult);
-      cw[60:79] = readResult[00:19];
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-      cw[80:85] = readResult[00:05];
-    end
-
-    $display("[Reading KLX.RAM for CRAM and DRAM]");
+    $display("[Reading KLX.RAM to load CRAM and DRAM]");
 
     fd = $fopen("./images/ucode/klx.ram", "r");
     if (fd == 0) $display("Could not open KLX.RAM file");
@@ -445,7 +368,74 @@ module fe_sim(input bit clk,
 
     $fclose(fd);
     $display("CRAM version: %s", getCRAMVersionString());
-  endtask
+  endtask // KLLoadRAMs
+
+
+  ////////////////////////////////////////////////////////////////
+  task automatic TestCRAM;
+    bit doOneHotCRAM80_85 = 0;
+    bit doOneHotCRAMAll = 0;
+
+    $display($time, " TestCRAM() START");
+    doDiagFunc(diagfSTART_CLOCK); // START THE CLOCK.
+
+    // We have to write the AR register so its parity is correct to
+    // avoid getting wrongheaded parity errors.
+    doDiagWrite(diagfLOAD_AR, '0);
+
+    // Just write one-hot bit values to CRAM[80:85] at address=000 in
+    // succession, reading each back.
+    if (doOneHotCRAM80_85) begin
+      W36 readResult;
+
+      // Set zero as CRAM address to write.
+      doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o0); // CRAM address[05:10]
+      doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o0); // CRAM address[00:04]
+
+      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 35);
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+
+      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 34);
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+
+      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 33);
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+
+      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 32);
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+
+      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 31);
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+
+      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 30);
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+    end
+
+    // For now, just load and read back one-hot walking bit pattern
+    // into CRAM to debug write and read.
+    $display("[Load walking one-hot bit pattern into CRAM for testing]");
+    for (bit [0:10] a = 0; doOneHotCRAMAll && a < 86; ++a) begin
+      W36 readResult;
+      bit [0:85] cw;
+
+      cw[0:85] = '0;
+      cw[a] = '1;
+      writeCRAM(a, cw);
+
+      doDiagRead(diagfCRAM_READ_00_19, readResult);
+      cw[00:19] = readResult[00:19];
+      doDiagRead(diagfCRAM_READ_20_39, readResult);
+      cw[20:39] = readResult[00:19];
+      doDiagRead(diagfCRAM_READ_40_59, readResult);
+      cw[40:59] = readResult[00:19];
+      doDiagRead(diagfCRAM_READ_60_79, readResult);
+      cw[60:79] = readResult[00:19];
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+      cw[80:85] = readResult[00:05];
+    end
+
+    $display($time, " TestCRAM() END");
+  endtask // TestCRAM
 
 
   ////////////////////////////////////////////////////////////////
@@ -499,7 +489,7 @@ module fe_sim(input bit clk,
     cwBits = readResult[00:19];
     majver = {cwBits[29:31], cwBits[33:35]};
     minver = cwBits[37:39];
-    $display("136: readResult=%07o cwBits=%07o majver=%o minver=%o",
+    $display("136: readResult=%0o cwBits=%07o majver=%o minver=%o",
 	     readResult, cwBits, majver, minver);
 
     doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o37 << 30);
@@ -507,7 +497,7 @@ module fe_sim(input bit clk,
     doDiagRead(diagfCRAM_READ_20_39, readResult);
     cwBits = readResult[00:19];
     edit = {cwBits[29:31], cwBits[33:35], cwBits[37:39]};
-    $display("137: readResult=%07o cwBits=%07o edit=%o", readResult, cwBits, edit);
+    $display("137: readResult=%0o cwBits=%0o edit=%o", readResult, cwBits, edit);
 
     majS.octtoa(majver);
     minS.octtoa(minver);
