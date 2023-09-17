@@ -216,8 +216,7 @@ module fe_sim(input bit clk,
     repeat (10) @(negedge clk);
     KLMasterReset();
 
-    // Debugging sentinel
-    doDiagFunc(diagfCLR_RUN);
+    KLSoftReset();
     TestCRAM();
     KLLoadRAMs();
   end
@@ -370,7 +369,7 @@ module fe_sim(input bit clk,
     end
 
     $fclose(fd);
-    $display("CRAM version: %s", getCRAMVersionString());
+    $display("CRAM version: %s - as read back from CRAM", getCRAMVersionString());
   endtask // KLLoadRAMs
 
 
@@ -492,7 +491,7 @@ module fe_sim(input bit clk,
       majver = {cram136[29:31], cram136[33:35]};
       minver = cram136[37:39];
       edit = {cram137[29:31], cram137[33:35], cram137[37:39]};
-      $display("CRAM version: %o.%02o(%o)", majver, minver, edit);
+      $display("CRAM version: %o.%02o(%o) - as written to CRAM", majver, minver, edit);
     end
   endtask // writeCRAM
 
@@ -562,7 +561,7 @@ module fe_sim(input bit clk,
       ebus.diagStrobe <= 1;            // Strobe this
     end
 
-    @(negedge clk) ;
+    repeat (16) @(negedge clk) ;
     @(negedge clk) ebus.diagStrobe <= 0;
     @(posedge clk);
   endtask // doDiagFunc
