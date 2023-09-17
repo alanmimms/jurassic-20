@@ -296,6 +296,53 @@ module fe_sim(input bit clk,
     // avoid getting wrongheaded parity errors.
     doDiagWrite(diagfLOAD_AR, '0);
 
+
+    begin
+      W36 readResult;
+
+      cw[0:85] = '0;
+      cw[85] = '1;
+      writeCRAM('0, cw);
+
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+      cw[80:85] = readResult[00:05];
+
+      cw[0:85] = '0;
+      cw[84] = '1;
+      writeCRAM('0, cw);
+
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+      cw[80:85] = readResult[00:05];
+
+      cw[0:85] = '0;
+      cw[83] = '1;
+      writeCRAM('0, cw);
+
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+      cw[80:85] = readResult[00:05];
+
+      cw[0:85] = '0;
+      cw[82] = '1;
+      writeCRAM('0, cw);
+
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+      cw[80:85] = readResult[00:05];
+
+      cw[0:85] = '0;
+      cw[81] = '1;
+      writeCRAM('0, cw);
+
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+      cw[80:85] = readResult[00:05];
+
+      cw[0:85] = '0;
+      cw[80] = '1;
+      writeCRAM('0, cw);
+
+      doDiagRead(diagfCRAM_READ_80_85, readResult);
+      cw[80:85] = readResult[00:05];
+    end
+
     // For now, just load and read back one-hot walking bit pattern
     // into CRAM to debug write and read.
     $display("[Load walking one-hot bit pattern into CRAM for testing]");
