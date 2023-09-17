@@ -38,8 +38,9 @@ DTETFF = dte.tff
 EXE = $(VOBJDIR)/kl10pvtb
 LOGICEXEs = $(foreach M,$(MODS),$(VOBJDIR)/V$(M)-tb)
 
-DEBUG = -g
-OPTIMIZE =
+#DEBUG = -g
+DEBUG =
+OPTIMIZE = -O2
 VERILATOR ?= verilator
 
 KILLWARNINGS = \
@@ -55,8 +56,8 @@ DEBUG_DIDNOTCONVERGE = --prof-cfuncs -CFLAGS -DVL_DEBUG
 
 SVLIBDIR = ./lib/svlib/src
 INCDIR = $(VERILATORROOT)/include $(LIBDIR)/svlib/src
-CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG)
-CXXFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd $(DEBUG)
+CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG) $(OPTIMIZE)l
+CXXFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd $(DEBUG) $(OPTIMIZE)
 CPPFLAGS += -DVL_DEBUG
 
 VFLAGS = \
@@ -68,7 +69,8 @@ VFLAGS = \
 	-I$(GENDIR) \
 	-I$(SVLIBDIR) \
 	$(KILLWARNINGS) \
-	$(DEBUG_DIDNOTCONVERGE) \
+	$(DEBUG) \
+	$(OPTIMIZE) \
 	--timescale 1ns --timescale-override 1ns \
 	--timing \
 	--trace --trace-structs \
