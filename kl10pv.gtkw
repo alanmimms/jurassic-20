@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Sep 16 23:08:03 2023
+[*] Sun Sep 17 21:43:31 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Sep 16 23:05:18 2023"
-[dumpfile_size] 16073581
+[dumpfile_mtime] "Sun Sep 17 21:43:24 2023"
+[dumpfile_size] 197800632
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 2986
+[timestart] 804898
 [size] 1992 1173
 [pos] -1 -1
-*-6.125511 3204 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.125511 804908 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
@@ -29,10 +29,8 @@ top.kl10pv.ebus.diagStrobe
 [color] 3
 ^1 /home/alan/dec20/kl10-schematics/rtl/dte.tff
 top.kl10pv.ebus.ds[0:6]
-@800030
-top.kl10pv.feEBUSdriver.data[0:35]
-@1001200
--group_end
+@30
+top.kl10pv.feSim.ebus.data[0:35]
 @c00200
 -EBUSdrivers
 @28
@@ -74,72 +72,26 @@ top.kl10pv.crm_40.cr02_write_Lp00to19Rp_l
 top.kl10pv.crm_40.cr02_write_Lp20to39Rp_l
 top.kl10pv.crm_40.cr02_write_Lp40to59Rp_l
 top.kl10pv.crm_40.cr02_write_Lp60to79Rp_l
-@c000b0
-:{cra-addr} top.kl10pv.cra_45.cra2_adr_10_l 0 69 top.kl10pv.cra_45.cra2_adr_09_l 0 69 top.kl10pv.cra_45.cra2_adr_08_l 0 69 top.kl10pv.cra_45.cra2_adr_07_l 0 69 top.kl10pv.cra_45.cra1_adr_06_a_l 0 69 top.kl10pv.cra_45.cra1_adr_05_a_l 0 69 top.kl10pv.cra_45.cra1_adr_04_a_l 0 69 top.kl10pv.cra_45.cra1_adr_03_a_l 0 69 top.kl10pv.cra_45.cra1_adr_02_a_l 0 69 top.kl10pv.cra_45.cra1_adr_01_a_l 0 69 top.kl10pv.cra_45.cra1_adr_00_a_h 0 69
-@800200
--CRA-adr
-@68
-top.kl10pv.cra_45.cra1_adr_00_a_h
-top.kl10pv.cra_45.cra1_adr_01_a_l
-top.kl10pv.cra_45.cra1_adr_02_a_l
-top.kl10pv.cra_45.cra1_adr_03_a_l
-top.kl10pv.cra_45.cra1_adr_04_a_l
-top.kl10pv.cra_45.cra1_adr_05_a_l
-top.kl10pv.cra_45.cra1_adr_06_a_l
-top.kl10pv.cra_45.cra2_adr_07_l
-top.kl10pv.cra_45.cra2_adr_08_l
-top.kl10pv.cra_45.cra2_adr_09_l
-top.kl10pv.cra_45.cra2_adr_10_l
-@1000200
--CRA-adr
-@1401200
--group_end
-@c000b0
-#{cra-diag-adr} top.kl10pv.cra_45.cra3_diag_adr_10_h top.kl10pv.cra_45.cra3_diag_adr_09_h top.kl10pv.cra_45.cra3_diag_adr_08_h top.kl10pv.cra_45.cra3_diag_adr_07_h top.kl10pv.cra_45.cra3_diag_adr_06_h top.kl10pv.cra_45.cra3_diag_adr_05_h top.kl10pv.cra_45.cra3_diag_adr_04_h top.kl10pv.cra_45.cra3_diag_adr_03_h top.kl10pv.cra_45.cra3_diag_adr_02_h top.kl10pv.cra_45.cra3_diag_adr_01_h top.kl10pv.cra_45.cra3_diag_adr_00_h
-@28
-top.kl10pv.cra_45.cra3_diag_adr_00_h
-top.kl10pv.cra_45.cra3_diag_adr_01_h
-top.kl10pv.cra_45.cra3_diag_adr_02_h
-top.kl10pv.cra_45.cra3_diag_adr_03_h
-top.kl10pv.cra_45.cra3_diag_adr_04_h
-top.kl10pv.cra_45.cra3_diag_adr_05_h
-top.kl10pv.cra_45.cra3_diag_adr_06_h
-top.kl10pv.cra_45.cra3_diag_adr_07_h
-top.kl10pv.cra_45.cra3_diag_adr_08_h
-top.kl10pv.cra_45.cra3_diag_adr_09_h
-top.kl10pv.cra_45.cra3_diag_adr_10_h
-@1401200
--group_end
-@28
 top.kl10pv.cra_45.cr02_dia_func_051_08_l
 top.kl10pv.cra_45.cr02_dia_func_052_08_l
 top.kl10pv.cra_45.cr02_dia_func_053_08_l
 [color] 2
 top.kl10pv.cra_45.diag_read_func_14x_l
-top.kl10pv.crm_50.cr03_clk_c_h
-@800201
--cra-out
-@29
-top.kl10pv.cra_45.cra5_out_80_h
-top.kl10pv.cra_45.cra5_out_80_h$2
-top.kl10pv.cra_45.cra5_out_80_h$3
-top.kl10pv.cra_45.cra5_out_81_h
-top.kl10pv.cra_45.cra5_out_81_h$3
-top.kl10pv.cra_45.cra5_out_81_h$4
-top.kl10pv.cra_45.cra5_out_82_h
-top.kl10pv.cra_45.cra5_out_82_h$3
-top.kl10pv.cra_45.cra5_out_82_h$4
-top.kl10pv.cra_45.cra5_out_82_h$5
-top.kl10pv.cra_45.cra5_out_83_h
-top.kl10pv.cra_45.cra5_out_83_h$5
-top.kl10pv.cra_45.cra5_out_83_h$6
-top.kl10pv.cra_45.cra5_out_84_h
-top.kl10pv.cra_45.cra5_out_84_h$5
-top.kl10pv.cra_45.cra5_out_84_h$6
-top.kl10pv.cra_45.cra5_out_85_h
-top.kl10pv.cra_45.cra5_out_85_h$5
-top.kl10pv.cra_45.cra5_out_85_h$6
-@1000201
--cra-out
+@c000b0
+#{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h
+@28
+top.kl10pv.cra_45.cra1_adr_00_h
+top.kl10pv.cra_45.cra1_adr_01_h
+top.kl10pv.cra_45.cra1_adr_02_h
+top.kl10pv.cra_45.cra1_adr_03_h
+top.kl10pv.cra_45.cra1_adr_04_h
+top.kl10pv.cra_45.cra1_adr_05_h
+top.kl10pv.cra_45.cra1_adr_06_h
+top.kl10pv.cra_45.cra2_adr_07_h
+top.kl10pv.cra_45.cra2_adr_08_h
+top.kl10pv.cra_45.cra2_adr_09_h
+top.kl10pv.cra_45.cra2_adr_10_h
+@1401200
+-group_end
 [pattern_trace] 1
 [pattern_trace] 0
