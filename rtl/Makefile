@@ -69,8 +69,8 @@ VFLAGS = \
 	-I$(GENDIR) \
 	-I$(SVLIBDIR) \
 	$(KILLWARNINGS) \
-	$(DEBUG) \
-	$(OPTIMIZE) \
+	--CFLAGS "$(DEBUG) $(OPTIMIZE)" \
+	--compiler gcc \
 	--timescale 1ns --timescale-override 1ns \
 	--timing \
 	--trace --trace-structs \
