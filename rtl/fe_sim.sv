@@ -392,9 +392,11 @@ module fe_sim(input bit clk,
 
   ////////////////////////////////////////////////////////////////
   task automatic TestCRAM();
-    bit doAllCRAMAddrs = 1;
+    bit doAllCRAMAddrs = 0;
+    bit doAllCRAMData = 1;
     bit doOneHotCRAM80_85 = 0;
     bit doOneHotCRAMAll = 0;
+    W36 readResult;
 
     $display($time, " TestCRAM() START");
     doDiagFunc(diagfSTART_CLOCK); // START THE CLOCK.
@@ -403,8 +405,30 @@ module fe_sim(input bit clk,
     // avoid getting wrongheaded parity errors.
     doDiagWrite(diagfLOAD_AR, '0);
 
-    // Just blast out incrementing address lines for verification.
+    // Just walk address lines for verification.
     for (bit [0:10] k = 1; doAllCRAMAddrs && k != 0; k <<= 1) setCRAMDiagAddress(k);
+
+    // Walk bit lines to write and read back from CRM.
+    setCRAMDiagAddress(11'o123);
+    for (W36 k = 1; doAllCRAMData && k != 0; k <<= 1) begin
+      waitEBOX();
+      doDiagWrite(diagfCRAM_WRITE_00_19, k);
+      waitEBOX();
+      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
+      waitEBOX();
+      doDiagRead(diagfCRAM_READ_00_19, readResult);
+      {readResult[00:07],
+       readResult[12:13],
+       readResult[18:19],
+       readResult[24:25],
+       readResult[30:31]} = 0;
+      cw[00:03] = readResult[08:11];
+      cw[04:07] = readResult[14:17];
+      cw[08:11] = readResult[20:23];
+      cw[12:15] = readResult[26:29];
+      cw[16:19] = readResult[32:35];
+      $display("CRAM 0123: write %o, read back %o", k, readResult);
+    end
 
     // Just write one-hot bit values to CRAM[80:85] at address=000 in
     // succession, reading each back.
@@ -464,6 +488,11 @@ module fe_sim(input bit clk,
     doDiagWrite(diagfCRAM_DIAG_ADR_RH, {addr[05:10], 30'o0}); // CRAM address[05:10]
     doDiagWrite(diagfCRAM_DIAG_ADR_LH, {1'o0, addr[00:04], 30'o0}); // CRAM address[00:04]
   endtask // setCRAMDiagAddress
+
+
+  task automatic waitEBOX();
+    repeat(20) @(negedge clk) ;
+  endtask
   
 
   ////////////////////////////////////////////////////////////////
