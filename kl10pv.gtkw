@@ -1,37 +1,39 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Sep 17 23:15:48 2023
+[*] Tue Sep 19 16:40:58 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sun Sep 17 23:15:43 2023"
-[dumpfile_size] 191852874
+[dumpfile_mtime] "Tue Sep 19 16:40:13 2023"
+[dumpfile_size] 38832539
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 3155
+[timestart] 3744
 [size] 1992 1173
 [pos] -1 -1
-*-5.125511 3188 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-4.823932 3820 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.clk_32.
+[treeopen] top.kl10pv.cra_45.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 246
-[signals_width] 550
+[signals_width] 603
 [sst_expanded] 1
 [sst_vpaned_height] 414
 @28
-top.clk60
 [color] 1
-top.kl10pv.crm_40.mr_reset_01_h
+top.kl10pv.crobar_e_h
 @30
 [color] 3
 top.kl10pv.ebus.diagStrobe
-@2031
+@2030
 [color] 3
 ^1 /home/alan/dec20/kl10-schematics/rtl/dte.tff
 top.kl10pv.ebus.ds[0:6]
 @30
 top.kl10pv.feSim.ebus.data[0:35]
+@22
+[color] 5
+top.kl10pv.feSim.cw[0:85]
 @c00200
 -EBUSdrivers
 @28
@@ -69,10 +71,6 @@ top.kl10pv.vmaEBUSdriver.driving
 @1401200
 -EBUSdrivers
 @28
-top.kl10pv.crm_40.cr02_write_Lp00to19Rp_l
-top.kl10pv.crm_40.cr02_write_Lp20to39Rp_l
-top.kl10pv.crm_40.cr02_write_Lp40to59Rp_l
-top.kl10pv.crm_40.cr02_write_Lp60to79Rp_l
 top.kl10pv.cra_45.cr02_dia_func_051_08_l
 top.kl10pv.cra_45.cr02_dia_func_052_08_l
 top.kl10pv.cra_45.cr02_dia_func_053_08_l
@@ -94,110 +92,108 @@ top.kl10pv.cra_45.cra2_adr_09_h
 top.kl10pv.cra_45.cra2_adr_10_h
 @1401200
 -group_end
-@c00200
--cra-80:85 out
 @28
+top.kl10pv.crm_52.cr02_write_Lp60to79Rp_l
+top.kl10pv.crm_52.cr02_write_Lp40to59Rp_l
+top.kl10pv.crm_52.cr02_write_Lp20to39Rp_l
+top.kl10pv.crm_52.cr02_write_Lp00to19Rp_l
+top.kl10pv.cra_45.cr02_dia_func_053_08_l
+@c00200
+-CRAM-EBUS-RAM-out
+@28
+[color] 3
+top.kl10pv.crm_52.cr04_out_00_h
+[color] 3
+top.kl10pv.crm_52.cr04_out_01_h
+[color] 3
+top.kl10pv.crm_52.cr04_out_02_h
+[color] 3
+top.kl10pv.crm_52.cr04_out_03_h
+[color] 3
+top.kl10pv.crm_50.cr04_out_04_h
+[color] 3
+top.kl10pv.crm_50.cr04_out_05_h
+[color] 3
+top.kl10pv.crm_50.cr04_out_06_h
+[color] 3
+top.kl10pv.crm_50.cr04_out_07_h
+[color] 3
+top.kl10pv.crm_44.cr04_out_08_h
+[color] 3
+top.kl10pv.crm_44.cr04_out_09_h
+[color] 3
+top.kl10pv.crm_44.cr04_out_10_h
+[color] 3
+top.kl10pv.crm_44.cr04_out_11_h
+[color] 3
+top.kl10pv.crm_42.cr04_out_12_h
+[color] 3
+top.kl10pv.crm_42.cr04_out_13_h
+[color] 3
+top.kl10pv.crm_42.cr04_out_14_h
+[color] 3
+top.kl10pv.crm_42.cr04_out_15_h
+[color] 3
+top.kl10pv.crm_40.cr04_out_16_h
+[color] 3
+top.kl10pv.crm_40.cr04_out_17_h
+[color] 3
+top.kl10pv.crm_40.cr04_out_18_h
+[color] 3
+top.kl10pv.crm_40.cr04_out_19_h
+[color] 3
 top.kl10pv.cra_45.cra5_out_80_h
+[color] 3
 top.kl10pv.cra_45.cra5_out_81_h
+[color] 3
 top.kl10pv.cra_45.cra5_out_82_h
+[color] 3
 top.kl10pv.cra_45.cra5_out_83_h
+[color] 3
 top.kl10pv.cra_45.cra5_out_84_h
+[color] 3
 top.kl10pv.cra_45.cra5_out_85_h
 @1401200
--cra-80:85 out
-@c00200
--cra-e64
+-CRAM-EBUS-RAM-out
+@8000b1
+:{crm52-cra-adr} top.kl10pv.crm_52.cra2_adr_10_a_h 0 29 top.kl10pv.crm_52.cra2_adr_09_a_h 0 29 top.kl10pv.crm_52.cra2_adr_08_a_h 0 29 top.kl10pv.crm_52.cra2_adr_07_a_h 0 29 top.kl10pv.crm_52.cra1_adr_06_a_l 0 69 top.kl10pv.crm_52.cra1_adr_05_a_l 0 69 top.kl10pv.crm_52.cra1_adr_04_a_l 0 69 top.kl10pv.crm_52.cra1_adr_03_a_l 0 69 top.kl10pv.crm_52.cra1_adr_02_a_l 0 69 top.kl10pv.crm_52.cra1_adr_01_a_l 0 69 top.kl10pv.crm_52.cra1_adr_00_a_h 0 29
+@c00201
+-crm52-adr
 @28
-top.kl10pv.cra_45.e64.b
-top.kl10pv.cra_45.e64.d0
-top.kl10pv.cra_45.e64.d1
-top.kl10pv.cra_45.e64.d2
-top.kl10pv.cra_45.e64.d3
-top.kl10pv.cra_45.e64.d4
-top.kl10pv.cra_45.e64.d5
-top.kl10pv.cra_45.e64.d6
-top.kl10pv.cra_45.e64.d7
-top.kl10pv.cra_45.e64.nen
+top.kl10pv.crm_52.cra1_adr_00_a_h
 @68
-top.kl10pv.cra_45.e64.sel1
-top.kl10pv.cra_45.e64.sel2
-top.kl10pv.cra_45.e64.sel4
-@1401200
--cra-e64
-@c00200
--cra-e3
+top.kl10pv.crm_52.cra1_adr_01_a_l
+top.kl10pv.crm_52.cra1_adr_02_a_l
+top.kl10pv.crm_52.cra1_adr_03_a_l
+top.kl10pv.crm_52.cra1_adr_04_a_l
+top.kl10pv.crm_52.cra1_adr_05_a_l
+top.kl10pv.crm_52.cra1_adr_06_a_l
 @28
-top.kl10pv.cra_45.e3.clk
-top.kl10pv.cra_45.e3.d0
-top.kl10pv.cra_45.e3.d1
-top.kl10pv.cra_45.e3.d2
-top.kl10pv.cra_45.e3.d3
-top.kl10pv.cra_45.e3.op1
-top.kl10pv.cra_45.e3.op2
-top.kl10pv.cra_45.e3.q0
-top.kl10pv.cra_45.e3.q1
-top.kl10pv.cra_45.e3.q2
-top.kl10pv.cra_45.e3.q3
-top.kl10pv.cra_45.e3.shft0in
-top.kl10pv.cra_45.e3.shft3in
-@1401200
--cra-e3
+top.kl10pv.crm_52.cra2_adr_07_a_h
+top.kl10pv.crm_52.cra2_adr_08_a_h
+top.kl10pv.crm_52.cra2_adr_09_a_h
+top.kl10pv.crm_52.cra2_adr_10_a_h
+@1401201
+-crm52-adr
+@1001201
+-group_end
 @28
-top.kl10pv.clk_32.clk_cra_h
-top.kl10pv.clk_32.clk1_odd_a_h
-top.kl10pv.clk_32.clk1_source_delayed_h
-top.kl10pv.clk_32.clk1_gated_en_h
-top.kl10pv.clk_32.clk1_gated_h
-top.kl10pv.clk_32.clk1_main_source_c_h
-@800200
--clk-e29
-@28
-top.kl10pv.clk_32.e29.a1
-top.kl10pv.clk_32.e29.a2
-top.kl10pv.clk_32.e29.a3
-top.kl10pv.clk_32.e29.b1
-top.kl10pv.clk_32.e29.b2
-top.kl10pv.clk_32.e29.b3c3
-top.kl10pv.clk_32.e29.c1
-top.kl10pv.clk_32.e29.c2
-top.kl10pv.clk_32.e29.d1
-top.kl10pv.clk_32.e29.d2
-top.kl10pv.clk_32.e29.d3
-top.kl10pv.clk_32.e29.nqa
-top.kl10pv.clk_32.e29.qa
-@1000200
--clk-e29
-@28
-top.kl10pv.clk_32.clk2_go_l
-top.kl10pv.clk_32.clk1_rate_selected_l
-top.kl10pv.clk_32.clk5_burst_cntEq0_h
-top.kl10pv.clk_32.clk2_burst_l
-top.kl10pv.clk_32.clk4_ebox_clk_l
-top.kl10pv.clk_32.clk2_func_cond_ss_l
-top.kl10pv.clk_32.clk3_sync_h
-top.kl10pv.clk_32.clk2_func_ebox_ss_l
-top.kl10pv.clk_32.clk2_func_single_step_l
-top.kl10pv.clk_32.clk2_func_gate_l
-[color] 1
-top.kl10pv.crobar_e_h
-top.kl10pv.clk_32.clk2_func_start_l
-@800200
--clk-e42
-@28
-top.kl10pv.clk_32.e42.clk
-top.kl10pv.clk_32.e42.d0
-top.kl10pv.clk_32.e42.d1
-top.kl10pv.clk_32.e42.d2
-top.kl10pv.clk_32.e42.d3
-top.kl10pv.clk_32.e42.op1
-top.kl10pv.clk_32.e42.op2
-top.kl10pv.clk_32.e42.q0
-top.kl10pv.clk_32.e42.q1
-top.kl10pv.clk_32.e42.q2
-top.kl10pv.clk_32.e42.q3
-top.kl10pv.clk_32.e42.shft0in
-top.kl10pv.clk_32.e42.shft3in
-@1000200
--clk-e42
+top.kl10pv.cra_45.cra3_diag_adr_00_h
+top.kl10pv.cra_45.cra3_diag_adr_01_h
+top.kl10pv.cra_45.cra3_diag_adr_02_h
+top.kl10pv.cra_45.cra3_diag_adr_03_h
+top.kl10pv.cra_45.cra3_diag_adr_04_h
+top.kl10pv.cra_45.cra3_diag_adr_05_h
+top.kl10pv.cra_45.cra3_diag_adr_06_h
+top.kl10pv.cra_45.cra3_diag_adr_07_h
+top.kl10pv.cra_45.cra3_diag_adr_08_h
+top.kl10pv.cra_45.cra3_diag_adr_09_h
+top.kl10pv.cra_45.cra3_diag_adr_10_h
+top.kl10pv.cra_45.cra5_ebus_00_h
+top.kl10pv.cra_45.cra5_ebus_01_h
+top.kl10pv.cra_45.cra5_ebus_02_h
+top.kl10pv.cra_45.cra5_ebus_03_h
+top.kl10pv.cra_45.cra5_ebus_04_h
+top.kl10pv.cra_45.cra5_ebus_05_h
 [pattern_trace] 1
 [pattern_trace] 0

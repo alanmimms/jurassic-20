@@ -16,8 +16,9 @@ module fe_sim(input bit clk,
 
   int 			 dumpLogFD;
 
-  bit [20:39] cram136;
-  bit [20:39] cram137;
+  tCRAM cw;
+  tCRAM cram136;
+  tCRAM cram137;
 
   bit 			 a_change_coming, a_change_coming_in;
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
@@ -290,7 +291,6 @@ module fe_sim(input bit clk,
     string words[$];
     W16 adr, count, cksum;
     W16 lastAdr = 0;
-    bit [0:85] cw;
 
     $display("[Reading KLX.RAM to load CRAM and DRAM]");
 
@@ -341,7 +341,24 @@ module fe_sim(input bit clk,
 	    cw[00:15] = 16'(unASCIIize(words[k++]));
 	    cw[80:85] =  6'(unASCIIize(words[k++]));
 	    $fwrite(dumpLogFD, "%04o: %030o\n", adr, cw);
-	    writeCRAM(11'(adr), cw);
+
+	    if (adr == 16'o136) begin
+	      cram136 = cw;
+	    end else if (adr == 16'o137) begin
+	      bit [0:5] majver;
+	      bit [0:2] minver;
+	      bit [0:8] edit;
+
+	      cram137 = cw;
+	      majver = {cram136[29:31], cram136[33:35]};
+	      minver = cram136[37:39];
+	      edit = {cram137[29:31], cram137[33:35], cram137[37:39]};
+	      $display("CRAM version: %1o.%1o(%0o) - as written to CRAM",
+		       majver, minver, edit);
+	    end
+
+	    setCRAMDiagAddress(11'(adr));
+	    writeCRAM();
 	    ++adr;
 	  end
 	end
@@ -374,8 +391,9 @@ module fe_sim(input bit clk,
 
 
   ////////////////////////////////////////////////////////////////
-  task automatic TestCRAM;
-    bit doOneHotCRAM80_85 = 1;
+  task automatic TestCRAM();
+    bit doAllCRAMAddrs = 1;
+    bit doOneHotCRAM80_85 = 0;
     bit doOneHotCRAMAll = 0;
 
     $display($time, " TestCRAM() START");
@@ -385,14 +403,16 @@ module fe_sim(input bit clk,
     // avoid getting wrongheaded parity errors.
     doDiagWrite(diagfLOAD_AR, '0);
 
+    // Just blast out incrementing address lines for verification.
+    for (bit [0:10] k = 1; doAllCRAMAddrs && k != 0; k <<= 1) setCRAMDiagAddress(k);
+
     // Just write one-hot bit values to CRAM[80:85] at address=000 in
     // succession, reading each back.
     if (doOneHotCRAM80_85) begin
       W36 readResult;
 
       // Set zero as CRAM address to write.
-      doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o0); // CRAM address[05:10]
-      doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o0); // CRAM address[00:04]
+      setCRAMDiagAddress('0);
 
       doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 35);
       doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
@@ -419,34 +439,32 @@ module fe_sim(input bit clk,
       doDiagRead(diagfCRAM_READ_80_85, readResult);
     end
 
-    doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
+    doDiagWrite(diagfLOAD_AR, 36'o654321123456); // Change EBUS data lines
 
     // For now, just load and read back one-hot walking bit pattern
     // into CRAM to debug write and read.
     $display("[Load walking one-hot bit pattern into CRAM for testing]");
     for (bit [0:10] a = 0; doOneHotCRAMAll && a < 86; ++a) begin
       W36 readResult;
-      bit [0:85] cw;
 
-      cw[0:85] = '0;
-      cw[a] = '1;
-      writeCRAM(a, cw);
-
-      doDiagRead(diagfCRAM_READ_00_19, readResult);
-      cw[00:19] = readResult[00:19];
-      doDiagRead(diagfCRAM_READ_20_39, readResult);
-      cw[20:39] = readResult[00:19];
-      doDiagRead(diagfCRAM_READ_40_59, readResult);
-      cw[40:59] = readResult[00:19];
-      doDiagRead(diagfCRAM_READ_60_79, readResult);
-      cw[60:79] = readResult[00:19];
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-      cw[80:85] = readResult[00:05];
+      setCRAMDiagAddress(a);
+      cw = 1 << a;
+      writeCRAM();
+      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
+      readCRAM();
     end
 
     $display($time, " TestCRAM() END");
   endtask // TestCRAM
 
+
+  ////////////////////////////////////////////////////////////////
+  // Set the address to diagnostic read or write CRA and CRM.
+  task automatic setCRAMDiagAddress(bit [0:10] addr);
+    doDiagWrite(diagfCRAM_DIAG_ADR_RH, {addr[05:10], 30'o0}); // CRAM address[05:10]
+    doDiagWrite(diagfCRAM_DIAG_ADR_LH, {1'o0, addr[00:04], 30'o0}); // CRAM address[00:04]
+  endtask // setCRAMDiagAddress
+  
 
   ////////////////////////////////////////////////////////////////
   // Write specified CRAM word to specified CRAM address.  Composed
@@ -456,43 +474,39 @@ module fe_sim(input bit clk,
   // corresponding bits.
   //
   // CRA5 is PDF347. This for the CALL+DISP[0:5] bits.
-  task automatic writeCRAM(input bit [0:10] addr, input bit[0:85] cw);
-    //    $display($time, " writeCRAM addr=%04o  cw=%029o", addr, cw);
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, {addr[05:10], 30'o0}); // CRAM address[05:10]
-    doDiagWrite(diagfCRAM_DIAG_ADR_LH, {1'o0, addr[00:04], 30'o0}); // CRAM address[00:04]
-    doDiagWrite(diagfCRAM_WRITE_60_79, {8'o0,
-					cw[60], 1'o0, cw[62], 3'o0, cw[64], 1'o0,
-					cw[66], 3'o0, cw[68], 1'o0, cw[70], 3'o0,
-					cw[72], 1'o0, cw[74], 3'o0, cw[76], 1'o0,
-					cw[78], 1'o0});  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE_40_59, {8'o0,
-					cw[40:43], 2'o0, cw[44:47], 2'o0,
-					cw[48:51], 2'o0, cw[52:55], 2'o0,
-					cw[56:59]});  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE_20_39, {8'o0,
-					cw[20:23], 2'o0, cw[24:27], 2'o0,
-					cw[28:31], 2'o0, cw[32:35], 2'o0,
-					cw[36:39]});  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE_00_19, {8'o0,
-					cw[00:03], 2'o0, cw[04:07], 2'o0,
-					cw[08:11], 2'o0, cw[12:15], 2'o0,
-					cw[16:19]});  // CRM4,5
-    doDiagWrite(diagfCRAM_WRITE_80_85, {cw[80:85], 30'o0}); // CRA5   CRAM[80:85] <- EBUS[0:5]
+  task automatic writeCRAM();
+    W36 w;
 
-    if (addr == 11'o136) begin
-      cram136 = cw[20:39];
-    end else if (addr == 11'o137) begin
-      bit [0:5] 	majver;
-      bit [0:2] 	minver;
-      bit [0:8] 	edit;
+    w[08:11] = cw[60:63];
+    w[14:17] = cw[64:67];
+    w[20:23] = cw[68:71];
+    w[26:29] = cw[72:75];
+    w[32:35] = cw[76:79];
+    doDiagWrite(diagfCRAM_WRITE_60_79, w);  // CRM4,5
 
-      cram137 = cw[20:39];
+    w[08:11] = cw[40:43];
+    w[14:17] = cw[44:47];
+    w[20:23] = cw[48:51];
+    w[26:29] = cw[52:55];
+    w[32:35] = cw[56:59];
+    doDiagWrite(diagfCRAM_WRITE_40_59, w);  // CRM4,5
 
-      majver = {cram136[29:31], cram136[33:35]};
-      minver = cram136[37:39];
-      edit = {cram137[29:31], cram137[33:35], cram137[37:39]};
-      $display("CRAM version: %o.%02o(%o) - as written to CRAM", majver, minver, edit);
-    end
+    w[08:11] = cw[20:23];
+    w[14:17] = cw[24:27];
+    w[20:23] = cw[28:31];
+    w[26:29] = cw[32:35];
+    w[32:35] = cw[36:39];
+    doDiagWrite(diagfCRAM_WRITE_20_39, w);  // CRM4,5
+
+    w[08:11] = cw[00:03];
+    w[14:17] = cw[04:07];
+    w[20:23] = cw[08:11];
+    w[26:29] = cw[12:15];
+    w[32:35] = cw[16:19];
+    doDiagWrite(diagfCRAM_WRITE_00_19, w);  // CRM4,5
+
+    w[0:5] = cw[80:85];
+    doDiagWrite(diagfCRAM_WRITE_80_85, w); // CRA5
   endtask // writeCRAM
 
 
@@ -501,28 +515,21 @@ module fe_sim(input bit clk,
   // SUB-VERSION IS IN BITS 37-39 OF CRAM ADDRESS 136
   // EDIT LEVEL IS IN BITS 29-31 33-35 37-39 OF CRAM ADDRESS 137
   function automatic string getCRAMVersionString();
-    W36 readResult;
-    bit [20:39] cwBits;
     bit [0:5] 	majver;
     bit [0:2] 	minver;
     bit [0:8] 	edit;
     string 	majS, minS, editS;
 
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o36 << 30);
-    doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o01 << 30);
-    doDiagRead(diagfCRAM_READ_20_39, readResult);
-    cwBits = readResult[00:19];
-    majver = {cwBits[29:31], cwBits[33:35]};
-    minver = cwBits[37:39];
-    $display("136: readResult=%0o cwBits=%07o majver=%o minver=%o",
-	     readResult, cwBits, majver, minver);
+    setCRAMDiagAddress('o136);
+    readCRAM();
+    majver = {cw[29:31], cw[33:35]};
+    minver = cw[37:39];
+    $display("136: cw=%o majver=%o minver=%o", cw, majver, minver);
 
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, 36'o37 << 30);
-    doDiagWrite(diagfCRAM_DIAG_ADR_LH, 36'o01 << 30);
-    doDiagRead(diagfCRAM_READ_20_39, readResult);
-    cwBits = readResult[00:19];
-    edit = {cwBits[29:31], cwBits[33:35], cwBits[37:39]};
-    $display("137: readResult=%0o cwBits=%0o edit=%o", readResult, cwBits, edit);
+    setCRAMDiagAddress('o137);
+    readCRAM();
+    edit = {cw[29:31], cw[33:35], cw[37:39]};
+    $display("137: cw=%o edit=%o", cw, edit);
 
     majS.octtoa(majver);
     minS.octtoa(minver);
@@ -530,6 +537,45 @@ module fe_sim(input bit clk,
 
     return {majS, ".", minS, "(", editS, ")"};
   endfunction // getCRAMVersion
+
+
+  ////////////////////////////////////////////////////////////////
+  // Read from previously specified address (see
+  // `setCRAMDiagAddress()`) a full CRAM word into `cw`.
+  task automatic readCRAM();
+    W36 readResult;
+
+    doDiagRead(diagfCRAM_READ_00_19, readResult);
+    cw[00:03] = readResult[08:11];
+    cw[04:07] = readResult[14:17];
+    cw[08:11] = readResult[20:23];
+    cw[12:15] = readResult[26:29];
+    cw[16:19] = readResult[32:35];
+
+    doDiagRead(diagfCRAM_READ_20_39, readResult);
+    cw[20:23] = readResult[08:11];
+    cw[24:27] = readResult[14:17];
+    cw[28:31] = readResult[20:23];
+    cw[32:35] = readResult[26:29];
+    cw[36:39] = readResult[32:35];
+
+    doDiagRead(diagfCRAM_READ_40_59, readResult);
+    cw[40:43] = readResult[08:11];
+    cw[44:47] = readResult[14:17];
+    cw[48:51] = readResult[20:23];
+    cw[52:55] = readResult[26:29];
+    cw[56:59] = readResult[32:35];
+
+    doDiagRead(diagfCRAM_READ_60_79, readResult);
+    cw[60:63] = readResult[08:11];
+    cw[64:67] = readResult[14:17];
+    cw[68:71] = readResult[20:23];
+    cw[72:75] = readResult[26:29];
+    cw[76:79] = readResult[32:35];
+
+    doDiagRead(diagfCRAM_READ_80_85, readResult);
+    cw[80:85] = readResult[00:05];
+  endtask // readCRAM
   
 
   ////////////////////////////////////////////////////////////////
