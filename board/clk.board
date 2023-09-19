@@ -265,7 +265,7 @@ e70: 10131 dual ms d ff
      2 ~> {ca1} clk sbus clk h
      3 ~> clk1-e70-3
 
-e42: 10141 shfit reg
+e42: 10141 shift reg
      13 ~< %NC%
      12 ~< clk2 func single step l
      11 ~< clk2 func ebox ss l
