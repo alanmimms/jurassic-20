@@ -53,7 +53,7 @@ e63: 10101 quad or/nor
 
 e78: 10101 quad or/nor
      4 ~< cra1-e73-6
-     12 ~< cra1-e54-15
+     12 ~< cra1-e55-2
      2 ~> {fp1} cra1 adr 03 a l
      5 ~> {fs1} cra1 adr 03 b h
      7 ~< cra1-e73-6
