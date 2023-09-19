@@ -160,9 +160,9 @@ e23:  10174 2x4 mix
       7 ~< {aj2} diag 06 b l
       14 ~< {ce2} diag read func 14x l
 //      2 ~> {dp2} ebus d[m+04] e h
-      2 ~> `EBUSdriver.data[4]
+      2 ~> `EBUSdriver.data[m+4]
 //      15 ~> {du2} ebus d[m+05] e h
-      15 ~> `EBUSdriver.data[5]
+      15 ~> `EBUSdriver.data[m+5]
 
 e1: 10161 decoder
     14 ~< {ad1} diag 04 b l
