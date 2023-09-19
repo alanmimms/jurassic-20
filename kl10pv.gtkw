@@ -1,18 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Sep 19 16:40:58 2023
+[*] Tue Sep 19 21:56:51 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Sep 19 16:40:13 2023"
-[dumpfile_size] 38832539
+[dumpfile_mtime] "Tue Sep 19 21:47:42 2023"
+[dumpfile_size] 31950996
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
-[timestart] 3744
+[timestart] 4256
 [size] 1992 1173
 [pos] -1 -1
-*-4.823932 3820 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.823932 4412 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.cra_45.
+[treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 246
@@ -96,104 +96,10 @@ top.kl10pv.cra_45.cra2_adr_10_h
 top.kl10pv.crm_52.cr02_write_Lp60to79Rp_l
 top.kl10pv.crm_52.cr02_write_Lp40to59Rp_l
 top.kl10pv.crm_52.cr02_write_Lp20to39Rp_l
+@29
 top.kl10pv.crm_52.cr02_write_Lp00to19Rp_l
+@28
 top.kl10pv.cra_45.cr02_dia_func_053_08_l
-@c00200
--CRAM-EBUS-RAM-out
-@28
-[color] 3
-top.kl10pv.crm_52.cr04_out_00_h
-[color] 3
-top.kl10pv.crm_52.cr04_out_01_h
-[color] 3
-top.kl10pv.crm_52.cr04_out_02_h
-[color] 3
-top.kl10pv.crm_52.cr04_out_03_h
-[color] 3
-top.kl10pv.crm_50.cr04_out_04_h
-[color] 3
-top.kl10pv.crm_50.cr04_out_05_h
-[color] 3
-top.kl10pv.crm_50.cr04_out_06_h
-[color] 3
-top.kl10pv.crm_50.cr04_out_07_h
-[color] 3
-top.kl10pv.crm_44.cr04_out_08_h
-[color] 3
-top.kl10pv.crm_44.cr04_out_09_h
-[color] 3
-top.kl10pv.crm_44.cr04_out_10_h
-[color] 3
-top.kl10pv.crm_44.cr04_out_11_h
-[color] 3
-top.kl10pv.crm_42.cr04_out_12_h
-[color] 3
-top.kl10pv.crm_42.cr04_out_13_h
-[color] 3
-top.kl10pv.crm_42.cr04_out_14_h
-[color] 3
-top.kl10pv.crm_42.cr04_out_15_h
-[color] 3
-top.kl10pv.crm_40.cr04_out_16_h
-[color] 3
-top.kl10pv.crm_40.cr04_out_17_h
-[color] 3
-top.kl10pv.crm_40.cr04_out_18_h
-[color] 3
-top.kl10pv.crm_40.cr04_out_19_h
-[color] 3
-top.kl10pv.cra_45.cra5_out_80_h
-[color] 3
-top.kl10pv.cra_45.cra5_out_81_h
-[color] 3
-top.kl10pv.cra_45.cra5_out_82_h
-[color] 3
-top.kl10pv.cra_45.cra5_out_83_h
-[color] 3
-top.kl10pv.cra_45.cra5_out_84_h
-[color] 3
-top.kl10pv.cra_45.cra5_out_85_h
-@1401200
--CRAM-EBUS-RAM-out
-@8000b1
-:{crm52-cra-adr} top.kl10pv.crm_52.cra2_adr_10_a_h 0 29 top.kl10pv.crm_52.cra2_adr_09_a_h 0 29 top.kl10pv.crm_52.cra2_adr_08_a_h 0 29 top.kl10pv.crm_52.cra2_adr_07_a_h 0 29 top.kl10pv.crm_52.cra1_adr_06_a_l 0 69 top.kl10pv.crm_52.cra1_adr_05_a_l 0 69 top.kl10pv.crm_52.cra1_adr_04_a_l 0 69 top.kl10pv.crm_52.cra1_adr_03_a_l 0 69 top.kl10pv.crm_52.cra1_adr_02_a_l 0 69 top.kl10pv.crm_52.cra1_adr_01_a_l 0 69 top.kl10pv.crm_52.cra1_adr_00_a_h 0 29
-@c00201
--crm52-adr
-@28
-top.kl10pv.crm_52.cra1_adr_00_a_h
-@68
-top.kl10pv.crm_52.cra1_adr_01_a_l
-top.kl10pv.crm_52.cra1_adr_02_a_l
-top.kl10pv.crm_52.cra1_adr_03_a_l
-top.kl10pv.crm_52.cra1_adr_04_a_l
-top.kl10pv.crm_52.cra1_adr_05_a_l
-top.kl10pv.crm_52.cra1_adr_06_a_l
-@28
-top.kl10pv.crm_52.cra2_adr_07_a_h
-top.kl10pv.crm_52.cra2_adr_08_a_h
-top.kl10pv.crm_52.cra2_adr_09_a_h
-top.kl10pv.crm_52.cra2_adr_10_a_h
-@1401201
--crm52-adr
-@1001201
--group_end
-@28
-top.kl10pv.cra_45.cra3_diag_adr_00_h
-top.kl10pv.cra_45.cra3_diag_adr_01_h
-top.kl10pv.cra_45.cra3_diag_adr_02_h
-top.kl10pv.cra_45.cra3_diag_adr_03_h
-top.kl10pv.cra_45.cra3_diag_adr_04_h
-top.kl10pv.cra_45.cra3_diag_adr_05_h
-top.kl10pv.cra_45.cra3_diag_adr_06_h
-top.kl10pv.cra_45.cra3_diag_adr_07_h
-top.kl10pv.cra_45.cra3_diag_adr_08_h
-top.kl10pv.cra_45.cra3_diag_adr_09_h
-top.kl10pv.cra_45.cra3_diag_adr_10_h
-top.kl10pv.cra_45.cra5_ebus_00_h
-top.kl10pv.cra_45.cra5_ebus_01_h
-top.kl10pv.cra_45.cra5_ebus_02_h
-top.kl10pv.cra_45.cra5_ebus_03_h
-top.kl10pv.cra_45.cra5_ebus_04_h
-top.kl10pv.cra_45.cra5_ebus_05_h
+top.kl10pv.crm_52.cr02_ebus_08_h
 [pattern_trace] 1
 [pattern_trace] 0
