@@ -4,7 +4,7 @@
  `include "dte.svh"
 
 typedef bit [0:85] tCRAM;
-typedef bit [35:0] W36;
+typedef bit [0:35] W36;
 typedef bit [15:0] W16;
 
 ///////////////////////////////////////////////////////////////
