@@ -184,7 +184,7 @@ module fe_sim(input bit clk,
   // 		;SPACE, ASCIIZED FILE TYPE
   // 	WC	;WORD COUNT, D-RAM LOCATION PAIRS TIMES 3, 3 PDP-11
   // 		; 16 BIT WORDS PER PAIR OF LOCATIONS.
-  // 	EVEN	;D-RAM EVEN BITS AS SPECIFIES UNDER "WDRAM"
+  // 	EVEN	;D-RAM EVEN BITS AS SPECIFIED UNDER "WDRAM"
   // 	ODD	;D-RAM ODD BITS AS SPECIFIED UNDER "WDRAM"
   // 	COMMON	;D-RAM COMMON BITS AS SPECIFIED UNDER "WDRAM"
   // 	CKSUM	;16 BIT NEGATED CHECKSUM OF WC, ADR & DATA
@@ -218,7 +218,7 @@ module fe_sim(input bit clk,
     KLMasterReset();
 
     KLSoftReset();
-    TestCRAM();
+//    TestCRAM();
     KLLoadRAMs();
   end
 
@@ -334,13 +334,13 @@ module fe_sim(input bit clk,
 	    // comment above on KLX.RAM format, except that the last
 	    // piece appears to need to be six bits and not five based
 	    // on PDF347 CRA5 {CALL,DISP[0:4]} "special" field.
-	    cw[64:79] = 16'(unASCIIize(words[k++]));
-	    cw[48:63] = 16'(unASCIIize(words[k++]));
-	    cw[32:47] = 16'(unASCIIize(words[k++]));
-	    cw[16:31] = 16'(unASCIIize(words[k++]));
-	    cw[00:15] = 16'(unASCIIize(words[k++]));
+	    cw[64:79] = unASCIIize(words[k++]);
+	    cw[48:63] = unASCIIize(words[k++]);
+	    cw[32:47] = unASCIIize(words[k++]);
+	    cw[16:31] = unASCIIize(words[k++]);
+	    cw[00:15] = unASCIIize(words[k++]);
 	    cw[80:85] =  6'(unASCIIize(words[k++]));
-	    $fwrite(dumpLogFD, "%04o: %030o\n", adr, cw);
+	    $fwrite(dumpLogFD, "C %04o: %030o\n", adr, cw);
 
 	    if (adr == 16'o136) begin
 	      cram136 = cw;
@@ -372,8 +372,58 @@ module fe_sim(input bit clk,
 	  //	    $display("DRAM EOF");
 	  lastAdr = 0;
 	end else begin
+	  W36 diagW;
+
 	  if (adr == 0) adr = lastAdr;
-	  lastAdr = adr + count;
+
+	  // EBOX CONTROL
+	  // Func  Name   Description
+	  //  10  CLRRUN  Clear the RUN flop. Make the microcode go to the "halt loop".
+	  //  11  SETRUN  Set the RUN flop. Allow repeated instruction execution.
+	  //  12  CONBUT  Set the CONTINUE flop (momentary). Allow the microcode to
+	  //		  leave the halt loop.
+	  //  14  IRLTCH  Unlatch the IR and load it from the AD
+	  //              (PDF128 via CON2 DIAG IR STROBE H).
+	  //  15  DRLTCH  Unlatch the DRAM register and allow it to load from the RAMs.
+
+	  // LOAD DRAM FUNCTIONS
+	  // Func  Name   EBUS bits  Description
+	  //  60  LDRAM1  12-14	   DRAM A00-02, even addresses
+	  //		  15-17	   DRAM B00-02, even addresses
+	  //  61  LDRAM2  12-14	   DRAM A00-02, odd addresses
+	  //		  15-17	   DRAM B00-02, odd addresses
+	  //  62  LDRAM3  14-17	   Common J01-04
+	  //  63  LDRJEV  15-17	   J08-10, even addresses
+	  //		  12	   parity bit, even addresses
+	  //  64  LDRJOD  14       Common J07 (NOTE: J05 and J06 do not exist.)
+	  //		  15-17	   J08-10, odd addresses
+	  //		  12	   parity bit, odd addresses
+	  //
+	  // See MP00301_KL10PV_Jun80-OCR.pdf PDF130 for DRAM
+	  // diagnostic write function decoder.
+	  //
+	  // NOTE: IRD board N=12.
+
+	  for (int k = 2; k < count; ) begin
+	    W36 even, odd, common;
+	    W36 j;
+
+	    even   = 36'(unASCIIize(words[k++]));
+	    odd    = 36'(unASCIIize(words[k++]));
+	    common = 36'(unASCIIize(words[k++]));
+
+	    $fwrite(dumpLogFD, "D %05o: %o %o %o\n", adr, even, odd, common);
+
+	    // Set IR to address this DRAM location.
+	    setDRAMDiagAddress(adr);
+	    doDiagWrite(diagfLDRAM1, W36'(even) << 18);
+	    doDiagWrite(diagfLDRAM2, W36'(odd) << 18);
+	    doDiagWrite(diagfLDRAM3, W36'(common) << 18);
+
+	    ++adr;
+	  end
+
+	  lastAdr = adr;
 	  //	    $display("DRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
 	end
       end
@@ -387,13 +437,25 @@ module fe_sim(input bit clk,
 
     $fclose(fd);
     $display("CRAM version: %s - as read back from CRAM", getCRAMVersionString());
+    $fclose(dumpLogFD);
   endtask // KLLoadRAMs
+
+
+  ////////////////////////////////////////////////////////////////
+  // This loads the DRAM address to read or write with diagnostic
+  // operations. Essentially it loads the address into IR[00:12] by
+  // shoving it into AD[00:12] with `diagfLOAD_AR` and then using
+  // `diagfIRLTCH` to load that into IR.
+  task automatic setDRAMDiagAddress(input W16 a);
+    doDiagWrite(diagfLOAD_AR, 36'(a) << 23); // Set address into AR[00:12] (opcode,AC fields)
+    doDiagFunc(diagfIRLTCH);	      // Unlatch IR and load it from AD to address DRAM
+  endtask // setDRAMDiagAddress
 
 
   ////////////////////////////////////////////////////////////////
   task automatic TestCRAM();
     bit doAllCRAMAddrs = 0;
-    bit doAllCRAMData = 1;
+    bit doAllCRAMData = 0;
     bit doOneHotCRAM80_85 = 0;
     bit doOneHotCRAMAll = 0;
     W36 readResult;

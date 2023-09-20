@@ -14,56 +14,67 @@ const miscFuncTypes = `clrCROBAR,getAPRID,writeMemory,readMemory,getDiagWord1,lo
       .split(/,\s*/)
       .map(t => t);
 
-const diagFuncTypes = `\
-  STOP_CLOCK = 0o000,                           \
-  START_CLOCK = 0o001,                          \
-  STEP_CLOCK = 0o002,                           \
-  STEP_EBUS_CLOCK = 0o003,			\
-  COND_STEP = 0o004,                            \
-  BURST = 0o005,                                \
-                                                \
-  CLR_RESET = 0o006,                            \
-  SET_RESET = 0o007,                            \
-  CLR_RUN = 0o010,                              \
-  SET_RUN = 0o011,                              \
-  CONTINUE = 0o012,                             \
-                                                \
-  BURST_CTR_RH = 0o042,				\
-  BURST_CTR_LH = 0o043,				\
-  CLK_SRC_RATE = 0o044,				\
-  SET_EBOX_CLK_DISABLES = 0o045,                \
-  RESET_PAR_REGS = 0o046,                       \
-  MBOXDIS_PARCHK_ERRSTOP = 0o047,		\
-                                                \
-  CRAM_DIAG_ADR_RH = 0o051,			\
-  CRAM_DIAG_ADR_LH = 0o052,			\
-  CRAM_WRITE_80_85 = 0o53,			\
-  CRAM_WRITE_60_79 = 0o54,			\
-  CRAM_WRITE_40_59 = 0o55,			\
-  CRAM_WRITE_20_39 = 0o56,			\
-  CRAM_WRITE_00_19 = 0o57,			\
-                                                \
-  ENABLE_KL = 0o067,                            \
-                                                \
-  INIT_CHANNELS = 0o070,                        \
-  WRITE_MBOX = 0o071,                           \
-  EBUS_LOAD = 0o076,                            \
-                                                \
-  LOAD_AR = 0o077,				\
-						\
-  CRAM_READ_00_19 = 0o147,			\
-  CRAM_READ_20_39 = 0o146,			\
-  CRAM_READ_40_59 = 0o145,			\
-  CRAM_READ_60_79 = 0o144,			\
-  CRAM_READ_80_85 = 0o141			\
-`
+// These come from `docs/EK-OKL10-MG-003_KL10_Maintenance_Guide_Volume_1_Rev_3_Apr85_text.pdf`
+// PDF71-73.
+const diagFuncTypes = `
+  STOP_CLOCK = 0o00,
+  START_CLOCK = 0o01,
+  STEP_CLOCK = 0o02,
+  STEP_EBUS_CLOCK = 0o03,
+  COND_STEP = 0o04,
+  BURST = 0o05,
+  CLR_RESET = 0o06,
+  SET_RESET = 0o07,
 
-      .trim()
-      .split(/,\s*/)
-      .reduce((cur, t) => {
-        const [name, value] = t.split(/\s*=\s*/);
-        return Object.assign(cur, {[`diagf${name}`]: +value});
-      }, {});
+  CLR_RUN = 0o10,
+  SET_RUN = 0o11,
+  CONTINUE = 0o12,
+
+  IRLTCH = 0o14,
+  DRLTCH = 0o15,
+
+  BURST_CTR_RH = 0o42,
+  BURST_CTR_LH = 0o43,
+  CLK_SRC_RATE = 0o44,
+  SET_EBOX_CLK_DISABLES = 0o45,
+  RESET_PAR_REGS = 0o46,
+  MBOXDIS_PARCHK_ERRSTOP = 0o47,
+
+  CRAM_DIAG_ADR_RH = 0o51,
+  CRAM_DIAG_ADR_LH = 0o52,
+  CRAM_WRITE_80_85 = 0o53,
+  CRAM_WRITE_60_79 = 0o54,
+  CRAM_WRITE_40_59 = 0o55,
+  CRAM_WRITE_20_39 = 0o56,
+  CRAM_WRITE_00_19 = 0o57,
+
+  LDRAM1 = 0o60,
+  LDRAM2 = 0o61,
+  LDRAM3 = 0o62,
+  LDRJEV = 0o63,
+  LDRJOD = 0o64,
+  DISIOJ = 0o65,
+  DISACF = 0o66,
+  ENABLE_KL = 0o67,
+
+  INIT_CHANNELS = 0o70,
+  WRITE_MBOX = 0o71,
+  SET_KW20_CLOCK = 0o72,
+
+  EBUS_LOAD = 0o76,
+  LOAD_AR = 0o77,
+
+  CRAM_READ_00_19 = 0o147,
+  CRAM_READ_20_39 = 0o146,
+  CRAM_READ_40_59 = 0o145,
+  CRAM_READ_60_79 = 0o144,
+  CRAM_READ_80_85 = 0o141
+`.trim()
+ .split(/,\s*/)
+ .reduce((cur, t) => {
+   const [name, value] = t.split(/\s*=\s*/);
+   return Object.assign(cur, {[`diagf${name}`]: +value});
+ }, {});
 
 
 const [, , hFileName, svhFileName, tffName] = process.argv.slice(1);

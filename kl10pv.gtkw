@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Sep 19 21:56:51 2023
+[*] Wed Sep 20 00:54:54 2023
 [*]
 [dumpfile] "/home/alan/dec20/kl10-schematics/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Sep 19 21:47:42 2023"
-[dumpfile_size] 31950996
+[dumpfile_mtime] "Wed Sep 20 00:54:48 2023"
+[dumpfile_size] 53432066
 [savefile] "/home/alan/dec20/kl10-schematics/kl10pv.gtkw"
 [timestart] 4256
 [size] 1992 1173
@@ -12,7 +12,6 @@
 *-6.823932 4412 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 246
@@ -96,9 +95,7 @@ top.kl10pv.cra_45.cra2_adr_10_h
 top.kl10pv.crm_52.cr02_write_Lp60to79Rp_l
 top.kl10pv.crm_52.cr02_write_Lp40to59Rp_l
 top.kl10pv.crm_52.cr02_write_Lp20to39Rp_l
-@29
 top.kl10pv.crm_52.cr02_write_Lp00to19Rp_l
-@28
 top.kl10pv.cra_45.cr02_dia_func_053_08_l
 top.kl10pv.crm_52.cr02_ebus_08_h
 [pattern_trace] 1
