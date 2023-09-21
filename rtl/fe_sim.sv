@@ -376,6 +376,9 @@ module fe_sim(input bit clk,
 
 	  if (adr == 0) adr = lastAdr;
 
+	  // These functions from PDF71-73 in `EK-OKL10-MG-003 KL10
+	  // Maintenance Guide Volume 1 Rev 3 Apr85`.
+
 	  // EBOX CONTROL
 	  // Func  Name   Description
 	  //  10  CLRRUN  Clear the RUN flop. Make the microcode go to the "halt loop".
@@ -398,27 +401,39 @@ module fe_sim(input bit clk,
 	  //  64  LDRJOD  14       Common J07 (NOTE: J05 and J06 do not exist.)
 	  //		  15-17	   J08-10, odd addresses
 	  //		  12	   parity bit, odd addresses
-	  //
+
+	  // IR, DRAM CONTROL FUNCTIONS
+	  //  65  DISIOJ  Disable special decode of opcodes 254, 7XX.
+	  //  66  DISACF  Disable IR AC outputs.
+	  //  67  ENIOJA  Enable KL10 style decoding of opcodes and ACs.
+
 	  // See MP00301_KL10PV_Jun80-OCR.pdf PDF130 for DRAM
 	  // diagnostic write function decoder.
-	  //
+
 	  // NOTE: IRD board N=12.
 
 	  for (int k = 2; k < count; ) begin
 	    W36 even, odd, common;
+	    bit [0:12] ir;
 	    W36 j;
 
 	    even   = 36'(unASCIIize(words[k++]));
 	    odd    = 36'(unASCIIize(words[k++]));
 	    common = 36'(unASCIIize(words[k++]));
 
-	    $fwrite(dumpLogFD, "D %05o: %o %o %o\n", adr, even, odd, common);
+	    $fwrite(dumpLogFD, "D %03o: %05o %05o %05o\n", adr, even, odd, common);
 
 	    // Set IR to address this DRAM location.
+	    if ((adr & 0o700) == 0) ir = 13'(adr);
+	    else ir = 
 	    setDRAMDiagAddress(adr);
-	    doDiagWrite(diagfLDRAM1, W36'(even) << 18);
-	    doDiagWrite(diagfLDRAM2, W36'(odd) << 18);
-	    doDiagWrite(diagfLDRAM3, W36'(common) << 18);
+
+	    // Data for writing is on EBUS[12:17].
+	    doDiagWrite(diagfLDRAM1, W36'(even) << 18);	  // DRAM A00-02, B00-02 even
+	    doDiagWrite(diagfLDRAM2, W36'(odd) << 18);	  // DRAM A00-02, B00-02 odd
+	    doDiagWrite(diagfLDRAM3, W36'(common) << 18); // J01-04
+
+//	    doDiagWrite(diagfLDRJEV, );
 
 	    ++adr;
 	  end
