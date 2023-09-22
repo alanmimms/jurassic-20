@@ -94,8 +94,45 @@ From `klx.no-formfeeds.listing`. Yep.
 	50$:	RETURN
 ```
 
+## DRAM mapping analysis from `klx.no-formfeeds.listing`
 
+	klx.ram record (lowercase is even, uppercase is odd):
+               j     J
+	D 000: 10002 11005 00010
+	D 000: 10002 11005 00010
+	D 002: 10405 10045 00010
+	D 004: 11006 13045 00010
+	D 006: 12445 12005 00010
+	D 010: 10450 12050 00010
+	D 012: 10411 10051 00010
+	D 014: 10412 10052 00010
+	D 016: 11012 11452 00010
 
+or in binary (for 000):
+    1  0   0   0   2      1  1   0   0   5      0  0   0   0   1   0
+    1.000.000.000.010     1.001.000.000.101     0.000.000.000.001.000
+
+	klx.ram listing for these two words:
+        ABxx JJJJ
+D 0000, 2000,1002				; 4916	000:	EA,		J/UUO
+D 0001, 2200,1005				; 8117	001:	EA,	SJCL,	J/L-CMS		;CMSX HIDDEN BENEATH LUUO
+D 0002, 2100,1005				; 8118			EA,	SJCE,	J/L-CMS
+D 0003, 2001,1005				; 8119			EA,	SJCLE,	J/L-CMS
+								; 8120	
+D 0004, 2200,1006				; 8121	004:	EA,	B/2,	J/L-EDIT	;EDIT
+D 0005, 2601,1005				; 8122			EA,	SJCGE,	J/L-CMS
+D 0006, 2501,1005				; 8123			EA,	SJCN,	J/L-CMS
+D 0007, 2400,1005				; 8124			EA,	SJCG,	J/L-CMS
+								; 8125	
+D 0010, 2101,1010				; 8126	010:	EA,	B/1,	J/L-DBIN	;CVTDBO
+D 0011, 2401,1010				; 8127			EA,	B/4,	J/L-DBIN	;CVTDBT
+D 0012, 2100,1011				; 8128			EA,	B/1,	J/L-BDEC	;CVTBDO
+D 0013, 2001,1011				; 8129			EA,	B/0,	J/L-BDEC	;CVTBDT
+								; 8130	
+D 0014, 2100,1012				; 8131	014:	EA,	B/1,	J/L-MVS		;MOVSO
+D 0015, 2001,1012				; 8132			EA,	B/0,	J/L-MVS		;MOVST
+D 0016, 2200,1012				; 8133			EA,	B/2,	J/L-MVS		;MOVSLJ
+D 0017, 2301,1012				; 8134			EA,	B/3,	J/L-MVS		;MOVSRJ
 
 
 # EBUS

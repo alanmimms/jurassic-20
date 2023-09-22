@@ -393,14 +393,19 @@ module fe_sim(input bit clk,
 	  // Func  Name   EBUS bits  Description
 	  //  60  LDRAM1  12-14	   DRAM A00-02, even addresses
 	  //		  15-17	   DRAM B00-02, even addresses
+	  //			   kldcp.hlp.txt: LOAD A & B FIELDS EVEN
 	  //  61  LDRAM2  12-14	   DRAM A00-02, odd addresses
 	  //		  15-17	   DRAM B00-02, odd addresses
+	  //			   kldcp.hlp.txt: LOAD A & B FIELDS ODD
 	  //  62  LDRAM3  14-17	   Common J01-04
+	  //			   kldcp.hlp.txt: LOAD COMMON J1-J4
 	  //  63  LDRJEV  15-17	   J08-10, even addresses
 	  //		  12	   parity bit, even addresses
+	  //			   kldcp.hlp.txt: LOAD PARITY & J8-J10 EVEN
 	  //  64  LDRJOD  14       Common J07 (NOTE: J05 and J06 do not exist.)
 	  //		  15-17	   J08-10, odd addresses
 	  //		  12	   parity bit, odd addresses
+	  //			   kldcp.hlp.txt: LOAD PARITY & J8-J10 ODD
 
 	  // IR, DRAM CONTROL FUNCTIONS
 	  //  65  DISIOJ  Disable special decode of opcodes 254, 7XX.
@@ -410,12 +415,15 @@ module fe_sim(input bit clk,
 	  // See MP00301_KL10PV_Jun80-OCR.pdf PDF130 for DRAM
 	  // diagnostic write function decoder.
 
+	  // KL10 I/O instructions defined in `1982_ProcRefMan.pdf`
+	  // PDF192-196.
+
 	  // NOTE: IRD board N=12.
 
 	  for (int k = 2; k < count; ) begin
 	    W36 even, odd, common;
 	    bit [0:12] ir;
-	    W36 j;
+	    bit eParity, oParity;
 
 	    even   = 36'(unASCIIize(words[k++]));
 	    odd    = 36'(unASCIIize(words[k++]));
@@ -423,10 +431,28 @@ module fe_sim(input bit clk,
 
 	    $fwrite(dumpLogFD, "D %03o: %05o %05o %05o\n", adr, even, odd, common);
 
-	    // Set IR to address this DRAM location.
-	    if ((adr & 0o700) == 0) ir = 13'(adr);
-	    else ir = 
-	    setDRAMDiagAddress(adr);
+	    // Set IR to address this DRAM location. 
+	    // For non-I/O instructions just use adr[0:8] as IR[0:8].
+	    if ((adr & 'o700) == 0)
+	      ir = {k[0:8], 4'o0};
+	    else begin
+	      // For I/O instructions (where adr[0:2] == 7), spread
+	      // the octal digits of the address across the 13 bits of
+	      // opcode[0:2] and device[3:9] and operation[10:12].
+	      //
+	      // The middle digit, adr[3:5], selects the device
+	      // (000-030 => 0..6) and 7 for all others, placed in
+	      // ir[3:9].
+	      //
+	      // The least significant adr[6:8] digit selects the
+	      // operation: BLKI=0, DATAI=1, BLKO=2, DATAO=3, CONO=4,
+	      // CONI=5, CONSZ=6, CONSO=7, placed in ir[10:12].
+	      ir[0:2] = k[0:2];
+	      ir[3:9] = {4'o0, k[3:5]};
+	      ir[10:12] = adr[6:8];
+	    end
+
+	    setDRAMDiagAddress(ir);
 
 	    // Data for writing is on EBUS[12:17].
 	    doDiagWrite(diagfLDRAM1, W36'(even) << 18);	  // DRAM A00-02, B00-02 even
@@ -435,7 +461,7 @@ module fe_sim(input bit clk,
 
 //	    doDiagWrite(diagfLDRJEV, );
 
-	    ++adr;
+	    adr = adr + 2;
 	  end
 
 	  lastAdr = adr;
@@ -461,8 +487,8 @@ module fe_sim(input bit clk,
   // operations. Essentially it loads the address into IR[00:12] by
   // shoving it into AD[00:12] with `diagfLOAD_AR` and then using
   // `diagfIRLTCH` to load that into IR.
-  task automatic setDRAMDiagAddress(input W16 a);
-    doDiagWrite(diagfLOAD_AR, 36'(a) << 23); // Set address into AR[00:12] (opcode,AC fields)
+  task automatic setDRAMDiagAddress(input bit[0:12] a);
+    doDiagWrite(diagfLOAD_AR, {a, 23'o0}); // Set address into AR[00:12] (opcode,AC fields)
     doDiagFunc(diagfIRLTCH);	      // Unlatch IR and load it from AD to address DRAM
   endtask // setDRAMDiagAddress
 
