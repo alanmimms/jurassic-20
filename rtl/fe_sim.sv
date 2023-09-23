@@ -455,6 +455,10 @@ module fe_sim(input bit clk,
 	    setDRAMDiagAddress(ir);
 
 	    // Data for writing is on EBUS[12:17].
+	    // The three words in each even/odd pair are:
+	    // * A[0:2] <= even[1:3]  B[0:2] <= even[4:6]  PAR <= even[] J[8:10] <= even[]
+	    // * A[0:2] <= odd[1:3]   B[0:2] <= odd[4:6]   PAR <= odd[]  J[8:10] <= odd[]
+	    // * common[0:5]  
 	    doDiagWrite(diagfLDRAM1, W36'(even) << 18);	  // DRAM A00-02, B00-02 even
 	    doDiagWrite(diagfLDRAM2, W36'(odd) << 18);	  // DRAM A00-02, B00-02 odd
 	    doDiagWrite(diagfLDRAM3, W36'(common) << 18); // J01-04
@@ -768,8 +772,8 @@ module fe_sim(input bit clk,
     int shift = 0;
 
     for (int k = s.len() - 1; k >= 0; --k) begin
-      int ch = int'(s[k]);
-      v = v | (W16'(ch >= 'o100 && ch <= 32'o175 ? (ch & ~'o100) : ch)) << shift;
+      W16 ch = W16'(s[k]);
+      v = v | ((ch & ~'o100) << shift);
       shift += 6;
     end
 
