@@ -96,7 +96,7 @@ From `klx.no-formfeeds.listing`. Yep.
 
 ## DRAM mapping analysis from `klx.no-formfeeds.listing`
 
-	klx.ram record (lowercase is even, uppercase is odd):
+	klx.ram record (lowercase is even, uppercase is odd, C is common J):
                j     J
 	D 000: 10002 11005 00010
 	D 000: 10002 11005 00010
@@ -108,9 +108,15 @@ From `klx.no-formfeeds.listing`. Yep.
 	D 014: 10412 10052 00010
 	D 016: 11012 11452 00010
 
+	D 240: 00054 00015 00014
+	D 242: 00052 00013 00014
+	D 244: 00016 00057 00014
+	D 246: 00044 10002 00010
+
 or in binary (for 000):
-    1  0   0   0   2      1  1   0   0   5      0  0   0   0   1   0
-    1.000.000.000.010     1.001.000.000.101     0.000.000.000.001.000
+              j08 j09 j10               J08 J09 J10     x C00 C01 C02 C03 C04
+       1   0   0   0   2         1   1   0   0   5      0  0   0   0   1   0
+    0.001.000.000.000.010     0.001.001.000.000.101     0.000.000.000.001.000
 
 	klx.ram listing for these two words:
         ABxx JJJJ
@@ -133,6 +139,16 @@ D 0014, 2100,1012				; 8131	014:	EA,	B/1,	J/L-MVS		;MOVSO
 D 0015, 2001,1012				; 8132			EA,	B/0,	J/L-MVS		;MOVST
 D 0016, 2200,1012				; 8133			EA,	B/2,	J/L-MVS		;MOVSLJ
 D 0017, 2301,1012				; 8134			EA,	B/3,	J/L-MVS		;MOVSRJ
+
+
+D 0240, 0001,1414				; 5155	240:	I,		J/ASH		;ASH [423]
+D 0241, 0000,1415				; 5156			I,		J/ROT		;ROT
+D 0242, 0001,1412				; 5157			I,		J/LSH		;LSH
+D 0243, 0000,1413				; 5158			I,		J/JFFO		;JFFO
+D 0244, 0000,1416				; 5159			I,		J/ASHC		;ASHC [423]
+D 0245, 0001,1417				; 5160			I,		J/ROTC		;ROTC
+D 0246, 0001,1004				; 5161			I,		J/LSHC		;LSHC--Adjoins UUO (247)
+
 
 
 # EBUS
