@@ -419,6 +419,17 @@ module fe_sim(input bit clk,
 	  // PDF192-196.
 
 	  // NOTE: IRD board N=12.
+	  //
+	  // See `rtl/doc/kldcp.doc` for a lot more information on
+	  // this format. Search for "MICRO FORMAT FOR WDRAM". This
+	  // entire document is an excellent introduction to the
+	  // operation of the KL10 via its front end, but the code it
+	  // describes is not from the same era (and is not derived
+	  // from the same code base). It also documents the
+	  // correspondence between hardware RAM bits and the
+	  // microcode fields they contain, which is a jumbled rehash
+	  // of the bit order created from the microcode sources by
+	  // the microcode assembly process.
 
 	  for (int k = 2; k < count; ) begin
 	    W36 even, odd, common;
@@ -454,16 +465,39 @@ module fe_sim(input bit clk,
 
 	    setDRAMDiagAddress(ir);
 
-	    // Data for writing is on EBUS[12:17].
-	    // The three words in each even/odd pair are:
-	    // * A[0:2] <= even[1:3]  B[0:2] <= even[4:6]  PAR <= even[] J[8:10] <= even[]
-	    // * A[0:2] <= odd[1:3]   B[0:2] <= odd[4:6]   PAR <= odd[]  J[8:10] <= odd[]
-	    // * common[0:5]  
+/*
+MICRO FORMAT
+FOR WDRAM
+
+   15 -/- 13---11   10----8   7   6    5    4    3     2     1     0
+	---------------------------------------------------------------
+ +0	* -- A -- * -- B -- *   *   *  P  *   * ------ J FIELD ------ *
+ EVEN	* 1  2  3 * 1  2  3 *   *   *  E  *   *  7  *  8  *  9  *  10 *
+	***************************************************************
+
+   15 -/- 13---11   10----8   7   6    5    4    3     2     1     0
+	---------------------------------------------------------------
+ +2	* -- A -- * -- B -- *   *   *  P  *   * ------ J FIELD ------ *
+ ODD	* 1  2  3 * 1  2  3 *   *   *  O  *   *  7  *  8  *  9  *  10 *
+	***************************************************************
+
+   15 -/-                                         3     2     1     0
+	                                      -------------------------
+ +4 	                                      * ------ J FIELD ------ *
+ COMMON	                                      *  1  *  2  *  3  *  4  *
+	                                      *************************
+
+	NOTE: J7 ALSO COMMON BIT WRITTEN BY ODD WORD
+	      J5 & J6 DO NOT EXIST
+
+*/
+
 	    doDiagWrite(diagfLDRAM1, W36'(even) << 18);	  // DRAM A00-02, B00-02 even
 	    doDiagWrite(diagfLDRAM2, W36'(odd) << 18);	  // DRAM A00-02, B00-02 odd
 	    doDiagWrite(diagfLDRAM3, W36'(common) << 18); // J01-04
 
-//	    doDiagWrite(diagfLDRJEV, );
+	    doDiagWrite(diagfLDJEV, W36'(even) << 18);	  // J07-10 even
+	    doDiagWrite(diagfLDJOD, W36'(odd) << 18);	  // J07-10 odd
 
 	    adr = adr + 2;
 	  end
