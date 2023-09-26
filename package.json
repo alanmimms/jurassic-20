@@ -14,7 +14,7 @@
     "node": ">= 8.7.0"
   },
   "scripts": {
-    "build": "./sim kl10pv.backplane",
+    "build": "./compile kl10pv.backplane",
     "clean": "rm -f *.bp-pins *.wires *.nets bp.cram-defs bp.dump bp.nets bp.pins bp.verilog-names *.slot *.before.evaluation *.after.evaluation *.undriven",
     "extract-cram-backplane-csv": "libreoffice --convert-to csv cram-backplane.ods",
     "test": "jest"

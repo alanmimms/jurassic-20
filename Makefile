@@ -16,7 +16,7 @@ RTLOBJDIR = ./rtl/obj_dir
 
 .PHONY: all clean
 
-all:	.sim.build $(TOPEXE)
+all:	.compile.build $(TOPEXE)
 
 $(TOPEXE):
 	make -C $(RTLDIR)
@@ -24,12 +24,12 @@ $(TOPEXE):
 cram-backplane.csv: cram-backplane.ods
 	libreoffice --convert-to csv $<
 
-.sim.build:	kl10pv.backplane netlist.pegjs sim sim.js logic.js compile.js cram-backplane.csv $(BOARDS)
-	./sim -g
-	touch .sim.build
+.compile.build:	kl10pv.backplane netlist.pegjs compile compile.js logic.js cram-backplane.csv $(BOARDS)
+	./compile -g
+	touch $@
 
 clean:
-	@rm -f .sim.build
+	@rm -f .compile.build
 	@yarnpkg run clean
 	@rm -f kl10 $(GENRTLDIR)/*
 	@make -C $(RTLDIR) clean

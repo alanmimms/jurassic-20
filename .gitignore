@@ -55,6 +55,6 @@ bp.pins
 cpu.undriven
 rtl/gen/*
 *.junk
-.sim.build
 *.vcd
 gmon.out
+.compile.build
