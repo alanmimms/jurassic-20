@@ -779,9 +779,10 @@ function readCRAMBackplane(fn) {
     .split('\n')
     .filter((line, x) => line && x != 0)
     .reduce((cram, line) => {
-      const [netUC, offsetExpr, nExpr, bitExpr, pinFull] = line.split(',');
+      const [netUC, offsetExpr, nExpr, bitExpr, pinFull, ucBitExpr] = line.split(',');
       const net = netUC.toLowerCase();
       const bit = +bitExpr;
+      const ucBit = +ucBitExpr;
       const slot = pinFull.slice(2, 4);
       const bpPinName = `${pinFull[1]}${pinFull.slice(4)}`.toLowerCase();
       const srcPin = `crm.${bpPinName}[crm.${slot}]`;
@@ -798,7 +799,7 @@ function readCRAMBackplane(fn) {
       }
 
       if (cram.nets[net]) console.error(`${fn} defines net '${net}' more than once`);
-      cram.bp[srcPin] = {net, srcPin, bpp: bpPinName, slot};
+      cram.bp[srcPin] = {net, srcPin, bpp: bpPinName, slot, ucBit};
       if (!cram.slot[slot]) cram.slot[slot] = {};
       cram.slot[slot][srcPin] = cram.bp[srcPin];
       cram.nets[net] = cram.bp[srcPin];
