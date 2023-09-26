@@ -21,7 +21,10 @@ all:	.sim.build $(TOPEXE)
 $(TOPEXE):
 	make -C $(RTLDIR)
 
-.sim.build:	kl10pv.backplane netlist.pegjs sim sim.js logic.js compile.js $(BOARDS)
+cram-backplane.csv: cram-backplane.ods
+	libreoffice --convert-to csv $<
+
+.sim.build:	kl10pv.backplane netlist.pegjs sim sim.js logic.js compile.js cram-backplane.csv $(BOARDS)
 	./sim -g
 	touch .sim.build
 
