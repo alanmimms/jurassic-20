@@ -90,7 +90,7 @@ logic-tb: $(MODS)
 # Include global rules
 include $(VERILATORROOT)/include/verilated.mk
 
-$(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES)
+$(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES) $(DTEINTF)
 	$(VERILATOR) $(VFLAGS) $(filter-out %.h, $^) --top-module $(TOP) -o $(@F)
 
 $(DTEINTF) $(DTETFF): dte-interface.js
