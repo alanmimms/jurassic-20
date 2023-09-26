@@ -776,10 +776,9 @@ function readCRAMBackplane(fn) {
     .split('\n')
     .filter((line, x) => line && x != 0)
     .reduce((cram, line) => {
-      const [netUC, bitExpr, sliceExpr, pinFull] = line.split(',');
+      const [netUC, offsetExpr, nExpr, bitExpr, pinFull] = line.split(',');
       const net = netUC.toLowerCase();
-      const slice = parseInt(sliceExpr.split(/=/)[1]);
-      const bit = parseInt(bitExpr.split(/\+/)[1]) + slice;
+      const bit = +bitExpr;
       const slot = pinFull.slice(2, 4);
       const bpPinName = `${pinFull[1]}${pinFull.slice(4)}`.toLowerCase();
       const srcPin = `crm.${bpPinName}[crm.${slot}]`;
@@ -789,6 +788,7 @@ function readCRAMBackplane(fn) {
       const pPin = cram.bp[srcPin];
 
       if (pPin) {
+	console.log(`srcPin="${srcPin}" pPin=${util.inspect(pPin)}`);
 	const pb = pPin.bit.toString();
 	const pn = pPin.net;
 	console.error(`${fn} duplicate '${net}' srcPin '${srcPin}', was ${pb.padStart(3)} '${pn}'`);
