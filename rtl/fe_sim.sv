@@ -496,8 +496,8 @@ FOR WDRAM
 	    doDiagWrite(diagfLDRAM2, W36'(odd) << 18);	  // DRAM A00-02, B00-02 odd
 	    doDiagWrite(diagfLDRAM3, W36'(common) << 18); // J01-04
 
-	    doDiagWrite(diagfLDJEV, W36'(even) << 18);	  // J07-10 even
-	    doDiagWrite(diagfLDJOD, W36'(odd) << 18);	  // J07-10 odd
+	    doDiagWrite(diagfLDRJEV, W36'(even) << 18);	  // J07-10 even
+	    doDiagWrite(diagfLDRJOD, W36'(odd) << 18);	  // J07-10 odd
 
 	    adr = adr + 2;
 	  end
