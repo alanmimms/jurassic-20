@@ -2,7 +2,7 @@ module mc10145(input bit a0, a1, a2, a3,
 	       input bit d0, d1, d2, d3, nen, nwrite,
 	       output bit q0, q1, q2, q3);
 
-  bit [3:0] ram[15:0];
+  bit [3:0] ram[0:15];
   bit [3:0] addr;
   bit cs, we, re;
   bit [3:0] q;

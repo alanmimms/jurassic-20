@@ -58,3 +58,5 @@ rtl/gen/*
 *.vcd
 gmon.out
 .compile.build
+cram.mem
+dram.mem

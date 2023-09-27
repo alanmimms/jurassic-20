@@ -21,7 +21,7 @@ const DRAM = require('./dram');
 //    J[7:10]  11:14    4
 //                   ------
 //                     15
-DRAM.forEach(w => {
+module.exports.write = () => DRAM.map(w => {
   const inN = 24;               // Input word width
   const jN = 11;                // Input J word width
   const outN = 15;              // Output word width
@@ -39,8 +39,8 @@ DRAM.forEach(w => {
   w = fieldInsert(w, p, 6, 6, outN);
   w = fieldInsert(w, jHi, 7, 10, outN);
   w = fieldInsert(w, jLo, 11, 14, outN);
-  console.log(w.toString(16).padStart(Math.floor((outN + 3)/4), '0'));
-});
+  return w.toString(16).padStart(Math.floor((outN + 3)/4), '0');
+}).join('\n');
 
 
 // Stolen from kl10-microcode project util.js.

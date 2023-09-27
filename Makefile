@@ -24,8 +24,10 @@ $(TOPEXE):
 cram-backplane.csv: cram-backplane.ods
 	libreoffice --convert-to csv $<
 
-.compile.build:	kl10pv.backplane netlist.pegjs compile compile.js logic.js cram-backplane.csv $(BOARDS)
-	./compile -g
+cram.mem dram.mem .compile.build:	kl10pv.backplane netlist.pegjs \
+					compile compile.js logic.js \
+					cram-backplane.csv $(BOARDS)
+	./compile -g -C cram.mem -D dram.mem
 	touch $@
 
 clean:

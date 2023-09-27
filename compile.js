@@ -8,6 +8,9 @@ const assert = require('assert');
 const CMDR = require('commander').program;
 const PEG = require('pegjs');
 
+const CRAM = require('./cram-tools/write-cram-mem');
+const DRAM = require('./cram-tools/write-dram-mem');
+
 const logic = require('./logic.js');
 
 
@@ -549,6 +552,9 @@ function compile(simOptions) {
   
   if (options.genSV) genSV(bp);
 
+  if (options.genCram) genCram(bp);
+  if (options.genDram) genDram(bp);
+
   return bp;
 }
 
@@ -771,6 +777,24 @@ function chipTypeToModName(chip) {
   let n = chip.type.replace(/-/g, '_');
   if (n === 'wire') n = 'just_a_wire';
   return chip.type.match(/^[0-9].*/) ? `mc${n}` : n;
+}
+
+
+function genCram(bp) {
+  const fn = options.genCram;
+  console.log(`[generate ${fn}]`);
+  fs.writeFileSync(fn, `\
+${CRAM.write()}
+`);
+}
+
+
+function genDram(bp) {
+  const fn = options.genDram;
+  console.log(`[generate ${fn}]`);
+  fs.writeFileSync(fn, `\
+${DRAM.write()}
+`);
 }
 
 
@@ -1139,6 +1163,8 @@ CMDR
   .option('-a, --dump-ast', `Dump AST after parsing`)
   .option('-b, --dump-backplane', `Dump backplane slots and net names`)
   .option('-c, --dump-cram', `Dump CRAM definitions`)
+  .option('-C, --gen-cram <cramPath>', `Generate CRAM .mem file to specified path name`)
+  .option('-D, --gen-dram <dramPath>', `Generate DRAM .mem file to specified path name`)
   .option('-g, --genSV', `Generate SystemVerilog code for backplane and modules`)
   .option('-n, --dump-nets', `Dump netlist`)
   .option('-o, --dump-wire-or', `Dump list of wire-ORed nets`)
