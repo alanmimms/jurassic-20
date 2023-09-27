@@ -34,4 +34,5 @@ clean:
 	@rm -f .compile.build
 	@yarnpkg run clean
 	@rm -f kl10 $(GENRTLDIR)/*
+	@rm -f cram.mem dram.mem
 	@make -C $(RTLDIR) clean
