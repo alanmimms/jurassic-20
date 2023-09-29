@@ -512,18 +512,18 @@ FOR WDRAM
   task automatic writeCRAM(tCRAM cw, tCRAMAddress adr);
 
     `define putCRM1(bitN, slot, a0, a1)			\
-	if (adr[10] == 0)				\
-	  kl10pv.slot.a0.ram[adr[0:9]] = cw[bitN+0];	\
+	if (adr[10] != 0)				\
+	  kl10pv.slot.a0.ram[adr[0:9]] = cw[bitN];	\
 	else						\
-	  kl10pv.slot.a1.ram[adr[0:9]] = cw[bitN+0];
+	  kl10pv.slot.a1.ram[adr[0:9]] = cw[bitN];
 
     `define putCRM2(bitN, slot, a0, a1, b0, b1)	\
-      `putCRM1(bitN, slot, a0, a1)		\
-      `putCRM1(bitN, slot, b0, b1)
+      `putCRM1(bitN+0, slot, a0, a1)		\
+      `putCRM1(bitN+1, slot, b0, b1)
 
     `define putCRM4(bitN, slot, a0, a1, b0, b1, c0, c1, d0, d1)	\
-      `putCRM2(bitN, slot, a0, a1, b0, b1)			\
-      `putCRM2(bitN, slot, c0, c1, d0, d1)
+      `putCRM2(bitN+0, slot, a0, a1, b0, b1)			\
+      `putCRM2(bitN+2, slot, c0, c1, d0, d1)
     
     `define putCRM20(bitN, a0, a1, b0, b1, c0, c1, d0, d1)	\
       `putCRM4(bitN+0,  crm_52, a0, a1, b0, b1, c0, c1, d0, d1)	\
