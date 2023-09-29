@@ -206,6 +206,7 @@ module fe_sim(input bit clk,
   //
 
   initial begin			// Load CRAM and DRAM before start of simulation
+    dumpLogFD = $fopen("dump.log", "w");
     KLLoadRAMs();
   end
   
@@ -215,14 +216,9 @@ module fe_sim(input bit clk,
     crobar_e_h = '0;
   end
 
-  initial begin
-    dumpLogFD = $fopen("dump.log", "w");
-  end
-
   always @(negedge crobar_e_h) begin
     repeat (10) @(negedge clk);
     KLMasterReset();
-
     KLSoftReset();
   end
 
@@ -445,29 +441,6 @@ module fe_sim(input bit clk,
 
 	    $fwrite(dumpLogFD, "D %03o: %05o %05o %05o\n", adr, even, odd, common);
 
-	    // Set IR to address this DRAM location. 
-	    // For non-I/O instructions just use adr[0:8] as IR[0:8].
-	    if ((adr & 'o700) == 0)
-	      ir = {k[0:8], 4'o0};
-	    else begin
-	      // For I/O instructions (where adr[0:2] == 7), spread
-	      // the octal digits of the address across the 13 bits of
-	      // opcode[0:2] and device[3:9] and operation[10:12].
-	      //
-	      // The middle digit, adr[3:5], selects the device
-	      // (000-030 => 0..6) and 7 for all others, placed in
-	      // ir[3:9].
-	      //
-	      // The least significant adr[6:8] digit selects the
-	      // operation: BLKI=0, DATAI=1, BLKO=2, DATAO=3, CONO=4,
-	      // CONI=5, CONSZ=6, CONSO=7, placed in ir[10:12].
-	      ir[0:2] = k[0:2];
-	      ir[3:9] = {4'o0, k[3:5]};
-	      ir[10:12] = adr[6:8];
-	    end
-
-	    setDRAMDiagAddress(ir);
-
 /*
 MICRO FORMAT
 FOR WDRAM
@@ -520,25 +493,6 @@ FOR WDRAM
     $fclose(fd);
     $fclose(dumpLogFD);
   endtask // KLLoadRAMs
-
-
-  ////////////////////////////////////////////////////////////////
-  // This loads the DRAM address to read or write with diagnostic
-  // operations. Essentially it loads the address into IR[00:12] by
-  // shoving it into AD[00:12] with `diagfLOAD_AR` and then using
-  // `diagfIRLTCH` to load that into IR.
-  task automatic setDRAMDiagAddress(input bit[0:12] a);
-    doDiagWrite(diagfLOAD_AR, {a, 23'o0}); // Set address into AR[00:12] (opcode,AC fields)
-    doDiagFunc(diagfIRLTCH);	      // Unlatch IR and load it from AD to address DRAM
-  endtask // setDRAMDiagAddress
-
-
-  ////////////////////////////////////////////////////////////////
-  // Set the address to diagnostic read or write CRA and CRM.
-  task automatic setCRAMDiagAddress(tCRAMAddress addr);
-    doDiagWrite(diagfCRAM_DIAG_ADR_RH, {addr[05:10], 30'o0}); // CRAM address[05:10]
-    doDiagWrite(diagfCRAM_DIAG_ADR_LH, {1'o0, addr[00:04], 30'o0}); // CRAM address[00:04]
-  endtask // setCRAMDiagAddress
 
 
   task automatic waitEBOX();
