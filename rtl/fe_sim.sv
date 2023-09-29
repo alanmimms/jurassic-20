@@ -357,8 +357,7 @@ module fe_sim(input bit clk,
 		       majver, minver, edit);
 	    end
 
-	    setCRAMDiagAddress(11'(adr));
-	    writeCRAM();
+	    writeCRAM(cw, tCRAMAddress'(adr));
 	    ++adr;
 	  end
 	end
@@ -532,100 +531,8 @@ FOR WDRAM
 
 
   ////////////////////////////////////////////////////////////////
-  task automatic TestCRAM();
-    bit doAllCRAMAddrs = 0;
-    bit doAllCRAMData = 0;
-    bit doOneHotCRAM80_85 = 0;
-    bit doOneHotCRAMAll = 0;
-    W36 readResult;
-
-    $display($time, " TestCRAM() START");
-    doDiagFunc(diagfSTART_CLOCK); // START THE CLOCK.
-
-    // We have to write the AR register so its parity is correct to
-    // avoid getting wrongheaded parity errors.
-    doDiagWrite(diagfLOAD_AR, '0);
-
-    // Just walk address lines for verification.
-    for (bit [0:10] k = 1; doAllCRAMAddrs && k != 0; k <<= 1) setCRAMDiagAddress(k);
-
-    // Walk bit lines to write and read back from CRM.
-    setCRAMDiagAddress(11'o123);
-    for (W36 k = 1; doAllCRAMData && k != 0; k <<= 1) begin
-      waitEBOX();
-      doDiagWrite(diagfCRAM_WRITE_00_19, k);
-      waitEBOX();
-      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
-      waitEBOX();
-      doDiagRead(diagfCRAM_READ_00_19, readResult);
-      {readResult[00:07],
-       readResult[12:13],
-       readResult[18:19],
-       readResult[24:25],
-       readResult[30:31]} = 0;
-      cw[00:03] = readResult[08:11];
-      cw[04:07] = readResult[14:17];
-      cw[08:11] = readResult[20:23];
-      cw[12:15] = readResult[26:29];
-      cw[16:19] = readResult[32:35];
-      $display("CRAM 0123: write %o, read back %o", k, readResult);
-    end
-
-    // Just write one-hot bit values to CRAM[80:85] at address=000 in
-    // succession, reading each back.
-    if (doOneHotCRAM80_85) begin
-      W36 readResult;
-
-      // Set zero as CRAM address to write.
-      setCRAMDiagAddress('0);
-
-      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 35);
-      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-
-      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 34);
-      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-
-      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 33);
-      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-
-      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 32);
-      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-
-      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 31);
-      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-
-      doDiagWrite(diagfCRAM_WRITE_80_85, 36'o1 << 30);
-      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
-      doDiagRead(diagfCRAM_READ_80_85, readResult);
-    end
-
-    doDiagWrite(diagfLOAD_AR, 36'o654321123456); // Change EBUS data lines
-
-    // For now, just load and read back one-hot walking bit pattern
-    // into CRAM to debug write and read.
-    $display("[Load walking one-hot bit pattern into CRAM for testing]");
-    for (bit [0:10] a = 0; doOneHotCRAMAll && a < 86; ++a) begin
-      W36 readResult;
-
-      setCRAMDiagAddress(a);
-      cw = 1 << a;
-      writeCRAM();
-      doDiagWrite(diagfLOAD_AR, 36'o123456654321); // Change EBUS data lines
-      readCRAM();
-    end
-
-    $display($time, " TestCRAM() END");
-  endtask // TestCRAM
-
-
-  ////////////////////////////////////////////////////////////////
   // Set the address to diagnostic read or write CRA and CRM.
-  task automatic setCRAMDiagAddress(bit [0:10] addr);
+  task automatic setCRAMDiagAddress(tCRAMAddress addr);
     doDiagWrite(diagfCRAM_DIAG_ADR_RH, {addr[05:10], 30'o0}); // CRAM address[05:10]
     doDiagWrite(diagfCRAM_DIAG_ADR_LH, {1'o0, addr[00:04], 30'o0}); // CRAM address[00:04]
   endtask // setCRAMDiagAddress
@@ -644,39 +551,119 @@ FOR WDRAM
   // corresponding bits.
   //
   // CRA5 is PDF347. This for the CALL+DISP[0:5] bits.
-  task automatic writeCRAM();
-    W36 w;
+  // CRM52: N=0
+  // CRM50: N=4
+  // CRM44: N=8
+  // CRM42: N=12
+  // CRM40: N=16
+`define putCRM(bitN, slot, a10Chip, notA10Chip)		\
+    if (adr[10] == 0) begin				\
+      kl10pv.slot.notA10Chip.ram[adr[0:9]] = cw[bitN];	\
+    end else begin					\
+      kl10pv.slot.a10Chip.ram[adr[0:9]] = cw[bitN];	\
+    end
 
-    w[08:11] = cw[60:63];
-    w[14:17] = cw[64:67];
-    w[20:23] = cw[68:71];
-    w[26:29] = cw[72:75];
-    w[32:35] = cw[76:79];
-    doDiagWrite(diagfCRAM_WRITE_60_79, w);  // CRM4,5
+  task automatic writeCRAM(tCRAM cw, tCRAMAddress adr);
+    `putCRM(0, 	crm_52, e59, e57)
+    `putCRM(1, 	crm_52, e48, e44)
+    `putCRM(2, 	crm_52,  e4,  e2)
+    `putCRM(3, 	crm_52, e17, e14)
 
-    w[08:11] = cw[40:43];
-    w[14:17] = cw[44:47];
-    w[20:23] = cw[48:51];
-    w[26:29] = cw[52:55];
-    w[32:35] = cw[56:59];
-    doDiagWrite(diagfCRAM_WRITE_40_59, w);  // CRM4,5
+    `putCRM(4, 	crm_50, e59, e57)
+    `putCRM(5, 	crm_50, e48, e44)
+    `putCRM(6, 	crm_50,  e4,  e2)
+    `putCRM(7, 	crm_50, e17, e14)
 
-    w[08:11] = cw[20:23];
-    w[14:17] = cw[24:27];
-    w[20:23] = cw[28:31];
-    w[26:29] = cw[32:35];
-    w[32:35] = cw[36:39];
-    doDiagWrite(diagfCRAM_WRITE_20_39, w);  // CRM4,5
+    `putCRM(8, 	crm_44, e59, e57)
+    `putCRM(9, 	crm_44, e48, e44)
+    `putCRM(10, crm_44,  e4,  e2)
+    `putCRM(11, crm_44, e17, e14)
 
-    w[08:11] = cw[00:03];
-    w[14:17] = cw[04:07];
-    w[20:23] = cw[08:11];
-    w[26:29] = cw[12:15];
-    w[32:35] = cw[16:19];
-    doDiagWrite(diagfCRAM_WRITE_00_19, w);  // CRM4,5
+    `putCRM(12, crm_42, e59, e57)
+    `putCRM(13, crm_42, e48, e44)
+    `putCRM(14, crm_42,  e4,  e2)
+    `putCRM(15, crm_42, e17, e14)
 
-    w[0:5] = cw[80:85];
-    doDiagWrite(diagfCRAM_WRITE_80_85, w); // CRA5
+    `putCRM(16, crm_40, e59, e57)
+    `putCRM(17, crm_40, e48, e44)
+    `putCRM(18, crm_40,  e4,  e2)
+    `putCRM(19, crm_40, e17, e14)
+
+
+    `putCRM(20, crm_52, e55, e51)
+    `putCRM(21, crm_52, e41, e37)
+    `putCRM(22, crm_52, e10,  e7)
+    `putCRM(23, crm_52, e24, e21)
+
+    `putCRM(24, crm_50, e55, e51)
+    `putCRM(25, crm_50, e41, e37)
+    `putCRM(26, crm_50, e10,  e7)
+    `putCRM(27, crm_50, e24, e21)
+
+    `putCRM(28, crm_44, e55, e51)
+    `putCRM(29, crm_44, e41, e37)
+    `putCRM(30, crm_44, e10,  e7)
+    `putCRM(31, crm_44, e24, e21)
+
+    `putCRM(32, crm_42, e55, e51)
+    `putCRM(33, crm_42, e41, e37)
+    `putCRM(34, crm_42, e10,  e7)
+    `putCRM(35, crm_42, e24, e21)
+
+    `putCRM(36, crm_40, e55, e51)
+    `putCRM(37, crm_40, e41, e37)
+    `putCRM(38, crm_40, e10,  e7)
+    `putCRM(39, crm_40, e24, e21)
+
+
+    `putCRM(40, crm_52, e56, e52)
+    `putCRM(41, crm_52, e42, e38)
+    `putCRM(42, crm_52, e11,  e8)
+    `putCRM(43, crm_52, e25, e22)
+
+    `putCRM(44, crm_50, e56, e52)
+    `putCRM(45, crm_50, e42, e38)
+    `putCRM(46, crm_50, e11,  e8)
+    `putCRM(47, crm_50, e25, e22)
+
+    `putCRM(48, crm_44, e56, e52)
+    `putCRM(49, crm_44, e42, e38)
+    `putCRM(50, crm_44, e11,  e8)
+    `putCRM(51, crm_44, e25, e22)
+
+    `putCRM(52, crm_42, e56, e52)
+    `putCRM(53, crm_42, e42, e38)
+    `putCRM(54, crm_42, e11,  e8)
+    `putCRM(55, crm_42, e25, e22)
+
+    `putCRM(56, crm_40, e56, e52)
+    `putCRM(57, crm_40, e42, e38)
+    `putCRM(58, crm_40, e11,  e8)
+    `putCRM(59, crm_40, e25, e22)
+
+
+    `putCRM(60, crm_52, e49, e45)
+    `putCRM(62, crm_52, e18, e15)
+
+    `putCRM(64, crm_50, e49, e45)
+    `putCRM(66, crm_50, e18, e15)
+
+    `putCRM(68, crm_44, e49, e45)
+    `putCRM(70, crm_44, e18, e15)
+
+    `putCRM(72, crm_42, e49, e45)
+    `putCRM(74, crm_42, e18, e15)
+
+    `putCRM(76, crm_40, e49, e45)
+    `putCRM(78, crm_40, e18, e15)
+
+    // CRA for the last six bits
+    `putCRM(80, cra_45,  e9,  e4)
+    `putCRM(81, cra_45, e29, e24)
+    `putCRM(82, cra_45, e14, e19)
+    `putCRM(83, cra_45, e25, e30)
+    `putCRM(84, cra_45, e10,  e5)
+    `putCRM(85, cra_45, e15, e20)
   endtask // writeCRAM
 
 
