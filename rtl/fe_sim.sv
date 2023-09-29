@@ -3,6 +3,8 @@
 `include "kl10pv.svh"
 `include "dte.svh"
 
+typedef bit [0:7] tDRAMAddress;
+
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
 	      inout 	 iEBUS ebus,
@@ -556,115 +558,77 @@ FOR WDRAM
   // CRM44: N=8
   // CRM42: N=12
   // CRM40: N=16
-`define putCRM(bitN, slot, a10Chip, notA10Chip)		\
-    if (adr[10] == 0) begin				\
-      kl10pv.slot.notA10Chip.ram[adr[0:9]] = cw[bitN];	\
-    end else begin					\
-      kl10pv.slot.a10Chip.ram[adr[0:9]] = cw[bitN];	\
-    end
-
   task automatic writeCRAM(tCRAM cw, tCRAMAddress adr);
-    `putCRM(0, 	crm_52, e59, e57)
-    `putCRM(1, 	crm_52, e48, e44)
-    `putCRM(2, 	crm_52,  e4,  e2)
-    `putCRM(3, 	crm_52, e17, e14)
 
-    `putCRM(4, 	crm_50, e59, e57)
-    `putCRM(5, 	crm_50, e48, e44)
-    `putCRM(6, 	crm_50,  e4,  e2)
-    `putCRM(7, 	crm_50, e17, e14)
+    `define putCRM1(bitN, slot, a0, a1)			\
+	if (adr[10] == 0)				\
+	  kl10pv.slot.a0.ram[adr[0:9]] = cw[bitN+0];	\
+	else						\
+	  kl10pv.slot.a1.ram[adr[0:9]] = cw[bitN+0];
 
-    `putCRM(8, 	crm_44, e59, e57)
-    `putCRM(9, 	crm_44, e48, e44)
-    `putCRM(10, crm_44,  e4,  e2)
-    `putCRM(11, crm_44, e17, e14)
+    `define putCRM2(bitN, slot, a0, a1, b0, b1)	\
+      `putCRM1(bitN, slot, a0, a1)		\
+      `putCRM1(bitN, slot, b0, b1)
 
-    `putCRM(12, crm_42, e59, e57)
-    `putCRM(13, crm_42, e48, e44)
-    `putCRM(14, crm_42,  e4,  e2)
-    `putCRM(15, crm_42, e17, e14)
+    `define putCRM4(bitN, slot, a0, a1, b0, b1, c0, c1, d0, d1)	\
+      `putCRM2(bitN, slot, a0, a1, b0, b1)			\
+      `putCRM2(bitN, slot, c0, c1, d0, d1)
+    
+    `define putCRM20(bitN, a0, a1, b0, b1, c0, c1, d0, d1)	\
+      `putCRM4(bitN+0,  crm_52, a0, a1, b0, b1, c0, c1, d0, d1)	\
+      `putCRM4(bitN+4,  crm_50, a0, a1, b0, b1, c0, c1, d0, d1)	\
+      `putCRM4(bitN+8,  crm_44, a0, a1, b0, b1, c0, c1, d0, d1)	\
+      `putCRM4(bitN+12, crm_42, a0, a1, b0, b1, c0, c1, d0, d1)	\
+      `putCRM4(bitN+16, crm_40, a0, a1, b0, b1, c0, c1, d0, d1)
 
-    `putCRM(16, crm_40, e59, e57)
-    `putCRM(17, crm_40, e48, e44)
-    `putCRM(18, crm_40,  e4,  e2)
-    `putCRM(19, crm_40, e17, e14)
+    `putCRM20(0,  e59, e57, e48, e44,  e4,  e2, e17, e14)
+    `putCRM20(20, e55, e51, e41, e37, e10,  e7, e24, e21)
+    `putCRM20(40, e56, e52, e42, e38, e11,  e8, e25, e22)
 
-
-    `putCRM(20, crm_52, e55, e51)
-    `putCRM(21, crm_52, e41, e37)
-    `putCRM(22, crm_52, e10,  e7)
-    `putCRM(23, crm_52, e24, e21)
-
-    `putCRM(24, crm_50, e55, e51)
-    `putCRM(25, crm_50, e41, e37)
-    `putCRM(26, crm_50, e10,  e7)
-    `putCRM(27, crm_50, e24, e21)
-
-    `putCRM(28, crm_44, e55, e51)
-    `putCRM(29, crm_44, e41, e37)
-    `putCRM(30, crm_44, e10,  e7)
-    `putCRM(31, crm_44, e24, e21)
-
-    `putCRM(32, crm_42, e55, e51)
-    `putCRM(33, crm_42, e41, e37)
-    `putCRM(34, crm_42, e10,  e7)
-    `putCRM(35, crm_42, e24, e21)
-
-    `putCRM(36, crm_40, e55, e51)
-    `putCRM(37, crm_40, e41, e37)
-    `putCRM(38, crm_40, e10,  e7)
-    `putCRM(39, crm_40, e24, e21)
-
-
-    `putCRM(40, crm_52, e56, e52)
-    `putCRM(41, crm_52, e42, e38)
-    `putCRM(42, crm_52, e11,  e8)
-    `putCRM(43, crm_52, e25, e22)
-
-    `putCRM(44, crm_50, e56, e52)
-    `putCRM(45, crm_50, e42, e38)
-    `putCRM(46, crm_50, e11,  e8)
-    `putCRM(47, crm_50, e25, e22)
-
-    `putCRM(48, crm_44, e56, e52)
-    `putCRM(49, crm_44, e42, e38)
-    `putCRM(50, crm_44, e11,  e8)
-    `putCRM(51, crm_44, e25, e22)
-
-    `putCRM(52, crm_42, e56, e52)
-    `putCRM(53, crm_42, e42, e38)
-    `putCRM(54, crm_42, e11,  e8)
-    `putCRM(55, crm_42, e25, e22)
-
-    `putCRM(56, crm_40, e56, e52)
-    `putCRM(57, crm_40, e42, e38)
-    `putCRM(58, crm_40, e11,  e8)
-    `putCRM(59, crm_40, e25, e22)
-
-
-    `putCRM(60, crm_52, e49, e45)
-    `putCRM(62, crm_52, e18, e15)
-
-    `putCRM(64, crm_50, e49, e45)
-    `putCRM(66, crm_50, e18, e15)
-
-    `putCRM(68, crm_44, e49, e45)
-    `putCRM(70, crm_44, e18, e15)
-
-    `putCRM(72, crm_42, e49, e45)
-    `putCRM(74, crm_42, e18, e15)
-
-    `putCRM(76, crm_40, e49, e45)
-    `putCRM(78, crm_40, e18, e15)
+    `putCRM2(60, crm_52, e49, e45, e18, e15)
+    `putCRM2(64, crm_50, e49, e45, e18, e15)
+    `putCRM2(68, crm_44, e49, e45, e18, e15)
+    `putCRM2(72, crm_42, e49, e45, e18, e15)
+    `putCRM2(76, crm_40, e49, e45, e18, e15)
 
     // CRA for the last six bits
-    `putCRM(80, cra_45,  e9,  e4)
-    `putCRM(81, cra_45, e29, e24)
-    `putCRM(82, cra_45, e14, e19)
-    `putCRM(83, cra_45, e25, e30)
-    `putCRM(84, cra_45, e10,  e5)
-    `putCRM(85, cra_45, e15, e20)
+    `putCRM1(80, cra_45,  e9,  e4)
+    `putCRM1(81, cra_45, e29, e24)
+    `putCRM1(82, cra_45, e14, e19)
+    `putCRM1(83, cra_45, e25, e30)
+    `putCRM1(84, cra_45, e10,  e5)
+    `putCRM1(85, cra_45, e15, e20)
   endtask // writeCRAM
+
+
+  ////////////////////////////////////////////////////////////////
+  // Write specified DRAM word (even, odd, and common bits) to specified DRAM
+  // address.  Composed while looking at klinit.l20 $WDRAM and various other
+  // sources.  ICD2 is PDF129.
+  task automatic writeDRAM(tDRAMAddress adr, W16 e, W16 o, W16 c);
+
+    `define putDRAMEOBit(ADR, EE, EO, BE, BO)	\
+      kl10pv.ird_48.EE.ram[ADR] = BE;		\
+      kl10pv.ird_48.EO.ram[ADR] = BO;
+     
+    `putDRAMEOBit(adr,  e4,  e9, e[13], o[13])
+    `putDRAMEOBit(adr, e42, e47, e[12], o[12])
+    `putDRAMEOBit(adr, e14, e19, e[11], o[11])
+    `putDRAMEOBit(adr, e24, e29, e[10], o[10])
+    `putDRAMEOBit(adr, e34, e37, e[9], o[9])
+    `putDRAMEOBit(adr, e43, e48, e[8], o[8])
+
+    `putDRAMEOBit(adr, e25, e30, e[2], o[2])
+    `putDRAMEOBit(adr, e35, e38, e[1], o[1])
+    `putDRAMEOBit(adr, e53, e58, e[0], o[0])
+    `putDRAMEOBit(adr,  e3,  e8, e[5], o[5])
+
+    kl10pv.ird_48.e20.ram[adr] = o[3];
+    kl10pv.ird_48.e13.ram[adr] = c[3];
+    kl10pv.ird_48.e18.ram[adr] = c[2];
+    kl10pv.ird_48.e28.ram[adr] = c[1];
+    kl10pv.ird_48.e23.ram[adr] = c[0];
+  endtask // writeDRAM
 
 
   // From `klinit.l20` routine `RDMCV`:
