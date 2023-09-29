@@ -60,3 +60,5 @@ gmon.out
 .compile.build
 cram.mem
 dram.mem
+images/CRAM.mem
+images/DRAM.mem
