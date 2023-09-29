@@ -14,22 +14,21 @@ module fe_sim(input bit clk,
 	      output bit crobar_e_h,
 	      output bit con_cono_200000_h);
 
-  string 		 indent = "";
-
-  int 			 dumpLogFD;
+  string indent = "";
+  int dumpLogFD;
 
   tCRAM cw;
   tCRAM cram136;
   tCRAM cram137;
 
-  bit 			 a_change_coming, a_change_coming_in;
+  bit a_change_coming, a_change_coming_in;
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
   always_comb a_change_coming_in = !a_change_coming_in_l;
 
   // The DRAM ("DISPATCH RAM" - not "DYNAMIC RAM") addressing
   // architecture in the KL10 is arse -- a bridge too far. Even the
-  // microcode guys made fun of the choice as is evidenced by this quip
-  // from the microcode listing:
+  // microcode guys made fun of the choice as is evidenced by this
+  // quip from the microcode listing:
   //
   //     The J field is the starting location of the microroutine to
   //     execute the instruction.  Note that the 40 and 20 bits must
@@ -220,6 +219,11 @@ module fe_sim(input bit clk,
     repeat (10) @(negedge clk);
     KLMasterReset();
     KLSoftReset();
+
+    // Go fer it.
+    doDiagFunc(diagfSTART_CLOCK);
+    doDiagFunc(diagfSET_RUN);
+    doDiagFunc(diagfCONTINUE);
   end
 
 
@@ -289,8 +293,6 @@ module fe_sim(input bit clk,
     int fd;
     string line, recType, rec;
     string words[$];
-    W16 adr, count, cksum;
-    W16 lastAdr = 0;
 
     $display("[Reading KLX.RAM to load CRAM and DRAM]");
 
@@ -312,15 +314,16 @@ module fe_sim(input bit clk,
 
       case (recType)
       "Z": begin  		// Zero a range
-	adr = unASCIIize(words[1]);
-	cksum = unASCIIize(words[2]);
-	count = unASCIIize(words[3]);
+	W16 adr = unASCIIize(words[1]);
+	W16 cksum = unASCIIize(words[2]);
+	W16 count = unASCIIize(words[3]);
 	$display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
       end
 
       "C": begin		// CRAM record
-	count = unASCIIize(words[0]);
-	adr = unASCIIize(words[1]);
+	W16 count = unASCIIize(words[0]);
+	W16 adr = unASCIIize(words[1]);
+	W16 lastAdr = 0;
 
 	if (count == 0 && adr == 0) begin
 	  lastAdr = 0;
@@ -364,8 +367,10 @@ module fe_sim(input bit clk,
       end
 
       "D": begin		// DRAM record
-	count = unASCIIize(words[0]);
-	adr = unASCIIize(words[1]);
+	W16 count = unASCIIize(words[0]);
+	W16 adr16 = unASCIIize(words[1]);
+	tDRAMAddress adr = adr16[7:0];
+	tDRAMAddress lastAdr = 0;
 
 	if (count == 0 && adr == 0) begin
 	  //	    $display("DRAM EOF");
@@ -431,13 +436,11 @@ module fe_sim(input bit clk,
 	  // the microcode assembly process.
 
 	  for (int k = 2; k < count; ) begin
-	    W36 even, odd, common;
-	    bit [0:12] ir;
-	    bit eParity, oParity;
+ 	    W16 even, odd, common;
 
-	    even   = 36'(unASCIIize(words[k++]));
-	    odd    = 36'(unASCIIize(words[k++]));
-	    common = 36'(unASCIIize(words[k++]));
+	    even   = unASCIIize(words[k++]);
+	    odd    = unASCIIize(words[k++]);
+	    common = unASCIIize(words[k++]);
 
 	    $fwrite(dumpLogFD, "D %03o: %05o %05o %05o\n", adr, even, odd, common);
 
@@ -467,14 +470,7 @@ FOR WDRAM
 	      J5 & J6 DO NOT EXIST
 
 */
-
-	    doDiagWrite(diagfLDRAM1, W36'(even) << 18);	  // DRAM A00-02, B00-02 even
-	    doDiagWrite(diagfLDRAM2, W36'(odd) << 18);	  // DRAM A00-02, B00-02 odd
-	    doDiagWrite(diagfLDRAM3, W36'(common) << 18); // J01-04
-
-	    doDiagWrite(diagfLDRJEV, W36'(even) << 18);	  // J07-10 even
-	    doDiagWrite(diagfLDRJOD, W36'(odd) << 18);	  // J07-10 odd
-
+	    writeDRAM(adr, even, odd, common);
 	    adr = adr + 2;
 	  end
 
