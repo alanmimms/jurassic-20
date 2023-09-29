@@ -3,7 +3,7 @@ module mc10415a(input bit a0, a1, a2, a3, a4, a5, a6, a7, a8, a9,
 		output bit q);
 
   bit ram[1023:0];
-  bit [9:0] addr;
+  bit [0:9] addr;
   bit cs, we;
 
   always_comb cs = !nen;
