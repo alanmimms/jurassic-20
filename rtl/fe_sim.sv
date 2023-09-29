@@ -205,6 +205,10 @@ module fe_sim(input bit clk,
   // 	REPRESENTED IN 16 BIT FORMAT.
   //
 
+  initial begin			// Load CRAM and DRAM before start of simulation
+    KLLoadRAMs();
+  end
+  
   initial begin
     crobar_e_h = '1;
     repeat (100) @(negedge clk);
@@ -220,8 +224,6 @@ module fe_sim(input bit clk,
     KLMasterReset();
 
     KLSoftReset();
-//    TestCRAM();
-    KLLoadRAMs();
   end
 
 
@@ -516,7 +518,6 @@ FOR WDRAM
     end
 
     $fclose(fd);
-    $display("CRAM version: %s - as read back from CRAM", getCRAMVersionString());
     $fclose(dumpLogFD);
   endtask // KLLoadRAMs
 
@@ -629,35 +630,6 @@ FOR WDRAM
     kl10pv.ird_48.e28.ram[adr] = c[1];
     kl10pv.ird_48.e23.ram[adr] = c[0];
   endtask // writeDRAM
-
-
-  // From `klinit.l20` routine `RDMCV`:
-  // MAJOR VERSION IS IN BITS 29-31 33-35 OF CRAM ADDRESS 136
-  // SUB-VERSION IS IN BITS 37-39 OF CRAM ADDRESS 136
-  // EDIT LEVEL IS IN BITS 29-31 33-35 37-39 OF CRAM ADDRESS 137
-  function automatic string getCRAMVersionString();
-    bit [0:5] 	majver;
-    bit [0:2] 	minver;
-    bit [0:8] 	edit;
-    string 	majS, minS, editS;
-
-    setCRAMDiagAddress('o136);
-    readCRAM();
-    majver = {cw[29:31], cw[33:35]};
-    minver = cw[37:39];
-    $display("136: cw=%o majver=%o minver=%o", cw, majver, minver);
-
-    setCRAMDiagAddress('o137);
-    readCRAM();
-    edit = {cw[29:31], cw[33:35], cw[37:39]};
-    $display("137: cw=%o edit=%o", cw, edit);
-
-    majS.octtoa(majver);
-    minS.octtoa(minver);
-    editS.octtoa(edit);
-
-    return {majS, ".", minS, "(", editS, ")"};
-  endfunction // getCRAMVersion
 
 
   ////////////////////////////////////////////////////////////////
