@@ -15,7 +15,7 @@ module fe_sim(input bit clk,
 	      output bit con_cono_200000_h);
 
   string indent = "";
-  int dumpLogFD;
+  int dumpFD;
 
   tCRAM cw;
   tCRAM cram136;
@@ -205,7 +205,7 @@ module fe_sim(input bit clk,
   //
 
   initial begin			// Load CRAM and DRAM before start of simulation
-    dumpLogFD = $fopen("dump.log", "w");
+    dumpFD = $fopen("dump.log", "w");
     KLLoadRAMs();
   end
   
@@ -343,7 +343,7 @@ module fe_sim(input bit clk,
 	    cw[16:31] = unASCIIize(words[k++]);
 	    cw[00:15] = unASCIIize(words[k++]);
 	    cw[80:85] =  6'(unASCIIize(words[k++]));
-	    $fwrite(dumpLogFD, "C %04o: %030o\n", adr, cw);
+	    $fwrite(dumpFD, "C %04o: J/%o, AD/%o\n", adr, cw[5:15], {cw[24],cw[20:23]});
 
 	    if (adr == 16'o136) begin
 	      cram136 = cw;
@@ -442,7 +442,7 @@ module fe_sim(input bit clk,
 	    odd    = unASCIIize(words[k++]);
 	    common = unASCIIize(words[k++]);
 
-	    $fwrite(dumpLogFD, "D %03o: %05o %05o %05o\n", adr, even, odd, common);
+	    $fwrite(dumpFD, "D %03o: %05o %05o %05o\n", adr, even, odd, common);
 
 /*
 MICRO FORMAT
@@ -487,7 +487,7 @@ FOR WDRAM
     end
 
     $fclose(fd);
-    $fclose(dumpLogFD);
+    $fclose(dumpFD);
   endtask // KLLoadRAMs
 
 
@@ -511,26 +511,26 @@ FOR WDRAM
   // CRM40: N=16
   task automatic writeCRAM(tCRAM cw, tCRAMAddress adr);
 
-    `define putCRM1(bitN, slot, a0, a1)			\
-	if (adr[10] != 0)				\
-	  kl10pv.slot.a0.ram[adr[0:9]] = cw[bitN];	\
-	else						\
-	  kl10pv.slot.a1.ram[adr[0:9]] = cw[bitN];
+    `define putCRM1(N, slot, a0, b0)		\
+	if (adr[10] != 0)			\
+	  kl10pv.slot.a0.ram[adr[0:9]] = cw[N];	\
+	else					\
+	  kl10pv.slot.b0.ram[adr[0:9]] = cw[N];
 
-    `define putCRM2(bitN, slot, a0, a1, b0, b1)	\
-      `putCRM1(bitN+0, slot, a0, a1)		\
-      `putCRM1(bitN+1, slot, b0, b1)
+    `define putCRM2(N, slot, a0, b0, a1, b1)	\
+      `putCRM1(N+0, slot, a0, b0)		\
+      `putCRM1(N+1, slot, a1, b1)
 
-    `define putCRM4(bitN, slot, a0, a1, b0, b1, c0, c1, d0, d1)	\
-      `putCRM2(bitN+0, slot, a0, a1, b0, b1)			\
-      `putCRM2(bitN+2, slot, c0, c1, d0, d1)
+    `define putCRM4(N, slot, a0, b0, a1, b1, a2, b2, a3, b3)	\
+      `putCRM2(N+0, slot, a0, b0, a1, b1)			\
+      `putCRM2(N+2, slot, a2, b2, a3, b3)
     
-    `define putCRM20(bitN, a0, a1, b0, b1, c0, c1, d0, d1)	\
-      `putCRM4(bitN+0,  crm_52, a0, a1, b0, b1, c0, c1, d0, d1)	\
-      `putCRM4(bitN+4,  crm_50, a0, a1, b0, b1, c0, c1, d0, d1)	\
-      `putCRM4(bitN+8,  crm_44, a0, a1, b0, b1, c0, c1, d0, d1)	\
-      `putCRM4(bitN+12, crm_42, a0, a1, b0, b1, c0, c1, d0, d1)	\
-      `putCRM4(bitN+16, crm_40, a0, a1, b0, b1, c0, c1, d0, d1)
+    `define putCRM20(N, a0, b0, a1, b1, a2, b2, a3, b3)		\
+      `putCRM4(N+0,  crm_52, a0, b0, a1, b1, a2, b2, a3, b3)	\
+      `putCRM4(N+4,  crm_50, a0, b0, a1, b1, a2, b2, a3, b3)	\
+      `putCRM4(N+8,  crm_44, a0, b0, a1, b1, a2, b2, a3, b3)	\
+      `putCRM4(N+12, crm_42, a0, b0, a1, b1, a2, b2, a3, b3)	\
+      `putCRM4(N+16, crm_40, a0, b0, a1, b1, a2, b2, a3, b3)
 
     `putCRM20(0,  e59, e57, e48, e44,  e4,  e2, e17, e14)
     `putCRM20(20, e55, e51, e41, e37, e10,  e7, e24, e21)
