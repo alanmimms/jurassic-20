@@ -64,25 +64,10 @@ function parseBackplanes(parser) {
       const board = parseFile(parser, boardPath);
       bp.boards[id] = board;
 
-      // This is `board` data structure:
-      //
-      // * wires[${chipName}.${dir}.${pinNumber}]
-      //   * pinNumber
-      //   * dir
-      //   * bpPin
-      //   * net (local net name without macro expansion)
-      //   * netAST (tree of macros to be expanded for slot-specific gNet name)
-      //   * pdfRef
-      //
-      // * bpPins[${bpPin}][${chipName}.${dir}.${pinNumber}]
-      //   * wires[] reference
-
       if (options.dumpWires) fs.writeFileSync(`${id}.wires`, dumpThing(board.wires))
-
-      // Build `board.nets` indexed by canonicalized, verilogified network name:
-
       if (options.dumpNets) fs.writeFileSync(`${id}.nets`, dumpThing(board.nets, '%NC%'))
 
+      // Build `board.nets` indexed by canonicalized, verilogified network name:
       if (board.bpPins && options.dumpPins) {
 	fs.writeFileSync(`${id}.bp-pins`,
 			 Object.keys(board.bpPins)
@@ -110,6 +95,7 @@ function bindSlots(bp, cramDefs) {
   const bpMacroEnv = {};
   (bp.macros || []).forEach(macro => bpMacroEnv[macro.id] = macro.value);
 
+  bp.cramDefs = cramDefs;
   bp.vNetToPins = {};
 
   console.log(`Backplane ${bp.name}:`);
@@ -206,21 +192,20 @@ ERROR: Not all nets on ${id}.${bpp} are the same net:
 	const cd = cramDefs.bp[cramPinName];
 
 	if (cd) {
-	  const gNet = cd.net;
-
 	  const sv = {
-	    gNet,
-	    vNet: verilogify(gNet),
-	    pinNets: null,
+	    gNet: cd.net,
+	    vNet: verilogify(cd.net),
+	    pinNets: {},
 	    dirs: ['D'],
 	    bpp,
 	  };
 
+	  console.log(`sv`, sv);
+	  slot.bpPins[bpp] = sv;
 	  addSlotVNet(bp, sv, slotNumber, `cram.${id}`);
 	} else {
 	  const gNet = gNets[0];
 	  const vNet = verilogify(gNet);
-
 	  slot.bpPins[bpp] = { gNet, vNet, pinNets, dirs, bpp, };
 	  addSlotVNet(bp, slot.bpPins[bpp], slotNumber, `${slotNumber}.${id}`);
 	}
@@ -581,28 +566,26 @@ function genSV(bp) {
     .filter(s => s.module.id !== 'ignore')
     .forEach(slot => {
       const modName = modNameForSlot(slot);
-      const modPins = {};
 
       // Build modPins list.
-      Object.keys(slot.bpPins)
+      const modPins = Object.keys(slot.bpPins)
 	.filter(bpp => slot.bpPins[bpp].gNet !== '%NC%')
 	.sort((a, b) => {
 	  const aSym = slot.bpPins[a].vNet;
 	  const bSym = slot.bpPins[b].vNet;
 	  return aSym < bSym ? -1 : aSym > bSym ? +1 : 0;
 	})
-	.forEach(bpPin => {
+	.reduce((cur, bpPin) => {
 	  const p = slot.bpPins[bpPin];
 	  const dir = vDirForNets(Object.values(p.pinNets));
-
-	  if (!modPins[p.vNet]) modPins[p.vNet] = [];
-	  modPins[p.vNet].push({vNet: p.vNet, bpPin, dir});
-	});
+	  cur[bpPin] = {vNet: p.vNet, bpPin, dir};
+	  return cur;
+	}, {});
 
       const modParams = Object.values(modPins)
-	    .sort(vSort)
+//	    .sort(vSort)
 	    .map(v => `\
-    ${v[0].dir.padEnd(6)} ${v[0].vNet.padEnd(30)}    /* <${v.map(p => p.bpPin).join('><')}> */`)
+    ${v.dir.padEnd(6)} ${v.vNet}`)
 	.join(',\n  ');
 
       const macros = genSlotMacros(bp, slot, modName);
@@ -642,9 +625,25 @@ function genSlotMacros(bp, slot, modName) {
 
 
 function genBackplaneSV(bp) {
-  fs.writeFileSync(`./rtl/gen/kl-backplane.svh`, `\
-// Define each net in the backplane.
-${Object.keys(bp.vNetToPins).filter(n => n !== '%NC%').sort().map(n => `  bit ${untickify(n)};`).join('\n')}
+  // Define each net in the backplane.
+  const decls = Object.keys(bp.vNetToPins)
+	.filter(n => n !== '%NC%')
+	.sort()
+	.map(n => `  bit ${untickify(n)};`)
+	.join('\n');
+
+  // Alias real CRAM signal names to CRAM bit number signal names.
+  const cramAliases = Object.values(bp.cramDefs.bp)
+	.map(cram => {
+	  const cramVSig = verilogify(cram.net);
+	  const bitN = cram.bit.toString(10).padStart(2, '0');
+	  return `always_comb ${cramVSig} = cram_${bitN}_h;`;
+	})
+	.join('\n');
+  
+  fs.writeFileSync(`./rtl/gen/kl-backplane.svh`, `
+${decls}
+${cramAliases}
 `);
 }
 
@@ -744,7 +743,7 @@ bit ${drivers.join(', ')};
 
 
 function isTicked(s) {
-  if (!s.slice) return false;
+  if (!s || !s.slice) return false;
   return s.slice(0, 1) === '`';
 }
 
@@ -823,7 +822,7 @@ function readCRAMBackplane(fn) {
       }
 
       if (cram.nets[net]) console.error(`${fn} defines net '${net}' more than once`);
-      cram.bp[srcPin] = {net, srcPin, bpp: bpPinName, slot, ucBit};
+      cram.bp[srcPin] = {net, srcPin, bpp: bpPinName, slot, bit};
       if (!cram.slot[slot]) cram.slot[slot] = {};
       cram.slot[slot][srcPin] = cram.bp[srcPin];
       cram.nets[net] = cram.bp[srcPin];
