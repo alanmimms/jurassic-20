@@ -422,7 +422,7 @@ e48:  10415a 1kx1 RAM
       14 ~< -cr01 adr 10 a l
       13 ~< cr02 write (00-19) l
       15 ~< cr02 ebus [m+03] h
-      1 ~> cr04 out [n+00] h
+      1 ~> cr04 out [n+01] h
 
 e44:  10415a 1kx1 RAM
       2 ~< cr01 adr 00 a l
