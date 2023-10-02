@@ -512,7 +512,7 @@ FOR WDRAM
   task automatic writeCRAM(tCRAM cw, tCRAMAddress adr);
 
     `define putCRM1(N, slot, a0, b0)		\
-	if (adr[10] != 0)			\
+	if (adr[10] == 0)			\
 	  kl10pv.slot.a0.ram[adr[0:9]] = cw[N];	\
 	else					\
 	  kl10pv.slot.b0.ram[adr[0:9]] = cw[N];
