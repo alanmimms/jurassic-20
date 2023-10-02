@@ -4,8 +4,6 @@
 // peripherals, and power system.
 module kl10pv(input clk60);
 
-`include "kl-backplane.svh"
-
   tEBUSdriver aprEBUSdriver, cclEBUSdriver, ccwEBUSdriver, chcEBUSdriver, chxEBUSdriver;
   tEBUSdriver clkEBUSdriver, conEBUSdriver, craEBUSdriver;
   tEBUSdriver crm40EBUSdriver, crm42EBUSdriver, crm44EBUSdriver, crm50EBUSdriver, crm52EBUSdriver;
@@ -16,7 +14,13 @@ module kl10pv(input clk60);
   tEBUSdriver vmaEBUSdriver;
   tEBUSdriver feEBUSdriver;
 
+`include "kl-backplane.svh"
+
   assign clk = clk60;
+
+  // On a real KL10 this is a wire that traverses the width of the
+  // backplane to provide delay equivalent to that experienced by the
+  // worst case backplane slot.
   always_comb clk1_clk_h = clk1_clk_out_h;
 
   iEBUS ebus();
