@@ -220,9 +220,9 @@ module fe_sim(input bit clk,
     KLMasterReset();
     KLSoftReset();
 
-    // Go fer it.
+    // Start CPU in microcode halt loop.
+    doDiagFunc(diagfCLR_RUN);
     doDiagFunc(diagfSTART_CLOCK);
-    doDiagFunc(diagfSET_RUN);
     doDiagFunc(diagfCONTINUE);
   end
 
