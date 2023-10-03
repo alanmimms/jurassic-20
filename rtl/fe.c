@@ -156,8 +156,8 @@ if (pipeVerbose) printf(__VA_ARGS__); \
 if (pipeVerbose) printf(__VA_ARGS__); \
 } while (0)
 
-#define FELOG(FMT, ...) do {                                 \
-    if (feVerbose) printf("%6lld:   " FMT, nextReqTicks __VA_OPT__(,) __VA_ARGS__);   \
+#define FELOG(...) do {			\
+    if (feVerbose) printf(__VA_ARGS__);   \
 } while (0)
 
 #define REGLOG(...) do {             \

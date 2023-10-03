@@ -343,7 +343,7 @@ module fe_sim(input bit clk,
 	    cw[16:31] = unASCIIize(words[k++]);
 	    cw[00:15] = unASCIIize(words[k++]);
 	    cw[80:85] =  6'(unASCIIize(words[k++]));
-	    $fwrite(dumpFD, "C %04o: J/%o, AD/%o\n", adr, cw[5:15], {cw[24],cw[20:23]});
+	    $fwrite(dumpFD, "C %04o: %o  J/%o, AD/%o\n", adr, cw, cw[5:15], {cw[24],cw[20:23]});
 
 	    if (adr == 16'o136) begin
 	      cram136 = cw;
