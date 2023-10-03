@@ -9,8 +9,6 @@ MODULES = \
 
 BOARDS = $(foreach M,$(MODULES),board/$(M).board)
 
-IMAGES = $(foreach F,CRAM.mem DRAM.mem,images/$F)
-
 RTLDIR = ./rtl
 GENRTLDIR = $(RTLDIR)/gen
 RTLOBJDIR = ./rtl/obj_dir
@@ -26,15 +24,14 @@ $(TOPEXE):
 cram-backplane.csv: cram-backplane.ods
 	libreoffice --convert-to csv $<
 
-$(IMAGES) .compile.build:	kl10pv.backplane netlist.pegjs \
-				compile compile.js logic.js \
-				cram-backplane.csv $(BOARDS)
-	./compile -g -C images/CRAM.mem -D images/DRAM.mem
+.compile.build:	kl10pv.backplane netlist.pegjs \
+		compile compile.js logic.js \
+		cram-backplane.csv $(BOARDS)
+	./compile -g
 	touch $@
 
 clean:
 	@rm -f .compile.build
 	@yarnpkg run clean
 	@rm -f kl10 $(GENRTLDIR)/*
-	@rm -f $(IMAGES)
 	@make -C $(RTLDIR) clean

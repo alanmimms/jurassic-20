@@ -67,7 +67,6 @@ function parseBackplanes(parser) {
       if (options.dumpWires) fs.writeFileSync(`${id}.wires`, dumpThing(board.wires))
       if (options.dumpNets) fs.writeFileSync(`${id}.nets`, dumpThing(board.nets, '%NC%'))
 
-      // Build `board.nets` indexed by canonicalized, verilogified network name:
       if (board.bpPins && options.dumpPins) {
 	fs.writeFileSync(`${id}.bp-pins`,
 			 Object.keys(board.bpPins)
@@ -127,43 +126,6 @@ function bindSlots(bp, cramDefs) {
       slot.chips = {};
       slot.verilogRefNum = 0;
 
-      board.pages
-	.flatMap(page => page.chips)
-	.forEach(chip => {
-
-	  if (chip.nodeType === 'Verilog') {
-	    slot.verilogRefNum = slot.verilogRefNum + 1;
-	    chip.name = `verilog${slot.verilogRefNum}`;
-
-	    slot.chips[chip.name] = {
-	      type: 'verilog',
-	      desc: '',
-	      refDes: chip.name,
-	      verilog: chip.v,
-	      pins: [],
-	    };
-	  } else {
-
-	    slot.chips[chip.name] = {
-	      type: chip.type,
-	      desc: chip.desc,
-	      refDes: chip.name,
-
-	      pins: chip.pins.reduce((cur, pin) => {
-
-		cur[logic.pinToName(chip.type, pin.pin, pin.dir)] =  {
-		  dir: astDirToDir(pin.dir),
-		  net: verilogify(canonicalize(evalExpr(pin.net, macroEnv, true))),
-		  name: chip.name,
-		};
-
-		return cur;
-	      }, {}),
-	    }
-	  };
-	});
-      
-
       // Bind backplane pins to their nets.
       Object.keys(board.bpPins).forEach(bpp => {
 	const pinNets = board.bpPins[bpp];
@@ -190,25 +152,10 @@ ERROR: Not all nets on ${id}.${bpp} are the same net:
 	// E.g., `crm.be2[cpu.44]`
 	const cramPinName = `${id}.${bpp}[${id}.${slotNumber}]`;
 	const cd = cramDefs.bp[cramPinName];
-
-	if (cd) {
-	  const sv = {
-	    gNet: cd.net,
-	    vNet: verilogify(cd.net),
-	    pinNets: {},
-	    dirs: ['D'],
-	    bpp,
-	  };
-
-	  console.log(`sv`, sv);
-	  slot.bpPins[bpp] = sv;
-	  addSlotVNet(bp, sv, slotNumber, `cram.${id}`);
-	} else {
-	  const gNet = gNets[0];
-	  const vNet = verilogify(gNet);
-	  slot.bpPins[bpp] = { gNet, vNet, pinNets, dirs, bpp, };
-	  addSlotVNet(bp, slot.bpPins[bpp], slotNumber, `${slotNumber}.${id}`);
-	}
+	const gNet = cd ? cd.net : gNets[0];
+	const vNet = verilogify(gNet);
+	slot.bpPins[bpp] = { gNet, vNet, pinNets, dirs, bpp, };
+	addSlotVNet(bp, slot.bpPins[bpp], slotNumber, `${slotNumber}.${id}`);
       });
 
       if (options.dumpSlots) {
@@ -222,6 +169,53 @@ ${slotNumber}.${bpp}[${v.dirs}]: ${v.vNet}`;
 			 })
 			 .join('\n') + '\n');
       }
+
+      board.pages
+	.flatMap(page => page.chips) // Collect all the chips on all the pages
+	.forEach(chip => {
+
+	  // Insert hand-coded verilog if present as if it were a "chip".
+	  if (chip.nodeType === 'Verilog') {
+	    slot.verilogRefNum = slot.verilogRefNum + 1;
+	    chip.name = `verilog${slot.verilogRefNum}`;
+
+	    slot.chips[chip.name] = {
+	      type: 'verilog',
+	      desc: '',
+	      refDes: chip.name,
+	      verilog: chip.v,
+	      pins: [],
+	    };
+	  } else {
+
+	    slot.chips[chip.name] = {
+	      type: chip.type,
+	      desc: chip.desc,
+	      refDes: chip.name,
+
+	      pins: chip.pins.reduce((cur, pin) => {
+		let net = null;
+
+		if (pin.bpPin) {
+		  const cramPinName = `${id}.${pin.bpPin}[${id}.${slotNumber}]`;
+		  const cd = cramDefs.bp[cramPinName];
+
+		  if (cd) net = verilogify(cd.net);
+		}
+
+		if (!net) net = verilogify(canonicalize(evalExpr(pin.net, macroEnv, true)));
+
+		cur[logic.pinToName(chip.type, pin.pin, pin.dir)] =  {
+		  dir: astDirToDir(pin.dir),
+		  net,
+		  name: chip.name,
+		};
+
+		return cur;
+	      }, {}),
+	    }
+	  };
+	});
     });
 
   if (options.dumpPins) {
@@ -577,16 +571,17 @@ function genSV(bp) {
 	})
 	.reduce((cur, bpPin) => {
 	  const p = slot.bpPins[bpPin];
-	  const dir = vDirForNets(Object.values(p.pinNets));
+	  const dir = p.dirs[0] === 'D' ? 'output' : 'input';
 	  cur[bpPin] = {vNet: p.vNet, bpPin, dir};
 	  return cur;
 	}, {});
 
-      const modParams = Object.values(modPins)
-//	    .sort(vSort)
+      const modParams = Object.values(Object.values(modPins)
+				      // Remove duplicates
+				      .reduce((cur, v) => {cur[v.vNet] = v; return cur}, {}))
 	    .map(v => `\
     ${v.dir.padEnd(6)} ${v.vNet}`)
-	.join(',\n  ');
+	    .join(',\n  ');
 
       const macros = genSlotMacros(bp, slot, modName);
       const modV = bp.boards[slot.module.id].verilog;
@@ -632,18 +627,8 @@ function genBackplaneSV(bp) {
 	.map(n => `  bit ${untickify(n)};`)
 	.join('\n');
 
-  // Alias real CRAM signal names to CRAM bit number signal names.
-  const cramAliases = Object.values(bp.cramDefs.bp)
-	.map(cram => {
-	  const cramVSig = verilogify(cram.net);
-	  const bitN = cram.bit.toString(10).padStart(2, '0');
-	  return `always_comb ${cramVSig} = cram_${bitN}_h;`;
-	})
-	.join('\n');
-  
   fs.writeFileSync(`./rtl/gen/kl-backplane.svh`, `
 ${decls}
-${cramAliases}
 `);
 }
 
@@ -698,11 +683,12 @@ function genSlotNets(bp, slot, modName) {
 	.forEach(pin => wires[pin.net] = (wires[pin.net] || []).concat(pin));
     });
 
-  // Walk through the nets in this slot and find multiple drivers of, e.g., `a signal h`.
-  // Change drivers to drive new signals `a signal h$1`, `a signal h$2`, etc.
-  // (We use the index in `wires[]` as the uniquifier integer for the signal name.)
-  // OR these together producing `a signal h`.
-  // Inputs continue to use `a signal h`, which is now the output of the OR.
+  // Walk through the nets in this slot and find multiple drivers of,
+  // e.g., `funky signal h`.  Change drivers to drive new signals
+  // `funky signal h$1`, `funky signal h$2`, etc.  (We use the index
+  // in `wires[]` + 1 as the uniquifier integer for the signal name.)
+  // OR these together producing `funky signal h`.  Inputs continue to use
+  // `funky signal h`, which is bound to the output of the OR.
   const bitDecls = Object.keys(wires)
 	.sort()
 	.map(w => {
