@@ -164,7 +164,7 @@ module fe_sim(input bit clk,
   // 	32-47	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
   // 	16-31	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
   // 	00-15	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
-  // 	0-4	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
+  // 	80-84	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
   // 	CKSUM	;16 BIT NEGATED CHECKSUM OF WC, ADR & DATA
   //
   // 	C ,,
@@ -487,7 +487,7 @@ module fe_sim(input bit clk,
 		       majver, minver, edit);
 	    end
 
-	    writeCRAM(cw, tCRAMAddress'(adr), dumpFD);
+//	    writeCRAM(cw, tCRAMAddress'(adr), dumpFD);
 	    ++adr;
 	  end
 	end
@@ -613,6 +613,19 @@ FOR WDRAM
       endcase
     end
 
+    $display("[loading test loop microcode]");
+    cw = 0;
+    cw[5:15] = 'o123;
+    writeCRAM(cw, 0, dumpFD);
+    cw[5:15] = 'o555;
+    writeCRAM(cw, 11'o123, dumpFD);
+    cw[5:15] = 0;
+    writeCRAM(cw, 'o555, dumpFD);
+    cw[5:15] = 'o556;
+    writeCRAM(cw, 'o556, dumpFD);
+    cw[5:15] = 'o557;
+    writeCRAM(cw, 'o557, dumpFD);
+
     $fclose(fd);
     $fclose(dumpFD);
   endtask // KLLoadRAMs
@@ -639,7 +652,7 @@ FOR WDRAM
 	  kl10pv.slot.a0.ram[adr[0:9]] = cw[N];	\
 	else					\
 	  kl10pv.slot.b0.ram[adr[0:9]] = cw[N];	\
-      $fwrite(dumpFD, "%o", cw[N]);
+      $fwrite(dumpFD, " %2d:%3s=%o\n", N, adr[10] ? `STRINGIFY(b0) : `STRINGIFY(a0), cw[N]);
 
     `define putCRM2(N, slot, a0, b0, a1, b1)	\
       `putCRM1(N+0, slot, a0, b0)		\

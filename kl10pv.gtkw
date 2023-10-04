@@ -1,21 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Oct  3 19:06:18 2023
+[*] Wed Oct  4 18:20:43 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Oct  3 19:03:30 2023"
-[dumpfile_size] 113696407
+[dumpfile_mtime] "Wed Oct  4 18:14:01 2023"
+[dumpfile_size] 24774199
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 0
+[timestart] 2972
 [size] 1920 1045
 [pos] -1 -1
-*-4.461107 2 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-4.461107 3036 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.crm_44.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 261
-[signals_width] 603
+[signals_width] 443
 [sst_expanded] 1
 [sst_vpaned_height] 414
 @28
@@ -53,163 +54,6 @@ top.kl10pv.crm_42.cr04_out_13_h
 top.kl10pv.crm_42.cr04_out_14_h
 top.kl10pv.crm_42.cr04_out_15_h
 @1401200
--group_end
-@c000b0
-#{CRAMall} top.kl10pv.cra_45.cra5_out_85_h top.kl10pv.cra_45.cra5_out_84_h top.kl10pv.cra_45.cra5_out_83_h top.kl10pv.cra_45.cra5_out_82_h top.kl10pv.cra_45.cra5_out_81_h top.kl10pv.cra_45.cra5_out_80_h top.kl10pv.crm_40.cr05_out_78_h top.kl10pv.crm_40.cr05_out_76_h top.kl10pv.crm_42.cr05_out_74_h top.kl10pv.crm_42.cr05_out_72_h top.kl10pv.crm_44.cr05_out_70_h top.kl10pv.crm_44.cr05_out_68_h top.kl10pv.crm_50.cr05_out_66_h top.kl10pv.crm_50.cr05_out_64_h top.kl10pv.crm_52.cr05_out_62_h top.kl10pv.crm_52.cr05_out_60_h top.kl10pv.crm_40.cr05_out_59_h top.kl10pv.crm_40.cr05_out_58_h top.kl10pv.crm_40.cr05_out_57_h top.kl10pv.crm_40.cr05_out_56_h top.kl10pv.crm_42.cr05_out_55_h top.kl10pv.crm_42.cr05_out_54_h top.kl10pv.crm_42.cr05_out_53_h top.kl10pv.crm_42.cr05_out_52_h top.kl10pv.crm_44.cr05_out_51_h top.kl10pv.crm_44.cr05_out_50_h top.kl10pv.crm_44.cr05_out_49_h top.kl10pv.crm_44.cr05_out_48_h top.kl10pv.crm_50.cr05_out_47_h top.kl10pv.crm_50.cr05_out_46_h top.kl10pv.crm_50.cr05_out_45_h top.kl10pv.crm_50.cr05_out_44_h top.kl10pv.crm_52.cr05_out_43_h top.kl10pv.crm_52.cr05_out_42_h top.kl10pv.crm_52.cr05_out_41_h top.kl10pv.crm_52.cr05_out_40_h top.kl10pv.crm_40.cr04_out_39_h top.kl10pv.crm_40.cr04_out_38_h top.kl10pv.crm_40.cr04_out_37_h top.kl10pv.crm_40.cr04_out_36_h top.kl10pv.crm_42.cr04_out_35_h top.kl10pv.crm_42.cr04_out_34_h top.kl10pv.crm_42.cr04_out_33_h top.kl10pv.crm_42.cr04_out_32_h top.kl10pv.crm_44.cr04_out_31_h top.kl10pv.crm_44.cr04_out_30_h top.kl10pv.crm_44.cr04_out_29_h top.kl10pv.crm_44.cr04_out_28_h top.kl10pv.crm_50.cr04_out_27_h top.kl10pv.crm_50.cr04_out_26_h top.kl10pv.crm_50.cr04_out_25_h top.kl10pv.crm_50.cr04_out_24_h top.kl10pv.crm_52.cr04_out_23_h top.kl10pv.crm_52.cr04_out_22_h top.kl10pv.crm_52.cr04_out_21_h top.kl10pv.crm_52.cr04_out_20_h top.kl10pv.crm_40.cr04_out_19_h top.kl10pv.crm_40.cr04_out_18_h top.kl10pv.crm_40.cr04_out_17_h top.kl10pv.crm_40.cr04_out_16_h top.kl10pv.crm_42.cr04_out_15_h top.kl10pv.crm_42.cr04_out_14_h top.kl10pv.crm_42.cr04_out_13_h top.kl10pv.crm_42.cr04_out_12_h top.kl10pv.crm_44.cr04_out_11_h top.kl10pv.crm_44.cr04_out_10_h top.kl10pv.crm_44.cr04_out_09_h top.kl10pv.crm_44.cr04_out_08_h top.kl10pv.crm_50.cr04_out_07_h top.kl10pv.crm_50.cr04_out_06_h top.kl10pv.crm_50.cr04_out_05_h top.kl10pv.crm_50.cr04_out_04_h top.kl10pv.crm_52.cr04_out_03_h top.kl10pv.crm_52.cr04_out_02_h top.kl10pv.crm_52.cr04_out_01_h top.kl10pv.crm_52.cr04_out_00_h
-@30
-top.kl10pv.crm_52.cr04_out_00_h
-top.kl10pv.crm_52.cr04_out_01_h
-top.kl10pv.crm_52.cr04_out_02_h
-top.kl10pv.crm_52.cr04_out_03_h
-top.kl10pv.crm_50.cr04_out_04_h
-top.kl10pv.crm_50.cr04_out_05_h
-top.kl10pv.crm_50.cr04_out_06_h
-top.kl10pv.crm_50.cr04_out_07_h
-top.kl10pv.crm_44.cr04_out_08_h
-top.kl10pv.crm_44.cr04_out_09_h
-top.kl10pv.crm_44.cr04_out_10_h
-top.kl10pv.crm_44.cr04_out_11_h
-top.kl10pv.crm_42.cr04_out_12_h
-top.kl10pv.crm_42.cr04_out_13_h
-top.kl10pv.crm_42.cr04_out_14_h
-top.kl10pv.crm_42.cr04_out_15_h
-top.kl10pv.crm_40.cr04_out_16_h
-top.kl10pv.crm_40.cr04_out_17_h
-top.kl10pv.crm_40.cr04_out_18_h
-top.kl10pv.crm_40.cr04_out_19_h
-top.kl10pv.crm_52.cr04_out_20_h
-top.kl10pv.crm_52.cr04_out_21_h
-top.kl10pv.crm_52.cr04_out_22_h
-top.kl10pv.crm_52.cr04_out_23_h
-top.kl10pv.crm_50.cr04_out_24_h
-top.kl10pv.crm_50.cr04_out_25_h
-top.kl10pv.crm_50.cr04_out_26_h
-top.kl10pv.crm_50.cr04_out_27_h
-top.kl10pv.crm_44.cr04_out_28_h
-top.kl10pv.crm_44.cr04_out_29_h
-top.kl10pv.crm_44.cr04_out_30_h
-top.kl10pv.crm_44.cr04_out_31_h
-top.kl10pv.crm_42.cr04_out_32_h
-top.kl10pv.crm_42.cr04_out_33_h
-top.kl10pv.crm_42.cr04_out_34_h
-top.kl10pv.crm_42.cr04_out_35_h
-top.kl10pv.crm_40.cr04_out_36_h
-top.kl10pv.crm_40.cr04_out_37_h
-top.kl10pv.crm_40.cr04_out_38_h
-top.kl10pv.crm_40.cr04_out_39_h
-top.kl10pv.crm_52.cr05_out_40_h
-top.kl10pv.crm_52.cr05_out_41_h
-top.kl10pv.crm_52.cr05_out_42_h
-top.kl10pv.crm_52.cr05_out_43_h
-top.kl10pv.crm_50.cr05_out_44_h
-top.kl10pv.crm_50.cr05_out_45_h
-top.kl10pv.crm_50.cr05_out_46_h
-top.kl10pv.crm_50.cr05_out_47_h
-top.kl10pv.crm_44.cr05_out_48_h
-top.kl10pv.crm_44.cr05_out_49_h
-top.kl10pv.crm_44.cr05_out_50_h
-top.kl10pv.crm_44.cr05_out_51_h
-top.kl10pv.crm_42.cr05_out_52_h
-top.kl10pv.crm_42.cr05_out_53_h
-top.kl10pv.crm_42.cr05_out_54_h
-top.kl10pv.crm_42.cr05_out_55_h
-top.kl10pv.crm_40.cr05_out_56_h
-top.kl10pv.crm_40.cr05_out_57_h
-top.kl10pv.crm_40.cr05_out_58_h
-top.kl10pv.crm_40.cr05_out_59_h
-top.kl10pv.crm_52.cr05_out_60_h
-top.kl10pv.crm_52.cr05_out_62_h
-top.kl10pv.crm_50.cr05_out_64_h
-top.kl10pv.crm_50.cr05_out_66_h
-top.kl10pv.crm_44.cr05_out_68_h
-top.kl10pv.crm_44.cr05_out_70_h
-top.kl10pv.crm_42.cr05_out_72_h
-top.kl10pv.crm_42.cr05_out_74_h
-top.kl10pv.crm_40.cr05_out_76_h
-top.kl10pv.crm_40.cr05_out_78_h
-@28
-top.kl10pv.cra_45.cra5_out_80_h
-top.kl10pv.cra_45.cra5_out_81_h
-top.kl10pv.cra_45.cra5_out_82_h
-top.kl10pv.cra_45.cra5_out_83_h
-top.kl10pv.cra_45.cra5_out_84_h
-top.kl10pv.cra_45.cra5_out_85_h
-@1401200
--group_end
-@8000b0
-#{cr04-out-XX-h$2} top.kl10pv.crm_40.cr05_out_78_h$2 top.kl10pv.crm_40.cr05_out_76_h$2 top.kl10pv.crm_42.cr05_out_74_h$2 top.kl10pv.crm_42.cr05_out_72_h$2 top.kl10pv.crm_44.cr05_out_70_h$2 top.kl10pv.crm_44.cr05_out_68_h$2 top.kl10pv.crm_50.cr05_out_66_h$2 top.kl10pv.crm_50.cr05_out_64_h$2 top.kl10pv.crm_52.cr05_out_62_h$2 top.kl10pv.crm_52.cr05_out_60_h$2 top.kl10pv.crm_40.cr05_out_58_h$2 top.kl10pv.crm_40.cr05_out_56_h$2 top.kl10pv.crm_42.cr05_out_54_h$2 top.kl10pv.crm_42.cr05_out_52_h$2 top.kl10pv.crm_44.cr05_out_50_h$2 top.kl10pv.crm_44.cr05_out_48_h$2 top.kl10pv.crm_50.cr05_out_46_h$2 top.kl10pv.crm_50.cr05_out_44_h$2 top.kl10pv.crm_52.cr05_out_42_h$2 top.kl10pv.crm_52.cr05_out_40_h$2 top.kl10pv.crm_40.cr04_out_39_h$2 top.kl10pv.crm_40.cr04_out_38_h$2 top.kl10pv.crm_40.cr04_out_37_h$2 top.kl10pv.crm_40.cr04_out_36_h$2 top.kl10pv.crm_42.cr04_out_35_h$2 top.kl10pv.crm_42.cr04_out_34_h$2 top.kl10pv.crm_42.cr04_out_33_h$2 top.kl10pv.crm_42.cr04_out_32_h$2 top.kl10pv.crm_44.cr04_out_31_h$2 top.kl10pv.crm_44.cr04_out_30_h$2 top.kl10pv.crm_44.cr04_out_29_h$2 top.kl10pv.crm_44.cr04_out_28_h$2 top.kl10pv.crm_50.cr04_out_27_h$2 top.kl10pv.crm_50.cr04_out_26_h$2 top.kl10pv.crm_50.cr04_out_25_h$2 top.kl10pv.crm_50.cr04_out_24_h$2 top.kl10pv.crm_52.cr04_out_23_h$2 top.kl10pv.crm_52.cr04_out_22_h$2 top.kl10pv.crm_52.cr04_out_21_h$2 top.kl10pv.crm_52.cr04_out_20_h$2 top.kl10pv.crm_40.cr04_out_19_h$2 top.kl10pv.crm_40.cr04_out_18_h$2 top.kl10pv.crm_40.cr04_out_17_h$2 top.kl10pv.crm_40.cr04_out_16_h$2 top.kl10pv.crm_42.cr04_out_15_h$2 top.kl10pv.crm_42.cr04_out_14_h$2 top.kl10pv.crm_42.cr04_out_13_h$2 top.kl10pv.crm_42.cr04_out_12_h$2 top.kl10pv.crm_44.cr04_out_11_h$2 top.kl10pv.crm_44.cr04_out_10_h$2 top.kl10pv.crm_44.cr04_out_09_h$2 top.kl10pv.crm_44.cr04_out_08_h$2 top.kl10pv.crm_50.cr04_out_07_h$2 top.kl10pv.crm_50.cr04_out_06_h$2 top.kl10pv.crm_50.cr04_out_05_h$2 top.kl10pv.crm_50.cr04_out_04_h$2 top.kl10pv.crm_52.cr04_out_03_h$2 top.kl10pv.crm_52.cr04_out_02_h$2 top.kl10pv.crm_52.cr04_out_01_h$2 top.kl10pv.crm_52.cr04_out_00_h$2
-@c000b0
-#{CR04-out-XX-h$2} top.kl10pv.crm_40.cr05_out_78_h$2 top.kl10pv.crm_40.cr05_out_76_h$2 top.kl10pv.crm_42.cr05_out_74_h$2 top.kl10pv.crm_42.cr05_out_72_h$2 top.kl10pv.crm_44.cr05_out_70_h$2 top.kl10pv.crm_44.cr05_out_68_h$2 top.kl10pv.crm_50.cr05_out_66_h$2 top.kl10pv.crm_50.cr05_out_64_h$2 top.kl10pv.crm_52.cr05_out_62_h$2 top.kl10pv.crm_52.cr05_out_60_h$2 top.kl10pv.crm_40.cr05_out_58_h$2 top.kl10pv.crm_40.cr05_out_56_h$2 top.kl10pv.crm_42.cr05_out_54_h$2 top.kl10pv.crm_42.cr05_out_52_h$2 top.kl10pv.crm_44.cr05_out_50_h$2 top.kl10pv.crm_44.cr05_out_48_h$2 top.kl10pv.crm_50.cr05_out_46_h$2 top.kl10pv.crm_50.cr05_out_44_h$2 top.kl10pv.crm_52.cr05_out_42_h$2 top.kl10pv.crm_52.cr05_out_40_h$2 top.kl10pv.crm_40.cr04_out_39_h$2 top.kl10pv.crm_40.cr04_out_38_h$2 top.kl10pv.crm_40.cr04_out_37_h$2 top.kl10pv.crm_40.cr04_out_36_h$2 top.kl10pv.crm_42.cr04_out_35_h$2 top.kl10pv.crm_42.cr04_out_34_h$2 top.kl10pv.crm_42.cr04_out_33_h$2 top.kl10pv.crm_42.cr04_out_32_h$2 top.kl10pv.crm_44.cr04_out_31_h$2 top.kl10pv.crm_44.cr04_out_30_h$2 top.kl10pv.crm_44.cr04_out_29_h$2 top.kl10pv.crm_44.cr04_out_28_h$2 top.kl10pv.crm_50.cr04_out_27_h$2 top.kl10pv.crm_50.cr04_out_26_h$2 top.kl10pv.crm_50.cr04_out_25_h$2 top.kl10pv.crm_50.cr04_out_24_h$2 top.kl10pv.crm_52.cr04_out_23_h$2 top.kl10pv.crm_52.cr04_out_22_h$2 top.kl10pv.crm_52.cr04_out_21_h$2 top.kl10pv.crm_52.cr04_out_20_h$2 top.kl10pv.crm_40.cr04_out_19_h$2 top.kl10pv.crm_40.cr04_out_18_h$2 top.kl10pv.crm_40.cr04_out_17_h$2 top.kl10pv.crm_40.cr04_out_16_h$2 top.kl10pv.crm_42.cr04_out_15_h$2 top.kl10pv.crm_42.cr04_out_14_h$2 top.kl10pv.crm_42.cr04_out_13_h$2 top.kl10pv.crm_42.cr04_out_12_h$2 top.kl10pv.crm_44.cr04_out_11_h$2 top.kl10pv.crm_44.cr04_out_10_h$2 top.kl10pv.crm_44.cr04_out_09_h$2 top.kl10pv.crm_44.cr04_out_08_h$2 top.kl10pv.crm_50.cr04_out_07_h$2 top.kl10pv.crm_50.cr04_out_06_h$2 top.kl10pv.crm_50.cr04_out_05_h$2 top.kl10pv.crm_50.cr04_out_04_h$2 top.kl10pv.crm_52.cr04_out_03_h$2 top.kl10pv.crm_52.cr04_out_02_h$2 top.kl10pv.crm_52.cr04_out_01_h$2 top.kl10pv.crm_44.cr04_out_11_h$2 top.kl10pv.crm_44.cr04_out_10_h$2 top.kl10pv.crm_44.cr04_out_09_h$2 top.kl10pv.crm_44.cr04_out_08_h$2 top.kl10pv.crm_50.cr04_out_07_h$2 top.kl10pv.crm_50.cr04_out_06_h$2 top.kl10pv.crm_50.cr04_out_05_h$2 top.kl10pv.crm_50.cr04_out_04_h$2 top.kl10pv.crm_52.cr04_out_03_h$2 top.kl10pv.crm_52.cr04_out_02_h$2 top.kl10pv.crm_52.cr04_out_01_h$2 top.kl10pv.crm_52.cr04_out_00_h$2
-@28
-top.kl10pv.crm_52.cr04_out_00_h$2
-@8000b0
-#{J} top.kl10pv.crm_44.cr04_out_11_h$2 top.kl10pv.crm_44.cr04_out_10_h$2 top.kl10pv.crm_44.cr04_out_09_h$2 top.kl10pv.crm_44.cr04_out_08_h$2 top.kl10pv.crm_50.cr04_out_07_h$2 top.kl10pv.crm_50.cr04_out_06_h$2 top.kl10pv.crm_50.cr04_out_05_h$2 top.kl10pv.crm_50.cr04_out_04_h$2 top.kl10pv.crm_52.cr04_out_03_h$2 top.kl10pv.crm_52.cr04_out_02_h$2 top.kl10pv.crm_52.cr04_out_01_h$2
-@28
-top.kl10pv.crm_52.cr04_out_01_h$2
-top.kl10pv.crm_52.cr04_out_02_h$2
-top.kl10pv.crm_52.cr04_out_03_h$2
-top.kl10pv.crm_50.cr04_out_04_h$2
-top.kl10pv.crm_50.cr04_out_05_h$2
-top.kl10pv.crm_50.cr04_out_06_h$2
-top.kl10pv.crm_50.cr04_out_07_h$2
-top.kl10pv.crm_44.cr04_out_08_h$2
-top.kl10pv.crm_44.cr04_out_09_h$2
-top.kl10pv.crm_44.cr04_out_10_h$2
-top.kl10pv.crm_44.cr04_out_11_h$2
-@1001200
--group_end
-@28
-top.kl10pv.crm_42.cr04_out_12_h$2
-top.kl10pv.crm_42.cr04_out_13_h$2
-top.kl10pv.crm_42.cr04_out_14_h$2
-top.kl10pv.crm_42.cr04_out_15_h$2
-top.kl10pv.crm_40.cr04_out_16_h$2
-top.kl10pv.crm_40.cr04_out_17_h$2
-top.kl10pv.crm_40.cr04_out_18_h$2
-top.kl10pv.crm_40.cr04_out_19_h$2
-top.kl10pv.crm_52.cr04_out_20_h$2
-top.kl10pv.crm_52.cr04_out_21_h$2
-top.kl10pv.crm_52.cr04_out_22_h$2
-top.kl10pv.crm_52.cr04_out_23_h$2
-top.kl10pv.crm_50.cr04_out_24_h$2
-top.kl10pv.crm_50.cr04_out_25_h$2
-top.kl10pv.crm_50.cr04_out_26_h$2
-top.kl10pv.crm_50.cr04_out_27_h$2
-top.kl10pv.crm_44.cr04_out_28_h$2
-top.kl10pv.crm_44.cr04_out_29_h$2
-top.kl10pv.crm_44.cr04_out_30_h$2
-top.kl10pv.crm_44.cr04_out_31_h$2
-top.kl10pv.crm_42.cr04_out_32_h$2
-top.kl10pv.crm_42.cr04_out_33_h$2
-top.kl10pv.crm_42.cr04_out_34_h$2
-top.kl10pv.crm_42.cr04_out_35_h$2
-top.kl10pv.crm_40.cr04_out_36_h$2
-top.kl10pv.crm_40.cr04_out_37_h$2
-top.kl10pv.crm_40.cr04_out_38_h$2
-top.kl10pv.crm_40.cr04_out_39_h$2
-top.kl10pv.crm_52.cr05_out_40_h$2
-top.kl10pv.crm_52.cr05_out_42_h$2
-top.kl10pv.crm_50.cr05_out_44_h$2
-top.kl10pv.crm_50.cr05_out_46_h$2
-top.kl10pv.crm_44.cr05_out_48_h$2
-top.kl10pv.crm_44.cr05_out_50_h$2
-top.kl10pv.crm_42.cr05_out_52_h$2
-top.kl10pv.crm_42.cr05_out_54_h$2
-top.kl10pv.crm_40.cr05_out_56_h$2
-top.kl10pv.crm_40.cr05_out_58_h$2
-top.kl10pv.crm_52.cr05_out_60_h$2
-top.kl10pv.crm_52.cr05_out_62_h$2
-top.kl10pv.crm_50.cr05_out_64_h$2
-top.kl10pv.crm_50.cr05_out_66_h$2
-top.kl10pv.crm_44.cr05_out_68_h$2
-top.kl10pv.crm_44.cr05_out_70_h$2
-top.kl10pv.crm_42.cr05_out_72_h$2
-top.kl10pv.crm_42.cr05_out_74_h$2
-top.kl10pv.crm_40.cr05_out_76_h$2
-top.kl10pv.crm_40.cr05_out_78_h$2
-@1401200
--group_end
-@1001200
 -group_end
 @c000b0
 [color] 2
@@ -256,23 +100,40 @@ top.kl10pv.cra_45.cra5_out_84_h
 top.kl10pv.cra_45.cra5_out_85_h
 @1401200
 -group_end
+@c00201
+-crm-debug
 @28
-top.kl10pv.feSim.didCRAMReadBack
-@c000b0
-#{top.kl10pv.crm_52.cr01_adr_[10:00]_b_h} top.kl10pv.crm_52.cr01_adr_10_b_h top.kl10pv.crm_52.cr01_adr_09_b_h top.kl10pv.crm_52.cr01_adr_08_b_h top.kl10pv.crm_52.cr01_adr_07_b_h top.kl10pv.crm_52.cr01_adr_06_b_h top.kl10pv.crm_52.cr01_adr_05_b_h top.kl10pv.crm_52.cr01_adr_04_b_h top.kl10pv.crm_52.cr01_adr_03_b_h top.kl10pv.crm_52.cr01_adr_02_b_h top.kl10pv.crm_52.cr01_adr_01_b_h top.kl10pv.crm_52.cr01_adr_00_b_h
+top.kl10pv.crm_44.cr04_out_08_h
+top.kl10pv.crm_44.cr04_out_08_h$2
+top.kl10pv.crm_44.cr04_out_08_h$3
+top.kl10pv.crm_44.cr04_out_09_h
+top.kl10pv.crm_44.cr04_out_09_h$2
+top.kl10pv.crm_44.cr04_out_09_h$3
+top.kl10pv.crm_44.cr04_out_10_h
+top.kl10pv.crm_44.cr04_out_10_h$2
+top.kl10pv.crm_44.cr04_out_10_h$3
+top.kl10pv.crm_44.cr04_out_11_h
+top.kl10pv.crm_44.cr04_out_11_h$2
+top.kl10pv.crm_44.cr04_out_11_h$3
+@1401201
+-crm-debug
+@800200
+-e43
 @28
-top.kl10pv.crm_52.cr01_adr_00_b_h
-top.kl10pv.crm_52.cr01_adr_01_b_h
-top.kl10pv.crm_52.cr01_adr_02_b_h
-top.kl10pv.crm_52.cr01_adr_03_b_h
-top.kl10pv.crm_52.cr01_adr_04_b_h
-top.kl10pv.crm_52.cr01_adr_05_b_h
-top.kl10pv.crm_52.cr01_adr_06_b_h
-top.kl10pv.crm_52.cr01_adr_07_b_h
-top.kl10pv.crm_52.cr01_adr_08_b_h
-top.kl10pv.crm_52.cr01_adr_09_b_h
-top.kl10pv.crm_52.cr01_adr_10_b_h
-@1401200
--group_end
+top.kl10pv.crm_44.e43.clk
+top.kl10pv.crm_44.e43.d0
+top.kl10pv.crm_44.e43.d1
+top.kl10pv.crm_44.e43.d2
+top.kl10pv.crm_44.e43.d3
+top.kl10pv.crm_44.e43.op1
+top.kl10pv.crm_44.e43.op2
+top.kl10pv.crm_44.e43.q0
+top.kl10pv.crm_44.e43.q1
+top.kl10pv.crm_44.e43.q2
+top.kl10pv.crm_44.e43.q3
+top.kl10pv.crm_44.e43.shft0in
+top.kl10pv.crm_44.e43.shft3in
+@1000200
+-e43
 [pattern_trace] 1
 [pattern_trace] 0
