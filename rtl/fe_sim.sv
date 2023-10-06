@@ -214,7 +214,20 @@ module fe_sim(input bit clk,
     KLLoadRAMs();
   end
 
-  always @(negedge clk60 && !didCRAMReadBack) begin
+  always @(posedge clk60 &&
+	   {kl10pv.cra_45.cra1_adr_00_h,
+	    kl10pv.cra_45.cra1_adr_01_h,
+	    kl10pv.cra_45.cra1_adr_02_h,
+	    kl10pv.cra_45.cra1_adr_03_h,
+	    kl10pv.cra_45.cra1_adr_04_h,
+	    kl10pv.cra_45.cra1_adr_05_h,
+	    kl10pv.cra_45.cra1_adr_06_h,
+	    kl10pv.cra_45.cra2_adr_07_h,
+	    kl10pv.cra_45.cra2_adr_08_h,
+	    kl10pv.cra_45.cra2_adr_09_h,
+	    kl10pv.cra_45.cra2_adr_10_h} == 11'o123 &&
+	   !didCRAMReadBack)
+  begin
     tCRAM cw;
     tCRAMAddress adr;
 
@@ -232,105 +245,207 @@ module fe_sim(input bit clk,
     adr[9] = kl10pv.crm_52.cr01_adr_09_b_h;
     adr[10] = kl10pv.crm_52.cr01_adr_10_b_h;
 
-    cw[0] = kl10pv.crm_52.e59.q;
-    cw[1] = kl10pv.crm_52.e48.q;
-    cw[2] = kl10pv.crm_52.e4.q;
-    cw[3] = kl10pv.crm_52.e17.q;
+    if (adr[10] == 0) begin
+      cw[0] = kl10pv.crm_52.e59.q;
+      cw[1] = kl10pv.crm_52.e48.q;
+      cw[2] = kl10pv.crm_52.e4.q;
+      cw[3] = kl10pv.crm_52.e17.q;
 
-    cw[4] = kl10pv.crm_50.e59.q;
-    cw[5] = kl10pv.crm_50.e48.q;
-    cw[6] = kl10pv.crm_50.e4.q;
-    cw[7] = kl10pv.crm_50.e17.q;
+      cw[4] = kl10pv.crm_50.e59.q;
+      cw[5] = kl10pv.crm_50.e48.q;
+      cw[6] = kl10pv.crm_50.e4.q;
+      cw[7] = kl10pv.crm_50.e17.q;
 
-    cw[8] = kl10pv.crm_44.e59.q;
-    cw[9] = kl10pv.crm_44.e48.q;
-    cw[10] = kl10pv.crm_44.e4.q;
-    cw[11] = kl10pv.crm_44.e17.q;
+      cw[8] = kl10pv.crm_44.e59.q;
+      cw[9] = kl10pv.crm_44.e48.q;
+      cw[10] = kl10pv.crm_44.e4.q;
+      cw[11] = kl10pv.crm_44.e17.q;
 
-    cw[12] = kl10pv.crm_42.e59.q;
-    cw[13] = kl10pv.crm_42.e48.q;
-    cw[14] = kl10pv.crm_42.e4.q;
-    cw[15] = kl10pv.crm_42.e17.q;
+      cw[12] = kl10pv.crm_42.e59.q;
+      cw[13] = kl10pv.crm_42.e48.q;
+      cw[14] = kl10pv.crm_42.e4.q;
+      cw[15] = kl10pv.crm_42.e17.q;
 
-    cw[16] = kl10pv.crm_40.e59.q;
-    cw[17] = kl10pv.crm_40.e48.q;
-    cw[18] = kl10pv.crm_40.e4.q;
-    cw[19] = kl10pv.crm_40.e17.q;
-
-
-    cw[20] = kl10pv.crm_52.e55.q;
-    cw[21] = kl10pv.crm_52.e41.q;
-    cw[22] = kl10pv.crm_52.e10.q;
-    cw[23] = kl10pv.crm_52.e24.q;
-
-    cw[24] = kl10pv.crm_50.e55.q;
-    cw[25] = kl10pv.crm_50.e41.q;
-    cw[26] = kl10pv.crm_50.e10.q;
-    cw[27] = kl10pv.crm_50.e24.q;
-
-    cw[28] = kl10pv.crm_44.e55.q;
-    cw[29] = kl10pv.crm_44.e41.q;
-    cw[30] = kl10pv.crm_44.e10.q;
-    cw[31] = kl10pv.crm_44.e24.q;
-
-    cw[32] = kl10pv.crm_42.e55.q;
-    cw[33] = kl10pv.crm_42.e41.q;
-    cw[34] = kl10pv.crm_42.e10.q;
-    cw[35] = kl10pv.crm_42.e24.q;
-
-    cw[36] = kl10pv.crm_40.e55.q;
-    cw[37] = kl10pv.crm_40.e41.q;
-    cw[38] = kl10pv.crm_40.e10.q;
-    cw[39] = kl10pv.crm_40.e24.q;
+      cw[16] = kl10pv.crm_40.e59.q;
+      cw[17] = kl10pv.crm_40.e48.q;
+      cw[18] = kl10pv.crm_40.e4.q;
+      cw[19] = kl10pv.crm_40.e17.q;
 
 
-    cw[40] = kl10pv.crm_52.e56.q;
-    cw[41] = kl10pv.crm_52.e42.q;
-    cw[42] = kl10pv.crm_52.e11.q;
-    cw[43] = kl10pv.crm_52.e25.q;
+      cw[20] = kl10pv.crm_52.e55.q;
+      cw[21] = kl10pv.crm_52.e41.q;
+      cw[22] = kl10pv.crm_52.e10.q;
+      cw[23] = kl10pv.crm_52.e24.q;
 
-    cw[44] = kl10pv.crm_50.e56.q;
-    cw[45] = kl10pv.crm_50.e42.q;
-    cw[46] = kl10pv.crm_50.e11.q;
-    cw[47] = kl10pv.crm_50.e25.q;
+      cw[24] = kl10pv.crm_50.e55.q;
+      cw[25] = kl10pv.crm_50.e41.q;
+      cw[26] = kl10pv.crm_50.e10.q;
+      cw[27] = kl10pv.crm_50.e24.q;
 
-    cw[48] = kl10pv.crm_44.e56.q;
-    cw[49] = kl10pv.crm_44.e42.q;
-    cw[50] = kl10pv.crm_44.e11.q;
-    cw[51] = kl10pv.crm_44.e25.q;
+      cw[28] = kl10pv.crm_44.e55.q;
+      cw[29] = kl10pv.crm_44.e41.q;
+      cw[30] = kl10pv.crm_44.e10.q;
+      cw[31] = kl10pv.crm_44.e24.q;
 
-    cw[52] = kl10pv.crm_42.e56.q;
-    cw[53] = kl10pv.crm_42.e42.q;
-    cw[54] = kl10pv.crm_42.e11.q;
-    cw[55] = kl10pv.crm_42.e25.q;
+      cw[32] = kl10pv.crm_42.e55.q;
+      cw[33] = kl10pv.crm_42.e41.q;
+      cw[34] = kl10pv.crm_42.e10.q;
+      cw[35] = kl10pv.crm_42.e24.q;
 
-    cw[56] = kl10pv.crm_40.e56.q;
-    cw[57] = kl10pv.crm_40.e42.q;
-    cw[58] = kl10pv.crm_40.e11.q;
-    cw[59] = kl10pv.crm_40.e25.q;
+      cw[36] = kl10pv.crm_40.e55.q;
+      cw[37] = kl10pv.crm_40.e41.q;
+      cw[38] = kl10pv.crm_40.e10.q;
+      cw[39] = kl10pv.crm_40.e24.q;
 
 
-    cw[60] = kl10pv.crm_52.e49.q;
-    cw[62] = kl10pv.crm_52.e18.q;
+      cw[40] = kl10pv.crm_52.e56.q;
+      cw[41] = kl10pv.crm_52.e42.q;
+      cw[42] = kl10pv.crm_52.e11.q;
+      cw[43] = kl10pv.crm_52.e25.q;
 
-    cw[64] = kl10pv.crm_50.e49.q;
-    cw[66] = kl10pv.crm_50.e18.q;
+      cw[44] = kl10pv.crm_50.e56.q;
+      cw[45] = kl10pv.crm_50.e42.q;
+      cw[46] = kl10pv.crm_50.e11.q;
+      cw[47] = kl10pv.crm_50.e25.q;
 
-    cw[68] = kl10pv.crm_44.e49.q;
-    cw[70] = kl10pv.crm_44.e18.q;
+      cw[48] = kl10pv.crm_44.e56.q;
+      cw[49] = kl10pv.crm_44.e42.q;
+      cw[50] = kl10pv.crm_44.e11.q;
+      cw[51] = kl10pv.crm_44.e25.q;
 
-    cw[72] = kl10pv.crm_42.e49.q;
-    cw[74] = kl10pv.crm_42.e18.q;
+      cw[52] = kl10pv.crm_42.e56.q;
+      cw[53] = kl10pv.crm_42.e42.q;
+      cw[54] = kl10pv.crm_42.e11.q;
+      cw[55] = kl10pv.crm_42.e25.q;
 
-    cw[76] = kl10pv.crm_40.e49.q;
-    cw[78] = kl10pv.crm_40.e18.q;
+      cw[56] = kl10pv.crm_40.e56.q;
+      cw[57] = kl10pv.crm_40.e42.q;
+      cw[58] = kl10pv.crm_40.e11.q;
+      cw[59] = kl10pv.crm_40.e25.q;
 
-    cw[80] = kl10pv.cra_45.e9.q;
-    cw[81] = kl10pv.cra_45.e29.q;
-    cw[82] = kl10pv.cra_45.e14.q;
-    cw[83] = kl10pv.cra_45.e25.q;
-    cw[84] = kl10pv.cra_45.e10.q;
-    cw[85] = kl10pv.cra_45.e15.q;
+
+      cw[60] = kl10pv.crm_52.e49.q;
+      cw[62] = kl10pv.crm_52.e18.q;
+
+      cw[64] = kl10pv.crm_50.e49.q;
+      cw[66] = kl10pv.crm_50.e18.q;
+
+      cw[68] = kl10pv.crm_44.e49.q;
+      cw[70] = kl10pv.crm_44.e18.q;
+
+      cw[72] = kl10pv.crm_42.e49.q;
+      cw[74] = kl10pv.crm_42.e18.q;
+
+      cw[76] = kl10pv.crm_40.e49.q;
+      cw[78] = kl10pv.crm_40.e18.q;
+
+      cw[80] = kl10pv.cra_45.e9.q;
+      cw[81] = kl10pv.cra_45.e29.q;
+      cw[82] = kl10pv.cra_45.e14.q;
+      cw[83] = kl10pv.cra_45.e25.q;
+      cw[84] = kl10pv.cra_45.e10.q;
+      cw[85] = kl10pv.cra_45.e15.q;
+    end else begin
+      cw[0] = kl10pv.crm_52.e57.q;
+      cw[1] = kl10pv.crm_52.e44.q;
+      cw[2] = kl10pv.crm_52.e2.q;
+      cw[3] = kl10pv.crm_52.e14.q;
+
+      cw[4] = kl10pv.crm_50.e57.q;
+      cw[5] = kl10pv.crm_50.e44.q;
+      cw[6] = kl10pv.crm_50.e2.q;
+      cw[7] = kl10pv.crm_50.e14.q;
+
+      cw[8] = kl10pv.crm_44.e57.q;
+      cw[9] = kl10pv.crm_44.e44.q;
+      cw[10] = kl10pv.crm_44.e2.q;
+      cw[11] = kl10pv.crm_44.e14.q;
+
+      cw[12] = kl10pv.crm_42.e57.q;
+      cw[13] = kl10pv.crm_42.e44.q;
+      cw[14] = kl10pv.crm_42.e2.q;
+      cw[15] = kl10pv.crm_42.e14.q;
+
+      cw[16] = kl10pv.crm_40.e57.q;
+      cw[17] = kl10pv.crm_40.e44.q;
+      cw[18] = kl10pv.crm_40.e2.q;
+      cw[19] = kl10pv.crm_40.e14.q;
+
+
+      cw[20] = kl10pv.crm_52.e51.q;
+      cw[21] = kl10pv.crm_52.e37.q;
+      cw[22] = kl10pv.crm_52.e7.q;
+      cw[23] = kl10pv.crm_52.e21.q;
+
+      cw[24] = kl10pv.crm_50.e51.q;
+      cw[25] = kl10pv.crm_50.e37.q;
+      cw[26] = kl10pv.crm_50.e7.q;
+      cw[27] = kl10pv.crm_50.e21.q;
+
+      cw[28] = kl10pv.crm_44.e51.q;
+      cw[29] = kl10pv.crm_44.e37.q;
+      cw[30] = kl10pv.crm_44.e7.q;
+      cw[31] = kl10pv.crm_44.e21.q;
+
+      cw[32] = kl10pv.crm_42.e51.q;
+      cw[33] = kl10pv.crm_42.e37.q;
+      cw[34] = kl10pv.crm_42.e7.q;
+      cw[35] = kl10pv.crm_42.e21.q;
+
+      cw[36] = kl10pv.crm_40.e51.q;
+      cw[37] = kl10pv.crm_40.e37.q;
+      cw[38] = kl10pv.crm_40.e7.q;
+      cw[39] = kl10pv.crm_40.e21.q;
+
+
+      cw[40] = kl10pv.crm_52.e52.q;
+      cw[41] = kl10pv.crm_52.e38.q;
+      cw[42] = kl10pv.crm_52.e8.q;
+      cw[43] = kl10pv.crm_52.e22.q;
+
+      cw[44] = kl10pv.crm_50.e52.q;
+      cw[45] = kl10pv.crm_50.e38.q;
+      cw[46] = kl10pv.crm_50.e8.q;
+      cw[47] = kl10pv.crm_50.e22.q;
+
+      cw[48] = kl10pv.crm_44.e52.q;
+      cw[49] = kl10pv.crm_44.e38.q;
+      cw[50] = kl10pv.crm_44.e8.q;
+      cw[51] = kl10pv.crm_44.e22.q;
+
+      cw[52] = kl10pv.crm_42.e52.q;
+      cw[53] = kl10pv.crm_42.e38.q;
+      cw[54] = kl10pv.crm_42.e8.q;
+      cw[55] = kl10pv.crm_42.e22.q;
+
+      cw[56] = kl10pv.crm_40.e52.q;
+      cw[57] = kl10pv.crm_40.e38.q;
+      cw[58] = kl10pv.crm_40.e8.q;
+      cw[59] = kl10pv.crm_40.e22.q;
+
+
+      cw[60] = kl10pv.crm_52.e45.q;
+      cw[62] = kl10pv.crm_52.e15.q;
+
+      cw[64] = kl10pv.crm_50.e45.q;
+      cw[66] = kl10pv.crm_50.e15.q;
+
+      cw[68] = kl10pv.crm_44.e45.q;
+      cw[70] = kl10pv.crm_44.e15.q;
+
+      cw[72] = kl10pv.crm_42.e45.q;
+      cw[74] = kl10pv.crm_42.e15.q;
+
+      cw[76] = kl10pv.crm_40.e45.q;
+      cw[78] = kl10pv.crm_40.e15.q;
+
+      cw[80] = kl10pv.cra_45.e4.q;
+      cw[81] = kl10pv.cra_45.e24.q;
+      cw[82] = kl10pv.cra_45.e19.q;
+      cw[83] = kl10pv.cra_45.e30.q;
+      cw[84] = kl10pv.cra_45.e5.q;
+      cw[85] = kl10pv.cra_45.e20.q;
+    end
 
     $display("READ BACK %o: %o", adr, cw);
   end
@@ -645,14 +760,14 @@ FOR WDRAM
   // CRM42: N=12
   // CRM40: N=16
   task automatic writeCRAM(tCRAM cw, tCRAMAddress adr, int dumpFD);
-    $fwrite(dumpFD, "WC: ");
+    $fwrite(dumpFD, "writeCRAM %o:\n", adr);
 
     `define putCRM1(N, slot, a0, b0)		\
 	if (adr[10] == 0)			\
 	  kl10pv.slot.a0.ram[adr[0:9]] = cw[N];	\
 	else					\
 	  kl10pv.slot.b0.ram[adr[0:9]] = cw[N];	\
-      $fwrite(dumpFD, " %2d:%3s=%o\n", N, adr[10] ? `STRINGIFY(b0) : `STRINGIFY(a0), cw[N]);
+      $fwrite(dumpFD, "%2d: %3s=%o\n", N, adr[10] == 0 ? `STRINGIFY(a0) : `STRINGIFY(b0), cw[N]);
 
     `define putCRM2(N, slot, a0, b0, a1, b1)	\
       `putCRM1(N+0, slot, a0, b0)		\
