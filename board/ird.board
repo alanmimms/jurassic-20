@@ -5,6 +5,15 @@
 
 Page: IR1, PDF128
 
+// This is nuts in the 21st century. I want the sense of the address
+// lines to be the same everywhere in every slot. I don't care about
+// balancing loads on lines for my sim, and the synthesis will solve
+// that for me when I target FPGA. So I'm altering these connections
+// for the address lines to use positive logic for every address line
+// here and not the alternation of H and L they did in the 1970s.
+// Note that I also had to do this for the address lines on the
+// mc10144a RAMs. This same thing was done in CRM as well.
+
 e52: 10173 4x2 mix latch
      5 ~< dram a00 x h
      6 ~< dram a00 y h
@@ -308,14 +317,14 @@ e69: 10173 4x2 mix latch
 Page: IR2, PDF129
 
 e4: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+00] h
     5 ~< %NC%
     6 ~< %NC%
@@ -324,14 +333,14 @@ e4: 10144 256x1 ram
     15 ~> dram a00 x h
 
 e9: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+00] h
     5 ~< %NC%
     6 ~< %NC%
@@ -340,14 +349,14 @@ e9: 10144 256x1 ram
     15 ~> dram a00 y h
 
 e42: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+01] h
     5 ~< %NC%
     6 ~< %NC%
@@ -356,14 +365,14 @@ e42: 10144 256x1 ram
     15 ~> dram a01 x h
 
 e47: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+01] h
     5 ~< %NC%
     6 ~< %NC%
@@ -372,14 +381,14 @@ e47: 10144 256x1 ram
     15 ~> dram a01 y h
 
 e14: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+02] h
     5 ~< %NC%
     6 ~< %NC%
@@ -388,14 +397,14 @@ e14: 10144 256x1 ram
     15 ~> dram a02 x h
 
 e19: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+02] h
     5 ~< %NC%
     6 ~< %NC%
@@ -404,14 +413,14 @@ e19: 10144 256x1 ram
     15 ~> dram a02 y h
 
 e24: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+03] h
     5 ~< %NC%
     6 ~< %NC%
@@ -420,14 +429,14 @@ e24: 10144 256x1 ram
     15 ~> dram b00 x h
 
 e29: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+03] h
     5 ~< %NC%
     6 ~< %NC%
@@ -436,14 +445,14 @@ e29: 10144 256x1 ram
     15 ~> dram b00 y h
 
 e34: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+04] h
     5 ~< %NC%
     6 ~< %NC%
@@ -452,14 +461,14 @@ e34: 10144 256x1 ram
     15 ~> dram b01 x h
 
 e37: 10144 256x1 ram
-    1 ~< dr adr 00 a l
-    2 ~< dr adr 01 a l
-    3 ~< dr adr 02 a l
-    4 ~< dr adr 03 a l
-    9 ~< dr adr 04 a l
-    10 ~< dr adr 05 a l
-    11 ~< dr adr 06 a l
-    12 ~< dr adr 07 a l
+    1 ~< dr adr 00 a h
+    2 ~< dr adr 01 a h
+    3 ~< dr adr 02 a h
+    4 ~< dr adr 03 a h
+    9 ~< dr adr 04 a h
+    10 ~< dr adr 05 a h
+    11 ~< dr adr 06 a h
+    12 ~< dr adr 07 a h
     13 ~< dr ebus [n+04] h
     5 ~< %NC%
     6 ~< %NC%

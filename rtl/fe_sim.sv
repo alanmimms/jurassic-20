@@ -29,6 +29,7 @@ module fe_sim(input bit clk,
   always_comb a_change_coming_in = !a_change_coming_in_l;
 
   bit didCRAMReadBack = 0;
+  bit continueHasBeenSet = 0;
 
   // The DRAM ("DISPATCH RAM" - not "DYNAMIC RAM") addressing
   // architecture in the KL10 is arse -- a bridge too far. Even the
@@ -464,7 +465,24 @@ module fe_sim(input bit clk,
     // Start CPU in microcode halt loop.
     doDiagFunc(diagfCLR_RUN);
     doDiagFunc(diagfSTART_CLOCK);
+    continueHasBeenSet = 1;
     doDiagFunc(diagfCONTINUE);
+  end
+
+
+  always @(negedge kl10pv.con_35.con2_clk_e_h && continueHasBeenSet) begin
+    tCRAMAddress adr = {kl10pv.cra_45.cra1_adr_00_h,
+			kl10pv.cra_45.cra1_adr_01_h,
+			kl10pv.cra_45.cra1_adr_02_h,
+			kl10pv.cra_45.cra1_adr_03_h,
+			kl10pv.cra_45.cra1_adr_04_h,
+			kl10pv.cra_45.cra1_adr_05_h,
+			kl10pv.cra_45.cra1_adr_06_h,
+			kl10pv.cra_45.cra2_adr_07_h,
+			kl10pv.cra_45.cra2_adr_08_h,
+			kl10pv.cra_45.cra2_adr_09_h,
+			kl10pv.cra_45.cra2_adr_10_h};
+    $display("CRAM %o", adr);
   end
 
 
