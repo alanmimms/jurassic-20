@@ -602,7 +602,7 @@ module fe_sim(input bit clk,
 		       majver, minver, edit);
 	    end
 
-//	    writeCRAM(cw, tCRAMAddress'(adr), dumpFD);
+	    writeCRAM(cw, tCRAMAddress'(adr), dumpFD);
 	    ++adr;
 	  end
 	end
@@ -727,19 +727,6 @@ FOR WDRAM
 	$display("ERROR: Unknown record type '%s' in KLX.RAM file", recType);
       endcase
     end
-
-    $display("[loading test loop microcode]");
-    cw = 0;
-    cw[5:15] = 'o123;
-    writeCRAM(cw, 0, dumpFD);
-    cw[5:15] = 'o555;
-    writeCRAM(cw, 11'o123, dumpFD);
-    cw[5:15] = 0;
-    writeCRAM(cw, 'o555, dumpFD);
-    cw[5:15] = 'o556;
-    writeCRAM(cw, 'o556, dumpFD);
-    cw[5:15] = 'o557;
-    writeCRAM(cw, 'o557, dumpFD);
 
     $fclose(fd);
     $fclose(dumpFD);
