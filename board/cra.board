@@ -1041,98 +1041,99 @@ e19: 10415a 1kx1 RAM
      1 ~> cra5 out 82 h
 
 // Bottom half
+// Positive logic on address lines is needed here as it is in CRM.
 e25: 10415a 1kx1 RAM
-     2 ~< cra1 adr 00 l
-     3 ~< cra1 adr 01 l
-     4 ~< cra1 adr 02 l
-     5 ~< cra1 adr 03 l
-     6 ~< cra1 adr 04 l
-     7 ~< cra1 adr 05 l
-     9 ~< cra1 adr 06 l
-     10 ~< cra2 adr 07 l
-     11 ~< cra2 adr 08 l
-     12 ~< cra2 adr 09 l
-     14 ~< -cra2 adr 10 l
+     2 ~< cra1 adr 00 h
+     3 ~< cra1 adr 01 h
+     4 ~< cra1 adr 02 h
+     5 ~< cra1 adr 03 h
+     6 ~< cra1 adr 04 h
+     7 ~< cra1 adr 05 h
+     9 ~< cra1 adr 06 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
+     14 ~< -cra2 adr 10 h
      13 ~< cra5-e34-5
      15 ~< cra5 ebus 03 h
      1 ~> cra5 out 83 h
 
 e30:  10415a 1kx1 RAM
-     2 ~< cra1 adr 00 l
-     3 ~< cra1 adr 01 l
-     4 ~< cra1 adr 02 l
-     5 ~< cra1 adr 03 l
-     6 ~< cra1 adr 04 l
-     7 ~< cra1 adr 05 l
-     9 ~< cra1 adr 06 l
-     10 ~< cra2 adr 07 l
-     11 ~< cra2 adr 08 l
-     12 ~< cra2 adr 09 l
-     14 ~< cra2 adr 10 l
+     2 ~< cra1 adr 00 h
+     3 ~< cra1 adr 01 h
+     4 ~< cra1 adr 02 h
+     5 ~< cra1 adr 03 h
+     6 ~< cra1 adr 04 h
+     7 ~< cra1 adr 05 h
+     9 ~< cra1 adr 06 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
+     14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
      15 ~< cra5 ebus 03 h
      1 ~> cra5 out 83 h
 
 e10: 10415a 1kx1 RAM
-     2 ~< cra1 adr 00 l
-     3 ~< cra1 adr 01 l
-     4 ~< cra1 adr 02 l
-     5 ~< cra1 adr 03 l
-     6 ~< cra1 adr 04 l
-     7 ~< cra1 adr 05 l
-     9 ~< cra1 adr 06 l
-     10 ~< cra2 adr 07 l
-     11 ~< cra2 adr 08 l
-     12 ~< cra2 adr 09 l
-     14 ~< -cra2 adr 10 l
+     2 ~< cra1 adr 00 h
+     3 ~< cra1 adr 01 h
+     4 ~< cra1 adr 02 h
+     5 ~< cra1 adr 03 h
+     6 ~< cra1 adr 04 h
+     7 ~< cra1 adr 05 h
+     9 ~< cra1 adr 06 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
+     14 ~< -cra2 adr 10 h
      13 ~< cra5-e34-5
      15 ~< cra5 ebus 04 h
      1 ~> cra5 out 84 h
 
 e5:  10415a 1kx1 RAM
-     2 ~< cra1 adr 00 l
-     3 ~< cra1 adr 01 l
-     4 ~< cra1 adr 02 l
-     5 ~< cra1 adr 03 l
-     6 ~< cra1 adr 04 l
-     7 ~< cra1 adr 05 l
-     9 ~< cra1 adr 06 l
-     10 ~< cra2 adr 07 l
-     11 ~< cra2 adr 08 l
-     12 ~< cra2 adr 09 l
-     14 ~< cra2 adr 10 l
+     2 ~< cra1 adr 00 h
+     3 ~< cra1 adr 01 h
+     4 ~< cra1 adr 02 h
+     5 ~< cra1 adr 03 h
+     6 ~< cra1 adr 04 h
+     7 ~< cra1 adr 05 h
+     9 ~< cra1 adr 06 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
+     14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
      15 ~< cra5 ebus 04 h
      1 ~> cra5 out 84 h
 
 e15: 10415a 1kx1 RAM
-     2 ~< cra1 adr 00 l
-     3 ~< cra1 adr 01 l
-     4 ~< cra1 adr 02 l
-     5 ~< cra1 adr 03 l
-     6 ~< cra1 adr 04 l
-     7 ~< cra1 adr 05 l
-     9 ~< cra1 adr 06 l
-     10 ~< cra2 adr 07 l
-     11 ~< cra2 adr 08 l
-     12 ~< cra2 adr 09 l
-     14 ~< -cra2 adr 10 l
+     2 ~< cra1 adr 00 h
+     3 ~< cra1 adr 01 h
+     4 ~< cra1 adr 02 h
+     5 ~< cra1 adr 03 h
+     6 ~< cra1 adr 04 h
+     7 ~< cra1 adr 05 h
+     9 ~< cra1 adr 06 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
+     14 ~< -cra2 adr 10 h
      13 ~< cra5-e34-5
      15 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h
 
 e20: 10415a 1kx1 RAM
-     2 ~< cra1 adr 00 l
-     3 ~< cra1 adr 01 l
-     4 ~< cra1 adr 02 l
-     5 ~< cra1 adr 03 l
-     6 ~< cra1 adr 04 l
-     7 ~< cra1 adr 05 l
-     9 ~< cra1 adr 06 l
-     10 ~< cra2 adr 07 l
-     11 ~< cra2 adr 08 l
-     12 ~< cra2 adr 09 l
-     14 ~< cra2 adr 10 l
+     2 ~< cra1 adr 00 h
+     3 ~< cra1 adr 01 h
+     4 ~< cra1 adr 02 h
+     5 ~< cra1 adr 03 h
+     6 ~< cra1 adr 04 h
+     7 ~< cra1 adr 05 h
+     9 ~< cra1 adr 06 h
+     10 ~< cra2 adr 07 h
+     11 ~< cra2 adr 08 h
+     12 ~< cra2 adr 09 h
+     14 ~< cra2 adr 10 h
      13 ~< cra5-e34-5
      15 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h

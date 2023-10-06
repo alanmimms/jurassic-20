@@ -15,7 +15,8 @@ Page: CRM1, PDF392
 Page: CRM1, PDF392
 
 e34: 10101 quad or/nor
-     4 ~< {fj2} cra1 adr 00 [n/4+1,a,b,c,d,e] h
+//     4 ~< {fj2} cra1 adr 00 [n/4+1,a,b,c,d,e] h
+     4 ~< {fj2} cra1 adr 00 b h
      12 ~< %NC%
      2 ~> cr01 adr 00 a l
      5 ~> cr01 adr 00 a h
@@ -28,87 +29,87 @@ e34: 10101 quad or/nor
 // Note that I also had to do this for the address lines on the
 // mc10415a RAMs.
 //     10 ~< {cs2} cra1 adr 01 [n/4+1,a l,b h,c l,d h,e l]
-     10 ~< {cs2} cra1 adr 01 [n/4+1,a,b,c,d,e] h
+     10 ~< {cs2} cra1 adr 01 b h
      14 ~> cr01 adr 01 a l
      11 ~> cr01 adr 01 a h
-     7 ~< {cm2} cra1 adr 02 [n/4+1,a,b,c,d,e] h
+     7 ~< {cm2} cra1 adr 02 b h
      3 ~> cr01 adr 02 a l
      6 ~> cr01 adr 02 a h
-     13 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
+     13 ~< {dk2} cra2 adr 10 b h
      15 ~> cr01 adr 10 c l
      9 ~> cr01 adr 10 c h
 
 e35: 10101 quad or/nor
-     4 ~< {fj2} cra1 adr 00 [n/4+1,a,b,c,d,e] h
+     4 ~< {fj2} cra1 adr 00 b h
      12 ~< %NC%
      2 ~> cr01 adr 00 b l
      5 ~> cr01 adr 00 b h
-     10 ~< {cs2} cra1 adr 01 [n/4+1,a,b,c,d,e] h
+     10 ~< {cs2} cra1 adr 01 b h
      14 ~> cr01 adr 01 b l
      11 ~> cr01 adr 01 b h
-     7 ~< {cm2} cra1 adr 02 [n/4+1,a,b,c,d,e] h
+     7 ~< {cm2} cra1 adr 02 b h
      3 ~> cr01 adr 02 b l
      6 ~> cr01 adr 02 b h
-     13 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
+     13 ~< {dk2} cra2 adr 10 b h
      15 ~> cr01 adr 10 d l
      9 ~> cr01 adr 10 d h
 
 e27: 10101 quad or/nor
-     10 ~< {cp2} cra1 adr 03 [n/4+1,a,b,c,d,e] h
+     10 ~< {cp2} cra1 adr 03 b h
      14 ~> cr01 adr 03 a l
      11 ~> cr01 adr 03 a h
-     13 ~< {de2} cra1 adr 05 [n/4+1,a,b,c,d,e] h
+     13 ~< {de2} cra1 adr 05 b h
      15 ~> cr01 adr 05 a l
      9 ~> cr01 adr 05 a h
-     7 ~< {cv2} cra2 adr 08 [n/4+1,a,b,c,d,e] h
+     7 ~< {cv2} cra2 adr 08 b h
      3 ~> cr01 adr 08 a l
      6 ~> cr01 adr 08 a h
-     4 ~< {dd2} cra2 adr 09 [n/4+1,a,b,c,d,e] h
+     4 ~< {dd2} cra2 adr 09 b h
      2 ~> cr01 adr 09 a l
      5 ~> cr01 adr 09 a h
      12 ~< %NC%
 
 e28: 10101 quad or/nor
-     10 ~< {cp2} cra1 adr 03 [n/4+1,a,b,c,d,e] h
+     10 ~< {cp2} cra1 adr 03 b h
      14 ~> cr01 adr 03 b l
      11 ~> cr01 adr 03 b h
-     13 ~< {de2} cra1 adr 05 [n/4+1,a,b,c,d,e] h
+     13 ~< {de2} cra1 adr 05 b h
      15 ~> cr01 adr 05 b l
      9 ~> cr01 adr 05 b h
-     7 ~< {cv2} cra2 adr 08 [n/4+1,a,b,c,d,e] h
+     7 ~< {cv2} cra2 adr 08 b h
      3 ~> cr01 adr 08 b l
      6 ~> cr01 adr 08 b h
-     4 ~< {dd2} cra2 adr 09 [n/4+1,a,b,c,d,e] h
+     4 ~< {dd2} cra2 adr 09 b h
      2 ~> cr01 adr 09 b l
      5 ~> cr01 adr 09 b h
      12 ~< %NC%
 
 e30: 10101 quad or/nor
-     7 ~< {cu2} cra1 adr 04 [n/4+1,a,b,c,d,e] h
+     7 ~< {cu2} cra1 adr 04 b h
      3 ~> cr01 adr 04 a l
      6 ~> cr01 adr 04 a h
-     13 ~< {df2} cra1 adr 06 [n/4+1,a,b,c,d,e] h
+     13 ~< {df2} cra1 adr 06 b h
      15 ~> cr01 adr 06 a l
      9 ~> cr01 adr 06 a h
-     10 ~< {dj2} cra2 adr 07 [n/4+1,a,b,c,d,e] h
+     10 ~< {dj2} cra2 adr 07 b h
      14 ~> cr01 adr 07 a l
      11 ~> cr01 adr 07 a h
-     4 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
+     4 ~< {dk2} cra2 adr 10 b h
      2 ~> cr01 adr 10 a l
      5 ~> cr01 adr 10 a h
      12 ~< %NC%
 
 e31: 10101 quad or/nor
-     7 ~< {cu2} cra1 adr 04 [n/4+1,a,b,c,d,e] h
+     7 ~< {cu2} cra1 adr 04 b h
      3 ~> cr01 adr 04 b l
      6 ~> cr01 adr 04 b h
-     13 ~< {df2} cra1 adr 06 [n/4+1,a,b,c,d,e] h
+     13 ~< {df2} cra1 adr 06 b h
      15 ~> cr01 adr 06 b l
      9 ~> cr01 adr 06 b h
-     10 ~< {dj2} cra2 adr 07 [n/4+1,a,b,c,d,e] h
+     10 ~< {dj2} cra2 adr 07 b h
      14 ~> cr01 adr 07 b l
      11 ~> cr01 adr 07 b h
-     4 ~< {dk2} cra2 adr 10 [n/4+1,a,b,c,d,e] h
+     4 ~< {dk2} cra2 adr 10 b h
      2 ~> cr01 adr 10 b l
      5 ~> cr01 adr 10 b h
      12 ~< %NC%
