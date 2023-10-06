@@ -8,7 +8,8 @@ module kl10pv(input clk60);
   tEBUSdriver clkEBUSdriver, conEBUSdriver, craEBUSdriver;
   tEBUSdriver crm40EBUSdriver, crm42EBUSdriver, crm44EBUSdriver, crm50EBUSdriver, crm52EBUSdriver;
   tEBUSdriver cshEBUSdriver, ctlEBUSdriver;
-  tEBUSdriver edp39EBUSdriver, edp41EBUSdriver, edp43EBUSdriver, edp49EBUSdriver, edp51EBUSdriver, edp53EBUSdriver;
+  tEBUSdriver edp39EBUSdriver, edp41EBUSdriver, edp43EBUSdriver,
+    edp49EBUSdriver, edp51EBUSdriver, edp53EBUSdriver;
   tEBUSdriver irdEBUSdriver, mbcEBUSdriver, mbxEBUSdriver;
   tEBUSdriver mbzEBUSdriver, mclEBUSdriver, mtrEBUSdriver, picEBUSdriver, scdEBUSdriver;
   tEBUSdriver vmaEBUSdriver;
