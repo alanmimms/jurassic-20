@@ -946,7 +946,7 @@ e39: 10121 4-wide or-and
      6 ~< %NC%
      7 ~< {ct2} -shm1 ar par odd l
      9 ~< {cr1} con ar loaded l
-     10 ~< %NC%
+     10 ~< clk4-e38-7
      11 ~< {cm2} -shm1 arx par odd l
      12 ~< {cp1} con arx loaded l
      13 ~< clk4-e7-7
