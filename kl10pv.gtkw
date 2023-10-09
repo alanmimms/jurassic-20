@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Oct  7 14:10:06 2023
+[*] Mon Oct  9 02:50:31 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Oct  7 13:35:05 2023"
-[dumpfile_size] 22562283
+[dumpfile_mtime] "Mon Oct  9 02:35:39 2023"
+[dumpfile_size] 22070652
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 3036
+[timestart] 3051
 [size] 1920 1045
 [pos] -1 -1
-*-4.461107 3100 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.461107 3100 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
@@ -94,12 +94,41 @@ top.kl10pv.cra_45.cra3_loc_10_h
 @28
 top.kl10pv.clk_32.clk2_go_l
 top.kl10pv.con_35.con_run_h
-@29
 top.kl10pv.con_35.con2_clk_f_h
-@28
 top.kl10pv.con_35.con_nicond_07_h
 top.kl10pv.con_35.con_nicond_08_h
 top.kl10pv.con_35.con_nicond_09_h
 top.kl10pv.con_35.con_nicond_trap_en_h
+top.kl10pv.con_35.con5_pi_cycle_h
+top.kl10pv.con_35.con2_run_l
+top.kl10pv.con_35.con3_Nr_00_l
+top.kl10pv.con_35.con1_condSlspec_instr_l
+top.kl10pv.con_35.con_load_spec_instr_l
+@c000b0
+#{top.kl10pv.con_35.con_e33_[3:15]} top.kl10pv.con_35.con_e33_3 top.kl10pv.con_35.con_e33_2 top.kl10pv.con_35.con_e33_15
+@28
+top.kl10pv.con_35.con_e33_15
+top.kl10pv.con_35.con_e33_2
+top.kl10pv.con_35.con_e33_3
+@1401280
+-group_end
+@28
+top.kl10pv.scd_54.scd4_nicond_10_h
+top.kl10pv.con_35.con1_nicond_h
+top.kl10pv.con_35.con5_pi_cycle_h
+top.kl10pv.con_35.con5_pi_cycle_in_h
+top.kl10pv.con_35.con2_clk_a_h
+top.kl10pv.con_35.con_e51_3
+top.kl10pv.cra_45.cra1_e6_15
+@c00031
+#{cra3-disp} top.kl10pv.cra_45.cra3_disp_04_h top.kl10pv.cra_45.cra3_disp_03_h top.kl10pv.cra_45.cra3_disp_02_h top.kl10pv.cra_45.cra3_disp_01_h top.kl10pv.cra_45.cra3_disp_00_h
+@28
+top.kl10pv.cra_45.cra3_disp_00_h
+top.kl10pv.cra_45.cra3_disp_01_h
+top.kl10pv.cra_45.cra3_disp_02_h
+top.kl10pv.cra_45.cra3_disp_03_h
+top.kl10pv.cra_45.cra3_disp_04_h
+@1401211
+-group_end
 [pattern_trace] 1
 [pattern_trace] 0
