@@ -526,7 +526,7 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCOND_STEP);          // CONDITIONAL SINGLE STEP
     doDiagFunc(diagfCLR_RESET);          // CLEAR RESET
     doDiagWrite(diagfENABLE_KL, '0);     // ENABLE KL STL DECODING OF CODES & AC'S
-    doDiagWrite(diagfEBUS_LOAD, '0);     // SET KL10 MEM RESET FLOP
+    doDiagWrite(diagfMEM_RESET, '0);     // SET KL10 MEM RESET FLOP
     doDiagWrite(diagfWRITE_MBOX, 'o120); // WRITE M-BOX
 
     $display($time, " DONE");

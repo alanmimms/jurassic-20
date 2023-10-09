@@ -419,7 +419,7 @@ static void klReset() {
   FELOG("[enable KL instruction decode and ACs]\n");
   doWrite(diagfENABLE_KL, 0);             // ENABLE KL STL DECODING OF CODES & AC'S
   FELOG("[reset MBOX]\n");
-  doWrite(diagfEBUS_LOAD, 0);             // SET KL10 MEM RESET FLOP
+  doWrite(diagfMEM_RESET, 0);             // SET KL10 MEM RESET FLOP
   doWrite(diagfWRITE_MBOX, 0120);         // WRITE M-BOX
   TLOG("[KL reset complete t=%lld]\n\n", nextReqTicks);
 }

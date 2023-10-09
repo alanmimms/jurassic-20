@@ -61,7 +61,7 @@ const diagFuncTypes = `
   WRITE_MBOX = 0o71,
   SET_KW20_CLOCK = 0o72,
 
-  EBUS_LOAD = 0o76,
+  MEM_RESET = 0o76,
   LOAD_AR = 0o77,
 
   CRAM_READ_00_19 = 0o147,
