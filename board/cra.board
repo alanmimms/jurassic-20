@@ -1054,7 +1054,7 @@ e25: 10415a 1kx1 RAM
      11 ~< cra2 adr 08 h
      12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 h
-     13 ~< cra5-e34-5
+     13 ~< cra5-e34-6
      15 ~< cra5 ebus 03 h
      1 ~> cra5 out 83 h
 
@@ -1070,7 +1070,7 @@ e30:  10415a 1kx1 RAM
      11 ~< cra2 adr 08 h
      12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
-     13 ~< cra5-e34-5
+     13 ~< cra5-e34-6
      15 ~< cra5 ebus 03 h
      1 ~> cra5 out 83 h
 
@@ -1086,7 +1086,7 @@ e10: 10415a 1kx1 RAM
      11 ~< cra2 adr 08 h
      12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 h
-     13 ~< cra5-e34-5
+     13 ~< cra5-e34-6
      15 ~< cra5 ebus 04 h
      1 ~> cra5 out 84 h
 
@@ -1102,7 +1102,7 @@ e5:  10415a 1kx1 RAM
      11 ~< cra2 adr 08 h
      12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
-     13 ~< cra5-e34-5
+     13 ~< cra5-e34-6
      15 ~< cra5 ebus 04 h
      1 ~> cra5 out 84 h
 
@@ -1118,7 +1118,7 @@ e15: 10415a 1kx1 RAM
      11 ~< cra2 adr 08 h
      12 ~< cra2 adr 09 h
      14 ~< -cra2 adr 10 h
-     13 ~< cra5-e34-5
+     13 ~< cra5-e34-6
      15 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h
 
@@ -1134,7 +1134,7 @@ e20: 10415a 1kx1 RAM
      11 ~< cra2 adr 08 h
      12 ~< cra2 adr 09 h
      14 ~< cra2 adr 10 h
-     13 ~< cra5-e34-5
+     13 ~< cra5-e34-6
      15 ~< cra5 ebus 05 h
      1 ~> cra5 out 85 h
 
