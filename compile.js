@@ -622,7 +622,7 @@ function genSlotMacros(bp, slot, modName) {
 function genBackplaneSV(bp) {
   // Define each net in the backplane.
   const decls = Object.keys(bp.vNetToPins)
-	.filter(n => n !== '%NC%')
+	.filter(n => n !== '%NC%' && n !== 'clk60')
 	.sort()
 	.map(n => `  bit ${untickify(n)};`)
 	.join('\n');
