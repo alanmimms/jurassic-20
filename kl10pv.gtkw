@@ -1,18 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon Oct  9 21:19:01 2023
+[*] Tue Oct 10 02:48:16 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Oct  9 21:18:48 2023"
-[dumpfile_size] 22119926
+[dumpfile_mtime] "Tue Oct 10 02:48:10 2023"
+[dumpfile_size] 24135200
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 3051
+[timestart] 2980
 [size] 1920 1045
 [pos] -1 -1
-*-5.461107 3092 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.461107 3067 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.cra_45.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 261
@@ -115,10 +114,9 @@ top.kl10pv.cra_45.cra3_disp_04_h
 top.kl10pv.cra_45.e6.sel4
 top.kl10pv.cra_45.e6.sel2
 top.kl10pv.cra_45.e6.sel1
-@29
 [color] 3
 top.kl10pv.cra_45.cra3_clk_e_h
-@28
+top.kl10pv.feSim.didCRAMReadBack
 top.kl10pv.cra_45.cra5_out_80_h
 top.kl10pv.cra_45.cra5_out_81_h
 top.kl10pv.cra_45.cra5_out_82_h
