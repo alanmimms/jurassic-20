@@ -164,7 +164,7 @@ module fe_sim(input bit clk,
   // 	32-47	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
   // 	16-31	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
   // 	00-15	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
-  // 	80-84	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
+  // 	80-85	;C-RAM BITS AS SPECIFIED UNDER "WCRAM"
   // 	CKSUM	;16 BIT NEGATED CHECKSUM OF WC, ADR & DATA
   //
   // 	C ,,
@@ -225,7 +225,7 @@ module fe_sim(input bit clk,
 	    kl10pv.cra_45.cra2_adr_07_h,
 	    kl10pv.cra_45.cra2_adr_08_h,
 	    kl10pv.cra_45.cra2_adr_09_h,
-	    kl10pv.cra_45.cra2_adr_10_h} == 11'o123 &&
+	    kl10pv.cra_45.cra2_adr_10_h} == 11'o133 &&
 	   !didCRAMReadBack)
   begin
     tCRAM cw;
@@ -593,15 +593,16 @@ module fe_sim(input bit clk,
 	    tCRAM rcw;
 	    // These hard coded ranges of destination bits come from
 	    // comment above on KLX.RAM format, except that the last
-	    // piece appears to need to be six bits and not five based
-	    // on PDF347 CRA5 {CALL,DISP[0:4]} "special" field.
+	    // piece really needs six bits and not five. This belief
+	    // is based on PDF347 CRA5 {CALL,DISP[0:4]} "special"
+	    // field for bits 80-85.
 	    cw[64:79] = unASCIIize(words[k++]);
 	    cw[48:63] = unASCIIize(words[k++]);
 	    cw[32:47] = unASCIIize(words[k++]);
 	    cw[16:31] = unASCIIize(words[k++]);
 	    cw[00:15] = unASCIIize(words[k++]);
 	    cw[80:85] =  6'(unASCIIize(words[k++]));
-	    $fwrite(dumpFD, "C %04o: SB %o\n", adr, cw);
+	    $fwrite(dumpFD, "C %04o: SB %o [80:85]=%o\n", adr, cw, cw[80:85]);
 
 	    if (adr == 16'o136) begin
 	      cram136 = cw;
@@ -763,14 +764,12 @@ FOR WDRAM
   // CRM42: N=12
   // CRM40: N=16
   task automatic writeCRAM(tCRAM cw, tCRAMAddress adr, int dumpFD);
-    $fwrite(dumpFD, "writeCRAM %o:\n", adr);
 
     `define putCRM1(N, slot, a0, b0)		\
 	if (adr[10] == 0)			\
 	  kl10pv.slot.a0.ram[adr[0:9]] = cw[N];	\
 	else					\
-	  kl10pv.slot.b0.ram[adr[0:9]] = cw[N];	\
-      $fwrite(dumpFD, "%2d: %3s=%o\n", N, adr[10] == 0 ? `STRINGIFY(a0) : `STRINGIFY(b0), cw[N]);
+	  kl10pv.slot.b0.ram[adr[0:9]] = cw[N];
 
     `define putCRM2(N, slot, a0, b0, a1, b1)	\
       `putCRM1(N+0, slot, a0, b0)		\
@@ -804,7 +803,6 @@ FOR WDRAM
     `putCRM1(83, cra_45, e25, e30)
     `putCRM1(84, cra_45, e10,  e5)
     `putCRM1(85, cra_45, e15, e20)
-    $fwrite(dumpFD, "\n");
   endtask // writeCRAM
 
 
