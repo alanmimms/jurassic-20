@@ -39,7 +39,7 @@ module kl10pv(input clk60);
   chx28 chx_28(.EBUSdriver(chxEBUSdriver), .*);
   clk32 clk_32(.EBUSdriver(clkEBUSdriver), .*);
   con35 con_35(.EBUSdriver(conEBUSdriver), .*);
-  cra45 cra_45(.EBUSdriver(craEBUSdriver), .clk60(clk60), .*);
+  cra45 cra_45(.EBUSdriver(craEBUSdriver), .*);
   crc10 crc_10(.*);
   crm40 crm_40(.EBUSdriver(crm40EBUSdriver), .*);
   crm42 crm_42(.EBUSdriver(crm42EBUSdriver), .*);

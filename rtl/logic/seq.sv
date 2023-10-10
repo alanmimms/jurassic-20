@@ -1,36 +1,33 @@
-module seq #(parameter N=4)
-  (input bit clk,
-   input bit reset,
-   output bit [N-1:0] q
-   );
+module seq (input bit clk,
+	    input bit reset,
+	    output bit q7, q6, q5, q4, q3, q2, q1, q0);
 
-  bit [12:35] addr;             // Address base we start at for quadword
-  bit [34:35] wo;               // Word offset of quadword
-  bit [0:3] toAck;              // Words we have not yet ACKed
+  bit [3:0] state = 0;
+  bit wasReset;
 
-  assign ACKN = toAck[0];
-  assign VALID = toAck[0];
+  always_comb begin
+    {q7,q6,q5,q4,q3,q2,q1,q0} = 0;
 
-  always_comb if (VALID) begin
-    D = memory[{addr[12:33], wo}];
-    PARITY = ^memory[{addr[12:33], wo}];
-  end else begin
-    D = '0;
-    PARITY = 0;
-  end
+    unique case (state)
+    0: q0 = 1;
+    1: q1 = 1;
+    2: q2 = 1;
+    3: q3 = 1;
+    4: q4 = 1;
+    5: q5 = 1;
+    6: q6 = 1;
+    7: q7 = 1;
+    endcase
+  end // always_comb
 
-  always_ff @(posedge clk) if (CROBAR) begin
-    addr <= '0;
-    wo <= '0;
-    toAck <= '0;
-  end else if (START) begin     // A transfer is starting or continuing
-    addr <= SBUS.ADR;           // Address of first word we do
-    wo <= SBUS.ADR[34:35];      // Word offset we increment mod 4
-    toAck <= SBUS.RQ;           // Addresses remaining to ACK
-  end
+  always @(posedge clk, negedge clk) begin
+    if (reset) wasReset <= 1;
 
-  always_ff @(posedge clk) if (toAck) begin
-    wo <= wo + 1;
-    toAck <= toAck << 1;
+    if (!reset && wasReset) begin
+      state <= 0;
+      wasReset <= 0;
+    end else begin
+      state <= state != 7 ? state + 1 : 0;
+    end
   end
 endmodule

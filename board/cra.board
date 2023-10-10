@@ -1,7 +1,6 @@
 %verilog
 ,
-  output tEBUSdriver EBUSdriver,
-  input bit clk60
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CRA1, PDF343
@@ -622,9 +621,25 @@ e41: 10210 10210 dual 3 or buffer
      13 ~> cra3 clk e h
      14 ~> cra3 clk f h
 
-dl1: delay-line (PCB wired)
+dl1: seq (13ns)
+     10 ~< ` !cra3_clk_a_h
+     9 ~< ` clk60 & cra3_clk_a_h
+     1 ~> %NC%
+     2 ~> cra4-dl1-2
+     3 ~> cra4-dl1-2
+     4 ~> %NC%
+     5 ~> %NC%
+     6 ~> %NC%
+     7 ~> %NC%
+     8 ~> %NC%
+
+dl2: delay-line (PCB wired)
      1 ~< {cr2} clk cra h
      2 ~> clk3 cra delayed h
+
+dl3: delay-line (just an input to import clk60)
+     1 ~< {aa2} clk60
+     2 ~> %NC%
 
 e48: 10160 parity
      3 ~< cra3 call, reset h
@@ -814,10 +829,11 @@ e52: 10101 quad or/nor
      3 ~> %NC%
      6 ~> cra4 sel call h
      10 ~< cra3 clk f h
-     14 ~> cra4 stack write l
+//     14 ~> cra4 stack write l
+     14 ~> %NC%
      11 ~> cra4 sel call h
      13 ~< cra4-dl1-2
-     15 ~> cra4 sel call h
+     15 ~> cra4 stack write l
      9 ~> %NC%
 
 e62: 10158 4x2 mixer
