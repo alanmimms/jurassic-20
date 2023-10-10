@@ -1,6 +1,7 @@
 %verilog
 ,
-  output tEBUSdriver EBUSdriver
+  output tEBUSdriver EBUSdriver,
+  input bit clk60
 %endverilog
 
 Page: CRA1, PDF343

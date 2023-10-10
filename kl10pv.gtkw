@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Oct 10 02:48:16 2023
+[*] Tue Oct 10 03:02:36 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Tue Oct 10 02:48:10 2023"
 [dumpfile_size] 24135200
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 2980
+[timestart] 3069
 [size] 1920 1045
 [pos] -1 -1
-*-5.461107 3067 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-3.461107 3101 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
@@ -19,9 +19,6 @@
 [sst_expanded] 1
 [sst_vpaned_height] 414
 @28
-[color] 1
-top.kl10pv.con_35.con1_reset_l
-top.kl10pv.clk
 top.kl10pv.con_35.con2_clk_e_h
 @30
 top.kl10pv.feSim.ebus.data[0:35]
@@ -52,11 +49,9 @@ top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
 @28
-[color] 2
-top.kl10pv.mbc3_a_change_coming_a_l
+top.kl10pv.con_35.con_run_h
+top.kl10pv.clk_32.clk2_go_l
 top.kl10pv.con_35.con_load_ir_l
-[color] 1
-top.kl10pv.cra_45.clk4_force_1777_h
 @c000b0
 [color] 2
 #{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h
@@ -92,36 +87,8 @@ top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
 @28
-top.kl10pv.clk_32.clk2_go_l
-top.kl10pv.con_35.con_run_h
-top.kl10pv.scd_54.scd4_nicond_10_h
-top.kl10pv.con_35.con1_nicond_h
-top.kl10pv.con_35.con5_pi_cycle_h
-top.kl10pv.con_35.con5_pi_cycle_in_h
-top.kl10pv.con_35.con_e51_3
-top.kl10pv.cra_45.cra1_e6_15
-@8000b0
-#{cra3-disp} top.kl10pv.cra_45.cra3_disp_04_h top.kl10pv.cra_45.cra3_disp_03_h top.kl10pv.cra_45.cra3_disp_02_h top.kl10pv.cra_45.cra3_disp_01_h top.kl10pv.cra_45.cra3_disp_00_h
-@28
-top.kl10pv.cra_45.cra3_disp_00_h
-top.kl10pv.cra_45.cra3_disp_01_h
-top.kl10pv.cra_45.cra3_disp_02_h
-top.kl10pv.cra_45.cra3_disp_03_h
-top.kl10pv.cra_45.cra3_disp_04_h
-@1001200
--group_end
-@28
-top.kl10pv.cra_45.e6.sel4
-top.kl10pv.cra_45.e6.sel2
-top.kl10pv.cra_45.e6.sel1
-[color] 3
-top.kl10pv.cra_45.cra3_clk_e_h
-top.kl10pv.feSim.didCRAMReadBack
-top.kl10pv.cra_45.cra5_out_80_h
-top.kl10pv.cra_45.cra5_out_81_h
-top.kl10pv.cra_45.cra5_out_82_h
-top.kl10pv.cra_45.cra5_out_83_h
-top.kl10pv.cra_45.cra5_out_84_h
-top.kl10pv.cra_45.cra5_out_85_h
+top.kl10pv.cra_45.cra3_clk_a_h
+top.kl10pv.clk
+top.kl10pv.cra_45.cra4_stack_write_l
 [pattern_trace] 1
 [pattern_trace] 0
