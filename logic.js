@@ -222,6 +222,12 @@ const logic = {
     '~>': expand('qa1=2,qa2=3,qa3=4, qb1=12,qb2=13,qb3=14'),
   },
 
+  'seq': {
+    desc: 'sequencer for delays',
+    '~<': expand('reset=10, clk=9'),
+    '~>': expand('q7=8, q6=7, q5=6, q4=5, q3=4, q2=3, q1=2, q0=1'),
+  },
+
   'delay-line': {
     desc: 'delay buffer',
     '~<': expand('in=1'),
