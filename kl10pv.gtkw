@@ -1,17 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon Oct  9 02:50:31 2023
+[*] Mon Oct  9 21:19:01 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Oct  9 02:35:39 2023"
-[dumpfile_size] 22070652
+[dumpfile_mtime] "Mon Oct  9 21:18:48 2023"
+[dumpfile_size] 22119926
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
 [timestart] 3051
 [size] 1920 1045
 [pos] -1 -1
-*-5.461107 3100 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.461107 3092 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.cra_45.
 [treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 261
@@ -94,33 +95,13 @@ top.kl10pv.cra_45.cra3_loc_10_h
 @28
 top.kl10pv.clk_32.clk2_go_l
 top.kl10pv.con_35.con_run_h
-top.kl10pv.con_35.con2_clk_f_h
-top.kl10pv.con_35.con_nicond_07_h
-top.kl10pv.con_35.con_nicond_08_h
-top.kl10pv.con_35.con_nicond_09_h
-top.kl10pv.con_35.con_nicond_trap_en_h
-top.kl10pv.con_35.con5_pi_cycle_h
-top.kl10pv.con_35.con2_run_l
-top.kl10pv.con_35.con3_Nr_00_l
-top.kl10pv.con_35.con1_condSlspec_instr_l
-top.kl10pv.con_35.con_load_spec_instr_l
-@c000b0
-#{top.kl10pv.con_35.con_e33_[3:15]} top.kl10pv.con_35.con_e33_3 top.kl10pv.con_35.con_e33_2 top.kl10pv.con_35.con_e33_15
-@28
-top.kl10pv.con_35.con_e33_15
-top.kl10pv.con_35.con_e33_2
-top.kl10pv.con_35.con_e33_3
-@1401280
--group_end
-@28
 top.kl10pv.scd_54.scd4_nicond_10_h
 top.kl10pv.con_35.con1_nicond_h
 top.kl10pv.con_35.con5_pi_cycle_h
 top.kl10pv.con_35.con5_pi_cycle_in_h
-top.kl10pv.con_35.con2_clk_a_h
 top.kl10pv.con_35.con_e51_3
 top.kl10pv.cra_45.cra1_e6_15
-@c00031
+@8000b0
 #{cra3-disp} top.kl10pv.cra_45.cra3_disp_04_h top.kl10pv.cra_45.cra3_disp_03_h top.kl10pv.cra_45.cra3_disp_02_h top.kl10pv.cra_45.cra3_disp_01_h top.kl10pv.cra_45.cra3_disp_00_h
 @28
 top.kl10pv.cra_45.cra3_disp_00_h
@@ -128,7 +109,21 @@ top.kl10pv.cra_45.cra3_disp_01_h
 top.kl10pv.cra_45.cra3_disp_02_h
 top.kl10pv.cra_45.cra3_disp_03_h
 top.kl10pv.cra_45.cra3_disp_04_h
-@1401211
+@1001200
 -group_end
+@28
+top.kl10pv.cra_45.e6.sel4
+top.kl10pv.cra_45.e6.sel2
+top.kl10pv.cra_45.e6.sel1
+@29
+[color] 3
+top.kl10pv.cra_45.cra3_clk_e_h
+@28
+top.kl10pv.cra_45.cra5_out_80_h
+top.kl10pv.cra_45.cra5_out_81_h
+top.kl10pv.cra_45.cra5_out_82_h
+top.kl10pv.cra_45.cra5_out_83_h
+top.kl10pv.cra_45.cra5_out_84_h
+top.kl10pv.cra_45.cra5_out_85_h
 [pattern_trace] 1
 [pattern_trace] 0
