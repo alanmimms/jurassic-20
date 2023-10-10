@@ -623,7 +623,7 @@ e41: 10210 10210 dual 3 or buffer
 
 dl1: seq (13ns)
      10 ~< ` !cra3_clk_a_h
-     9 ~< ` clk60 & cra3_clk_a_h
+     9 ~< {aa2} clk60
      1 ~> %NC%
      2 ~> cra4-dl1-2
      3 ~> cra4-dl1-2

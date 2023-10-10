@@ -3,7 +3,7 @@ module seq (input bit clk,
 	    output bit q7, q6, q5, q4, q3, q2, q1, q0);
 
   bit [3:0] state = 0;
-  bit wasReset;
+  bit running = 0;
 
   always_comb begin
     {q7,q6,q5,q4,q3,q2,q1,q0} = 0;
@@ -21,13 +21,15 @@ module seq (input bit clk,
   end // always_comb
 
   always @(posedge clk, negedge clk) begin
-    if (reset) wasReset <= 1;
 
-    if (!reset && wasReset) begin
-      state <= 0;
-      wasReset <= 0;
-    end else begin
-      state <= state != 7 ? state + 1 : 0;
-    end
+    if (running) begin
+
+      if (state < 5) begin
+	state <= state + 1;
+      end else begin
+	state <= 0;
+	running <= 0;
+      end
+    end else if (!running && !reset) running <= 1;
   end
 endmodule

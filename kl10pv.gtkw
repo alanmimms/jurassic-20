@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Oct 10 23:35:01 2023
+[*] Tue Oct 10 23:44:49 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Oct 10 23:33:03 2023"
-[dumpfile_size] 24331778
+[dumpfile_mtime] "Tue Oct 10 23:44:40 2023"
+[dumpfile_size] 25511556
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
 [timestart] 3094
 [size] 1920 1045
@@ -92,7 +92,7 @@ top.kl10pv.cra_45.cra3_clk_a_h
 top.kl10pv.cra_45.cra4_stack_write_l
 top.kl10pv.clk
 top.kl10pv.cra_45.cra4_dl1_2
-@800200
+@c00201
 -seq
 @28
 top.kl10pv.cra_45.dl1.clk
@@ -105,11 +105,10 @@ top.kl10pv.cra_45.dl1.q5
 top.kl10pv.cra_45.dl1.q6
 top.kl10pv.cra_45.dl1.q7
 top.kl10pv.cra_45.dl1.reset
-@29
 top.kl10pv.cra_45.dl1.wasReset
 @22
 top.kl10pv.cra_45.dl1.state[3:0]
-@1000200
+@1401201
 -seq
 [pattern_trace] 1
 [pattern_trace] 0
