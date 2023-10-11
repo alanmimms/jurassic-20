@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Oct 10 23:44:49 2023
+[*] Wed Oct 11 01:24:22 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Oct 10 23:44:40 2023"
-[dumpfile_size] 25511556
+[dumpfile_mtime] "Wed Oct 11 01:23:47 2023"
+[dumpfile_size] 25806340
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
 [timestart] 3094
 [size] 1920 1045
 [pos] -1 -1
-*-3.461107 3126 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-3.461107 3105 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.cra_45.
@@ -92,7 +92,7 @@ top.kl10pv.cra_45.cra3_clk_a_h
 top.kl10pv.cra_45.cra4_stack_write_l
 top.kl10pv.clk
 top.kl10pv.cra_45.cra4_dl1_2
-@c00201
+@c00200
 -seq
 @28
 top.kl10pv.cra_45.dl1.clk
@@ -105,10 +105,21 @@ top.kl10pv.cra_45.dl1.q5
 top.kl10pv.cra_45.dl1.q6
 top.kl10pv.cra_45.dl1.q7
 top.kl10pv.cra_45.dl1.reset
-top.kl10pv.cra_45.dl1.wasReset
 @22
 top.kl10pv.cra_45.dl1.state[3:0]
-@1401201
+@1401200
 -seq
+@28
+top.kl10pv.cra_45.cra4_dl4_2
+[color] 3
+top.kl10pv.cra_45.cra3_clk_b_h
+[color] 3
+top.kl10pv.cra_45.cra4_dl5_3
+top.kl10pv.cra_45.dl6.clk
+@29
+[color] 2
+top.kl10pv.cra_45.dl6.trigger
+[color] 2
+top.kl10pv.cra_45.dl6.q
 [pattern_trace] 1
 [pattern_trace] 0

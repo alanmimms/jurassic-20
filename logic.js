@@ -228,6 +228,24 @@ const logic = {
     '~>': expand('q7=8, q6=7, q5=6, q4=5, q3=4, q2=3, q1=2, q0=1'),
   },
 
+  'delayN': {
+    desc: 'delay a signal N clk edgesx',
+    '~<': expand('clk=1, trigger=2'),
+    '~>': expand('q=3'),
+  },
+
+  'delay1': {
+    desc: 'delay a signal 1 clk edgesx',
+    '~<': expand('clk=1, trigger=2'),
+    '~>': expand('q=3'),
+  },
+
+  'delay2': {
+    desc: 'delay a signal 2 clk edgesx',
+    '~<': expand('clk=1, trigger=2'),
+    '~>': expand('q=3'),
+  },
+
   'delay-line': {
     desc: 'delay buffer',
     '~<': expand('in=1'),
