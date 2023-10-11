@@ -920,7 +920,7 @@ e66: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b delay1 h
+     4 ~< ` !cra3_clk_b_delay1_h
      14 ~> %NC%
      15 ~> cra4 sbr ret 00 h
      2 ~> cra4 sbr ret 01 h
@@ -935,7 +935,7 @@ e71: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b delay1 h
+     4 ~< ` !cra3_clk_b_delay1_h
      14 ~> cra4 sbr ret 03 h
      15 ~> cra4 sbr ret 04 h
      2 ~> cra4 sbr ret 05 h
@@ -950,7 +950,7 @@ e81: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b delay1 h
+     4 ~< ` !cra3_clk_b_delay1_h
      14 ~> cra4 sbr ret 07 h
      15 ~> cra4 sbr ret 08 h
      2 ~> cra4 sbr ret 09 h
