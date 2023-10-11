@@ -14,17 +14,14 @@ module mc10145(input bit a0, a1, a2, a3,
   always_comb {q0,q1,q2,q3} = q;
   always_comb d = {d0, d1, d2, d3};
 
+  always_comb begin
+
+    if (!cs || we) q = '0;
+    else q = ram[addr];
+
+  end
+
   always_ff @(cs, we) begin
-
-    if (cs) begin
-
-      if (we) begin
-	ram[addr] <= d;
-	q <= '0;
-      end else
-	q <= ram[addr];
-
-    end else
-      q <= '0;
+    if (cs && we) ram[addr] <= d;
   end
 endmodule

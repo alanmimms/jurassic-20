@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Wed Oct 11 03:02:23 2023
+[*] Wed Oct 11 14:32:29 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Oct 11 03:02:19 2023"
-[dumpfile_size] 24921707
+[dumpfile_mtime] "Wed Oct 11 14:31:31 2023"
+[dumpfile_size] 25708103
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
 [timestart] 3092
 [size] 1920 1045
 [pos] -1 -1
-*-3.461107 3109 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-3.461107 3117 1724 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.cra_45.
@@ -114,7 +114,7 @@ top.kl10pv.cra_45.cra4_stack_adr_04_h
 top.kl10pv.cra_45.cra4_stack_adr_10_h
 @1401200
 -group_end
-@c00030
+@c000b0
 #{sbr-ret} top.kl10pv.cra_45.cra4_sbr_ret_10_h top.kl10pv.cra_45.cra4_sbr_ret_09_h top.kl10pv.cra_45.cra4_sbr_ret_08_h top.kl10pv.cra_45.cra4_sbr_ret_07_h top.kl10pv.cra_45.cra4_sbr_ret_06_h top.kl10pv.cra_45.cra4_sbr_ret_05_h top.kl10pv.cra_45.cra4_sbr_ret_04_h top.kl10pv.cra_45.cra4_sbr_ret_03_h top.kl10pv.cra_45.cra4_sbr_ret_02_h top.kl10pv.cra_45.cra4_sbr_ret_01_h top.kl10pv.cra_45.cra4_sbr_ret_00_h
 @28
 top.kl10pv.cra_45.cra4_sbr_ret_00_h
@@ -128,9 +128,9 @@ top.kl10pv.cra_45.cra4_sbr_ret_07_h
 top.kl10pv.cra_45.cra4_sbr_ret_08_h
 top.kl10pv.cra_45.cra4_sbr_ret_09_h
 top.kl10pv.cra_45.cra4_sbr_ret_10_h
-@1401200
+@1401280
 -group_end
-@29
+@28
 [color] 2
 top.kl10pv.cra_45.cra4_e28_3
 @c00200
