@@ -151,7 +151,7 @@ e28: 10105 2-3-2 or/nor
      6 ~> cra2 adr 07 l
      7 ~> cra2 adr 07 h
      4 ~< cra4 call, reset, 1777 h
-     5 ~< ret and -1777 h
+     5 ~< cra4 ret and -1777 h
      3 ~> cra4-e28-3
      2 ~> %NC%
 
@@ -621,17 +621,10 @@ e41: 10210 10210 dual 3 or buffer
      13 ~> cra3 clk e h
      14 ~> cra3 clk f h
 
-dl1: seq (13ns)
-     10 ~< ` !cra3_clk_a_h
-     9 ~< {aa2} clk60
-     1 ~> %NC%
-     2 ~> cra4-dl1-2
-     3 ~> cra4-dl1-2
-     4 ~> %NC%
-     5 ~> %NC%
-     6 ~> %NC%
-     7 ~> %NC%
-     8 ~> %NC%
+dl1: delay3 (delay CRA3 CLK A H by three clk60 edges)
+     1 ~< {aa2} clk60
+     2 ~< cra3 clk a h
+     3 ~> cra4-dl1-3
 
 dl2: delay-line (PCB wired)
      1 ~< {cr2} clk cra h
@@ -820,8 +813,18 @@ e57: 10141 shft reg
      2 ~> cra4 stack adr g h
      3 ~> cra4 stack adr h h
 
+dl6: delay1 (delay N=1 clk60 edge)
+     1 ~< {aa2} clk60
+     2 ~< cra3 clk f h
+     3 ~> cra3 clk f delay1 h
+
+dl7: delay1 (delay N=1 clk60 edge)
+     1 ~< {aa2} clk60
+     2 ~< cra4 stack write l
+     3 ~> cra4 stack write delay1 l
+
 e52: 10101 quad or/nor
-     4 ~< cra4 stack write l
+     4 ~< cra4 stack write delay1 l
      12 ~< %NC%
      2 ~> cra4 sel call h
      5 ~> %NC%
@@ -829,10 +832,9 @@ e52: 10101 quad or/nor
      3 ~> %NC%
      6 ~> cra4 sel call h
      10 ~< cra3 clk f h
-//     14 ~> cra4 stack write l
-     14 ~> %NC%
      11 ~> cra4 sel call h
-     13 ~< cra4-dl1-2
+     14 ~> cra4 stack write l
+     13 ~< cra4-dl1-3
      15 ~> cra4 stack write l
      9 ~> %NC%
 
@@ -916,11 +918,6 @@ dl5: delay1 (delay N=1)
      2 ~< cra3 clk b h
      3 ~> cra4-dl5-3
 
-dl6: delay2 (delay N=2)
-     1 ~< {aa2} clk60
-     2 ~< cra3 clk b h
-     3 ~> cra4-dl6-3
-
 e66: 10141 shft reg
      13 ~< %NC%
      12 ~< %NC%
@@ -930,7 +927,7 @@ e66: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra4-dl4-2
+     4 ~< cra3 clk f delay1 h
      14 ~> %NC%
      15 ~> cra4 sbr ret 00 h
      2 ~> cra4 sbr ret 01 h

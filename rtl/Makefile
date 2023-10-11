@@ -4,7 +4,7 @@ MODS = \
     mc10136 mc10141 mc10144 mc10145 mc10147 mc10415a \
     mc10158 mc10160 mc10161 mc10162 mc10164 mc10165 \
     mc10173 mc10174 mc10176 mc10179 mc10181 mc10210 \
-    oscillator seq delay1 delay2 delayN \
+    oscillator seq delay1 delay2 delay3 delayN \
     just_a_wire delay_line tapped_delay_20_2 tapped_delay_50_10
 
 TOP = kl10pv

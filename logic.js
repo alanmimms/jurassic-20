@@ -229,19 +229,25 @@ const logic = {
   },
 
   'delayN': {
-    desc: 'delay a signal N clk edgesx',
+    desc: 'delay a signal N clk edges',
     '~<': expand('clk=1, trigger=2'),
     '~>': expand('q=3'),
   },
 
   'delay1': {
-    desc: 'delay a signal 1 clk edgesx',
+    desc: 'delay a signal 1 clk edges',
     '~<': expand('clk=1, trigger=2'),
     '~>': expand('q=3'),
   },
 
   'delay2': {
-    desc: 'delay a signal 2 clk edgesx',
+    desc: 'delay a signal 2 clk edges',
+    '~<': expand('clk=1, trigger=2'),
+    '~>': expand('q=3'),
+  },
+
+  'delay3': {
+    desc: 'delay a signal 3 clk edges',
     '~<': expand('clk=1, trigger=2'),
     '~>': expand('q=3'),
   },
