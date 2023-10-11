@@ -858,48 +858,48 @@ e67: 10145 16x4 RAM
      4 ~< cra3 loc 00 h
      11 ~< cra3 loc 01 h
      12 ~< cra3 loc 02 h
-     10 ~< cra4-e62-1
-     9 ~< cra4-e62-2
-     7 ~< cra4-e62-15
-     6 ~< cra4-e62-14
+     10 ~< cra4 stack adr 10 h
+     9 ~< cra4 stack adr 04 h
+     7 ~< cra4 stack adr 02 h
+     6 ~< cra4 stack adr 01 h
      3 ~< %NC%
      13 ~< cra4 stack write l
-     2 ~> cra4 stack adr 10 h
-     1 ~> cra4 stack adr 04 h
-     15 ~> cra4 stack adr 02 h
-     14 ~> cra4 stack adr 01 h
+     2 ~> %NC%
+     1 ~> cra4-e67-1
+     15 ~> cra4-e67-15
+     14 ~> cra4-e67-14
 
 e72: 10145 16x4 RAM
      5 ~< cra3 loc 03 h
      4 ~< cra3 loc 04 h
      11 ~< cra3 loc 05 h
      12 ~< cra3 loc 06 h
-     10 ~< cra4-e62-1
-     9 ~< cra4-e62-2
-     7 ~< cra4-e62-15
-     6 ~< cra4-e62-14
+     10 ~< cra4 stack adr 10 h
+     9 ~< cra4 stack adr 04 h
+     7 ~< cra4 stack adr 02 h
+     6 ~< cra4 stack adr 01 h
      3 ~< %NC%
      13 ~< cra4 stack write l
-     2 ~> cra4 stack adr 10 h
-     1 ~> cra4 stack adr 04 h
-     15 ~> cra4 stack adr 02 h
-     14 ~> cra4 stack adr 01 h
+     2 ~> cra4-e72-2
+     1 ~> cra4-e72-1
+     15 ~> cra4-e72-15
+     14 ~> cra4-e72-14
 
 e76: 10145 16x4 RAM
      5 ~< cra3 loc 07 h
      4 ~< cra3 loc 08 h
      11 ~< cra3 loc 09 h
      12 ~< cra3 loc 10 h
-     10 ~< cra4-e62-1
-     9 ~< cra4-e62-2
-     7 ~< cra4-e62-15
-     6 ~< cra4-e62-14
+     10 ~< cra4 stack adr 10 h
+     9 ~< cra4 stack adr 04 h
+     7 ~< cra4 stack adr 02 h
+     6 ~< cra4 stack adr 01 h
      3 ~< %NC%
      13 ~< cra4 stack write l
-     2 ~> cra4 stack adr 10 h
-     1 ~> cra4 stack adr 04 h
-     15 ~> cra4 stack adr 02 h
-     14 ~> cra4 stack adr 01 h
+     2 ~> cra4-e76-2
+     1 ~> cra4-e76-1
+     15 ~> cra4-e76-15
+     14 ~> cra4-e76-14
 
 dl4: delay1 (PCB delay 1.8ns)
      1 ~< {aa2} clk60
