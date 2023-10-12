@@ -446,7 +446,7 @@ e55: 10141 shft reg
 
 e65: 10101 quad or/nor
      4 ~< {es2} con cond/fe shrt h
-     12 ~< cram fe load h
+     12 ~< {ep2} cram fe load h
      7 ~< scd5 reset h
      10 ~< scd2 fe 01 h
      13 ~< scd2 fe 05 h
