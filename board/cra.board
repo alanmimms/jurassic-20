@@ -921,10 +921,16 @@ e76: 10145 16x4 RAM
      15 ~> cra4-e76-15
      14 ~> cra4-e76-14
 
-dl4: delay2 (PCB delay 1.8ns)
-     1 ~< {aa2} clk60
-     2 ~< cra3 clk b h
-     3 ~> cra3 clk b delay2 h
+//dl4: delay3 (PCB delay 1.8ns)
+//     1 ~< {aa2} clk60
+//     2 ~< ` !cra3_clk_b_h
+//     3 ~> cra3 clk b delayed h
+
+// I fiddled around with this for two days before I realized zero
+// delay would work fine.
+dl4: wire (PCB delay 1.8ns)
+     1 ~< cra3 clk b h
+     2 ~> cra3 clk b delayed h
 
 dl5: delay1 (delay N=1)
      1 ~< {aa2} clk60
@@ -940,7 +946,7 @@ e66: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< ` !cra3_clk_b_delay2_h
+     4 ~< cra3 clk b delayed h
      14 ~> %NC%
      15 ~> cra4 sbr ret 00 h
      2 ~> cra4 sbr ret 01 h
@@ -955,7 +961,7 @@ e71: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< ` !cra3_clk_b_delay2_h
+     4 ~< cra3 clk b delayed h
      14 ~> cra4 sbr ret 03 h
      15 ~> cra4 sbr ret 04 h
      2 ~> cra4 sbr ret 05 h
@@ -970,7 +976,7 @@ e81: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< ` !cra3_clk_b_delay2_h
+     4 ~< cra3 clk b delayed h
      14 ~> cra4 sbr ret 07 h
      15 ~> cra4 sbr ret 08 h
      2 ~> cra4 sbr ret 09 h
