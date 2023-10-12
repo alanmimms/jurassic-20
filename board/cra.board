@@ -367,7 +367,6 @@ e18: 10101 quad or/nor
 
 e33: 10101 quad or/nor
      4 ~< {ae2} cram j09 h
-     12 ~< %NC%
      2 ~> %NC%
      5 ~> cra1-e33-5
      7 ~< {af1} cram j10 h
@@ -621,7 +620,7 @@ e41: 10210 10210 dual 3 or buffer
      13 ~> cra3 clk e h
      14 ~> cra3 clk f h
 
-dl1: delay3 (delay CRA3 CLK A H by three clk60 edges)
+dl1: delay1 (delay CRA3 CLK A H by one clk60 edge)
      1 ~< {aa2} clk60
      2 ~< cra3 clk a h
      3 ~> cra4-dl1-3
@@ -823,12 +822,26 @@ dl7: delay1 (delay N=1 clk60 edge)
      2 ~< cra4 stack write l
      3 ~> cra4 stack write delay1 l
 
+// Delay CRA4 STACK WRITE L leading and trailing edge by one clk60
+// edge to simulate ";END OF RUN".
+dl8: delay1 (delay N=1 clk60 edge)
+     1 ~< {aa2} clk60
+     2 ~< ` !cra4_stack_write_l
+     3 ~> cra4 stack write delay1 h
+
+dl9: delay1 (delay N=1 clk60 edge)
+     1 ~< {aa2} clk60
+     2 ~< ` !cra4_ret_and_Ng1777_l
+     3 ~> cra4 ret and -1777 dly1 l
+
 e52: 10101 quad or/nor
-     4 ~< cra4 stack write delay1 l
+     // Must invert delayed signal to return it to its original sense before delaying.
+     4 ~< ` !cra4_stack_write_delay1_h
      12 ~< %NC%
      2 ~> cra4 sel call h
      5 ~> %NC%
-     7 ~< -cra4 ret and -1777 h
+//     7 ~< -cra4 ret and -1777 h
+     7 ~< ` !cra4_ret_and_Ng1777_dly1_l
      3 ~> %NC%
      6 ~> cra4 sel call h
      10 ~< cra3 clk f h
@@ -901,10 +914,10 @@ e76: 10145 16x4 RAM
      15 ~> cra4-e76-15
      14 ~> cra4-e76-14
 
-dl4: delay1 (PCB delay 1.8ns)
+dl4: delay2 (PCB delay 1.8ns)
      1 ~< {aa2} clk60
      2 ~< cra3 clk b h
-     3 ~> cra3 clk b delay1 h
+     3 ~> cra3 clk b delay2 h
 
 dl5: delay1 (delay N=1)
      1 ~< {aa2} clk60
@@ -920,7 +933,7 @@ e66: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< ` !cra3_clk_b_delay1_h
+     4 ~< ` !cra3_clk_b_delay2_h
      14 ~> %NC%
      15 ~> cra4 sbr ret 00 h
      2 ~> cra4 sbr ret 01 h
@@ -935,7 +948,7 @@ e71: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< ` !cra3_clk_b_delay1_h
+     4 ~< ` !cra3_clk_b_delay2_h
      14 ~> cra4 sbr ret 03 h
      15 ~> cra4 sbr ret 04 h
      2 ~> cra4 sbr ret 05 h
@@ -950,7 +963,7 @@ e81: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< ` !cra3_clk_b_delay1_h
+     4 ~< ` !cra3_clk_b_delay2_h
      14 ~> cra4 sbr ret 07 h
      15 ~> cra4 sbr ret 08 h
      2 ~> cra4 sbr ret 09 h
