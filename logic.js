@@ -234,6 +234,12 @@ const logic = {
     '~>': expand('q=3'),
   },
 
+  'delayNinverted': {
+    desc: 'delay an active-low signal N clk edges',
+    '~<': expand('clk=1, ntrigger=2'),
+    '~>': expand('nq=3'),
+  },
+
   'delay1': {
     desc: 'delay a signal 1 clk edges',
     '~<': expand('clk=1, trigger=2'),
