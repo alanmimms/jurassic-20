@@ -1,6 +1,6 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri Oct 13 22:37:28 2023
+[*] Fri Oct 13 22:49:32 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Fri Oct 13 22:37:13 2023"
@@ -9,7 +9,7 @@
 [timestart] 0
 [size] 1920 1106
 [pos] -1 -1
-*-10.461107 1816 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-4.461107 36 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -189,6 +189,8 @@ top.kl10pv.scd_54.scd1_scadb_08_h
 top.kl10pv.scd_54.scd1_scadb_09_h
 @1401200
 -group_end
+@c00200
+-mbus
 @28
 [color] 3
 top.kl10pv.memory0.mbus.acknA
@@ -228,20 +230,42 @@ top.kl10pv.memory0.mbus.rq[0:3]
 top.kl10pv.memory0.mbus.startA
 [color] 3
 top.kl10pv.memory0.mbus.startB
+@1401200
+-mbus
+@28
 top.kl10pv.mbc_22.mbc3_mem_start_clr_h
+[color] 1
 top.kl10pv.mbc_22.mbc3_mem_start_set_l
 top.kl10pv.mbc_22.mbc1_reset_h
 top.kl10pv.mbc_22.mr_reset_06_h
+[color] 6
 top.kl10pv.mbc_22.csh2_e_core_rd_rq_b_l
+[color] 6
 top.kl10pv.mbc_22.core_busy_h
 [color] 1
-top.kl10pv.pma_29.pma2_clock_c_h
-[color] 1
 top.kl10pv.mbc_22.pma5_csh_writeback_cyc_l
+[color] 6
 top.kl10pv.mbc_22.mbx4_cache_to_mb_t4_a_l
+[color] 6
 top.kl10pv.mbc_22.mbc3_core_busy_h
+[color] 6
 top.kl10pv.mbc_22.e_cache_wr_cyc_l
+[color] 6
 top.kl10pv.mbc_22.mbc3_e42_2
+@29
+[color] 2
+top.kl10pv.mbc_22.ccl_start_mem_l
+@28
+[color] 2
+top.kl10pv.mbc_22.csh5_chan_rd_t5_l
+[color] 2
+top.kl10pv.mbc_22.mbc3_any_sbus_rq_in_l
+[color] 2
+top.kl10pv.mbc_22.csh5_page_refill_t9_l
+[color] 2
+top.kl10pv.mbc_22.ccl_start_mem_l
+[color] 1
+top.kl10pv.pma_29.pma2_clock_c_h
 top.kl10pv.pma_29.pma5_writeback_t2_a_h
 top.kl10pv.pma_29.pma5_writeback_t2_a_l
 top.kl10pv.pma_29.pma5_cyc_type_hold_h
