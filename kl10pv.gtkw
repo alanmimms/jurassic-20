@@ -1,18 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri Oct 13 20:54:05 2023
+[*] Fri Oct 13 22:37:28 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Fri Oct 13 19:50:10 2023"
-[dumpfile_size] 31754777
+[dumpfile_mtime] "Fri Oct 13 22:37:13 2023"
+[dumpfile_size] 22513230
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
 [timestart] 0
 [size] 1920 1106
 [pos] -1 -1
-*-5.461107 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-10.461107 1816 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.mbc_22.
 [treeopen] top.kl10pv.mbx_21.e48.
 [treeopen] top.kl10pv.memory0.
 [sst_width] 261
@@ -20,16 +19,9 @@
 [sst_expanded] 1
 [sst_vpaned_height] 441
 @28
+[color] 1
+top.kl10pv.clk_32.clk2_crobar_h
 top.kl10pv.clk
-top.kl10pv.con_35.con2_clk_e_h
-@30
-[color] 3
-top.kl10pv.ebus.diagStrobe
-@28
-[color] 7
-top.kl10pv.con_35.con2_start_h
-[color] 7
-top.kl10pv.con_ebox_halted_h
 @c02030
 [color] 3
 ^1 /home/alan/dec20/jurassic-20/rtl/dte.tff
@@ -52,9 +44,14 @@ top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
 @28
+[color] 7
+top.kl10pv.con_35.con2_start_h
+[color] 7
+top.kl10pv.con_ebox_halted_h
 top.kl10pv.con_35.con_run_h
 top.kl10pv.clk_32.clk2_go_l
 top.kl10pv.con_35.con_load_ir_l
+top.kl10pv.a_change_coming_in_l
 @c000b0
 [color] 2
 #{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h
@@ -235,22 +232,18 @@ top.kl10pv.mbc_22.mbc3_mem_start_clr_h
 top.kl10pv.mbc_22.mbc3_mem_start_set_l
 top.kl10pv.mbc_22.mbc1_reset_h
 top.kl10pv.mbc_22.mr_reset_06_h
-top.kl10pv.mbc_22.mbc4_e50_3
-top.kl10pv.mbc_22.mbc4_e50_14
-top.kl10pv.mbc_22.e51.clk
-top.kl10pv.mbc_22.e51.d0
-top.kl10pv.mbc_22.e51.d1
-top.kl10pv.mbc_22.e51.d2
-top.kl10pv.mbc_22.e51.d3
-top.kl10pv.mbc_22.e51.d4
-top.kl10pv.mbc_22.e51.d5
-top.kl10pv.mbc_22.e51.q0
-top.kl10pv.mbc_22.e51.q1
-@29
-top.kl10pv.mbc_22.e51.q2
-@28
-top.kl10pv.mbc_22.e51.q3
-top.kl10pv.mbc_22.e51.q4
-top.kl10pv.mbc_22.e51.q5
+top.kl10pv.mbc_22.csh2_e_core_rd_rq_b_l
+top.kl10pv.mbc_22.core_busy_h
+[color] 1
+top.kl10pv.pma_29.pma2_clock_c_h
+[color] 1
+top.kl10pv.mbc_22.pma5_csh_writeback_cyc_l
+top.kl10pv.mbc_22.mbx4_cache_to_mb_t4_a_l
+top.kl10pv.mbc_22.mbc3_core_busy_h
+top.kl10pv.mbc_22.e_cache_wr_cyc_l
+top.kl10pv.mbc_22.mbc3_e42_2
+top.kl10pv.pma_29.pma5_writeback_t2_a_h
+top.kl10pv.pma_29.pma5_writeback_t2_a_l
+top.kl10pv.pma_29.pma5_cyc_type_hold_h
 [pattern_trace] 1
 [pattern_trace] 0
