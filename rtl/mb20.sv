@@ -7,21 +7,27 @@
 // negedge of mbus.clk and B phase is posedge.
 //
 // TODO:
+// * Implement writing.
 // * Implement BLKO PI diagnostic cycle support.
 // * Support interleaving.
-// * Implement hardware memory through DMA to DRAM shared with Linux.
 // * Support ACKN of next word while VALID on current word
 module mb20 #(parameter MEMSIZE=256*1024) (iMBUS.memory mbus);
   W36 mem[MEMSIZE];
   bit aClk, bClk;
   W36 aData, bData;
   bit aParity, bParity;
+  bit [14:35] addr;
 
   always_comb aClk = ~mbus.clk;
   always_comb bClk =  mbus.clk;
 
   always_comb mbus.dIn = mbus.inValidA ? aData : mbus.inValidB ? bData : '0;
   always_comb mbus.parIn = aClk ? aParity : bParity;
+
+  always_latch if (mbus.adrHold) begin
+    addr = mbus.adr;
+  end
+
 
   mb20Phase #(.MEMSIZE(MEMSIZE)) aPhase(.clk(aClk),
 					.reset(mbus.memReset),
@@ -30,7 +36,7 @@ module mb20 #(parameter MEMSIZE=256*1024) (iMBUS.memory mbus);
 					.ackn(mbus.acknA),
 					.inValid(mbus.inValidA),
 					.outValid(mbus.outValidA),
-					.inAddr(mbus.adr),
+					.inAddr(addr),
 					.inRq(mbus.rq),
 					.d(aData),
 					.parity(aParity),
@@ -42,7 +48,7 @@ module mb20 #(parameter MEMSIZE=256*1024) (iMBUS.memory mbus);
 					.ackn(mbus.acknB),
 					.inValid(mbus.inValidB),
 					.outValid(mbus.outValidB),
-					.inAddr(mbus.adr),
+					.inAddr(addr),
 					.inRq(mbus.rq),
 					.d(bData),
 					.parity(bParity),
@@ -68,15 +74,16 @@ module mb20Phase #(parameter MEMSIZE)
    input bit start,
    output bit ackn);
 
-  bit [14:35] addr;             // Address base we start at for quadword
-  bit [34:35] wo;               // Word offset of quadword
-  bit [0:3] toAck;              // Words we have not yet ACKed
+  bit [14:35] addr = 0;	      // Address base we start at for quadword
+  bit [34:35] wo = 0;	      // Word offset of quadword
+  bit [0:3] toAck = 0;	      // Words we have not yet ACKed
 
-  assign ackn = toAck[0];
-  assign inValid = toAck[0];
-
-  always_comb parity = ^d;
-  always_comb d = inValid ? mem[$clog2(MEMSIZE)'({inAddr[14:33], wo})] : 0;
+  always_comb begin
+    ackn = toAck[0];
+    inValid = toAck[0];
+    d = mem[$clog2(MEMSIZE)'({inAddr[14:33], wo})];
+    parity = ^d;
+  end
 
   always_ff @(posedge clk)
     if (reset) begin
