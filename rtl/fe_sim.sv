@@ -528,7 +528,8 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCOND_STEP);          // CONDITIONAL SINGLE STEP
     doDiagFunc(diagfCLR_RESET);          // CLEAR RESET
     doDiagWrite(diagfENABLE_KL, '0);     // ENABLE KL STL DECODING OF CODES & AC'S
-    doDiagWrite(diagfMEM_RESET, '0);     // SET KL10 MEM RESET FLOP
+    doDiagWrite(diagfMEM_RESET, b36(24)); // SET KL10 MEM RESET FLOP
+    doDiagWrite(diagfMEM_RESET, '0);     // [added by Mimms] Clear KL10 MEM RESET FLOP
     doDiagWrite(diagfWRITE_MBOX, 'o120); // WRITE M-BOX
 
     $display($time, " DONE");
@@ -1008,5 +1009,10 @@ FOR WDRAM
 
     return s;                   // Not found, return s unmodified
   endfunction
+
+
+  function automatic W36 b36(int b);
+    return (36'o1 << 35) >> b;
+  endfunction // b36
 
 endmodule; // fe_sim

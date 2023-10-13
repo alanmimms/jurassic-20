@@ -23,6 +23,7 @@ SLOTNAMES = \
 SVFILES = \
 	kl10pv.sv \
 	fe_sim.sv \
+	mb20.sv \
 	$(foreach M,$(MODS),$(LOGICDIR)/$(M).sv) \
 	$(foreach M,$(SLOTNAMES),$(GENDIR)/$(M).sv) \
 

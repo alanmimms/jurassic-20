@@ -2,7 +2,7 @@
 
 // The top of the hierarchy for KL10PV CPU and its front end, memory,
 // peripherals, and power system.
-module kl10pv(input clk60);
+module kl10pv(input clk60, input crobar);
 
   tEBUSdriver aprEBUSdriver, cclEBUSdriver, ccwEBUSdriver, chcEBUSdriver, chxEBUSdriver;
   tEBUSdriver clkEBUSdriver, conEBUSdriver, craEBUSdriver;
@@ -26,6 +26,55 @@ module kl10pv(input clk60);
 
   iEBUS ebus();
   fe_sim feSim (.EBUSdriver(feEBUSdriver), .clk(!clk_10_11_clk_h), .*);
+
+  iMBUS mbus();
+  mb20 #(.MEMSIZE(256*1024)) memory0(.mbus(mbus.memory), .*);
+
+  // Driving signals from KL10 MBOX into memory.
+  always_comb begin
+    mbus.mbox.startA = mem_start_a_h;
+    mbus.mbox.startB = mem_start_b_h;
+    mbus.mbox.rdRq = mem_rd_rq_h;
+    mbus.mbox.wrRq = mem_wr_rq_h;
+    mbus.mbox.rq = {mem_rq_0_h, mem_rq_1_h, mem_rq_2_h, mem_rq_3_h};
+    mbus.mbox.adr = {pma_14_h, pma_15_h, pma_16_h, pma_17_h, pma_18_h,
+		     pma_19_h, pma_20_h, pma_21_h, pma_22_h, pma_23_h,
+		     pma_24_h, pma_25_h, pma_26_h, pma_27_h, pma_28_h,
+		     pma_29_h, pma_30_h, pma_31_h, pma_32_h, pma_33_h,
+		     pma_34_h, pma_35_h};
+    mbus.mbox.adrPar = mem_adr_par_h;
+    mbus.mbox.diag = !mem_diag_l;
+    mbus.mbox.clk = clk1_clk_h;
+    mbus.mbox.memReset = diag_mem_reset_h;
+    mbus.mbox.dOut = {mb_00_h, mb_01_h, mb_02_h, mb_03_h, mb_04_h, mb_05_h,
+		      mb_06_h, mb_07_h, mb_08_h, mb_09_h, mb_10_h, mb_11_h,
+		      mb_12_h, mb_13_h, mb_14_h, mb_15_h, mb_16_h, mb_17_h,
+		      mb_18_h, mb_19_h, mb_20_h, mb_21_h, mb_22_h, mb_23_h,
+		      mb_24_h, mb_25_h, mb_26_h, mb_27_h, mb_28_h, mb_29_h,
+		      mb_30_h, mb_31_h, mb_32_h, mb_33_h, mb_34_h, mb_35_h};
+    mbus.mbox.parOut = mb_par_h;
+    mbus.mbox.adrHold = sbus_adr_hold_h;
+    mbus.mbox.outValidA = data_valid_a_out_h;
+    mbus.mbox.outValidB = data_valid_b_out_h;
+  end
+
+  // Receiving signals from memory to KL10 MBOX.
+  always_comb begin
+    {mem_data_in_00_h, mem_data_in_01_h, mem_data_in_02_h, mem_data_in_03_h,
+     mem_data_in_04_h, mem_data_in_05_h, mem_data_in_06_h, mem_data_in_07_h,
+     mem_data_in_08_h, mem_data_in_09_h, mem_data_in_10_h, mem_data_in_11_h,
+     mem_data_in_12_h, mem_data_in_13_h, mem_data_in_14_h, mem_data_in_15_h,
+     mem_data_in_16_h, mem_data_in_17_h, mem_data_in_18_h, mem_data_in_19_h,
+     mem_data_in_20_h, mem_data_in_21_h, mem_data_in_22_h, mem_data_in_23_h,
+     mem_data_in_24_h, mem_data_in_25_h, mem_data_in_26_h, mem_data_in_27_h,
+     mem_data_in_28_h, mem_data_in_29_h, mem_data_in_30_h, mem_data_in_31_h,
+     mem_data_in_32_h, mem_data_in_33_h, mem_data_in_34_h, mem_data_in_35_h} = mbus.mbox.dIn;
+    mem_par_in_h = mbus.mbox.parOut;
+    mem_ackn_a_h = mbus.mbox.acknA;
+    mem_ackn_b_h = mbus.mbox.acknB;
+    mem_data_valid_a_l = !mbus.mbox.inValidA;
+    mem_data_valid_b_l = !mbus.mbox.inValidB;
+  end
 
   apr34 apr_34(.EBUSdriver(aprEBUSdriver), .*);
   cac17 cac_17(.*);
