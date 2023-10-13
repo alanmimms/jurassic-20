@@ -54,10 +54,7 @@ int main(int argc, char **argv) {
   FEinitial(nsPerClock);
 
   while (!contextp->gotFinish()) {
-    const uint64_t t = contextp->time();
-
-    //    if (t % 10000ull == 0) std::cout << ((double) t/1000.0) << "us" << std::endl;
-    if (t >= endTime) break;
+    if (contextp->time() >= endTime) break;
 
     top->clk60 = 0;
     top->eval();
