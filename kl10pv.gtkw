@@ -1,17 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri Oct 13 16:44:50 2023
+[*] Fri Oct 13 20:54:05 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Fri Oct 13 16:44:40 2023"
-[dumpfile_size] 22660628
+[dumpfile_mtime] "Fri Oct 13 19:50:10 2023"
+[dumpfile_size] 31754777
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 3207
+[timestart] 0
 [size] 1920 1106
 [pos] -1 -1
-*-3.461107 3236 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.461107 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.mbc_22.
 [treeopen] top.kl10pv.mbx_21.e48.
 [treeopen] top.kl10pv.memory0.
 [sst_width] 261
@@ -27,7 +28,6 @@ top.kl10pv.ebus.diagStrobe
 @28
 [color] 7
 top.kl10pv.con_35.con2_start_h
-@29
 [color] 7
 top.kl10pv.con_ebox_halted_h
 @c02030
@@ -231,5 +231,26 @@ top.kl10pv.memory0.mbus.rq[0:3]
 top.kl10pv.memory0.mbus.startA
 [color] 3
 top.kl10pv.memory0.mbus.startB
+top.kl10pv.mbc_22.mbc3_mem_start_clr_h
+top.kl10pv.mbc_22.mbc3_mem_start_set_l
+top.kl10pv.mbc_22.mbc1_reset_h
+top.kl10pv.mbc_22.mr_reset_06_h
+top.kl10pv.mbc_22.mbc4_e50_3
+top.kl10pv.mbc_22.mbc4_e50_14
+top.kl10pv.mbc_22.e51.clk
+top.kl10pv.mbc_22.e51.d0
+top.kl10pv.mbc_22.e51.d1
+top.kl10pv.mbc_22.e51.d2
+top.kl10pv.mbc_22.e51.d3
+top.kl10pv.mbc_22.e51.d4
+top.kl10pv.mbc_22.e51.d5
+top.kl10pv.mbc_22.e51.q0
+top.kl10pv.mbc_22.e51.q1
+@29
+top.kl10pv.mbc_22.e51.q2
+@28
+top.kl10pv.mbc_22.e51.q3
+top.kl10pv.mbc_22.e51.q4
+top.kl10pv.mbc_22.e51.q5
 [pattern_trace] 1
 [pattern_trace] 0
