@@ -20,7 +20,7 @@ module mb20 #(parameter MEMSIZE=256*1024) (iMBUS.memory mbus);
   always_comb aClk = ~mbus.clk;
   always_comb bClk =  mbus.clk;
 
-  always_comb mbus.dIn = mbus.inValidA ? aData : (mbus.inValidB ? bData : '0);
+  always_comb mbus.dIn = mbus.inValidA ? aData : mbus.inValidB ? bData : '0;
   always_comb mbus.parIn = aClk ? aParity : bParity;
 
   mb20Phase #(.MEMSIZE(MEMSIZE)) aPhase(.clk(aClk),
@@ -78,18 +78,21 @@ module mb20Phase #(parameter MEMSIZE)
   always_comb parity = ^d;
   always_comb d = inValid ? mem[$clog2(MEMSIZE)'({inAddr[14:33], wo})] : 0;
 
-  always_ff @(posedge clk) if (reset) begin
-    addr <= '0;
-    wo <= '0;
-    toAck <= '0;
-  end else if (start && toAck == '0) begin     // A transfer is starting
-    addr <= inAddr;		// Address of first word we do
-    wo <= inAddr[34:35];	// Word offset we increment mod 4
-    toAck <= inRq;		// Addresses remaining to ACK
-  end
+  always_ff @(posedge clk)
+    if (reset) begin
+      addr <= '0;
+      wo <= '0;
+      toAck <= '0;
+    end else if (start && toAck == '0) begin     // A transfer is starting
+      addr <= inAddr;		// Address of first word we do
+      wo <= inAddr[34:35];	// Word offset we increment mod 4
+      toAck <= inRq;		// Addresses remaining to ACK
+    end
 
-  always_ff @(posedge clk) if (toAck != '0) begin
-    wo <= wo + 1;
-    toAck <= toAck << 1;
-  end
+  always_ff @(posedge clk)
+    if (toAck != '0) begin
+      wo <= wo + 1;
+      toAck <= toAck << 1;
+    end
+
 endmodule

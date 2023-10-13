@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri Oct 13 16:26:20 2023
+[*] Fri Oct 13 16:44:50 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Fri Oct 13 16:25:23 2023"
-[dumpfile_size] 22758787
+[dumpfile_mtime] "Fri Oct 13 16:44:40 2023"
+[dumpfile_size] 22660628
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 3487
+[timestart] 3207
 [size] 1920 1106
 [pos] -1 -1
-*-3.461107 3501 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-3.461107 3236 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -27,6 +27,9 @@ top.kl10pv.ebus.diagStrobe
 @28
 [color] 7
 top.kl10pv.con_35.con2_start_h
+@29
+[color] 7
+top.kl10pv.con_ebox_halted_h
 @c02030
 [color] 3
 ^1 /home/alan/dec20/jurassic-20/rtl/dte.tff
@@ -190,15 +193,43 @@ top.kl10pv.scd_54.scd1_scadb_09_h
 @1401200
 -group_end
 @28
-top.kl10pv.memory0.aClk
+[color] 3
+top.kl10pv.memory0.mbus.acknA
+[color] 3
+top.kl10pv.memory0.mbus.acknB
+[color] 3
+top.kl10pv.memory0.mbus.adrHold
 @22
-top.kl10pv.memory0.aData[0:35]
+[color] 3
+top.kl10pv.memory0.mbus.adr[14:35]
 @28
-top.kl10pv.memory0.aParity
-top.kl10pv.memory0.bClk
+[color] 3
+top.kl10pv.memory0.mbus.clk
 @22
-top.kl10pv.memory0.bData[0:35]
+[color] 3
+top.kl10pv.memory0.mbus.dIn[0:35]
+[color] 3
+top.kl10pv.memory0.mbus.dOut[0:35]
 @28
-top.kl10pv.memory0.bParity
+[color] 3
+top.kl10pv.memory0.mbus.inValidA
+[color] 3
+top.kl10pv.memory0.mbus.inValidB
+[color] 3
+top.kl10pv.memory0.mbus.memReset
+[color] 3
+top.kl10pv.memory0.mbus.outValidA
+[color] 3
+top.kl10pv.memory0.mbus.outValidB
+[color] 3
+top.kl10pv.memory0.mbus.rdRq
+@22
+[color] 3
+top.kl10pv.memory0.mbus.rq[0:3]
+@28
+[color] 3
+top.kl10pv.memory0.mbus.startA
+[color] 3
+top.kl10pv.memory0.mbus.startB
 [pattern_trace] 1
 [pattern_trace] 0

@@ -14,10 +14,10 @@ module fe_sim(input bit clk,
 	      output 	 tEBUSdriver EBUSdriver,
 	      input 	 mbc3_a_change_coming_a_l,
 	      input 	 a_change_coming_in_l,
+	      input	 con_ebox_halted_h,
 	      output bit crobar_e_h,
 	      output bit con_cono_200000_h);
 
-  string indent = "";
   int dumpFD;
 
   tCRAM cw;
@@ -27,8 +27,6 @@ module fe_sim(input bit clk,
   bit a_change_coming, a_change_coming_in;
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
   always_comb a_change_coming_in = !a_change_coming_in_l;
-
-  bit didCRAMReadBack = 0;
 
   // The DRAM ("DISPATCH RAM" - not "DYNAMIC RAM") addressing
   // architecture in the KL10 is arse -- a bridge too far. Even the
@@ -214,244 +212,6 @@ module fe_sim(input bit clk,
     KLLoadRAMs();
   end
 
-  always @(posedge clk60) begin
-
-    if (!didCRAMReadBack &&
-	{kl10pv.cra_45.cra1_adr_00_h,
-	 kl10pv.cra_45.cra1_adr_01_h,
-	 kl10pv.cra_45.cra1_adr_02_h,
-	 kl10pv.cra_45.cra1_adr_03_h,
-	 kl10pv.cra_45.cra1_adr_04_h,
-	 kl10pv.cra_45.cra1_adr_05_h,
-	 kl10pv.cra_45.cra1_adr_06_h,
-	 kl10pv.cra_45.cra2_adr_07_h,
-	 kl10pv.cra_45.cra2_adr_08_h,
-	 kl10pv.cra_45.cra2_adr_09_h,
-	 kl10pv.cra_45.cra2_adr_10_h} == 11'o133) begin
-      tCRAM cw;
-      tCRAMAddress adr;
-
-      didCRAMReadBack = 1;
-
-      adr[0] = kl10pv.cra_45.cra1_adr_00_b_h;
-      adr[1] = kl10pv.cra_45.cra1_adr_01_b_h;
-      adr[2] = kl10pv.cra_45.cra1_adr_02_b_h;
-      adr[3] = kl10pv.cra_45.cra1_adr_03_b_h;
-      adr[4] = kl10pv.cra_45.cra1_adr_04_b_h;
-      adr[5] = kl10pv.cra_45.cra1_adr_05_b_h;
-      adr[6] = kl10pv.cra_45.cra1_adr_06_b_h;
-      adr[7] = kl10pv.cra_45.cra2_adr_07_b_h;
-      adr[8] = kl10pv.cra_45.cra2_adr_08_b_h;
-      adr[9] = kl10pv.cra_45.cra2_adr_09_b_h;
-      adr[10] = kl10pv.cra_45.cra2_adr_10_b_h;
-
-      if (adr[10] == 0) begin
-	cw[0] = kl10pv.crm_52.e59.q;
-	cw[1] = kl10pv.crm_52.e48.q;
-	cw[2] = kl10pv.crm_52.e4.q;
-	cw[3] = kl10pv.crm_52.e17.q;
-
-	cw[4] = kl10pv.crm_50.e59.q;
-	cw[5] = kl10pv.crm_50.e48.q;
-	cw[6] = kl10pv.crm_50.e4.q;
-	cw[7] = kl10pv.crm_50.e17.q;
-
-	cw[8] = kl10pv.crm_44.e59.q;
-	cw[9] = kl10pv.crm_44.e48.q;
-	cw[10] = kl10pv.crm_44.e4.q;
-	cw[11] = kl10pv.crm_44.e17.q;
-
-	cw[12] = kl10pv.crm_42.e59.q;
-	cw[13] = kl10pv.crm_42.e48.q;
-	cw[14] = kl10pv.crm_42.e4.q;
-	cw[15] = kl10pv.crm_42.e17.q;
-
-	cw[16] = kl10pv.crm_40.e59.q;
-	cw[17] = kl10pv.crm_40.e48.q;
-	cw[18] = kl10pv.crm_40.e4.q;
-	cw[19] = kl10pv.crm_40.e17.q;
-
-
-	cw[20] = kl10pv.crm_52.e55.q;
-	cw[21] = kl10pv.crm_52.e41.q;
-	cw[22] = kl10pv.crm_52.e10.q;
-	cw[23] = kl10pv.crm_52.e24.q;
-
-	cw[24] = kl10pv.crm_50.e55.q;
-	cw[25] = kl10pv.crm_50.e41.q;
-	cw[26] = kl10pv.crm_50.e10.q;
-	cw[27] = kl10pv.crm_50.e24.q;
-
-	cw[28] = kl10pv.crm_44.e55.q;
-	cw[29] = kl10pv.crm_44.e41.q;
-	cw[30] = kl10pv.crm_44.e10.q;
-	cw[31] = kl10pv.crm_44.e24.q;
-
-	cw[32] = kl10pv.crm_42.e55.q;
-	cw[33] = kl10pv.crm_42.e41.q;
-	cw[34] = kl10pv.crm_42.e10.q;
-	cw[35] = kl10pv.crm_42.e24.q;
-
-	cw[36] = kl10pv.crm_40.e55.q;
-	cw[37] = kl10pv.crm_40.e41.q;
-	cw[38] = kl10pv.crm_40.e10.q;
-	cw[39] = kl10pv.crm_40.e24.q;
-
-
-	cw[40] = kl10pv.crm_52.e56.q;
-	cw[41] = kl10pv.crm_52.e42.q;
-	cw[42] = kl10pv.crm_52.e11.q;
-	cw[43] = kl10pv.crm_52.e25.q;
-
-	cw[44] = kl10pv.crm_50.e56.q;
-	cw[45] = kl10pv.crm_50.e42.q;
-	cw[46] = kl10pv.crm_50.e11.q;
-	cw[47] = kl10pv.crm_50.e25.q;
-
-	cw[48] = kl10pv.crm_44.e56.q;
-	cw[49] = kl10pv.crm_44.e42.q;
-	cw[50] = kl10pv.crm_44.e11.q;
-	cw[51] = kl10pv.crm_44.e25.q;
-
-	cw[52] = kl10pv.crm_42.e56.q;
-	cw[53] = kl10pv.crm_42.e42.q;
-	cw[54] = kl10pv.crm_42.e11.q;
-	cw[55] = kl10pv.crm_42.e25.q;
-
-	cw[56] = kl10pv.crm_40.e56.q;
-	cw[57] = kl10pv.crm_40.e42.q;
-	cw[58] = kl10pv.crm_40.e11.q;
-	cw[59] = kl10pv.crm_40.e25.q;
-
-
-	cw[60] = kl10pv.crm_52.e49.q;
-	cw[62] = kl10pv.crm_52.e18.q;
-
-	cw[64] = kl10pv.crm_50.e49.q;
-	cw[66] = kl10pv.crm_50.e18.q;
-
-	cw[68] = kl10pv.crm_44.e49.q;
-	cw[70] = kl10pv.crm_44.e18.q;
-
-	cw[72] = kl10pv.crm_42.e49.q;
-	cw[74] = kl10pv.crm_42.e18.q;
-
-	cw[76] = kl10pv.crm_40.e49.q;
-	cw[78] = kl10pv.crm_40.e18.q;
-
-	cw[80] = kl10pv.cra_45.e9.q;
-	cw[81] = kl10pv.cra_45.e29.q;
-	cw[82] = kl10pv.cra_45.e14.q;
-	cw[83] = kl10pv.cra_45.e25.q;
-	cw[84] = kl10pv.cra_45.e10.q;
-	cw[85] = kl10pv.cra_45.e15.q;
-      end // if (adr[10] == 0)
-      else begin
-	cw[0] = kl10pv.crm_52.e57.q;
-	cw[1] = kl10pv.crm_52.e44.q;
-	cw[2] = kl10pv.crm_52.e2.q;
-	cw[3] = kl10pv.crm_52.e14.q;
-
-	cw[4] = kl10pv.crm_50.e57.q;
-	cw[5] = kl10pv.crm_50.e44.q;
-	cw[6] = kl10pv.crm_50.e2.q;
-	cw[7] = kl10pv.crm_50.e14.q;
-
-	cw[8] = kl10pv.crm_44.e57.q;
-	cw[9] = kl10pv.crm_44.e44.q;
-	cw[10] = kl10pv.crm_44.e2.q;
-	cw[11] = kl10pv.crm_44.e14.q;
-
-	cw[12] = kl10pv.crm_42.e57.q;
-	cw[13] = kl10pv.crm_42.e44.q;
-	cw[14] = kl10pv.crm_42.e2.q;
-	cw[15] = kl10pv.crm_42.e14.q;
-
-	cw[16] = kl10pv.crm_40.e57.q;
-	cw[17] = kl10pv.crm_40.e44.q;
-	cw[18] = kl10pv.crm_40.e2.q;
-	cw[19] = kl10pv.crm_40.e14.q;
-
-
-	cw[20] = kl10pv.crm_52.e51.q;
-	cw[21] = kl10pv.crm_52.e37.q;
-	cw[22] = kl10pv.crm_52.e7.q;
-	cw[23] = kl10pv.crm_52.e21.q;
-
-	cw[24] = kl10pv.crm_50.e51.q;
-	cw[25] = kl10pv.crm_50.e37.q;
-	cw[26] = kl10pv.crm_50.e7.q;
-	cw[27] = kl10pv.crm_50.e21.q;
-
-	cw[28] = kl10pv.crm_44.e51.q;
-	cw[29] = kl10pv.crm_44.e37.q;
-	cw[30] = kl10pv.crm_44.e7.q;
-	cw[31] = kl10pv.crm_44.e21.q;
-
-	cw[32] = kl10pv.crm_42.e51.q;
-	cw[33] = kl10pv.crm_42.e37.q;
-	cw[34] = kl10pv.crm_42.e7.q;
-	cw[35] = kl10pv.crm_42.e21.q;
-
-	cw[36] = kl10pv.crm_40.e51.q;
-	cw[37] = kl10pv.crm_40.e37.q;
-	cw[38] = kl10pv.crm_40.e7.q;
-	cw[39] = kl10pv.crm_40.e21.q;
-
-
-	cw[40] = kl10pv.crm_52.e52.q;
-	cw[41] = kl10pv.crm_52.e38.q;
-	cw[42] = kl10pv.crm_52.e8.q;
-	cw[43] = kl10pv.crm_52.e22.q;
-
-	cw[44] = kl10pv.crm_50.e52.q;
-	cw[45] = kl10pv.crm_50.e38.q;
-	cw[46] = kl10pv.crm_50.e8.q;
-	cw[47] = kl10pv.crm_50.e22.q;
-
-	cw[48] = kl10pv.crm_44.e52.q;
-	cw[49] = kl10pv.crm_44.e38.q;
-	cw[50] = kl10pv.crm_44.e8.q;
-	cw[51] = kl10pv.crm_44.e22.q;
-
-	cw[52] = kl10pv.crm_42.e52.q;
-	cw[53] = kl10pv.crm_42.e38.q;
-	cw[54] = kl10pv.crm_42.e8.q;
-	cw[55] = kl10pv.crm_42.e22.q;
-
-	cw[56] = kl10pv.crm_40.e52.q;
-	cw[57] = kl10pv.crm_40.e38.q;
-	cw[58] = kl10pv.crm_40.e8.q;
-	cw[59] = kl10pv.crm_40.e22.q;
-
-
-	cw[60] = kl10pv.crm_52.e45.q;
-	cw[62] = kl10pv.crm_52.e15.q;
-
-	cw[64] = kl10pv.crm_50.e45.q;
-	cw[66] = kl10pv.crm_50.e15.q;
-
-	cw[68] = kl10pv.crm_44.e45.q;
-	cw[70] = kl10pv.crm_44.e15.q;
-
-	cw[72] = kl10pv.crm_42.e45.q;
-	cw[74] = kl10pv.crm_42.e15.q;
-
-	cw[76] = kl10pv.crm_40.e45.q;
-	cw[78] = kl10pv.crm_40.e15.q;
-
-	cw[80] = kl10pv.cra_45.e4.q;
-	cw[81] = kl10pv.cra_45.e24.q;
-	cw[82] = kl10pv.cra_45.e19.q;
-	cw[83] = kl10pv.cra_45.e30.q;
-	cw[84] = kl10pv.cra_45.e5.q;
-	cw[85] = kl10pv.cra_45.e20.q;
-      end // else: !if(adr[10] == 0)
-
-      $display("READ BACK %o: %o", adr, cw);
-    end
-  end
-
   initial begin
     crobar_e_h = '1;
     repeat (100) @(negedge clk);
@@ -469,6 +229,12 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCONTINUE);
   end
 
+  // When we reach the HALT loop, delay a bit then start running.
+  always @(posedge con_ebox_halted_h) begin
+    repeat (10) @(negedge clk);
+    $display("%7g [run]", $realtime);
+    doDiagFunc(diagfSET_RUN);
+  end
 
   always @(posedge kl10pv.con_35.con2_clk_e_h) begin
     tCRAMAddress adr = {kl10pv.cra_45.cra1_adr_00_h,
@@ -482,15 +248,12 @@ module fe_sim(input bit clk,
 			kl10pv.cra_45.cra2_adr_08_h,
 			kl10pv.cra_45.cra2_adr_09_h,
 			kl10pv.cra_45.cra2_adr_10_h};
-    if (kl10pv.con_35.con2_start_h) $display("CRAM %o", adr);
   end
 
 
   ////////////////////////////////////////////////////////////////
   // Functions from KLINIT.L20 $KLMR (DO A MASTER RESET ON THE KL)
   task KLMasterReset;
-    $display($time, " KLMasterReset() START");
-    indent = "  ";
 
     // $DFXC(.CLRUN=010)    ; Clear run
     doDiagFunc(diagfCLR_RUN);
@@ -511,8 +274,6 @@ module fe_sim(input bit clk,
     // Loop up to three times:
     //   Do diag function 162 via $DFRD test (A CHANGE COMING A L)=EBUS[32]
     //   If not set, $DFXC(.SSCLK=002) to single step the MBOX
-    $display($time, " [step up to 5 clocks to synchronize MBOX]");
-
     repeat (5) begin
       repeat (5) @(negedge clk);
       if (!a_change_coming) break;
@@ -532,8 +293,7 @@ module fe_sim(input bit clk,
     doDiagWrite(diagfMEM_RESET, '0);     // [added by Mimms] Clear KL10 MEM RESET FLOP
     doDiagWrite(diagfWRITE_MBOX, 'o120); // WRITE M-BOX
 
-    $display($time, " DONE");
-    indent = "";
+    $display("%7g [master reset complete]", $realtime);
   endtask
 
 
@@ -545,6 +305,7 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfSTOP_CLOCK);  // STOP THE CLOCK.
     doDiagFunc(diagfCOND_STEP);   // CONDITIONAL SINGLE STEP.
     doDiagFunc(diagfCLR_RESET);   // CLEAR RESET.
+    $display("%7g [soft reset complete]", $realtime);
   endtask
 
 
