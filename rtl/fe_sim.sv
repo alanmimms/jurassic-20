@@ -18,8 +18,6 @@ module fe_sim(input bit clk,
 	      output bit crobar_e_h,
 	      output bit con_cono_200000_h);
 
-  int dumpFD;
-
   tCRAM cw;
   tCRAM cram136;
   tCRAM cram137;
@@ -208,7 +206,6 @@ module fe_sim(input bit clk,
   //
 
   initial begin			// Load CRAM and DRAM before start of simulation
-    dumpFD = $fopen("dump.log", "w");
     KLLoadRAMs();
   end
 
@@ -315,14 +312,13 @@ module fe_sim(input bit clk,
     string line, recType, rec;
     string words[$];
 
-    $display("[Reading KLX.RAM to load CRAM and DRAM]");
+    $display("%7g [Reading KLX.RAM to load CRAM and DRAM]", $realtime);
 
     fd = $fopen("./images/ucode/klx.ram", "r");
     if (fd == 0) $display("Could not open KLX.RAM file");
 
     // Read header line
     $fgets(line, fd);
-    $display(line);		// TEMPORARY
 
     while (1) begin
       $fgets(line, fd);
@@ -338,7 +334,6 @@ module fe_sim(input bit clk,
 	W16 adr = unASCIIize(words[1]);
 	W16 cksum = unASCIIize(words[2]);
 	W16 count = unASCIIize(words[3]);
-	$display("CRAM zero adr=%07o cksum=%07o count=%d.", adr, cksum, count);
       end
 
       "C": begin		// CRAM record
@@ -351,7 +346,6 @@ module fe_sim(input bit clk,
 	end else begin
 	  if (adr == 0) adr = lastAdr;
 	  lastAdr = adr;
-	  // $display("CRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
 
 	  for (int k = 2; k < count; ) begin
 	    tCRAM rcw;
@@ -366,7 +360,6 @@ module fe_sim(input bit clk,
 	    cw[16:31] = unASCIIize(words[k++]);
 	    cw[00:15] = unASCIIize(words[k++]);
 	    cw[80:85] =  6'(unASCIIize(words[k++]));
-	    $fwrite(dumpFD, "C %04o: SB %o [80:85]=%o\n", adr, cw, cw[80:85]);
 
 	    if (adr == 16'o136) begin
 	      cram136 = cw;
@@ -379,11 +372,9 @@ module fe_sim(input bit clk,
 	      majver = {cram136[29:31], cram136[33:35]};
 	      minver = cram136[37:39];
 	      edit = {cram137[29:31], cram137[33:35], cram137[37:39]};
-	      $display("CRAM version: %1o.%1o(%0o) - as written to CRAM",
-		       majver, minver, edit);
+	      $display("%7g [CRAM version: %1o.%1o(%0o)]", $realtime, majver, minver, edit);
 	    end
 
-	    writeCRAM(cw, tCRAMAddress'(adr), dumpFD);
 	    ++adr;
 	  end
 	end
@@ -396,7 +387,6 @@ module fe_sim(input bit clk,
 	tDRAMAddress lastAdr = 0;
 
 	if (count == 0 && adr == 0) begin
-	  //	    $display("DRAM EOF");
 	  lastAdr = 0;
 	end else begin
 	  W36 diagW;
@@ -465,8 +455,6 @@ module fe_sim(input bit clk,
 	    odd    = unASCIIize(words[k++]);
 	    common = unASCIIize(words[k++]);
 
-	    $fwrite(dumpFD, "D %03o: %05o %05o %05o\n", adr, even, odd, common);
-
 /*
 MICRO FORMAT
 FOR WDRAM
@@ -498,7 +486,6 @@ FOR WDRAM
 	  end
 
 	  lastAdr = adr;
-	  //	    $display("DRAM record count=%d lastAdr=%07o adr=%07o", count, lastAdr, adr);
 	end
       end
 
@@ -510,7 +497,6 @@ FOR WDRAM
     end
 
     $fclose(fd);
-    $fclose(dumpFD);
   endtask // KLLoadRAMs
 
 
@@ -527,7 +513,7 @@ FOR WDRAM
   // CRM44: N=8
   // CRM42: N=12
   // CRM40: N=16
-  task automatic writeCRAM(tCRAM cw, tCRAMAddress adr, int dumpFD);
+  task automatic writeCRAM(tCRAM cw, tCRAMAddress adr);
 
     `define putCRM1(N, slot, a0, b0)		\
 	if (adr[10] == 0)			\
