@@ -795,7 +795,6 @@ e50: 10117 dual 2-3 or-and
      13 ~< mbc4 mem start b l
      10 ~< {dr2} -mem start a l
      11 ~< mbc3 b change coming l
-     9 ~< mbc3 mem start set l
      14 ~> mbc4-e50-14
      15 ~> %NC%
 
