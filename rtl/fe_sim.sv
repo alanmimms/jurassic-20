@@ -375,6 +375,7 @@ module fe_sim(input bit clk,
 	      $display("%7g [CRAM version: %1o.%1o(%0o)]", $realtime, majver, minver, edit);
 	    end
 
+	    writeCRAM(cw, tCRAMAddress'(adr));
 	    ++adr;
 	  end
 	end
