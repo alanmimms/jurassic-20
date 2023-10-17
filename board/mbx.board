@@ -103,7 +103,7 @@ e62: 10104 quad and/nand
      6 ~< mbx1-e77-3
      7 ~< mbx1-e79-5
      3 ~> mbx1 csh wd 3 val b h
-     10 ~< {ep2} mbc4 core data val -2 l
+     10 ~< {ep2} mbc4 core data valid -2 l
      11 ~< {el1} csh4 one word wr t0 l
      14 ~> mbx2-e62-14
      12 ~< {el2} csh chan cyc a h
@@ -794,7 +794,7 @@ e71: 10176 hex dff
      14 ~> mbx3 sbus diag cyc l
      10 ~< mbx5-e68-2
      13 ~> mbx5-e71-13
-     5 ~< {ep2} mbc4 core data val -2 l
+     5 ~< {ep2} mbc4 core data valid -2 l
      2 ~> mbx6 core data valid -1 b l
      12 ~< mbx6 core data valid -1 b l
      15 ~> mbx6 core data valid b l
