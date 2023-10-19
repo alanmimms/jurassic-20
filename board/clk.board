@@ -204,6 +204,9 @@ dlpcb2651: delay1 (was delay-line 2.65ns)
      1 ~< {ab1} clk
      2 ~< clk1 clk on h
      3 ~> clk1-dlpcb2651-2
+//dlpcb2651: wire (was delay1)
+//     1 ~< clk1 clk on h
+//     2 ~> clk1-dlpcb2651-2
 
 e59: 10210 or buffer
      5 ~< %NC%
