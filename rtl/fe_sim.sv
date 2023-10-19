@@ -211,7 +211,7 @@ module fe_sim(input bit clk,
 
   initial begin
     crobar_e_h = '1;
-    repeat (100) @(negedge clk);
+    repeat (20) @(negedge clk);
     crobar_e_h = '0;
   end
 
