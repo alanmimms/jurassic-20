@@ -13,7 +13,6 @@ module fe_sim(input bit clk,
 	      inout 	 iEBUS ebus,
 	      output 	 tEBUSdriver EBUSdriver,
 	      input 	 mbc3_a_change_coming_a_l,
-	      input 	 a_change_coming_in_l,
 	      input	 con_ebox_halted_h,
 	      output bit crobar_e_h,
 	      output bit con_cono_200000_h);
@@ -22,9 +21,9 @@ module fe_sim(input bit clk,
   tCRAM cram136;
   tCRAM cram137;
 
-  bit a_change_coming, a_change_coming_in;
+  bit testingChangeComing;
+  bit a_change_coming;
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
-  always_comb a_change_coming_in = !a_change_coming_in_l;
 
   // The DRAM ("DISPATCH RAM" - not "DYNAMIC RAM") addressing
   // architecture in the KL10 is arse -- a bridge too far. Even the
@@ -210,6 +209,7 @@ module fe_sim(input bit clk,
   end
 
   initial begin
+    testingChangeComing = 0;
     crobar_e_h = '1;
     repeat (20) @(negedge clk);
     crobar_e_h = '0;
@@ -251,7 +251,6 @@ module fe_sim(input bit clk,
   ////////////////////////////////////////////////////////////////
   // Functions from KLINIT.L20 $KLMR (DO A MASTER RESET ON THE KL)
   task KLMasterReset;
-
     // $DFXC(.CLRUN=010)    ; Clear run
     doDiagFunc(diagfCLR_RUN);
 
@@ -268,19 +267,30 @@ module fe_sim(input bit clk,
     doDiagWrite(diagfINIT_CHANNELS, '0);              // INIT CHANNELS
     doDiagWrite(diagfBURST_CTR_RH, '0);		      // LOAD BURST COUNTER (8,4,2,1)
 
-    // Loop up to three times:
-    //   Do diag function 162 via $DFRD test (A CHANGE COMING A L)=EBUS[32]
-    //   If not set, $DFXC(.SSCLK=002) to single step the MBOX
+    // Loop up to five (was three in RSX20F) times:
+    //   Test MBC3 A CHANGE COMING A L (we have active-high a_change_coming).
+    //   If not asserted, single step the MBOX and try again.
+    $display("Start MBOX sync %g", $realtime);
+
     repeat (5) begin
-      repeat (5) @(negedge clk);
-      if (!a_change_coming) break;
-      repeat (5) @(negedge clk);
+
+      repeat (5) @(negedge clk) ;
+
+      @(negedge clk) begin
+	testingChangeComing <= !testingChangeComing;
+
+	if (!a_change_coming) begin
+	  $display("===ERROR=== Step MBOX five times did not clear a_change_coming");
+	  break;
+	end
+      end
+      
+      repeat (5) @(negedge clk) ;
+
       doDiagFunc(diagfSTEP_CLOCK);
     end
 
-    if (a_change_coming) begin
-      $display("===ERROR=== Step MBOX five times did not clear a_change_coming");
-    end
+    $display("End MBOX sync %g", $realtime);
 
     // Phase 2 from DMRMRT table operations.
     doDiagFunc(diagfCOND_STEP);          // CONDITIONAL SINGLE STEP
