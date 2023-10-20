@@ -581,7 +581,7 @@ e75: 10118 triple 4-2 or-and
 
 e74: 10176 hex dff
      12 ~< csh2-e75-15
-     9 ~< csh1 blk b h
+     9 ~< csh1 clk b h
      15 ~> {dp2} csh2 rd pause 2nd half l
      10 ~< csh4-e33-6
      13 ~> csh4 ebox t1 h
@@ -897,7 +897,6 @@ e69: 10176 hex dff
      11 ~< csh4-e65-15
      14 ~> csh4 ebox t2 l
      10 ~< csh4 ebox t2 l
-     // Time critical
      13 ~> {au2} csh4 ebox t3 l
      5 ~< {ek1} mbc2 csh data clr t3 l
      2 ~> csh4 data clr t4 l
