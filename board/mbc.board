@@ -573,7 +573,7 @@ e28: 10117 dual 2-3 or-and
      2 ~> mbc2-e28-2
      13 ~< {br2} data valid a out h
      12 ~< mbc3 a change coming a h
-     11 ~< -mbc3 a cache coming h
+     11 ~< -mbc3 a change coming h
      10 ~< mbc3-e60-6
      9 ~< %NC%
      14 ~> %NC%
@@ -587,9 +587,9 @@ e61: 10176 hex dff
      15 ~> mbc3 a change coming l
      7 ~< {ev2} a change coming in l
      4 ~> mbc3 a change coming b l
-     11 ~< mbc3-e40-15
+     11 ~< mbc2-e40-15
      14 ~> mbc3 b change coming l
-     10 ~< mbc3-e40-15
+     10 ~< mbc2-e40-15
      13 ~> mbc3 b change coming a l
      6 ~< mbc4 core data valid -2 l
      3 ~> {bt2} mbc4 core data val -1 l
@@ -615,7 +615,7 @@ e51: 10176 hex dff
      12 ~< mbc3-e44-15
      9 ~< mbc1 clk a h
      15 ~> mbc3 a change coming a h
-     6 ~< mbc3-e40-14
+     6 ~< mbc2-e40-14
      3 ~> mbc3 b change coming h
      7 ~< mbc4-e50-3
      4 ~> {dr2} mem start a h
@@ -681,11 +681,11 @@ e55: 10105 2-3-2 or/nor
      13 ~< mbc3-e55-3
      14 ~> {dk2} mbc3 a phase coming l
      15 ~> mbc3 clk a phase coming h
-     9 ~< %NC%
-     10 ~< %NC%
-     11 ~< %NC%
+     9 ~< {er2} -nxm ackn l
+     10 ~< -mbc4 last ackn seen l
+     11 ~< {ej2} -mbc4 core adr 34 l
      6 ~> %NC%
-     7 ~> %NC%
+     7 ~> mbc5-e55-7
 
 e45: 10121 4-wide or-and
      4 ~< {dv2} mbc4 mem start l
@@ -760,10 +760,10 @@ e65: 10104 quad and/nand
      6 ~< -mbc4 core data valid a h
      7 ~< mbc4 rq 0b h
      3 ~> mbc4-e65-3
-     12 ~< %NC%
-     13 ~< %NC%
+     12 ~< -mbc3 a phase l
+     13 ~< mbc3-e55-2
      15 ~> %NC%
-     9 ~> %NC%
+     9 ~> mbc3-e65-9
 
 e53: 10105 2-3-2 or/nor
      12 ~< {es2} csh4 data clr done l
