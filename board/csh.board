@@ -28,7 +28,7 @@ e84: 10105 2-3-2 or/nor
      6 ~> {ev2} csh1 chan req grant h
      7 ~> csh1 chan req grant l
      4 ~< csh4 writeback t1 a h
-     5 ~< csh2-e76-2
+     5 ~< csh2-e76-3
      3 ~> %NC%
      2 ~> csh2 e req en clr h
      12 ~< csh5 t1 l
@@ -241,7 +241,7 @@ e52: 10176 hex dff
      3 ~> csh1 cache idle in h
      11 ~< csh1-e46-15
      14 ~> csh1 cache idle in h
-     12 ~< csh1-e22-3
+     12 ~< csh2-e22-3
      15 ~> csh1 cache idle in h
      10 ~< {bl2} -mem busy l
      13 ~> csh1-e52-13
@@ -367,8 +367,8 @@ e56: 10101 quad or/nor
      14 ~> csh7-e56-14
      11 ~> csh7-e56-11
      13 ~< {dm1} diag 06 b h
-     15 ~> csh7-d56-15
-     9 ~> csh7-d56-9
+     15 ~> csh7-e56-15
+     9 ~> csh7-e56-9
      7 ~< {ef1} diag read func 17x l
      3 ~> %NC%
      6 ~> csh7-e56-6
@@ -693,7 +693,7 @@ e11: 10105 2-3-2 or/nor
      10 ~< {au2} csh4 ebox t3 l
      11 ~< -csh3 map problem l
      6 ~> %NC%
-     7 ~> csh3-e11-6
+     7 ~> csh3-e11-7
      4 ~< {bm2} pma5 page refill cyc l
      5 ~< csh5 t3 l
      3 ~> %NC%
