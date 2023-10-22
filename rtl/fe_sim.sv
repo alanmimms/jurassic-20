@@ -228,9 +228,10 @@ module fe_sim(input bit clk,
 
   // When we reach the HALT loop, delay a bit then start running.
   always @(posedge con_ebox_halted_h) begin
-    repeat (10) @(negedge clk);
-    $display("%7g [run]", $realtime);
+    repeat (100) @(negedge clk);
+    $display("%7g [run/continue]", $realtime);
     doDiagFunc(diagfSET_RUN);
+    doDiagFunc(diagfCONTINUE);
   end
 
   always @(posedge kl10pv.con_35.con2_clk_e_h) begin
@@ -251,6 +252,8 @@ module fe_sim(input bit clk,
   ////////////////////////////////////////////////////////////////
   // Functions from KLINIT.L20 $KLMR (DO A MASTER RESET ON THE KL)
   task KLMasterReset;
+    int tries;
+
     // $DFXC(.CLRUN=010)    ; Clear run
     doDiagFunc(diagfCLR_RUN);
 
@@ -272,6 +275,8 @@ module fe_sim(input bit clk,
     //   If not asserted, single step the MBOX and try again.
     $display("Start MBOX sync %g", $realtime);
 
+    tries = 0;
+
     repeat (5) begin
 
       repeat (5) @(negedge clk) ;
@@ -279,8 +284,8 @@ module fe_sim(input bit clk,
       @(negedge clk) begin
 	testingChangeComing <= !testingChangeComing;
 
-	if (!a_change_coming) begin
-	  $display("===ERROR=== Step MBOX five times did not clear a_change_coming");
+	if (tries >= 5 && !a_change_coming) begin
+	  $display("===ERROR=== Step MBOX %d times did not clear a_change_coming", tries);
 	  break;
 	end
       end
@@ -288,6 +293,7 @@ module fe_sim(input bit clk,
       repeat (5) @(negedge clk) ;
 
       doDiagFunc(diagfSTEP_CLOCK);
+      ++tries;
     end
 
     $display("End MBOX sync %g", $realtime);
