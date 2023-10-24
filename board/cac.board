@@ -1287,7 +1287,7 @@ e10: 10103 quad or
      12 ~< {as1} csh [n/9+1,0,1,2,3] [n/18*18]-[n/18*18+17] sel a l
      13 ~< csh [n/18*18]-[n/18*18+17] en csh data l
      9 ~> %NC%
-     15 ~> chd5-e10-15
+     15 ~> cac5-e10-15
 
 ////////////////////////////////////////////////////////////////
 Page: CAC4, PDF119
@@ -1472,7 +1472,7 @@ e53: 10144 256x1 RAM
      10 ~< csh adr 32 a h
      11 ~< csh adr 33 a h
      12 ~< csh adr 34 a h
-     5 ~< chd5-e10-15
+     5 ~< cac5-e10-15
      6 ~< %NC%
      7 ~< csh adr 35 a l
      14 ~< csh write a l
@@ -1488,7 +1488,7 @@ e83: 10144 256x1 RAM
      10 ~< csh adr 32 b h
      11 ~< csh adr 33 b h
      12 ~< csh adr 34 b h
-     5 ~< chd5-e10-15
+     5 ~< cac5-e10-15
      6 ~< %NC%
      7 ~< -csh adr 35 a l
      14 ~< csh write b l

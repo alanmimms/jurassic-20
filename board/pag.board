@@ -388,8 +388,8 @@ e42: 10118 triple 4-2 or-and
      12 ~< %NC%
      13 ~< pag3 pt en a h
      14 ~< {cm2} pma3 pa 18 h
-     10 ~< pma2-e41-15
-     11 ~< pma2-e40-15
+     10 ~< pag2-e41-15
+     11 ~< pag2-e40-15
      9 ~< -pag3 pt en a h
      15 ~> {dp2} pt 18 b h
      3 ~< pag4 paged ref l

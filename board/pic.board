@@ -14,29 +14,29 @@ Page: PIC1, PDF199
 e66: 10101 quad or/nor
      4 ~< pi4 iob 11 l
      12 ~< pi4 on clr l
-     2 ~> pi1-e66-2
+     2 ~> pic1-e66-2
      5 ~> %NC%
      7 ~< pi4 iob 12 l
-     3 ~> pi1-e66-3
+     3 ~> pic1-e66-3
      6 ~> %NC%
      10 ~< pi4 iob 13 l
-     14 ~> pi1-e66-14
+     14 ~> pic1-e66-14
      11 ~> %NC%
      13 ~< pi4 iob 14 l
-     15 ~> pi1-e66-15
+     15 ~> pic1-e66-15
      9 ~> %NC%
 
 e62: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 11 l
-     6 ~< pi1-e66-2
+     6 ~< pic1-e66-2
      9 ~< -pi4 sys clr l
      7 ~< pi1 on 1 l
      3 ~> pi1 on 1 h
      2 ~> pi1 on 1 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 11 l
-     10 ~< pi1-e61-2
+     10 ~< pic1-e61-2
      9 ~< -pi4 sys clr l
      11 ~< pi1 gen 1 l
      14 ~> pi1 gen 1 h
@@ -45,16 +45,16 @@ e62: 10117 dual 2-3 or-and
 e61: 10101 quad or/nor
      4 ~< pi4 iob 11 l
      12 ~< pi4 gen clr l
-     2 ~> pi1-e61-2
+     2 ~> pic1-e61-2
      5 ~> %NC%
      7 ~< pi4 iob 12 l
-     3 ~> pi1-e61-3
+     3 ~> pic1-e61-3
      6 ~> %NC%
      10 ~< pi4 iob 13 l
-     14 ~> pi1-e61-14
+     14 ~> pic1-e61-14
      11 ~> %NC%
      13 ~< pi4 iob 14 l
-     15 ~> pi1-e61-15
+     15 ~> pic1-e61-15
      9 ~> %NC%
 
 e57: 10117 dual 2-3 or-and
@@ -76,14 +76,14 @@ e57: 10117 dual 2-3 or-and
 e67: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 12 l
-     6 ~< pi1-e66-3
+     6 ~< pic1-e66-3
      9 ~< -pi4 sys clr l
      7 ~< pi1 on 2 l
      3 ~> pi1 on 2 h
      2 ~> pi1 on 2 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 12 l
-     10 ~< pi1-e61-3
+     10 ~< pic1-e61-3
      9 ~< -pi4 sys clr l
      11 ~< pi1 gen 2 l
      14 ~> pi1 gen 2 h
@@ -92,14 +92,14 @@ e67: 10117 dual 2-3 or-and
 e71: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 13 l
-     6 ~< pi1-e66-14
+     6 ~< pic1-e66-14
      9 ~< -pi4 sys clr l
      7 ~< pi1 on 3 l
      3 ~> pi1 on 3 h
      2 ~> pi1 on 3 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 13 l
-     10 ~< pi1-e61-14
+     10 ~< pic1-e61-14
      9 ~< -pi4 sys clr l
      11 ~< pi1 gen 3 l
      14 ~> pi1 gen 3 h
@@ -124,14 +124,14 @@ e72: 10117 dual 2-3 or-and
 e70: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 14 l
-     6 ~< pi1-e66-15
+     6 ~< pic1-e66-15
      9 ~< -pi4 sys clr b l
      7 ~< pi1 on 4 l
      3 ~> pi1 on 4 h
      2 ~> pi1 on 4 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 14 l
-     10 ~< pi1-e61-15
+     10 ~< pic1-e61-15
      9 ~< -pi4 sys clr b l
      11 ~< pi1 gen 4 l
      14 ~> pi1 gen 4 h
@@ -140,13 +140,13 @@ e70: 10117 dual 2-3 or-and
 e58: 10101 quad or/nor
      4 ~< pi4 iob 15 l
      12 ~< pi4 on clr l
-     2 ~> pi1-e58-2
+     2 ~> pic1-e58-2
      5 ~> %NC%
      7 ~< pi4 iob 16 l
-     3 ~> pi1-e58-3
+     3 ~> pic1-e58-3
      6 ~> %NC%
      10 ~< pi4 iob 17 l
-     14 ~> pi1-e58-14
+     14 ~> pic1-e58-14
      11 ~> %NC%
      // Note it looks like E58 has been re-pinned, or reference designator changed
      // from another part. There are TWO locations where pins 4, 12, 2, and 5 are
@@ -159,14 +159,14 @@ e58: 10101 quad or/nor
 e69: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 15 l
-     6 ~< pi1-e58-2
+     6 ~< pic1-e58-2
      9 ~< -pi4 sys clr b l
      7 ~< pi1 on 5 l
      3 ~> pi1 on 5 h
      2 ~> pi1 on 5 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 15 l
-     10 ~< pi1-e63-2
+     10 ~< pic1-e63-2
      11 ~< pi1 gen 5 l
      14 ~> pi1 gen 5 h
      15 ~> pi1 gen 5 l
@@ -174,18 +174,17 @@ e69: 10117 dual 2-3 or-and
 e63: 10101 quad or/nor
      4 ~< pi4 iob 15 l
      12 ~< pi4 gen clr l
-     2 ~> pi1-e63-2
+     2 ~> pic1-e63-2
      5 ~> %NC%
      7 ~< pi4 iob 16 l
-     3 ~> pi1-e63-3
+     3 ~> pic1-e63-3
      6 ~> %NC%
-     12 ~< pi4 gen set l
-     13 ~< pi4 iob 17 l
-     10 ~< pi1-e63-14
-     9 ~> -pi4 sys clr b l
-     11 ~> pi1 gen 7 l
-     14 ~> pi1 gen 7 h
-     15 ~> pi1 gen 7 l
+     13 ~< %NC%
+     10 ~< pi4 iob 17 l
+     9 ~> %NC%
+     11 ~> %NC%
+     14 ~> pic1-e63-14
+     15 ~> %NC%
 
 e73: 10117 dual 2-3 or-and
      4 ~< pi1 gen 5 l
@@ -206,14 +205,14 @@ e73: 10117 dual 2-3 or-and
 e68: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 16 l
-     6 ~< pi1-e58-3
+     6 ~< pic1-e58-3
      9 ~< -pi4 sys clr b l
      7 ~< pi1 on 6 l
      3 ~> pi1 on 6 h
      2 ~> pi1 on 6 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 16 l
-     10 ~< pi1-e63-3
+     10 ~< pic1-e63-3
      9 ~< -pi4 sys clr b l
      11 ~< pi1 gen 6 l
      14 ~> pi1 gen 6 h
@@ -222,14 +221,14 @@ e68: 10117 dual 2-3 or-and
 e64: 10117 dual 2-3 or-and
      4 ~< pi4 on set l
      5 ~< pi4 iob 17 l
-     6 ~< pi1-e58-14
+     6 ~< pic1-e58-14
      9 ~< -pi4 sys clr b l
      7 ~< pi1 on 7 l
      3 ~> pi1 on 7 h
      2 ~> pi1 on 7 l
      12 ~< pi4 gen set l
      13 ~< pi4 iob 17 l
-     10 ~< pi1-e63-14
+     10 ~< pic1-e63-14
      9 ~< -pi4 sys clr l
      11 ~< pi1 gen 7 l
      14 ~> pi1 gen 7 h
