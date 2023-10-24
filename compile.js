@@ -64,9 +64,6 @@ function parseBackplanes(parser) {
       const board = parseFile(parser, boardPath);
       bp.boards[id] = board;
 
-      if (options.dumpWires) fs.writeFileSync(`${id}.wires`, dumpThing(board.wires))
-      if (options.dumpNets) fs.writeFileSync(`${id}.nets`, dumpThing(board.nets, '%NC%'))
-
       if (board.bpPins && options.dumpPins) {
 	fs.writeFileSync(`${id}.bp-pins`,
 			 Object.keys(board.bpPins)
@@ -503,11 +500,6 @@ function compile(simOptions) {
 		     }));
   }
 
-  const needCheck =
-        options.dumpNets ||
-        options.dumpWireOr ||
-        options.dumpUndriven;
-
   const parser = PEG.generate(fs.readFileSync('netlist.pegjs', 'utf8'), {
     output: 'parser',
     trace: options.traceParse,
@@ -527,13 +519,14 @@ function compile(simOptions) {
   if (options.dumpVerilog) dumpVerilogNames(bp);
   if (options.dumpNets) dumpNets(bp);
 
-//  checkForMalformedSymbolNames(bp);
-  
   if (options.genSV) genSV(bp);
 
   if (options.genCram) genCram(bp);
   if (options.genDram) genDram(bp);
 
+  if (options.dumpBadAnonymous) checkAnonymousNames(bp);
+  if (options.dumpMalformed) checkForMalformedSymbolNames(bp);
+  
   return bp;
 }
 
@@ -871,29 +864,60 @@ function verilogify(n) {
 
 
 function checkForMalformedSymbolNames(bp) {
-  const malformed = Object.keys(bp.allNets)
-	.sort(netNameSort)
-  // Remove valid no connect symbol
-	.filter(n => n != '%NC%')
-  // Remove valid xxx [hl]
-	.filter(n => !n.slice(-2).match(/ [hl]/))
-  // Remove valid xxx hi for local logic 1 symbol used on some boards
-	.filter(n => n.slice(-3) != ' hi' && n != 'hi')
-  // Remove valid local anonymous net names mod-e99-99
-	.filter(n => !n.match(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/))
-	.map(n => `'${n}'`)
-	.join('\n');
+  const malformed = Object.entries(bp.boards)
+	.map(([boardID, board]) => Object.keys(board.nets)
+	     // Remove valid no connect symbol
+	     .filter(n => n != '%NC%' && n != '0' && n != '1')
+	     // Remove valid xxx [hl]
+	     .filter(n => !n.slice(-2).match(/ [hl]/))
+	     // Remove valid xxx hi for local logic 1 symbol used on some boards
+	     .filter(n => n.slice(-3) != ' hi' && n != 'hi')
+	     // Remove valid local anonymous net names mod-e99-99
+	     .filter(n => !n.match(/([a-z][a-z][a-z0-9][0-9]*)-([a-z]+\d+)-(\d+)/))
+	     .map(n => `${boardID}: '${n}'`)
+	     .join('\n'));
 
   if (malformed) {
     console.error(`\
 
 MALFORMED symbol names:\n
-${malformed}
+${malformed.join('\n')}
 
 `);
   } else {
     console.log(`[no malformed symbol names found]`);
   }
+}
+
+
+function checkAnonymousNames(bp) {
+  Object.entries(bp.boards)
+    .forEach(([boardID, board]) => Object.entries(board.nets)
+	     .forEach(([n, boardNet]) => {
+	       const m = n.match(`(?<id>${boardID}[0-9]+)-(?<chip>[a-z][0-9]+)-(?<pin>[0-9]+)`);
+	       if (!m) return;
+
+	       const {id, chip, pin} = m.groups;
+
+	       boardNet.forEach(bn => {
+
+		 if (bn.dir === 'D') { // Driving nets should match the chip/pin they attach to
+
+		   // Unless they are part of a wired-OR
+		   if (boardNet.some(wbn => wbn !== bn && wbn.dir === 'D')) return;
+
+		   if (bn.chip.name !== chip) {
+		     console.error(`${boardID}: ${n} chip '${chip}' mismatches '${bn.chip.name}'`);
+		   }
+
+		   if (bn.pin !== pin) {
+		     console.error(`\
+${boardID}: ${n} pin '${pin}' mismatches driving pin '${bn.chip.name}.${bn.pin}'`);
+		   }
+		 } else {	// Find matching driving pin for this input pin
+		 }
+	       });
+	     }));
 }
 
 
@@ -1148,11 +1172,11 @@ CMDR
   .option('-a, --dump-ast', `Dump AST after parsing`)
   .option('-b, --dump-backplane', `Dump backplane slots and net names`)
   .option('-c, --dump-cram', `Dump CRAM definitions`)
+  .option('-A, --dump-bad-anonymous', `Dump anonymous net names that don't follow the rules properly`)
+  .option('-M, --dump-malformed', `Dump malformed signal names`)
   .option('-C, --gen-cram <cramPath>', `Generate CRAM .mem file to specified path name`)
   .option('-D, --gen-dram <dramPath>', `Generate DRAM .mem file to specified path name`)
   .option('-g, --genSV', `Generate SystemVerilog code for backplane and modules`)
-  .option('-n, --dump-nets', `Dump netlist`)
-  .option('-o, --dump-wire-or', `Dump list of wire-ORed nets`)
   .option('-p, --dump-pins', `Dump board pins and backplane pins for each board`)
   .option('-s, --dump-slots', `Dump slot signals after parsing`)
   .option('-t, --trace-parse', `Print trace while parsing netlist`)
