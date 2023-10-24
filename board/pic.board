@@ -801,7 +801,7 @@ e4:  10101 quad or/nor
      14 ~> pic2 tran rec l
      11 ~> {aa1} pi2 ext tran rec h
      4 ~< -pi3 dk20 phy no. h
-     13 ~< pic2-e18-3     
+     13 ~< pic2-e18-3
      15 ~> pic2-e4-15
      9 ~> %NC%
      4 ~< -pi3 dk20 phy no. h

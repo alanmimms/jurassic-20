@@ -119,8 +119,8 @@ e3:  10181 ALU
      19 ~< crc mem ptr2 in h
      21 ~< crc1-e1-2
      20 ~< crc mem ptr3 in h
-     22 ~< crc ram cyc h      
-     13 ~< crc ram cyc h      
+     22 ~< crc ram cyc h
+     13 ~< crc ram cyc h
      15 ~< %NC%
      17 ~< %NC%
      14 ~< crc ram cyc h

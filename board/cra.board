@@ -1205,7 +1205,7 @@ e50: 10164 8 mixer
      3 ~< cra1 adr 05 f h
      4 ~< {dl2} cra3 disp parity h
      5 ~< cra3 loc 05 h
-     6 ~< %NC% 
+     6 ~< %NC%
      10 ~< cra5 diag 04 l
      9 ~< cra5 diag 05 l
      7 ~< cra5 diag 06 l
