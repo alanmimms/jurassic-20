@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Oct 22 21:14:12 2023
+[*] Tue Oct 24 21:19:22 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sun Oct 22 21:05:11 2023"
-[dumpfile_size] 25020240
+[dumpfile_mtime] "Tue Oct 24 21:19:18 2023"
+[dumpfile_size] 25020159
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 4715
+[timestart] 3502
 [size] 1920 1045
 [pos] -1 -1
-*-5.461107 4891 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.461107 3621 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -58,7 +58,7 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
-@800200
+@c00200
 -core-state
 @28
 top.kl10pv.clk1_clk_out_h
@@ -85,7 +85,7 @@ top.kl10pv.ird_48.ir_09_h
 top.kl10pv.ird_48.ir_10_h
 top.kl10pv.ird_48.ir_11_h
 top.kl10pv.ird_48.ir_12_h
-@1401210
+@1401200
 -group_end
 @28
 top.kl10pv.a_change_coming_in_l
@@ -149,7 +149,7 @@ top.kl10pv.edp_39.ad_32_h
 top.kl10pv.edp_39.ad_33_h
 top.kl10pv.edp_39.ad_34_h
 top.kl10pv.edp_39.ad_35_h
-@1401210
+@1401200
 -group_end
 @c00030
 [color] 6
@@ -254,7 +254,6 @@ top.kl10pv.scd_54.scd1_scadb_08_h
 top.kl10pv.scd_54.scd1_scadb_09_h
 @1401200
 -group_end
-@1000200
 -core-state
 @c00200
 -clocks
@@ -373,5 +372,66 @@ top.kl10pv.memory0.mbus.startA
 top.kl10pv.memory0.mbus.startB
 @1401200
 -mbus
+@800200
+-page-fail
+@28
+[color] 1
+top.kl10pv.clk_32.clk4_ebox_cyc_abort_h
+[color] 1
+top.kl10pv.clk_32.clk4_page_fail_h
+[color] 1
+top.kl10pv.clk_32.clk_page_error_h
+[color] 2
+top.kl10pv.clk_32.csh6_page_fail_hold_h
+@200
+-
+@28
+[color] 1
+top.kl10pv.clk_32.clk3_ebox_source_h
+[color] 1
+top.kl10pv.clk_32.clk4_pf_dlyd_b_h
+[color] 1
+top.kl10pv.clk_32.clk4_pf_dlyd_a_h
+[color] 1
+top.kl10pv.clk_32.clk4_instr_1777_h
+@200
+-
+@28
+top.kl10pv.clk_32.apr_apr_par_chk_en_l
+top.kl10pv.clk_32.clk5_arSlarx_par_check_l
+@200
+-
+@28
+top.kl10pv.clk_32.apr5_set_page_fail_l
+[color] 4
+top.kl10pv.clk_32.clk4_e7_7
+@200
+-
+@28
+top.kl10pv.clk_32.shm1_ar_par_odd_h
+top.kl10pv.clk_32.con_ar_loaded_l
+@200
+-
+@28
+top.kl10pv.clk_32.clk4_e38_7
+@200
+-
+@28
+top.kl10pv.clk_32.shm1_arx_par_odd_h
+top.kl10pv.clk_32.con_arx_loaded_l
+@200
+-
+@28
+[color] 1
+top.kl10pv.clk_32.clk4_e7_7
+@200
+-cram-mem-02
+@28
+[color] 1
+top.kl10pv.clk_32.clk4_e44_14
+[color] 1
+top.kl10pv.clk_32.clk4_page_fail_en_l
+@1000200
+-page-fail
 [pattern_trace] 1
 [pattern_trace] 0
