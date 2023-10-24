@@ -905,11 +905,11 @@ e24: 10117 dual 2-3 or-and
      9 ~< %NC%
      3 ~> scd4-e24-3
      2 ~> %NC%
-     10 ~< %NC%
-     11 ~< %NC%
-     12 ~< %NC%
-     13 ~< %NC%
-     14 ~> %NC%
+     10 ~< {bs1} scd4 cry1 h
+     11 ~< scd5 load flags a h
+     12 ~< -scd5 load flags h
+     13 ~< {fr2} ar 02 c h
+     14 ~> scd4-e24-14
      15 ~> %NC%
 
 e35: 10118 triple 4-2 or-and

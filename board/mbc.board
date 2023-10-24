@@ -934,7 +934,7 @@ e74: 10105 2-3-2 or/nor
 e75: 10117 dual 2-3 or-and
      4 ~< mbc4 any rqs left l
      5 ~< mbc4 core rd in prog l
-     6 ~< mbc4-e55-7
+     6 ~< mbc5-e55-7
      7 ~< {bf2} -mbc4 core adr 35 l
      9 ~< mbc4 mem start rd l
      3 ~> mbc4 init comp h

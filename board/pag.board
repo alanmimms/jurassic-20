@@ -428,7 +428,7 @@ e37: 10118 triple 4-2 or-and
      13 ~< pag3 pt en a h
      14 ~< {cf2} pma3 pa 20 h
      10 ~< pag2-e31-15
-     11 ~< pag2-e26-15
+     11 ~< pag2-e30-15
      9 ~< -pag3 pt en a h
      15 ~> {dj2} pt 20 b h
 
@@ -570,7 +570,7 @@ e26: 10144 256x1 RAM
      7 ~< %NC%
      14 ~< pag3 pt wr c l
      13 ~< {bm2} pt in 12 h
-     15 ~> pag2-e25-15
+     15 ~> pag2-e26-15
 
 e21: 10144 256x1 RAM
      1 ~< pag5 pt adr 18 c l
@@ -1261,7 +1261,7 @@ e23: 10113 quad xor/xnor
      11 ~< {bd2} mb 18-23 par odd h
      10 ~< {ba1} mb 24-29 par odd h
      14 ~> pag5-e23-14
-     13 ~< pag4-e23-14
+     13 ~< pag5-e23-14
      12 ~< pag4-e13-15
      15 ~> {bk2} pag mb 00-17 par h
 

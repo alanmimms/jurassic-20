@@ -530,9 +530,9 @@ e29: 10141 shift register
      11 ~< %NC%
      9 ~< %NC%
      6 ~< %NC%
-     5 ~< mbz3-e29-14
+     5 ~< mbz3-e39-14
      7 ~< mbz3-e25-3
-     10 ~< mbz3-e25-10
+     10 ~< mbz3-e25-2
      4 ~< clk d h
      14 ~> %NC%
      15 ~> %NC%

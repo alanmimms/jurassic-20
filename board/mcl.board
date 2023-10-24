@@ -326,7 +326,7 @@ e67: 10109 4/5 or/nor
      7 ~< %NC%
      3 ~> %NC%
      2 ~> mcl2-e67-2
-     9 ~< mcl5-e62-3
+     9 ~< mcl5 fetch en in h
      10 ~< {fv2} mcl skip satisfied h
      11 ~< mcl5 aread 001 h
      12 ~< mcl6 ad func 09 h
@@ -912,6 +912,21 @@ e53: 10121 4-wide or-and
      15 ~< mcl4-e38-2
      3 ~> {dk1} mcl4 vma prev en h
      2 ~> mcl4 vma prev en l
+
+e38: 10121 4-wide or-and
+     4 ~< mcl4-e48-15
+     5 ~< mcl5 # 04 l
+     6 ~< %NC%
+     7 ~< mcl4 xr previous l
+     9 ~< mcl5 # 05 l
+     10 ~< %NC%
+     11 ~< mcl5 ea previous l
+     12 ~< mcl5 # 07 l
+     13 ~< %NC%
+     14 ~< mcl4 pxct b12 l
+     15 ~< mcl5 # 08 l
+     3 ~> %NC%
+     2 ~> mcl4-e38-2
 
 e37: 10141 shift register
      13 ~< %NC%

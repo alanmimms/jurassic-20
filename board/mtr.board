@@ -797,7 +797,7 @@ e63: 10105 2-3-2 or/nor
      2 ~> %NC%
 
 e11: 10101 quad or/nor
-     4 ~< mtr4-e1-4
+     4 ~< mtr3-e1-4
      12 ~< mtr5 reset h
      2 ~> mtr3 clr ebox cnt l
      5 ~> %NC%

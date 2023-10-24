@@ -881,7 +881,7 @@ dl1: delay-line 13ns
      2 ~> chc4-dl1-2
 
 dl2: delay-line 13ns
-     1 ~< chc4-e3-14
+     1 ~< chc4-e3-15
      2 ~> chc4-dl2-2
 
 e55: 10110 or buffer
@@ -1142,7 +1142,7 @@ e9:  10105 2-3-2 or/nor
      5 ~< chc5 sel 4a h
      3 ~> chc5-e9-3
      2 ~> %NC%
-     9 ~< chc5-e9-12
+     9 ~< chc5-e8-12
      10 ~< chc5-e9-3
      11 ~< chc5 sel 1a l
      6 ~> chc5-e9-6

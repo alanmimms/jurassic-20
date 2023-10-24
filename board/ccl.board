@@ -645,7 +645,7 @@ e34: 10176 hex dff
 e47: 10176 hex dff
      5 ~< ccl data en h
      6 ~< ccl af t0 h
-     7 ~< ccl3-e40-2
+     7 ~< ccl1-e40-2
      10 ~< ccl chan req en h
      11 ~< -ccl chan req en h
      12 ~< {bm2} -ccl mb rip h

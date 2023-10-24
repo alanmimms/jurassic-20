@@ -665,9 +665,9 @@ e24: 10103 quad or
      13 ~< {fr2} con cono pi l
      9 ~> pic4-e24-9
      15 ~> %NC%
-     10 ~< %NC%
-     11 ~< %NC%
-     14 ~> %NC%
+     10 ~< pic2 pi on 0 h
+     11 ~< pic5-e20-14
+     14 ~> pic5-e24-14
 
 e7:  10105 2-3-2 or/nor
      12 ~< pic2 tim5 h
@@ -807,7 +807,7 @@ e4:  10101 quad or/nor
      4 ~< -pi3 dk20 phy no. h
      2 ~> pi3 dk20 phy no. h
      5 ~> %NC%
-     7 ~< pic4-e4-7
+     7 ~< pic4-e24-2
      3 ~> pic4-e4-3
      6 ~> %NC%
 
