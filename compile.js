@@ -894,7 +894,7 @@ function checkAnonymousNames(bp) {
   Object.entries(bp.boards)
     .forEach(([boardID, board]) => Object.entries(board.nets)
 	     .forEach(([n, boardNet]) => {
-	       const m = n.match(`(?<id>${boardID}[0-9]+)-(?<chip>[a-z][0-9]+)-(?<pin>[0-9]+)`);
+	       const m = n.match(`(?<id>[a-z]+[0-9]?)[0-9]-(?<chip>[a-z][0-9]+)-(?<pin>[0-9]+)`);
 	       if (!m) return;
 
 	       const {id, chip, pin} = m.groups;
@@ -902,6 +902,10 @@ function checkAnonymousNames(bp) {
 	       if (!boardNet.some(bn => bn.dir === 'D')) console.error(`${boardID}: ${n} not driven`);
 
 	       boardNet.forEach(bn => {
+
+		 if (id !== boardID) {
+		   console.error(`${boardID}: ${n}: '${id}' mismatches board ID '${boardID}'`);
+		 }
 
 		 if (bn.dir === 'D') { // Driving nets should match the chip/pin they attach to
 
@@ -1174,7 +1178,7 @@ CMDR
   .option('-a, --dump-ast', `Dump AST after parsing`)
   .option('-b, --dump-backplane', `Dump backplane slots and net names`)
   .option('-c, --dump-cram', `Dump CRAM definitions`)
-  .option('-A, --dump-bad-anonymous', `Dump anonymous net names that don't follow the rules properly`)
+  .option('-A, --dump-bad-anonymous', `Dump anonymous net names that don't follow the rules properly`, true)
   .option('-M, --dump-malformed', `Dump malformed signal names`)
   .option('-C, --gen-cram <cramPath>', `Generate CRAM .mem file to specified path name`)
   .option('-D, --gen-dram <dramPath>', `Generate DRAM .mem file to specified path name`)
