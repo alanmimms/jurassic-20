@@ -721,7 +721,7 @@ e55: 10109 4/5 or/nor
 e57: 10105 2-3-2 or/nor
      4 ~< mcl4 vma/ad l
      5 ~< -mcl4 sr 00 l
-     3 ~> mcl4-e457-3
+     3 ~> mcl4-e57-3
      2 ~> %NC%
      12 ~< mcl1 mem/ea calc l
      13 ~< mcl5 # 07 l

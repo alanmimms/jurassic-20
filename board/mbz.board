@@ -773,7 +773,7 @@ e69: 10117 dual 2-3 or-and
      10 ~< mbz4-e66-9
      11 ~< mem start c l
      9 ~< {ep2} ackn pulse l
-     14 ~> mbz4-e69-15
+     14 ~> mbz4-e69-14
      15 ~> %NC%
      4 ~< mbz4-e52-2
      5 ~< mem start c l

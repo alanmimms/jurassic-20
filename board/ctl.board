@@ -536,7 +536,7 @@ e35: 10105 or buffer
      7 ~> {de1} ctl ebus xfer l
      12 ~< {ff1} cram mq sel h
      13 ~< ctl1 reset h
-     14 ~> ctl2-d35-14
+     14 ~> ctl2-e35-14
      15 ~> {dh2} ctl mqm en h
 
 e40: 10109 4/5 or/nor
@@ -673,10 +673,10 @@ e1:  10161 decoder
      13 ~> {ae1} ctl3 diag sync func 074 l
      12 ~> {ad2} ctl3 diag ld func 075 l
      11 ~> ctl3 diag load func 076 l
-     10 ~> ctl3-e5-10
+     10 ~> ctl3-e1-10
 
 e5:  10101 quad or/nor
-     13 ~< ctl3-e5-10
+     13 ~< ctl3-e1-10
      12 ~< %NC%
      15 ~> {be2} ctl3 diag clk edp h
      9 ~> %NC%

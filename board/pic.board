@@ -452,7 +452,7 @@ e49: 10103 quad or
 
 // Why is e77 very clearly defined on multiple pages of this module?
 // This one is the 10165 on PDF200.
-e77z: 10165 priority encoder
+e7799: 10165 priority encoder
      5 ~< pic2-e49-3
      7 ~< pic1 pir4 h
      13 ~< pic1 pih5 h
@@ -576,7 +576,7 @@ e14: 10104 quad and/nand
 
 // Why is e82 very clearly defined on multiple pages of this module?
 // PDF200 instance is shown here.
-e82z: 10165 priority encoder
+e8299: 10165 priority encoder
      5 ~< %NC%
      7 ~< pic1 pih1 h
      13 ~< pic1 pih2 h
@@ -592,7 +592,7 @@ e82z: 10165 priority encoder
      3 ~> {fl2} pi2 hold 1 h
 
 // Why is e81 very clearly defined on multiple pages of this module?
-e81z: 10161 decoder
+e8199: 10161 decoder
      14 ~< {fd1} pi2 hold 4 h
      9 ~< {fd2} pi2 hold 2 h
      7 ~< {fl2} pi2 hold 1 h
@@ -891,7 +891,7 @@ e50: 10162 decoder
      10 ~> pi3 pi07 h
 
 // Why is e46 very clearly defined on multiple pages of this module?
-e46z: 10113 quad 2 xor
+e4699: 10113 quad 2 xor
      7 ~< {dj1} pi3 mtr pia 04 h
      6 ~< {fn1} pi2 pi4 a h
      9 ~< %NC%
@@ -937,7 +937,7 @@ e54: 10141 shift register
      3 ~> %NC%
 
 // Why is e49 very clearly defined on multiple pages of this module?
-e49z: 10141 shift register
+e4999: 10141 shift register
      13 ~< %NC%
      12 ~< pi4 iob 15 h
      11 ~< pi4 iob 16 h
@@ -1252,7 +1252,7 @@ e52: 10105 2-3-2 or/nor
 
 // Why is e44 very clearly defined on multiple pages of this module?
 // This is from bottom-right PDF202 PIC4.
-e44z: 10105 2-3-2 or/nor
+e4499: 10105 2-3-2 or/nor
       4 ~< {dh2} ebus pi06 e h
       5 ~< pi3 pi06 h
       3 ~> pi4 io req6 l
@@ -1270,11 +1270,11 @@ e44z: 10105 2-3-2 or/nor
 Page: PIC5, PDF203
 
 // Why is e54 very clearly defined on multiple pages of this module?
-e54z: 10105 2-3-2 or/nor
+e5499: 10105 2-3-2 or/nor
       9 ~< -pic5 load l
       10 ~< -pic5 wait1 l
       11 ~< -pic5 wait2 l
-      6 ~> pic5-e54-6
+      6 ~> pic5-e5499-6
       7 ~> %NC%
       4 ~< %NC%
       5 ~< %NC%
@@ -1286,7 +1286,7 @@ e54z: 10105 2-3-2 or/nor
       15 ~> %NC%
 
 e30: 10141 shift register
-     13 ~< pic5-e54-6
+     13 ~< pic5-e5499-6
      12 ~< %NC%
      11 ~< %NC%
      9 ~< %NC%
@@ -1377,7 +1377,7 @@ e6: 10131 dual ms dff
     14 ~> pic5 xfer force h
 
 // Why is e62 very clearly defined on multiple pages of this module?
-e62z: 10165 priority encoder
+e6299: 10165 priority encoder
       5 ~< %NC%
       7 ~< pic1 gen 1 h
       13 ~< pic1 gen 2 h
@@ -1393,7 +1393,7 @@ e62z: 10165 priority encoder
       3 ~> pic5 gen 1 h
 
 // Why is e67 very clearly defined on multiple pages of this module?
-e67z: 10113 quad 2 xor
+e6799: 10113 quad 2 xor
       7 ~< pic5 gen 4 h
       6 ~< {fn1} pi2 pi4 a h
       3 ~> -pic5 gen int h
@@ -1412,7 +1412,7 @@ e67z: 10113 quad 2 xor
 
 // Why is e58 very clearly defined on multiple pages of this module?
 // This is PDF203.
-e58z: 10101 quad or/nor
+e5899: 10101 quad or/nor
       4 ~< -pic5 gen int h
       12 ~< %NC%
       2 ~> pic5 gen int h

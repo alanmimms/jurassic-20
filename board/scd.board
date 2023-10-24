@@ -1041,7 +1041,7 @@ e85: 10105 triple 2-3-2 or/nor
      3 ~> %NC%
      12 ~< {bc1} scd4 trap req 1 h
      13 ~< scd4 trap cyc 1 h
-     15 ~> scd4-e84-15
+     15 ~> scd4-e85-15
      14 ~> %NC%
      9 ~< %NC%
      10 ~< %NC%

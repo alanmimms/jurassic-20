@@ -1152,7 +1152,7 @@ e85: 10105 2-3-2 or/nor
      9 ~< pag4 paged ref l
      10 ~< -pag5 pt par odd l
      11 ~< {fm1} pt match l
-     6 ~> pag4-e86-6
+     6 ~> pag4-e85-6
      7 ~> %NC%
 
 e89: 10101 quad or/nor
