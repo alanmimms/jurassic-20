@@ -234,4 +234,98 @@ module kl10pv(input clk60, input crobar);
     else ebus.data = '0;
   end // always_comb
   
+  // Assign '0' to all undriven nets we KNOW are meant to be undriven
+  // so they stop causing warnings.
+  always_comb begin
+    apr3_spare_l = 0;
+    apr_apr_par_chk_en_l = 0;	// XXX This is never assigned anywhere (used in CLK4)
+
+    // ARMM is only nine bits, but EDP implements it in each EDP slot.
+    armm_09_h = 0;
+    armm_10_h = 0;
+    armm_11_h = 0;
+    armm_12_h = 0;
+    armm_13_h = 0;
+    armm_14_h = 0;
+    armm_15_h = 0;
+    armm_16_h = 0;
+    armm_17_h = 0;
+    armm_18_h = 0;
+    armm_19_h = 0;
+    armm_20_h = 0;
+    armm_21_h = 0;
+    armm_22_h = 0;
+    armm_23_h = 0;
+    armm_24_h = 0;
+    armm_25_h = 0;
+    armm_26_h = 0;
+    armm_27_h = 0;
+    armm_28_h = 0;
+    armm_29_h = 0;
+    armm_30_h = 0;
+    armm_31_h = 0;
+    armm_32_h = 0;
+    armm_33_h = 0;
+    armm_34_h = 0;
+    armm_35_h = 0;
+
+    arx_36_h = 0;
+    arx_37_h = 0;
+
+    bp_only_er2_h = 0;
+    bp_only_es2_h = 0;
+
+    brx_36_h = 0;
+
+    cache_exists_l = 0;		// Somehow should come from strapping option?
+
+    // For now CBUS is not connected.
+    cbus_ctom_e_h = 0;
+    cbus_d00_re_h = 0;
+    cbus_d01_re_h = 0;
+    cbus_d02_re_h = 0;
+    cbus_d03_re_h = 0;
+    cbus_d04_re_h = 0;
+    cbus_d05_re_h = 0;
+    cbus_d06_re_h = 0;
+    cbus_d07_re_h = 0;
+    cbus_d08_re_h = 0;
+    cbus_d09_re_h = 0;
+    cbus_d10_re_h = 0;
+    cbus_d11_re_h = 0;
+    cbus_d12_re_h = 0;
+    cbus_d13_re_h = 0;
+    cbus_d14_re_h = 0;
+    cbus_d15_re_h = 0;
+    cbus_d16_re_h = 0;
+    cbus_d17_re_h = 0;
+    cbus_d18_re_h = 0;
+    cbus_d19_re_h = 0;
+    cbus_d20_re_h = 0;
+    cbus_d21_re_h = 0;
+    cbus_d22_re_h = 0;
+    cbus_d23_re_h = 0;
+    cbus_d24_re_h = 0;
+    cbus_d25_re_h = 0;
+    cbus_d26_re_h = 0;
+    cbus_d27_re_h = 0;
+    cbus_d28_re_h = 0;
+    cbus_d29_re_h = 0;
+    cbus_d30_re_h = 0;
+    cbus_d31_re_h = 0;
+    cbus_d32_re_h = 0;
+    cbus_d33_re_h = 0;
+    cbus_d34_re_h = 0;
+    cbus_d35_re_h = 0;
+    cbus_done_e_h = 0;
+    cbus_par_left_re_h = 0;
+    cbus_par_right_re_h = 0;
+    cbus_request_e_h = 0;
+    cbus_reset_e_h = 0;
+    cbus_start_e_h = 0;
+    cbus_store_e_h = 0;
+
+    
+  end
+
 endmodule // kl10pv

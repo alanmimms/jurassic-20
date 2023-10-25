@@ -615,7 +615,7 @@ e69: 10147 128x1 RAM
      10 ~< ch buf adr 6 h
      13 ~< %NC%
      14 ~< ch buf en l
-     12 ~< {ep1} ch buf wr [n/06] l
+     12 ~< {ep1} ch buf wr [n/06+00] l
      11 ~< ch buf in [n+00] h
      15 ~> ch buf [n+00] h
 
@@ -629,7 +629,7 @@ e59: 10147 128x1 RAM
      10 ~< ch buf adr 6 h
      13 ~< %NC%
      14 ~< ch buf en l
-     12 ~< {ep1} ch buf wr [n/06] l
+     12 ~< {ep1} ch buf wr [n/06+00] l
      11 ~< ch buf in [n+01] h
      15 ~> ch buf [n+01] h
 
@@ -643,7 +643,7 @@ e49: 10147 128x1 RAM
      10 ~< ch buf adr 6 h
      13 ~< %NC%
      14 ~< ch buf en l
-     12 ~< {ep1} ch buf wr [n/06] l
+     12 ~< {ep1} ch buf wr [n/06+00] l
      11 ~< ch buf in [n+02] h
      15 ~> ch buf [n+02] h
 
@@ -657,7 +657,7 @@ e44: 10147 128x1 RAM
      10 ~< ch buf adr 6 h
      13 ~< %NC%
      14 ~< ch buf en l
-     12 ~< {ep1} ch buf wr [n/06] l
+     12 ~< {ep1} ch buf wr [n/06+00] l
      11 ~< ch buf in [n+03] h
      15 ~> ch buf [n+03] h
 
@@ -671,7 +671,7 @@ e64: 10147 128x1 RAM
      10 ~< ch buf adr 6 h
      13 ~< %NC%
      14 ~< ch buf en l
-     12 ~< {ep1} ch buf wr [n/06] l
+     12 ~< {ep1} ch buf wr [n/06+00] l
      11 ~< ch buf in [n+04] h
      15 ~> ch buf [n+04] h
 
@@ -685,7 +685,7 @@ e54: 10147 128x1 RAM
      10 ~< ch buf adr 6 h
      13 ~< %NC%
      14 ~< ch buf en l
-     12 ~< {ep1} ch buf wr [n/06] l
+     12 ~< {ep1} ch buf wr [n/06+00] l
      11 ~< ch buf in [n+05] h
      15 ~> ch buf [n+05] h
 
@@ -918,7 +918,7 @@ e70: 10145 12x4 RAM
      10 ~< {fk2} ccw buf adr 0 h
      9 ~< {fj1} ccw buf adr 1 h
      7 ~< {fl2} ccw buf adr 2 h
-     6 ~< {fm1} ccw buf adr 3 h
+     6 ~< {fm1} ccl buf adr 3 h
      3 ~< %NC%
      13 ~< mb04 ccw buf wr l
      2 ~> mb04-e70-2
@@ -949,7 +949,7 @@ e31: 10145 12x4 RAM
      10 ~< {fk2} ccw buf adr 0 h
      9 ~< {fj1} ccw buf adr 1 h
      7 ~< {fl2} ccw buf adr 2 h
-     6 ~< {fm1} ccw buf adr 3 h
+     6 ~< {fm1} ccl buf adr 3 h
      3 ~< %NC%
      13 ~< mb04 ccw buf wr l
      2 ~> mb04-e31-2
@@ -980,7 +980,7 @@ e11: 10145 12x4 RAM
      10 ~< {fk2} ccw buf adr 0 h
      9 ~< {fj1} ccw buf adr 1 h
      7 ~< {fl2} ccw buf adr 2 h
-     6 ~< {fm1} ccw buf adr 3 h
+     6 ~< {fm1} ccl buf adr 3 h
      3 ~< %NC%
      13 ~< mb04 ccw buf wr l
      2 ~> mb04-e11-2
