@@ -70,6 +70,7 @@ VFLAGS = \
 	-I$(GENDIR) \
 	-I$(SVLIBDIR) \
 	$(KILLWARNINGS) \
+	-Wwarn-UNDRIVEN \
 	--CFLAGS "$(DEBUG) $(OPTIMIZE)" \
 	--compiler gcc \
 	--timescale 1ns --timescale-override 1ns \
