@@ -175,3 +175,16 @@ the logic to work.
    complicated that could remain really simple and still do a powerful
    job. This is a simple, elegant solution to symbol names that
    contain multiple digits that have to have leading zeroes.
+   
+1. A wire on a schematic that is labeled something like
+
+	^ARMM 14 H <BH2>
+	VMA4 VMA 14 IN H
+	
+   should be wired to backplane pin `<BH2>` with signal name
+   `vma4_vma_14_in_h`.  This is manually connected to `armm_14_h` in
+   `kl10pv.sv`. This represents backplane wiring that cannot be
+   automatically determined from the name of the netlist (at least not
+   with the name `VMA4 VMA 14 IN H`). Examples can be found on VMA4
+   PDF357.
+
