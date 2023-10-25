@@ -427,7 +427,7 @@ e20: 10121 4-wide or-and
 e15: 10121 4-wide or-and
      4 ~< {dk1} -mcl4 vma prev en l
      5 ~< mcl2-e40-14
-     6 ~< mcl5 public l
+     6 ~< mcl6 public l
      7 ~< mcl2-e19-15
      9 ~< {bu2} -scd5 user a l
      10 ~< mcl4 vma prev en l
