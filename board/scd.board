@@ -978,7 +978,7 @@ e18: 10118 triple 4-2 or-and
      4 ~< scd5 load flags a h
      5 ~< scd4-e33-14
      6 ~< %NC%
-     7 ~< ar 12 c h
+     7 ~< {be1} ar 12 c h
      9 ~< -scd5 load flags a h
      2 ~> scd4-e18-2
      12 ~< %NC%
