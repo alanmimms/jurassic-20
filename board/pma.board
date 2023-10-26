@@ -637,9 +637,9 @@ e45: 10164 8 mixer
      12 ~< pma2 cca 28 h
      13 ~< {bf2} vma2 vma 28 h
      14 ~< %NC%
-     10 ~< pma5 27 sel 4 h
-     9 ~< pma5 27 sel 2 h
-     7 ~< pma5 27 sel 1 h
+     10 ~< pma5 28-31 sel 4 h
+     9 ~< pma5 28-31 sel 2 h
+     7 ~< pma5 28-31 sel 1 h
      2 ~< %NC%
      15 ~> {dt2} pma3 pa 28 h
 
@@ -652,9 +652,9 @@ e50: 10164 8 mixer
      12 ~< pma2 cca 29 h
      13 ~< {bl1} vma2 vma 29 h
      14 ~< %NC%
-     10 ~< pma5 27 sel 4 h
-     9 ~< pma5 27 sel 2 h
-     7 ~< pma5 27 sel 1 h
+     10 ~< pma5 28-31 sel 4 h
+     9 ~< pma5 28-31 sel 2 h
+     7 ~< pma5 28-31 sel 1 h
      2 ~< %NC%
      15 ~> {ea1} pma3 pa 29 h
 
@@ -667,9 +667,9 @@ e55: 10164 8 mixer
      12 ~< pma2 cca 30 h
      13 ~< {cl2} vma2 vma 30 h
      14 ~< %NC%
-     10 ~< pma5 27 sel 4 h
-     9 ~< pma5 27 sel 2 h
-     7 ~< pma5 27 sel 1 h
+     10 ~< pma5 28-31 sel 4 h
+     9 ~< pma5 28-31 sel 2 h
+     7 ~< pma5 28-31 sel 1 h
      2 ~< %NC%
      15 ~> {dp1} pma3 pa 30 h
 
@@ -682,9 +682,9 @@ e60: 10164 8 mixer
      12 ~< pma2 cca 31 h
      13 ~< {ed2} vma2 vma 31 h
      14 ~< %NC%
-     10 ~< pma5 27 sel 4 h
-     9 ~< pma5 27 sel 2 h
-     7 ~< pma5 27 sel 1 h
+     10 ~< pma5 28-31 sel 4 h
+     9 ~< pma5 28-31 sel 2 h
+     7 ~< pma5 28-31 sel 1 h
      2 ~< %NC%
      15 ~> {dm1} pma3 pa 31 h
 
@@ -819,9 +819,9 @@ e74: 10164 8 mixer
      12 ~< pma2 cca 34 h
      13 ~< {fj2} vma2 vma 34 h
      14 ~< %NC%
-     10 ~< pma5 32-33 sel 4 h
-     9 ~< pma5 32-33 sel 2 h
-     7 ~< pma5 32-33 sel 1 h
+     10 ~< pma5 34-35 sel 4 h
+     9 ~< pma5 34-35 sel 2 h
+     7 ~< pma5 34-35 sel 1 h
      2 ~< %NC%
      15 ~> {ee1} pma4 pa 34 h
 
