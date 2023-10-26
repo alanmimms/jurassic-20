@@ -1082,7 +1082,7 @@ e64: 10105 2-3-2 or/nor
      13 ~< pma5 32-33 sel 2 h
      12 ~< {el2} pma5 csh writeback cyc h
      14 ~> %NC%
-     15 ~> pma5 343-35 sel 2 h
+     15 ~> pma5 34-35 sel 2 h
 
 e68: 10104 quad and/nand
      12 ~< pma5-e64-7
@@ -1127,7 +1127,7 @@ e79: 10141 shift register
      14 ~> pma5 27 sel 2 h
      15 ~> pma5 27 sel 1 h
      2 ~> pma5 28-31 sel 4 h
-     3 ~> pma5 27-31 sel 2 h
+     3 ~> pma5 28-31 sel 2 h
 
 e73: 10141 shift register
      13 ~< %NC%
@@ -1179,7 +1179,7 @@ e63: 10141 shift register
      12 ~< pma5-e57-3
      11 ~< pma5-e62-15
      9 ~< pma5-e62-2
-     6 ~< pma5-e62-2
+     6 ~< pma5-e62-3
      5 ~< %NC%
      7 ~< {ft2} -csh1 ready to go h
      10 ~< {ft2} -csh1 ready to go h
