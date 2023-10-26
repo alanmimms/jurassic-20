@@ -12,7 +12,7 @@ e5:  10141 shift register
      10 ~< pma1-e9-9
      4 ~< pma2 clock f h
      14 ~> pma1 ubr 15 h
-     15 ~> pm1 ub4 16 h
+     15 ~> pma1 ubr 16 h
      2 ~> pma1 ubr 17 h
      3 ~> pma1 ubr 18 h
 
@@ -27,7 +27,7 @@ e13: 10141 shift register
      10 ~< pma1-e9-9
      4 ~< pma2 clock f h
      14 ~> pma1 ubr 19 h
-     15 ~> pm1 ub4 20 h
+     15 ~> pma1 ubr 20 h
      2 ~> pma1 ubr 21 h
      3 ~> pma1 ubr 22 h
 
@@ -42,7 +42,7 @@ e12: 10141 shift register
      10 ~< pma1-e9-9
      4 ~< pma2 clock e h
      14 ~> pma1 ubr 23 h
-     15 ~> pm1 ub4 24 h
+     15 ~> pma1 ubr 24 h
      2 ~> pma1 ubr 25 h
      3 ~> pma1 ubr 26 h
 
@@ -72,7 +72,7 @@ e3:  10141 shift register
      10 ~< pma1-e14-14
      4 ~< pma2 clock e h
      14 ~> pma1 ebr 15 h
-     15 ~> pm1 ebr 16 h
+     15 ~> pma1 ebr 16 h
      2 ~> pma1 ebr 17 h
      3 ~> pma1 ebr 18 h
 
@@ -87,7 +87,7 @@ e8:  10141 shift register
      10 ~< pma1-e14-14
      4 ~< pma2 clock e h
      14 ~> pma1 ebr 19 h
-     15 ~> pm1 ebr 20 h
+     15 ~> pma1 ebr 20 h
      2 ~> pma1 ebr 21 h
      3 ~> pma1 ebr 22 h
 
@@ -102,7 +102,7 @@ e7:  10141 shift register
      10 ~< pma1-e14-14
      4 ~< pma2 clock e h
      14 ~> pma1 ebr 23 h
-     15 ~> pm1 ebr 24 h
+     15 ~> pma1 ebr 24 h
      2 ~> pma1 ebr 25 h
      3 ~> pma1 ebr 26 h
 
@@ -729,7 +729,7 @@ e39: 10141 shift register
      5 ~< %NC%
      7 ~< {dj1} hold era h
      10 ~< {dj1} hold era h
-     4 ~< pam2 clock a h
+     4 ~< pma2 clock a h
      14 ~> pma4 era 22 h
      15 ~> pma4 era 23 h
      2 ~> pma4 era 24 h
@@ -1101,7 +1101,7 @@ e68: 10104 quad and/nand
 
 e72: 10165 priority encoder
      5 ~< {cc1} csh1 ebox era grant h
-     7 ~< pm5 page refill 5,7 h
+     7 ~< pma5 page refill 5,7 h
      13 ~< %NC%
      10 ~< {fp2} csh1 chan req grant h
      11 ~< {cn1} csh1 ebox cca grant h
