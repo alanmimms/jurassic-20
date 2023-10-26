@@ -245,11 +245,14 @@ module kl10pv(input clk60, input crobar);
     armm_10_h = 0;
     armm_11_h = 0;
     armm_12_h = 0;
-    armm_13_h = 0;
-    armm_14_h = 0;
-    armm_15_h = 0;
-    armm_16_h = 0;
-    armm_17_h = 0;
+
+    // Backplane wiring implied in VMA4 PDF357.
+    armm_13_h = vma4_vma_13_in_h; 
+    armm_14_h = vma4_vma_14_in_h;
+    armm_15_h = vma4_vma_15_in_h;
+    armm_16_h = vma4_vma_16_in_h;
+    armm_17_h = vma4_vma_17_in_h;
+
     armm_18_h = 0;
     armm_19_h = 0;
     armm_20_h = 0;
@@ -324,8 +327,6 @@ module kl10pv(input clk60, input crobar);
     cbus_reset_e_h = 0;
     cbus_start_e_h = 0;
     cbus_store_e_h = 0;
-
-    
-  end
+ end
 
 endmodule // kl10pv

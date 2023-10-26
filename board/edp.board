@@ -16,17 +16,17 @@ Page: DP01,PDF15
 e52: 10101 or buffer
      4 ~< {er1} [n/18+1,ctl arl sel 4 h,cram arm sel 4 a h]
      12 ~< %NC%
-     5 ~> edp-e52-5
+     5 ~> edp1-e52-5
      2 ~> %NC%
      7 ~< {ek1} [n/18+1,ctl arl sel 2 h,ctl arr sel 2 h]
      3 ~> %NC%
-     6 ~> edp-e52-6
-     13 ~< {eh2} [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,ctl arr clr h,ctl arr clr h,ctl arr clr h]
+     6 ~> edp1-e52-6
+     13 ~< {en1} [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]
      15 ~> %NC%
-     9 ~> edp-e52-9
-     10 ~< {en1} [n/18+1,ctl arl sel 1 h,ctl arr sel 1 h]
+     9 ~> edp1-e52-9
+     10 ~< {eh2} [n/6+1,ctl ar 00-11 clr h,ctl ar 00-11 clr h,ctl ar 12-17 clr h,ctl arr clr h,ctl arr clr h,ctl arr clr h]
      14 ~> %NC%
-     11 ~> edp-e52-11
+     11 ~> edp1-e52-11
 
 
 e53: 10164 8 mix
@@ -41,10 +41,10 @@ e53: 10164 8 mix
      // having one output pin <cv2> for the signal and a separate one as
      // input pin <cp2> for the same signal.
      14 ~< {cv2} [n/6+1,ad ex -02 h,ad 04 h,ad 10 h,ad 16 h,ad 22 h,ad 28 h]
-     10 ~< edp-e52-5
-     9 ~< edp-e52-6
-     7 ~< edp-e52-9
-     2 ~< edp-e52-11
+     10 ~< edp1-e52-5
+     9 ~< edp1-e52-6
+     7 ~< edp1-e52-11
+     2 ~< edp1-e52-9
      15 ~> arm [n+00] h
 
 e46: 10164 8 mix
@@ -59,10 +59,10 @@ e46: 10164 8 mix
      // having one output pin <cr1> for the signal and a separate one as
      // input <el2> for the same signal.
      14 ~< {cr1} [n/6+1,ad ex -01 h,ad 05 h,ad 11 h,ad 17 h,ad 23 h,ad 29 h]
-     10 ~< edp-e52-5
-     9 ~< edp-e52-6
-     7 ~< edp-e52-9
-     2 ~< edp-e52-11
+     10 ~< edp1-e52-5
+     9 ~< edp1-e52-6
+     7 ~< edp1-e52-11
+     2 ~< edp1-e52-9
      15 ~> arm [n+01] h
 
 e47: 10164 8 mix
@@ -74,10 +74,10 @@ e47: 10164 8 mix
      12 ~< {dr1} ad [n+03] h
      13 ~< adx [n+02] h
      14 ~< {ep2} ad [n+00] h
-     10 ~< edp-e52-5
-     9 ~< edp-e52-6
-     7 ~< edp-e52-9
-     2 ~< edp-e52-11
+     10 ~< edp1-e52-5
+     9 ~< edp1-e52-6
+     7 ~< edp1-e52-11
+     2 ~< edp1-e52-9
      15 ~> arm [n+02] h
 
 e41: 10164 8 mix
@@ -89,10 +89,10 @@ e41: 10164 8 mix
      12 ~< {cp1} ad [n+04] h
      13 ~< adx [n+03] h
      14 ~< {dl1} ad [n+01] h
-     10 ~< edp-e52-5
-     9 ~< edp-e52-6
-     7 ~< edp-e52-9
-     2 ~< edp-e52-11
+     10 ~< edp1-e52-5
+     9 ~< edp1-e52-6
+     7 ~< edp1-e52-11
+     2 ~< edp1-e52-9
      15 ~> arm [n+03] h
 
 e40: 10164 8 mix
@@ -104,10 +104,10 @@ e40: 10164 8 mix
      12 ~< {el1} ad [n+05] h
      13 ~< {dk1} adx [n+04] h
      14 ~< {dr2} ad [n+02] h
-     10 ~< edp-e52-5
-     9 ~< edp-e52-6
-     7 ~< edp-e52-9
-     2 ~< edp-e52-11
+     10 ~< edp1-e52-5
+     9 ~< edp1-e52-6
+     7 ~< edp1-e52-11
+     2 ~< edp1-e52-9
      15 ~> arm [n+04] h
 
 e54: 10164 8 mix
@@ -119,10 +119,10 @@ e54: 10164 8 mix
      12 ~< {ep1} [n/30+1,ad [n+06] h,adx 00 h]
      13 ~< {es1} adx [n+05] h
      14 ~< {dr1} ad [n+03] h
-     10 ~< edp-e52-5
-     9 ~< edp-e52-6
-     7 ~< edp-e52-9
-     2 ~< edp-e52-11
+     10 ~< edp1-e52-5
+     9 ~< edp1-e52-6
+     7 ~< edp1-e52-11
+     2 ~< edp1-e52-9
      15 ~> arm [n+05] h
 
 e51: 10141 shft reg

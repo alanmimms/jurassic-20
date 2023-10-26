@@ -185,7 +185,7 @@ e15: 10109 4/5 or/nor
      13 ~< vma1 misc=0 l
      12 ~< {as2} -mcl6 page uebr ref a l
      11 ~< {al2} mcl2 vma read or write l
-     10 ~< vma1 load l
+     10 ~< vma1 local l
      9 ~< vma1 20-27=0 l
      14 ~> {dd2} vma1 ac ref a h
      15 ~> {da1} vma1 ac ref a l
@@ -1079,8 +1079,8 @@ e24: 10141 shift register
      13 ~< %NC%
      12 ~< {cm1} ad 16 a h
      11 ~< {au2} ad 17 a h
-     9 ~< {au2} ad 17 a h
-     6 ~< {cm1} ad 16 a h
+     6 ~< {au2} ad 17 a h
+     9 ~< {cm1} ad 16 a h
      5 ~< %NC%
      7 ~< {ck1} con load prev context l
      10 ~< {ck1} con load prev context l
@@ -1243,10 +1243,10 @@ e52: 10164 8 mixer
      13 ~< vma3 pc 26 h
      12 ~< vma3 pc 25 h
      11 ~< vma3 pc 24 h
-     3 ~< vma3 held 27 h
-     4 ~< vma3 held 26 h
-     5 ~< vma3 held 25 h
-     6 ~< vma3 held 24 h
+     3 ~< vma4 held 27 h
+     4 ~< vma4 held 26 h
+     5 ~< vma4 held 25 h
+     6 ~< vma4 held 24 h
      10 ~< vma5 diag 04 l
      9 ~< vma5 diag 05 l
      7 ~< vma5 diag 06 l
@@ -1259,10 +1259,10 @@ e50: 10164 8 mixer
      13 ~< vma3 adr brk 26 h
      12 ~< vma3 adr brk 25 h
      11 ~< vma3 adr brk 24 h
-     3 ~< vma3 vma 27 a h
-     4 ~< vma3 vma 26 a h
-     5 ~< vma3 vma 25 a h
-     6 ~< vma3 vma 24 a h
+     3 ~< vma2 vma 27 a h
+     4 ~< vma2 vma 26 a h
+     5 ~< vma2 vma 25 a h
+     6 ~< vma2 vma 24 a h
      10 ~< vma5 diag 04 l
      9 ~< vma5 diag 05 l
      7 ~< vma5 diag 06 l
@@ -1275,10 +1275,10 @@ e61: 10164 8 mixer
      13 ~< vma3 pc 30 h
      12 ~< vma3 pc 29 h
      11 ~< vma3 pc 27 h
-     3 ~< vma3 held 31 h
-     4 ~< vma3 held 30 h
-     5 ~< vma3 held 29 h
-     6 ~< vma3 held 28 h
+     3 ~< vma4 held 31 h
+     4 ~< vma4 held 30 h
+     5 ~< vma4 held 29 h
+     6 ~< vma4 held 28 h
      10 ~< vma5 diag 04 l
      9 ~< vma5 diag 05 l
      7 ~< vma5 diag 06 l
@@ -1291,10 +1291,10 @@ e71: 10164 8 mixer
      13 ~< vma3 adr brk 30 h
      12 ~< vma3 adr brk 29 h
      11 ~< vma3 adr brk 27 h
-     3 ~< vma3 vma 31 a h
-     4 ~< vma3 vma 30 a h
-     5 ~< vma3 vma 29 a h
-     6 ~< vma3 vma 28 a h
+     3 ~< vma2 vma 31 a h
+     4 ~< vma2 vma 30 a h
+     5 ~< vma2 vma 29 a h
+     6 ~< vma2 vma 28 a h
      10 ~< vma5 diag 04 l
      9 ~< vma5 diag 05 l
      7 ~< vma5 diag 06 l
@@ -1307,10 +1307,10 @@ e76: 10164 8 mixer
      13 ~< vma3 pc 34 h
      12 ~< vma3 pc 33 h
      11 ~< vma3 pc 32 h
-     3 ~< vma3 held 35 h
-     4 ~< vma3 held 34 h
-     5 ~< vma3 held 33 h
-     6 ~< vma3 held 32 h
+     3 ~< vma4 held 35 h
+     4 ~< vma4 held 34 h
+     5 ~< vma4 held 33 h
+     6 ~< vma4 held 32 h
      10 ~< vma5 diag 04 l
      9 ~< vma5 diag 05 l
      7 ~< vma5 diag 06 l
@@ -1323,10 +1323,10 @@ e60: 10164 8 mixer
      13 ~< vma3 adr brk 34 h
      12 ~< vma3 adr brk 33 h
      11 ~< vma3 adr brk 32 h
-     3 ~< vma3 vma 35 a h
-     4 ~< vma3 vma 34 a h
-     5 ~< vma3 vma 33 a h
-     6 ~< vma3 vma 32 a h
+     3 ~< vma2 vma 35 a h
+     4 ~< vma2 vma 34 a h
+     5 ~< vma2 vma 33 a h
+     6 ~< vma2 vma 32 a h
      10 ~< vma5 diag 04 l
      9 ~< vma5 diag 05 l
      7 ~< vma5 diag 06 l
