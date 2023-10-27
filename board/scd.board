@@ -949,7 +949,7 @@ e33: 10104 quad and
      7 ~< scd5 pcf<-# h
      3 ~> scd4-e33-3
      10 ~< {cu2} cram # 06 h
-     11 ~< scd5 pcf+# h
+     11 ~< scd5 pcf<-# h
      14 ~> scd4-e33-14
      12 ~< {br1} con cond/pcf<-# h
      13 ~< {bu2} -con pi cycle a h
