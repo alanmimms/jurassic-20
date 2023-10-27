@@ -1071,7 +1071,7 @@ e38: 10104 quad and
      11 ~< scd5 exp test h
      14 ~> scd4-e38-2
      12 ~< {fl2} cram # 04 h
-     13 ~< scd5 pcf+# h
+     13 ~< scd5 pcf<-# h
      15 ~> scd4-e38-2
      9 ~> %NC%
      4 ~< scd4-e85-15
@@ -1131,7 +1131,7 @@ e4: 10104 quad and
     7 ~< scd5 load flags h
     3 ~> scd4-e4-3
     10 ~< {fp2} cram # 02 h
-    11 ~< scd5 pcf+# h
+    11 ~< scd5 pcf<-# h
     14 ~> scd4-e4-3
     12 ~< {ac1} con cond/ad flags h
     13 ~< {bu2} -con pi cycle a h
