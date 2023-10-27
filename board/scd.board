@@ -286,13 +286,13 @@ e81: 10174 2x4 mix
 
 e80: 10174 2x4 mix
      3 ~< scd2 fe 04 h
-     5 ~< ar 00 d h
+     5 ~< {dm1} ar 00 d h
      4 ~< scd1 scada exp 04 h
-     6 ~< cram # 03 h
+     6 ~< {fe1} cram # 03 h
      13 ~< scd2 fe 05 h
-     11 ~< ar 01 c h
+     11 ~< {fu2} ar 01 c h
      12 ~< scd1 scada exp 05 h
-     10 ~< cram # 04 h
+     10 ~< {fl2} cram # 04 h
      9 ~< {fj1} cram scada sel 2 h
      7 ~< {fl1} cram scada sel 1 h
      14 ~< {fk1} cram scada en l
@@ -331,15 +331,14 @@ e57: 10174 2x4 mix
 
 Page: SCD2, PDF139
 
-// Merged e71 pins here with half on previous page
-
 // In a 25MHz CPU, EP1 (e71.qab) and EM2 (e64.b5) are connected on the backpanel.
+// But this is a 30MHz CPU.
 
 e64: 10109 4/5 or/nor
     9 ~< scd2 sc 00 h
-    10 ~< scd2 sc 00 h
-    11 ~< scd2 sc 00 h
-    12 ~< scd2 sc 00 h
+    10 ~< scd2 sc 01 h
+    11 ~< scd2 sc 02 h
+    12 ~< scd2 sc 03 h
     13 ~< {ep1} [a,scd2 sc 36 to 63 h,%NC%]
     14 ~> %NC%
     15 ~> {el2} scd2 sc .ge. 36 h
@@ -467,7 +466,7 @@ e72: 10174 2x4 mix
      13 ~< scd2 sc 01 h
      11 ~< scd2 fe 01 h
      12 ~< scd1 scad 01 h
-     10 ~< ar 18 c h
+     10 ~< {fd2} ar 18 c h
      9 ~< {fa1} cram scm sel 2 h
      7 ~< {fe2} ctl1 spec/scm alt h
      14 ~< -scd5 reset l
@@ -494,7 +493,7 @@ e74: 10174 2x4 mix
      5 ~< scd2 fe 04 h
      4 ~< scd1 scad 04 h
      6 ~< {fd1} ar 30 c h
-     13 ~< scd2 sc 05 h
+     13 ~< {er1} scd2 sc 05 h
      11 ~< scd2 fe 05 h
      12 ~< scd1 scad 05 h
      10 ~< {fj2} ar 31 c h
@@ -621,14 +620,14 @@ e12: 10164 8 mix
      15 ~> `EBUSdriver.data[6]
 
 e63: 10164 8 mix
-     14 ~< -scd4 trap clear h
-     13 ~< {el2} scd2 sc .ge. 36 h
-     12 ~< {ek1} scd2 fe sign h
-     11 ~< {ej1} scd2 sc sign h
-     3 ~< scd2 fe 00 h
-     4 ~< scd2 fe 05 h
-     5 ~< scd2 sc 00 h
      6 ~< {er1} scd2 sc 05 h
+     5 ~< scd2 sc 00 h
+     4 ~< scd2 fe 05 h
+     3 ~< scd2 fe 00 h
+     11 ~< {ej1} scd2 sc sign h
+     12 ~< {ek1} scd2 fe sign h
+     13 ~< {el2} scd2 sc .ge. 36 h
+     14 ~< -scd4 trap clear h
      10 ~< scd3 diag 04 h
      9 ~< scd3 diag 05 h
      7 ~< scd3 diag 06 h
@@ -673,17 +672,17 @@ e59: 10174 2x4 mix
 e32: 10101 quad or/nor
      4 ~< {cf2} diag 04 a h
      12 ~< %NC%
-     7 ~< {ce2} diag 05 a h
-     13 ~< {bp1} diag 06 a h
-     10 ~< {bn1} diag read func 13x l
      2 ~> scd3 diag 04 l
      5 ~> scd3 diag 04 h
+     7 ~< {ce2} diag 05 a h
      3 ~> scd3 diag 05 l
      6 ~> scd3 diag 05 h
+     13 ~< {bp1} diag 06 a h
      15 ~> scd3 diag 06 l
      9 ~> scd3 diag 06 h
-     11 ~> scd3 diag en l
+     10 ~< {bn1} diag read func 13x l
      14 ~> %NC%
+     11 ~> scd3 diag en l
 
 e47: 10164 8 mix
      6 ~< {dd2} cram # 05 h
@@ -750,7 +749,7 @@ e43: 10164 8 mix
      5 ~< scd4 trap cyc 1 h
      4 ~< scd4 trap cyc 1 or 2 h
      3 ~< {cs1} ar 35 c h
-     11 ~< cram # 08 h
+     11 ~< {cp1} cram # 08 h
      12 ~< %NC%
      13 ~< %NC%
      14 ~< %NC%
@@ -922,7 +921,7 @@ e35: 10118 triple 4-2 or-and
      2 ~> scd4-e35-2
      10 ~< %NC%
      11 ~< {dm2} ar 11 c h
-     12 ~< scd4 fxu h
+     12 ~< {bs2} scd4 fxu h
      13 ~< scd5 load flags a h
      14 ~< scd4-e39-15
      15 ~> scd4-e35-15
@@ -945,10 +944,10 @@ e39: 10104 quad and
 e33: 10104 quad and
      4 ~< scd1 scad 01 h
      5 ~< scd5 exp test h
-     2 ~> scd4-e33-23
+     2 ~> scd4-e33-3
      6 ~< {es1} cram # 00 h
      7 ~< scd5 pcf<-# h
-     3 ~> scd4-e33-23
+     3 ~> scd4-e33-3
      10 ~< {cu2} cram # 06 h
      11 ~< scd5 pcf+# h
      14 ~> scd4-e33-14
@@ -960,7 +959,7 @@ e33: 10104 quad and
 e30: 10117 dual 2-3 or-and
      4 ~< -scd5 load flags h
      5 ~< {dm1} ar 00 d h
-     6 ~< scd4-e33-23
+     6 ~< scd4-e33-3
      7 ~< scd4 ov h
      9 ~< scd5 load flags a h
      3 ~> scd4-e30-3
@@ -991,7 +990,7 @@ e18: 10118 triple 4-2 or-and
 
 e22: 10104 quad and
      12 ~< {et2} ctl disp/nicond h
-     13 ~< con trap en a h
+     13 ~< {bf2} con trap en a h
      15 ~> scd4-e22-15
      9 ~> %NC%
      4 ~< {bj1} scd5 adr brk inh h
@@ -1051,7 +1050,7 @@ e85: 10105 triple 2-3-2 or/nor
 
 e14: 10104 quad and
      4 ~< scd4 trap cyc 2 h
-     5 ~< scd4 trap req 2 en h
+     5 ~< scd4 trap clear l
      2 ~> scd4-e14-3
      6 ~< {ad1} scd4 trap req 2 h
      7 ~< scd4-e22-15
@@ -1139,12 +1138,11 @@ e4: 10104 quad and
     9 ~> scd5 set ad flags l
     15 ~> %NC%
 
-
 e10: 10117 dual 2-3 or-and
      4 ~< {ak2} scd4 pcp h
      5 ~< scd4 load pcp h
      6 ~< -scd5 load flags h
-     7 ~< ar 00 d h
+     7 ~< {dm1} ar 00 d h
      9 ~< scd5 jfcl h
      2 ~> scd4-e10-2
      3 ~> %NC%
@@ -1157,7 +1155,7 @@ e10: 10117 dual 2-3 or-and
 
 e3:  10121 4-wide 3 or-and/nand
      4 ~< {bc1} scd4 trap req 1 h
-     5 ~< scd4 trap req 2 h
+     5 ~< {ad1} scd4 trap req 2 h
      6 ~< %NC%
      7 ~< %NC%
      9 ~< {bf2} con trap en a h
@@ -1269,13 +1267,13 @@ e21: 10104 quad and
      6 ~< {bj1} scd5 adr brk inh h
      7 ~< {et2} ctl disp/nicond h
      3 ~> scd5-e21-3
-     12 ~< con fm xfer l
-     13 ~< clk mb xfer l
+     12 ~< {bf1} con fm xfer l
+     13 ~< {af2} clk mb xfer l
      9 ~> scd5-e21-9
      15 ~> %NC%
      10 ~< {ah2} scd5 private instr l
      11 ~< scd5 reset l
-     14 ~> scd5-e21-14
+     14 ~> scd5-e6-14
 
 e8: 10117 dual 2-3 or-and
     4 ~< scd5 user l
@@ -1322,7 +1320,7 @@ e34: 10104 quad and
      9 ~> scd5 spec/portal l
      15 ~> %NC%
 
-e23: 10101 aud or/nor
+e23: 10101 quad or/nor
      4 ~< {dh2} ar 05 c h
      12 ~< %NC%
      2 ~> scd5 ar 05 l
