@@ -73,7 +73,7 @@ e59: 10117 dual 2-3 or-and
      12 ~< pic1 gen 2 l
      13 ~< pic1 active b l
      11 ~< pic1 on 2 l
-     10 ~< pic4 io req l
+     10 ~< pic4 io req2 l
      9 ~< pic1 active b l
      14 ~> pic1 pir en 2 h
      15 ~> %NC%
@@ -114,14 +114,14 @@ e74: 10117 dual 2-3 or-and
      4 ~< pic1 gen 3 l
      5 ~< pic1 active b l
      6 ~< pic1 on 3 l
-     7 ~< pic4 io req 3 l
+     7 ~< pic4 io req3 l
      9 ~< pic1 active b l
      3 ~> pic1 pir en 3 h
      2 ~> %NC%
      12 ~< pic1 gen 4 l
      13 ~< pic1 active b l
      11 ~< pic1 on 4 l
-     10 ~< pic4 io req 4 l
+     10 ~< pic4 io req4 l
      9 ~< pic1 active b l
      14 ~> pic1 pir en 4 h
      15 ~> %NC%
@@ -259,7 +259,7 @@ e83: 10104 quad and/nand
      11 ~< -pic2 pi3 clr h
      14 ~> pic2 pi3 req set h
      12 ~< pic4-e17-15
-     13 ~< pic4-e56-14
+     13 ~< pic4-e58-14
      9 ~> {fc1} ebus f02 e h
      15 ~> %NC%
 
@@ -323,7 +323,7 @@ e86: 10131 dual ms dff
      15 ~> pic1 pih6 h
      14 ~> %NC%
 
-e83: 10131 dual ms dff
+e85: 10131 dual ms dff
      12 ~< %NC%
      10 ~< pic2 pi7 req set h
      11 ~< %NC%
@@ -354,7 +354,7 @@ e13: 10101 quad or/nor
      14 ~> pic2 timer done l
      11 ~> %NC%
 
-e77: 10141 shift register
+e79: 10141 shift register
      13 ~< %NC%
      12 ~< pic1 pir en 1 h
      11 ~< pic1 pir en 2 h
@@ -369,7 +369,7 @@ e77: 10141 shift register
      2 ~> pic1 pir3 h
      3 ~> pic1 pir4 h
 
-e74: 10141 shift register
+e76: 10141 shift register
      13 ~< %NC%
      12 ~< pic1 pir en 5 h
      11 ~< pic1 pir en 6 h
@@ -384,12 +384,18 @@ e74: 10141 shift register
      2 ~> pic1 pir7 h
      3 ~> pic1 pir0 h
 
-Page: PIC2, PDF200
+Page: PIC2, PDF210
 
+// What a fucking mess. Backplane signals have names like `PI2 PI4 A
+// L`, so I cannot simply rename them all to match the sheet names
+// (like PIC2) as I have already just done. Now I have to go through
+// backplane pins and rename them back to the old names, but only
+// selectively. I bet there were a lot of red faces around this issue
+// back in 1977.
 e37: 10109 4/5 or/nor
      4 ~< -pic4 mr reset l
-     5 ~< {fn1} -pic2 pi4 a l
-     6 ~< -pic2 pic2 l
+     5 ~< {fn1} -pi2 pi4 a l
+     6 ~< -pic2 pi2 l
      7 ~< -pic2 pi1 l
      3 ~> pic2 pi on 0 h
      2 ~> %NC%
@@ -404,14 +410,14 @@ e37: 10109 4/5 or/nor
 e80: 10101 quad or/nor
      4 ~< pic2 pi1 h
      12 ~< %NC%
-     2 ~> {fl1} pic2 pi1 a l
-     5 ~> {ff2} pic2 pi1 a h
-     7 ~< pic2 pi 2 h
-     3 ~> {fk2} pic2 pi2 a l
-     6 ~> {fh2} pic2 pi2 a h
+     2 ~> {fl1} pi2 pi1 a l
+     5 ~> {ff2} pi2 pi1 a h
+     7 ~< pic2 pi2 h
+     3 ~> {fk2} pi2 pi2 a l
+     6 ~> {fh2} pi2 pi2 a h
      13 ~< pic2 pi4 l
-     15 ~> {fn1} -pic2 pi4 a l
-     9 ~> {fe2} -pic2 pi4 a h
+     15 ~> {fn1} -pi2 pi4 a l
+     9 ~> {fe2} -pi2 pi4 a h
 
 e78: 10165 priority encoder
      5 ~< {cs1} apr ebox disable cs h
@@ -432,7 +438,7 @@ e49: 10103 quad or
      6 ~< pic1 pih4 h
      7 ~< pic2 pi4 l
      3 ~> pic2-e49-3
-     10 ~< pic2 phy no. 08 h
+     10 ~< pic2 phy no. 00 h
      11 ~< {cs1} apr ebox disable cs h
      14 ~> pic2-e49-14
      4 ~< pic2 phy no. 08 h
@@ -443,9 +449,7 @@ e49: 10103 quad or
      9 ~> pic2 sel phy 8 h
      15 ~> %NC%
 
-// Why is e77 very clearly defined on multiple pages of this module?
-// This one is the 10165 on PDF200.
-e7799: 10165 priority encoder
+e77: 10165 priority encoder
      5 ~< pic2-e49-3
      7 ~< pic1 pir4 h
      13 ~< pic1 pih5 h
@@ -505,23 +509,6 @@ e2:  10141 shift register
      2 ~> pic2 tim3 h
      3 ~> pic2 tim4 h
 
-// NOTE 3: RESET is wire ORed to
-//         clear PIC5 CYC START.
-e45: 10104 quad and/nand
-     12 ~< pic4 mr reset l
-     13 ~< pic4 mr reset l
-     9 ~> pic2 tim1 h
-     15 ~> %NC%
-     4 ~< %NC%
-     5 ~< %NC%
-     2 ~> %NC%
-     6 ~< %NC%
-     7 ~< %NC%
-     3 ~> %NC%
-     10 ~< %NC%
-     11 ~< %NC%
-     14 ~> %NC%
-
 e21: 10101 quad or/nor
      10 ~< pic2 tim4 h
      12 ~< %NC%
@@ -555,7 +542,7 @@ e12: 10141 shift register
 e14: 10104 quad and/nand
      6 ~< -pic2 disable rdy on halt h
      7 ~< pic2 tim6 h
-     3 ~> {ca1} pic2 ready h
+     3 ~> {ca1} pi2 ready h
      4 ~< pic2 disable rdy on halt l
      5 ~< {at2} -con pi cycle b h
      2 ~> pic2-e14-2
@@ -578,14 +565,14 @@ e82: 10165 priority encoder
      6 ~< pic1 pih7 h
      4 ~< %NC%
      14 ~> %NC%
-     15 ~> {fd1} pic2 hold 4 h
-     2 ~> {fd2} pic2 hold 2 h
-     3 ~> {fl2} pic2 hold 1 h
+     15 ~> {fd1} pi2 hold 4 h
+     2 ~> {fd2} pi2 hold 2 h
+     3 ~> {fl2} pi2 hold 1 h
 
 e81: 10161 decoder
-     14 ~< {fd1} pic2 hold 4 h
-     9 ~< {fd2} pic2 hold 2 h
-     7 ~< {fl2} pic2 hold 1 h
+     14 ~< {fd1} pi2 hold 4 h
+     9 ~< {fd2} pi2 hold 2 h
+     7 ~< {fl2} pi2 hold 1 h
      15 ~< %NC%
      2 ~< {fm2} con pi dismiss l
      6 ~> %NC%
@@ -600,19 +587,19 @@ e81: 10161 decoder
 // NOTE 2: These signals are emitter
 //         ORed with signals on PIC1.
 e88: 10161 decoder
-     14 ~< {fn1} pic2 pi4 a h
+     14 ~< {fn1} pi2 pi4 a h
      9 ~< pic2 pi2 h
      7 ~< pic2 pi1 h
      15 ~< %NC%
      2 ~< {fu2} con set pih l
      6 ~> %NC%
-     5 ~> pic2 pi1 req set l
-     4 ~> pic2 pi2 req set l
-     3 ~> pic2 pi3 req set l
-     13 ~> pic2 pi4 req set l
-     12 ~> pic2 pi5 req set l
-     11 ~> pic2 pi6 req set l
-     10 ~> pic2 pi7 req set l
+     5 ~> pi2 pi1 req set h
+     4 ~> pi2 pi2 req set h
+     3 ~> pi2 pi3 req set h
+     13 ~> pi2 pi4 req set h
+     12 ~> pi2 pi5 req set h
+     11 ~> pi2 pi6 req set h
+     10 ~> pi2 pi7 req set h
 
 e18: 10103 quad or
      4 ~< {bd1} apr ebus return h
@@ -718,7 +705,7 @@ e31: 10176 hex dff
      4 ~> pic2 phy no. 02 h
      13 ~> pic2 phy no. 03 h
      14 ~> pic2 phy no. 04 h
-     15 ~> pic2 phy no. 06 h
+     15 ~> pic2 phy no. 05 h
 
 e44: 10176 hex dff
      5 ~< {cr1} ebus d06 e h
@@ -738,6 +725,8 @@ e44: 10176 hex dff
 e34: 10176 hex dff
      5 ~< {cl2} ebus d12 e h
      6 ~< {ck2} ebus d13 e h
+     // This seems likely to be supposed to be -PIC4 IOB 15 H instead of
+     // -PI4 IOB 15 H as shown on PDF.
      7 ~< -pic4 iob 15 h
      10 ~< {du2} ebus d15 e h
      11 ~< pic3 dk20 phy no. h
@@ -757,7 +746,7 @@ dl1: delay-line (PCB wired)
 e47: 10210 or buffer
      5 ~< %NC%
      6 ~< %NC%
-     7 ~< clk3 apr delayed h
+     7 ~< clk pi delayed h
      2 ~> pic2 clk a h
      3 ~> pic2 clk b h
      4 ~> pic2 clk c h
@@ -789,7 +778,7 @@ e4:  10101 quad or/nor
      10 ~< pic2 tran rec h
      12 ~< %NC%
      14 ~> pic2 tran rec l
-     11 ~> {aa1} pic2 ext tran rec h
+     11 ~> {aa1} pi2 ext tran rec h
      4 ~< -pic3 dk20 phy no. h
      13 ~< pic2-e18-3
      15 ~> pic2-e4-15
@@ -800,21 +789,6 @@ e4:  10101 quad or/nor
      7 ~< pic4-e24-2
      3 ~> pic4-e4-3
      6 ~> %NC%
-
-e46: 10105 2-3-2 or/nor
-     9 ~< pic2 timer done h
-     10 ~< pic2 ebus return h
-     11 ~< pic5 cyc start h
-     6 ~> pic2-e46-6
-     7 ~> %NC%
-     4 ~< %NC%
-     5 ~< %NC%
-     3 ~> %NC%
-     2 ~> %NC%
-     13 ~< %NC%
-     12 ~< %NC%
-     14 ~> %NC%
-     15 ~> %NC%
 
 e10: 10136 binary counter
      5 ~< pic2-e8-3
@@ -846,12 +820,14 @@ e15: 10136 binary counter
      15 ~> pic2-e15-15
      14 ~> %NC%
 
-Page: PIC3, PDF201
+Page: PIC3, PDF211
 
-e51: 10162 decoder
-     14 ~< {dj1} pic3 mtr pia 04 h
-     9 ~< {cu2} pic3 mtr pia 02 h
-     7 ~< {ct2} pic3 mtr pia 01 h
+// NOTE 1: This signal is emitter ORed
+//         with another gate on this print.
+e53: 10162 decoder
+     14 ~< {dj1} pi3 mtr pia 04 h
+     9 ~< {cu2} pi3 mtr pia 02 h
+     7 ~< {ct2} pi3 mtr pia 01 h
      15 ~< %NC%
      2 ~< {dn1} mtr vector interrupt l
      6 ~> -pic3 dk20 phy no. h
@@ -863,12 +839,10 @@ e51: 10162 decoder
      11 ~> pic3 pi06 h
      10 ~> pic3 pi07 h
 
-// NOTE 1: This signal is emitter ORed
-//         with another gate on this print.
-e50: 10162 decoder
-     14 ~< {dk1} pic3 apr pia 04 h
-     9 ~< {dk2} pic3 apr pia 02 h
-     7 ~< {dr1} pic3 apr pia 01 h
+e52: 10162 decoder
+     14 ~< {dk1} pi3 apr pia 04 h
+     9 ~< {dk2} pi3 apr pia 02 h
+     7 ~< {dr1} pi3 apr pia 01 h
      15 ~< %NC%
      2 ~< {ds2} apr apr interrupt l
      6 ~> -pic3 apr phy no. h
@@ -880,38 +854,38 @@ e50: 10162 decoder
      11 ~> pic3 pi06 h
      10 ~> pic3 pi07 h
 
-// Why is e46 very clearly defined on multiple pages of this module?
-e4699: 10113 quad 2 xor
-     7 ~< {dj1} pic3 mtr pia 04 h
-     6 ~< {fn1} pic2 pi4 a h
+e48: 10113 quad 2 xor
+     7 ~< {dj1} pi3 mtr pia 04 h
+     6 ~< {fn1} pi2 pi4 a h
      9 ~< %NC%
      3 ~> -pic3 dk20 phy no. h
-     4 ~< {cu2} pic3 mtr pia 02 h
+     4 ~< {cu2} pi3 mtr pia 02 h
      5 ~< pic2 pi2 h
      2 ~> -pic3 dk20 phy no. h
-     13 ~< {ct2} pic3 mtr pia 01 h
+     13 ~< {ct2} pi3 mtr pia 01 h
      12 ~< pic2 pi1 h
      15 ~> -pic3 dk20 phy no. h
      11 ~< %NC%
      10 ~< {dn1} -mtr vector interrupt h
      14 ~> -pic3 dk20 phy no. h
 
-e43: 10104 quad and/nand
+// NOTE 3: RESET is wire ORed to
+//         clear PIC5 CYC START.
+e45: 10104 quad and/nand
+     12 ~< pic4 mr reset l
+     13 ~< pic4 mr reset l
+     9 ~> pic2 tim1 h
      10 ~< pic2 dk20 requesting h
      11 ~< pic2 tim6 h
      14 ~> {de1} pic3 mtr honor h
      6 ~< {df1} -con cono apr h
      7 ~< -pic4 mr reset h
-     3 ~> pic3-e43-3
+     3 ~> pic3-e45-3
      4 ~< {dj2} -mtr cono mtr, h
      5 ~< -pic4 mr reset h
-     2 ~> pic3-e43-2
-     12 ~< %NC%
-     13 ~< %NC%
-     15 ~> %NC%
-     9 ~> %NC%
+     2 ~> pic3-e45-2
 
-e54: 10141 shift register
+e56: 10141 shift register
      13 ~< %NC%
      12 ~< pic4 iob 15 h
      11 ~< pic4 iob 16 h
@@ -919,15 +893,14 @@ e54: 10141 shift register
      6 ~< %NC%
      5 ~< %NC%
      7 ~< {df1} -con cono apr h
-     10 ~< pic3-e43-3
+     10 ~< pic3-e45-3
      4 ~< pic2 clk c h
-     14 ~> {dk1} pic3 apr pia 04 h
-     15 ~> {dk2} pic3 apr pia 02 h
-     2 ~> {dr1} pic3 apr pia 01 h
+     14 ~> {dk1} pi3 apr pia 04 h
+     15 ~> {dk2} pi3 apr pia 02 h
+     2 ~> {dr1} pi3 apr pia 01 h
      3 ~> %NC%
 
-// Why is e49 very clearly defined on multiple pages of this module?
-e4999: 10141 shift register
+e51: 10141 shift register
      13 ~< %NC%
      12 ~< pic4 iob 15 h
      11 ~< pic4 iob 16 h
@@ -935,22 +908,22 @@ e4999: 10141 shift register
      6 ~< %NC%
      5 ~< %NC%
      7 ~< {dj2} -mtr cono mtr, h
-     10 ~< pic3-e43-2
+     10 ~< pic3-e45-2
      4 ~< pic2 clk c h
-     14 ~> {dj1} pic3 mtr pia 04 h
-     15 ~> {cu2} pic3 mtr pia 02 h
-     2 ~> {ct2} pic3 mtr pia 01 h
+     14 ~> {dj1} pi3 mtr pia 04 h
+     15 ~> {cu2} pi3 mtr pia 02 h
+     2 ~> {ct2} pi3 mtr pia 01 h
      3 ~> %NC%
 
 // NOTE 1: This signal (-pic3 apr phy no. h) is emitter ORed
 //         with another gate on this print.
-e55: 10113 quad 2 xor
-     7 ~< {dk1} pic3 apr pia 04 h
-     6 ~< {fn1} pic2 pi4 a h
+e57: 10113 quad 2 xor
+     7 ~< {dk1} pi3 apr pia 04 h
+     6 ~< {fn1} pi2 pi4 a h
      9 ~< %NC%
-     4 ~< {dk2} pic3 apr pia 02 h
+     4 ~< {dk2} pi3 apr pia 02 h
      5 ~< pic2 pi2 h
-     13 ~< {dr1} pic3 apr pia 01 h
+     13 ~< {dr1} pi3 apr pia 01 h
      12 ~< pic2 pi1 h
      11 ~< %NC%
      10 ~< {ds2} -apr apr interrupt h
@@ -959,7 +932,7 @@ e55: 10113 quad 2 xor
      15 ~> -pic3 apr phy no. h
      14 ~> -pic3 apr phy no. h
 
-e56: 10101 quad or/nor
+e58: 10101 quad or/nor
      7 ~< -pic3 apr phy no. h
      12 ~< %NC%
      3 ~> pic3 apr phy no. h
@@ -968,13 +941,14 @@ e56: 10101 quad or/nor
      15 ~> pic4 sys clr a l
      9 ~> pic4 sys clr b h
      10 ~< {dr2} apr ebox send f02 h
-     14 ~> pic4-e56-14
+     14 ~> pic4-e58-14
      11 ~> %NC%
-     4 ~< %NC%
-     2 ~> %NC%
+     4 ~< -pic5 gen int h
+     12 ~< %NC%
+     2 ~> pic5 gen int h
      5 ~> %NC%
 
-Page: PIC4, PDF202
+Page: PIC4, PDF212
 
 e23: 10158 4x2 mixer
      5 ~< {bk1} ir 03 h
@@ -993,7 +967,7 @@ e23: 10158 4x2 mixer
 
 e36: 10158 4x2 mixer
      5 ~< {cm1} ir 07 h
-     6 ~< {fn1} pic2 pi4 a h
+     6 ~< {fn1} pi2 pi4 a h
      3 ~< {cn1} ir 08 h
      4 ~< pic2 pi2 h
      12 ~< {cl1} ir 09 h
@@ -1021,7 +995,7 @@ e26: 10104 quad and/nand
      5 ~< -pic2 tim 5,6 h
      2 ~> pic5-e26-2
 
-e48: 10105 2-3-2 or/nor
+e50: 10105 2-3-2 or/nor
      13 ~< pic4-e26-3
      12 ~< {dl2} mr reset 02 h
      14 ~> %NC%
@@ -1036,7 +1010,7 @@ e48: 10105 2-3-2 or/nor
      3 ~> pic4 io req4 l
      2 ~> %NC%
 
-e53: 10101 quad or/nor
+e55: 10101 quad or/nor
      10 ~< {dl2} mr reset 02 h
      12 ~< %NC%
      14 ~> pic4 mr reset l
@@ -1134,8 +1108,8 @@ e29: 10162 decoder
      7 ~< {cd1} ebus d05 e h
      15 ~< -pic2 ebus return l
      2 ~< pic2 tim6 l
-     6 ~> {bm1} pic4 send 2n h
-     5 ~> {bm1} pic4 send 2n h
+     6 ~> {bm1} pi4 send 2n h
+     5 ~> {bm1} pi4 send 2n h
      4 ~> %NC%
      3 ~> pic4 ok on halt h
      13 ~> pic4 ok on halt h
@@ -1197,7 +1171,7 @@ e28: 10174 2x4 mixer
      3 ~< pic1 on 6 h
      5 ~< pic1 gen 6 h
      4 ~< {bp2} ebus cs02 e h
-     6 ~< {ca1} pic2 ready h
+     6 ~< {ca1} pi2 ready h
      13 ~< pic1 on 7 h
      11 ~< pic1 gen 7 h
      12 ~< {bl2} ebus cs03 e h
@@ -1216,67 +1190,49 @@ e39: 10101 quad or/nor
      2 ~> pic4 iob 11 l
      5 ~> %NC%
      7 ~< {cl2} ebus d12 e h
-     3 ~> pil4 iob 12 l
+     3 ~> pic4 iob 12 l
      6 ~> %NC%
      10 ~< {ck2} ebus d13 e h
      14 ~> pic4 iob 13 l
      11 ~> %NC%
      13 ~< {cj2} ebus d14 e h
-     15 ~> pic4 iob 14 h
+     15 ~> pic4 iob 14 l
      9 ~> %NC%
 
-e52: 10105 2-3-2 or/nor
-     4 ~< {dp2} ebus pi03 e h
-     5 ~< pic3 pi03 h
-     3 ~> pic4 io req3 l
-     2 ~> %NC%
-     13 ~< {dl1} ebus pi05 e h
-     12 ~< pic3 pi05 h
-     14 ~> pic4 io req5 l
-     15 ~> %NC%
-     9 ~< %NC%
-     10 ~< %NC%
-     11 ~< %NC%
-     6 ~> %NC%
-     7 ~> %NC%
-
-// Why is e44 very clearly defined on multiple pages of this module?
-// This is from bottom-right PDF202 PIC4.
-e4499: 10105 2-3-2 or/nor
+e46: 10105 2-3-2 or/nor
       4 ~< {dh2} ebus pi06 e h
       5 ~< pic3 pi06 h
       3 ~> pic4 io req6 l
       2 ~> %NC%
       13 ~< {cv2} ebus pi07 e h
       12 ~< pic3 pi07 h
-      14 ~> pic4 io req7 h
+      14 ~> pic4 io req7 l
       15 ~> %NC%
-      9 ~< %NC%
-      10 ~< %NC%
-      11 ~< %NC%
-      6 ~> %NC%
+      9 ~< pic2 timer done h
+      10 ~< pic2 ebus return h
+      11 ~< pic5 cyc start h
+      6 ~> pic2-e46-6
       7 ~> %NC%
 
-Page: PIC5, PDF203
-
-// Why is e54 very clearly defined on multiple pages of this module?
-e5499: 10105 2-3-2 or/nor
+e54: 10105 2-3-2 or/nor
       9 ~< -pic5 load l
       10 ~< -pic5 wait1 l
       11 ~< -pic5 wait2 l
-      6 ~> pic5-e5499-6
+      6 ~> pic5-e54-6
       7 ~> %NC%
-      4 ~< %NC%
-      5 ~< %NC%
-      3 ~> %NC%
+      4 ~< {dp2} ebus pi03 e h
+      5 ~< pic3 pi03 h
+      3 ~> pic4 io req3 l
       2 ~> %NC%
-      13 ~< %NC%
-      12 ~< %NC%
-      14 ~> %NC%
+      13 ~< {dl1} ebus pi05 e h
+      12 ~< pic3 pi05 h
+      14 ~> pic4 io req5 l
       15 ~> %NC%
 
+Page: PIC5, PDF213
+
 e30: 10141 shift register
-     13 ~< pic5-e5499-6
+     13 ~< pic5-e54-6
      12 ~< %NC%
      11 ~< %NC%
      9 ~< %NC%
@@ -1342,7 +1298,7 @@ e11: 10131 dual ms dff
      6 ~< %NC%
      9 ~< pic2 clk d h
      4 ~< pic4 mr reset h
-     2 ~> {au2} pic5 ebus cp grant h
+     2 ~> {au2} pi5 ebus cp grant h
      3 ~> pic5 ebus cp grant l
      12 ~< %NC%
      10 ~< pic5-e16-14
@@ -1366,54 +1322,37 @@ e6: 10131 dual ms dff
     15 ~> %NC%
     14 ~> pic5 xfer force h
 
-// Why is e62 very clearly defined on multiple pages of this module?
-e6299: 10165 priority encoder
-      5 ~< %NC%
-      7 ~< pic1 gen 1 h
-      13 ~< pic1 gen 2 h
-      10 ~< pic1 gen 3 h
-      11 ~< pic1 gen 4 h
-      12 ~< pic1 gen 5 h
-      9 ~< pic1 gen 6 h
-      6 ~< pic1 gen 7 h
-      4 ~< %NC%
-      14 ~> pic5 gen on h
-      15 ~> pic5 gen 4 h
-      2 ~> pic5 gen 2 h
-      3 ~> pic5 gen 1 h
+e62: 10165 priority encoder
+     5 ~< %NC%
+     7 ~< pic1 gen 1 h
+     13 ~< pic1 gen 2 h
+     10 ~< pic1 gen 3 h
+     11 ~< pic1 gen 4 h
+     12 ~< pic1 gen 5 h
+     9 ~< pic1 gen 6 h
+     6 ~< pic1 gen 7 h
+     4 ~< %NC%
+     14 ~> pic5 gen on h
+     15 ~> pic5 gen 4 h
+     2 ~> pic5 gen 2 h
+     3 ~> pic5 gen 1 h
 
-// Why is e67 very clearly defined on multiple pages of this module?
-e6799: 10113 quad 2 xor
-      7 ~< pic5 gen 4 h
-      6 ~< {fn1} pic2 pi4 a h
-      3 ~> -pic5 gen int h
-      4 ~< pic5 gen 2 h
-      5 ~< pic2 pi 2 h
-      2 ~> -pic5 gen int h
-      13 ~< pic5 gen 1 h
-      12 ~< pic2 pi 1 h
-      15 ~> -pic5 gen int h
-      11 ~< pic5 gen on h
-      // NOTE 1: This signal is being used as a high
-      //         source, it is not being used as a clear.
-      10 ~< -pic4 sys clr a h
-      14 ~> -pic5 gen int h
-      9 ~< %NC%
-
-e58: 10101 quad or/nor
-      4 ~< -pic5 gen int h
-      12 ~< %NC%
-      2 ~> pic5 gen int h
-      5 ~> %NC%
-      7 ~< %NC%
-      3 ~> %NC%
-      6 ~> %NC%
-      10 ~< %NC%
-      14 ~> %NC%
-      11 ~> %NC%
-      13 ~< %NC%
-      15 ~> %NC%
-      9 ~> %NC%
+e67: 10113 quad 2 xor
+     7 ~< pic5 gen 4 h
+     6 ~< {fn1} pi2 pi4 a h
+     3 ~> -pic5 gen int h
+     4 ~< pic5 gen 2 h
+     5 ~< pic2 pi2 h
+     2 ~> -pic5 gen int h
+     13 ~< pic5 gen 1 h
+     12 ~< pic2 pi1 h
+     15 ~> -pic5 gen int h
+     11 ~< pic5 gen on h
+     // NOTE 1: This signal is being used as a high
+     //         source, it is not being used as a clear.
+     10 ~< -pic4 sys clr a h
+     14 ~> -pic5 gen int h
+     9 ~< %NC%
 
 e5:  10104 quad and/nand
      4 ~< pic2 honor internal h
@@ -1435,6 +1374,8 @@ e1:  10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
+     // XXX WARNING: As written in PDF, -PI2 TIM2 L isn't defined anywhere.
+     // It should be -PIC2 TIM2 L because there is a PIC2 TIM2 H.
      10 ~< -pic2 tim2 l
      7 ~< pic5-e14-14
      9 ~< %NC%
