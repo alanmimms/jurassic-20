@@ -877,7 +877,7 @@ e45: 10104 quad and/nand
      9 ~> pic2 tim1 h
      10 ~< pic2 dk20 requesting h
      11 ~< pic2 tim6 h
-     14 ~> {de1} pic3 mtr honor h
+     14 ~> {de1} pi3 mtr honor h
      6 ~< {df1} -con cono apr h
      7 ~< -pic4 mr reset h
      3 ~> pic3-e45-3
@@ -1099,7 +1099,7 @@ e22: 10104 quad and/nand
      14 ~> {bj1} pi xor on bus l
      12 ~< pic5 ebus pi grant h
      13 ~< -pic2 ebus return h
-     9 ~> {bh2} pic5 gate ttl to ecl l
+     9 ~> {bh2} pi5 gate ttl to ecl l
      15 ~> %NC%
 
 e29: 10162 decoder
