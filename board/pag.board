@@ -972,6 +972,10 @@ e9:  10147 128x1 RAM
      11 ~< pag3 pt dir clr h
      15 ~> pag3 dir not val h
 
+w1: wire (A L needs to be driven somewhere)
+    1 ~< 0
+    2 ~> a l
+
 e5:  10147 128x1 RAM
      4 ~< pag3 pt adr 18 l
      3 ~< pag3 pt adr 19 l
@@ -1271,7 +1275,7 @@ e88: 10101 quad or/nor
      2 ~> pag5 pt adr 18 a l
      5 ~> pag5 pt adr 18 b h
      7 ~< pag3 pt adr 19 h
-     3 ~> pag4 pt adr 19 a l
+     3 ~> pag5 pt adr 19 a l
      6 ~> pag5 pt adr 19 b h
      13 ~< pag3 pt adr 20 h
      15 ~> pag5 pt adr 20 a l
@@ -1286,7 +1290,7 @@ e3:  10101 quad or/nor
      2 ~> pag5 pt adr 18 c l
      5 ~> pag5 pt adr 18 d h
      7 ~< -pag3 pt adr 19 h
-     3 ~> pag4 pt adr 19 c l
+     3 ~> pag5 pt adr 19 c l
      6 ~> pag5 pt adr 19 d h
      13 ~< pag3 pt adr 20 h
      15 ~> pag5 pt adr 20 c l
@@ -1372,14 +1376,14 @@ e45: 10144 256x1 RAM
      15 ~> pag5 pt par left h
 
 e44: 10144 256x1 RAM
-     1 ~< pag5 pt adr 18 d l
-     2 ~< pag5 pt adr 19 d l
-     3 ~< pag5 pt adr 20 d l
-     4 ~< pag5 pt adr 21 d l
-     9 ~< pag5 pt adr 22 d l
-     10 ~< pag5 pt adr 23 d l
-     11 ~< pag5 pt adr 24 d l
-     12 ~< pag5 pt adr 25 d l
+     1 ~< pag5 pt adr 18 d h
+     2 ~< pag5 pt adr 19 d h
+     3 ~< pag5 pt adr 20 d h
+     4 ~< pag5 pt adr 21 d h
+     9 ~< pag5 pt adr 22 d h
+     10 ~< pag5 pt adr 23 d h
+     11 ~< pag5 pt adr 24 d h
+     12 ~< pag5 pt adr 25 d h
      5 ~< pag3 pt right en d l
      6 ~< %NC%
      7 ~< %NC%
