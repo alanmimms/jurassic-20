@@ -818,7 +818,7 @@ e70: 10104 quad and/nand
      12 ~< -mbc1 reset h
      13 ~< {ef1} core rd in prog h
      9 ~> mbc4 core rd in prog l
-     15 ~> mgbc4 core rd in prog a h
+     15 ~> mbc4 core rd in prog a h
      4 ~< {er1} -ackn pulse h
      5 ~< mbc4 rq 0a h
      2 ~> mbc4-e70-2
