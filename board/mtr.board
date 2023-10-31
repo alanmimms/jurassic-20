@@ -11,7 +11,7 @@ e8:  10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e15-4
+     10 ~< mtr1-e15-4
      7 ~< -mtr3 clr ebox cnt h
      9 ~< %NC%
      13 ~< mtr2 ebox cnt clk h
@@ -26,7 +26,7 @@ e24: 10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e29-4
+     10 ~< mtr1-e29-4
      7 ~< -mtr3 clr cache cnt h
      9 ~< %NC%
      13 ~< mtr2 cache cnt clk h
@@ -41,7 +41,7 @@ e20: 10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e25-4
+     10 ~< mtr1-e25-4
      7 ~< -mtr3 clr time h
      9 ~< %NC%
      13 ~< mtr2 time clk h
@@ -56,7 +56,7 @@ e19: 10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e34-4
+     10 ~< mtr1-e34-4
      7 ~< -mtr3 clr perf cnt h
      9 ~< %NC%
      13 ~< mtr4 perf cnt clk h
@@ -75,7 +75,7 @@ e15: 10136 binary counter
      7 ~< -mtr3 clr ebox cnt h
      9 ~< %NC%
      13 ~< mtr2 ebox cnt clk h
-     4 ~> %NC%
+     4 ~> mtr1-e15-4
      3 ~> mtr1 ebox count 06 h
      2 ~> mtr1 ebox count 07 h
      15 ~> mtr1 ebox count 08 h
@@ -90,7 +90,7 @@ e29: 10136 binary counter
      7 ~< -mtr3 clr cache cnt h
      9 ~< %NC%
      13 ~< mtr2 cache cnt clk h
-     4 ~> %NC%
+     4 ~> mtr1-e29-4
      3 ~> mtr1 cache count 06 h
      2 ~> mtr1 cache count 07 h
      15 ~> mtr1 cache count 08 h
@@ -105,7 +105,7 @@ e25: 10136 binary counter
      7 ~< -mtr3 clr time h
      9 ~< %NC%
      13 ~< mtr2 time clk h
-     4 ~> %NC%
+     4 ~> mtr1-e25-4
      3 ~> mtr1 time 06 h
      2 ~> mtr1 time 07 h
      15 ~> mtr1 time 08 h
@@ -120,7 +120,7 @@ e34: 10136 binary counter
      7 ~< -mtr3 clr perf cnt h
      9 ~< %NC%
      13 ~< mtr4 perf cnt clk h
-     4 ~> %NC%
+     4 ~> mtr1-e34-4
      3 ~> mtr1 perf count 06 h
      2 ~> mtr1 perf count 07 h
      15 ~> mtr1 perf count 08 h
@@ -131,7 +131,7 @@ e30: 10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e90-4
+     10 ~< mtr1-e90-4
      7 ~< -mtr3 clr interval h
      9 ~< %NC%
      13 ~< mtr2 interval clk h
@@ -146,7 +146,7 @@ e69: 10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e85-4
+     10 ~< mtr1-e85-4
      7 ~< -mtr3 clr ebox cnt h
      9 ~< %NC%
      13 ~< mtr2 ebox cnt clk h
@@ -161,7 +161,7 @@ e65: 10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e80-4
+     10 ~< mtr1-e80-4
      7 ~< -mtr3 clr cache cnt h
      9 ~< %NC%
      13 ~< mtr2 cache cnt clk h
@@ -176,7 +176,7 @@ e70: 10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e75-4
+     10 ~< mtr1-e75-4
      7 ~< -mtr3 clr time h
      9 ~< %NC%
      13 ~< mtr2 time clk h
@@ -191,15 +191,15 @@ e53: 10136 binary counter
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mtr-e74-4
+     10 ~< mtr1-e74-4
      7 ~< -mtr3 clr perf cnt h
      9 ~< %NC%
      13 ~< mtr4 perf cnt clk h
      4 ~> {ce2} mtr1 perf cry 10 l
-     3 ~> mtr1 perf cnt 10 h
-     2 ~> mtr1 perf cnt 11 h
-     15 ~> mtr1 perf cnt 12 h
-     14 ~> mtr1 perf cnt 13 h
+     3 ~> mtr1 perf count 10 h
+     2 ~> mtr1 perf count 11 h
+     15 ~> mtr1 perf count 12 h
+     14 ~> mtr1 perf count 13 h
 
 e90: 10136 binary counter
      5 ~< %NC%
@@ -209,8 +209,8 @@ e90: 10136 binary counter
      10 ~< {fr1} mtr1 interval cry 14[b, in,] l
      7 ~< -mtr3 clr interval h
      9 ~< %NC%
-     13 ~< mtr4 interval clk h
-     4 ~> mtr-e90-4
+     13 ~< mtr2 interval clk h
+     4 ~> mtr1-e90-4
      3 ~> mtr1 interval 10 h
      2 ~> mtr1 interval 11 h
      15 ~> mtr1 interval 12 h
@@ -225,7 +225,7 @@ e85: 10136 binary counter
      7 ~< -mtr3 clr ebox cnt h
      9 ~< %NC%
      13 ~< mtr2 ebox cnt clk h
-     4 ~> mtr-e85-4
+     4 ~> mtr1-e85-4
      3 ~> mtr1 ebox count 14 h
      2 ~> mtr1 ebox count 15 h
      15 ~> mtr1 ebox count 16 h
@@ -240,7 +240,7 @@ e80: 10136 binary counter
      7 ~< -mtr3 clr cache cnt h
      9 ~< %NC%
      13 ~< mtr2 cache cnt clk h
-     4 ~> mtr-e80-4
+     4 ~> mtr1-e80-4
      3 ~> mtr1 cache count 14 h
      2 ~> mtr1 cache count 15 h
      15 ~> mtr1 cache count 16 h
@@ -255,7 +255,7 @@ e75: 10136 binary counter
      7 ~< -mtr3 clr time h
      9 ~< %NC%
      13 ~< mtr2 time clk h
-     4 ~> mtr-e75-4
+     4 ~> mtr1-e75-4
      3 ~> mtr1 time 14 h
      2 ~> mtr1 time 15 h
      15 ~> mtr1 time 16 h
@@ -270,7 +270,7 @@ e74: 10136 binary counter
      7 ~< -mtr3 clr perf cnt h
      9 ~< %NC%
      13 ~< mtr4 perf cnt clk h
-     4 ~> mtr-e74-4
+     4 ~> mtr1-e74-4
      3 ~> mtr1 perf count 14 h
      2 ~> mtr1 perf count 15 h
      15 ~> mtr1 perf count 16 h
@@ -299,7 +299,7 @@ e35: 10105 2-3-2 or/nor
      11 ~< mtr4 pi level 1 h
      6 ~> mtr2 pi in prog l
      7 ~> mtr2 pi in prog h
-     4 ~< mtr2 time on h
+     4 ~< mtr2 time on l
      5 ~< -mtr5 ebus 24 l
      3 ~> mtr2-e35-3
      2 ~> %NC%
@@ -314,8 +314,8 @@ e55: 10101 quad or/nor
      3 ~> mtr2-e55-3
      6 ~> %NC%
      13 ~< {df2} diag 05 b h
-     15 ~> mtr4 ds 05 l
-     9 ~> mtr4 ds 05 h
+     15 ~> mtr5 ds 05 l
+     9 ~> mtr5 ds 05 h
      10 ~< {dd2} diag 06 b h
      14 ~> mtr5 ds 06 l
      11 ~> mtr5 ds 06 h
@@ -375,7 +375,7 @@ e47: 10105 2-3-2 or/nor
      11 ~< mtr2 cache cnt en l
      6 ~> mtr2-e47-6
      7 ~> %NC%
-     12 ~< -mtr5 reset time l
+     12 ~< -mtr3 reset time l
      13 ~< mtr2-e5-2
      14 ~> mtr2-e47-14
      15 ~> %NC%
@@ -483,7 +483,7 @@ e16: 10176 hex dff
      5 ~< %NC%
      6 ~< mtr5 ebus 21 h
      7 ~< mtr5 ebus 22 h
-     10 ~< mtr5 ebux 23 h
+     10 ~< mtr5 ebus 23 h
      11 ~< %NC%
      12 ~< %NC%
      9 ~< mtr2-e6-15
@@ -541,17 +541,18 @@ e88: 10136 binary counter
 //   32 MHz    W1
 //   33 MHz    none
 
+// Configured for 30MHz W1,W2
 e60: 10136 binary counter
-     5 ~< -mtr3 reset plsd h		// W4
-//   5 ~< %NC%				// W4
+//   5 ~< -mtr3 reset plsd h		// W4
+     5 ~< %NC%				// W4
 //   6 ~< -mtr3 reset plsd h		// W3
      6 ~< %NC%				// W3
-//   11 ~< -mtr3 reset plsd h		// W2
-     11 ~< %NC%				// W2
-//   12 ~< -mtr3 reset plsd h		// W1
-     12 ~< %NC%				// W1
+     11 ~< -mtr3 reset plsd h		// W2
+//   11 ~< %NC%				// W2
+     12 ~< -mtr3 reset plsd h		// W1
+//   12 ~< %NC%				// W1
      10 ~< %NC%
-     7 ~< mtr5 reset h
+     7 ~< mtr2-e63-3
      9 ~< %NC%
      13 ~< mtr2 mbox clk d h
      4 ~> mtr2-e60-4
@@ -566,7 +567,7 @@ e59: 10136 binary counter
      11 ~< -mtr3 reset plsd h
      12 ~< %NC%
      10 ~< mtr2-e60-4
-     7 ~< mtr5 reset h
+     7 ~< mtr2-e63-3
      9 ~< %NC%
      13 ~< mtr2 mbox clk d h
      4 ~> %NC%
@@ -750,7 +751,6 @@ e3:  10131 dual ms dff
 //       maintain the same CRAM #
 //       bits 06,07,08 to avoid a
 //       race condition.
-
 e1:  10162 decoder
      14 ~< {ae2} cram # 06 a h
      9 ~< {ad2} cram # 07 a h
@@ -791,9 +791,9 @@ e63: 10105 2-3-2 or/nor
      11 ~< mtr4 chan busy 4 h
      6 ~> mtr4-e63-6
      7 ~> %NC%
-     4 ~< %NC%
-     5 ~< %NC%
-     3 ~> %NC%
+     4 ~< mtr5 reset h
+     5 ~< mtr2 1 mhz h
+     3 ~> mtr2-e63-3
      2 ~> %NC%
 
 e11: 10101 quad or/nor
@@ -994,7 +994,7 @@ e54: 10117 dual 2-3 or-and
      14 ~> %NC%
      15 ~> %NC%
 
-// NOTE: For board wirelist B=1 and ofr
+// NOTE: For board wirelist B=1 and for
 // backpanel wirelist B=2. Backpanel
 // wirelist will complain about no source drive for
 // signals with MTR prefix but will connect them up.
@@ -1048,9 +1048,9 @@ e56: 10176 hex dff
      2 ~> mtr4 chan 6 pa en h
      3 ~> mtr4 chan 7 pa en h
      4 ~> mtr4 chan pa dont care h
-     13 ~> mtr4 chan ucode pa dont care h
-     14 ~> mtr4 chan probe low pa en h
-     15 ~> mtr4 chan probe pa dont care h
+     13 ~> mtr4 ucode pa dont care h
+     14 ~> mtr4 probe low pa en h
+     15 ~> mtr4 probe pa dont care h
 
 e66: 10164 8 mixer
      14 ~< mtr4 chan 0 pa en h
@@ -1066,8 +1066,6 @@ e66: 10164 8 mixer
      7 ~< {em2} crc sel 1d l
      2 ~< {ep2} chc1 cbus ready e l
      15 ~> mtr4-e66-15
-
-
 
 e71: 10136 binary counter
      5 ~< mtr4-e66-15
@@ -1210,7 +1208,7 @@ e12: 10164 8 mixer
      4 ~< mtr1 ebox count 06 h
      3 ~< mtr1 cache count 06 h
      11 ~< mtr1 interval 06 h
-     12 ~< mtr1 period 06 h
+     12 ~< mtr3 period 06 h
      13 ~< %NC%
      14 ~< %NC%
      10 ~< mtr5 ds 04 h
@@ -1241,7 +1239,7 @@ e32: 10164 8 mixer
      4 ~< mtr1 ebox count 07 h
      3 ~< mtr1 cache count 07 h
      11 ~< mtr1 interval 07 h
-     12 ~< mtr1 period 07 h
+     12 ~< mtr3 period 07 h
      13 ~< mtr2 time on h
      14 ~< -mtr cono mtr, h
      10 ~< mtr5 ds 04 h
@@ -1257,7 +1255,7 @@ e27: 10164 8 mixer
      4 ~< mtr1 ebox count 08 h
      3 ~< mtr1 cache count 08 h
      11 ~< mtr1 interval 08 h
-     12 ~< mtr1 period 08 h
+     12 ~< mtr3 period 08 h
      13 ~< %NC%
      14 ~< %NC%
      10 ~< mtr5 ds 04 h
@@ -1273,7 +1271,7 @@ e33: 10164 8 mixer
      12 ~< mtr1 ebox count 09 h
      11 ~< mtr1 cache count 09 h
      3 ~< mtr1 interval 09 h
-     4 ~< mtr1 period 09 h
+     4 ~< mtr3 period 09 h
      5 ~< %NC%
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
@@ -1289,7 +1287,7 @@ e73: 10164 8 mixer
      12 ~< mtr1 ebox count 10 h
      11 ~< mtr1 cache count 10 h
      3 ~< mtr1 interval 10 h
-     4 ~< mtr1 period 10 h
+     4 ~< mtr3 period 10 h
      5 ~< %NC%
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
@@ -1305,7 +1303,7 @@ e62: 10164 8 mixer
      12 ~< mtr1 ebox count 11 h
      11 ~< mtr1 cache count 11 h
      3 ~< mtr1 interval 11 h
-     4 ~< mtr1 period 11 h
+     4 ~< mtr3 period 11 h
      5 ~< %NC%
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
@@ -1321,7 +1319,7 @@ e68: 10164 8 mixer
      12 ~< mtr1 ebox count 12 h
      11 ~< mtr1 cache count 12 h
      3 ~< mtr1 interval 12 h
-     4 ~< mtr1 period 12 h
+     4 ~< mtr3 period 12 h
      5 ~< %NC%
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
@@ -1337,7 +1335,7 @@ e67: 10164 8 mixer
      12 ~< mtr1 ebox count 13 h
      11 ~< mtr1 cache count 13 h
      3 ~< mtr1 interval 13 h
-     4 ~< mtr1 period 13 h
+     4 ~< mtr3 period 13 h
      5 ~< %NC%
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
@@ -1368,7 +1366,7 @@ e77: 10164 8 mixer
      12 ~< mtr1 ebox count 14 h
      11 ~< mtr1 cache count 14 h
      3 ~< mtr1 interval 14 h
-     4 ~< mtr1 period 14 h
+     4 ~< mtr3 period 14 h
      5 ~< %NC%
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
@@ -1384,7 +1382,7 @@ e83: 10164 8 mixer
      12 ~< mtr1 ebox count 15 h
      11 ~< mtr1 cache count 15 h
      3 ~< mtr1 interval 15 h
-     4 ~< mtr1 period 15 h
+     4 ~< mtr3 period 15 h
      5 ~< {fj2} pi3 mtr pia 04 h
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
@@ -1400,7 +1398,7 @@ e79: 10164 8 mixer
      12 ~< mtr1 ebox count 16 h
      11 ~< mtr1 cache count 16 h
      3 ~< mtr1 interval 16 h
-     4 ~< mtr1 period 16 h
+     4 ~< mtr3 period 16 h
      5 ~< {ff2} pi3 mtr pia 02 h
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
@@ -1416,7 +1414,7 @@ e78: 10164 8 mixer
      12 ~< mtr1 ebox count 17 h
      11 ~< mtr1 cache count 17 h
      3 ~< mtr1 interval 17 h
-     4 ~< mtr1 period 17 h
+     4 ~< mtr3 period 17 h
      5 ~< {fd2} pi3 mtr pia 01 h
      6 ~< %NC%
      10 ~< mtr5 ds 04 l
