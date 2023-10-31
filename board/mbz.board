@@ -46,6 +46,9 @@ e43: 10176 hex dff
      13 ~> mbz1-e43-13
      11 ~< mbz1-e24-2
      14 ~> chan to mem l
+     // NOTE: CORE RD IN PROG needs 10 or more
+     // inches of wire from connector
+     // pin to this load.
      7 ~< {ef1} core rd in prog h
      4 ~> mbz1-e43-4
      12 ~< mbz3-e48-15
@@ -272,7 +275,7 @@ e12: 10141 shift register
 e16: 10141 shift register
      13 ~< %NC%
      12 ~< {bf2} paged ref h
-     11 ~< {bn2} pma 14 h
+     11 ~< {bj2} pma 14 h
      9 ~< {bj1} pma 15 h
      6 ~< {bk2} pma 16 h
      5 ~< %NC%
