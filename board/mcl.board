@@ -17,7 +17,7 @@ e70: 10162 decoder
      4 ~> mcl1 mem/mb wait h
      3 ~> mcl1 mem/restore vma h
      13 ~> mcl1 mem/aread h
-     12 ~> mcl1 mem/bwrite h
+     12 ~> mcl1 mem/b write h
      11 ~> %NC%
      10 ~> mcl1 mem/reg func h
 
@@ -32,7 +32,7 @@ e64: 10161 decoder
      4 ~> %NC%
      3 ~> %NC%
      13 ~> mcl1 mem/aread l
-     12 ~> mcl1 mem/bwrite l
+     12 ~> mcl1 mem/b write l
      11 ~> mcl1 mem/cond fetch l
      10 ~> {er2} mcl1 mem/reg func l
 
@@ -41,7 +41,7 @@ e72: 10162 decoder
      9 ~< {fj2} cram mem 02 h
      7 ~< {fk2} cram mem 03 h
      15 ~< %NC%
-     2 ~< mcl1 mem 00 l
+     2 ~< mcl1 mem 00 a l
      6 ~> mcl1 mem/ad func h
      5 ~> mcl1-e72-5
      4 ~> mcl1 mem/load ar h
@@ -158,7 +158,7 @@ e29: 10105 2-3-2 or/nor
 
 e59: 10117 dual 2-3 or-and
      4 ~< mcl5 bwrite 01 h
-     5 ~< -mcl1 mem/bwrite h
+     5 ~< -mcl1 mem/b write h
      6 ~< {ev2} cram mem 00 h
      7 ~< {es2} cram mem 01 h
      9 ~< mcl5 reset h
@@ -259,7 +259,7 @@ e36: 10164 8 mixer
 e27: 10164 8 mixer
      6 ~< {cf1} vma held or pc 06 h
      5 ~< {ce2} vma held or pc 12 h
-     4 ~< mcl4 xp short h
+     4 ~< mcl4 xr short h
      3 ~< {dk2} mcl4 short stack h
      11 ~< {ca1} -mcl6 ebox cache h
      12 ~< {cc1} -mcl6 ebox may be paged h
@@ -302,16 +302,16 @@ e76: 10104 quad and/nand
      12 ~< {fs2} ad 04 a h
      13 ~< mcl1 mem/ea calc h
      9 ~> %NC%
-     15 ~> mcl2-e76-15
+     15 ~> mcl2-e76-14
 
 e73: 10109 4/5 or/nor
      4 ~< mcl2-e71-2
      5 ~< mcl5 aread 1xx h
-     6 ~< mcl2 mem/load ar h
+     6 ~< mcl1 mem/load ar h
      7 ~< mcl1 rw or rpw cycle h
      3 ~> %NC%
      2 ~> mcl2-e73-2
-     9 ~< mcl5 write 01 h
+     9 ~< mcl5 bwrite 01 h
      10 ~< %NC%
      11 ~< mcl1 mem/reg func h
      12 ~< {fv2} mcl skip satisfied h
@@ -413,10 +413,10 @@ e20: 10121 4-wide or-and
      4 ~< mcl4 vma prev en l
      5 ~< mcl6 user iot l
      6 ~< %NC%
-     7 ~< mc6 user l
+     7 ~< mcl6 user l
      9 ~< mcl2-e40-14
      10 ~< -mcl3 spec/exec l
-     11 ~< mcl4 spec/sp mem cycle l
+     11 ~< mcl5 spec/sp mem cycle l
      12 ~< mcl5 # 01 l
      13 ~< %NC%
      14 ~< mcl1 load ad func l
@@ -798,7 +798,7 @@ e47: 10164 8 mixer
      5 ~< %NC%
      4 ~< %NC%
      3 ~< mcl4 pxct b11 h
-     11 ~< mcl4 pxct b19 h
+     11 ~< mcl4 pxct b09 h
      12 ~< mcl4 pxct b11 h
      13 ~< mcl4 pxct b12 h
      14 ~< mcl4 pxct b11 h
@@ -864,7 +864,7 @@ e35: 10105 2-3-2 or/nor
      6 ~> {fv2} mcl skip satisfied h
      7 ~> mcl5 skip satisfied l
      4 ~< mcl5 # 08 l
-     5 ~< mel5 spec/sp mem cycle l
+     5 ~< mcl5 spec/sp mem cycle l
      3 ~> mcl6 phys ref h
      2 ~> %NC%
 
@@ -1053,7 +1053,7 @@ e65: 10104 quad and/nand
 e78: 10104 quad and/nand
      6 ~< mcl1 mem/b write h
      7 ~< {fl1} dram b 01 h
-     3 ~> mcl5 write 01 h
+     3 ~> mcl5 bwrite 01 h
      12 ~< mcl5-e79-3
      13 ~< mcl1 mem/aread h
      9 ~> %NC%
@@ -1082,7 +1082,7 @@ e66: 10121 4-wide or-and
 
 e62: 10121 4-wide or-and
      4 ~< {ds2} ir jrst 0, l
-     5 ~< mcl1 mem/read l
+     5 ~< mcl1 mem/aread l
      6 ~< %NC%
      7 ~< %NC%
      9 ~< mcl1 mem/cond fetch l
@@ -1212,8 +1212,8 @@ e80: 10141 shift register
      9 ~< %NC%
      6 ~< %NC%
      5 ~< %NC%
-     7 ~< {as1} mcl1 req en l
-     10 ~< {as1} mcl1 req en l
+     7 ~< {ck2} mcl4 load vma context l
+     10 ~< {ck2} mcl4 load vma context l
      4 ~< mcl5 clk f h
      14 ~> {cu2} mcl6 page uebr ref a h
      15 ~> %NC%
