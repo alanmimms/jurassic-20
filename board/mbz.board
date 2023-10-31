@@ -389,7 +389,7 @@ e35: 10174 2x4 mixer
      5 ~< {ds1} -mbz1 rd-pse-wr ref h
      4 ~< {du2} mem busy h
      6 ~< ebus reg 21 h
-     13 ~< char core busy h
+     13 ~< chan core busy h
      11 ~< {fp2} -mbox nxm err h
      12 ~< -hold era h
      10 ~< ebus reg 22 h
@@ -807,7 +807,7 @@ e3:  10141 shift register
      5 ~< %NC%
      7 ~< load mb # l
      10 ~< load mb # l
-     4 ~< clk 4 h
+     4 ~< clk f h
      14 ~> mb data source 2 h
      15 ~> mb data source 1 h
      2 ~> mb wd sel 2 h
