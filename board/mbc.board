@@ -102,7 +102,7 @@ e17: 10101 quad or/nor
      7 ~< {de2} pma4 35 b h
      12 ~< %NC%
      3 ~> mbc1 pma 35 a l
-     6 ~> mbc1 pma 36 a h
+     6 ~> mbc1 pma 35 a h
      4 ~< mbc1 match hold 2 h
      2 ~> %NC%
      5 ~> {bj2} cam sel 2 h
@@ -214,7 +214,7 @@ e8:  10173 4x2 mixer latch
      3 ~< {ar1} pma3 pa 28 h
      4 ~< mbc1 pma hold 28 h
      12 ~< {as2} pma3 pa 29 h
-     13 ~< mbc1 hold 29 h
+     13 ~< mbc1 pma hold 29 h
      10 ~< {af1} pma3 pa 30 h
      11 ~< mbc1 pma hold 30 h
      9 ~< {aj1} mbx1 refill adr en h
@@ -626,8 +626,8 @@ e51: 10176 hex dff
      11 ~< mbc3 clk a phase coming h
      14 ~> mbc3 a phase h
 
-// Time critical
 e47: 10121 4-wide or-and
+     // Time critical
      4 ~< {dl2} csh2 e core rd rq b l
      5 ~< {ds1} -core busy l
      6 ~< %NC%
@@ -640,6 +640,7 @@ e47: 10121 4-wide or-and
      14 ~< %NC%
      15 ~< mbc3-e42-2
      3 ~> %NC%
+     // Time critical
      2 ~> mbc3 mem start set l
 
 e42: 10121 4-wide or-and
@@ -690,7 +691,7 @@ e55: 10105 2-3-2 or/nor
 e45: 10121 4-wide or-and
      4 ~< {dv2} mbc4 mem start l
      5 ~< {en1} phase change coming l
-     6 ~< mbc4 last asckn seen l
+     6 ~< mbc4 last ackn seen l
      7 ~< mbc3 a change coming l
      9 ~< mbc4 mem start a l
      10 ~< mbc4 last ackn l
@@ -782,8 +783,8 @@ e53: 10105 2-3-2 or/nor
 
 Page: MBC4, PDF192
 
-// Time critical
 e50: 10117 dual 2-3 or-and
+     // Time critical
      4 ~< -mbc3 mem start clr l
      5 ~< mbc4 mem start a l
      6 ~< {dp1} -mem start b l
@@ -832,7 +833,7 @@ e70: 10104 quad and/nand
 e57: 10141 shift register
      13 ~< %NC%
      // Time critical
-     12 ~< {fn2} mbx5 rq 0 in h
+     12 ~< {fv2} mbx5 rq 0 in h
      // Time critical
      11 ~< {fu2} mbx5 rq 1 in h
      // Time critical
@@ -851,7 +852,7 @@ e57: 10141 shift register
 e63: 10141 shift register
      13 ~< %NC%
      // Time critical
-     12 ~< {fn2} mbx5 rq 0 in h
+     12 ~< {fv2} mbx5 rq 0 in h
      // Time critical
      11 ~< {fu2} mbx5 rq 1 in h
      // Time critical
@@ -1021,7 +1022,7 @@ e16: 10164 8 mixer
 e30: 10164 8 mixer
      6 ~< {ca1} force valid match 2 h
      5 ~< {cc1} -mbc2 csh data clr t3 h
-     4 ~< mbc3 cache wr 18 a h
+     4 ~< mbc2 cache wr 18 a h
      3 ~< {cd2} csh val sel all h
      11 ~< {bs2} -mem to c en h
      12 ~< {bt2} -mbc4 core data val -1 h
