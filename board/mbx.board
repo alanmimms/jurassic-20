@@ -41,7 +41,7 @@ e75: 10176 hex dff
      9 ~< mbx4 clk c h
      13 ~> {ap1} mbx1 ebox load reg h
      5 ~< {fp2} csh3 any val hold in h
-     2 ~> mbx any val hold h
+     2 ~> mbx2 any val hold h
      6 ~< mbx2-e81-15
      3 ~> {ar1} mb req hold h
      7 ~< mbx2 mb sel hold ff in h
@@ -103,7 +103,7 @@ e62: 10104 quad and/nand
      6 ~< mbx1-e77-3
      7 ~< mbx1-e79-5
      3 ~> mbx1 csh wd 3 val b h
-     10 ~< {ep2} mbc4 core data valid -2 l
+     10 ~< {ep2} mbc4 core data val -2 l
      11 ~< {el1} csh4 one word wr t0 l
      14 ~> mbx2-e62-14
      12 ~< {el2} csh chan cyc a h
@@ -170,7 +170,6 @@ e85: 10176 hex dff
      10 ~< {fp1} csh3 mb wr rq clr nxt l
      13 ~> mbx2 mb wr rq clr ff l
      11 ~< {fr2} mbx1 refill adr en nxt h
-     9 ~< mbx4 clk c h
      14 ~> {fn1} mbx1 refill adr en h
 
 e80: 10118 triple 4-2 or-and
@@ -284,9 +283,9 @@ e4:  10165 priority encoder
 
 e33: 10165 priority encoder
      5 ~< {bs1} mbx5 rq 0 in h
-     7 ~< {bs1} mbx5 rq 0 in h
-     13 ~< {bs1} mbx5 rq 0 in h
-     10 ~< {bs1} mbx5 rq 0 in h
+     7 ~< {bf2} mbx5 rq 1 in h
+     13 ~< {bf1} mbx5 rq 2 in h
+     10 ~< {be2} mbx5 rq 3 in h
      11 ~< %NC%
      12 ~< %NC%
      9 ~< %NC%
@@ -313,7 +312,7 @@ e42: 10121 4-wide or-and
      2 ~> {be1} sbus adr 34 h
 
 e47: 10121 4-wide or-and
-     4 ~< pma4 pa 35 h
+     4 ~< {cj1} pma4 pa 35 h
      5 ~< mbx2-e57-7
      6 ~< %NC%
      7 ~< mbx2-e33-3
@@ -468,7 +467,7 @@ e8:  10118 triple 4-2 or-and
 e9:  10141 shift register
      13 ~< %NC%
      12 ~< mbx2-e3-2
-     11 ~< mbx2-e7-2
+     11 ~< mbx2-e8-2
      9 ~< mbx2-e3-15
      6 ~< mbx2-e8-15
      5 ~< %NC%
@@ -689,7 +688,7 @@ e22: 10141 shift register
      5 ~< %NC%
      7 ~< mbx3-e20-15
      10 ~< mbx3-e20-15
-     4 ~< mbx4-clk d h
+     4 ~< mbx4 clk d h
      14 ~> mbx3 mb0 par h
      15 ~> mbx3 ctomb wd 0 rq h
      2 ~> mbx3 mb0 data code 2 h
@@ -704,7 +703,7 @@ e21: 10141 shift register
      5 ~< %NC%
      7 ~< mbx3-e20-3
      10 ~< mbx3-e20-3
-     4 ~< mbx4-clk e h
+     4 ~< mbx4 clk e h
      14 ~> mbx3 mb1 par h
      15 ~> mbx3 ctomb wd 1 rq h
      2 ~> mbx3 mb1 data code 2 h
@@ -719,7 +718,7 @@ e26: 10141 shift register
      5 ~< %NC%
      7 ~< mbx3-e20-14
      10 ~< mbx3-e20-14
-     4 ~< mbx4-clk e h
+     4 ~< mbx4 clk e h
      14 ~> mbx3 mb2 par h
      15 ~> mbx3 ctomb wd 2 rq h
      2 ~> mbx3 mb2 data code 2 h
@@ -734,7 +733,7 @@ e31: 10141 shift register
      5 ~< %NC%
      7 ~< mbx3-e20-2
      10 ~< mbx3-e20-2
-     4 ~< mbx4-clk e h
+     4 ~< mbx4 clk e h
      14 ~> mbx3 mb3 par h
      15 ~> mbx3 ctomb wd 3 rq h
      2 ~> mbx3 mb3 data code 2 h
@@ -794,7 +793,7 @@ e71: 10176 hex dff
      14 ~> mbx3 sbus diag cyc l
      10 ~< mbx5-e68-2
      13 ~> mbx5-e71-13
-     5 ~< {ep2} mbc4 core data valid -2 l
+     5 ~< {ep2} mbc4 core data val -2 l
      2 ~> mbx6 core data valid -1 b l
      12 ~< mbx6 core data valid -1 b l
      15 ~> mbx6 core data valid b l
@@ -863,7 +862,7 @@ e48: 10141 shift register
 
 e53: 10117 dual 2-3 or-and
      4 ~< mbx3-e48-14
-     5 ~< mbx3-e48-15
+     5 ~< mbx3-e48-2
      6 ~< mbx3-e54-14
      7 ~< %NC%
      9 ~< mbx3-e48-3
@@ -873,7 +872,6 @@ e53: 10117 dual 2-3 or-and
      12 ~< mbx3-e48-2
      11 ~< mbx3-e54-15
      10 ~< {dm2} -csh2 e cache wr cyc l
-     9 ~< mbx3-e48-3
      14 ~> {bv2} mem to c sel 1 h
      15 ~> %NC%
 
@@ -988,6 +986,9 @@ e52: 10101 quad or/nor
      11 ~> mbx5 pa 35 a h
 
 e61: 10176 hex dff
+     // NOTE: (engineering ref only) This signal
+     // run needs >= 10 inches of etch from
+     // connector pin to first load.
      7 ~< {dl2} csh4 writeback t1 a l
      9 ~< mbx4 clk b h
      4 ~> {dv2} csh wr out en l
@@ -1013,6 +1014,9 @@ e50: 10121 4-wide or-and
      12 ~< {dk2} mbx4 cache to mb t2 l
      13 ~< %NC%
      14 ~< %NC%
+     // NOTE: This signal run needs
+     // >= 10 inches of etch.
+     // (engineering ref only)
      15 ~< {el1} csh4 one word wr t0 l
      3 ~> %NC%
      2 ~> mbx4-e50-2
