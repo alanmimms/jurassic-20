@@ -918,7 +918,7 @@ e69: 10141 shift register
 
 e74: 10105 2-3-2 or/nor
      4 ~< mbc4 mem start rd h
-     5 ~< mgbc4 init comp h
+     5 ~< mbc4 init comp h
      3 ~> %NC%
      2 ~> mbc4-e74-2
      12 ~< mbc4 any request h
