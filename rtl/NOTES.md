@@ -120,7 +120,7 @@ or in binary (for 000):
 
 	klx.ram listing for these two words:
         ABxx JJJJ
-
+```
 D 0000, 2000,1002				; 4916	000:	EA,		J/UUO
 D 0001, 2200,1005				; 8117	001:	EA,	SJCL,	J/L-CMS		;CMSX HIDDEN BENEATH LUUO
 D 0002, 2100,1005				; 8118			EA,	SJCE,	J/L-CMS
@@ -149,7 +149,7 @@ D 0243, 0000,1413				; 5158			I,		J/JFFO		;JFFO
 D 0244, 0000,1416				; 5159			I,		J/ASHC		;ASHC [423]
 D 0245, 0001,1417				; 5160			I,		J/ROTC		;ROTC
 D 0246, 0001,1004				; 5161			I,		J/LSHC		;LSHC--Adjoins UUO (247)
-
+```
 
 
 # EBUS
