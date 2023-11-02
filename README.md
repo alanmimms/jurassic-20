@@ -6,7 +6,7 @@ into an FPGA implementation that is cycle accurate and runs the very
 same microcode and all software (given enough I/O peripheral
 emulations).
 
-This is totally a playground work in progress.
+This is totally a playground, and it's also a work in progress.
 
 The process has been to take the DECSYSTEM-20 KL10PV CPU schematics
 and create a logical description of the entire system's netlists so I
@@ -36,12 +36,22 @@ designers used.
 The modules are basically lists of chips and their reference
 designators and the names of the signals the pins should be connected
 to. I try to keep the PDF page number (of the Holy
-`MP00301_KL10PV_Jun80-OCR.pdf` file) in each schematic page with its
+`docs/MP00301_KL10PV_Jun80-OCR.pdf`) in each schematic page with its
 chips so I can easily find things. The OCR in the PDF is nearly
 useless, so I cannot easily search there for signals or reference
 designators, so I have to do it all as a sort of "Where's Waldo"
 exercise. I'm getting pretty good at this after doing it for so long,
 but it's certainly tedious.
+
+I tried again with OCR using a more modern version of Tesseract OCR
+(`tesseract 4.1.1`). The result is called
+`docs/MP00301_KL10PV_Jun80-OCR2.pdf` and it's also where I have added
+scribbled highlighter marks to show my pin-by-pin review progress,
+which is taking many, many days to complete. This process, while
+tedious and exhausting, has found many problems that would have
+required many _more_ hours to debug in the functioning KL10
+simulation, so it's definitely worth it. In the end, I will
+_definitely_ require a new eyeglasses prescription.
 
 I had to add some escape hatches to allow Verilog code to be
 subsituted for the traditional symbol names in some cases so I could
