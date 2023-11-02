@@ -234,6 +234,24 @@ module kl10pv(input clk60, input crobar);
     else ebus.data = '0;
   end // always_comb
   
+
+  // Alias the AD EX nn bits so we can remove my hack and avoid the
+  // extra selectors in EDP as originally designed.
+  always_comb begin
+    ad_ex_04_h = ad_04_h;
+    ad_ex_10_h = ad_10_h;
+    ad_ex_16_h = ad_16_h;
+    ad_ex_22_h = ad_22_h;
+    ad_ex_28_h = ad_28_h;
+
+    ad_ex_05_h = ad_05_h;
+    ad_ex_11_h = ad_11_h;
+    ad_ex_17_h = ad_17_h;
+    ad_ex_23_h = ad_23_h;
+    ad_ex_29_h = ad_29_h;
+  end
+
+
   // Assign '0' to all undriven nets we KNOW are meant to be undriven
   // so they stop causing warnings.
   always_comb begin
