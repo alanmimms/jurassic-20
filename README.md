@@ -109,6 +109,30 @@ or use negative logic when positive logic was actually what was
 required. See the `Learnings` section below for details.
 
 
+# Some Things I Changed
+* EBUS is a muxed device now instead of a bus with multiple exclusive
+  drivers as in the KL10.
+  
+* Signals of the form `# 00 H` have been renamed to `cram # 00 h` to
+  make the compiler simpler.
+  
+* I had to add leading-zero padding indicators to the signal name
+  macros so `ADX CRY [N+6] H` became `adx cry [n+06] h`. This allows
+  the explicit definition of how many leading zeroes are required in
+  the expansion after the math operation.
+
+* I do not strip newlines embedded in macro selectors, so these have
+  to be coded in a single line of text. So
+
+	<AK1> [N/30+1,
+		ADX CRY [N+6] H,
+		CTL ADX CRY 36 H]
+		
+  is now
+
+	{ak1} [n/30+1,adx cry [n+06] h,ctl adx cry 36 h]
+
+
 # Learnings
 KL10-PV schematics use symbols that follow a pretty rigorous symbol
 naming convention, and the use of this convention is _required_ for
@@ -187,4 +211,12 @@ the logic to work.
    automatically determined from the name of the netlist (at least not
    with the name `VMA4 VMA 14 IN H`). Examples can be found on VMA4
    PDF357.
+
+1. A wire labeled something like
+
+	ARMM 14 H <BH2>
+	
+   is the same net as one labeled without the `<BH2>`. This
+   accidentally works properly in the compiler since the net names
+   don't include the backplane pin in their key.
 
