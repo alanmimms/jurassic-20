@@ -120,6 +120,7 @@ or in binary (for 000):
 
 	klx.ram listing for these two words:
         ABxx JJJJ
+
 D 0000, 2000,1002				; 4916	000:	EA,		J/UUO
 D 0001, 2200,1005				; 8117	001:	EA,	SJCL,	J/L-CMS		;CMSX HIDDEN BENEATH LUUO
 D 0002, 2100,1005				; 8118			EA,	SJCE,	J/L-CMS
