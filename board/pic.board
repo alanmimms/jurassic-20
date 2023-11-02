@@ -153,6 +153,9 @@ e60: 10101 quad or/nor
      10 ~< pic4 iob 17 l
      14 ~> pic1-e60-14
      11 ~> %NC%
+     13 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
 
 e71: 10117 dual 2-3 or-and
      4 ~< pic4 on set l
@@ -251,13 +254,13 @@ e61: 10117 dual 2-3 or-and
 e83: 10104 quad and/nand
      4 ~< pic1 pih1 h
      5 ~< -pic2 pi1 clr h
-     2 ~> pic2 pi1 req set h
+     2 ~> pi2 pi1 req set h
      6 ~< pic1 pih2 h
      7 ~< -pic2 pi2 clr h
-     3 ~> pic2 pi2 req set h
+     3 ~> pi2 pi2 req set h
      10 ~< pic1 pih3 h
      11 ~< -pic2 pi3 clr h
-     14 ~> pic2 pi3 req set h
+     14 ~> pi2 pi3 req set h
      12 ~< pic4-e17-15
      13 ~< pic4-e58-14
      9 ~> {fc1} ebus f02 e h
@@ -265,14 +268,14 @@ e83: 10104 quad and/nand
 
 e84: 10131 dual ms dff
      5 ~< %NC%
-     7 ~< pic2 pi1 req set h
+     7 ~< pi2 pi1 req set h
      6 ~< %NC%
      9 ~< pic2 clk a h
      4 ~< pic4 sys clr b h
      2 ~> pic1 pih1 h
      3 ~> %NC%
      12 ~< %NC%
-     10 ~< pic2 pi2 req set h
+     10 ~< pi2 pi2 req set h
      11 ~< %NC%
      13 ~< pic2 pi3 req set h
      15 ~> pic1 pih2 h
@@ -280,14 +283,14 @@ e84: 10131 dual ms dff
 
 e89: 10131 dual ms dff
      5 ~< %NC%
-     7 ~< pic2 pi3 req set h
+     7 ~< pi2 pi3 req set h
      6 ~< %NC%
      9 ~< pic2 clk a h
      4 ~< pic4 sys clr b h
      2 ~> pic1 pih3 h
      3 ~> %NC%
      12 ~< %NC%
-     10 ~< pic2 pi4 req set h
+     10 ~< pi2 pi4 req set h
      11 ~< %NC%
      13 ~< pic4 sys clr b h
      15 ~> pic1 pih4 h
@@ -296,28 +299,28 @@ e89: 10131 dual ms dff
 e87: 10104 quad and/nand
      4 ~< pic1 pih4 h
      5 ~< -pic2 pi4 clr h
-     2 ~> pic2 pi4 req set h
+     2 ~> pi2 pi4 req set h
      6 ~< pic1 pih5 h
      7 ~< -pic2 pi5 clr h
-     3 ~> pic2 pi5 req set h
+     3 ~> pi2 pi5 req set h
      10 ~< pic1 pih6 h
      11 ~< -pic2 pi6 clr h
-     14 ~> pic2 pi6 req set h
+     14 ~> pi2 pi6 req set h
      12 ~< pic1 pih7 h
      13 ~< -pic2 pi7 clr h
      9 ~> %NC%
-     15 ~> pic2 pi7 req set h
+     15 ~> pi2 pi7 req set h
 
 e86: 10131 dual ms dff
      5 ~< %NC%
-     7 ~< pic2 pi5 req set h
+     7 ~< pi2 pi5 req set h
      6 ~< %NC%
      9 ~< pic2 clk b h
      4 ~< pic4 sys clr h
      2 ~> pic1 pih5 h
      3 ~> %NC%
      12 ~< %NC%
-     10 ~< pic2 pi6 req set h
+     10 ~< pi2 pi6 req set h
      11 ~< %NC%
      13 ~< pic4 sys clr h
      15 ~> pic1 pih6 h
@@ -325,7 +328,7 @@ e86: 10131 dual ms dff
 
 e85: 10131 dual ms dff
      12 ~< %NC%
-     10 ~< pic2 pi7 req set h
+     10 ~< pi2 pi7 req set h
      11 ~< %NC%
      9 ~< pic2 clk b h
      13 ~< pic4 sys clr h
@@ -418,6 +421,9 @@ e80: 10101 quad or/nor
      13 ~< pic2 pi4 l
      15 ~> {fn1} -pi2 pi4 a l
      9 ~> {fe2} -pi2 pi4 a h
+     10 ~< %NC%
+     14 ~> %NC%
+     11 ~> %NC%
 
 e78: 10165 priority encoder
      5 ~< {cs1} apr ebox disable cs h
@@ -874,6 +880,7 @@ e48: 10113 quad 2 xor
 e45: 10104 quad and/nand
      12 ~< pic4 mr reset l
      13 ~< pic4 mr reset l
+     15 ~> %NC%
      9 ~> pic2 tim1 h
      10 ~< pic2 dk20 requesting h
      11 ~< pic2 tim6 h
