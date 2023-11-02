@@ -199,7 +199,7 @@ D 0246, 0001,1004				; 5161			I,		J/LSHC		;LSHC--Adjoins UUO (247)
 
 # Clock timing
 * From LCG_GoodStuffNewsletters.pdf p.42
-
+```
     |                            KL10-PV                                |
     | ================================================================  |
     | MBOX     | 33.3ns | MB00 H, MB06 H, MB12 H, MBZ H, MBX H, MBC H,  |
@@ -213,4 +213,4 @@ D 0246, 0001,1004				; 5161			I,		J/LSHC		;LSHC--Adjoins UUO (247)
     | DTE      | 66.6ns  | EBUS 10/11 CLK {08,09,10,11} L               |
     | EBUS     | 133.2ns | CLK 0[0-7] L, CLK 15L |
     | SBUS     | 133.2ns | CLK INT L, CLK EXT L  |
-
+```
