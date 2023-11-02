@@ -277,7 +277,7 @@ e84: 10131 dual ms dff
      12 ~< %NC%
      10 ~< pi2 pi2 req set h
      11 ~< %NC%
-     13 ~< pic2 pi3 req set h
+     13 ~< pi2 pi3 req set h
      15 ~> pic1 pih2 h
      14 ~> %NC%
 
