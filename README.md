@@ -124,13 +124,17 @@ required. See the `Learnings` section below for details.
 * I do not strip newlines embedded in macro selectors, so these have
   to be coded in a single line of text. So
 
+```
 	<AK1> [N/30+1,
 		ADX CRY [N+6] H,
 		CTL ADX CRY 36 H]
-		
+```
+
   is now
 
+```
 	{ak1} [n/30+1,adx cry [n+06] h,ctl adx cry 36 h]
+```
 
 
 # Learnings
