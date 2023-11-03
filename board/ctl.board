@@ -54,7 +54,7 @@ e25: 10162 decoder
       3 ~> %NC%
       13 ~> %NC%
       12 ~> ctl1 disp/norm h
-      11 ~> ctl disp/ea mod h
+      11 ~> ctl1 disp/ea mod h
       10 ~> %NC%
 
 e23: 10162 decoder
@@ -70,7 +70,7 @@ e23: 10162 decoder
       13 ~> {cm1} ctl1 spec/clr fpd h
       12 ~> ctl1 spec/load pc h
       11 ~> ctl1 spec/xcry ar0 h
-      10 ~> {aa2} ctl spec/gen cry 18 h
+      10 ~> ctl1 spec/gen cry 18 h
 
 e26: 10162 decoder
       14 ~< {df2} cra3 disp 02 h
@@ -222,7 +222,7 @@ e20: 10101 quad or/nor
      2 ~> %NC%
      5 ~> {cs2} -ctl1 disp ret h
      7 ~< ctl1 disp/return h
-     3 ~> -ctl1 disp ret h
+     3 ~> {cs2} -ctl1 disp ret h
      6 ~> %NC%
 // This does not make sense if B is '1' since it leaves
 // CTL3 DIAG READ L always asserted. Maybe connecting to <BN1>
@@ -252,9 +252,9 @@ e16: 10105 quad or buffer
      15 ~> %NC%
 
 e12: 10117 dual 2-3 or-and
-     4 ~< {aa2} ctl spec/gen cry 18 h
+     4 ~< ctl1 spec/gen cry 18 h
      5 ~< ctl1 spec/stack update h
-     6 ~< {aa2} ctl spec/gen cry 18 h
+     6 ~< ctl1 spec/gen cry 18 h
      7 ~< {cn1} mcl4 short stack h
      9 ~< %NC%
      3 ~> %NC%
@@ -442,10 +442,10 @@ e49: 10101 quad or/nor
      7 ~< {fj2} ctl3 diag spare l
      3 ~> {fj1} ctl3 diag spare h
      6 ~> %NC%
-     13 ~< ctl3-e37-4
+     13 ~< ctl3-e37-13
      15 ~> {fr2} ctl3 diag force extend l
      9 ~> {fr1} ctl3 diag force extend h
-     10 ~< ctl3-e37-4
+     10 ~< ctl3-e37-14
      14 ~> {fn1} ctl3 diag diag 04 l
      11 ~> {fm1} ctl3 diag diag 04 h
 
@@ -479,7 +479,7 @@ e33: 10158 4x2 mixer
      15 ~> ctl2-e33-15
      14 ~> ctl2-e33-14
 
-e64: 10109 4/5 or/nor
+e46: 10109 4/5 or/nor
      9 ~< {fs1} mcl5 23 bit ea h
      10 ~< ctl1 reset h
      11 ~< {fs2} mcl5 18 bit ea h
@@ -488,7 +488,7 @@ e64: 10109 4/5 or/nor
      14 ~> ctl2 ar 00-11 clr l
      15 ~> {ef1} ctl ar 00-11 clr h
      4 ~< ctl2-e51-14
-     5 ~< ctl2-e51-14
+     5 ~< ctl2-e33-15
      6 ~< {fs2} mcl5 18 bit ea h
      7 ~< ctl1 reset h
      3 ~> %NC%
@@ -582,7 +582,7 @@ e29: 10162 decoder
      3 ~> ctl2 cond/ar clr h
      4 ~> ctl2 cond/arx clr h
      5 ~> ctl2 cond/arl ind h
-     6 ~> clt2 cond/reg ctl h
+     6 ~> ctl2 cond/reg ctl h
 
 e50: 10117 dual 2-3 or-and
      4 ~< {fl1} mcl load ar h
@@ -631,7 +631,7 @@ e32: 10109 4/5 or/nor
 
 e36: 10158 4x2 mixer
      6 ~< %NC%
-     5 ~< %NC%
+     5 ~< ctl2-e32-2
      4 ~< %NC%
      3 ~< ctl2-e32-14
      13 ~< ctl2-e32-3
@@ -730,7 +730,7 @@ e14: 10158 4x2 mixer
      10 ~< {ek2} cram # 04 c h
      11 ~< {cd1} ebus ds02 e h
      9 ~< {dj1} ctl console control h
-     1 ~> ctl3 read strobe h
+     1 ~> ctl3 read strobe l
      2 ~> ctl3 ds 00 h
      15 ~> ctl3 ds 01 h
      14 ~> ctl3 ds 02 h
