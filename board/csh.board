@@ -59,7 +59,7 @@ e50: 10101 quad or/nor
      5 ~> {es1} csh1 ebox req grant a l
      10 ~< csh1 mr reset a l
      12 ~< %NC%
-     14 ~> csh reset b h
+     14 ~> csh1 reset b h
      11 ~> %NC%
      13 ~< csh6 ebox took 1 wd h
      15 ~> %NC%
@@ -85,10 +85,11 @@ e55: 10109 4/5 or/nor
      2 ~> %NC%
 
 e76: 10109 4/5 or/nor
-     9 ~< {da1} apr6 ebox cca l
+     // Time crit stub
+     9 ~< {ff2} mbx1 cca req l
      10 ~< {fe1} -ccl chan req l
      11 ~< csh2 ebox req en l
-     12 ~< {ee1} clk4 ebox req l
+     12 ~< {fh2} -clk4 ebox req l
      13 ~< -csh1 mb req l
      14 ~> {eu2} csh1 cca req grant h
      15 ~> csh1 cca req grant l
@@ -149,7 +150,6 @@ e62: 10176 hex dff
      9 ~< csh1 clk c h
      13 ~> csh1 mb req h
      12 ~< csh1-e40-7
-     9 ~< csh1 clk c h
      15 ~> csh1 cca req en l
      11 ~< csh4 ebox t0 in l
      14 ~> csh4 ebox t0 l
@@ -236,7 +236,7 @@ e54: 10104 quad and/nand
      3 ~> csh3 map problem h
 
 e52: 10176 hex dff
-     6 ~< csh1 cache idle3 in d h
+     6 ~< csh1 cache idle in d h
      9 ~< csh1 clk a h
      3 ~> csh1 cache idle in h
      11 ~< csh1-e46-15
@@ -507,7 +507,7 @@ e53: 10176 hex dff
      9 ~< csh1 clk a h
      4 ~> csh2 rd pse 2nd req en l
      6 ~< csh2 ebox retry next in h
-     3 ~> csh2 box retry next h
+     3 ~> csh2 ebox retry next h
      5 ~< csh4-e63-2
      2 ~> csh4 ebox wr t3 l
      11 ~< csh4-e48-2
@@ -684,6 +684,22 @@ e51: 10121 4-wide or-and
      15 ~< -csh2 ebox retry next l
      3 ~> %NC%
      2 ~> csh2-e51-2
+
+e25: 10117 dual 2-3 or-and
+     13 ~< csh1 ebox cyc b l
+     12 ~< csh4 writeback t1 l
+     11 ~< %NC%
+     10 ~< csh2 ebox retry next l
+     9 ~< -csh1 reset a l
+     14 ~> %NC%
+     15 ~> {as1} csh2 ebox retry req l
+     4 ~< csh5 page refill t10 l
+     5 ~< {ec1} -core busy l
+     6 ~< -csh2 ebox restart l
+     7 ~< csh5 page refill comp l
+     9 ~< -csh1 reset a l
+     3 ~> %NC%
+     2 ~> csh5-e25-2
 
 Page: CSH3, PDF26
 
@@ -897,6 +913,7 @@ e69: 10176 hex dff
      11 ~< csh4-e65-15
      14 ~> csh4 ebox t2 l
      10 ~< csh4 ebox t2 l
+     // Time critical
      13 ~> {au2} csh4 ebox t3 l
      5 ~< {ek1} mbc2 csh data clr t3 l
      2 ~> csh4 data clr t4 l
@@ -1030,22 +1047,6 @@ e18: 10176 hex dff
      3 ~> csh6 data dly 2 l
 
 Page: CSH5, PDF28
-
-e25: 10117 dual 2-3 or-and
-     13 ~< csh1 ebox cyc b l
-     12 ~< csh4 writeback t1 l
-     11 ~< %NC%
-     10 ~< csh2 ebox retry next l
-     9 ~< -csh1 reset a l
-     14 ~> %NC%
-     15 ~> {as1} csh2 ebox retry req l
-     4 ~< csh5 page refill t10 l
-     5 ~< {ec1} -core busy l
-     6 ~< -csh2 ebox restart l
-     7 ~< csh5 page refill comp l
-     9 ~< -csh1 reset a l
-     3 ~> %NC%
-     2 ~> csh5-e25-2
 
 e85: 10118 triple 4-2 or-and
      14 ~< csh5 page refill t10 l
@@ -1222,7 +1223,7 @@ e32: 10164 8 mixer
      9 ~< csh7-e56-14
      7 ~< csh7-e56-15
      2 ~< csh7-e56-6
-     15 ~> {cd1} ebus d24 e h
+//     15 ~> {cd1} ebus d24 e h
      15 ~> `EBUSdriver.data[24]
 
 // There's a blank in PDF30 where the second digit of this reference
@@ -1240,7 +1241,7 @@ e27: 10164 8 mixer
      9 ~< csh7-e56-14
      7 ~< csh7-e56-15
      2 ~< csh7-e56-6
-     15 ~> {cm1} ebus d25 e h
+//     15 ~> {cm1} ebus d25 e h
      15 ~> `EBUSdriver.data[25]
 
 e78: 10164 8 mixer
