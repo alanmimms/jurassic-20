@@ -24,7 +24,7 @@ Slot  7: {i=1 n=18 p=12} ignore MT0 SBUS translator M8519
 Slot  8: {k=01} ignore MT0 SBUS translator M8519
 
 Slot  9: {m=0} chc M8533
-Slot 10: crc M8535
+Slot 10: {n=0} crc M8535
 Slot 11: {n=0} ccl M8536
 Slot 12: {n=0} ccw M8534
 

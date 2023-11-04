@@ -1,3 +1,8 @@
+%verilog
+,
+  output tEBUSdriver EBUSdriver
+%endverilog
+
 Page: CRC1, PDF245
 // M8535 TBD
 
@@ -17,7 +22,7 @@ e39: 10105 2-3-2 or/nor
      7 ~> crc3-e39-7
 
 e37: 10109 4/5 or-nor
-     9 ~< crc af req en l
+     9 ~< crc af req ena l
      10 ~< {ct2} -ccl wc=0 in l
      11 ~< {cs2} crc ram cyc l
      12 ~< crc op code 00 in l
@@ -35,9 +40,9 @@ e24: 10105 2-3-2 or/nor
      9 ~< crc ptr dif0 l
      10 ~< crc ptr dif1 l
      11 ~< crc ptr dif2 l
-     6 ~> crc ready in h
-     7 ~> crc ready in l
-     12 ~< crc read in l
+     6 ~> crc ready inh h
+     7 ~> crc ready inh l
+     12 ~< crc ready inh l
      13 ~< crc ptr dif3 l
      14 ~> crc ptr dif=15 h
      15 ~> crc ptr dif=15 l
@@ -174,7 +179,7 @@ e34: 10103 quad or
      11 ~< {ct2} -ccl wc=0 in l
      14 ~> crc4-e34-14
      12 ~< {cs2} crc ram cyc l
-     13 ~< crc1-dl1-2
+     13 ~< crc5-dl1-2
      9 ~> crc wr ram h
      15 ~> {ap2} crc wr ram l
 
@@ -278,7 +283,7 @@ e44: 10105 2-3-2 or/nor
      12 ~< crc t3 l
      13 ~< %NC%
      14 ~> %NC%
-     15 ~> crc1-e44-15
+     15 ~> crc5-e44-15
 
 dlpcb1: delay-line (PCB wired)
      1 ~< {cr2} clk crc h
@@ -687,7 +692,7 @@ e40: 10117 dual 2-3 or-and
      12 ~< {dd2} ccl mem store req l
      13 ~< {fn1} crc mb cyc l
      10 ~< crc done in l
-     11 ~< crc read clr en l
+     11 ~< crc ready clr en l
      9 ~< -crc store in l
      14 ~> crc ready clr h
      15 ~> %NC%
@@ -899,6 +904,10 @@ e45: 10109 4-5 or/nor
 
 Page: CRC5, PDF249
 
+%verilog
+  always_comb EBUSdriver.driving = !ch_diag_read_c_l;
+%endverilog
+
 e43: 10164 8 mixer
      6 ~< -crc reset in h
      5 ~< {dr2} crc rh20 err in h
@@ -912,7 +921,8 @@ e43: 10164 8 mixer
      9 ~< {dl2} ch diag 05 h
      7 ~< {ds1} ch diag 06 h
      2 ~< {dp2} ch diag read c l
-     15 ~> {dp1} ebus d[n+01] e h
+//     15 ~> {dp1} ebus d[n+01] e h
+     15 ~> `EBUSdriver.data[n+1]
 
 e47: 10164 8 mixer
      6 ~< {ed1} -crc mem store ena h
@@ -927,7 +937,8 @@ e47: 10164 8 mixer
      9 ~< {dl2} ch diag 05 h
      7 ~< {ds1} ch diag 06 h
      2 ~< {dp2} ch diag read c l
-     15 ~> {ec1} ebus d[n+02] e h
+//     15 ~> {ec1} ebus d[n+02] e h
+     15 ~> `EBUSdriver.data[n+2]
 
 e56: 10164 8 mixer
      6 ~< crc done in h
@@ -942,7 +953,8 @@ e56: 10164 8 mixer
      9 ~< {dl2} ch diag 05 h
      7 ~< {ds1} ch diag 06 h
      2 ~< {dp2} ch diag read c l
-     15 ~> {es1} ebus d[n+03] e h
+//     15 ~> {es1} ebus d[n+03] e h
+     15 ~> `EBUSdriver.data[n+3]
 
 e51: 10164 8 mixer
      6 ~< crc store in h
@@ -957,7 +969,8 @@ e51: 10164 8 mixer
      9 ~< {dl2} ch diag 05 h
      7 ~< {ds1} ch diag 06 h
      2 ~< {dp2} ch diag read c l
-     15 ~> {ej1} ebus d[n+04] e h
+//     15 ~> {ej1} ebus d[n+04] e h
+     15 ~> `EBUSdriver.data[n+4]
 
 e61: 10164 8 mixer
      6 ~< {ff1} crc ch buf adr 0 h
@@ -972,7 +985,8 @@ e61: 10164 8 mixer
      9 ~< {dl2} ch diag 05 h
      7 ~< {ds1} ch diag 06 h
      2 ~< {dp2} ch diag read c l
-     15 ~> {fe1} ebus d[n+00] e h
+//     15 ~> {fe1} ebus d[n+00] e h
+     15 ~> `EBUSdriver.data[n+0]
 
 e68: 10121 4-wide or-and/or-and
      4 ~< crc cbus req cyc l
@@ -990,8 +1004,8 @@ e68: 10121 4-wide or-and/or-and
      2 ~> {fu2} crc ram adr 4r l
 
 dl1: delay-line 13ns
-     1 ~< crc1-e44-15
-     2 ~> crc1-dl1-2
+     1 ~< crc5-e44-15
+     2 ~> crc5-dl1-2
 
 e63: 10121 4-wide or-and
      4 ~< crc cbus req cyc l
@@ -1165,7 +1179,7 @@ e75: 10121 4-wide or-and
      5 ~< %NC%
      6 ~< crc t3 l
      7 ~< {fv2} crc req e l
-     9 ~< crc adr 0e l
+     9 ~< crc ch adr 0e l
      10 ~< crc t0+t1 l
      11 ~< crc af mem ptr0 l
      12 ~< -crc req e l
@@ -1180,7 +1194,7 @@ e74: 10121 4-wide or-and
      5 ~< %NC%
      6 ~< crc t3 l
      7 ~< {fv2} crc req e l
-     9 ~< crc adr 1e l
+     9 ~< crc ch adr 1e l
      10 ~< crc t0+t1 l
      11 ~< crc af mem ptr1 l
      12 ~< -crc req e l
@@ -1195,7 +1209,7 @@ e64: 10121 4-wide or-and
      5 ~< %NC%
      6 ~< crc t3 l
      7 ~< {fv2} crc req e l
-     9 ~< crc adr 2e l
+     9 ~< crc ch adr 2e l
      10 ~< crc t0+t1 l
      11 ~< crc af mem ptr2 l
      12 ~< -crc req e l
@@ -1210,7 +1224,7 @@ e78: 10121 4-wide or-and
      5 ~< %NC%
      6 ~< crc t3 l
      7 ~< {fv2} crc req e l
-     9 ~< crc adr 3e l
+     9 ~< crc ch adr 3e l
      10 ~< crc t0+t1 l
      11 ~< crc af mem ptr3 l
      12 ~< -crc req e l
