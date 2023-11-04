@@ -21,7 +21,7 @@ e68:  10131 dual dff
       3 ~> clk1-e68-3
       4 ~< %NC%
       5 ~< %NC%
-      10 ~< clk1-e68-3
+      10 ~< clk1-e68-14
       11 ~< clk1-osc62-1
       15 ~> clk1-e68-15
       14 ~> clk1-e68-14
@@ -242,7 +242,7 @@ e66: 10131 dual ms d ff
      6 ~< clk1 ebus clk source h
      9 ~< %NC%
      5 ~< %NC%
-     4 ~< %NC%
+     4 ~< clk2 func clr reset h
      2 ~> {bk1} clk ebus clk h
      3 ~> %NC%
      10 ~< %NC%
@@ -562,7 +562,7 @@ e53: 10101 quad or/nor
      4 ~< clk3-e58-3
      2 ~> clk3 cram par err h
      5 ~> %NC%
-     10 ~< clk3-e58-2
+     10 ~< clk3-e58-4
      14 ~> clk3 fm par err h
      11 ~> %NC%
      7 ~< clk3 error h
@@ -600,8 +600,16 @@ e45: 10176 hex d ff
      12 ~< %NC%
      15 ~> %NC%
 
+// Use EBOX SYNC as an FS input
+// when looking at EBOX signals.
+//
+// NOTE: This logic is checked on
+// every MBOX clock. If the error
+// step logic is used on EBOX signal
+// then CLK EBOX SYNC should be
+// jumper in.
 e57: 10109 4/5 or/nor
-     4 ~< {em1} clk3 fs en a h
+     4 ~< {em1} clk3 fs en a h1
      5 ~< {el1} clk3 fs en b h
      6 ~< {el2} clk3 fs en c h
      7 ~< {ek1} clk3 fs en d h
@@ -742,7 +750,7 @@ e11: 10104 quad and/nand
      15 ~> %NC%
      6 ~< clk3 sync en h
      7 ~< {ak1} csh2 mbox resp in h
-     3 ~> {am1} clk3 ar/arx mem load h		// AKA clk4 resp sim h
+     3 ~> {am1} clk3 ar/arx mem load h		// Also known as CLK4 RESP SIM H?
      4 ~< clk4 page fail en h
      5 ~< -clk2 reset h
      2 ~> clk4-e11-2
@@ -773,7 +781,6 @@ e12: 10141 shift reg
      6 ~< clk3 ebox src en h
      5 ~< %NC%
      7 ~< clk4 page fail h
-     7 ~< %NC%
      10 ~< clk4 pf dlyd a h
      4 ~< clk1 odd a h
      14 ~> clk3-e12-14
@@ -904,7 +911,7 @@ e9:  10104 quad and/nand
      9 ~> clk4 1777 en l
      15 ~> clk4 1777 en h
      10 ~< clk2 burst l
-     11 ~< clk2 buf 043 l
+     11 ~< clk2 func 043 l
      14 ~> clk5-e9-14
      4 ~< clk1 rate selected l
      5 ~< clk2 func 042 l
@@ -977,7 +984,7 @@ e54: 10164 8 mixer
      9 ~< clk5 diag 05 h
      7 ~< clk5 diag 06 h
      2 ~< clk5 diag read l
-     15 ~> {cl1} ebus d30 e h
+//     15 ~> {cl1} ebus d30 e h
      15 ~> `EBUSdriver.data[30]
 
 e35: 10164 8 mixer
@@ -1041,7 +1048,7 @@ e49: 10164 8 mixer
      9 ~< clk5 diag 05 h
      7 ~< clk5 diag 06 h
      2 ~< clk5 diag read l
-     15 ~> {dk1} ebus d34 e h
+//     15 ~> {dk1} ebus d34 e h
      15 ~> `EBUSdriver.data[34]
 
 e28: 10164 8 mixer
