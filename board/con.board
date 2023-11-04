@@ -669,7 +669,7 @@ e51: 10105 2-3-2 or/nor
      7 ~> {ff1} con fm write par l
      4 ~< con1 cond/spec instr l
      5 ~< con3 # 00 l
-     3 ~> con5-e51-3
+     3 ~> con4-e51-3
      2 ~> %NC%
 
 e11: 10101 quad or/nor
