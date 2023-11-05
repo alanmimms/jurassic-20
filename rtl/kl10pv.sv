@@ -95,6 +95,7 @@ module kl10pv(input clk60, input crobar);
   cha27 cha_27(.*);
   chx28 chx_28(.EBUSdriver(chxEBUSdriver), .*);
 `endif
+
   chc09 chc_09(.EBUSdriver(chcEBUSdriver), .*);
   clk32 clk_32(.EBUSdriver(clkEBUSdriver), .*);
   con35 con_35(.EBUSdriver(conEBUSdriver), .*);
@@ -199,10 +200,6 @@ module kl10pv(input clk60, input crobar);
 
   // "Mux" for EBUS data lines
   always_comb begin
-`ifdef CACHELESS
-  chxEBUSdriver.driving = 0;
-`endif
-
     if (feEBUSdriver.driving) ebus.data = feEBUSdriver.data;
     else if (aprEBUSdriver.driving) ebus.data = aprEBUSdriver.data;
     else if (cclEBUSdriver.driving) ebus.data = cclEBUSdriver.data;
@@ -249,28 +246,71 @@ module kl10pv(input clk60, input crobar);
   end // always_comb
   
 
-  // Alias the AD EX nn bits so we can remove my hack and avoid the
-  // extra selectors in EDP as originally designed.
-  always_comb begin
-    ad_ex_04_h = ad_04_h;
-    ad_ex_10_h = ad_10_h;
-    ad_ex_16_h = ad_16_h;
-    ad_ex_22_h = ad_22_h;
-    ad_ex_28_h = ad_28_h;
-
-    ad_ex_05_h = ad_05_h;
-    ad_ex_11_h = ad_11_h;
-    ad_ex_17_h = ad_17_h;
-    ad_ex_23_h = ad_23_h;
-    ad_ex_29_h = ad_29_h;
-  end
-
-
   // Assign '0' to all undriven nets we KNOW are meant to be undriven
   // so they stop causing warnings.
   always_comb begin
     apr3_spare_l = 0;
     apr_apr_par_chk_en_l = 0;	// XXX This is never assigned anywhere (used in CLK4)
+    cra2_spare_h = 0;
+    clk_resp_sim_h = 0;
+    external_clk_h = 0;
+    deskew_clk_h = 0;
+    ctl3_diag_spare_l = 0;
+    synchronize_clk_h = 0;
+    probe_h = 0;
+
+    // For now
+    pwr_warn_e_h = 0;
+
+    // Field service signals.
+    clk3_fs_en_a_h = 0;
+    clk3_fs_en_b_h = 0;
+    clk3_fs_en_c_h = 0;
+    clk3_fs_en_d_h = 0;
+    // Should these active-low pins be driven high by default? It
+    // doesn't look like there is provision to do so in the design.
+    clk3_fs_en_e_l = 0;
+    clk3_fs_en_f_l = 0;
+    clk3_fs_en_g_l = 0;
+
+    // It looks like KL10 model B has a feature where you can
+    // disconnect the metering carry bit for the counters. I'll just
+    // connect them all, which I presume is the default backplane
+    // wiring.
+    mtr1_cache_cry_10_in_l = mtr1_cache_cry_10_l;
+    mtr1_ebox_cry_10_in_l = mtr1_ebox_cry_10_l;
+//    mtr1_interval_cry_10_in_l = mtr1_interval_cry_10_l;
+    mtr1_perf_cry_10_in_l = mtr1_perf_cry_10_l;
+    mtr1_time_cry_10_in_l = mtr1_time_cry_10_l;
+
+    // CRAM # is only nine bits, but EDP implements it in each EDP slot.
+    cram_Nr_09_h = 0;
+    cram_Nr_10_h = 0;
+    cram_Nr_11_h = 0;
+    cram_Nr_12_h = 0;
+    cram_Nr_13_h = 0;
+    cram_Nr_14_h = 0;
+    cram_Nr_15_h = 0;
+    cram_Nr_16_h = 0;
+    cram_Nr_17_h = 0;
+    cram_Nr_18_h = 0;
+    cram_Nr_19_h = 0;
+    cram_Nr_20_h = 0;
+    cram_Nr_21_h = 0;
+    cram_Nr_22_h = 0;
+    cram_Nr_23_h = 0;
+    cram_Nr_24_h = 0;
+    cram_Nr_25_h = 0;
+    cram_Nr_26_h = 0;
+    cram_Nr_27_h = 0;
+    cram_Nr_28_h = 0;
+    cram_Nr_29_h = 0;
+    cram_Nr_30_h = 0;
+    cram_Nr_31_h = 0;
+    cram_Nr_32_h = 0;
+    cram_Nr_33_h = 0;
+    cram_Nr_34_h = 0;
+    cram_Nr_35_h = 0;
 
     // ARMM is only nine bits, but EDP implements it in each EDP slot.
     armm_09_h = 0;
@@ -311,8 +351,6 @@ module kl10pv(input clk60, input crobar);
     bp_only_es2_h = 0;
 
     brx_36_h = 0;
-
-    cache_exists_l = 0;		// Somehow should come from strapping option?
 
     // For now CBUS is not connected.
     cbus_ctom_e_h = 0;
@@ -360,5 +398,14 @@ module kl10pv(input clk60, input crobar);
     cbus_start_e_h = 0;
     cbus_store_e_h = 0;
  end
+
+`ifdef CACHELESS
+  // These are all of the signals that have no driver when we build a
+  // cacheless KL10.
+  always_comb begin
+    chxEBUSdriver.driving = 0;
+    chxEBUSdriver.data = 0;
+  end
+`endif
 
 endmodule // kl10pv

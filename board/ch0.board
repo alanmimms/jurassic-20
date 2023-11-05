@@ -94,3 +94,31 @@ e9: 10110 or buffer
     14 ~> {fv2} cache exists l
     13 ~> {fv2} cache exists l
     12 ~> {fv2} cache exists l
+
+e100: 10110 or buffer
+      5 ~< %NC%
+      6 ~< 0
+      7 ~< %NC%
+      11 ~< %NC%
+      10 ~< 0
+      9 ~< %NC%
+      2 ~> {ff1} cache data [n+00] a h
+      3 ~> {ep2} cache data [n+01] a h
+      4 ~> {es2} cache data [n+02] a h
+      14 ~> {df1} cache data [n+03] a h
+      13 ~> {dm1} cache data [n+04] a h
+      12 ~> {be2} cache data [n+05] a h
+
+e101: 10110 or buffer
+      5 ~< %NC%
+      6 ~< 0
+      7 ~< %NC%
+      11 ~< %NC%
+      10 ~< 0
+      9 ~< %NC%
+      2 ~> {bk1} cache data [n+06] a h
+      3 ~> {ar1} cache data [n+07] a h
+      4 ~> {bd2} cache data [n+08] a h
+      14 ~> %NC%
+      13 ~> %NC%
+      12 ~> %NC%

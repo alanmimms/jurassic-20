@@ -24,3 +24,43 @@ w4: wire (wire)
 w5: wire (wire)
     1 ~< 1
     2 ~> {fh2} csh adr par bad l
+
+z100: zero6 just six zeroes
+      1 ~> {bv2} cam 14 h
+      2 ~> {bt2} cam 15 h
+      3 ~> {ck2} cam 16 h
+      4 ~> {ce2} cam 17 h
+      5 ~> {cu2} cam 18 h
+      6 ~> {cs2} cam 19 h
+
+z101: zero6 just six zeroes
+      1 ~> {ej1} cam 20 h
+      2 ~> {ej2} cam 21 h
+      3 ~> {ff1} cam 22 h
+      4 ~> {fc1} cam 23 h
+      5 ~> {fm2} cam 24 h
+      6 ~> {fk2} cam 25 h
+
+z102: zero6 just six zeroes
+      1 ~> {fv2} cam 26 h
+      2 ~> {bl2} csh wd 0 val h
+      3 ~> {bk2} csh wd 1 val h
+      4 ~> {bf2} csh wd 2 val h
+      5 ~> {bd2} csh wd 3 val h
+      6 ~> %NC%
+
+z1: zero6 just six zeroes
+    1 ~> {au2} csh 0 wd val h
+    2 ~> {ar2} csh 1 wd val h
+    3 ~> {bj2} csh 2 wd val h
+    4 ~> {bh2} csh 3 wd val h
+    5 ~> {cp2} csh 0 valid match h
+    6 ~> {cj2} csh 1 valid match h
+
+z2: zero6 just six zeroes
+    1 ~> {fe2} csh 2 valid match h
+    2 ~> {et2} csh 3 valid match h
+    3 ~> {br1} csh lru 1 h
+    4 ~> {bs1} csh lru 2 h
+    5 ~> %NC%
+    6 ~> %NC%

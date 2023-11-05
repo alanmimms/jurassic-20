@@ -1,6 +1,6 @@
 %verilog
 ,
-  output tEBUSdriver cclEBUSdriver
+  output tEBUSdriver EBUSdriver
 %endverilog
 
 Page: CCL1, PDF267
@@ -224,7 +224,8 @@ e51: 10164 8 mixer
      9 ~< {dc1} -ch diag 05 h
      7 ~< {de1} -ch diag 06 h
      2 ~< {dd2} ch diag read a l
-     15 ~> {dp2} ebus d[n+00] e h
+//     15 ~> {dp2} ebus d[n+00] e h
+     15 ~> `EBUSdriver.data[n+0]
 
 e56: 10164 8 mixer
      6 ~< -ccl csh chan cyc h
@@ -239,7 +240,8 @@ e56: 10164 8 mixer
      9 ~< {dc1} -ch diag 05 h
      7 ~< {de1} -ch diag 06 h
      2 ~< {dd2} ch diag read a l
-     15 ~> {ed2} ebus d[n+02] e h
+//     15 ~> {ed2} ebus d[n+02] e h
+     15 ~> `EBUSdriver.data[n+2]
 
 e41: 10164 8 mixer
      6 ~< ccl mem ptr en h
@@ -254,7 +256,8 @@ e41: 10164 8 mixer
      9 ~< {dc1} -ch diag 05 h
      7 ~< {de1} -ch diag 06 h
      2 ~< {dd2} ch diag read a l
-     15 ~> {cv2} ebus d[n+03] e h
+//     15 ~> {cv2} ebus d[n+03] e h
+     15 ~> `EBUSdriver.data[n+3]
 
 e40: 10118 triple 4-2 or-and
      12 ~< {df1} ccl chan to mem l

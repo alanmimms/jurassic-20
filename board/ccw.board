@@ -764,7 +764,8 @@ e49: 10164 8 mixer
      9 ~< {cm1} -ch diag 05 h
      7 ~< {cu2} -ch diag 06 h
      2 ~< {dt2} ch diag read b l
-     15 ~> {dk1} ebus d[n+00] e h
+//     15 ~> {dk1} ebus d[n+00] e h
+     15 ~> `EBUSdriver.data[n+0]
 
 e37: 10164 8 mixer
      6 ~< ccw ram adr 2 h
@@ -779,7 +780,8 @@ e37: 10164 8 mixer
      9 ~< {cm1} -ch diag 05 h
      7 ~< {cu2} -ch diag 06 h
      2 ~< {dt2} ch diag read b l
-     15 ~> {cf1} ebus d[n+01] e h
+//     15 ~> {cf1} ebus d[n+01] e h
+     15 ~> `EBUSdriver.data[n+1]
 
 e54: 10164 8 mixer
      6 ~< ccw ram adr 4 h
@@ -794,7 +796,8 @@ e54: 10164 8 mixer
      9 ~< {cm1} -ch diag 05 h
      7 ~< {cu2} -ch diag 06 h
      2 ~< {dt2} ch diag read b l
-     15 ~> {eh2} ebus d[n+02] e h
+//     15 ~> {eh2} ebus d[n+02] e h
+     15 ~> `EBUSdriver.data[n+2]
 
 e40: 10164 8 mixer
      6 ~< {ef1} ccl wc=1 h
@@ -809,7 +812,8 @@ e40: 10164 8 mixer
      9 ~< {cm1} -ch diag 05 h
      7 ~< {cu2} -ch diag 06 h
      2 ~< {dt2} ch diag read b l
-     15 ~> {cs2} ebus d[n+03] e h
+//     15 ~> {cs2} ebus d[n+03] e h
+     15 ~> `EBUSdriver.data[n+3]
 
 e48: 10164 8 mixer
      6 ~< {dr1} ccl wc=2 h
@@ -824,7 +828,8 @@ e48: 10164 8 mixer
      9 ~< {cm1} -ch diag 05 h
      7 ~< {cu2} -ch diag 06 h
      2 ~< {dt2} ch diag read b l
-     15 ~> {dl1} ebus d[n+04] e h
+//     15 ~> {dl1} ebus d[n+04] e h
+     15 ~> `EBUSdriver.data[n+4]
 
 e44: 10164 8 mixer
      6 ~< {dj1} ccw odd adr par h
@@ -839,7 +844,8 @@ e44: 10164 8 mixer
      9 ~< {cm1} -ch diag 05 h
      7 ~< {cu2} -ch diag 06 h
      2 ~< {dt2} ch diag read b l
-     15 ~> {df2} ebus d[n+05] e h
+//     15 ~> {df2} ebus d[n+05] e h
+     15 ~> `EBUSdriver.data[n+5]
 
 e35: 10104 quad and/nand
      4 ~< ccw0 act flag h

@@ -288,6 +288,11 @@ const logic = {
     '~>': expand('q=2'),
   },
 
+  'zero6': {
+    desc: 'just six zero',
+    '~>': expand('q1=1, q2=2, q3=3, q4=4, q5=5, q6=6'),
+  },
+
   pinToName(type, pinNumString, dir) {
 
     if (type == undefined || pinNumString == undefined || dir == undefined ||

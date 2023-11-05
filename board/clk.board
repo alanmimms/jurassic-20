@@ -609,7 +609,7 @@ e45: 10176 hex d ff
 // then CLK EBOX SYNC should be
 // jumper in.
 e57: 10109 4/5 or/nor
-     4 ~< {em1} clk3 fs en a h1
+     4 ~< {em1} clk3 fs en a h
      5 ~< {el1} clk3 fs en b h
      6 ~< {el2} clk3 fs en c h
      7 ~< {ek1} clk3 fs en d h

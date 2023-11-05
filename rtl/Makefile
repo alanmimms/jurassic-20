@@ -8,7 +8,8 @@ MODS = \
     mc10158 mc10160 mc10161 mc10162 mc10164 mc10165 \
     mc10173 mc10174 mc10176 mc10179 mc10181 mc10210 \
     oscillator seq delay1 delay2 delay3 delayN delayNinverted \
-    just_a_wire delay_line tapped_delay_20_2 tapped_delay_50_10
+    just_a_wire delay_line tapped_delay_20_2 tapped_delay_50_10 \
+    just_six_zero
 
 TOP = kl10pv
 

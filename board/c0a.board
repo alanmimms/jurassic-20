@@ -3,3 +3,19 @@ Page: C0A1, PDF44
 
 // This board contains only termination resistors and decoupling
 // capacitors.
+
+z1: zero6 just six zeroes
+    1 ~> {al2} csh 0 any wr l
+    2 ~> {aj2} csh 1 any wr l
+    3 ~> {bl2} csh 2 any wr l
+    4 ~> {be2} csh 3 any wr l
+    5 ~> {au2} csh wd 0 wr h
+    6 ~> {am2} csh wd 1 wr h
+
+z2: zero6 just six zeroes
+    1 ~> {ad1} csh wd 2 wr h
+    2 ~> {av2} csh wd 3 wr h
+    3 ~> %NC%
+    4 ~> %NC%
+    5 ~> %NC%
+    6 ~> %NC%
