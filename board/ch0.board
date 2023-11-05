@@ -47,6 +47,9 @@ e2: 10101 quad or/nor
     10 ~< {as2} mem to cache [n+08] h
     14 ~> %NC%
     11 ~> {bd1} cache data [n+08] c h
+    13 ~< %NC%
+    15 ~> %NC%
+    9 ~> %NC%
 
 e4: 10101 quad or/nor
     4 ~< {cm1} mem to cache [n+03] h

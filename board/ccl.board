@@ -1,6 +1,6 @@
 %verilog
 ,
-  output tEBUSdriver EBUSdriver
+  output tEBUSdriver cclEBUSdriver
 %endverilog
 
 Page: CCL1, PDF267

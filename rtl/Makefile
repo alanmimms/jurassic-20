@@ -1,3 +1,6 @@
+# Use CACHELESS or CACHE
+KLTYPE = CACHELESS
+
 MODS = \
     mc10101 mc10103 mc10104 mc10105 mc10107 mc10109 \
     mc10110 mc10113 mc10117 mc10118 mc10121 mc10131 \
@@ -26,7 +29,7 @@ SLOTNAMES-CACHELESS = \
     edp41 edp43 edp49 edp51 edp53 ird48 mb014 mb015 mb016 mbc22 mbx21 \
     mbz20 mcl47 mtr33 pag30 pic31 pma29 scd54 shm46 vma38
 
-SLOTNAMES = $(SLOTNAMES-CACHELESS)
+SLOTNAMES = $(SLOTNAMES-$(KLTYPE))
 
 SVFILES = \
 	kl10pv.sv \
@@ -63,7 +66,7 @@ KILLWARNINGS = \
 
 DEBUG_DIDNOTCONVERGE = --prof-cfuncs -CFLAGS -DVL_DEBUG
 
-DEFINES = -DCACHELESS
+DEFINES = -D$(KLTYPE)
 SVLIBDIR = ./lib/svlib/src
 INCDIR = $(VERILATORROOT)/include $(LIBDIR)/svlib/src
 CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG) $(OPTIMIZE) $(DEFINES)

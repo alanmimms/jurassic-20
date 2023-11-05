@@ -4,10 +4,10 @@
 // peripherals, and power system.
 module kl10pv(input clk60, input crobar);
 
-  tEBUSdriver aprEBUSdriver, cclEBUSdriver, ccwEBUSdriver, chcEBUSdriver, chxEBUSdriver;
-  tEBUSdriver clkEBUSdriver, conEBUSdriver, craEBUSdriver;
+  tEBUSdriver aprEBUSdriver, cclEBUSdriver, ccwEBUSdriver, chcEBUSdriver;
+  tEBUSdriver clkEBUSdriver, conEBUSdriver, craEBUSdriver, crcEBUSdriver;
   tEBUSdriver crm40EBUSdriver, crm42EBUSdriver, crm44EBUSdriver, crm50EBUSdriver, crm52EBUSdriver;
-  tEBUSdriver cshEBUSdriver, ctlEBUSdriver;
+  tEBUSdriver cshEBUSdriver, ctlEBUSdriver, chxEBUSdriver;
   tEBUSdriver edp39EBUSdriver, edp41EBUSdriver, edp43EBUSdriver,
     edp49EBUSdriver, edp51EBUSdriver, edp53EBUSdriver;
   tEBUSdriver irdEBUSdriver, mbcEBUSdriver, mbxEBUSdriver;
@@ -77,20 +77,25 @@ module kl10pv(input clk60, input crobar);
   end
 
   apr34 apr_34(.EBUSdriver(aprEBUSdriver), .*);
-  cac17 cac_17(.*);
-  cac19 cac_19(.*);
-  cac24 cac_24(.*);
-  cac25 cac_25(.*);
   ccl11 ccl_11(.EBUSdriver(cclEBUSdriver), .*);
   ccw12 ccw_12(.EBUSdriver(ccwEBUSdriver), .*);
 
 `ifdef CACHELESS
+  ch017 ch0_17(.*);
+  ch019 ch0_19(.*);
+  ch024 ch0_24(.*);
+  ch025 ch0_25(.*);
   c0a27 c0a_27(.*);
+  c0x28 c0x_28(.*);
 `else
+  cac17 cac_17(.*);
+  cac19 cac_19(.*);
+  cac24 cac_24(.*);
+  cac25 cac_25(.*);
   cha27 cha_27(.*);
+  chx28 chx_28(.EBUSdriver(chxEBUSdriver), .*);
 `endif
   chc09 chc_09(.EBUSdriver(chcEBUSdriver), .*);
-  chx28 chx_28(.EBUSdriver(chxEBUSdriver), .*);
   clk32 clk_32(.EBUSdriver(clkEBUSdriver), .*);
   con35 con_35(.EBUSdriver(conEBUSdriver), .*);
   cra45 cra_45(.EBUSdriver(craEBUSdriver), .*);
@@ -194,6 +199,10 @@ module kl10pv(input clk60, input crobar);
 
   // "Mux" for EBUS data lines
   always_comb begin
+`ifdef CACHELESS
+  chxEBUSdriver.driving = 0;
+`endif
+
     if (feEBUSdriver.driving) ebus.data = feEBUSdriver.data;
     else if (aprEBUSdriver.driving) ebus.data = aprEBUSdriver.data;
     else if (cclEBUSdriver.driving) ebus.data = cclEBUSdriver.data;
