@@ -1,0 +1,26 @@
+Page: C0X1, PDF59
+// M8549YF TBD
+
+// This board contains only terminator resistors, decoupling
+// capacitors, and a few "CSH n VALID MATCH" (and etc) logic false
+// signals.
+
+w1: wire (wire)
+    1 ~< 1
+    2 ~> {cm2} csh 0 valid match l
+
+w2: wire (wire)
+    1 ~< 1
+    2 ~> {bs2} csh 1 valid match l
+
+w3: wire (wire)
+    1 ~< 1
+    2 ~> {ff2} csh 2 valid match l
+
+w4: wire (wire)
+    1 ~< 1
+    2 ~> {fa1} csh 3 valid match l
+
+w5: wire (wire)
+    1 ~< 1
+    2 ~> {fh2} csh adr par bad l

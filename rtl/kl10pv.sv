@@ -83,7 +83,12 @@ module kl10pv(input clk60, input crobar);
   cac25 cac_25(.*);
   ccl11 ccl_11(.EBUSdriver(cclEBUSdriver), .*);
   ccw12 ccw_12(.EBUSdriver(ccwEBUSdriver), .*);
+
+`ifdef CACHELESS
+  c0a27 c0a_27(.*);
+`else
   cha27 cha_27(.*);
+`endif
   chc09 chc_09(.EBUSdriver(chcEBUSdriver), .*);
   chx28 chx_28(.EBUSdriver(chxEBUSdriver), .*);
   clk32 clk_32(.EBUSdriver(clkEBUSdriver), .*);

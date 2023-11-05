@@ -14,11 +14,19 @@ VOBJDIR = ./obj_dir
 LOGICDIR = logic
 GENDIR = ./gen
 
-SLOTNAMES = \
+SLOTNAMES-CACHE = \
     apr34 cac17 cac19 cac24 cac25 ccl11 ccw12 cha27 chc09 chx28 clk32 \
     con35 cra45 crc10 crm40 crm42 crm44 crm50 crm52 csh23 ctl36 edp39 \
     edp41 edp43 edp49 edp51 edp53 ird48 mb014 mb015 mb016 mbc22 mbx21 \
     mbz20 mcl47 mtr33 pag30 pic31 pma29 scd54 shm46 vma38
+
+SLOTNAMES-CACHELESS = \
+    apr34 ch017 ch019 ch024 ch025 ccl11 ccw12 c0a27 chc09 c0x28 clk32 \
+    con35 cra45 crc10 crm40 crm42 crm44 crm50 crm52 csh23 ctl36 edp39 \
+    edp41 edp43 edp49 edp51 edp53 ird48 mb014 mb015 mb016 mbc22 mbx21 \
+    mbz20 mcl47 mtr33 pag30 pic31 pma29 scd54 shm46 vma38
+
+SLOTNAMES = $(SLOTNAMES-CACHELESS)
 
 SVFILES = \
 	kl10pv.sv \
@@ -55,11 +63,12 @@ KILLWARNINGS = \
 
 DEBUG_DIDNOTCONVERGE = --prof-cfuncs -CFLAGS -DVL_DEBUG
 
+DEFINES = -DCACHELESS
 SVLIBDIR = ./lib/svlib/src
 INCDIR = $(VERILATORROOT)/include $(LIBDIR)/svlib/src
-CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG) $(OPTIMIZE)l
-CXXFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd $(DEBUG) $(OPTIMIZE)
-CPPFLAGS += -DVL_DEBUG
+CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG) $(OPTIMIZE) $(DEFINES)
+CXXFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd $(DEBUG) $(OPTIMIZE) $(DEFINES)
+CPPFLAGS += -DVL_DEBUG $(DEFINES)
 
 VFLAGS = \
 	--stats \
@@ -69,6 +78,7 @@ VFLAGS = \
 	-I. \
 	-I$(GENDIR) \
 	-I$(SVLIBDIR) \
+	$(DEFINES) \
 	$(KILLWARNINGS) \
 	-Wwarn-UNDRIVEN \
 	--CFLAGS "$(DEBUG) $(OPTIMIZE)" \
@@ -100,7 +110,7 @@ $(DTEINTF) $(DTETFF): dte-interface.js
 
 $(MODS) oscillator:	$(foreach M,$(MODS),$(VOBJDIR)/V$(M))
 
-# Holy fucknoodles! These two steps were complicated to get "right".
+# Holy fucknoodles these two steps were complicated to get "right".
 $(foreach M,$(MODS),$(VOBJDIR)/V$(M).mk): $(VOBJDIR)/V%.mk: $(LOGICDIR)/%.sv
 	$(VERILATOR) -Wall --trace --cc $< --exe $(TBDIR)/$*-tb.cc
 

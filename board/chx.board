@@ -272,25 +272,25 @@ e58: 10109 4/5 or/nor
      3 ~> {cp2} csh 0 valid match h
      2 ~> {cm2} csh 0 valid match l
      9 ~< %NC%
-     13 ~< chx1-e48-3
-     12 ~< chx1-e57-3
-     11 ~< chx1-e66-3
-     10 ~< chx1-e76-3
+     10 ~< chx1-e48-3
+     11 ~< chx1-e57-3
+     12 ~< chx1-e66-3
+     13 ~< chx1-e76-3
      14 ~> {cj2} csh 1 valid match h
      15 ~> {bs2} csh 1 valid match l
 
 e63: 10109 4/5 or/nor
-     4 ~< chx1-e48-3
-     5 ~< chx1-e57-3
-     6 ~< chx1-e66-3
-     7 ~< chx1-e76-3
+     7 ~< chx1-e48-3
+     6 ~< chx1-e57-3
+     5 ~< chx1-e66-3
+     4 ~< chx1-e76-3
      3 ~> csh 1,3 valid match h
      2 ~> {cv2} csh 1 00-17 sel a l
      9 ~< %NC%
-     13 ~< chx1-e48-3
-     12 ~< chx1-e57-3
-     11 ~< chx1-e66-3
-     10 ~< chx1-e76-3
+     10 ~< chx1-e48-3
+     11 ~< chx1-e57-3
+     12 ~< chx1-e66-3
+     13 ~< chx1-e76-3
      14 ~> %NC%
      15 ~> {ct2} csh 1 18-35 sel a l
 
@@ -310,32 +310,32 @@ e67: 10109 4/5 or/nor
      15 ~> {ek1} csh 2 18-35 sel a l
 
 e72: 10109 4/5 or/nor
-     4 ~< chx1-e47-3
-     5 ~< chx1-e56-3
-     6 ~< chx1-e65-3
-     7 ~< chx1-e75-3
+     4 ~< chx1-e52-3
+     5 ~< chx1-e62-3
+     6 ~< chx1-e71-3
+     7 ~< chx1-e81-3
      3 ~> {fe2} csh 2 valid match h
      2 ~> {ff2} csh 2 valid match l
      9 ~< %NC%
-     13 ~< chx1-e52-3
-     12 ~< chx1-e62-3
-     11 ~< chx1-e71-3
-     10 ~< chx1-e81-3
+     10 ~< chx1-e47-3
+     11 ~< chx1-e56-3
+     12 ~< chx1-e65-3
+     13 ~< chx1-e75-3
      14 ~> {et2} csh 3 valid match h
      15 ~> {fa1} csh 3 valid match l
 
 e77: 10109 4/5 or/nor
-     4 ~< chx1-e47-3
-     5 ~< chx1-e56-3
-     6 ~< chx1-e65-3
-     7 ~< chx1-e75-3
+     7 ~< chx1-e47-3
+     6 ~< chx1-e56-3
+     5 ~< chx1-e65-3
+     4 ~< chx1-e75-3
      3 ~> csh 2,3 valid match h
      2 ~> {fm1} csh 3 00-17 sel a l
      9 ~< %NC%
-     13 ~< chx1-e52-3
-     12 ~< chx1-e62-3
-     11 ~< chx1-e71-3
-     10 ~< chx1-e81-3
+     10 ~< chx1-e47-3
+     11 ~< chx1-e56-3
+     12 ~< chx1-e65-3
+     13 ~< chx1-e75-3
      14 ~> csh 1,3 valid match h
      15 ~> {fj1} csh 3 18-35 sel a l
 
@@ -758,7 +758,7 @@ e38: 10147 128x1 RAM
      14 ~< csh val wd 1 sel l
      12 ~< csh 3 val wr l
      11 ~< csh val wr data b h
-     15 ~> csh 3 wd 1 val h
+     15 ~> csh 3 wd 3 val h
 
 Page: CHX3, PDF49
 
@@ -884,7 +884,7 @@ e31: 10110 or buffer
      10 ~< {bl1} mbx csh adr 32 h
      11 ~< %NC%
      12 ~> adr 32 a h
-     13 ~> adr 32 c h
+     13 ~> adr 32 b h
      14 ~> adr 32 c h
 
 e26: 10110 or buffer
@@ -928,8 +928,8 @@ e10: 10173 4x2 mixer latch
      11 ~< adr 33 b h
      9 ~< {aj2} apr en refill ram wr h
      7 ~< {al2} csh use hold h
-     1 ~> csh use adr 2 h
-     2 ~> csh use adr 3 h
+     1 ~> csh use adr 3 h
+     2 ~> csh use adr 4 h
      15 ~> {bs1} csh lru 2 h
      14 ~> {br1} csh lru 1 h
 

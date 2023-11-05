@@ -31,24 +31,24 @@ Slot 12: {n=0} ccw M8534
 Slot 13: ignore blank
 
 Slot 14: {n=12} mb0 M8517
-Slot 15: {n=06}  mb0 M8517
-Slot 16: {n=00}  mb0 M8517
-Slot 17: {n=27} cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 15: {n=06} mb0 M8517
+Slot 16: {n=00} mb0 M8517
+Slot 17: {n=27} ch0 M8549YH (no cache) // cac M8521 (cache) // 
 
 Slot 18: ignore blank
 
-Slot 19: {n=18} cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 19: {n=18} ch0 M8549YH (no cache) // cac M8521 (cache) // 
 Slot 20: mbz M8537
 Slot 21: {n=30} mbx M8529YA
 Slot 22: {n=22} mbc M8531YA
 Slot 23: {k=22} csh M8513YA
-Slot 24: {n=09}  cac M8521 (cache) // ch0 M8549YH (no cache)
-Slot 25: {n=00}  cac M8521 (cache) // ch0 M8549YH (no cache)
+Slot 24: {n=09} ch0 M8549YH (no cache) // cac M8521 (cache) // 
+Slot 25: {n=00} ch0 M8549YH (no cache) // cac M8521 (cache) // 
 
 Slot 26: ignore blank
 
-Slot 27: cha M8514 (cache) // ch0a M8549YE (no cache)
-Slot 28: {n=20} chx M8515 (cache) // ch0x M8549YF (no cache)
+Slot 27: c0a M8549YE (no cache) // cha M8514 (cache) // 
+Slot 28: {n=20} c0x M8549YF (no cache) // chx M8515 (cache) // 
 Slot 29: pma M8518YA
 Slot 30: pag M8520YA
 Slot 31: pic M8532

@@ -3,7 +3,7 @@
 TOPEXE = $(RTLOBJDIR)/kl10pvtb
 
 MODULES = \
-    apr cac ccl ccw cds ch0a ch0 ch0x cha chc chx ci clk cnt con cra crc \
+    apr cac ccl ccw cds c0a ch0 c0x cha chc chx ci clk cnt con cra crc \
     crm csh ctl dlh dmc dps dt0 dtr dx0 edp ignore int ird ma0 mb0 mbc mbx \
     mbz mcl mtr pag pic pma scd shm vma
 

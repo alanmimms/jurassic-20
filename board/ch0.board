@@ -1,4 +1,93 @@
-Page: CH01, PDF44
-// M8549YH TBD
-STUB IMPLEMENTATION
+Page: CS01, PDF125
 
+w11: wire (jumper)
+     1 ~< {au2} mem to cache [n+06] h
+     2 ~> {bl2} cache data [n+06] b h
+
+w1: wire (jumper)
+    1 ~< {av2} mem to cache [n+07] h
+    2 ~> {ap2} cache data [n+07] b h
+
+w5: wire (jumper)
+    1 ~< {as2} mem to cache [n+08] h
+    2 ~> {ba1} cache data [n+08] b h
+
+w16: wire (jumper)
+     1 ~< {cm1} mem to cache [n+03] h
+     2 ~> {df2} cache data [n+03] b h
+
+w18: wire (jumper)
+     1 ~< {cp1} mem to cache [n+04] h
+     2 ~> {dm2} cache data [n+04] b h
+
+w9: wire (jumper)
+    1 ~< {cl1} mem to cache [n+05] h
+    2 ~> {be1} cache data [n+05] b h
+
+w27: wire (jumper)
+     1 ~< {fd2} mem to cache [n+00] h
+     2 ~> {fe2} cache data [n+00] b h
+
+w22: wire (jumper)
+     1 ~< {er2} mem to cache [n+01] h
+     2 ~> {ep1} cache data [n+01] b h
+
+w24: wire (jumper)
+     1 ~< {ff2} mem to cache [n+02] h
+     2 ~> {eu2} cache data [n+02] b h
+
+e2: 10101 quad or/nor
+    4 ~< {au2} mem to cache [n+06] h
+    12 ~< %NC%
+    2 ~> %NC%
+    5 ~> {bk2} cache data [n+06] c h
+    7 ~< {av2} mem to cache [n+07] h
+    3 ~> %NC%
+    6 ~> {ar2} cache data [n+07] c h
+    10 ~< {as2} mem to cache [n+08] h
+    14 ~> %NC%
+    11 ~> {bd1} cache data [n+08] c h
+
+e4: 10101 quad or/nor
+    4 ~< {cm1} mem to cache [n+03] h
+    12 ~< %NC%
+    2 ~> %NC%
+    5 ~> {de1} cache data [n+03] c h
+    7 ~< {cp1} mem to cache [n+04] h
+    3 ~> %NC%
+    6 ~> {dl1} cache data [n+04] c h
+    10 ~< {cl1} mem to cache [n+05] h
+    14 ~> %NC%
+    11 ~> {bf2} cache data [n+05] c h
+    13 ~< {fd1} csh par bit in h
+    15 ~> %NC%
+    9 ~> {dd1} csh par bit a h
+
+e8: 10101 quad or/nor
+    4 ~< {fd2} mem to cache [n+00] h
+    12 ~< %NC%
+    2 ~> %NC%
+    5 ~> {fe1} cache data [n+00] c h
+    7 ~< {er2} mem to cache [n+01] h
+    3 ~> %NC%
+    6 ~> {er1} cache data [n+01] c h
+    10 ~< {ff2} mem to cache [n+02] h
+    14 ~> %NC%
+    11 ~> {ev2} cache data [n+02] c h
+    13 ~< {fd1} csh par bit in h
+    15 ~> %NC%
+    9 ~> {fa1} csh par bit b h
+
+e9: 10110 or buffer
+    5 ~< %NC%
+    6 ~< 0
+    7 ~< %NC%
+    11 ~< %NC%
+    10 ~< 0
+    9 ~< %NC%
+    2 ~> {fv2} cache exists l
+    3 ~> {fv2} cache exists l
+    4 ~> {fv2} cache exists l
+    14 ~> {fv2} cache exists l
+    13 ~> {fv2} cache exists l
+    12 ~> {fv2} cache exists l
