@@ -64,7 +64,7 @@ e4: 10101 quad or/nor
     11 ~> {bf2} cache data [n+05] c h
     13 ~< {fd1} csh par bit in h
     15 ~> %NC%
-    9 ~> {dd1} csh par bit a h
+    9 ~> csh par bit a h
 
 e8: 10101 quad or/nor
     4 ~< {fd2} mem to cache [n+00] h
@@ -79,7 +79,25 @@ e8: 10101 quad or/nor
     11 ~> {ev2} cache data [n+02] c h
     13 ~< {fd1} csh par bit in h
     15 ~> %NC%
-    9 ~> {fa1} csh par bit b h
+    9 ~> csh par bit b h
+
+w40: wire6 fan out the parity A bits
+    1 ~< csh par bit a h
+    2 ~> {fa1} csh par bit 00 a h
+    3 ~> {fa2} csh par bit 01 a h
+    4 ~> {fb1} csh par bit 02 a h
+    5 ~> {fb2} csh par bit 03 a h
+    6 ~> %NC%
+    7 ~> %NC%
+
+w80: wire6 fan out the parity B bits
+    1 ~< csh par bit b h
+    2 ~> {ea1} csh par bit 00 b h
+    3 ~> {ea2} csh par bit 01 b h
+    4 ~> {eb1} csh par bit 02 b h
+    5 ~> {eb2} csh par bit 03 b h
+    6 ~> %NC%
+    7 ~> %NC%
 
 e9: 10110 or buffer
     5 ~< %NC%

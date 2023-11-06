@@ -293,6 +293,12 @@ const logic = {
     '~>': expand('q1=1, q2=2, q3=3, q4=4, q5=5, q6=6'),
   },
 
+  'wire6': {
+    desc: 'just six connections to input signal',
+    '~<': expand('a=1'),
+    '~>': expand('q1=2, q2=3, q3=4, q4=5, q5=6, q6=7'),
+  },
+
   pinToName(type, pinNumString, dir) {
 
     if (type == undefined || pinNumString == undefined || dir == undefined ||
