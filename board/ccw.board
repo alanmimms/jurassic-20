@@ -11,7 +11,7 @@ e22: 10174 2x4 mixer
      5 ~< ccw mem store adr 4 h
      4 ~< ccw act flag adr 4 h
      6 ~< ccw err adr 0 h
-     13 ~< ccw ccwd adr 2 h
+     13 ~< ccw ccwf adr 2 h
      11 ~< ccw mem store adr 2 h
      12 ~< ccw act flag  adr 2 h
      10 ~< ccw err adr  h
@@ -320,8 +320,8 @@ e41: 10210 or buffer
      3 ~> ccw clk b h
      4 ~> %NC%
      9 ~< %NC%
-     10 ~< {cc1} diag channel clk stop h
-     11 ~< clk ccw delayed h
+     10 ~< clk ccw delayed h
+     11 ~< {cc1} diag channel clk stop h
      12 ~> ccw clk f h
      13 ~> ccw clk d h
      14 ~> ccw clk e h
