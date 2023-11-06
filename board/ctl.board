@@ -70,7 +70,11 @@ e23: 10162 decoder
       13 ~> {cm1} ctl1 spec/clr fpd h
       12 ~> ctl1 spec/load pc h
       11 ~> ctl1 spec/xcry ar0 h
-      10 ~> ctl1 spec/gen cry 18 h
+      10 ~> ctl1 spec/gen cry 18h
+
+w99: wire added by Mimms to drive this to IRD
+     1 ~< ctl1 spec/gen cry 18 h
+     2 ~> {aa2} ctl spec/gen cry 18 h
 
 e26: 10162 decoder
       14 ~< {df2} cra3 disp 02 h

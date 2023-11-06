@@ -986,7 +986,7 @@ e32: 10164 8 mix
      3 ~< dram b 00 h
      11 ~< dram j 02 h
      12 ~< dram j 08 h
-     13 ~< ctl spec/gen cry 18 h
+     13 ~< {al1} ctl spec/gen cry 18 h
      14 ~< ad cry 36 h
      10 ~< dr diag 04 h
      9 ~< dr diag 05 h
