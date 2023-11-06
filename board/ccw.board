@@ -13,8 +13,8 @@ e22: 10174 2x4 mixer
      6 ~< ccw err adr 0 h
      13 ~< ccw ccwf adr 2 h
      11 ~< ccw mem store adr 2 h
-     12 ~< ccw act flag  adr 2 h
-     10 ~< ccw err adr  h
+     12 ~< ccw act flag adr 2 h
+     10 ~< ccw err adr 1 h
      9 ~< ccw buf sel 2 h
      7 ~< ccw buf sel 1 h
      14 ~< %NC%
@@ -586,13 +586,13 @@ e2:  10117 dual 2-3 or-and
      7 ~< {al2} -ccl chan to mem l
      9 ~< ccw csh chan cyc l
      3 ~> %NC%
-     2 ~> -ccw wd0 avail l
+     2 ~> ccw wd0 avail l
      12 ~< ccw csh chan cyc l
      13 ~< ccw wd1 avail l
      10 ~< {ae2} -mb1 hold in l
      11 ~< {al2} -ccl chan to mem l
      14 ~> %NC%
-     15 ~> ccw wd avail l
+     15 ~> ccw wd1 avail l
 
 e1:  10117 dual 2-3 or-and
      4 ~< ccw csh chan cyc l
@@ -662,9 +662,9 @@ e12: 10117 dual 2-3 or-and
      9 ~< ccw mb rip l
      3 ~> ccw4-e12-3
      2 ~> %NC%
-     12 ~< ccw wd3 taken l
+     12 ~< ccw wd3 req in l
      13 ~< ccw mb cyc t3 l
-     10 ~< -ccw wd taken l
+     10 ~< -ccw wd3 taken l
      11 ~< ccw wd3 req l
      9 ~< ccw mb rip l
      14 ~> ccw4-e12-14
@@ -693,12 +693,12 @@ e3: 10176 hex dff
     11 ~< %NC%
     12 ~< %NC%
     9 ~< ccw clk d h
-    2 ~< ccw wd0 ready h
-    3 ~< ccw wd1 ready h
-    4 ~< ccw wd2 ready h
-    13 ~< ccw wd3 ready h
-    14 ~< %NC%
-    15 ~< %NC%
+    2 ~> ccw wd0 ready h
+    3 ~> ccw wd1 ready h
+    4 ~> ccw wd2 ready h
+    13 ~> ccw wd3 ready h
+    14 ~> %NC%
+    15 ~> %NC%
 
 e16: 10176 hex dff
      5 ~< ccw4-e7-15
