@@ -685,13 +685,28 @@ e7: 10105 2-3-2 or/nor
     6 ~> ccw4-e7-6
     7 ~> %NC%
 
+e3: 10176 hex dff
+    5 ~< ccw4-e7-3
+    6 ~< ccw4-e7-6
+    7 ~< ccw4-e6-3
+    10 ~< ccw4-e6-14
+    11 ~< %NC%
+    12 ~< %NC%
+    9 ~< ccw clk d h
+    2 ~< ccw wd0 ready h
+    3 ~< ccw wd1 ready h
+    4 ~< ccw wd2 ready h
+    13 ~< ccw wd3 ready h
+    14 ~< %NC%
+    15 ~< %NC%
+
 e16: 10176 hex dff
      5 ~< ccw4-e7-15
      6 ~< {av2} -ccl mb cyc t2 h
-     7 ~< ccw-e17-3
-     10 ~< ccw-e17-14
-     11 ~< ccw-e12-3
-     12 ~< ccw-e12-14
+     7 ~< ccw4-e17-3
+     10 ~< ccw4-e17-14
+     11 ~< ccw4-e12-3
+     12 ~< ccw4-e12-14
      9 ~< ccw clk f h
      2 ~> ccw reg load h
      3 ~> -ccw mb cyc t3 h
@@ -896,16 +911,16 @@ e19: 10161 decoder
      14 ~< ccw ram adr 4 h
      9 ~< ccw ram adr 2 h
      7 ~< ccw ram adr 1 h
-     15 ~< {bp2} ch t0 l
+     15 ~< %NC%
      2 ~< {au2} ccl act flag clr l
-     6 ~> -ccw0 act flag in h
-     5 ~> -ccw1 act flag in h
-     4 ~> -ccw2 act flag in h
-     3 ~> -ccw3 act flag in h
-     13 ~> -ccw4 act flag in h
-     12 ~> -ccw5 act flag in h
-     11 ~> -ccw6 act flag in h
-     10 ~> -ccw7 act flag in h
+     6 ~> -ccw0 act flag hold l
+     5 ~> -ccw1 act flag hold l
+     4 ~> -ccw2 act flag hold l
+     3 ~> -ccw3 act flag hold l
+     13 ~> -ccw4 act flag hold l
+     12 ~> -ccw5 act flag hold l
+     11 ~> -ccw6 act flag hold l
+     10 ~> -ccw7 act flag hold l
 
 e24: 10104 quad and/nand
      4 ~< ccw4 act flag h
