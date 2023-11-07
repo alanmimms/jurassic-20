@@ -176,7 +176,7 @@ e32: 10101 quad or/nor
      6 ~> {cp2} ccl data reverse h
 
 e2:  10145 16x4 RAM
-     5 ~< -ccl rxm err in h
+     5 ~< -ccl nxm err in h
      4 ~< -ccl mem par err in h
      11 ~< -ccl adr par err in h
      12 ~< %NC%
@@ -217,7 +217,7 @@ e51: 10164 8 mixer
      4 ~< {ek2} ccl ccwf req h
      3 ~< {dv2} ccl chan req h
      11 ~< {ds2} ccl ch mb sel 2 h
-     12 ~< ccl chwf t2 h
+     12 ~< ccl ccwf t2 h
      13 ~< ccl mb rip a h
      14 ~< {dr2} ccl odd wc par h
      10 ~< {da1} -ch diag 04 h
@@ -492,13 +492,13 @@ e36: 10105 2-3-2 or/nor
      15 ~> {cm1} ccl op load l
 
 e30: 10101 quad or/nor
-     7 ~< ccl ac1 flag req h
+     7 ~< ccl act flag req h
      12 ~< %NC%
      3 ~> ccl act flag req a l
      6 ~> %NC%
      4 ~< ccl3-e34-14
      2 ~> ccl ccwf t2 l
-     5 ~> ccl ccwr t2 h
+     5 ~> ccl ccwf t2 h
      13 ~< %NC%
      15 ~> hi
      9 ~> %NC%
@@ -655,7 +655,7 @@ e47: 10176 hex dff
      9 ~< ccl clk b h
      2 ~> ccl af t0 h
      3 ~> ccl af t1 h
-     4 ~> ccl af t2 h
+     4 ~> -ccl af t2 h
      13 ~> {dv2} ccl chan req h
      14 ~> {df2} -ccl chan req h
      15 ~> -ccl mb req t0 h
@@ -925,7 +925,7 @@ e62: 10136 binary counter
 
 e28: 10117 dual 2-3 or-and
      4 ~< ccl mb rip a l
-     5 ~< ccl mb rip clr l
+     5 ~< -ccl mb rip clr l
      6 ~< ccl t2 l
      7 ~< ccl hold mem l
      9 ~< -ccl rip inh l
@@ -955,6 +955,10 @@ e60: 10131 dual ms dff
      3 ~> ccl csh chan cyc l
 
 Page: CCL5, PDF271
+
+// S1  S8    ALU Operation
+//  L   L    A plus 0
+//  H   H    A minus B minus 1
 
 e77: 10181 ALU
      10 ~< %NC%
@@ -1153,7 +1157,7 @@ e64: 10173 4x2 mixer latch
      5 ~< {fe2} ccw mix 10 h
      6 ~< {fe1} crc rh20 err in h
      3 ~< {ff2} ccw mix 11 h
-     4 ~< crc long wc err h
+     4 ~< {ff1} crc long wc err h
      12 ~< {et2} ccw mix 12 h
      13 ~< {es1} crc short wc err h
      10 ~< {ev2} ccw mix 13 h
@@ -1210,7 +1214,7 @@ e6:  10173 4x2 mixer latch
      11 ~< %NC%
      9 ~< %NC%
      7 ~< -ccl t1 h
-     1 ~> -ccl w=0 stored h
+     1 ~> -ccl wc=0 stored h
      2 ~> -ccl last xfer err h
      15 ~> ccl6-e6-15
      14 ~> ccl6-e6-14
