@@ -74,6 +74,8 @@ module kl10pv(input clk60, input crobar);
     mem_ackn_b_h = mbus.mbox.acknB;
     mem_data_valid_a_l = !mbus.mbox.inValidA;
     mem_data_valid_b_l = !mbus.mbox.inValidB;
+    mem_error_h = 0;
+    mem_adr_par_err_h = 0;
   end
 
   apr34 apr_34(.EBUSdriver(aprEBUSdriver), .*);
@@ -129,6 +131,14 @@ module kl10pv(input clk60, input crobar);
   scd54 scd_54(.EBUSdriver(scdEBUSdriver), .*);
   shm46 shm_46(.*);
   vma38 vma_38(.EBUSdriver(vmaEBUSdriver), .*);
+
+  // Zero out our unused EBUS interface signals
+  always_comb begin
+    ebus.demand = 0;
+    ebus.xfer = 0;
+    ebus.cs = 0;
+    ebus.pi = 0;
+  end
 
   // Pass output of our EBUS driving mux back into the KL10 symbol
   // naming system for modules to read the EBUS data.
@@ -198,6 +208,9 @@ module kl10pv(input clk60, input crobar);
   assign ebus_pi06_e_h = ebus.pi[6];
   assign ebus_pi07_e_h = ebus.pi[7];
 
+  assign ebus_parity_active_e_h = 0;
+  assign ebus_parity_e_h = 0;
+
   // "Mux" for EBUS data lines
   always_comb begin
     if (feEBUSdriver.driving) ebus.data = feEBUSdriver.data;
@@ -264,6 +277,15 @@ module kl10pv(input clk60, input crobar);
 
     // For now
     pwr_warn_e_h = 0;
+
+    // This is not defined anywhere, but making it constantly asserted seems good?
+    ccl_ch_buf_en_l = 0;
+
+    // These are not defined anywhere but are readable through DISP/EA MOD I think.
+    ea_type_07_h = 0;
+    ea_type_08_h = 0;
+    ea_type_09_h = 0;
+    ea_type_10_h = 0;
 
     // Field service signals.
     clk3_fs_en_a_h = 0;
