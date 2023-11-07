@@ -282,7 +282,7 @@ module kl10pv(input clk60, input crobar);
     // wiring.
     mtr1_cache_cry_10_in_l = mtr1_cache_cry_10_l;
     mtr1_ebox_cry_10_in_l = mtr1_ebox_cry_10_l;
-//    mtr1_interval_cry_10_in_l = mtr1_interval_cry_10_l;
+    mtr1_interval_cry_14_in_l = mtr1_interval_cry_14_l;
     mtr1_perf_cry_10_in_l = mtr1_perf_cry_10_l;
     mtr1_time_cry_10_in_l = mtr1_time_cry_10_l;
 
