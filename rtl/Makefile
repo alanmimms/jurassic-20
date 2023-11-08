@@ -94,7 +94,7 @@ VFLAGS = \
 	--x-initial 0 \
 	-cc --build --exe -j 9
 
-.PHONY:	all logic-tb clean
+.PHONY:	all logic-tb clean tests
 
 all:	$(EXE)
 
@@ -112,7 +112,7 @@ $(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES) $(DTEINTF)
 $(DTEINTF) $(DTETFF): dte-interface.js
 	node dte-interface.js -- $(DTEINTF) $(DTETFF)
 
-$(MODS) oscillator:	$(foreach M,$(MODS),$(VOBJDIR)/V$(M))
+$(MODS): $(foreach M,$(MODS),$(VOBJDIR)/V$(M))
 
 # Holy fucknoodles these two steps were complicated to get "right".
 $(foreach M,$(MODS),$(VOBJDIR)/V$(M).mk): $(VOBJDIR)/V%.mk: $(LOGICDIR)/%.sv
@@ -124,3 +124,8 @@ $(foreach M,$(MODS),$(VOBJDIR)/V$(M)-tb): $(VOBJDIR)/V%-tb: $(TBDIR)/%-tb.cc $(V
 clean:
 	@rm -fr obj_dir
 	rm -rf $(VOBJDIR) $(DTEINTF) $(DTETFF) $(foreach F,$(EXE),tb/$(EXE))
+
+tests:	$(VOBJDIR)/test-mc10181
+
+$(VOBJDIR)/test-mc10181: rtl/tb/mc10181-tb.cc rtl/logic/mc10181.sv
+	$(VERILATOR) $(VFLAGS) $(filter-out %.h, $^) --top-module mc10181 -o $(@F)
