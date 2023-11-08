@@ -23,6 +23,7 @@ module fe_sim(input bit clk,
 
   bit testingChangeComing;
   bit a_change_coming;
+
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
 
   // The DRAM ("DISPATCH RAM" - not "DYNAMIC RAM") addressing
@@ -229,7 +230,7 @@ module fe_sim(input bit clk,
   // When we reach the HALT loop, delay a bit then start running.
   always @(posedge con_ebox_halted_h) begin
     repeat (100) @(negedge clk);
-    $display("%7g [run/continue]", $realtime);
+    $display("%7g [run]", $realtime);
     doDiagFunc(diagfSET_RUN);
     doDiagFunc(diagfCONTINUE);
   end
