@@ -1,17 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Nov  7 02:50:00 2023
+[*] Wed Nov  8 01:33:58 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Wed Oct 25 00:29:30 2023"
 [dumpfile_size] 30476464
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 4974
+[timestart] 3974
 [size] 1920 1045
-[pos] 755 184
-*-5.461107 5051 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-5.461107 4036 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.edp_53.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 261
 [signals_width] 539
@@ -57,7 +58,7 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
-@c00200
+@800200
 -core-state
 @28
 top.kl10pv.clk1_clk_out_h
@@ -253,6 +254,7 @@ top.kl10pv.scd_54.scd1_scadb_08_h
 top.kl10pv.scd_54.scd1_scadb_09_h
 @1401200
 -group_end
+@1000200
 -core-state
 @c00200
 -clocks
@@ -281,7 +283,7 @@ top.kl10pv.clk_32.clk4_ebox_clk_l
 top.kl10pv.clk_32.clk3_sync_en_h
 @1401200
 -clocks
-@c00201
+@c00200
 -mbc
 @28
 top.kl10pv.mbc4_mem_start_l
@@ -314,7 +316,7 @@ top.kl10pv.csh_23.mbc4_core_data_val_Ng1_l
 top.kl10pv.mbc_22.mbc4_core_data_valid_Ng2_l
 top.kl10pv.csh_23.csh3_rd_found_h
 top.kl10pv.mbc_22.core_busy_h
-@1401201
+@1401200
 -mbc
 @c00200
 -mbus
@@ -371,121 +373,23 @@ top.kl10pv.memory0.mbus.startA
 top.kl10pv.memory0.mbus.startB
 @1401200
 -mbus
-@c00200
--page-fail
-@28
-[color] 1
-top.kl10pv.clk_32.clk4_ebox_cyc_abort_h
-[color] 1
-top.kl10pv.clk_32.clk4_page_fail_h
-[color] 1
-top.kl10pv.clk_32.clk_page_error_h
-[color] 1
-top.kl10pv.clk_32.clk4_page_fail_en_l
+@800028
 [color] 2
-top.kl10pv.clk_32.csh6_page_fail_hold_h
-@200
--
+#{AD SEL} top.kl10pv.edp_53.cram_ad_sel_8_00_h top.kl10pv.edp_53.cram_ad_sel_4_00_h top.kl10pv.edp_53.cram_ad_sel_2_00_h top.kl10pv.edp_53.cram_ad_sel_1_00_h
 @28
-[color] 1
-top.kl10pv.clk_32.clk3_ebox_source_h
-[color] 1
-top.kl10pv.clk_32.clk4_pf_dlyd_b_h
-[color] 1
-top.kl10pv.clk_32.clk4_pf_dlyd_a_h
-[color] 1
-top.kl10pv.clk_32.clk4_instr_1777_h
-@200
--
+top.kl10pv.edp_53.cram_ad_sel_8_00_h
+top.kl10pv.edp_53.cram_ad_sel_4_00_h
+top.kl10pv.edp_53.cram_ad_sel_2_00_h
+top.kl10pv.edp_53.cram_ad_sel_1_00_h
+@1001200
+-group_end
 @28
-top.kl10pv.clk_32.apr_apr_par_chk_en_l
-top.kl10pv.clk_32.clk5_arSlarx_par_check_l
-@200
--
+[color] 2
+top.kl10pv.edp_53.cram_ad_boole_00_h
+@29
+top.kl10pv.edp_53.ad_cry_02_h
 @28
-top.kl10pv.clk_32.apr5_set_page_fail_l
-[color] 4
-top.kl10pv.clk_32.clk4_e7_7
-@200
--
-@28
-top.kl10pv.clk_32.shm1_ar_par_odd_h
-top.kl10pv.clk_32.con_ar_loaded_l
-@200
--
-@28
-top.kl10pv.clk_32.clk4_e38_7
-@200
--
-@28
-top.kl10pv.clk_32.shm1_arx_par_odd_h
-top.kl10pv.clk_32.con_arx_loaded_l
-@200
--
-@28
-[color] 1
-top.kl10pv.clk_32.clk4_e7_7
-@200
--cram-mem-02
-@28
-[color] 1
-top.kl10pv.clk_32.clk4_e44_14
-[color] 1
-top.kl10pv.clk_32.clk4_page_fail_en_l
-@1401200
--page-fail
-@c00200
--CSH-page-fail
-@28
-[color] 1
-top.kl10pv.csh_23.con_ki10_paging_mode_h
-[color] 1
-top.kl10pv.csh_23.csh4_ebox_t2_l
-[color] 1
-top.kl10pv.csh_23.csh6_e15_2
-top.kl10pv.csh_23.pag4_page_fail_l
-top.kl10pv.csh_23.csh4_e_t2_mem_ref_l
-top.kl10pv.csh_23.apr6_ebox_read_reg_h
-top.kl10pv.csh_23.csh1_ready_to_go_a_h
-top.kl10pv.csh_23.csh6_page_fail_hold_ff_l
-top.kl10pv.csh_23.csh4_ebox_t3_l
-top.kl10pv.csh_23.pag4_page_refill_l
-top.kl10pv.csh_23.csh5_page_refill_comp_l
-@1401200
--CSH-page-fail
-@200
--This causes page fail
-@28
-[color] 1
-top.kl10pv.pag_30.mcl3_page_ill_entry_l
-top.kl10pv.mcl_47.vma3_match_13to35_l
-top.kl10pv.mcl_47.mcl3_e5_3
-top.kl10pv.mcl_47.mcl6_ebox_paging_en_l
-[color] 4
-top.kl10pv.mcl_47.scd5_private_instr_l
-top.kl10pv.mcl_47.mcl6_public_l
-@200
--
-@28
-[color] 1
-top.kl10pv.mcl_47.mcl5_vma_adr_err_l
-top.kl10pv.mcl_47.mcl4_load_vma_l
-[color] 1
-top.kl10pv.mcl_47.mcl5_e54_2
-[color] 1
-top.kl10pv.mcl_47.mcl5_adr_err_h
-top.kl10pv.mcl_47.mcl5_clk_a_h
-[color] 1
-top.kl10pv.mcl_47.mcl5_e60_2
-[color] 1
-top.kl10pv.mcl_47.mcl1_load_ad_func_l
-[color] 1
-top.kl10pv.mcl_47.mcl1_memSlreg_func_l
-[color] 1
-top.kl10pv.mcl_47.mcl4_vma_long_en_h
-[color] 1
-top.kl10pv.mcl_47.ad_06to11Eq0_l
-[color] 1
-top.kl10pv.mcl_47.ad_12_a_h
+top.kl10pv.edp_53.e1.A[3:0]
+top.kl10pv.edp_53.e1.B[3:0]
 [pattern_trace] 1
 [pattern_trace] 0

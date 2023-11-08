@@ -1160,3 +1160,13 @@ e14: 10141 shift register
      15 ~> mb ch buf [n+21] h
      2 ~> mb ch buf [n+22] h
      3 ~> mb ch buf [n+23] h
+
+// It looks like these two signals are never driven anywhere and are
+// expected to be always low.
+z1: zero6 zeroes
+    1 ~> a l
+    2 ~> b l
+    3 ~> %NC%
+    4 ~> %NC%
+    5 ~> %NC%
+    6 ~> %NC%

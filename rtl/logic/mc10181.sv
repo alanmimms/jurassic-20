@@ -14,7 +14,7 @@
 //  1  0  0  1   A^B         	A-B-1          A-B
 //  1  0  1  0   B           	(A|~B)+(A&B)   (A|~B)+(A&B)+1
 //  1  0  1  1   A|B         	(A|~B)+A       (A|~B)+A+1
-//  1  1  0  0   0000        	-1             0000
+//  1  1  0  0   0000        	1111           0000
 //  1  1  0  1   A&~B        	(A&~B)-1       A&~B
 //  1  1  1  0   A&B         	(A&B)-1        A&B
 //  1  1  1  1   A           	A-1            A
@@ -28,35 +28,33 @@ module mc10181(input bit s8,s4,s2,s1, boole, cin,
   bit [3:0] A;
   bit [3:0] B;
 
-  always_comb A = {a8,a4,a2,a1};
-  always_comb B = {b8,b4,b2,b1};
+  always_comb begin
+    A = {a8,a4,a2,a1};
+    B = {b8,b4,b2,b1};
 
-  assign G = ~(~({4{s1}} | B | A) | ~({4{s4}} | A  | ~B));
-  assign P = ~(~({4{s2}} | ~B   ) | ~({4{s8}} | B) | ~A);
+    G = ~(~({4{s8}} | B | A) | ~({4{s4}} | A | ~B));
+    P = ~(~(~B | {4{s2}}) | ~({4{s1}} | B) | ~A);
 
-  always_comb {f8,f4,f2,f1} = ~(G ^ P ^
-			       {~(boole | G[2]) |
-				~(boole | P[2] | G[1]) |
-				~(boole | P[2] | P[1] | G[0]) |
-				~(boole | P[2] | P[1] | P[0] | cin),
+    f8 = G[3] ^ P[3] ^ (~(boole | G[2]) |
+			~(boole | P[2] | G[1]) |
+			~(boole | P[2] | P[1] | G[0]) |
+			~(boole | P[2] | P[1] | P[0] | cin));
+    f4 = G[2] ^ P[2] ^ (~(boole | G[1]) |
+			~(boole | P[1] | G[0]) |
+			~(boole | P[1] | P[0] | cin));
+    f2 = G[1] ^ P[1] ^ (~(boole | G[0]) |
+			~(boole | P[0] | cin));
+    f1 = G[0] ^ P[0] ^ (~(boole | cin));
 
-				~(boole | G[1]) |
-				~(boole | P[1] | G[0]) |
-				~(boole | P[1] | P[0] | cin),
+    notGG = ~G[3]  |
+            ~(P[3] | G[2]) |
+            ~(P[3] | P[2]  | G[1]) |
+            ~(P[3] | P[2]  | P[1]  | G[0]);
 
-				~(boole | G[0]) |
-				~(boole | P[0] | cin),
-
-				~(boole | cin)});
-
-  assign notGG = ~G[3]  |
-                 ~(P[3] | G[2]) |
-                 ~(P[3] | P[2]  | G[1]) |
-                 ~(P[3] | P[2]  | P[1]  | G[0]);
-
-  always_comb cg = ~notGG;
-  always_comb cp = ~|P;
-  always_comb cout = ~(notGG | ~(cp | cin));
+    cg = ~notGG;
+    cp = ~|P;
+    cout = ~(notGG | ~(cp | cin));  
+  end
 endmodule // mc10181
 
 
