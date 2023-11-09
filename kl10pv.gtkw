@@ -1,19 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Wed Nov  8 22:54:09 2023
+[*] Thu Nov  9 00:14:24 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Nov  8 18:24:24 2023"
-[dumpfile_size] 23889621
+[dumpfile_mtime] "Thu Nov  9 00:08:51 2023"
+[dumpfile_size] 23889599
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 4698
+[timestart] 3762
 [size] 1920 1045
 [pos] -1 -1
-*-5.461107 4827 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.461107 3879 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.edp_53.
-[treeopen] top.kl10pv.feSim.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 261
 [signals_width] 539
@@ -69,6 +67,11 @@ top.kl10pv.con_35.con_load_ir_l
 top.kl10pv.ird_48.hold_ir_a_h
 [color] 6
 top.kl10pv.ird_48.clk_mb_xfer_l
+[color] 6
+top.kl10pv.con_35.con_mbox_wait_l
+@29
+[color] 6
+top.kl10pv.con_35.con_fm_xfer_l
 @c00030
 [color] 6
 #{IR} top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_11_h top.kl10pv.ird_48.ir_10_h top.kl10pv.ird_48.ir_09_h top.kl10pv.ird_48.ir_08_h top.kl10pv.ird_48.ir_07_h top.kl10pv.ird_48.ir_06_h top.kl10pv.ird_48.ir_05_h top.kl10pv.ird_48.ir_04_h top.kl10pv.ird_48.ir_03_h top.kl10pv.ird_48.ir_02_h top.kl10pv.ird_48.ir_01_h top.kl10pv.ird_48.ir_00_h
@@ -109,8 +112,6 @@ top.kl10pv.cra_45.cra2_adr_10_h
 -group_end
 @28
 [color] 3
-top.kl10pv.edp_53.ad_cry_02_h
-[color] 3
 top.kl10pv.edp_53.e1.A[3:0]
 [color] 3
 top.kl10pv.edp_53.e1.B[3:0]
@@ -122,12 +123,12 @@ top.kl10pv.edp_53.cram_ad_sel_8_00_h
 top.kl10pv.edp_53.cram_ad_sel_4_00_h
 top.kl10pv.edp_53.cram_ad_sel_2_00_h
 top.kl10pv.edp_53.cram_ad_sel_1_00_h
-@1401208
+@1401200
 -group_end
 @28
 [color] 2
 top.kl10pv.edp_53.cram_ad_boole_00_h
-@c00031
+@c00030
 #{AD} top.kl10pv.edp_39.ad_35_h top.kl10pv.edp_39.ad_34_h top.kl10pv.edp_39.ad_33_h top.kl10pv.edp_39.ad_32_h top.kl10pv.edp_39.ad_31_h top.kl10pv.edp_39.ad_30_h top.kl10pv.edp_41.ad_27_h top.kl10pv.edp_41.ad_26_h top.kl10pv.edp_41.ad_25_h top.kl10pv.edp_41.ad_24_h top.kl10pv.edp_43.ad_22_h top.kl10pv.edp_43.ad_21_h top.kl10pv.edp_43.ad_20_h top.kl10pv.edp_43.ad_19_h top.kl10pv.edp_43.ad_18_h top.kl10pv.edp_49.ad_15_h top.kl10pv.edp_49.ad_14_h top.kl10pv.edp_49.ad_13_h top.kl10pv.edp_49.ad_12_h top.kl10pv.edp_51.ad_09_h top.kl10pv.edp_51.ad_08_h top.kl10pv.edp_51.ad_07_h top.kl10pv.edp_51.ad_06_h top.kl10pv.edp_53.ad_06_h top.kl10pv.edp_53.ad_05_h top.kl10pv.edp_53.ad_04_h top.kl10pv.edp_53.ad_03_h top.kl10pv.edp_53.ad_02_h top.kl10pv.edp_53.ad_01_h top.kl10pv.edp_53.ad_00_h
 @28
 top.kl10pv.edp_53.ad_00_h
@@ -160,7 +161,7 @@ top.kl10pv.edp_39.ad_32_h
 top.kl10pv.edp_39.ad_33_h
 top.kl10pv.edp_39.ad_34_h
 top.kl10pv.edp_39.ad_35_h
-@1401211
+@1401200
 -group_end
 @c00030
 [color] 6
@@ -294,7 +295,35 @@ top.kl10pv.vma_38.vma_held_or_pc_32_h
 top.kl10pv.vma_38.vma_held_or_pc_33_h
 top.kl10pv.vma_38.vma_held_or_pc_34_h
 top.kl10pv.vma_38.vma_held_or_pc_35_h
-@1401290
+@1401200
+-group_end
+@c000b0
+#{VMA3-PC} top.kl10pv.vma_38.vma3_pc_35_h top.kl10pv.vma_38.vma3_pc_34_h top.kl10pv.vma_38.vma3_pc_33_h top.kl10pv.vma_38.vma3_pc_32_h top.kl10pv.vma_38.vma3_pc_31_h top.kl10pv.vma_38.vma3_pc_30_h top.kl10pv.vma_38.vma3_pc_29_h top.kl10pv.vma_38.vma3_pc_28_h top.kl10pv.vma_38.vma3_pc_27_h top.kl10pv.vma_38.vma3_pc_26_h top.kl10pv.vma_38.vma3_pc_25_h top.kl10pv.vma_38.vma3_pc_24_h top.kl10pv.vma_38.vma3_pc_23_h top.kl10pv.vma_38.vma3_pc_22_h top.kl10pv.vma_38.vma3_pc_21_h top.kl10pv.vma_38.vma3_pc_20_h top.kl10pv.vma_38.vma3_pc_19_h top.kl10pv.vma_38.vma3_pc_18_h top.kl10pv.vma_38.vma3_pc_17_h top.kl10pv.vma_38.vma3_pc_16_h top.kl10pv.vma_38.vma3_pc_15_h top.kl10pv.vma_38.vma3_pc_14_h top.kl10pv.vma_38.vma3_pc_13_h
+@28
+top.kl10pv.vma_38.vma3_pc_13_h
+top.kl10pv.vma_38.vma3_pc_14_h
+top.kl10pv.vma_38.vma3_pc_15_h
+top.kl10pv.vma_38.vma3_pc_16_h
+top.kl10pv.vma_38.vma3_pc_17_h
+top.kl10pv.vma_38.vma3_pc_18_h
+top.kl10pv.vma_38.vma3_pc_19_h
+top.kl10pv.vma_38.vma3_pc_20_h
+top.kl10pv.vma_38.vma3_pc_21_h
+top.kl10pv.vma_38.vma3_pc_22_h
+top.kl10pv.vma_38.vma3_pc_23_h
+top.kl10pv.vma_38.vma3_pc_24_h
+top.kl10pv.vma_38.vma3_pc_25_h
+top.kl10pv.vma_38.vma3_pc_26_h
+top.kl10pv.vma_38.vma3_pc_27_h
+top.kl10pv.vma_38.vma3_pc_28_h
+top.kl10pv.vma_38.vma3_pc_29_h
+top.kl10pv.vma_38.vma3_pc_30_h
+top.kl10pv.vma_38.vma3_pc_31_h
+top.kl10pv.vma_38.vma3_pc_32_h
+top.kl10pv.vma_38.vma3_pc_33_h
+top.kl10pv.vma_38.vma3_pc_34_h
+top.kl10pv.vma_38.vma3_pc_35_h
+@1401200
 -group_end
 @1000200
 -core-state
@@ -415,7 +444,5 @@ top.kl10pv.memory0.mbus.startA
 top.kl10pv.memory0.mbus.startB
 @1401200
 -mbus
-@28
-top.kl10pv.edp_53.ad_00_h
 [pattern_trace] 1
 [pattern_trace] 0

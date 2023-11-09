@@ -206,6 +206,7 @@ module fe_sim(input bit clk,
   //
 
   initial begin			// Load CRAM and DRAM before start of simulation
+    loadCodeInACs();
     KLLoadRAMs();
   end
 
@@ -323,6 +324,75 @@ module fe_sim(input bit clk,
   endtask
 
 
+  
+  ////////////////////////////////////////////////////////////////
+  function automatic W36 W(bit [0:17] lh, rh);
+    return (W36'(lh) << 18) | W36'(rh);
+  endfunction // W
+
+
+  ////////////////////////////////////////////////////////////////
+  task automatic loadCodeInACs;
+    bit [0:35] test[16];
+
+    $display("%7g [Load simple test program in ACs]", $realtime);
+
+    test[0] = W(18'o254000, 18'o000007);	// JRST 0,7
+    test[1] = 0;
+    test[2] = 0;
+    test[3] = 0;
+    test[4] = 0;
+    test[5] = 0;
+    test[6] = 0;
+    test[7] = W(18'o254000, 18'o000000);	// JRST 0,0
+
+    for (int n = 0; n < 8; ++n) begin
+      kl10pv.edp_39.e69.ram[n] = test[n][0];
+      kl10pv.edp_39.e70.ram[n] = test[n][1];
+      kl10pv.edp_39.e71.ram[n] = test[n][2];
+      kl10pv.edp_39.e72.ram[n] = test[n][3];
+      kl10pv.edp_39.e65.ram[n] = test[n][4];
+      kl10pv.edp_39.e58.ram[n] = test[n][5];
+
+      kl10pv.edp_41.e69.ram[n] = test[n][6];
+      kl10pv.edp_41.e70.ram[n] = test[n][7];
+      kl10pv.edp_41.e71.ram[n] = test[n][8];
+      kl10pv.edp_41.e72.ram[n] = test[n][9];
+      kl10pv.edp_41.e65.ram[n] = test[n][10];
+      kl10pv.edp_41.e58.ram[n] = test[n][11];
+
+      kl10pv.edp_43.e69.ram[n] = test[n][12];
+      kl10pv.edp_43.e70.ram[n] = test[n][13];
+      kl10pv.edp_43.e71.ram[n] = test[n][14];
+      kl10pv.edp_43.e72.ram[n] = test[n][15];
+      kl10pv.edp_43.e65.ram[n] = test[n][16];
+      kl10pv.edp_43.e58.ram[n] = test[n][17];
+
+      kl10pv.edp_49.e69.ram[n] = test[n][18];
+      kl10pv.edp_49.e70.ram[n] = test[n][19];
+      kl10pv.edp_49.e71.ram[n] = test[n][20];
+      kl10pv.edp_49.e72.ram[n] = test[n][21];
+      kl10pv.edp_49.e65.ram[n] = test[n][22];
+      kl10pv.edp_49.e58.ram[n] = test[n][23];
+
+      kl10pv.edp_51.e69.ram[n] = test[n][24];
+      kl10pv.edp_51.e70.ram[n] = test[n][25];
+      kl10pv.edp_51.e71.ram[n] = test[n][26];
+      kl10pv.edp_51.e72.ram[n] = test[n][27];
+      kl10pv.edp_51.e65.ram[n] = test[n][28];
+      kl10pv.edp_51.e58.ram[n] = test[n][29];
+
+      kl10pv.edp_53.e69.ram[n] = test[n][30];
+      kl10pv.edp_53.e70.ram[n] = test[n][31];
+      kl10pv.edp_53.e71.ram[n] = test[n][32];
+      kl10pv.edp_53.e72.ram[n] = test[n][33];
+      kl10pv.edp_53.e65.ram[n] = test[n][34];
+      kl10pv.edp_53.e58.ram[n] = test[n][35];
+    end
+
+  endtask // loadCodeInACs
+
+
   ////////////////////////////////////////////////////////////////
   task automatic KLLoadRAMs;
     int fd;
@@ -389,7 +459,7 @@ module fe_sim(input bit clk,
 	      majver = {cram136[29:31], cram136[33:35]};
 	      minver = cram136[37:39];
 	      edit = {cram137[29:31], cram137[33:35], cram137[37:39]};
-	      $display("%7g [CRAM version: %1o.%1o(%0o)]", $realtime, majver, minver, edit);
+	      $display("%7g [KL10 microcode %1o.%1o(%0o)]", $realtime, majver, minver, edit);
 	    end
 
 	    writeCRAM(cw, tCRAMAddress'(adr));
