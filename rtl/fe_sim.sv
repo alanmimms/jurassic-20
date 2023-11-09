@@ -347,47 +347,47 @@ module fe_sim(input bit clk,
     test[7] = W(18'o254000, 18'o000000);	// JRST 0,0
 
     for (int n = 0; n < 8; ++n) begin
-      kl10pv.edp_39.e69.ram[n] = test[n][0];
-      kl10pv.edp_39.e70.ram[n] = test[n][1];
-      kl10pv.edp_39.e71.ram[n] = test[n][2];
-      kl10pv.edp_39.e72.ram[n] = test[n][3];
-      kl10pv.edp_39.e65.ram[n] = test[n][4];
-      kl10pv.edp_39.e58.ram[n] = test[n][5];
+      kl10pv.edp_53.e69.ram[n] = test[n][0];
+      kl10pv.edp_53.e70.ram[n] = test[n][1];
+      kl10pv.edp_53.e71.ram[n] = test[n][2];
+      kl10pv.edp_53.e72.ram[n] = test[n][3];
+      kl10pv.edp_53.e65.ram[n] = test[n][4];
+      kl10pv.edp_53.e58.ram[n] = test[n][5];
 
-      kl10pv.edp_41.e69.ram[n] = test[n][6];
-      kl10pv.edp_41.e70.ram[n] = test[n][7];
-      kl10pv.edp_41.e71.ram[n] = test[n][8];
-      kl10pv.edp_41.e72.ram[n] = test[n][9];
-      kl10pv.edp_41.e65.ram[n] = test[n][10];
-      kl10pv.edp_41.e58.ram[n] = test[n][11];
+      kl10pv.edp_51.e69.ram[n] = test[n][6];
+      kl10pv.edp_51.e70.ram[n] = test[n][7];
+      kl10pv.edp_51.e71.ram[n] = test[n][8];
+      kl10pv.edp_51.e72.ram[n] = test[n][9];
+      kl10pv.edp_51.e65.ram[n] = test[n][10];
+      kl10pv.edp_51.e58.ram[n] = test[n][11];
 
-      kl10pv.edp_43.e69.ram[n] = test[n][12];
-      kl10pv.edp_43.e70.ram[n] = test[n][13];
-      kl10pv.edp_43.e71.ram[n] = test[n][14];
-      kl10pv.edp_43.e72.ram[n] = test[n][15];
-      kl10pv.edp_43.e65.ram[n] = test[n][16];
-      kl10pv.edp_43.e58.ram[n] = test[n][17];
+      kl10pv.edp_49.e69.ram[n] = test[n][12];
+      kl10pv.edp_49.e70.ram[n] = test[n][13];
+      kl10pv.edp_49.e71.ram[n] = test[n][14];
+      kl10pv.edp_49.e72.ram[n] = test[n][15];
+      kl10pv.edp_49.e65.ram[n] = test[n][16];
+      kl10pv.edp_49.e58.ram[n] = test[n][17];
 
-      kl10pv.edp_49.e69.ram[n] = test[n][18];
-      kl10pv.edp_49.e70.ram[n] = test[n][19];
-      kl10pv.edp_49.e71.ram[n] = test[n][20];
-      kl10pv.edp_49.e72.ram[n] = test[n][21];
-      kl10pv.edp_49.e65.ram[n] = test[n][22];
-      kl10pv.edp_49.e58.ram[n] = test[n][23];
+      kl10pv.edp_43.e69.ram[n] = test[n][18];
+      kl10pv.edp_43.e70.ram[n] = test[n][19];
+      kl10pv.edp_43.e71.ram[n] = test[n][20];
+      kl10pv.edp_43.e72.ram[n] = test[n][21];
+      kl10pv.edp_43.e65.ram[n] = test[n][22];
+      kl10pv.edp_43.e58.ram[n] = test[n][23];
 
-      kl10pv.edp_51.e69.ram[n] = test[n][24];
-      kl10pv.edp_51.e70.ram[n] = test[n][25];
-      kl10pv.edp_51.e71.ram[n] = test[n][26];
-      kl10pv.edp_51.e72.ram[n] = test[n][27];
-      kl10pv.edp_51.e65.ram[n] = test[n][28];
-      kl10pv.edp_51.e58.ram[n] = test[n][29];
+      kl10pv.edp_41.e69.ram[n] = test[n][24];
+      kl10pv.edp_41.e70.ram[n] = test[n][25];
+      kl10pv.edp_41.e71.ram[n] = test[n][26];
+      kl10pv.edp_41.e72.ram[n] = test[n][27];
+      kl10pv.edp_41.e65.ram[n] = test[n][28];
+      kl10pv.edp_41.e58.ram[n] = test[n][29];
 
-      kl10pv.edp_53.e69.ram[n] = test[n][30];
-      kl10pv.edp_53.e70.ram[n] = test[n][31];
-      kl10pv.edp_53.e71.ram[n] = test[n][32];
-      kl10pv.edp_53.e72.ram[n] = test[n][33];
-      kl10pv.edp_53.e65.ram[n] = test[n][34];
-      kl10pv.edp_53.e58.ram[n] = test[n][35];
+      kl10pv.edp_39.e69.ram[n] = test[n][30];
+      kl10pv.edp_39.e70.ram[n] = test[n][31];
+      kl10pv.edp_39.e71.ram[n] = test[n][32];
+      kl10pv.edp_39.e72.ram[n] = test[n][33];
+      kl10pv.edp_39.e65.ram[n] = test[n][34];
+      kl10pv.edp_39.e58.ram[n] = test[n][35];
     end
 
   endtask // loadCodeInACs
