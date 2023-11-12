@@ -225,14 +225,17 @@ module fe_sim(input bit clk,
     // Start CPU in microcode halt loop.
     doDiagFunc(diagfCLR_RUN);
     doDiagFunc(diagfSTART_CLOCK);
-    doDiagFunc(diagfCONTINUE);
+//    doDiagFunc(diagfCONTINUE);
   end
 
   // When we reach the HALT loop, delay a bit then start running.
   always @(posedge con_ebox_halted_h) begin
     repeat (100) @(negedge clk);
-    $display("%7g [run]", $realtime);
+    $display("%7g [RUN]", $realtime);
     doDiagFunc(diagfSET_RUN);
+
+    repeat (100) @(negedge clk);
+    $display("%7g [CONTINUE button]", $realtime);
     doDiagFunc(diagfCONTINUE);
   end
 
@@ -335,7 +338,7 @@ module fe_sim(input bit clk,
   task automatic loadCodeInACs;
     bit [0:35] test[16];
 
-    $display("%7g [Load simple test program in ACs]", $realtime);
+    $display("%7g [Load simple test program in block 0 ACs]", $realtime);
 
     test[0] = W(18'o254000, 18'o000007);	// JRST 0,7
     test[1] = 0;
