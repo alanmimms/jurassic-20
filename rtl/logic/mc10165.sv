@@ -7,7 +7,7 @@ module mc10165(input bit d0,d1,d2,d3,d4,d5,d6,d7,
   always_latch
 
     if (!hold) begin
-      if (d0) {q4,q2,q1} = 0;
+           if (d0) {q4,q2,q1} = 0;
       else if (d1) {q4,q2,q1} = 1;
       else if (d2) {q4,q2,q1} = 2;
       else if (d3) {q4,q2,q1} = 3;
