@@ -3,7 +3,7 @@
 `include "kl10pv.svh"
 `include "dte.svh"
 
-typedef bit [0:7] tDRAMAddress;
+typedef bit [0:8] tDRAMAddress;
 
 `define STRINGIFY(S)	`"S`"
 
@@ -474,7 +474,7 @@ module fe_sim(input bit clk,
       "D": begin		// DRAM record
 	W16 count = unASCIIize(words[0]);
 	W16 adr16 = unASCIIize(words[1]);
-	tDRAMAddress adr = adr16[7:0];
+	tDRAMAddress adr = adr16[8:0];
 	tDRAMAddress lastAdr = 0;
 
 	if (count == 0 && adr == 0) begin
@@ -650,30 +650,35 @@ FOR WDRAM
   ////////////////////////////////////////////////////////////////
   // Write specified DRAM word (even, odd, and common bits) to specified DRAM
   // address.  Composed while looking at klinit.l20 $WDRAM and various other
-  // sources.  ICD2 is PDF129.
+  // sources.  IRD2 is PDF129.
   task automatic writeDRAM(tDRAMAddress adr, W16 e, W16 o, W16 c);
+    bit [7:0] ea = adr[8:1];
+
+    if (adr == 'o254) begin
+      $display("DRAM %03o A=%d%d%d", int'(adr), e[13], e[12], e[11]);
+    end
 
     `define putDRAMEOBit(ADR, EE, EO, BE, BO)	\
       kl10pv.ird_48.EE.ram[ADR] = BE;		\
       kl10pv.ird_48.EO.ram[ADR] = BO;
 
-    `putDRAMEOBit(adr,  e4,  e9, e[13], o[13])
-    `putDRAMEOBit(adr, e42, e47, e[12], o[12])
-    `putDRAMEOBit(adr, e14, e19, e[11], o[11])
-    `putDRAMEOBit(adr, e24, e29, e[10], o[10])
-    `putDRAMEOBit(adr, e34, e37, e[9], o[9])
-    `putDRAMEOBit(adr, e43, e48, e[8], o[8])
+    `putDRAMEOBit(ea,  e4,  e9, e[13], o[13])
+    `putDRAMEOBit(ea, e42, e47, e[12], o[12])
+    `putDRAMEOBit(ea, e14, e19, e[11], o[11])
+    `putDRAMEOBit(ea, e24, e29, e[10], o[10])
+    `putDRAMEOBit(ea, e34, e37, e[9], o[9])
+    `putDRAMEOBit(ea, e43, e48, e[8], o[8])
 
-    `putDRAMEOBit(adr, e25, e30, e[2], o[2])
-    `putDRAMEOBit(adr, e35, e38, e[1], o[1])
-    `putDRAMEOBit(adr, e53, e58, e[0], o[0])
-    `putDRAMEOBit(adr,  e3,  e8, e[5], o[5])
+    `putDRAMEOBit(ea, e25, e30, e[2], o[2])
+    `putDRAMEOBit(ea, e35, e38, e[1], o[1])
+    `putDRAMEOBit(ea, e53, e58, e[0], o[0])
+    `putDRAMEOBit(ea,  e3,  e8, e[5], o[5])
 
-    kl10pv.ird_48.e20.ram[adr] = o[3];
-    kl10pv.ird_48.e13.ram[adr] = c[3];
-    kl10pv.ird_48.e18.ram[adr] = c[2];
-    kl10pv.ird_48.e28.ram[adr] = c[1];
-    kl10pv.ird_48.e23.ram[adr] = c[0];
+    kl10pv.ird_48.e20.ram[ea] = o[3];
+    kl10pv.ird_48.e13.ram[ea] = c[3];
+    kl10pv.ird_48.e18.ram[ea] = c[2];
+    kl10pv.ird_48.e28.ram[ea] = c[1];
+    kl10pv.ird_48.e23.ram[ea] = c[0];
   endtask // writeDRAM
 
 
