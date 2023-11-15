@@ -2,7 +2,7 @@ module mc10415a(input bit a0, a1, a2, a3, a4, a5, a6, a7, a8, a9,
 		input bit d, nen, nwrite,
 		output bit q);
 
-  bit ram[1023:0];
+  bit ram[1024];
   bit [0:9] addr;
   bit cs, we;
 

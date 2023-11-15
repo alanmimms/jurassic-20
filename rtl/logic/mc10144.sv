@@ -2,7 +2,7 @@ module mc10144(input bit a0, a1, a2, a3, a4, a5, a6, a7,
 	       input bit d, nen1, nen2, nen3, nwrite,
 	       output bit q);
 
-  bit ram[255:0];
+  bit ram[256];
   bit [7:0] addr;
   bit cs, we, re;
 

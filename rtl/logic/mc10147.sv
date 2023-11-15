@@ -2,7 +2,7 @@ module mc10147(input bit a0, a1, a2, a3, a4, a5, a6,
 	       input bit d, nen1, nen2, nwrite,
 	       output bit q);
 
-  bit ram[127:0];
+  bit ram[128];
   bit [6:0] addr;
   bit cs, we, re;
 
