@@ -655,8 +655,11 @@ FOR WDRAM
 
     if (adr[8]) $display("============== ERROR: writeDRAM called for odd 'adr' %3o", adr);
 
-    if ((adr & 'o770) == 'o250) begin
-      $display("DRAM %03o A=%d%d%d", int'(adr), e[13], e[12], e[11]);
+    if (1 || (adr & 'o770) == 'o250) begin
+      $display("DRAM EVEN %03o A=%d%d%d B=%d%d%d J=%4o",
+	       int'(adr), e[13], e[12], e[11], e[10], e[9], e[8], {c[3:0], 2'b0, e[3:0]});
+      $display("DRAM ODD  %03o A=%d%d%d B=%d%d%d J=%4o",
+	       int'(adr)+1, o[13], o[12], o[11], o[10], o[9], o[8], {c[3:0], 2'b0, o[3:0]});
     end
 
     `define putDRAMEOBit(ADR, EE, EO, BE, BO)	\
