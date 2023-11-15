@@ -480,7 +480,6 @@ module fe_sim(input bit clk,
 	if (count == 0 && adr == 0) begin
 	  lastAdr = 0;
 	end else begin
-	  W36 diagW;
 
 	  if (adr == 0) adr = lastAdr;
 
@@ -652,9 +651,11 @@ FOR WDRAM
   // address.  Composed while looking at klinit.l20 $WDRAM and various other
   // sources.  IRD2 is PDF129.
   task automatic writeDRAM(tDRAMAddress adr, W16 e, W16 o, W16 c);
-    bit [7:0] ea = adr[8:1];
+    bit [7:0] ea = adr[0:7];
 
-    if (adr == 'o254) begin
+    if (adr[8]) $display("============== ERROR: writeDRAM called for odd 'adr' %3o", adr);
+
+    if ((adr & 'o770) == 'o250) begin
       $display("DRAM %03o A=%d%d%d", int'(adr), e[13], e[12], e[11]);
     end
 
