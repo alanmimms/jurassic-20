@@ -26,6 +26,10 @@ module fe_sim(input bit clk,
 
   bit clockStarted = 0;
 
+  bit dumpCRAM = 0;
+  bit dumpDRAM = 0;
+  bit dumpCRA_ADR = 1;
+
   int dumpFD;
 
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
@@ -269,7 +273,7 @@ module fe_sim(input bit clk,
 			  kl10pv.cra_45.cra3_loc_08_h,
 			  kl10pv.cra_45.cra3_loc_09_h,
 			  kl10pv.cra_45.cra3_loc_10_h};
-      $fdisplay(dumpFD, "%7g CRA-ADR=%o CRA-LOC=%o", $realtime, adr, loc);
+      if (dumpCRA_ADR) $fdisplay(dumpFD, "%7g CRA-ADR=%o CRA-LOC=%o", $realtime, adr, loc);
     end
   end
 
@@ -646,7 +650,7 @@ FOR WDRAM
       `putCRM4(N+12, crm_42, a0, b0, a1, b1, a2, b2, a3, b3)	\
       `putCRM4(N+16, crm_40, a0, b0, a1, b1, a2, b2, a3, b3)
 
-    $fdisplay(dumpFD, "CRAM %04o: %o", int'(adr), cw);
+    if (dumpCRAM) $fdisplay(dumpFD, "CRAM %04o: %o", int'(adr), cw);
 
     `putCRM20(0,  e59, e57, e48, e44,  e4,  e2, e17, e14)
     `putCRM20(20, e55, e51, e41, e37, e10,  e7, e24, e21)
@@ -702,7 +706,7 @@ FOR WDRAM
 
     if (adr[8]) $display("============== ERROR: writeDRAM called for odd 'adr' %3o", adr);
 
-    if (1 || (adr & 'o770) == 'o250) begin
+    if (dumpDRAM) begin
       $fdisplay(dumpFD, "DRAM EVEN %03o A=%d%d%d B=%d%d%d P=%o J=%4o",
 	       int'(adr), e[13], e[12], e[11], e[10], e[9], e[8], e[5], {c[3:0], 2'b0, e[3:0]});
       $fdisplay(dumpFD, "DRAM ODD  %03o A=%d%d%d B=%d%d%d P=%o J=%4o",
