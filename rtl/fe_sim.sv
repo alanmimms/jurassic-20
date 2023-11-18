@@ -24,6 +24,10 @@ module fe_sim(input bit clk,
   bit testingChangeComing;
   bit a_change_coming;
 
+  bit clockStarted = 0;
+
+  int dumpFD;
+
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
 
   // The DRAM ("DISPATCH RAM" - not "DYNAMIC RAM") addressing
@@ -206,6 +210,7 @@ module fe_sim(input bit clk,
   //
 
   initial begin			// Load CRAM and DRAM before start of simulation
+    dumpFD = $fopen("dump.log", "w");
     loadCodeInACs();
     KLLoadRAMs();
   end
@@ -224,6 +229,7 @@ module fe_sim(input bit clk,
 
     // Start CPU in microcode halt loop.
     doDiagFunc(diagfCLR_RUN);
+    clockStarted = 1;
     doDiagFunc(diagfSTART_CLOCK);
 //    doDiagFunc(diagfCONTINUE);
   end
@@ -239,18 +245,32 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCONTINUE);
   end
 
-  always @(posedge kl10pv.con_35.con2_clk_e_h) begin
-    tCRAMAddress adr = {kl10pv.cra_45.cra1_adr_00_h,
-			kl10pv.cra_45.cra1_adr_01_h,
-			kl10pv.cra_45.cra1_adr_02_h,
-			kl10pv.cra_45.cra1_adr_03_h,
-			kl10pv.cra_45.cra1_adr_04_h,
-			kl10pv.cra_45.cra1_adr_05_h,
-			kl10pv.cra_45.cra1_adr_06_h,
-			kl10pv.cra_45.cra2_adr_07_h,
-			kl10pv.cra_45.cra2_adr_08_h,
-			kl10pv.cra_45.cra2_adr_09_h,
-			kl10pv.cra_45.cra2_adr_10_h};
+  always @(posedge kl10pv.cra_45.cra3_clk_c_h) begin
+    if (clockStarted) begin
+      tCRAMAddress adr = {kl10pv.cra_45.cra1_adr_00_h,
+			  kl10pv.cra_45.cra1_adr_01_h,
+			  kl10pv.cra_45.cra1_adr_02_h,
+			  kl10pv.cra_45.cra1_adr_03_h,
+			  kl10pv.cra_45.cra1_adr_04_h,
+			  kl10pv.cra_45.cra1_adr_05_h,
+			  kl10pv.cra_45.cra1_adr_06_h,
+			  kl10pv.cra_45.cra2_adr_07_h,
+			  kl10pv.cra_45.cra2_adr_08_h,
+			  kl10pv.cra_45.cra2_adr_09_h,
+			  kl10pv.cra_45.cra2_adr_10_h};
+      tCRAMAddress loc = {kl10pv.cra_45.cra3_loc_00_h,
+			  kl10pv.cra_45.cra3_loc_01_h,
+			  kl10pv.cra_45.cra3_loc_02_h,
+			  kl10pv.cra_45.cra3_loc_03_h,
+			  kl10pv.cra_45.cra3_loc_04_h,
+			  kl10pv.cra_45.cra3_loc_05_h,
+			  kl10pv.cra_45.cra3_loc_06_h,
+			  kl10pv.cra_45.cra3_loc_07_h,
+			  kl10pv.cra_45.cra3_loc_08_h,
+			  kl10pv.cra_45.cra3_loc_09_h,
+			  kl10pv.cra_45.cra3_loc_10_h};
+      $fdisplay(dumpFD, "%7g CRA-ADR=%o CRA-LOC=%o", $realtime, adr, loc);
+    end
   end
 
 
@@ -626,6 +646,8 @@ FOR WDRAM
       `putCRM4(N+12, crm_42, a0, b0, a1, b1, a2, b2, a3, b3)	\
       `putCRM4(N+16, crm_40, a0, b0, a1, b1, a2, b2, a3, b3)
 
+    $fdisplay(dumpFD, "CRAM %04o: %o", int'(adr), cw);
+
     `putCRM20(0,  e59, e57, e48, e44,  e4,  e2, e17, e14)
     `putCRM20(20, e55, e51, e41, e37, e10,  e7, e24, e21)
     `putCRM20(40, e56, e52, e42, e38, e11,  e8, e25, e22)
@@ -650,16 +672,41 @@ FOR WDRAM
   // Write specified DRAM word (even, odd, and common bits) to specified DRAM
   // address.  Composed while looking at klinit.l20 $WDRAM and various other
   // sources.  IRD2 is PDF129.
+  /*
+  MICRO FORMAT
+  FOR WDRAM
+
+   15 -/- 13---11   10----8   7   6    5    4    3     2     1     0
+        ---------------------------------------------------------------
+        * -- A -- * -- B -- *   *   *  P  *   * ------ J FIELD ------ *
+   EVEN * 1  2  3 * 1  2  3 *   *   *  E  *   *  7  *  8  *  9  *  10 *
+        ***************************************************************
+
+   15 -/- 13---11   10----8   7   6    5    4    3     2     1     0
+        ---------------------------------------------------------------
+        * -- A -- * -- B -- *   *   *  P  *   * ------ J FIELD ------ *
+   ODD  * 1  2  3 * 1  2  3 *   *   *  O  *   *  7  *  8  *  9  *  10 *
+        ***************************************************************
+
+     15 -/-                                      3     2     1     0
+                                              -------------------------
+                                              * ------ J FIELD ------ *
+   COMMON                                     *  1  *  2  *  3  *  4  *
+                                              *************************
+
+          NOTE: J7 ALSO COMMON BIT WRITTEN BY ODD WORD
+                J5 & J6 DO NOT EXIST
+  */
   task automatic writeDRAM(tDRAMAddress adr, W16 e, W16 o, W16 c);
     bit [7:0] ea = adr[0:7];
 
     if (adr[8]) $display("============== ERROR: writeDRAM called for odd 'adr' %3o", adr);
 
     if (1 || (adr & 'o770) == 'o250) begin
-      $display("DRAM EVEN %03o A=%d%d%d B=%d%d%d J=%4o",
-	       int'(adr), e[13], e[12], e[11], e[10], e[9], e[8], {c[3:0], 2'b0, e[3:0]});
-      $display("DRAM ODD  %03o A=%d%d%d B=%d%d%d J=%4o",
-	       int'(adr)+1, o[13], o[12], o[11], o[10], o[9], o[8], {c[3:0], 2'b0, o[3:0]});
+      $fdisplay(dumpFD, "DRAM EVEN %03o A=%d%d%d B=%d%d%d P=%o J=%4o",
+	       int'(adr), e[13], e[12], e[11], e[10], e[9], e[8], e[5], {c[3:0], 2'b0, e[3:0]});
+      $fdisplay(dumpFD, "DRAM ODD  %03o A=%d%d%d B=%d%d%d P=%o J=%4o",
+	       int'(adr)+1, o[13], o[12], o[11], o[10], o[9], o[8], o[5], {c[3:0], 2'b0, o[3:0]});
     end
 
     `define putDRAMEOBit(ADR, EE, EO, BE, BO)	\
