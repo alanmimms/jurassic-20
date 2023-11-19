@@ -29,6 +29,7 @@ module fe_sim(input bit clk,
   bit dumpCRAM = 0;
   bit dumpDRAM = 0;
   bit dumpCRA_ADR = 1;
+  bit dumpDiagFuncs = 1;
 
   int dumpFD;
 
@@ -777,9 +778,17 @@ FOR WDRAM
 
 
   ////////////////////////////////////////////////////////////////
+  // Return standard comma-comma LH,,RH for 36 bit word as a string.
+  function automatic string fmt36(W36 w);
+    return $sformatf("%06o,,%06o", w[0:17], w[18:35]);
+  endfunction // fmt36
+
+
+  ////////////////////////////////////////////////////////////////
   // Write the specified diagnostic function with data on ebus as if
   // we were the front-end setting up a KL10-PV.
   task doDiagWrite(input tDiagFunction func, input W36 ebusData);
+    if (dumpDiagFuncs) $fdisplay(dumpFD, "%7g %-30s %s", $realtime, func.name, fmt36(ebusData));
 
     @(negedge clk) begin
       ebus.ds <= func;
@@ -799,6 +808,7 @@ FOR WDRAM
   // Request the specified diagnostic function as if we were the
   // front-end setting up a KL10-PV.
   task doDiagFunc(input tDiagFunction func);
+    if (dumpDiagFuncs) $fdisplay(dumpFD, "%7g %s", $realtime, func.name);
 
     @(negedge clk) begin
       ebus.ds <= func;
