@@ -158,7 +158,7 @@ the logic to work.
    
 1. A symbol name may be preceded by a `-` to indicate that its sense
    should be reversed for this net. If a schematic uses a symbol like
-   `-CTL CONSOLE CONTROL L`, this symbol is actually _identical_ and
+   `-CTL CONSOLE CONTROL L`, this symbol is actually _identical to_ and
    should be wired to a net with the name `CTL CONSOLE CONTROL H`. The
    `-` effectively changes the sense of the name, allowing a designer
    to pretend a signal is active-low for a net but show that the
@@ -233,7 +233,9 @@ the logic to work.
 	
    is the same net as one labeled without the `<BH2>`. This
    accidentally works properly in the compiler since the net names
-   don't include the backplane pin in their key.
+   don't include the backplane pin in their key. I have tried to use
+   the fully identified version including the backplane pin label
+   everywhere, but I have no tool that enforces this at this time.
 
 
 # Tools
