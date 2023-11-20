@@ -237,7 +237,7 @@ the logic to work.
 
 
 # Tools
-## 36 bit --> LH,,RH Translate-Filter-Process for GTKWave
+## 36 bit → LH,,RH Translate-Filter-Process for GTKWave
 I got tired of seeing unnaturally huge octal numbers, so I wrote a
 "translate filter process" for GTKWave to translate hexadecimal 36-bit
 numbers into canonical LH,,RH form as always seen in the PDP-10
