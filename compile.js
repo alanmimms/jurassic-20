@@ -8,8 +8,8 @@ const assert = require('assert');
 const CMDR = require('commander').program;
 const PEG = require('pegjs');
 
-const CRAM = require('./cram-tools/write-cram-mem');
-const DRAM = require('./cram-tools/write-dram-mem');
+const CRAM = require('./tools/write-cram-mem');
+const DRAM = require('./tools/write-dram-mem');
 
 const logic = require('./logic.js');
 

@@ -16,7 +16,7 @@ RTLOBJDIR = ./rtl/obj_dir
 
 .PHONY: all clean
 
-all:	.compile.build $(TOPEXE)
+all:	.compile.build $(TOPEXE) tools/tff-w36-commacomma
 
 $(TOPEXE):
 	make -C $(RTLDIR)
@@ -29,6 +29,8 @@ cram-backplane.csv: cram-backplane.ods
 		cram-backplane.csv $(BOARDS)
 	./compile -g
 	touch $@
+
+tools/tff-w36-commacomma:	tools/tff-w36-commacomma.c
 
 clean:
 	@rm -f .compile.build
