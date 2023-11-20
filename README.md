@@ -104,6 +104,7 @@ I don't have an actual KL10-PV to look at, I have no clear vision of
 what the clock output of the CLK module looks like, although there are
 many hints and one or two good timing diagrams that show some of it.
 
+
 # History
 The predecessor to this project, which is still around for reference,
 is a modern KL10-PV implementation I did by coding SystemVerilog
@@ -233,4 +234,16 @@ the logic to work.
    is the same net as one labeled without the `<BH2>`. This
    accidentally works properly in the compiler since the net names
    don't include the backplane pin in their key.
+
+
+# Tools
+## 36 bit --> LH,,RH Translate-Filter-Process for GTKWave
+I got tired of seeing unnaturally huge octal numbers, so I wrote a
+"translate filter process" for GTKWave to translate hexadecimal 36-bit
+numbers into canonical LH,,RH form as always seen in the PDP-10
+universe. This is in `tools/tff-w36-commacomma`. It is meant to be
+called from GTKWave as a "translate filter process", which takes a
+(hexadecimal) number per line as input on its stdin and returns the
+octal LH,,RH form on a single line on stdout. The program loops
+forever until EOF on stdin.
 
