@@ -1,40 +1,31 @@
 module mc10136(input bit  d8, d4, d2, d1, nCryIn,
 	       input bit  sel2, sel1, clk,
 	       output bit q8, q4, q2, q1, nCryOut);
+  typedef enum bit [1:0] {LOAD, INC, DEC, HOLD} tCounterMode;
+  tCounterMode mode = tCounterMode'({sel2, sel1});
+  bit ci = !nCryIn;
+  bit co;
   
-  bit [1:0] sel;
-  bit incOrDec;
-  bit carryClk;
-  bit carryOut, carryIn;
-  
-  always_comb sel = {sel2, sel1};
-
-  // Not LOAD or HOLD
-  always_comb incOrDec = sel[0] ^ sel[1];
-
-  // nCryIn overrides clk when in INC or DEC mode. This signal is the
-  // real clock we have to pay attention to as a result.
-  always_comb carryIn = !nCryIn;
-
-  always_comb nCryOut = !carryOut;
-  always_comb carryClk = incOrDec ? clk : !nCryIn;
-
   always_comb begin
-    unique case (sel[1:0])
-      2'b00: carryOut = 1;			  // LOAD
-      2'b01: carryOut = {q8,q4,q2,q1} == 4'b1111; // INC
-      2'b10: carryOut = {q8,q4,q2,q1} == '0;	  // DEC
-      2'b11: carryOut = 0;			  // HOLD
+
+    unique case (mode)
+      LOAD: co = 1;
+      INC:  co = {q8,q4,q2,q1} == 4'b1111;
+      DEC:  co = {q8,q4,q2,q1} == '0;
+      HOLD: co = 0;
+    endcase
+
+    nCryOut = !co;
+  end
+
+  always_ff @(posedge clk) begin
+
+    unique case (mode)
+      LOAD: {q8,q4,q2,q1} <= {d8,d4,d2,d1};
+      INC:  if (ci) {q8,q4,q2,q1} <= {q8,q4,q2,q1} + 4'b0001;
+      DEC:  if (ci) {q8,q4,q2,q1} <= {q8,q4,q2,q1} - 4'b0001;
+      HOLD: ;
     endcase
   end
 
-  always_ff @(posedge carryClk) begin
-    unique case (sel[1:0])
-      2'b00: {q8,q4,q2,q1} <= {d8,d4,d2,d1};				// LOAD
-      2'b01: if (carryIn) {q8,q4,q2,q1} <= {q8,q4,q2,q1} + 4'b0001;	// INC
-      2'b10: if (carryIn) {q8,q4,q2,q1} <= {q8,q4,q2,q1} - 4'b0001;	// DEC
-      2'b11: ;								// HOLD
-    endcase
-  end
-
-endmodule // mc10101
+endmodule // mc10136

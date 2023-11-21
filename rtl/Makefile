@@ -68,8 +68,7 @@ KILLWARNINGS = \
 DEBUG_DIDNOTCONVERGE = --prof-cfuncs -CFLAGS -DVL_DEBUG
 
 DEFINES = -D$(KLTYPE)
-SVLIBDIR = ./lib/svlib/src
-INCDIR = $(VERILATORROOT)/include $(LIBDIR)/svlib/src
+INCDIR = $(VERILATORROOT)/include
 CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG) $(OPTIMIZE) $(DEFINES)
 CXXFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd $(DEBUG) $(OPTIMIZE) $(DEFINES)
 CPPFLAGS += -DVL_DEBUG $(DEFINES)
@@ -81,7 +80,6 @@ VFLAGS = \
 	-MMD \
 	-I. \
 	-I$(GENDIR) \
-	-I$(SVLIBDIR) \
 	$(DEFINES) \
 	$(KILLWARNINGS) \
 	-Wwarn-UNDRIVEN \
@@ -125,7 +123,12 @@ clean:
 	@rm -fr obj_dir
 	rm -rf $(VOBJDIR) $(DTEINTF) $(DTETFF) $(foreach F,$(EXE),tb/$(EXE))
 
-tests:	$(VOBJDIR)/test-mc10181
+tests:	$(foreach T,mc10181 mc10136,$(VOBJDIR)/test-$(T))
 
-$(VOBJDIR)/test-mc10181: rtl/tb/mc10181-tb.cc rtl/logic/mc10181.sv
-	$(VERILATOR) $(VFLAGS) $(filter-out %.h, $^) --top-module mc10181 -o $(@F)
+$(VOBJDIR)/test-%:	rtl/tb/%_tb.sv rtl/logic/%.sv # rtl/tb/%-tb.cc
+	$(VERILATOR) \
+		$(VFLAGS) -DTESTBENCH \
+		$(filter-out %.h, $^) \
+		--top-module $(basename $(notdir $<)) \
+		--main --timing \
+		-o $(@F)
