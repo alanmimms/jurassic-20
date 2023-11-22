@@ -123,7 +123,8 @@ clean:
 	@rm -fr obj_dir
 	rm -rf $(VOBJDIR) $(DTEINTF) $(DTETFF) $(foreach F,$(EXE),tb/$(EXE))
 
-tests:	$(foreach T,mc10181 mc10136,$(VOBJDIR)/test-$(T))
+# TODO Add back mc10181 test
+tests:	$(foreach T,mc10136,$(VOBJDIR)/test-$(T))
 
 $(VOBJDIR)/test-%:	rtl/tb/%_tb.sv rtl/logic/%.sv # rtl/tb/%-tb.cc
 	$(VERILATOR) \

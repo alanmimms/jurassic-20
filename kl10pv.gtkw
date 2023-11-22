@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon Nov 20 22:49:23 2023
+[*] Wed Nov 22 23:25:03 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Mon Nov 20 22:49:11 2023"
 [dumpfile_size] 26789841
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 5617
+[timestart] 5400
 [size] 1920 1045
 [pos] -1 -1
-*-5.461107 5695 3623 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.461107 5511 3623 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -79,7 +79,7 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
-@c000b0
+@c000b1
 [color] 3
 #{IR} top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_11_h top.kl10pv.ird_48.ir_10_h top.kl10pv.ird_48.ir_09_h top.kl10pv.ird_48.ir_08_h top.kl10pv.ird_48.ir_07_h top.kl10pv.ird_48.ir_06_h top.kl10pv.ird_48.ir_05_h top.kl10pv.ird_48.ir_04_h top.kl10pv.ird_48.ir_03_h top.kl10pv.ird_48.ir_02_h top.kl10pv.ird_48.ir_01_h top.kl10pv.ird_48.ir_00_h
 @28
@@ -98,7 +98,7 @@ top.kl10pv.ird_48.ir_11_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
-@1401200
+@1401201
 -group_end
 @c040a2
 [color] 3
@@ -492,7 +492,6 @@ top.kl10pv.vma_38.mcl4_vma_inc_h
 top.kl10pv.vma_38.con_vma_sel_2_l
 top.kl10pv.vma_38.con_vma_sel_1_l
 top.kl10pv.vma_38.mcl4_vmaGETSad_h
-@29
 top.kl10pv.vma_38.vma2_cry_16_l
 top.kl10pv.vma_38.vma2_cry_20_l
 top.kl10pv.vma_38.vma2_cry_24_l
