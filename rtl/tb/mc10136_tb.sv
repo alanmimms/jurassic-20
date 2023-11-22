@@ -1,57 +1,61 @@
 module mc10136_tb;
-  typedef enum bit[1:0] {LOAD, INC, DEC, HOLD} tOp;
+  typedef enum bit[1:0] {LOAD, DEC, INC, HOLD} tCounterMode;
+
+  string GREEN = "\033[32m";
+  string RED = "\033[31m";
 
   bit [3:0] d;
   bit clk, nci;
-  tOp sel;
+  tCounterMode s;
   bit [3:0] q;
   bit nco;
 
   mc10136 dut(d[3], d[2], d[1], d[0], nci,
-	      sel[1], sel[0], clk,
+	      s[1], s[0], clk,
 	      q[3], q[2], q[1], q[0], nco);
 
-
-
-  `define X 1'bX
-
-  struct {
-    bit s1,s2;
-    logic d0,d1,d2,d3;
-    logic nci;
+  typedef struct packed {
+    tCounterMode s;
+    bit [3:0] d;
+    bit nci;
     bit clk;
-    bit q0,q1,q2,q3;
+    bit [3:0] q;
     bit nco;
-    } tests [] = {
-		 //S1  S2  D0  D1  D2  D3 NCI Clk  Q0  Q1  Q2  Q3  NCO
-		  { 0,  0,  0,  0,  1,  1, `X,  1,  0,  0,  1,  1,  0},
-		  { 0,  1, `X, `X, `X, `X,  0,  1,  1,  0,  1,  1,  1},
-		  { 0,  1, `X, `X, `X, `X,  0,  1,  0,  1,  1,  1,  1},
-		  { 0,  1, `X, `X, `X, `X,  0,  1,  1,  1,  1,  1,  0},
-		  { 0,  1, `X, `X, `X, `X,  1,  0,  1,  1,  1,  1,  1},
-		  { 0,  1, `X, `X, `X, `X,  1,  1,  1,  1,  1,  1,  1},
-		  { 1,  1, `X, `X, `X, `X, `X,  1,  1,  1,  1,  1,  1},
-		  { 0,  0,  1,  1,  0,  0, `X,  1,  1,  1,  0,  0,  0},
-		  { 1,  0, `X, `X, `X, `X,  0,  1,  0,  1,  0,  0,  1},
-		  { 1,  0, `X, `X, `X, `X,  0,  1,  1,  0,  0,  0,  1},
-		  { 1,  0, `X, `X, `X, `X,  0,  1,  0,  0,  0,  0,  0},
-		  { 1,  0, `X, `X, `X, `X,  0,  1,  1,  1,  1,  1,  1}};
+  } StimData;
+
+  StimData stim[12] = {
+		       'b0011000111000,
+		       'b1000000111011,
+		       'b1000000111101,
+		       'b1000000111110,
+		       'b1000001011111,
+		       'b1000001111111,
+		       'b1100000111111,
+		       'b0000110100110,
+		       'b0100000100101,
+		       'b0100000100011,
+		       'b0100000100000,
+		       'b0100000111111};
 
   initial begin
-    clk = 0;
-    nci = 0;
-    d = 0;
 
-    for (int k = 0; k < $size(tests); ++k) begin
-      #1 clk = tests[k].clk;
-      sel = tOp'({tests[k].s2, tests[k].s1});
-      d = {tests[k].d3, tests[k].d2, tests[k].d1, tests[k].d0};
-      $display("%7g %4s d=%04b nci=%01b clk=%01b  q=%04b nco=%01b",
-	       $realtime, sel.name, d, nci, clk, q, nco);
+    for (int k = 0; k < $size(stim); ++k) begin
+      StimData t = stim[k];
+      s = t.s;
+      d = t.d;
+      nci = t.nci;
+      clk = 0;
+
+      #1 clk = t.clk;
+      #1
+      $display("%s%7g %4s d=%04b nci=%01b clk=%01b  Outputs V/SB: q=%04b/%04b  nco=%01b/%01b  [%s]",
+	       (q == t.q && nco == t.nco) ? GREEN : RED,
+	       $realtime, s.name, d, nci, clk, q, t.q, nco, t.nco,
+	       (q == t.q && nco == t.nco) ? "PASS" : "FAIL");
 
     end
 
-    #100
+    #33
     $finish(2);
   end
 
