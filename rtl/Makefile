@@ -11,6 +11,8 @@ MODS = \
     just_a_wire delay_line tapped_delay_20_2 tapped_delay_50_10 \
     just_six_zero wire6
 
+LOGIC_TESTS = mc10136 mc10141
+
 TOP = kl10pv
 
 VERILATORROOT = $(HOME)/verilator
@@ -124,7 +126,7 @@ clean:
 	rm -rf $(VOBJDIR) $(DTEINTF) $(DTETFF) $(foreach F,$(EXE),tb/$(EXE))
 
 # TODO Add back mc10181 test
-tests:	$(foreach T,mc10136,$(VOBJDIR)/test-$(T))
+tests:	$(foreach T,$(LOGIC_TESTS),$(VOBJDIR)/test-$(T))
 
 $(VOBJDIR)/test-%:	rtl/tb/%_tb.sv rtl/logic/%.sv # rtl/tb/%-tb.cc
 	$(VERILATOR) \
