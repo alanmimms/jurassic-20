@@ -426,6 +426,7 @@ module fe_sim(input bit clk,
     int fd;
     string line, recType, rec;
     string words[$];
+    string letters[1:10] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
 
     $display("%7g [Reading KLX.RAM to load CRAM and DRAM]", $realtime);
 
@@ -487,7 +488,8 @@ module fe_sim(input bit clk,
 	      majver = {cram136[29:31], cram136[33:35]};
 	      minver = cram136[37:39];
 	      edit = {cram137[29:31], cram137[33:35], cram137[37:39]};
-	      $display("%7g [KL10 microcode %1o.%1o(%0o)]", $realtime, majver, minver, edit);
+	      $display("%7g [KL10 microcode V%1o%s(%0o)]",
+		       $realtime, majver, letters[minver], edit);
 	    end
 
 	    writeCRAM(cw, tCRAMAddress'(adr));
