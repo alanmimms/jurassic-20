@@ -238,6 +238,28 @@ the logic to work.
    everywhere, but I have no tool that enforces this at this time.
 
 
+# How to Build
+It's pretty easy on Ubuntu 22.04, which is what I have been using. I
+couldn't easily tell you which packages you need, but there aren't
+many you'll have to add.
+
+* Clone the project's git respository and go into the top level
+  directory.
+* Clone https://github.com/verilator/verilator and install its
+  required packages and build it. I used the `stable` tag version
+  which I _think_ is `v5.012`.
+* Install Yarn package manager `sudo apt install yarnpkg` (the NodeJS
+  package manager). You could use npm also, I think, if you want to.
+* Install `gtkwave` to look at the resulting waveform data.
+* Run the `yarnpkg` command to install the required JavaScript packages
+  for the compiler.
+* Run `make` and fix any missing tools or dependencies. For now, you
+  may have to do this because I don't want to pollute my Makefiles
+  with extra subdir garbage yet:
+
+	make && make -C rtl && ./kl10pv
+
+
 # Tools
 ## 36 bit → LH,,RH Translate-Filter-Process for GTKWave
 I got tired of seeing unnaturally huge octal numbers, so I wrote a
