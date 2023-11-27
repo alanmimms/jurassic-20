@@ -27,7 +27,7 @@ module fe_sim(input bit clk,
   bit clockStarted = 0;
 
   bit dumpCRAM = 0;
-  bit dumpDRAM = 0;
+  bit dumpDRAM = 1;
   bit dumpCRA_ADR = 1;
   bit dumpDiagFuncs = 1;
 
@@ -565,13 +565,15 @@ module fe_sim(input bit clk,
 	  // of the bit order created from the microcode sources by
 	  // the microcode assembly process.
 
-	  for (int k = 2; k < count; ) begin
+	  for (int k = 2; k < count; k += 3) begin
  	    W16 even, odd, common;
 
-	    even   = unASCIIize(words[k++]);
-	    odd    = unASCIIize(words[k++]);
-	    common = unASCIIize(words[k++]);
+	    even   = unASCIIize(words[k+0]);
+	    odd    = unASCIIize(words[k+1]);
+	    common = unASCIIize(words[k+2]);
 
+	    $fdisplay(dumpFD, "DRAM %o pair even=%o'%s' odd=%o'%s' common=%o'%s'",
+		      adr, even, words[k+0], odd, words[k+1], common, words[k+2]);
 /*
 MICRO FORMAT
 FOR WDRAM
@@ -720,23 +722,25 @@ FOR WDRAM
       kl10pv.ird_48.EE.ram[ADR] = BE;		\
       kl10pv.ird_48.EO.ram[ADR] = BO;
 
-    `putDRAMEOBit(ea,  e4,  e9, e[13], o[13])
-    `putDRAMEOBit(ea, e42, e47, e[12], o[12])
-    `putDRAMEOBit(ea, e14, e19, e[11], o[11])
-    `putDRAMEOBit(ea, e24, e29, e[10], o[10])
-    `putDRAMEOBit(ea, e34, e37, e[9], o[9])
-    `putDRAMEOBit(ea, e43, e48, e[8], o[8])
+    `putDRAMEOBit(ea,  e4,  e9, e[13], o[13]) // DRAM A00 X/Y H
+    `putDRAMEOBit(ea, e42, e47, e[12], o[12]) // DRAM A01 X/Y H
+    `putDRAMEOBit(ea, e14, e19, e[11], o[11]) // DRAM A02 X/Y H
+    `putDRAMEOBit(ea, e24, e29, e[10], o[10]) // DRAM B00 X/Y H
+    `putDRAMEOBit(ea, e34, e37, e[9], o[9])   // DRAM B01 X/Y H
+    `putDRAMEOBit(ea, e43, e48, e[8], o[8])   // DRAM B02 X/Y H
 
-    `putDRAMEOBit(ea, e25, e30, e[2], o[2])
-    `putDRAMEOBit(ea, e35, e38, e[1], o[1])
-    `putDRAMEOBit(ea, e53, e58, e[0], o[0])
-    `putDRAMEOBit(ea,  e3,  e8, e[5], o[5])
+    // J00 doesn't exist in DRAM
+    kl10pv.ird_48.e13.ram[ea] = c[3];	      // DRAM J01 H
+    kl10pv.ird_48.e18.ram[ea] = c[2];	      // DRAM J02 H
+    kl10pv.ird_48.e28.ram[ea] = c[1];	      // DRAM J03 H
+    kl10pv.ird_48.e23.ram[ea] = c[0];	      // DRAM J04 H
+    // J05 and J06 "DO NOT EXIST"
+    kl10pv.ird_48.e20.ram[ea] = o[3];	      // DRAM J07 H
+    `putDRAMEOBit(ea, e25, e30, e[2], o[2])   // DRAM J08 X/Y H
+    `putDRAMEOBit(ea, e35, e38, e[1], o[1])   // DRAM J09 X/Y H
+    `putDRAMEOBit(ea, e53, e58, e[0], o[0])   // DRAM J10 X/Y H
 
-    kl10pv.ird_48.e20.ram[ea] = o[3];
-    kl10pv.ird_48.e13.ram[ea] = c[3];
-    kl10pv.ird_48.e18.ram[ea] = c[2];
-    kl10pv.ird_48.e28.ram[ea] = c[1];
-    kl10pv.ird_48.e23.ram[ea] = c[0];
+    `putDRAMEOBit(ea,  e3,  e8, e[5], o[5])   // DRAM PAR X/Y H
   endtask // writeDRAM
 
 
@@ -847,7 +851,7 @@ FOR WDRAM
 
     for (int k = s.len() - 1; k >= 0; --k) begin
       W16 ch = W16'(s[k]);
-      v = v | ((ch & ~'o100) << shift);
+      v |= (ch & 16'o77) << shift;
       shift += 6;
     end
 
