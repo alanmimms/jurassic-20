@@ -238,6 +238,15 @@ the logic to work.
    backplane pin label everywhere, but I have no tool that enforces
    this at this time.
 
+## Clocking and Delays
+From `docs/EK-EBOX-all.pdf`, page `EBOX/3-21` figure 3-20:
+
+	NOTE
+		Actually, EBOX CLOCK is
+		clocked via CLK ODD which
+		occurs ~16ns earlier than
+		MBOX CLK.
+
 
 # How to Build
 It's pretty easy on Ubuntu 22.04, which is what I have been using. I
