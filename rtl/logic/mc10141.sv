@@ -1,3 +1,5 @@
+`include "logic.svh"
+
 // This is like MC10141 ECL universal shift register
 module mc10141(input bit shft0in,
                input bit d0, d1, d2, d3,
@@ -6,8 +8,10 @@ module mc10141(input bit shft0in,
                input bit clk,
                output bit q0, q1, q2, q3);
 
-  tMode141 mode = tMode141'({op2, op1});
+  tMode141 mode;
   bit [0:3] value;
+
+  always_comb mode = tMode141'({op2, op1});
 
   always_ff @(posedge clk) begin
     unique case (mode)

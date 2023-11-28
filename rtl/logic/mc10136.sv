@@ -2,12 +2,15 @@ module mc10136(input bit  d8, d4, d2, d1, nCryIn,
 	       input bit  sel2, sel1, clk,
 	       output bit q8, q4, q2, q1, nCryOut);
   typedef enum bit [1:0] {LOAD, DEC, INC, HOLD} tCounterMode;
-  tCounterMode mode = tCounterMode'({sel2, sel1});
+  tCounterMode mode;
   bit [3:0] value;
-  bit [3:0] ci = 4'(!nCryIn);
+  bit [3:0] ci;
   bit co;
   
-  always_comb {q8,q4,q2,q1} = value;
+  always_comb begin
+    mode = tCounterMode'({sel2, sel1});
+    ci = 4'(!nCryIn);
+  end
 
   always_ff @(posedge clk) begin
 
@@ -29,6 +32,7 @@ module mc10136(input bit  d8, d4, d2, d1, nCryIn,
     endcase
 
     nCryOut = !co;
+    {q8,q4,q2,q1} = value;
   end
 
 endmodule // mc10136
