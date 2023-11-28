@@ -214,8 +214,11 @@ module fe_sim(input bit clk,
   // 	REPRESENTED IN 16 BIT FORMAT.
   //
 
-  initial begin			// Load CRAM and DRAM before start of simulation
+  initial begin
     dumpFD = $fopen("dump.log", "w");
+  end
+
+  initial begin			// Load CRAM and DRAM before start of simulation
     loadCodeInACs();
     KLLoadRAMs();
   end
@@ -248,6 +251,16 @@ module fe_sim(input bit clk,
     repeat (100) @(negedge clk);
     $display("%7g [CONTINUE button]", $realtime);
     doDiagFunc(diagfCONTINUE);
+
+    if (dumpDRAM) begin
+      bit [0:7] ea = 'o254 >> 1;
+
+      $display("%7g DRAM %o Jcommon=%4b", $realtime, ea << 1,
+	       {kl10pv.ird_48.e13.ram[ea],
+		kl10pv.ird_48.e18.ram[ea],
+		kl10pv.ird_48.e28.ram[ea],
+		kl10pv.ird_48.e23.ram[ea]});
+    end
   end
 
   always @(posedge kl10pv.cra_45.cra3_clk_c_h) begin
@@ -501,14 +514,13 @@ module fe_sim(input bit clk,
       "D": begin		// DRAM record
 	W16 count = unASCIIize(words[0]);
 	W16 adr16 = unASCIIize(words[1]);
-	tDRAMAddress adr = adr16[8:0];
-	tDRAMAddress lastAdr = 0;
+	W16 lastAdr = 0;
 
-	if (count == 0 && adr == 0) begin
+	if (count == 0 && adr16 == 0) begin
 	  lastAdr = 0;
 	end else begin
 
-	  if (adr == 0) adr = lastAdr;
+	  if (adr16 == 0) adr16 = lastAdr;
 
 	  // These functions from PDF71-73 in `EK-OKL10-MG-003 KL10
 	  // Maintenance Guide Volume 1 Rev 3 Apr85`.
@@ -573,7 +585,7 @@ module fe_sim(input bit clk,
 	    common = unASCIIize(words[k+2]);
 
 	    $fdisplay(dumpFD, "DRAM %o pair even=%o'%s' odd=%o'%s' common=%o'%s'",
-		      adr, even, words[k+0], odd, words[k+1], common, words[k+2]);
+		      adr16, even, words[k+0], odd, words[k+1], common, words[k+2]);
 /*
 MICRO FORMAT
 FOR WDRAM
@@ -600,11 +612,11 @@ FOR WDRAM
 	      J5 & J6 DO NOT EXIST
 
 */
-	    writeDRAM(adr, even, odd, common);
-	    adr = adr + 2;
+	    writeDRAM(adr16, even, odd, common);
+	    adr16 += 2;
 	  end
 
-	  lastAdr = adr;
+	  lastAdr = adr16;
 	end
       end
 
@@ -706,16 +718,17 @@ FOR WDRAM
           NOTE: J7 ALSO COMMON BIT WRITTEN BY ODD WORD
                 J5 & J6 DO NOT EXIST
   */
-  task automatic writeDRAM(tDRAMAddress adr, W16 e, W16 o, W16 c);
-    bit [7:0] ea = adr[0:7];
+  task automatic writeDRAM(W16 adr16, W16 e, W16 o, W16 c);
+    bit [0:7] ea = adr16[8:1];
 
-    if (adr[8]) $display("============== ERROR: writeDRAM called for odd 'adr' %3o", adr);
+    if (adr16[0]) $display("============== ERROR: writeDRAM called for odd 'adr' %3o", adr16);
 
     if (dumpDRAM) begin
-      $fdisplay(dumpFD, "DRAM EVEN %03o A=%d%d%d B=%d%d%d P=%o J=%4o",
-	       int'(adr), e[13], e[12], e[11], e[10], e[9], e[8], e[5], {c[3:0], 2'b0, e[3:0]});
+      $fdisplay(dumpFD, "DRAM EVEN %03o A=%d%d%d B=%d%d%d P=%o J=%4o ea=%o",
+		adr16, e[13], e[12], e[11], e[10], e[9], e[8], e[5],
+		{c[3:0], 2'b0, e[3:0]}, ea);
       $fdisplay(dumpFD, "DRAM ODD  %03o A=%d%d%d B=%d%d%d P=%o J=%4o",
-	       int'(adr)+1, o[13], o[12], o[11], o[10], o[9], o[8], o[5], {c[3:0], 2'b0, o[3:0]});
+		adr16+1, o[13], o[12], o[11], o[10], o[9], o[8], o[5], {c[3:0], 2'b0, o[3:0]});
     end
 
     `define putDRAMEOBit(ADR, EE, EO, BE, BO)	\
