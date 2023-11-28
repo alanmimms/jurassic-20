@@ -10,8 +10,8 @@
 #endif
 
 
-static const double nsPerClock = 1.0;
-static const double endTime = 50 * 1000; // microseconds
+static const double nsPerClock = 10.0;
+static const double endTime = 500 * 1000; // 50 microseconds
 
 
 extern "C" void FEinitial(double nsPerClock);
@@ -59,12 +59,12 @@ int main(int argc, char **argv) {
     top->clk60 = 0;
     top->eval();
     if (trace) trace->dump(contextp->time());
-    contextp->timeInc(1);
+    contextp->timeInc(10);
 
     top->clk60 = 1;
     top->eval();
     if (trace) trace->dump(contextp->time());
-    contextp->timeInc(1);
+    contextp->timeInc(10);
   }
 
   return 0;

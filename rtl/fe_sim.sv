@@ -56,6 +56,25 @@ module fe_sim(input bit clk,
     con_cono_200000_h = '0;
   end
 
+
+  // DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG
+  always @(posedge kl10pv.vma_38.e70.clk) begin
+
+    if (kl10pv.vma_38.e70.mode == 2'b00) begin
+      $display("%7g VMA.E70.mode == LOAD: d=%04b q=%04b", $realtime,
+	       {kl10pv.vma_38.e70.d0,
+		kl10pv.vma_38.e70.d1,
+		kl10pv.vma_38.e70.d2,
+		kl10pv.vma_38.e70.d3}, 
+	       {kl10pv.vma_38.e70.q0,
+		kl10pv.vma_38.e70.q1,
+		kl10pv.vma_38.e70.q2,
+		kl10pv.vma_38.e70.q3});
+    end
+
+  end
+
+
   // From `images/ucode/convrt/convrt.txt`
   //
   // 3.0	FILE FORMATS
@@ -251,16 +270,6 @@ module fe_sim(input bit clk,
     repeat (100) @(negedge clk);
     $display("%7g [CONTINUE button]", $realtime);
     doDiagFunc(diagfCONTINUE);
-
-    if (dumpDRAM) begin
-      bit [0:7] ea = 'o254 >> 1;
-
-      $display("%7g DRAM %o Jcommon=%4b", $realtime, ea << 1,
-	       {kl10pv.ird_48.e13.ram[ea],
-		kl10pv.ird_48.e18.ram[ea],
-		kl10pv.ird_48.e28.ram[ea],
-		kl10pv.ird_48.e23.ram[ea]});
-    end
   end
 
   always @(posedge kl10pv.cra_45.cra3_clk_c_h) begin
