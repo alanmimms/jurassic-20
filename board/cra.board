@@ -830,15 +830,15 @@ delayNinverted #(.N(1)) dl7
 %endverilog
 
 %verilog
-bit cra4_ret_and_Ng1777_dly1_l;
-always_comb cra4_ret_and_Ng1777_dly1_h = !cra4_ret_and_Ng1777_dly1_l;
+bit cra4_ret_and_NG1777_dly1_l;
+always_comb cra4_ret_and_NG1777_dly1_h = !cra4_ret_and_NG1777_dly1_l;
 delayN #(.N(1)) dl9
-       (.clk(clk60), .trigger(!cra4_ret_and_Ng1777_l), .q(cra4_ret_and_Ng1777_dly1_l));
+       (.clk(clk60), .trigger(!cra4_ret_and_NG1777_l), .q(cra4_ret_and_NG1777_dly1_l));
 %endverilog
 
 //dl9: delay1 (delay N=1 clk60 edge)
 //     1 ~< {aa2} clk60
-//     2 ~< ` !cra4_ret_and_Ng1777_l
+//     2 ~< ` !cra4_ret_and_NG1777_l
 //     3 ~> cra4 ret and -1777 dly1 l
 
 e52: 10101 quad or/nor
@@ -848,7 +848,7 @@ e52: 10101 quad or/nor
      2 ~> cra4 sel call h
      5 ~> %NC%
      7 ~< -cra4 ret and -1777 dly1 l
-//     7 ~< ` !cra4_ret_and_Ng1777_dly1_l
+//     7 ~< ` !cra4_ret_and_NG1777_dly1_l
      3 ~> %NC%
      6 ~> cra4 sel call h
      10 ~< cra3 clk f h
