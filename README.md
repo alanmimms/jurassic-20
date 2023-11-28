@@ -233,9 +233,10 @@ the logic to work.
 	
    is the same net as one labeled without the `<BH2>`. This
    accidentally works properly in the compiler since the net names
-   don't include the backplane pin in their key. I have tried to use
-   the fully identified version including the backplane pin label
-   everywhere, but I have no tool that enforces this at this time.
+   don't include the backplane pin in their key. I have tried, by
+   convention, to use the fully identified version including the
+   backplane pin label everywhere, but I have no tool that enforces
+   this at this time.
 
 
 # How to Build
