@@ -6,10 +6,7 @@ module mc10141(input bit shft0in,
                input bit clk,
                output bit q0, q1, q2, q3);
 
-  // SHIFTR is defined as shifting shft3in into q3 and {q0,q1,q2} = previous {q1,q2,q3}.
-  // SHIFTL is defined as shifting shft0in into q0 and {q1,q2,q3} = previous {q0,q1,q2}.
-  typedef enum bit [1:0] {LOAD, SHIFTL, SHIFTR, HOLD} tMode;
-  tMode mode = tMode'({op2, op1});
+  tMode141 mode = tMode141'({op2, op1});
   bit [0:3] value;
 
   always_ff @(posedge clk) begin

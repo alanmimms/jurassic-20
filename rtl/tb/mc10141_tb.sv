@@ -1,12 +1,14 @@
+`include "logic.svh"
+
 module mc10141_tb;
-  typedef enum bit[1:0] {LOAD, SHIFTL, SHIFTR, HOLD} tMode;
+//  typedef enum bit[1:0] {LOAD, SHIFTL, SHIFTR, HOLD} tMode;
 
   string GREEN = "\033[32m";
   string RED = "\033[31m";
 
   bit [0:3] d;
   bit clk, d0In, d3In;
-  tMode s;
+  tMode141 s;
   bit [0:3] q;
 
   mc10141 dut(d0In,
@@ -17,7 +19,7 @@ module mc10141_tb;
 	      q[0], q[1], q[2], q[3]);
 
   typedef struct packed {
-    tMode s;
+    tMode141 s;
     bit d0In;
     bit [0:3] d;
     bit d3In;
