@@ -41,7 +41,7 @@ SVFILES = \
 	$(foreach M,$(MODS),$(LOGICDIR)/$(M).sv) \
 	$(foreach M,$(SLOTNAMES),$(GENDIR)/$(M).sv) \
 
-SVHFILES = $(TOP).svh $(DTEINTF)
+SVHFILES = $(TOP).svh $(DTEINTF) logic.svh
 CXXFILES = verilator-main.cc
 CFILES = fe.c
 HFILES =
@@ -128,10 +128,10 @@ clean:
 # TODO Add back mc10181 test
 tests:	$(foreach T,$(LOGIC_TESTS),$(VOBJDIR)/test-$(T))
 
-$(VOBJDIR)/test-%:	rtl/tb/%_tb.sv rtl/logic/%.sv # rtl/tb/%-tb.cc
+$(VOBJDIR)/test-%:	rtl/tb/%_tb.sv rtl/logic/%.sv rtl/logic.svh # rtl/tb/%-tb.cc
 	$(VERILATOR) \
 		$(VFLAGS) -DTESTBENCH \
-		$(filter-out %.h, $^) \
+		$^ \
 		--top-module $(basename $(notdir $<)) \
 		--main --timing \
 		-o $(@F)
