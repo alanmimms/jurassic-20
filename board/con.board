@@ -265,9 +265,8 @@ e7: 10105 2-3-2 or/nor
     9 ~< {ad2} -cram cond 03 l
     10 ~< {ad1} -cram cond 04 l
     11 ~< {ae2} -cram cond 05 l
-    6 ~> %NC%
     7 ~> con5-e7-7
-    12 ~< con1 cond/vma inc h
+    6 ~> %NC%
     13 ~< {al1} mcl load vma h
     4 ~< con1 cond/vma inc h
     5 ~< {al1} mcl load vma h

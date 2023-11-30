@@ -1,23 +1,24 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Mon Nov 27 18:50:18 2023
+[*] Wed Nov 29 22:13:59 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Nov 27 02:59:30 2023"
-[dumpfile_size] 37702234
+[dumpfile_mtime] "Wed Nov 29 22:13:53 2023"
+[dumpfile_size] 7766520
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 5406
-[size] 1712 1311
-[pos] 1703 400
-*-5.000000 5457 3623 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 27047
+[size] 1830 1275
+[pos] -1 -1
+*-7.000000 27251 3623 27275 27355 27235 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 261
-[signals_width] 595
+[signals_width] 471
 [sst_expanded] 1
-[sst_vpaned_height] 522
+[sst_vpaned_height] 497
 @28
+[color] 3
 top.kl10pv.clk
 @c02030
 [color] 3
@@ -41,6 +42,7 @@ top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
 @28
+[color] 3
 top.kl10pv.clk1_clk_out_h
 @800200
 -core-state
@@ -99,47 +101,6 @@ top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 @1401200
 -group_end
-@c000b0
-#{DR-ADR} top.kl10pv.ird_48.dr_adr_08_h top.kl10pv.ird_48.dr_adr_07_a_h top.kl10pv.ird_48.dr_adr_06_a_h top.kl10pv.ird_48.dr_adr_05_a_h top.kl10pv.ird_48.dr_adr_04_a_h top.kl10pv.ird_48.dr_adr_03_a_h top.kl10pv.ird_48.dr_adr_02_a_h top.kl10pv.ird_48.dr_adr_01_a_h top.kl10pv.ird_48.dr_adr_00_a_h
-@28
-top.kl10pv.ird_48.dr_adr_00_a_h
-top.kl10pv.ird_48.dr_adr_01_a_h
-top.kl10pv.ird_48.dr_adr_02_a_h
-top.kl10pv.ird_48.dr_adr_03_a_h
-top.kl10pv.ird_48.dr_adr_04_a_h
-top.kl10pv.ird_48.dr_adr_05_a_h
-top.kl10pv.ird_48.dr_adr_06_a_h
-top.kl10pv.ird_48.dr_adr_07_a_h
-top.kl10pv.ird_48.dr_adr_08_h
-@1401290
--group_end
-@28
-top.kl10pv.ird_48.ir_jrst_l
-top.kl10pv.ird_48.ir_acEq0_h
-top.kl10pv.ird_48.hold_dram_a_h
-top.kl10pv.ird_48.ir_jrst_l
-top.kl10pv.ird_48.dram_j_04_h
-top.kl10pv.ird_48.ir_en_IOCm_jrst_h
-top.kl10pv.ird_48.hold_ir_a_h
-top.kl10pv.ird_48.dr_adr_00_a_h
-top.kl10pv.ird_48.dr_adr_01_a_h
-@29
-top.kl10pv.ird_48.dr_adr_02_a_h
-@28
-top.kl10pv.ird_48.dr_adr_03_h
-top.kl10pv.ird_48.dr_adr_04_h
-top.kl10pv.ird_48.dr_adr_05_h
-top.kl10pv.ird_48.dr_adr_06_h
-top.kl10pv.ird_48.dr_adr_07_h
-top.kl10pv.ird_48.dr_adr_08_h
-top.kl10pv.ird_48.dram_j_01_h
-top.kl10pv.ird_48.dram_j_02_h
-top.kl10pv.ird_48.dram_j_03_h
-top.kl10pv.ird_48.dram_j_04_h
-top.kl10pv.ird_48.dram_j_07_h
-top.kl10pv.ird_48.dram_j_08_h
-top.kl10pv.ird_48.dram_j_09_h
-top.kl10pv.ird_48.dram_j_10_h
 @c040a2
 [color] 3
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
@@ -456,6 +417,85 @@ top.kl10pv.scd_54.scd1_scadb_08_h
 top.kl10pv.scd_54.scd1_scadb_09_h
 @1401200
 -group_end
+@c040a2
+[color] 7
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+#{FM} top.kl10pv.edp_39.fm_35_h top.kl10pv.edp_39.fm_34_h top.kl10pv.edp_39.fm_33_h top.kl10pv.edp_39.fm_32_h top.kl10pv.edp_39.fm_31_h top.kl10pv.edp_39.fm_30_h top.kl10pv.edp_41.fm_29_h top.kl10pv.edp_41.fm_28_h top.kl10pv.edp_41.fm_27_h top.kl10pv.edp_41.fm_26_h top.kl10pv.edp_41.fm_25_h top.kl10pv.edp_41.fm_24_h top.kl10pv.edp_43.fm_23_h top.kl10pv.edp_43.fm_22_h top.kl10pv.edp_43.fm_21_h top.kl10pv.edp_43.fm_20_h top.kl10pv.edp_43.fm_19_h top.kl10pv.edp_43.fm_18_h top.kl10pv.edp_49.fm_17_h top.kl10pv.edp_49.fm_16_h top.kl10pv.edp_49.fm_15_h top.kl10pv.edp_49.fm_14_h top.kl10pv.edp_49.fm_13_h top.kl10pv.edp_49.fm_12_h top.kl10pv.edp_51.fm_11_h top.kl10pv.edp_51.fm_10_h top.kl10pv.edp_51.fm_09_h top.kl10pv.edp_51.fm_08_h top.kl10pv.edp_51.fm_07_h top.kl10pv.edp_51.fm_06_h top.kl10pv.edp_53.fm_05_h top.kl10pv.edp_53.fm_04_h top.kl10pv.edp_53.fm_03_h top.kl10pv.edp_53.fm_02_h top.kl10pv.edp_53.fm_01_h top.kl10pv.edp_53.fm_00_h
+@40a2
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.fm_00_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.fm_01_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.fm_02_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.fm_03_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.fm_04_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.fm_05_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.fm_06_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.fm_07_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.fm_08_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.fm_09_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.fm_10_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.fm_11_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.fm_12_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.fm_13_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.fm_14_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.fm_15_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.fm_16_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.fm_17_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.fm_18_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.fm_19_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.fm_20_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.fm_21_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.fm_22_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.fm_23_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.fm_24_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.fm_25_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.fm_26_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.fm_27_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.fm_28_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.fm_29_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.fm_30_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.fm_31_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.fm_32_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.fm_33_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.fm_34_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.fm_35_h
+@1401200
+-group_end
 @c000b0
 [color] 7
 #{FM-block} top.kl10pv.edp_53.apr_fm_block_4_h top.kl10pv.edp_53.apr_fm_block_2_h top.kl10pv.edp_53.apr_fm_block_1_h
@@ -476,56 +516,115 @@ top.kl10pv.edp_53.apr_fm_adr_1_h
 @1401200
 -group_end
 @c000b0
-[color] 7
-#{FM-LH} top.kl10pv.edp_49.fm_17_h top.kl10pv.edp_49.fm_16_h top.kl10pv.edp_49.fm_15_h top.kl10pv.edp_49.fm_14_h top.kl10pv.edp_49.fm_13_h top.kl10pv.edp_49.fm_12_h top.kl10pv.edp_51.fm_11_h top.kl10pv.edp_51.fm_10_h top.kl10pv.edp_51.fm_09_h top.kl10pv.edp_51.fm_08_h top.kl10pv.edp_51.fm_07_h top.kl10pv.edp_51.fm_06_h top.kl10pv.edp_53.fm_05_h top.kl10pv.edp_53.fm_04_h top.kl10pv.edp_53.fm_03_h top.kl10pv.edp_53.fm_02_h top.kl10pv.edp_53.fm_01_h top.kl10pv.edp_53.fm_00_h
+[color] 2
+#{VMA-VMA-in} top.kl10pv.vma_38.vma2_e53_14 top.kl10pv.vma_38.vma2_e53_15 top.kl10pv.vma_38.vma2_e53_2 top.kl10pv.vma_38.vma2_e53_1 top.kl10pv.vma_38.vma2_e80_14 top.kl10pv.vma_38.vma2_e80_15 top.kl10pv.vma_38.vma2_e80_2 top.kl10pv.vma_38.vma2_e80_1 top.kl10pv.vma_38.vma2_e43_14 top.kl10pv.vma_38.vma2_e43_15 top.kl10pv.vma_38.vma2_e43_2 top.kl10pv.vma_38.vma2_e43_1 top.kl10pv.vma_38.vma2_e20_14 top.kl10pv.vma_38.vma2_e20_15 top.kl10pv.vma_38.vma2_e20_2 top.kl10pv.vma_38.vma2_e20_1 top.kl10pv.vma_38.vma2_e10_14 top.kl10pv.vma_38.vma2_e10_15
 @28
-top.kl10pv.edp_53.fm_00_h
-top.kl10pv.edp_53.fm_01_h
-top.kl10pv.edp_53.fm_02_h
-top.kl10pv.edp_53.fm_03_h
-top.kl10pv.edp_53.fm_04_h
-top.kl10pv.edp_53.fm_05_h
-top.kl10pv.edp_51.fm_06_h
-top.kl10pv.edp_51.fm_07_h
-top.kl10pv.edp_51.fm_08_h
-top.kl10pv.edp_51.fm_09_h
-top.kl10pv.edp_51.fm_10_h
-top.kl10pv.edp_51.fm_11_h
-top.kl10pv.edp_49.fm_12_h
-top.kl10pv.edp_49.fm_13_h
-top.kl10pv.edp_49.fm_14_h
-top.kl10pv.edp_49.fm_15_h
-top.kl10pv.edp_49.fm_16_h
-top.kl10pv.edp_49.fm_17_h
+top.kl10pv.vma_38.vma2_e10_15
+top.kl10pv.vma_38.vma2_e10_14
+top.kl10pv.vma_38.vma2_e20_1
+top.kl10pv.vma_38.vma2_e20_2
+top.kl10pv.vma_38.vma2_e20_15
+top.kl10pv.vma_38.vma2_e20_14
+top.kl10pv.vma_38.vma2_e43_1
+top.kl10pv.vma_38.vma2_e43_2
+top.kl10pv.vma_38.vma2_e43_15
+top.kl10pv.vma_38.vma2_e43_14
+top.kl10pv.vma_38.vma2_e80_1
+top.kl10pv.vma_38.vma2_e80_2
+top.kl10pv.vma_38.vma2_e80_15
+top.kl10pv.vma_38.vma2_e80_14
+top.kl10pv.vma_38.vma2_e53_1
+top.kl10pv.vma_38.vma2_e53_2
+top.kl10pv.vma_38.vma2_e53_15
+top.kl10pv.vma_38.vma2_e53_14
 @1401200
 -group_end
 @c000b0
-[color] 7
-#{FM-RH} top.kl10pv.edp_39.fm_35_h top.kl10pv.edp_39.fm_34_h top.kl10pv.edp_39.fm_33_h top.kl10pv.edp_39.fm_32_h top.kl10pv.edp_39.fm_31_h top.kl10pv.edp_39.fm_30_h top.kl10pv.edp_41.fm_29_h top.kl10pv.edp_41.fm_28_h top.kl10pv.edp_41.fm_27_h top.kl10pv.edp_41.fm_26_h top.kl10pv.edp_41.fm_25_h top.kl10pv.edp_41.fm_24_h top.kl10pv.edp_43.fm_23_h top.kl10pv.edp_43.fm_22_h top.kl10pv.edp_43.fm_21_h top.kl10pv.edp_43.fm_20_h top.kl10pv.edp_43.fm_19_h top.kl10pv.edp_43.fm_18_h
+[color] 2
+#{VMA-AD} top.kl10pv.vma_38.vma1_ad_35_h top.kl10pv.vma_38.vma1_ad_34_h top.kl10pv.vma_38.vma1_ad_33_h top.kl10pv.vma_38.vma1_ad_32_h top.kl10pv.vma_38.vma1_ad_31_h top.kl10pv.vma_38.vma1_ad_30_h top.kl10pv.vma_38.vma1_ad_29_h top.kl10pv.vma_38.vma1_ad_28_h top.kl10pv.vma_38.vma1_ad_27_h top.kl10pv.vma_38.vma1_ad_26_h top.kl10pv.vma_38.vma1_ad_25_h top.kl10pv.vma_38.vma1_ad_24_h top.kl10pv.vma_38.vma1_ad_23_h top.kl10pv.vma_38.vma1_ad_22_h top.kl10pv.vma_38.vma1_ad_21_h top.kl10pv.vma_38.vma1_ad_20_h top.kl10pv.vma_38.vma1_ad_19_h top.kl10pv.vma_38.vma1_ad_18_h
 @28
-top.kl10pv.edp_43.fm_18_h
-top.kl10pv.edp_43.fm_19_h
-top.kl10pv.edp_43.fm_20_h
-top.kl10pv.edp_43.fm_21_h
-top.kl10pv.edp_43.fm_22_h
-top.kl10pv.edp_43.fm_23_h
-top.kl10pv.edp_41.fm_24_h
-top.kl10pv.edp_41.fm_25_h
-top.kl10pv.edp_41.fm_26_h
-top.kl10pv.edp_41.fm_27_h
-top.kl10pv.edp_41.fm_28_h
-top.kl10pv.edp_41.fm_29_h
-top.kl10pv.edp_39.fm_30_h
-top.kl10pv.edp_39.fm_31_h
-top.kl10pv.edp_39.fm_32_h
-top.kl10pv.edp_39.fm_33_h
-top.kl10pv.edp_39.fm_34_h
-top.kl10pv.edp_39.fm_35_h
+top.kl10pv.vma_38.vma1_ad_18_h
+top.kl10pv.vma_38.vma1_ad_19_h
+top.kl10pv.vma_38.vma1_ad_20_h
+top.kl10pv.vma_38.vma1_ad_21_h
+top.kl10pv.vma_38.vma1_ad_22_h
+top.kl10pv.vma_38.vma1_ad_23_h
+top.kl10pv.vma_38.vma1_ad_24_h
+top.kl10pv.vma_38.vma1_ad_25_h
+top.kl10pv.vma_38.vma1_ad_26_h
+top.kl10pv.vma_38.vma1_ad_27_h
+top.kl10pv.vma_38.vma1_ad_28_h
+top.kl10pv.vma_38.vma1_ad_29_h
+top.kl10pv.vma_38.vma1_ad_30_h
+top.kl10pv.vma_38.vma1_ad_31_h
+top.kl10pv.vma_38.vma1_ad_32_h
+top.kl10pv.vma_38.vma1_ad_33_h
+top.kl10pv.vma_38.vma1_ad_34_h
+top.kl10pv.vma_38.vma1_ad_35_h
+@1401200
+-group_end
+@c000b0
+[color] 2
+#{VMA-VMA} top.kl10pv.vma_38.vma2_vma_35_h top.kl10pv.vma_38.vma2_vma_34_h top.kl10pv.vma_38.vma2_vma_33_h top.kl10pv.vma_38.vma2_vma_32_h top.kl10pv.vma_38.vma2_vma_31_h top.kl10pv.vma_38.vma2_vma_30_h top.kl10pv.vma_38.vma2_vma_29_h top.kl10pv.vma_38.vma2_vma_28_h top.kl10pv.vma_38.vma2_vma_27_h top.kl10pv.vma_38.vma2_vma_26_h top.kl10pv.vma_38.vma2_vma_25_h top.kl10pv.vma_38.vma2_vma_24_h top.kl10pv.vma_38.vma2_vma_23_h top.kl10pv.vma_38.vma2_vma_22_h top.kl10pv.vma_38.vma2_vma_21_h top.kl10pv.vma_38.vma2_vma_20_h top.kl10pv.vma_38.vma2_vma_19_h top.kl10pv.vma_38.vma2_vma_18_h top.kl10pv.vma_38.vma2_vma_17_h top.kl10pv.vma_38.vma2_vma_16_h top.kl10pv.vma_38.vma2_vma_15_h top.kl10pv.vma_38.vma2_vma_14_h top.kl10pv.vma_38.vma2_vma_13_h top.kl10pv.vma_38.vma2_vma_12_h
+@28
+top.kl10pv.vma_38.vma2_vma_12_h
+top.kl10pv.vma_38.vma2_vma_13_h
+top.kl10pv.vma_38.vma2_vma_14_h
+top.kl10pv.vma_38.vma2_vma_15_h
+top.kl10pv.vma_38.vma2_vma_16_h
+top.kl10pv.vma_38.vma2_vma_17_h
+top.kl10pv.vma_38.vma2_vma_18_h
+top.kl10pv.vma_38.vma2_vma_19_h
+top.kl10pv.vma_38.vma2_vma_20_h
+top.kl10pv.vma_38.vma2_vma_21_h
+top.kl10pv.vma_38.vma2_vma_22_h
+top.kl10pv.vma_38.vma2_vma_23_h
+top.kl10pv.vma_38.vma2_vma_24_h
+top.kl10pv.vma_38.vma2_vma_25_h
+top.kl10pv.vma_38.vma2_vma_26_h
+top.kl10pv.vma_38.vma2_vma_27_h
+top.kl10pv.vma_38.vma2_vma_28_h
+top.kl10pv.vma_38.vma2_vma_29_h
+top.kl10pv.vma_38.vma2_vma_30_h
+top.kl10pv.vma_38.vma2_vma_31_h
+top.kl10pv.vma_38.vma2_vma_32_h
+top.kl10pv.vma_38.vma2_vma_33_h
+top.kl10pv.vma_38.vma2_vma_34_h
+top.kl10pv.vma_38.vma2_vma_35_h
+@1401200
+-group_end
+@c000b0
+[color] 2
+#{VMA3-PC} top.kl10pv.vma_38.vma3_pc_35_h top.kl10pv.vma_38.vma3_pc_34_h top.kl10pv.vma_38.vma3_pc_33_h top.kl10pv.vma_38.vma3_pc_32_h top.kl10pv.vma_38.vma3_pc_31_h top.kl10pv.vma_38.vma3_pc_30_h top.kl10pv.vma_38.vma3_pc_29_h top.kl10pv.vma_38.vma3_pc_28_h top.kl10pv.vma_38.vma3_pc_27_h top.kl10pv.vma_38.vma3_pc_26_h top.kl10pv.vma_38.vma3_pc_25_h top.kl10pv.vma_38.vma3_pc_24_h top.kl10pv.vma_38.vma3_pc_23_h top.kl10pv.vma_38.vma3_pc_22_h top.kl10pv.vma_38.vma3_pc_21_h top.kl10pv.vma_38.vma3_pc_20_h top.kl10pv.vma_38.vma3_pc_19_h top.kl10pv.vma_38.vma3_pc_18_h top.kl10pv.vma_38.vma3_pc_17_h top.kl10pv.vma_38.vma3_pc_16_h top.kl10pv.vma_38.vma3_pc_15_h top.kl10pv.vma_38.vma3_pc_14_h top.kl10pv.vma_38.vma3_pc_13_h
+@28
+top.kl10pv.vma_38.vma3_pc_13_h
+top.kl10pv.vma_38.vma3_pc_14_h
+top.kl10pv.vma_38.vma3_pc_15_h
+top.kl10pv.vma_38.vma3_pc_16_h
+top.kl10pv.vma_38.vma3_pc_17_h
+top.kl10pv.vma_38.vma3_pc_18_h
+top.kl10pv.vma_38.vma3_pc_19_h
+top.kl10pv.vma_38.vma3_pc_20_h
+top.kl10pv.vma_38.vma3_pc_21_h
+top.kl10pv.vma_38.vma3_pc_22_h
+top.kl10pv.vma_38.vma3_pc_23_h
+top.kl10pv.vma_38.vma3_pc_24_h
+top.kl10pv.vma_38.vma3_pc_25_h
+top.kl10pv.vma_38.vma3_pc_26_h
+top.kl10pv.vma_38.vma3_pc_27_h
+top.kl10pv.vma_38.vma3_pc_28_h
+top.kl10pv.vma_38.vma3_pc_29_h
+top.kl10pv.vma_38.vma3_pc_30_h
+top.kl10pv.vma_38.vma3_pc_31_h
+top.kl10pv.vma_38.vma3_pc_32_h
+top.kl10pv.vma_38.vma3_pc_33_h
+top.kl10pv.vma_38.vma3_pc_34_h
+top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
 @1000200
 -core-state
-@800200
+@c00201
 -VMA
 @c000b0
 [color] 2
@@ -552,6 +651,7 @@ top.kl10pv.vma_38.vma2_e53_14
 @1401200
 -group_end
 @28
+top.kl10pv.vma_38.mcl4_vmaGETSad_h
 top.kl10pv.vma_38.vma1_clk_e_h
 top.kl10pv.vma_38.con_vma_sel_2_l
 top.kl10pv.vma_38.con_vma_sel_1_l
@@ -610,15 +710,10 @@ top.kl10pv.vma_38.vma2_vma_35_h
 @1401200
 -group_end
 @28
-top.kl10pv.ctl_36.con_pi_cycle_b_h
-top.kl10pv.ctl_36.ctl1_e12_15
-top.kl10pv.ctl_36.apr2_clk_c_h
-top.kl10pv.ctl_36.ctl1_specSlload_pc_h
-top.kl10pv.ctl_36.ctl_dispSlnicond_h
-top.kl10pv.ctl_36.ctl1_e16_14
-top.kl10pv.ctl_36.clk_sbr_call_h
 [color] 2
 top.kl10pv.vma_38.vma5_load_pc_l
+[color] 2
+top.kl10pv.vma_38.vma1_clk_f_h
 @c000b0
 [color] 2
 #{VMA3-PC} top.kl10pv.vma_38.vma3_pc_35_h top.kl10pv.vma_38.vma3_pc_34_h top.kl10pv.vma_38.vma3_pc_33_h top.kl10pv.vma_38.vma3_pc_32_h top.kl10pv.vma_38.vma3_pc_31_h top.kl10pv.vma_38.vma3_pc_30_h top.kl10pv.vma_38.vma3_pc_29_h top.kl10pv.vma_38.vma3_pc_28_h top.kl10pv.vma_38.vma3_pc_27_h top.kl10pv.vma_38.vma3_pc_26_h top.kl10pv.vma_38.vma3_pc_25_h top.kl10pv.vma_38.vma3_pc_24_h top.kl10pv.vma_38.vma3_pc_23_h top.kl10pv.vma_38.vma3_pc_22_h top.kl10pv.vma_38.vma3_pc_21_h top.kl10pv.vma_38.vma3_pc_20_h top.kl10pv.vma_38.vma3_pc_19_h top.kl10pv.vma_38.vma3_pc_18_h top.kl10pv.vma_38.vma3_pc_17_h top.kl10pv.vma_38.vma3_pc_16_h top.kl10pv.vma_38.vma3_pc_15_h top.kl10pv.vma_38.vma3_pc_14_h top.kl10pv.vma_38.vma3_pc_13_h
@@ -648,7 +743,77 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
-@1000200
+@28
+top.kl10pv.con_35.con1_condSLvma_dec_h
+top.kl10pv.con_35.con1_condSLvma_inc_h
+top.kl10pv.con_35.mcl_load_vma_h
+top.kl10pv.mcl_47.mcl1_memSLcond_jump_l
+top.kl10pv.mcl_47.ir_test_satisfied_l
+[color] 1
+top.kl10pv.mcl_47.cram_vma_sel_2_h
+top.kl10pv.mcl_47.cram_vma_sel_1_h
+top.kl10pv.mcl_47.mcl5_reset_h
+@c00200
+-vma-e58
+@22
+top.kl10pv.vma_38.e58.ci[3:0]
+@28
+top.kl10pv.vma_38.e58.clk
+top.kl10pv.vma_38.e58.co
+top.kl10pv.vma_38.e58.d1
+top.kl10pv.vma_38.e58.d2
+top.kl10pv.vma_38.e58.d4
+top.kl10pv.vma_38.e58.d8
+top.kl10pv.vma_38.e58.mode[1:0]
+top.kl10pv.vma_38.e58.nCryIn
+top.kl10pv.vma_38.e58.nCryOut
+top.kl10pv.vma_38.e58.q1
+top.kl10pv.vma_38.e58.q2
+top.kl10pv.vma_38.e58.q4
+top.kl10pv.vma_38.e58.q8
+top.kl10pv.vma_38.e58.sel1
+top.kl10pv.vma_38.e58.sel2
+@22
+top.kl10pv.vma_38.e58.value[3:0]
+@1401200
+-vma-e58
+@c00200
+-vma-e70
+@28
+[color] 1
+top.kl10pv.vma_38.e70.clk
+[color] 1
+top.kl10pv.vma_38.e70.d0
+[color] 1
+top.kl10pv.vma_38.e70.d1
+[color] 1
+top.kl10pv.vma_38.e70.d2
+[color] 1
+top.kl10pv.vma_38.e70.d3
+[color] 1
+top.kl10pv.vma_38.e70.mode[1:0]
+[color] 1
+top.kl10pv.vma_38.e70.op1
+[color] 1
+top.kl10pv.vma_38.e70.op2
+[color] 1
+top.kl10pv.vma_38.e70.q0
+[color] 1
+top.kl10pv.vma_38.e70.q1
+[color] 1
+top.kl10pv.vma_38.e70.q2
+[color] 1
+top.kl10pv.vma_38.e70.q3
+[color] 1
+top.kl10pv.vma_38.e70.shft0in
+[color] 1
+top.kl10pv.vma_38.e70.shft3in
+@22
+[color] 1
+top.kl10pv.vma_38.e70.value[0:3]
+@1401200
+-vma-e70
+@1401201
 -VMA
 @c00200
 -clocks
@@ -732,8 +897,6 @@ top.kl10pv.csh_23.mbx1_cache_bit_h
 top.kl10pv.csh_23.mbc4_core_data_valid_h
 top.kl10pv.csh_23.mbc4_core_data_valid_l
 top.kl10pv.csh_23.csh1_clk_a_h
-top.kl10pv.csh_23.mbc4_core_data_val_Ng1_l
-top.kl10pv.mbc_22.mbc4_core_data_valid_Ng2_l
 top.kl10pv.csh_23.csh3_rd_found_h
 top.kl10pv.mbc_22.core_busy_h
 @1401200

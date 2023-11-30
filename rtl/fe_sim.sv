@@ -57,24 +57,6 @@ module fe_sim(input bit clk,
   end
 
 
-  // DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG
-  always @(posedge kl10pv.vma_38.e70.clk) begin
-
-    if (kl10pv.vma_38.e70.mode == 2'b00) begin
-      $display("%7g VMA.E70.mode == LOAD: d=%04b q=%04b", $realtime,
-	       {kl10pv.vma_38.e70.d0,
-		kl10pv.vma_38.e70.d1,
-		kl10pv.vma_38.e70.d2,
-		kl10pv.vma_38.e70.d3}, 
-	       {kl10pv.vma_38.e70.q0,
-		kl10pv.vma_38.e70.q1,
-		kl10pv.vma_38.e70.q2,
-		kl10pv.vma_38.e70.q3});
-    end
-
-  end
-
-
   // From `images/ucode/convrt/convrt.txt`
   //
   // 3.0	FILE FORMATS
