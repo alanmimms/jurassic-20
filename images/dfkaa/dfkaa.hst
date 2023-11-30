@@ -1,0 +1,32 @@
+	THIS IS A HISTORY OF THE DEVELOPMENT OF MAINDEC-10-DFKAA
+
+************************************************************************
+
+PRODUCT CODE:		MAINDEC-10-DFKAA
+
+PRODUCT NAME:		DECSYSTEM10 PDP-10 KL10 BASIC INSTRUCTION
+			DIAGNOSTIC (1)
+
+DATE RELEASED:		JANUARY 31,1977
+
+VERSION:		0.2
+
+UPDATE AUTHOR:		JOHN R. KIRCHOFF
+
+CHANGES MADE:
+
+	1. UPGRADE MADE TO ALLOW PROGRAM TO RUN WITH ANY FRONT-END
+	   THAT PERFORMED THE PROGRAM LOAD.
+
+************************************************************************
+
+DATE RELEASED:		AUGUST 25,1975
+
+VERSION:		0.1
+
+INITIAL AUTHOR:		JOHN R. KIRCHOFF
+
+	INTIAL RELEASE OF THIS PROGRAM FOR THE KL10 PROCESSOR.
+
+************************************************************************
+
