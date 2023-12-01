@@ -28,7 +28,7 @@ module kl10pv(input clk60, input crobar);
   fe_sim feSim (.EBUSdriver(feEBUSdriver), .clk(!clk_10_11_clk_h), .*);
 
   iMBUS mbus();
-  mb20 #(.MEMSIZE(256*1024)) memory0(.mbus(mbus.memory), .*);
+  mb20 #(.MEMSIZE(512*1024)) memory0(.mbus(mbus.memory), .*);
 
   // Driving signals from KL10 MBOX into memory.
   always_comb begin

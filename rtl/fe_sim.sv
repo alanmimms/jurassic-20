@@ -9,6 +9,8 @@ typedef bit [0:8] tDRAMAddress;
 
 `define MAX_LOAD_WORDS	(256*1024)
 
+`define MEM_ADDR_BITS	$clog2($size(kl10pv.memory0.mem))
+
 
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
@@ -30,9 +32,10 @@ module fe_sim(input bit clk,
   bit clockStarted = 0;
 
   bit dumpCRAM = 0;
-  bit dumpDRAM = 1;
+  bit dumpDRAM = 0;
   bit dumpCRA_ADR = 1;
   bit dumpDiagFuncs = 1;
+  bit dumpLoadMem = 1;
 
   int dumpFD;
 
@@ -222,10 +225,14 @@ module fe_sim(input bit clk,
     dumpFD = $fopen("dump.log", "w");
   end
 
+  final begin
+    if (dumpFD != 0) $fclose(dumpFD);
+  end
+
   initial begin			// Load CRAM and DRAM before start of simulation
     loadCodeInACs();
     loadRAMs();
-    loadDiagnostic("images/dfkaa/dfkaa.sav");
+    loadDiagnostic("images/klddt/klddt.a10");
   end
 
   initial begin
@@ -311,7 +318,7 @@ module fe_sim(input bit clk,
     // Loop up to five (was three in RSX20F) times:
     //   Test MBC3 A CHANGE COMING A L (we have active-high a_change_coming).
     //   If not asserted, single step the MBOX and try again.
-    $display("Start MBOX sync %g", $realtime);
+    $display("%7g [start MBOX sync]", $realtime);
 
     tries = 0;
 
@@ -334,7 +341,7 @@ module fe_sim(input bit clk,
       ++tries;
     end
 
-    $display("End MBOX sync %g", $realtime);
+    $display("%7g [end MBOX sync]", $realtime);
 
     // Phase 2 from DMRMRT table operations.
     doDiagFunc(diagfCOND_STEP);          // CONDITIONAL SINGLE STEP
@@ -579,8 +586,8 @@ module fe_sim(input bit clk,
 	    odd    = unASCIIize(words[k+1]);
 	    common = unASCIIize(words[k+2]);
 
-	    $fdisplay(dumpFD, "DRAM %o pair even=%o'%s' odd=%o'%s' common=%o'%s'",
-		      adr16, even, words[k+0], odd, words[k+1], common, words[k+2]);
+	    if (dumpDRAM) $fdisplay(dumpFD, "DRAM %o pair even=%o'%s' odd=%o'%s' common=%o'%s'",
+				    adr16, even, words[k+0], odd, words[k+1], common, words[k+2]);
 /*
 MICRO FORMAT
 FOR WDRAM
@@ -626,33 +633,146 @@ FOR WDRAM
   endtask // loadRAMs
 
 
-  // Load the specified *.SAV file diagnostic 
+  typedef bit [0:39] W40;
+
+
+  // Load the specified *.A10 file diagnostic.
+
+  /*
+        PDP-10 ASCIIZED FILE FORMAT
+        ---------------------------
+
+        PDP-10 ASCIIZED FILES ARE COMPOSED OF THREE TYPES OF
+        FILE LOAD LINES.  THEY ARE:
+
+        A.      CORE ZERO LINE
+
+        THIS LOAD FILE LINE SPECIFIES WHERE AND HOW MUCH PDP-10 CORE
+        TO BE ZEROED.  THIS IS NECESSARY AS THE PDP-10 FILES ARE
+        ZERO COMPRESSED WHICH MEANS THAT ZERO WORDS ARE NOT INCLUDED
+        IN THE LOAD FILE TO CONSERVE FILE SPACE.
+
+          CORE ZERO LINE
+
+                Z WC,ADR,COUNT,...,CKSUM
+
+                Z = PDP-10 CORE ZERO
+                WORD COUNT = 1 TO 4
+                ADR = ZERO START ADDRESS
+                        DERIVED FROM C(JOBSA)
+                COUNT = ZERO COUNT, 64K MAX
+                        DERIVED FROM C(JOBFF)
+
+        IF THE ADDRESSES ARE GREATER THAN 64K THE HI 2-BITS OF
+        THE 18 BIT PDP-10 ADDRESS ARE INCLUDED AS THE HI-BYTE OF
+        THE WORD COUNT.
+      DECSYSTEM10 KL10 DIAGNOSTIC CONSOLE PROGRAM
+        -------------------------------------------
+
+17.0    PDP-10 FILE FORMATS (CON'T)
+
+        B.      LOAD FILE LINES
+
+        AS MANY OF THESE TYPES OF LOAD FILE LINES ARE REQUIRED AS ARE
+        NECESSARY TO REPRESENT THE BINARY SAVE FILE.
+
+          LOAD FILE LINE
+
+                T WC,ADR,DATA 20-35,DATA 4-19,DATA 0-3, - - - ,CKSUM
+
+                T = PDP-10 TYPE FILE
+                WC = PDP-10 DATA WORD COUNT TIMES 3, 3 PDP-11 WORDS
+                     PER PDP-10 WORD.
+                ADR = PDP-10 ADDRESS FOR THIS LOAD FILE LINE
+                        LOW 16 BITS OF THE PDP-10 18 BIT ADDRESS, IF
+                        THE ADDRESS IS GREATER THAN 64K, THE HI 2-BITS
+                        OF THE ADDRESS ARE INCLUDED AS THE HI-BYTE OF
+                        THE WORD COUNT.
+
+                UP TO 8 PDP-10 WORDS, OR UP TO 24 PDP-11 WORDS
+
+                DATA 20-35
+                DATA  4-19      ;PDP-10 EQUIV DATA WORD BITS
+                DATA  0-3
+
+                CKSUM = 16 BIT NEGATED CHECKSUM OF WC, ADR & DATA
+
+        C.      TRANSFER LINE
+
+        THIS LOAD FILE LINE CONTAINS THE FILE STARTING ADDRESS.
+
+          TRANSFER LINE
+
+                T 0,ADR,CKSUM
+
+                0 = WC = SIGNIFIES TRANSFER, EOF
+                ADR = PROGRAM START ADDRESS
+
+   */
   task automatic loadDiagnostic(string path);
-    W36 readBuf[`MAX_LOAD_WORDS];
-    W36 w0;
+    W36 w;
+    W36 adr;
+    W36 startAddr;
+    string line, recType, rec;
+    string words[$];
 
-    W18 decSSF_dir = 18'o1776;
-    W18 decSSF_ev  = 18'o1775;
-    W18 decSSF_pdv = 18'o1774;
-    W18 decSSF_end = 18'o1777;
+    int fd = $fopen(path, "r");
+    $fgets(line, fd);		// Skip header line
+    startAddr = 0;
+    adr = 0;
 
-    int fd = $fopen(path, "rb");
-    int r;
+    while (1) begin
+      int k;
+      W16 wc;
 
-    // Read the whole file into `readBuf`.
-    r = $fread(readBuf, fd, 0, `MAX_LOAD_WORDS);
-    w0 = readBuf[0];
+      $fgets(line, fd);
+      if ($feof(fd)) break;
 
-    if (w0[0:17] == decSSF_dir) begin
-      $display("DEC Shared Save File format not yet supported");
-    end else if (w0[18:35] != 0) begin
-      loadDECSAV(readBuf);
-    end else begin
-      $display("Unknown file format or not yet supported");
+      line = trimString(line);
+      recType = line.substr(0, 0);
+      rec = line.substr(2, line.len() - 1);
+      words = split(rec, ",");
+      wc = unASCIIize(words[0]);
+      adr = W36'({wc[15:14], unASCIIize(words[1])});
+      wc = {2'b0, wc[13:0]};		// Scrub off high adr bits from word count
+
+      case (recType)
+      "Z": begin  		// Zero a range
+	int zeroCount;
+	zeroCount = int'(unASCIIize(words[2]));
+	if (zeroCount == 0) zeroCount = 64*1024;
+	for (W36 offset = 0; offset < W36'(zeroCount); ++offset) writeMem(adr + offset, 0);
+      end
+
+      "T": begin
+	if (wc == 0) startAddr = adr;
+
+	for (W36 offset = 0; offset < W36'(wc); ++offset) begin
+	  int k;
+	  W16 w0, w1, w2;
+
+	  k = 2 + int'(offset*3);
+
+	  w0 = unASCIIize(words[k+0]);
+	  w1 = unASCIIize(words[k+1]);
+	  w2 = unASCIIize(words[k+2]);
+	  w = {w2[3:0], w1, w0};
+	  writeMem(adr + offset, w);
+	end
+      end
+      endcase
     end
 
     $fclose(fd);
+    $display("%7g [loaded %s with start=%o]", $realtime, path, startAddr);
   endtask // loadDiagnostic
+
+
+  task automatic writeMem(W36 adr, W36 value);
+    kl10pv.memory0.mem[`MEM_ADDR_BITS'(adr)] = value;
+    if (dumpLoadMem && value != 0) $fdisplay(dumpFD, "MEM %08o: %o", adr, value);
+  endtask // writeMem
+
 
 
   // Load DEC CSAV (C36) format. File consists of a sequence of IOWD
