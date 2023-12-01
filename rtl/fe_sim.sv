@@ -7,6 +7,9 @@ typedef bit [0:8] tDRAMAddress;
 
 `define STRINGIFY(S)	`"S`"
 
+`define MAX_LOAD_WORDS	(256*1024)
+
+
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
 	      input bit clk60,
@@ -221,7 +224,8 @@ module fe_sim(input bit clk,
 
   initial begin			// Load CRAM and DRAM before start of simulation
     loadCodeInACs();
-    KLLoadRAMs();
+    loadRAMs();
+    loadDiagnostic("images/dfkaa/dfkaa.sav");
   end
 
   initial begin
@@ -426,7 +430,7 @@ module fe_sim(input bit clk,
 
 
   ////////////////////////////////////////////////////////////////
-  task automatic KLLoadRAMs;
+  task automatic loadRAMs;
     int fd;
     string line, recType, rec;
     string words[$];
@@ -619,7 +623,55 @@ FOR WDRAM
     end
 
     $fclose(fd);
-  endtask // KLLoadRAMs
+  endtask // loadRAMs
+
+
+  // Load the specified *.SAV file diagnostic 
+  task automatic loadDiagnostic(string path);
+    W36 readBuf[`MAX_LOAD_WORDS];
+    W36 w0;
+
+    W18 decSSF_dir = 18'o1776;
+    W18 decSSF_ev  = 18'o1775;
+    W18 decSSF_pdv = 18'o1774;
+    W18 decSSF_end = 18'o1777;
+
+    int fd = $fopen(path, "rb");
+    int r;
+
+    // Read the whole file into `readBuf`.
+    r = $fread(readBuf, fd, 0, `MAX_LOAD_WORDS);
+    w0 = readBuf[0];
+
+    if (w0[0:17] == decSSF_dir) begin
+      $display("DEC Shared Save File format not yet supported");
+    end else if (w0[18:35] != 0) begin
+      loadDECSAV(readBuf);
+    end else begin
+      $display("Unknown file format or not yet supported");
+    end
+
+    $fclose(fd);
+  endtask // loadDiagnostic
+
+
+  // Load DEC CSAV (C36) format. File consists of a sequence of IOWD
+  // datablocks (-nWords,,addr-1) followed by entry vector info. The
+  // entry vector is known because its LH is positive. EV[0] is instr
+  // to execute to start, EV[1] is instr to execute to reenter, and
+  // EV[2] is program version number.
+  task automatic loadDECSAV(W36 readBuf[`MAX_LOAD_WORDS]);
+    W36 ev[0:2];
+
+    ev[0] = readBuf[0];
+    ev[1] = readBuf[1];
+    ev[2] = readBuf[2];
+
+    $display("[load DEC SAV file format: EV=[%06o,,%06o %06o,,%06o %06o,,%06o]",
+	     ev[0][0:17], ev[0][18:35],
+	     ev[1][0:17], ev[1][18:35],
+	     ev[2][0:17], ev[2][18:35]);
+  endtask // loadDECSAV
 
 
   ////////////////////////////////////////////////////////////////
