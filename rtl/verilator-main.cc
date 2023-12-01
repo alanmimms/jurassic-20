@@ -1,6 +1,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <signal.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <signal.h>
 
 #include <verilated.h>
 #include "Vkl10pv.h"
@@ -66,6 +69,10 @@ int main(int argc, char **argv) {
     if (trace) trace->dump(contextp->time());
     contextp->timeInc(5);
   }
+
+  // Kill our child (the FE) and wait for it to exit.
+  kill(0, SIGINT);
+  wait(NULL);
 
   return 0;
 }
