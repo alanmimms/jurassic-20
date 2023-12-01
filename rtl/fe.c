@@ -583,7 +583,7 @@ extern "C" void FEinitial(double aNsPerClock) {
   dteReadNFDs = toDTE[0] + 1;
   FD_SET(toDTE[0], &dteReadFDs);
 
-  nsPerClock = aNsPerClock * 16.0;
+  nsPerClock = aNsPerClock;
   FELOG("[%g ns per DTE clock]\n", nsPerClock);
 
   pid_t pid = fork();
