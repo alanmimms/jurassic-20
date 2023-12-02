@@ -1,17 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Wed Nov 29 22:13:59 2023
+[*] Sat Dec  2 00:21:48 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Nov 29 22:13:53 2023"
-[dumpfile_size] 7766520
+[dumpfile_mtime] "Fri Dec  1 21:20:58 2023"
+[dumpfile_size] 6635917
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 27047
+[timestart] 27392
 [size] 1830 1275
 [pos] -1 -1
-*-7.000000 27251 3623 27275 27355 27235 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 27875 3623 27275 27355 27235 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.cra_45.
 [treeopen] top.kl10pv.mbx_21.e48.
 [sst_width] 261
 [signals_width] 471
@@ -351,8 +352,6 @@ top.kl10pv.edp_39.brx_34_h
 top.kl10pv.edp_39.brx_35_h
 @1401200
 -group_end
-@28
-top.kl10pv.edp_39.brx_36_h
 @c000b0
 [color] 6
 #{SCAD FE} top.kl10pv.scd_54.scd2_fe_09_h top.kl10pv.scd_54.scd2_fe_08_h top.kl10pv.scd_54.scd2_fe_07_h top.kl10pv.scd_54.scd2_fe_06_h top.kl10pv.scd_54.scd2_fe_05_h top.kl10pv.scd_54.scd2_fe_04_h top.kl10pv.scd_54.scd2_fe_03_h top.kl10pv.scd_54.scd2_fe_02_h top.kl10pv.scd_54.scd2_fe_01_h top.kl10pv.scd_54.scd2_fe_00_h
@@ -593,6 +592,8 @@ top.kl10pv.vma_38.vma2_vma_34_h
 top.kl10pv.vma_38.vma2_vma_35_h
 @1401200
 -group_end
+@29
+top.kl10pv.ird_48.ad_cry_NG02_h
 @c000b0
 [color] 2
 #{VMA3-PC} top.kl10pv.vma_38.vma3_pc_35_h top.kl10pv.vma_38.vma3_pc_34_h top.kl10pv.vma_38.vma3_pc_33_h top.kl10pv.vma_38.vma3_pc_32_h top.kl10pv.vma_38.vma3_pc_31_h top.kl10pv.vma_38.vma3_pc_30_h top.kl10pv.vma_38.vma3_pc_29_h top.kl10pv.vma_38.vma3_pc_28_h top.kl10pv.vma_38.vma3_pc_27_h top.kl10pv.vma_38.vma3_pc_26_h top.kl10pv.vma_38.vma3_pc_25_h top.kl10pv.vma_38.vma3_pc_24_h top.kl10pv.vma_38.vma3_pc_23_h top.kl10pv.vma_38.vma3_pc_22_h top.kl10pv.vma_38.vma3_pc_21_h top.kl10pv.vma_38.vma3_pc_20_h top.kl10pv.vma_38.vma3_pc_19_h top.kl10pv.vma_38.vma3_pc_18_h top.kl10pv.vma_38.vma3_pc_17_h top.kl10pv.vma_38.vma3_pc_16_h top.kl10pv.vma_38.vma3_pc_15_h top.kl10pv.vma_38.vma3_pc_14_h top.kl10pv.vma_38.vma3_pc_13_h
@@ -624,7 +625,7 @@ top.kl10pv.vma_38.vma3_pc_35_h
 -group_end
 @1000200
 -core-state
-@c00201
+@c00200
 -VMA
 @c000b0
 [color] 2
@@ -813,7 +814,6 @@ top.kl10pv.vma_38.e70.shft3in
 top.kl10pv.vma_38.e70.value[0:3]
 @1401200
 -vma-e70
-@1401201
 -VMA
 @c00200
 -clocks

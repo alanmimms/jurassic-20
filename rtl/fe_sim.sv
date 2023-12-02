@@ -26,6 +26,8 @@ module fe_sim(input bit clk,
   tCRAM cram136;
   tCRAM cram137;
 
+  W36 startAddr = 0;
+
   bit testingChangeComing;
   bit a_change_coming;
 
@@ -251,7 +253,6 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCLR_RUN);
     clockStarted = 1;
     doDiagFunc(diagfSTART_CLOCK);
-//    doDiagFunc(diagfCONTINUE);
   end
 
   // When we reach the HALT loop, delay a bit then start running.
@@ -261,6 +262,12 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfSET_RUN);
 
     repeat (100) @(negedge clk);
+    $display("%7g [clear RUN]", $realtime);
+    doDiagFunc(diagfCLR_RUN);
+
+    $display("%7g [set AR to starting PC=%8o]", $realtime, startAddr);
+    setAR(startAddr);
+
     $display("%7g [CONTINUE button]", $realtime);
     doDiagFunc(diagfCONTINUE);
   end
@@ -372,6 +379,27 @@ module fe_sim(input bit clk,
   function automatic W36 W(bit [0:17] lh, rh);
     return (W36'(lh) << 18) | W36'(rh);
   endfunction // W
+
+
+  ////////////////////////////////////////////////////////////////
+  // Load the AR register with the specified value.
+  task automatic setAR(W36 ar);
+    `define S(SLOT,A,B,C,D,E,F) \
+	kl10pv.SLOT.ar_``A``_h, \
+	kl10pv.SLOT.ar_``B``_h, \
+	kl10pv.SLOT.ar_``C``_h, \
+	kl10pv.SLOT.ar_``D``_h, \
+	kl10pv.SLOT.ar_``E``_h, \
+	kl10pv.SLOT.ar_``F``_h
+
+    {`S(edp_53,00,01,02,03,04,05),
+     `S(edp_51,06,07,08,09,10,11),
+     `S(edp_49,12,13,14,15,16,17),
+     `S(edp_43,18,19,20,21,22,23),
+     `S(edp_41,24,25,26,27,28,29),
+     `S(edp_39,30,31,32,33,34,35)} = ar;
+    `undef S
+  endtask // setAR
 
 
   ////////////////////////////////////////////////////////////////
@@ -712,7 +740,6 @@ FOR WDRAM
   task automatic loadDiagnostic(string path);
     W36 w;
     W36 adr;
-    W36 startAddr;
     string line, recType, rec;
     string words[$];
 
