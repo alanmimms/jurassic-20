@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Dec  3 00:46:12 2023
+[*] Sun Dec  3 00:50:35 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Sun Dec  3 00:45:14 2023"
 [dumpfile_size] 7963129
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 22773
+[timestart] 22607
 [size] 1830 1275
 [pos] -1 -1
-*-7.000000 22974 3623 27275 27355 27235 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 22915 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -41,13 +41,11 @@ top.kl10pv.ebus.ds[0:6]
 (6)top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
-@28
+@29
 [color] 3
-top.kl10pv.clk1_clk_out_h
+top.kl10pv.clk_32.clk_cra_h
 @800200
 -core-state
-@28
-top.kl10pv.clk_32.clk_cra_h
 @c000b0
 [color] 2
 #{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h

@@ -348,7 +348,7 @@ module fe_sim(input bit clk,
 
     $display("%7g [Load simple test program in block 0 ACs]", $realtime);
 
-    test[0] = W(18'o254000, 18'o000007);	// JRST 0,7
+    test[0] = W(18'o254000, 18'o010000);	// JRST 0,10000
     test[1] = 0;
     test[2] = 0;
     test[3] = 0;
