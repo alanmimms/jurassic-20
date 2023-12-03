@@ -12,7 +12,7 @@
 // * Support interleaving.
 // * Support ACKN of next word while VALID on current word
 module mb20 #(parameter MEMSIZE=256*1024) (iMBUS.memory mbus);
-  W36 mem[MEMSIZE];
+  W36 mem[] = new[MEMSIZE];
   bit aClk, bClk;
   W36 aData, bData;
   bit aParity, bParity;
@@ -64,7 +64,7 @@ endmodule
 module mb20Phase #(parameter MEMSIZE)
   (input bit clk,
    input bit reset,
-   ref W36 mem[MEMSIZE],
+   ref W36 mem[],
    input bit [14:35] inAddr,
    input bit [0:3] inRq,
    output bit inValid,
@@ -81,7 +81,7 @@ module mb20Phase #(parameter MEMSIZE)
   always_comb begin
     ackn = toAck[0];
     inValid = toAck[0];
-    d = mem[$clog2(MEMSIZE)'({inAddr[14:33], wo})];
+    d = mem[{inAddr[14:33], wo}];
     parity = ^d;
   end
 

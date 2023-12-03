@@ -7,10 +7,6 @@ typedef bit [0:8] tDRAMAddress;
 
 `define STRINGIFY(S)	`"S`"
 
-`define MAX_LOAD_WORDS	(256*1024)
-
-`define MEM_ADDR_BITS	$clog2($size(kl10pv.memory0.mem))
-
 
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
@@ -30,8 +26,6 @@ module fe_sim(input bit clk,
 
   bit testingChangeComing;
   bit a_change_coming;
-
-  bit clockStarted = 0;
 
   bit dumpCRAM = 0;
   bit dumpDRAM = 0;
@@ -251,7 +245,6 @@ module fe_sim(input bit clk,
 
     // Start CPU in microcode halt loop.
     doDiagFunc(diagfCLR_RUN);
-    clockStarted = 1;
     doDiagFunc(diagfSTART_CLOCK);
   end
 
@@ -261,44 +254,12 @@ module fe_sim(input bit clk,
     $display("%7g [RUN]", $realtime);
     doDiagFunc(diagfSET_RUN);
 
-    repeat (100) @(negedge clk);
-    $display("%7g [clear RUN]", $realtime);
-    doDiagFunc(diagfCLR_RUN);
-
     $display("%7g [set AR to starting PC=%8o]", $realtime, startAddr);
-    setAR(startAddr);
+    doDiagWrite(diagfLOAD_AR, startAddr);
 
     $display("%7g [CONTINUE button]", $realtime);
     doDiagFunc(diagfCONTINUE);
-  end
-
-  always @(posedge kl10pv.cra_45.cra3_clk_c_h) begin
-    if (clockStarted) begin
-      tCRAMAddress adr = {kl10pv.cra_45.cra1_adr_00_h,
-			  kl10pv.cra_45.cra1_adr_01_h,
-			  kl10pv.cra_45.cra1_adr_02_h,
-			  kl10pv.cra_45.cra1_adr_03_h,
-			  kl10pv.cra_45.cra1_adr_04_h,
-			  kl10pv.cra_45.cra1_adr_05_h,
-			  kl10pv.cra_45.cra1_adr_06_h,
-			  kl10pv.cra_45.cra2_adr_07_h,
-			  kl10pv.cra_45.cra2_adr_08_h,
-			  kl10pv.cra_45.cra2_adr_09_h,
-			  kl10pv.cra_45.cra2_adr_10_h};
-      tCRAMAddress loc = {kl10pv.cra_45.cra3_loc_00_h,
-			  kl10pv.cra_45.cra3_loc_01_h,
-			  kl10pv.cra_45.cra3_loc_02_h,
-			  kl10pv.cra_45.cra3_loc_03_h,
-			  kl10pv.cra_45.cra3_loc_04_h,
-			  kl10pv.cra_45.cra3_loc_05_h,
-			  kl10pv.cra_45.cra3_loc_06_h,
-			  kl10pv.cra_45.cra3_loc_07_h,
-			  kl10pv.cra_45.cra3_loc_08_h,
-			  kl10pv.cra_45.cra3_loc_09_h,
-			  kl10pv.cra_45.cra3_loc_10_h};
-      if (dumpCRA_ADR) $fdisplay(dumpFD, "%7g CRA-ADR=%o CRA-LOC=%o", $realtime, adr, loc);
-    end
-  end
+  end // always @ (posedge con_ebox_halted_h)
 
 
   ////////////////////////////////////////////////////////////////
@@ -379,27 +340,6 @@ module fe_sim(input bit clk,
   function automatic W36 W(bit [0:17] lh, rh);
     return (W36'(lh) << 18) | W36'(rh);
   endfunction // W
-
-
-  ////////////////////////////////////////////////////////////////
-  // Load the AR register with the specified value.
-  task automatic setAR(W36 ar);
-    `define S(SLOT,A,B,C,D,E,F) \
-	kl10pv.SLOT.ar_``A``_h, \
-	kl10pv.SLOT.ar_``B``_h, \
-	kl10pv.SLOT.ar_``C``_h, \
-	kl10pv.SLOT.ar_``D``_h, \
-	kl10pv.SLOT.ar_``E``_h, \
-	kl10pv.SLOT.ar_``F``_h
-
-    {`S(edp_53,00,01,02,03,04,05),
-     `S(edp_51,06,07,08,09,10,11),
-     `S(edp_49,12,13,14,15,16,17),
-     `S(edp_43,18,19,20,21,22,23),
-     `S(edp_41,24,25,26,27,28,29),
-     `S(edp_39,30,31,32,33,34,35)} = ar;
-    `undef S
-  endtask // setAR
 
 
   ////////////////////////////////////////////////////////////////
@@ -796,29 +736,10 @@ FOR WDRAM
 
 
   task automatic writeMem(W36 adr, W36 value);
-    kl10pv.memory0.mem[`MEM_ADDR_BITS'(adr)] = value;
+    kl10pv.memory0.mem[adr] = value;
     if (dumpLoadMem && value != 0) $fdisplay(dumpFD, "MEM %08o: %o", adr, value);
   endtask // writeMem
 
-
-
-  // Load DEC CSAV (C36) format. File consists of a sequence of IOWD
-  // datablocks (-nWords,,addr-1) followed by entry vector info. The
-  // entry vector is known because its LH is positive. EV[0] is instr
-  // to execute to start, EV[1] is instr to execute to reenter, and
-  // EV[2] is program version number.
-  task automatic loadDECSAV(W36 readBuf[`MAX_LOAD_WORDS]);
-    W36 ev[0:2];
-
-    ev[0] = readBuf[0];
-    ev[1] = readBuf[1];
-    ev[2] = readBuf[2];
-
-    $display("[load DEC SAV file format: EV=[%06o,,%06o %06o,,%06o %06o,,%06o]",
-	     ev[0][0:17], ev[0][18:35],
-	     ev[1][0:17], ev[1][18:35],
-	     ev[2][0:17], ev[2][18:35]);
-  endtask // loadDECSAV
 
 
   ////////////////////////////////////////////////////////////////
