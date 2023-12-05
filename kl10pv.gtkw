@@ -1,23 +1,25 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Dec  3 00:50:35 2023
+[*] Tue Dec  5 05:13:03 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sun Dec  3 00:45:14 2023"
-[dumpfile_size] 7963129
+[dumpfile_mtime] "Tue Dec  5 05:05:18 2023"
+[dumpfile_size] 4866317
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 22607
-[size] 1830 1275
+[timestart] 17812
+[size] 1920 1045
 [pos] -1 -1
-*-7.000000 22915 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 18035 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
+[treeopen] top.kl10pv.memory0.
 [sst_width] 261
 [signals_width] 471
 [sst_expanded] 1
-[sst_vpaned_height] 497
+[sst_vpaned_height] 498
 @28
+top.kl10pv.crobar_e_h
 [color] 3
 top.kl10pv.clk
 @c02030
@@ -41,12 +43,13 @@ top.kl10pv.ebus.ds[0:6]
 (6)top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
-@29
+@28
+top.kl10pv.con_ebox_halted_h
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
 @800200
 -core-state
-@c000b0
+@c000b1
 [color] 2
 #{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h
 @28
@@ -61,7 +64,7 @@ top.kl10pv.cra_45.cra2_adr_07_h
 top.kl10pv.cra_45.cra2_adr_08_h
 top.kl10pv.cra_45.cra2_adr_09_h
 top.kl10pv.cra_45.cra2_adr_10_h
-@1401200
+@1401201
 -group_end
 @c000b0
 [color] 2
@@ -653,11 +656,6 @@ top.kl10pv.vma_38.vma2_e53_15
 top.kl10pv.vma_38.vma2_e53_14
 @1401200
 -group_end
-@28
-top.kl10pv.vma_38.mcl4_vmaGETSad_h
-top.kl10pv.vma_38.vma1_clk_e_h
-top.kl10pv.vma_38.con_vma_sel_2_l
-top.kl10pv.vma_38.con_vma_sel_1_l
 @c000b0
 [color] 2
 #{VMA-AD} top.kl10pv.vma_38.vma1_ad_35_h top.kl10pv.vma_38.vma1_ad_34_h top.kl10pv.vma_38.vma1_ad_33_h top.kl10pv.vma_38.vma1_ad_32_h top.kl10pv.vma_38.vma1_ad_31_h top.kl10pv.vma_38.vma1_ad_30_h top.kl10pv.vma_38.vma1_ad_29_h top.kl10pv.vma_38.vma1_ad_28_h top.kl10pv.vma_38.vma1_ad_27_h top.kl10pv.vma_38.vma1_ad_26_h top.kl10pv.vma_38.vma1_ad_25_h top.kl10pv.vma_38.vma1_ad_24_h top.kl10pv.vma_38.vma1_ad_23_h top.kl10pv.vma_38.vma1_ad_22_h top.kl10pv.vma_38.vma1_ad_21_h top.kl10pv.vma_38.vma1_ad_20_h top.kl10pv.vma_38.vma1_ad_19_h top.kl10pv.vma_38.vma1_ad_18_h
@@ -712,11 +710,6 @@ top.kl10pv.vma_38.vma2_vma_34_h
 top.kl10pv.vma_38.vma2_vma_35_h
 @1401200
 -group_end
-@28
-[color] 2
-top.kl10pv.vma_38.vma5_load_pc_l
-[color] 2
-top.kl10pv.vma_38.vma1_clk_f_h
 @c000b0
 [color] 2
 #{VMA3-PC} top.kl10pv.vma_38.vma3_pc_35_h top.kl10pv.vma_38.vma3_pc_34_h top.kl10pv.vma_38.vma3_pc_33_h top.kl10pv.vma_38.vma3_pc_32_h top.kl10pv.vma_38.vma3_pc_31_h top.kl10pv.vma_38.vma3_pc_30_h top.kl10pv.vma_38.vma3_pc_29_h top.kl10pv.vma_38.vma3_pc_28_h top.kl10pv.vma_38.vma3_pc_27_h top.kl10pv.vma_38.vma3_pc_26_h top.kl10pv.vma_38.vma3_pc_25_h top.kl10pv.vma_38.vma3_pc_24_h top.kl10pv.vma_38.vma3_pc_23_h top.kl10pv.vma_38.vma3_pc_22_h top.kl10pv.vma_38.vma3_pc_21_h top.kl10pv.vma_38.vma3_pc_20_h top.kl10pv.vma_38.vma3_pc_19_h top.kl10pv.vma_38.vma3_pc_18_h top.kl10pv.vma_38.vma3_pc_17_h top.kl10pv.vma_38.vma3_pc_16_h top.kl10pv.vma_38.vma3_pc_15_h top.kl10pv.vma_38.vma3_pc_14_h top.kl10pv.vma_38.vma3_pc_13_h
@@ -747,15 +740,33 @@ top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
 @28
-top.kl10pv.con_35.con1_condSLvma_dec_h
-top.kl10pv.con_35.con1_condSLvma_inc_h
-top.kl10pv.con_35.mcl_load_vma_h
-top.kl10pv.mcl_47.mcl1_memSLcond_jump_l
-top.kl10pv.mcl_47.ir_test_satisfied_l
+top.kl10pv.vma_38.vma1_miscEQ0_l
+top.kl10pv.vma_38.vma1_20to27EQ0_l
+top.kl10pv.vma_38.vma1_ac_ref_h
 [color] 1
-top.kl10pv.mcl_47.cram_vma_sel_2_h
-top.kl10pv.mcl_47.cram_vma_sel_1_h
-top.kl10pv.mcl_47.mcl5_reset_h
+top.kl10pv.clk_32.clk4_resp_mbox_h
+top.kl10pv.clk_32.con_mbox_wait_l
+top.kl10pv.clk_32.clk5_mbox_resp_sim_l
+top.kl10pv.clk_32.clk1_main_source_a_h
+top.kl10pv.clk_32.clk3_ebox_clk_en_h
+[color] 2
+top.kl10pv.vma_38.vma1_ac_ref_h
+top.kl10pv.clk_32.csh2_mbox_resp_in_h
+top.kl10pv.clk_32.clk4_ebox_req_h
+top.kl10pv.csh_23.csh1_ebox_req_grant_h
+top.kl10pv.csh_23.csh1_ready_to_go_h
+top.kl10pv.csh_23.csh1_e52_13
+top.kl10pv.csh_23.clk3_ebox_sync_d_l
+[color] 1
+top.kl10pv.csh_23.csh1_cache_idle_l
+top.kl10pv.csh_23.csh1_cache_idle_in_h
+top.kl10pv.csh_23.csh1_cache_idle_in_d_h
+top.kl10pv.csh_23.clk4_ebox_cyc_abort_h
+[color] 2
+top.kl10pv.vma_38.vma1_ac_ref_h
+[color] 2
+top.kl10pv.csh_23.csh4_ebox_t0_b_h
+top.kl10pv.clk_32.csh4_ebox_t0_in_h
 @c00200
 -vma-e58
 @22
@@ -871,6 +882,37 @@ top.kl10pv.con_35.con5_mem_cycle_l
 @1401200
 -mem-to-IR
 @c00200
+-EBUS
+@40a2
+[color] 7
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.ebus.data[0:35]
+@28
+[color] 7
+top.kl10pv.ebus.diagStrobe
+@c02030
+[color] 7
+^1 /home/alan/dec20/jurassic-20/rtl/dte.tff
+top.kl10pv.ebus.ds[0:6]
+@28
+[color] 3
+(0)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(1)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(2)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(3)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(4)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(5)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(6)top.kl10pv.ebus.ds[0:6]
+@1401200
+-group_end
+-EBUS
+@c00200
 -mbc
 @28
 top.kl10pv.mbc4_mem_start_l
@@ -912,7 +954,7 @@ top.kl10pv.memory0.mbus.acknA
 top.kl10pv.memory0.mbus.acknB
 [color] 3
 top.kl10pv.memory0.mbus.adrHold
-@22
+@30
 [color] 3
 top.kl10pv.memory0.mbus.adr[14:35]
 @28
@@ -958,5 +1000,35 @@ top.kl10pv.memory0.mbus.startA
 top.kl10pv.memory0.mbus.startB
 @1401200
 -mbus
+@c00200
+-MB20-aphase
+@28
+top.kl10pv.memory0.aPhase.ackn
+@22
+top.kl10pv.memory0.aPhase.addr[14:35]
+@28
+top.kl10pv.memory0.aPhase.clk
+@22
+top.kl10pv.memory0.aPhase.d[0:35]
+top.kl10pv.memory0.aPhase.inAddr[14:35]
+@c00028
+top.kl10pv.memory0.aPhase.inRq[0:3]
+@28
+(0)top.kl10pv.memory0.aPhase.inRq[0:3]
+(1)top.kl10pv.memory0.aPhase.inRq[0:3]
+(2)top.kl10pv.memory0.aPhase.inRq[0:3]
+(3)top.kl10pv.memory0.aPhase.inRq[0:3]
+@1401200
+-group_end
+@28
+top.kl10pv.memory0.aPhase.inValid
+top.kl10pv.memory0.aPhase.outValid
+top.kl10pv.memory0.aPhase.parity
+top.kl10pv.memory0.aPhase.reset
+top.kl10pv.memory0.aPhase.start
+top.kl10pv.memory0.aPhase.toAck[0:3]
+top.kl10pv.memory0.aPhase.wo[34:35]
+@1401200
+-MB20-aphase
 [pattern_trace] 1
 [pattern_trace] 0
