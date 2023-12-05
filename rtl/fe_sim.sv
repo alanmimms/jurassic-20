@@ -244,6 +244,8 @@ module fe_sim(input bit clk,
 
 
   task startKLBoot(W36 startAddr);
+    doDiagFunc(diagfSTOP_CLOCK);                      // STOP THE CLOCK
+
     // Zero ACs
     for (int ac = 0; ac < 16; ++ac) loadAC(ac, '0);
 
@@ -258,8 +260,8 @@ module fe_sim(input bit clk,
     // Enable parity checking on CRAM, DRAM, FS, AR/ARX
     doDiagWrite(diagfRESET_PAR_REGS, 'o16);
 
-    // Start clocks
-    doDiagFunc(diagfSTART_CLOCK);
+    doDiagFunc(diagfCONTINUE);		// Push CONTINUE button
+    doDiagFunc(diagfSTART_CLOCK);	// Start clocks
 
     $display("%7g [bootstrap loaded and started]", $realtime);
   endtask // startKLBoot
@@ -383,12 +385,16 @@ module fe_sim(input bit clk,
   // button, and starting up the clock. The routine completes when the
   // microcode reaches the halt loop again.
   task automatic execKLInstr(W36 instr);
-    loadAR(instr);		// Load AR with the instruction
-    doDiagFunc(diagfCONTINUE);	// Push CONTINUE button
-    doDiagFunc(diagfSTART_CLOCK); // Start the clocks
+    doDiagFunc(diagfSTOP_CLOCK);	// STOP THE CLOCK
+    loadAR(instr);			// Load AR with the instruction
+    doDiagFunc(diagfCONTINUE);		// Push CONTINUE button
+    doDiagFunc(diagfSTART_CLOCK);	// Start the clocks
 
     // Wait for KL to halt again
-    @(posedge clk) if (con_ebox_halted_h) return;
+    @(posedge clk) if (con_ebox_halted_h) begin
+      doDiagFunc(diagfSTOP_CLOCK);	// STOP THE CLOCK
+      return;
+    end
   endtask // execKLInstr
 
 

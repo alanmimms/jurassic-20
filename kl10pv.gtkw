@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Dec  5 05:13:03 2023
+[*] Tue Dec  5 06:16:44 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Dec  5 05:05:18 2023"
-[dumpfile_size] 4866317
+[dumpfile_mtime] "Tue Dec  5 06:10:14 2023"
+[dumpfile_size] 5652831
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 17812
+[timestart] 29132
 [size] 1920 1045
 [pos] -1 -1
-*-6.000000 18035 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 29395 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -44,12 +44,21 @@ top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
 @28
-top.kl10pv.con_ebox_halted_h
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
 @800200
+-Reset/klinit
+@28
+top.kl10pv.con_ebox_halted_h
+top.kl10pv.con_35.con1_reset_l
+top.kl10pv.con_35.con_cono_apr_l
+top.kl10pv.con_35.con_cono_pi_l
+top.kl10pv.con_35.con3_cono_pag_l
+@1000200
+-Reset/klinit
+@800200
 -core-state
-@c000b1
+@c000b0
 [color] 2
 #{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h
 @28
@@ -64,9 +73,9 @@ top.kl10pv.cra_45.cra2_adr_07_h
 top.kl10pv.cra_45.cra2_adr_08_h
 top.kl10pv.cra_45.cra2_adr_09_h
 top.kl10pv.cra_45.cra2_adr_10_h
-@1401201
+@1401200
 -group_end
-@c000b0
+@c000b1
 [color] 2
 #{cra-loc} top.kl10pv.cra_45.cra3_loc_10_h top.kl10pv.cra_45.cra3_loc_09_h top.kl10pv.cra_45.cra3_loc_08_h top.kl10pv.cra_45.cra3_loc_07_h top.kl10pv.cra_45.cra3_loc_06_h top.kl10pv.cra_45.cra3_loc_05_h top.kl10pv.cra_45.cra3_loc_04_h top.kl10pv.cra_45.cra3_loc_03_h top.kl10pv.cra_45.cra3_loc_02_h top.kl10pv.cra_45.cra3_loc_01_h top.kl10pv.cra_45.cra3_loc_00_h
 @28
@@ -81,7 +90,7 @@ top.kl10pv.cra_45.cra3_loc_07_h
 top.kl10pv.cra_45.cra3_loc_08_h
 top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
-@1401200
+@1401201
 -group_end
 @c000b0
 [color] 1
