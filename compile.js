@@ -739,9 +739,9 @@ function genChipPins(bp, slot, chip) {
       const pin = chip.pins[pinName];
       let value = pin.net;
 
-      if (value === '0') value = `'0`;
-      else if (value === '%NC%') value = pin.dir === 'I' ? `'0` : ``;
-      else if (value == 1) value = `'1`;
+      if (value === '0') value = `0`;
+      else if (value === '%NC%') value = pin.dir === 'I' ? `0` : ``;
+      else if (value == 1) value = `1`;
 
       return `.${verilogify(pinName)}(${untickify(value)})`;
     })
