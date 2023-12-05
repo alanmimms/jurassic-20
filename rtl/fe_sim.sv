@@ -24,7 +24,6 @@ module fe_sim(input bit clk,
 
   W36 startAddr = 0;
 
-  bit testingChangeComing;
   bit a_change_coming;
 
   bit dumpCRAM = 0;
@@ -226,13 +225,11 @@ module fe_sim(input bit clk,
   end
 
   initial begin			// Load CRAM and DRAM before start of simulation
-    loadCodeInACs();
     loadRAMs();
     loadDiagnostic("images/klddt/klddt.a10");
   end
 
   initial begin
-    testingChangeComing = 0;
     crobar_e_h = '1;
     repeat (20) @(negedge clk);
     crobar_e_h = '0;
@@ -242,32 +239,35 @@ module fe_sim(input bit clk,
     repeat (10) @(negedge clk);
     KLMasterReset();
     KLSoftReset();
-
-    // Start CPU in microcode halt loop.
-    doDiagFunc(diagfCLR_RUN);
-    doDiagFunc(diagfSTART_CLOCK);
+    startKLBoot(startAddr);
   end
 
-  // When we reach the HALT loop, delay a bit then start running.
-  always @(posedge con_ebox_halted_h) begin
-    repeat (100) @(negedge clk);
-    $display("%7g [RUN]", $realtime);
-    doDiagFunc(diagfSET_RUN);
 
-    $display("%7g [set AR to starting PC=%8o]", $realtime, startAddr);
-    doDiagWrite(diagfLOAD_AR, startAddr);
+  task startKLBoot(W36 startAddr);
+    // Zero ACs
+    for (int ac = 0; ac < 16; ++ac) loadAC(ac, '0);
 
-    $display("%7g [CONTINUE button]", $realtime);
-    doDiagFunc(diagfCONTINUE);
-  end // always @ (posedge con_ebox_halted_h)
+    execKLInstr(36'o700200_267760);	// CONO APR,267760	; Reset APR
+    execKLInstr(36'o700600_010000);	// CONO PI,10000	; Reset PI
+    execKLInstr(36'o701200_000000);	// CONO PAG,0		; Clear paging system
+    execKLInstr(36'o701140_000000);	// DATAO PAG,0		; Clear user base
+
+    // Set AC0 to hold flag to run boot loader.
+    loadAC(0, 36'o400000_000000);
+
+    // Enable parity checking on CRAM, DRAM, FS, AR/ARX
+    doDiagWrite(diagfRESET_PAR_REGS, 'o16);
+
+    // Start clocks
+    doDiagFunc(diagfSTART_CLOCK);
+
+    $display("%7g [bootstrap loaded and started]", $realtime);
+  endtask // startKLBoot
 
 
   ////////////////////////////////////////////////////////////////
   // Functions from KLINIT.L20 $KLMR (DO A MASTER RESET ON THE KL)
   task KLMasterReset;
-    int tries;
-
-    // $DFXC(.CLRUN=010)    ; Clear run
     doDiagFunc(diagfCLR_RUN);
 
     // This is the first phase of DMRMRT table operations.
@@ -276,6 +276,7 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfSET_RESET);                       // SET RESET
     doDiagWrite(diagfRESET_PAR_REGS, '0);             // LOAD CLK PARITY CHECK & FS CHECK
     doDiagWrite(diagfMBOXDIS_PARCHK_ERRSTOP, '0);     // LOAD CLK MBOX CYCLE DISABLES,
+						      // PARITY CHECK, ERROR STOP ENABLE
     doDiagWrite(diagfBURST_CTR_RH, '0);		      // LOAD BURST COUNTER (8,4,2,1)
     doDiagWrite(diagfBURST_CTR_LH, '0);		      // LOAD BURST COUNTER (128,64,32,16)
     doDiagWrite(diagfSET_EBOX_CLK_DISABLES, '0);      // LOAD EBOX CLOCK DISABLE
@@ -288,14 +289,10 @@ module fe_sim(input bit clk,
     //   If not asserted, single step the MBOX and try again.
     $display("%7g [start MBOX sync]", $realtime);
 
-    tries = 0;
-
-    repeat (5) begin
-
+    for (int tries = 0; tries < 5; ++tries) begin
       repeat (5) @(negedge clk) ;
 
       @(negedge clk) begin
-	testingChangeComing <= !testingChangeComing;
 
 	if (tries >= 5 && !a_change_coming) begin
 	  $display("===ERROR=== Step MBOX %d times did not clear a_change_coming", tries);
@@ -306,7 +303,6 @@ module fe_sim(input bit clk,
       repeat (5) @(negedge clk) ;
 
       doDiagFunc(diagfSTEP_CLOCK);
-      ++tries;
     end
 
     $display("%7g [end MBOX sync]", $realtime);
@@ -315,8 +311,7 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCOND_STEP);          // CONDITIONAL SINGLE STEP
     doDiagFunc(diagfCLR_RESET);          // CLEAR RESET
     doDiagWrite(diagfENABLE_KL, '0);     // ENABLE KL STL DECODING OF CODES & AC'S
-    doDiagWrite(diagfMEM_RESET, b36(24)); // SET KL10 MEM RESET FLOP
-    doDiagWrite(diagfMEM_RESET, '0);     // [added by Mimms] Clear KL10 MEM RESET FLOP
+    doDiagWrite(diagfMEM_RESET, '0);	 // SET KL10 MEM RESET FLOP
     doDiagWrite(diagfWRITE_MBOX, 'o120); // WRITE M-BOX
 
     $display("%7g [master reset complete]", $realtime);
@@ -334,74 +329,73 @@ module fe_sim(input bit clk,
     $display("%7g [soft reset complete]", $realtime);
   endtask
 
-
   
-  ////////////////////////////////////////////////////////////////
-  function automatic W36 W(bit [0:17] lh, rh);
-    return (W36'(lh) << 18) | W36'(rh);
-  endfunction // W
+  // Assuming clock is disabled, set specified AC to specified value.
+  task automatic loadAC(int ac, W36 value);
+    kl10pv.edp_53.e69.ram[ac] = value[0];
+    kl10pv.edp_53.e70.ram[ac] = value[1];
+    kl10pv.edp_53.e71.ram[ac] = value[2];
+    kl10pv.edp_53.e72.ram[ac] = value[3];
+    kl10pv.edp_53.e65.ram[ac] = value[4];
+    kl10pv.edp_53.e58.ram[ac] = value[5];
+
+    kl10pv.edp_51.e69.ram[ac] = value[6];
+    kl10pv.edp_51.e70.ram[ac] = value[7];
+    kl10pv.edp_51.e71.ram[ac] = value[8];
+    kl10pv.edp_51.e72.ram[ac] = value[9];
+    kl10pv.edp_51.e65.ram[ac] = value[10];
+    kl10pv.edp_51.e58.ram[ac] = value[11];
+
+    kl10pv.edp_49.e69.ram[ac] = value[12];
+    kl10pv.edp_49.e70.ram[ac] = value[13];
+    kl10pv.edp_49.e71.ram[ac] = value[14];
+    kl10pv.edp_49.e72.ram[ac] = value[15];
+    kl10pv.edp_49.e65.ram[ac] = value[16];
+    kl10pv.edp_49.e58.ram[ac] = value[17];
+
+    kl10pv.edp_43.e69.ram[ac] = value[18];
+    kl10pv.edp_43.e70.ram[ac] = value[19];
+    kl10pv.edp_43.e71.ram[ac] = value[20];
+    kl10pv.edp_43.e72.ram[ac] = value[21];
+    kl10pv.edp_43.e65.ram[ac] = value[22];
+    kl10pv.edp_43.e58.ram[ac] = value[23];
+
+    kl10pv.edp_41.e69.ram[ac] = value[24];
+    kl10pv.edp_41.e70.ram[ac] = value[25];
+    kl10pv.edp_41.e71.ram[ac] = value[26];
+    kl10pv.edp_41.e72.ram[ac] = value[27];
+    kl10pv.edp_41.e65.ram[ac] = value[28];
+    kl10pv.edp_41.e58.ram[ac] = value[29];
+
+    kl10pv.edp_39.e69.ram[ac] = value[30];
+    kl10pv.edp_39.e70.ram[ac] = value[31];
+    kl10pv.edp_39.e71.ram[ac] = value[32];
+    kl10pv.edp_39.e72.ram[ac] = value[33];
+    kl10pv.edp_39.e65.ram[ac] = value[34];
+    kl10pv.edp_39.e58.ram[ac] = value[35];
+  endtask // loadAC
 
 
-  ////////////////////////////////////////////////////////////////
-  task automatic loadCodeInACs;
-    bit [0:35] test[16];
+  // $EXCT -- EXECUTE KL INSTRUCTION
+  //
+  // Execute a single KL instruction by getting the KL into the halt
+  // loop, loading the AR with the instruction, pushing the CONTINUE
+  // button, and starting up the clock. The routine completes when the
+  // microcode reaches the halt loop again.
+  task automatic execKLInstr(W36 instr);
+    loadAR(instr);		// Load AR with the instruction
+    doDiagFunc(diagfCONTINUE);	// Push CONTINUE button
+    doDiagFunc(diagfSTART_CLOCK); // Start the clocks
 
-    $display("%7g [Load simple test program in block 0 ACs]", $realtime);
+    // Wait for KL to halt again
+    @(posedge clk) if (con_ebox_halted_h) return;
+  endtask // execKLInstr
 
-    test[0] = W(18'o254000, 18'o010000);	// JRST 0,10000
-    test[1] = 0;
-    test[2] = 0;
-    test[3] = 0;
-    test[4] = 0;
-    test[5] = 0;
-    test[6] = 0;
-    test[7] = W(18'o254000, 18'o000000);	// JRST 0,0
 
-    for (int n = 0; n < 8; ++n) begin
-      kl10pv.edp_53.e69.ram[n] = test[n][0];
-      kl10pv.edp_53.e70.ram[n] = test[n][1];
-      kl10pv.edp_53.e71.ram[n] = test[n][2];
-      kl10pv.edp_53.e72.ram[n] = test[n][3];
-      kl10pv.edp_53.e65.ram[n] = test[n][4];
-      kl10pv.edp_53.e58.ram[n] = test[n][5];
-
-      kl10pv.edp_51.e69.ram[n] = test[n][6];
-      kl10pv.edp_51.e70.ram[n] = test[n][7];
-      kl10pv.edp_51.e71.ram[n] = test[n][8];
-      kl10pv.edp_51.e72.ram[n] = test[n][9];
-      kl10pv.edp_51.e65.ram[n] = test[n][10];
-      kl10pv.edp_51.e58.ram[n] = test[n][11];
-
-      kl10pv.edp_49.e69.ram[n] = test[n][12];
-      kl10pv.edp_49.e70.ram[n] = test[n][13];
-      kl10pv.edp_49.e71.ram[n] = test[n][14];
-      kl10pv.edp_49.e72.ram[n] = test[n][15];
-      kl10pv.edp_49.e65.ram[n] = test[n][16];
-      kl10pv.edp_49.e58.ram[n] = test[n][17];
-
-      kl10pv.edp_43.e69.ram[n] = test[n][18];
-      kl10pv.edp_43.e70.ram[n] = test[n][19];
-      kl10pv.edp_43.e71.ram[n] = test[n][20];
-      kl10pv.edp_43.e72.ram[n] = test[n][21];
-      kl10pv.edp_43.e65.ram[n] = test[n][22];
-      kl10pv.edp_43.e58.ram[n] = test[n][23];
-
-      kl10pv.edp_41.e69.ram[n] = test[n][24];
-      kl10pv.edp_41.e70.ram[n] = test[n][25];
-      kl10pv.edp_41.e71.ram[n] = test[n][26];
-      kl10pv.edp_41.e72.ram[n] = test[n][27];
-      kl10pv.edp_41.e65.ram[n] = test[n][28];
-      kl10pv.edp_41.e58.ram[n] = test[n][29];
-
-      kl10pv.edp_39.e69.ram[n] = test[n][30];
-      kl10pv.edp_39.e70.ram[n] = test[n][31];
-      kl10pv.edp_39.e71.ram[n] = test[n][32];
-      kl10pv.edp_39.e72.ram[n] = test[n][33];
-      kl10pv.edp_39.e65.ram[n] = test[n][34];
-      kl10pv.edp_39.e58.ram[n] = test[n][35];
-    end
-
-  endtask // loadCodeInACs
+  task automatic loadAR(W36 ar);
+    if (dumpDiagFuncs) $fdisplay (dumpFD, "Load AR %06o,,%06o", ar[0:17], ar[18:35]);
+    doDiagWrite(diagfLOAD_AR, ar);
+  endtask // loadAR
 
 
   ////////////////////////////////////////////////////////////////
