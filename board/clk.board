@@ -53,8 +53,7 @@ e40: 10210 or buffer
      12 ~> clk1 main source c h
      5 ~< %NC%
      6 ~< %NC%
-     // Make this match clock timing chart
-     7 ~< ` !clk1_odd_a_h
+     7 ~< clk1 clk delayed h
      2 ~> clk2 mbox clk d h
      3 ~> clk2 mbox clk e h
      4 ~> clk2 mbox clk f h
