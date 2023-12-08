@@ -689,7 +689,7 @@ e10: 10176 hex d ff
      10 ~< clk3 sync en l
      11 ~< clk3 sync en l
      12 ~< clk3 sync en h
-     9 ~< clk2 mbox clk e h
+     9 ~< ` !clk2_mbox_clk_e_h
      2 ~> {av2} clk ebox sync a l
      3 ~> {ba1} clk3 ebox sync b l
      4 ~> {bc1} clk3 ebox sync c l
