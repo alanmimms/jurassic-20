@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Dec  5 06:16:44 2023
+[*] Fri Dec  8 06:05:14 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Dec  5 06:10:14 2023"
-[dumpfile_size] 5652831
+[dumpfile_mtime] "Fri Dec  8 04:41:09 2023"
+[dumpfile_size] 5800302
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 29132
+[timestart] 19187
 [size] 1920 1045
 [pos] -1 -1
-*-6.000000 29395 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 19389 19260 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -46,7 +46,7 @@ top.kl10pv.ebus.ds[0:6]
 @28
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
-@800200
+@c00200
 -Reset/klinit
 @28
 top.kl10pv.con_ebox_halted_h
@@ -54,7 +54,7 @@ top.kl10pv.con_35.con1_reset_l
 top.kl10pv.con_35.con_cono_apr_l
 top.kl10pv.con_35.con_cono_pi_l
 top.kl10pv.con_35.con3_cono_pag_l
-@1000200
+@1401200
 -Reset/klinit
 @800200
 -core-state
@@ -75,7 +75,7 @@ top.kl10pv.cra_45.cra2_adr_09_h
 top.kl10pv.cra_45.cra2_adr_10_h
 @1401200
 -group_end
-@c000b1
+@c000b0
 [color] 2
 #{cra-loc} top.kl10pv.cra_45.cra3_loc_10_h top.kl10pv.cra_45.cra3_loc_09_h top.kl10pv.cra_45.cra3_loc_08_h top.kl10pv.cra_45.cra3_loc_07_h top.kl10pv.cra_45.cra3_loc_06_h top.kl10pv.cra_45.cra3_loc_05_h top.kl10pv.cra_45.cra3_loc_04_h top.kl10pv.cra_45.cra3_loc_03_h top.kl10pv.cra_45.cra3_loc_02_h top.kl10pv.cra_45.cra3_loc_01_h top.kl10pv.cra_45.cra3_loc_00_h
 @28
@@ -90,7 +90,7 @@ top.kl10pv.cra_45.cra3_loc_07_h
 top.kl10pv.cra_45.cra3_loc_08_h
 top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
-@1401201
+@1401200
 -group_end
 @c000b0
 [color] 1
@@ -952,42 +952,26 @@ top.kl10pv.csh_23.mbc4_core_data_valid_l
 top.kl10pv.csh_23.csh1_clk_a_h
 top.kl10pv.csh_23.csh3_rd_found_h
 top.kl10pv.mbc_22.core_busy_h
+top.kl10pv.clk_32.csh2_mbox_resp_in_h
 @1401200
 -mbc
-@c00200
+@800200
 -mbus
 @28
 [color] 3
-top.kl10pv.memory0.mbus.acknA
+top.kl10pv.memory0.mbus.clk
 [color] 3
-top.kl10pv.memory0.mbus.acknB
+top.kl10pv.memory0.mbus.memReset
 [color] 3
 top.kl10pv.memory0.mbus.adrHold
 @30
 [color] 3
 top.kl10pv.memory0.mbus.adr[14:35]
-@28
-[color] 3
-top.kl10pv.memory0.mbus.clk
 @22
 [color] 3
 top.kl10pv.memory0.mbus.dIn[0:35]
 [color] 3
 top.kl10pv.memory0.mbus.dOut[0:35]
-@28
-[color] 3
-top.kl10pv.memory0.mbus.inValidA
-[color] 3
-top.kl10pv.memory0.mbus.inValidB
-[color] 3
-top.kl10pv.memory0.mbus.memReset
-[color] 3
-top.kl10pv.memory0.mbus.outValidA
-[color] 3
-top.kl10pv.memory0.mbus.outValidB
-[color] 3
-top.kl10pv.memory0.mbus.rdRq
-top.kl10pv.memory0.mbus.wrRq
 @c00028
 [color] 3
 top.kl10pv.memory0.mbus.rq[0:3]
@@ -1004,11 +988,95 @@ top.kl10pv.memory0.mbus.rq[0:3]
 -group_end
 @28
 [color] 3
+top.kl10pv.memory0.mbus.rdRq
+top.kl10pv.memory0.mbus.wrRq
+[color] 2
 top.kl10pv.memory0.mbus.startA
-[color] 3
+[color] 2
+top.kl10pv.memory0.mbus.acknA
+[color] 2
+top.kl10pv.memory0.mbus.inValidA
+[color] 2
+top.kl10pv.memory0.mbus.outValidA
+[color] 7
 top.kl10pv.memory0.mbus.startB
-@1401200
+[color] 7
+top.kl10pv.memory0.mbus.acknB
+[color] 7
+top.kl10pv.memory0.mbus.inValidB
+[color] 7
+top.kl10pv.memory0.mbus.outValidB
+@1000200
 -mbus
+@28
+[color] 3
+top.kl10pv.mbc_22.mbc4_core_data_valid_NG2_l
+[color] 3
+top.kl10pv.mbc_22.mbc4_core_data_val_NG1_l
+[color] 3
+top.kl10pv.mbc_22.mbc4_core_data_valid_l
+[color] 1
+top.kl10pv.clk3_ebox_sync_d_l
+[color] 7
+top.kl10pv.clk_32.clk2_mbox_clk_e_h
+[color] 7
+top.kl10pv.clk_32.clk3_sync_en_l
+[color] 7
+top.kl10pv.clk3_ebox_sync_d_l
+@29
+[color] 2
+top.kl10pv.mbx_21.mbx2_mb_0_wr_rq_h
+[color] 2
+top.kl10pv.mbx_21.mbx2_mb_1_wr_rq_h
+[color] 2
+top.kl10pv.mbx_21.mbx2_mb_2_wr_rq_h
+[color] 2
+top.kl10pv.mbx_21.mbx2_mb_3_wr_rq_h
+@c00200
+-e31
+@28
+[color] 3
+top.kl10pv.clk_32.e31.d0
+[color] 3
+top.kl10pv.clk_32.e31.d1
+[color] 3
+top.kl10pv.clk_32.e31.d2
+[color] 3
+top.kl10pv.clk_32.e31.d3
+[color] 3
+top.kl10pv.clk_32.e31.d4
+[color] 3
+top.kl10pv.clk_32.e31.d5
+[color] 3
+top.kl10pv.clk_32.e31.d6
+[color] 3
+top.kl10pv.clk_32.e31.d7
+[color] 2
+top.kl10pv.clk_32.e31.nen
+@c00022
+[color] 3
++{sel} #{top.kl10pv.clk_32.e31.sel[4:1]} top.kl10pv.clk_32.e31.sel4 top.kl10pv.clk_32.e31.sel2 top.kl10pv.clk_32.e31.sel1
+@28
+top.kl10pv.clk_32.e31.sel1
+top.kl10pv.clk_32.e31.sel2
+top.kl10pv.clk_32.e31.sel4
+@1401200
+-group_end
+@28
+[color] 3
+top.kl10pv.clk_32.e31.b
+@1401200
+-e31
+@28
+top.kl10pv.clk_32.clk3_ebox_clk_en_l
+top.kl10pv.csh3_any_val_hold_in_h
+top.kl10pv.mb0_hold_in_h
+top.kl10pv.mb1_hold_in_h
+top.kl10pv.mb2_hold_in_h
+top.kl10pv.mb3_hold_in_h
+top.kl10pv.csh2_mbox_resp_in_h
+[color] 3
+top.kl10pv.mbc_22.mem_data_valid_a_l
 @c00200
 -MB20-aphase
 @28

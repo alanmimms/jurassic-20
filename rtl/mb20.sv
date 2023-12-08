@@ -21,13 +21,10 @@ module mb20 #(parameter MEMSIZE=256*1024) (iMBUS.memory mbus);
   always_comb aClk = ~mbus.clk;
   always_comb bClk =  mbus.clk;
 
-  always_comb mbus.dIn = mbus.inValidA ? aData : mbus.inValidB ? bData : '0;
+  always_comb mbus.dIn = mbus.inValidA ? aData : mbus.inValidB ? bData : 0;
   always_comb mbus.parIn = aClk ? aParity : bParity;
 
-  always_latch if (mbus.adrHold) begin
-    addr = mbus.adr;
-  end
-
+  always_latch if (mbus.adrHold) addr = mbus.adr;
 
   mb20Phase #(.MEMSIZE(MEMSIZE)) aPhase(.clk(aClk),
 					.reset(mbus.memReset),
@@ -74,30 +71,32 @@ module mb20Phase #(parameter MEMSIZE)
    input bit start,
    output bit ackn);
 
-  bit [14:35] addr = 0;	      // Address base we start at for quadword
-  bit [34:35] wo = 0;	      // Word offset of quadword
-  bit [0:3] toAck = 0;	      // Words we have not yet ACKed
+  bit [14:35] addr;	      // Address base we start at for quadword
+  bit [34:35] wo;	      // Word offset of quadword
+  bit [0:3] toAck;	      // Words we have not yet ACKed
 
   always_comb begin
     ackn = toAck[0];
-    inValid = toAck[0];
+    inValid = start;
     d = mem[{inAddr[14:33], wo}];
     parity = ^d;
   end
 
   always_ff @(posedge clk)
+
     if (reset) begin
-      addr <= '0;
-      wo <= '0;
-      toAck <= '0;
-    end else if (start && toAck == '0) begin     // A transfer is starting
+      addr <= 0;
+      wo <= 0;
+      toAck <= 0;
+    end else if (start && toAck == 0) begin     // A transfer is starting
       addr <= inAddr;		// Address of first word we do
       wo <= inAddr[34:35];	// Word offset we increment mod 4
       toAck <= inRq;		// Addresses remaining to ACK
     end
 
   always_ff @(posedge clk)
-    if (toAck != '0) begin
+
+    if (toAck != 0) begin
       wo <= wo + 1;
       toAck <= toAck << 1;
     end
