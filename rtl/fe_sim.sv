@@ -5,8 +5,6 @@
 
 typedef bit [0:8] tDRAMAddress;
 
-`define STRINGIFY(S)	`"S`"
-
 
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,

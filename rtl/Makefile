@@ -128,7 +128,7 @@ clean:
 # TODO Add back mc10181 test
 tests:	$(foreach T,$(LOGIC_TESTS),$(VOBJDIR)/test-$(T))
 
-$(VOBJDIR)/test-%:	rtl/tb/%_tb.sv rtl/logic/%.sv rtl/logic.svh # rtl/tb/%-tb.cc
+$(VOBJDIR)/test-%:	rtl/tb/%_tb.sv rtl/logic/%.sv rtl/logic.svh rtl/util.svh
 	$(VERILATOR) \
 		$(VFLAGS) -DTESTBENCH \
 		$^ \
