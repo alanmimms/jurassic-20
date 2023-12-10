@@ -52,7 +52,7 @@ module mc10181(input bit s8,s4,s2,s1, boole, cin,
             ~(P[3] | P[2]  | P[1]  | G[0]);
 
     cg = ~notGG;
-    cp = ~(P[3] | P[2] | P[1] | P[0]);
+    cp = P[3] | P[2] | P[1] | P[0];
     cout = ~(notGG | ~(P[3] | P[2] | P[1] | P[0] | cin));  
   end
 endmodule // mc10181
