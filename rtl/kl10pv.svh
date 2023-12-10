@@ -2,6 +2,7 @@
  `define _KL10PV_SVH_ 1
 
  `include "dte.svh"
+ `include "util.svh"
 
 typedef bit [0:85] tCRAM;
 typedef bit [0:10] tCRAMAddress;
