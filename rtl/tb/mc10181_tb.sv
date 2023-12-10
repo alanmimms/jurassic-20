@@ -1,6 +1,8 @@
 `include "logic.svh"
+`include "util.svh"
 
 module mc10181_tb;
+  string FGCOLOR = "\033[39m";
   string GREEN = "\033[32m";
   string RED = "\033[31m";
 
@@ -30,15 +32,22 @@ module mc10181_tb;
     logic cout;
   } StimData;
 
-  StimData stim[4] = {
+  StimData stim[10] = {
   //     s    boole cin       a        b        f     cg    cp   cout
-    {4'b0000, 1'b0, 1'b0, 4'b1111, 4'b0000, 4'b1111, 1'b0, 1'b0, 1'b0},
-    {4'b0000, 1'b0, 1'b0, 4'b1111, 4'b1111, 4'b1111, 1'b0, 1'b0, 1'b0},
-    {4'b0000, 1'b0, 1'b0, 4'b0000, 4'b1111, 4'b0000, 1'b0, 1'b0, 1'b0},
-    {4'b0000, 1'b0, 1'b0, 4'b1010, 4'b1111, 4'b1010, 1'b0, 1'b0, 1'b0}
+    {4'b0000, 1'b1, 1'b0, 4'b1111, 4'b0000, 4'b0000, 1'b1, 1'b0, 1'b0},
+    {4'b0000, 1'b1, 1'b0, 4'b1111, 4'b1111, 4'b0000, 1'b1, 1'b0, 1'b0},
+    {4'b0000, 1'b1, 1'b0, 4'b0000, 4'b1111, 4'b1111, 1'b0, 1'b0, 1'b0},
+    {4'b0000, 1'b1, 1'b0, 4'b1010, 4'b1111, 4'b0101, 1'b0, 1'b0, 1'b0},
+    {4'b0000, 1'b1, 1'b0, 4'b0101, 4'b1111, 4'b1010, 1'b0, 1'b0, 1'b0},
+    {4'b0000, 1'b1, 1'b1, 4'b1111, 4'b0000, 4'b0000, 1'b1, 1'b0, 1'b1},
+    {4'b0000, 1'b1, 1'b1, 4'b1111, 4'b1111, 4'b0000, 1'b1, 1'b0, 1'b1},
+    {4'b0000, 1'b1, 1'b1, 4'b0000, 4'b1111, 4'b1111, 1'b0, 1'b0, 1'b0},
+    {4'b0000, 1'b1, 1'b1, 4'b1010, 4'b1111, 4'b0101, 1'b0, 1'b0, 1'b0},
+    {4'b0000, 1'b1, 1'b1, 4'b0101, 4'b1111, 4'b1010, 1'b0, 1'b0, 1'b0}
   };
 
   initial begin
+`define T(V)	$sformatf("\033[39m%s=%b/%s%b\033[39m", `STRINGIFY(V), V, (V == t.V ? GREEN : RED), t.V)
 
     for (int k = 0; k < $size(stim); ++k) begin
       bit pass;
@@ -53,11 +62,10 @@ module mc10181_tb;
       #1
       pass = f == t.f && cg == t.cg && cp == t.cp && cout == t.cout;
       
-      $display("%s%7g s=%04b/%01b cin=%01b a=%04b b=%04b  Was/Sb: f=%04b/%04b cgcp=%02b cout=%01b [%s]",
-	       pass ? GREEN : RED,
+      $display("\033[39m%7g s=%b.%b cin=%b a=%b b=%b  Was/Sb: %s %s %s %s ---[%s]",
 	       $realtime, s, boole, cin, a, b,
-	       f, cg, cp, cout,
-	       pass ? "PASS" : "FAIL");
+	       `T(f), `T(cg), `T(cp), `T(cout),
+	       pass ? "\033[32mPASS\033[39m" : "\033[31mFAIL\033[39m");
 
     end
 
