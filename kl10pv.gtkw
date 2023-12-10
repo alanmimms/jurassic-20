@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri Dec  8 06:05:14 2023
+[*] Sat Dec  9 01:34:38 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Fri Dec  8 04:41:09 2023"
+[dumpfile_mtime] "Sat Dec  9 00:49:02 2023"
 [dumpfile_size] 5800302
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 19187
+[timestart] 19055
 [size] 1920 1045
 [pos] -1 -1
-*-6.000000 19389 19260 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 19163 19260 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -44,6 +44,8 @@ top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
 @28
+[color] 3
+top.kl10pv.clk_32.clk4_ebox_clk_l
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
 @c00200
@@ -199,6 +201,35 @@ top.kl10pv.edp_39.ad_34_h
 top.kl10pv.edp_39.ad_35_h
 @1401200
 -group_end
+@28
+top.kl10pv.edp_41.ada_24_h
+top.kl10pv.edp_41.ada_25_h
+top.kl10pv.edp_41.ada_26_h
+top.kl10pv.edp_41.ada_27_h
+top.kl10pv.edp_41.ada_28_h
+top.kl10pv.edp_41.ada_29_h
+top.kl10pv.edp_41.ad_24_h
+top.kl10pv.edp_41.ad_25_h
+top.kl10pv.edp_41.ad_26_h
+top.kl10pv.edp_41.ad_27_h
+top.kl10pv.edp_41.ad_28_h
+top.kl10pv.edp_41.ad_29_h
+@29
+top.kl10pv.edp_41.ad_cry_22_h
+top.kl10pv.edp_41.ad_cry_25_h
+top.kl10pv.edp_41.ad_cry_26_h
+top.kl10pv.edp_41.ad_cry_30_h
+@c00022
+#{top.kl10pv.edp_53.cram_ad_sel_[8:1]_00_h} top.kl10pv.edp_53.cram_ad_sel_8_00_h top.kl10pv.edp_53.cram_ad_sel_4_00_h top.kl10pv.edp_53.cram_ad_sel_2_00_h top.kl10pv.edp_53.cram_ad_sel_1_00_h
+@22
+top.kl10pv.edp_53.cram_ad_sel_1_00_h
+top.kl10pv.edp_53.cram_ad_sel_2_00_h
+top.kl10pv.edp_53.cram_ad_sel_4_00_h
+top.kl10pv.edp_53.cram_ad_sel_8_00_h
+@1401200
+-group_end
+@28
+top.kl10pv.edp_53.cram_ad_boole_00_h
 @c040a2
 [color] 3
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
@@ -603,11 +634,6 @@ top.kl10pv.vma_38.vma2_vma_34_h
 top.kl10pv.vma_38.vma2_vma_35_h
 @1401200
 -group_end
-@28
-top.kl10pv.ird_48.ad_cry_NG02_h
-top.kl10pv.vma_38.mcl4_vmaGETSad_h
-top.kl10pv.vma_38.ctl1_load_pc_l
-top.kl10pv.vma_38.vma5_load_pc_l
 @c000b0
 [color] 2
 #{VMA3-PC} top.kl10pv.vma_38.vma3_pc_35_h top.kl10pv.vma_38.vma3_pc_34_h top.kl10pv.vma_38.vma3_pc_33_h top.kl10pv.vma_38.vma3_pc_32_h top.kl10pv.vma_38.vma3_pc_31_h top.kl10pv.vma_38.vma3_pc_30_h top.kl10pv.vma_38.vma3_pc_29_h top.kl10pv.vma_38.vma3_pc_28_h top.kl10pv.vma_38.vma3_pc_27_h top.kl10pv.vma_38.vma3_pc_26_h top.kl10pv.vma_38.vma3_pc_25_h top.kl10pv.vma_38.vma3_pc_24_h top.kl10pv.vma_38.vma3_pc_23_h top.kl10pv.vma_38.vma3_pc_22_h top.kl10pv.vma_38.vma3_pc_21_h top.kl10pv.vma_38.vma3_pc_20_h top.kl10pv.vma_38.vma3_pc_19_h top.kl10pv.vma_38.vma3_pc_18_h top.kl10pv.vma_38.vma3_pc_17_h top.kl10pv.vma_38.vma3_pc_16_h top.kl10pv.vma_38.vma3_pc_15_h top.kl10pv.vma_38.vma3_pc_14_h top.kl10pv.vma_38.vma3_pc_13_h
@@ -955,7 +981,7 @@ top.kl10pv.mbc_22.core_busy_h
 top.kl10pv.clk_32.csh2_mbox_resp_in_h
 @1401200
 -mbc
-@800200
+@c00200
 -mbus
 @28
 [color] 3
@@ -1006,7 +1032,7 @@ top.kl10pv.memory0.mbus.acknB
 top.kl10pv.memory0.mbus.inValidB
 [color] 7
 top.kl10pv.memory0.mbus.outValidB
-@1000200
+@1401200
 -mbus
 @28
 [color] 3
@@ -1023,7 +1049,6 @@ top.kl10pv.clk_32.clk2_mbox_clk_e_h
 top.kl10pv.clk_32.clk3_sync_en_l
 [color] 7
 top.kl10pv.clk3_ebox_sync_d_l
-@29
 [color] 2
 top.kl10pv.mbx_21.mbx2_mb_0_wr_rq_h
 [color] 2
@@ -1032,6 +1057,8 @@ top.kl10pv.mbx_21.mbx2_mb_1_wr_rq_h
 top.kl10pv.mbx_21.mbx2_mb_2_wr_rq_h
 [color] 2
 top.kl10pv.mbx_21.mbx2_mb_3_wr_rq_h
+[color] 2
+top.kl10pv.csh_23.clk4_ebox_cyc_abort_h
 @c00200
 -e31
 @28

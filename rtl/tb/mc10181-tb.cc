@@ -17,24 +17,7 @@ int main(int argc, char** argv, char** env) {
   dut->trace(m_trace, 5);
   m_trace->open("mc10181-tb.vcd");
 
-  while (simT < MAX_SIM_TIME) {
-
-    // Test 1100 BOOLE=1 case: Should result in 0000.
-    if (simT < 0x0F) {
-      dut->s8 = 1;
-      dut->s4 = 1;
-      dut->s2 = 0;
-      dut->s1 = 0;
-      dut->boole = 1;
-    } else if (simT < 0x1F) {
-      dut->s8 = 0;
-      dut->s4 = 0;
-      dut->s2 = 1;
-      dut->s1 = 1;
-      dut->boole = 1;
-    } else {
-    }
-
+  while (!contextp->gotFinish()) {
     dut->eval();
     m_trace->dump(simT);
     simT++;

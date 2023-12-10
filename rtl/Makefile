@@ -11,7 +11,7 @@ MODS = \
     just_a_wire delay_line tapped_delay_20_2 tapped_delay_50_10 \
     just_six_zero wire6
 
-LOGIC_TESTS = mc10136 mc10141
+LOGIC_TESTS = mc10136 mc10141 mc10181
 
 TOP = kl10pv
 
