@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Dec  9 01:34:38 2023
+[*] Sun Dec 10 22:30:34 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Dec  9 00:49:02 2023"
-[dumpfile_size] 5800302
+[dumpfile_mtime] "Sun Dec 10 22:07:05 2023"
+[dumpfile_size] 5800312
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 19055
+[timestart] 19071
 [size] 1920 1045
 [pos] -1 -1
-*-6.000000 19163 19260 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 19435 19260 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -58,8 +58,6 @@ top.kl10pv.con_35.con_cono_pi_l
 top.kl10pv.con_35.con3_cono_pag_l
 @1401200
 -Reset/klinit
-@800200
--core-state
 @c000b0
 [color] 2
 #{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h
@@ -94,6 +92,8 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
+@800200
+-core-state
 @c000b0
 [color] 1
 #{IR} top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_11_h top.kl10pv.ird_48.ir_10_h top.kl10pv.ird_48.ir_09_h top.kl10pv.ird_48.ir_08_h top.kl10pv.ird_48.ir_07_h top.kl10pv.ird_48.ir_06_h top.kl10pv.ird_48.ir_05_h top.kl10pv.ird_48.ir_04_h top.kl10pv.ird_48.ir_03_h top.kl10pv.ird_48.ir_02_h top.kl10pv.ird_48.ir_01_h top.kl10pv.ird_48.ir_00_h
@@ -201,35 +201,6 @@ top.kl10pv.edp_39.ad_34_h
 top.kl10pv.edp_39.ad_35_h
 @1401200
 -group_end
-@28
-top.kl10pv.edp_41.ada_24_h
-top.kl10pv.edp_41.ada_25_h
-top.kl10pv.edp_41.ada_26_h
-top.kl10pv.edp_41.ada_27_h
-top.kl10pv.edp_41.ada_28_h
-top.kl10pv.edp_41.ada_29_h
-top.kl10pv.edp_41.ad_24_h
-top.kl10pv.edp_41.ad_25_h
-top.kl10pv.edp_41.ad_26_h
-top.kl10pv.edp_41.ad_27_h
-top.kl10pv.edp_41.ad_28_h
-top.kl10pv.edp_41.ad_29_h
-@29
-top.kl10pv.edp_41.ad_cry_22_h
-top.kl10pv.edp_41.ad_cry_25_h
-top.kl10pv.edp_41.ad_cry_26_h
-top.kl10pv.edp_41.ad_cry_30_h
-@c00022
-#{top.kl10pv.edp_53.cram_ad_sel_[8:1]_00_h} top.kl10pv.edp_53.cram_ad_sel_8_00_h top.kl10pv.edp_53.cram_ad_sel_4_00_h top.kl10pv.edp_53.cram_ad_sel_2_00_h top.kl10pv.edp_53.cram_ad_sel_1_00_h
-@22
-top.kl10pv.edp_53.cram_ad_sel_1_00_h
-top.kl10pv.edp_53.cram_ad_sel_2_00_h
-top.kl10pv.edp_53.cram_ad_sel_4_00_h
-top.kl10pv.edp_53.cram_ad_sel_8_00_h
-@1401200
--group_end
-@28
-top.kl10pv.edp_53.cram_ad_boole_00_h
 @c040a2
 [color] 3
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
@@ -665,6 +636,16 @@ top.kl10pv.vma_38.vma3_pc_35_h
 -group_end
 @1000200
 -core-state
+@28
+[color] 1
+top.kl10pv.apr_mb_par_err_l
+@29
+[color] 1
+top.kl10pv.mbox_mb_par_err_l
+@28
+top.kl10pv.apr2_wr_bad_adr_par_l
+top.kl10pv.mbox_adr_par_err_l
+top.kl10pv.mem_adr_par_err_h
 @c00200
 -VMA
 @c000b0
@@ -1034,6 +1015,8 @@ top.kl10pv.memory0.mbus.inValidB
 top.kl10pv.memory0.mbus.outValidB
 @1401200
 -mbus
+@c00200
+-mcl-guts
 @28
 [color] 3
 top.kl10pv.mbc_22.mbc4_core_data_valid_NG2_l
@@ -1104,6 +1087,8 @@ top.kl10pv.mb3_hold_in_h
 top.kl10pv.csh2_mbox_resp_in_h
 [color] 3
 top.kl10pv.mbc_22.mem_data_valid_a_l
+@1401200
+-mcl-guts
 @c00200
 -MB20-aphase
 @28
