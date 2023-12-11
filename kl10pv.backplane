@@ -38,7 +38,7 @@ Slot 17: {n=27} ch0 M8549YH (no cache) // cac M8521 (cache) //
 Slot 18: ignore blank
 
 Slot 19: {n=18} ch0 M8549YH (no cache) // cac M8521 (cache) // 
-Slot 20: mbz M8537
+Slot 20: {s=01} mbz M8537		// Value for S not clear
 Slot 21: {n=30} mbx M8529YA
 Slot 22: {n=22} mbc M8531YA
 Slot 23: {k=22} csh M8513YA
