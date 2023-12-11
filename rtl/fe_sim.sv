@@ -252,7 +252,7 @@ module fe_sim(input bit clk,
     execKLInstr(36'o701200_000000);	// CONO PAG,0		; Clear paging system
     execKLInstr(36'o701140_000000);	// DATAO PAG,0		; Clear user base
 
-    // Set AC0 to hold flag to run boot loader.
+    // Set AC0 flag to run boot loader.
     loadAC(0, 36'o400000_000000);
 
     // Enable parity checking on CRAM, DRAM, FS, AR/ARX
