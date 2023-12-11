@@ -905,7 +905,9 @@ function checkAnonymousNames(bp) {
 
 	       const {id, chip, pin} = m.groups;
 
-	       if (!boardNet.some(bn => bn.dir === 'D')) console.error(`${boardID}: ${n} not driven`);
+	       if (!boardNet.some(bn => bn.dir === 'D')) {
+		 console.error(`${boardID}: ${chip}.${pin} ${n} not driven`);
+	       }
 
 	       boardNet.forEach(bn => {
 
