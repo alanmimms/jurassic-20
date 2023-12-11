@@ -202,7 +202,13 @@ ${slotNumber}.${bpp}[${v.dirs}]: ${v.vNet}`;
 
 		if (!net) net = verilogify(canonicalize(evalExpr(pin.net, macroEnv, true)));
 
-		cur[logic.pinToName(chip.type, pin.pin, pin.dir)] =  {
+		const pinName = logic.pinToName(chip.type, pin.pin, pin.dir);
+
+		if (!pinName) {
+		  console.error(`ERROR: ${chip.name}: ${chip.type} pin ${pin.pin} is not ${pin.dir}`);
+		}
+
+		cur[pinName] =  {
 		  dir: astDirToDir(pin.dir),
 		  net,
 		  name: chip.name,

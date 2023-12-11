@@ -304,7 +304,7 @@ const logic = {
     if (type == undefined || pinNumString == undefined || dir == undefined ||
 	!logic[type][dir][pinNumString])
     {
-      console.error(`pinToName: type='${type}' pinNumString=${pinNumString} dir='${dir}'`);
+      return null;
     }
 
     return logic[type][dir][pinNumString].name;
