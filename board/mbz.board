@@ -31,6 +31,10 @@ e30: 10176 hex dff
      14 ~> {dm2} core busy h
      5 ~< mbz1-e33-2
      2 ~> mbz1 chan to mem l
+     12 ~< mbz4-e9-3
+     15 ~> mbz4 mb par err h
+     10 ~< mbz4 mb par err h
+     13 ~> mbz4-e30-13
 
 e46: 10101 quad or/nor
      13 ~< mbz1 chan core busy h
@@ -43,6 +47,9 @@ e46: 10101 quad or/nor
      4 ~< {ed2} -mtr cca writeback h
      2 ~> mbz1-e46-2
      5 ~> %NC%
+     10 ~< {ea1} core busy a h
+     14 ~> mbz4 core busy a l
+     11 ~> mbz4 core busy a h
 
 e36: 10210 or buffer
      5 ~< %NC%
@@ -113,6 +120,9 @@ e37: 10101 quad or/nor
      7 ~< mbz3 mbox nxm err h
      3 ~> {fp2} mbox nxm err l
      6 ~> %NC%
+     10 ~< {br2} mem wr rq l
+     14 ~> %NC%
+     11 ~> mbz4 mem wr rq a l
 
 e29: 10105 2-3-2 or/nor
      4 ~< mbz1 chan to mem l
@@ -123,6 +133,11 @@ e29: 10105 2-3-2 or/nor
      13 ~< -mbz3 nxm clr t0 l
      14 ~> mbz3-e29-14
      15 ~> %NC%
+     9 ~< mbz4-e30-13
+     10 ~< {bm2} mbox mb par err l
+     11 ~< mbz3 chan mem ref l
+     6 ~> %NC%
+     7 ~> {cf2} chan par err l
 
 e42: 10105 2-3-2 or/nor
      12 ~< mbz1 chan wr mem l
@@ -133,6 +148,11 @@ e42: 10105 2-3-2 or/nor
      5 ~< -mbz1 chan ept l
      3 ~> mbz1 chan buf to mb h
      2 ~> %NC%
+     9 ~< mbz4-e25-3
+     10 ~< {fr1} mbox adr par err l
+     11 ~< mbz3 chan mem ref l
+     6 ~> %NC%
+     7 ~> {cj1} chan adr par err l
 
 e72: 10104 quad and
      10 ~< -mbz3 reset h
@@ -311,7 +331,7 @@ e39: 10174 2x4 mixer
      6 ~< mbz2 ebus reg 17 h
      13 ~< {cm1} mb par bit in h
      11 ~< mbz6 csh par bit h
-     12 ~< {cf1} [s,,mbz3 sequential rq h]
+     12 ~< {cf1} [s,not connected h,mbz3 sequential rq h]
      10 ~< mbz2 ebus reg 18 h
      9 ~< mbz2 diag 05 h
      7 ~< mbz2 diag 06 h
@@ -437,6 +457,9 @@ e24: 10104 quad and
      13 ~< mbz4 mem rd rq a h
      9 ~> {dr1} nxm data val l
      15 ~> %NC%
+     6 ~< mbz4 nxm t6 h
+     7 ~< mbz4 mem rd rq a h
+     3 ~> mbz4-e24-3
 
 e23: 10141 shift reg
      13 ~< %NC%
@@ -479,6 +502,12 @@ e19: 10101 quad or/nor
      6 ~> {de2} nxm any l
      12 ~< mbz3-e61-2
      15 ~> mbz3 chan mem ref l
+     4 ~< mbz4 mb par err h
+     2 ~> {bm2} mbox mb par err l
+     5 ~> %NC%
+     10 ~< {ar2} mem adr par err h
+     14 ~> mbz4-e19-14
+     11 ~> %NC%
 
 e61: 10117 dual 2-3 or-and
      4 ~< mbz3 mem start c l
@@ -506,6 +535,16 @@ e68: 10176 hex dff
      7 ~< mbz3-e70-2
      9 ~< mbz1 clk a h
      4 ~> mbz3-e68-4
+     5 ~< mbz4-e67-3
+     2 ~> mbz4 nxm t2 h
+     6 ~< mbz4 nxm t2 h
+     3 ~> mbz4 nxm t3 h
+     10 ~< mbz4 nxm t3 h
+     13 ~> mbz4 nxm t4 h
+     11 ~< mbz4 nxm t4 h
+     14 ~> mbz4 nxm t5 h
+     12 ~< mbz4 nxm t5 h
+     15 ~> mbz4 nxm t6 h
 
 e71: 10105 2-3-2 or/nor
      4 ~< mbz3-e72-2
@@ -516,13 +555,18 @@ e71: 10105 2-3-2 or/nor
      13 ~< {fm2} mem start b h
      14 ~> mbz3 mem start c l
      15 ~> mbz3 mem start c h
+     9 ~< {fl2} mem start a h
+     10 ~< {fm2} mem start b h
+     11 ~< {fn1} rq hold ff h
+     6 ~> mbz3-e71-6
+     7 ~> mbz3-e71-7
 
 e53: 10136 binary counter
      5 ~< %NC%
      6 ~< %NC%
      11 ~< %NC%
      12 ~< %NC%
-     10 ~< mbz3-e57-10
+     10 ~< mbz3-e57-3
      7 ~< mbz3 mem start c h
      9 ~< %NC%
      13 ~< mbz1 clk a h
@@ -555,6 +599,9 @@ e69: 10101 quad or/nor
      13 ~< {dn1} mr reset 06 h
      15 ~> mbz3 reset l
      9 ~> mbz3 reset h
+     7 ~< %NC%
+     3 ~> {fk2} hi
+     6 ~> %NC%
 
 e27: 10109 4/5 or/nor
      9 ~< {fe1} apr any ebox err flg h
@@ -586,6 +633,16 @@ e25: 10176 hex dff
      5 ~< mbz3 nxm flg h
      9 ~< mbz1 clk d h
      2 ~> mbz4-e25-2
+     12 ~< mbz4-e24-3
+     15 ~> mbz4-e25-15
+     11 ~< mbz4-e20-14
+     14 ~> mbz4 sbus err flg h
+     7 ~< mbz4-e20-3
+     4 ~> mbz4 adr par err flg h
+     10 ~< mbz4-e20-2
+     13 ~> {fr1} mbox adr par err l
+     6 ~< mbz4 adr par err flg h
+     3 ~> mbz4-e25-3
 
 e67: 10117 dual 2-3 or-and
      4 ~< mbz3 nxm flg l
@@ -617,3 +674,89 @@ e4:  10121 4-wide or-and
      15 ~< -mbz4 mem rd rq a l
      3 ~> %NC%
      2 ~> mbz4 load mb # l
+
+e6:  10141 shift reg
+     13 ~< %NC%
+     12 ~< {af1} mb data code 2 h
+     11 ~< {ad2} mb data code 1 h
+     9 ~< {ae2} mb sel 2 h
+     6 ~< {ae1} mb sel 1 h
+     5 ~< %NC%
+     7 ~< mbz4 load mb # l
+     10 ~< mbz4 load mb # l
+     4 ~< mbz1 clk f h
+     14 ~> mbz4 mb data source 2 h
+     15 ~> mbz4 mb data source 1 h
+     2 ~> mbz4 mb wd sel 2 h
+     3 ~> mbz4 mb wd sel 1 h
+
+e5:  10105 2-3-2 or/nor
+     9 ~< mbz4 nxm t6 h
+     10 ~< mbz4-e25-15
+     11 ~< %NC%
+     6 ~> mbz4 nxm t6,7 l
+     7 ~> %NC%
+
+e63: 10109 4/5 or/nor
+     9 ~< mbz4 nxm t2 h
+     10 ~< mbz4 nxm t3 h
+     11 ~< mbz4 nxm t4 h
+     12 ~< mbz4 nxm t5 h
+     13 ~< {ea1} core busy a h
+     14 ~> %NC%
+     15 ~> mbz4 core busy in a h
+
+e10: 10101 quad or/nor
+     10 ~< {ap2} mem error h
+     12 ~< %NC%
+     14 ~> mbz4-e10-14
+     11 ~> %NC%
+     4 ~< mbz4 sbus err flg h
+     2 ~> {de1} mbox sbus err l
+     5 ~> %NC%
+     7 ~< {au2} apr mb par err l
+     3 ~> mbz4-e10-3
+     6 ~> %NC%
+
+e2:  10101 quad or/nor
+     10 ~< {at2} apr sbus err l
+     12 ~< %NC%
+     14 ~> mbz4-e2-14
+     11 ~> %NC%
+     13 ~< {aj1} apr s adr p err l
+     15 ~> mbz4-e2-15
+     9 ~> %NC%
+     4 ~< {aj2} mem rd rq b h
+     2 ~> mbz4 mem rd rq a l
+     5 ~> mbz4 mem rd rq a h
+
+e20: 10117 dual 2-3 or-and
+     13 ~< mbz4-e10-14
+     12 ~< mbz3 a change coming l
+     11 ~< mbz4-e2-14
+     10 ~< {de1} mbox sbus err l
+     9 ~< -mbz3 reset l
+     14 ~> mbz4-e20-14
+     15 ~> %NC%
+     4 ~< mbz4-e19-14
+     5 ~< mbz3 a change coming l
+     6 ~< mbz4-e2-15
+     7 ~< {fr1} mbox adr par err l
+     9 ~< -mbz3 reset l
+     3 ~> mbz4-e20-3
+     2 ~> mbz4-e20-2
+
+e9:  10121 4-wide or-and
+     4 ~< {av2} -mb par odd l
+     5 ~< mbz6 mb test par b in l
+     6 ~< %NC%
+     7 ~< {av2} -mb par odd l
+     9 ~< {ac1} mb test par a in l
+     10 ~< mbz4-e10-3
+     11 ~< {bm2} mbox mb par err l
+     12 ~< -mbz3 reset l
+     13 ~< {av2} -mb par odd l
+     14 ~< {ep2} ackn pulse l
+     15 ~< -mbz4 mem rd rq a l
+     3 ~> mbz4-e9-3
+     2 ~> %NC%
