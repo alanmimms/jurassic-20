@@ -300,13 +300,7 @@ const logic = {
   },
 
   pinToName(type, pinNumString, dir) {
-
-    if (type == undefined || pinNumString == undefined || dir == undefined ||
-	!logic[type][dir][pinNumString])
-    {
-      return null;
-    }
-
+    if (!logic[type] || !logic[type][dir] || !logic[type][dir][pinNumString]) return null;
     return logic[type][dir][pinNumString].name;
   },
 };
