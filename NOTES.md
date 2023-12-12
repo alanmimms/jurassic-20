@@ -1,11 +1,5 @@
 # TODO:
 
-* Change name of `sim` to `compile` and merge the two files. This
-  separation is silly. Besides, the damned thing isn't a simulator,
-  it's a compiler.
-
-* Implement `slotWires`.
-
 
 # Outstanding Questions
 
@@ -21,44 +15,6 @@
     type 07 h\#400\`.
   * On clk3 we see clock buffers driving backplane pins with `\#20\`
     notation.
-
-# Data
-
-## Data Needed
-
-* Board level wiring: Interconnect nets with same local net name
-  (`lNet`) on each chip on reach board. On the board `lNet` is the net
-  name.
-
-* CRAM bit naming per slot: Interconnect nets with same global net
-  name (`gNet`) by backplane pins for CRM board slots. On the
-  backplane, `gNet` is the net name.
-
-* Backplane level wiring: Interconnect nets with same global net name
-  (`gNet`) by backplane pin. On the backplane, `gNet` is the net name.
-  This `gNet` is initialized from the board's `lNet` and then
-  overridden by the CRAM global net name if there is one for this
-  slot.
-
-
-# RTL Generation
-
-* Don't evaluate macros for board local symbols.
-  * Keep those symbols generic for each instantiation of the board.
-* Generate each board's RTL from local symbols with interface for
-  backplane pins.
-  * Each backplane pin uses its _local symbol name_ for the board's
-    SV module interface.
-* Assign CRAM global names to slot specific backplane pins.
-* Evaluate macros for global symbols on backplane pins.
-* Generate backplane's RTL using global symbols.
-  * Instantiate each module in each slot it appears in, wiring its
-    interface to the slot's global symbol for each backplane pin it
-    uses.
-
-
-## Data Available
-
 
 # Verilator
 
@@ -235,33 +191,6 @@ The primary reference is in `rtl/doc/klinit.l20`.
 * Presumably `deskew clk h` is only used in factory deskew adjustment.
 
 * Presumably all of the `spare` signals are actually unused.
-
-
-# TODO:
-
-* E.g., these two signals should be attached to three slots each:
-
-     cram arxm sel 4 00 h:
-       DP02.e60.4     edp.ff1[52]    PDF16
-
-     cram arxm sel 4 06 h:
-       DP02.e60.4     edp.ff1[52]    PDF16
-
-* Signals that don't go to a backplane pin _must_ stay local to the
-  module even if they have names that match global signal names. E.g.,
-  `ad cry -02 h` is local to EDP and also global driven by `IRD.ca1` to
-  `CRA.cf1`.
-
-* Make board definitions instantiate a complete new data structure for
-  each slot the board is in so we can add/change/specialize the data
-  there for each slot (especially for signals for CRAM bits on
-  backplane).
-
-* Binding between net and module.pin[backplane.slot] needs to be done
-  specific to slot. For example `hi 04` should be bound to
-  `crm.de1[ebox.50]`.
-
-* Finish defining signals for CRAM bits on backplane.
 
 
 # Hints and Kinks
