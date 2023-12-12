@@ -54,8 +54,8 @@ module kl10pv(input clk60, input crobar);
 		      mb_30_h, mb_31_h, mb_32_h, mb_33_h, mb_34_h, mb_35_h};
     mbus.mbox.parOut = mb_par_h;
     mbus.mbox.adrHold = sbus_adr_hold_h;
-    mbus.mbox.outValidA = data_valid_a_out_h;
-    mbus.mbox.outValidB = data_valid_b_out_h;
+    mbus.mbox.validOutA = data_valid_a_out_h;
+    mbus.mbox.validOutB = data_valid_b_out_h;
   end
 
   // Receiving signals from memory to KL10 MBOX.
@@ -72,8 +72,8 @@ module kl10pv(input clk60, input crobar);
     mem_par_in_h = mbus.mbox.parOut;
     mem_ackn_a_h = mbus.mbox.acknA;
     mem_ackn_b_h = mbus.mbox.acknB;
-    mem_data_valid_a_l = !mbus.mbox.inValidA;
-    mem_data_valid_b_l = !mbus.mbox.inValidB;
+    mem_data_valid_a_l = !mbus.mbox.validInA;
+    mem_data_valid_b_l = !mbus.mbox.validInB;
     mem_error_h = 0;
     mem_adr_par_err_h = 0;
   end
@@ -134,82 +134,49 @@ module kl10pv(input clk60, input crobar);
 
   // Zero out our unused EBUS interface signals
   always_comb begin
-    ebus.demand = 0;
-    ebus.xfer = 0;
     ebus.cs = 0;
     ebus.pi = 0;
+    ebus.xfer = 0;
   end
 
   // Pass output of our EBUS driving mux back into the KL10 symbol
   // naming system for modules to read the EBUS data.
-  assign ebus_d00_e_h = ebus.data[00];
-  assign ebus_d01_e_h = ebus.data[01];
-  assign ebus_d02_e_h = ebus.data[02];
-  assign ebus_d03_e_h = ebus.data[03];
-  assign ebus_d04_e_h = ebus.data[04];
-  assign ebus_d05_e_h = ebus.data[05];
-  assign ebus_d06_e_h = ebus.data[06];
-  assign ebus_d07_e_h = ebus.data[07];
-  assign ebus_d08_e_h = ebus.data[08];
-  assign ebus_d09_e_h = ebus.data[09];
-  assign ebus_d10_e_h = ebus.data[10];
-  assign ebus_d11_e_h = ebus.data[11];
-  assign ebus_d12_e_h = ebus.data[12];
-  assign ebus_d13_e_h = ebus.data[13];
-  assign ebus_d14_e_h = ebus.data[14];
-  assign ebus_d15_e_h = ebus.data[15];
-  assign ebus_d16_e_h = ebus.data[16];
-  assign ebus_d17_e_h = ebus.data[17];
-  assign ebus_d18_e_h = ebus.data[18];
-  assign ebus_d19_e_h = ebus.data[19];
-  assign ebus_d20_e_h = ebus.data[20];
-  assign ebus_d21_e_h = ebus.data[21];
-  assign ebus_d22_e_h = ebus.data[22];
-  assign ebus_d23_e_h = ebus.data[23];
-  assign ebus_d24_e_h = ebus.data[24];
-  assign ebus_d25_e_h = ebus.data[25];
-  assign ebus_d26_e_h = ebus.data[26];
-  assign ebus_d27_e_h = ebus.data[27];
-  assign ebus_d28_e_h = ebus.data[28];
-  assign ebus_d29_e_h = ebus.data[29];
-  assign ebus_d30_e_h = ebus.data[30];
-  assign ebus_d31_e_h = ebus.data[31];
-  assign ebus_d32_e_h = ebus.data[32];
-  assign ebus_d33_e_h = ebus.data[33];
-  assign ebus_d34_e_h = ebus.data[34];
-  assign ebus_d35_e_h = ebus.data[35];
+  always_comb begin
 
-  assign ebus_ds_strobe_e_h = ebus.diagStrobe;
-  assign ebus_demand_e_h = ebus.demand;
-  assign ebus_xfer_e_h = ebus.xfer;
+    {ebus_d00_e_h, ebus_d01_e_h, ebus_d02_e_h, ebus_d03_e_h, ebus_d04_e_h, ebus_d05_e_h,
+     ebus_d06_e_h, ebus_d07_e_h, ebus_d08_e_h, ebus_d09_e_h, ebus_d10_e_h, ebus_d11_e_h,
+     ebus_d12_e_h, ebus_d13_e_h, ebus_d14_e_h, ebus_d15_e_h, ebus_d16_e_h, ebus_d17_e_h,
+     ebus_d18_e_h, ebus_d19_e_h, ebus_d20_e_h, ebus_d21_e_h, ebus_d22_e_h, ebus_d23_e_h,
+     ebus_d24_e_h, ebus_d25_e_h, ebus_d26_e_h, ebus_d27_e_h, ebus_d28_e_h, ebus_d29_e_h,
+     ebus_d30_e_h, ebus_d31_e_h, ebus_d32_e_h, ebus_d33_e_h, ebus_d34_e_h, ebus_d35_e_h} = ebus.data;
 
-  always_comb ebus_ds00_e_h = ebus.ds[0];
-  always_comb ebus_ds01_e_h = ebus.ds[1];
-  always_comb ebus_ds02_e_h = ebus.ds[2];
-  always_comb ebus_ds03_e_h = ebus.ds[3];
-  always_comb ebus_ds04_e_h = ebus.ds[4];
-  always_comb ebus_ds05_e_h = ebus.ds[5];
-  always_comb ebus_ds06_e_h = ebus.ds[6];
+    ebus_ds_strobe_e_h = ebus.diagStrobe;
+    ebus.demand = ebus_demand_e_h;
+    ebus_xfer_e_h = ebus.xfer;
 
-  assign ebus_cs00_e_h = ebus.cs[0];
-  assign ebus_cs01_e_h = ebus.cs[1];
-  assign ebus_cs02_e_h = ebus.cs[2];
-  assign ebus_cs03_e_h = ebus.cs[3];
-  assign ebus_cs04_e_h = ebus.cs[4];
-  assign ebus_cs05_e_h = ebus.cs[5];
-  assign ebus_cs06_e_h = ebus.cs[6];
+    ebus_ds00_e_h = ebus.ds[0];
+    ebus_ds01_e_h = ebus.ds[1];
+    ebus_ds02_e_h = ebus.ds[2];
+    ebus_ds03_e_h = ebus.ds[3];
+    ebus_ds04_e_h = ebus.ds[4];
+    ebus_ds05_e_h = ebus.ds[5];
+    ebus_ds06_e_h = ebus.ds[6];
 
-  assign ebus_pi00_e_h = ebus.pi[0];
-  assign ebus_pi01_e_h = ebus.pi[1];
-  assign ebus_pi02_e_h = ebus.pi[2];
-  assign ebus_pi03_e_h = ebus.pi[3];
-  assign ebus_pi04_e_h = ebus.pi[4];
-  assign ebus_pi05_e_h = ebus.pi[5];
-  assign ebus_pi06_e_h = ebus.pi[6];
-  assign ebus_pi07_e_h = ebus.pi[7];
+    ebus.cs = {ebus_cs00_e_h, ebus_cs01_e_h, ebus_cs02_e_h, ebus_cs03_e_h,
+	       ebus_cs04_e_h, ebus_cs05_e_h, ebus_cs06_e_h};
 
-  assign ebus_parity_active_e_h = 0;
-  assign ebus_parity_e_h = 0;
+    ebus_pi00_e_h = ebus.pi[0];
+    ebus_pi01_e_h = ebus.pi[1];
+    ebus_pi02_e_h = ebus.pi[2];
+    ebus_pi03_e_h = ebus.pi[3];
+    ebus_pi04_e_h = ebus.pi[4];
+    ebus_pi05_e_h = ebus.pi[5];
+    ebus_pi06_e_h = ebus.pi[6];
+    ebus_pi07_e_h = ebus.pi[7];
+
+    ebus_parity_active_e_h = 0;
+    ebus_parity_e_h = 0;
+  end
 
   // "Mux" for EBUS data lines
   always_comb begin

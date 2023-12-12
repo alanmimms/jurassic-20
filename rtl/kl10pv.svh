@@ -71,8 +71,8 @@ interface iMBUS;
   bit adrParErr;		// From memory to MBOX
 
   bit acknA, acknB;		// From memory to MBOX
-  bit outValidA, outValidB;	// From memory to MBOX
-  bit inValidA, inValidB;	// From MBOX to memory
+  bit validOutA, validOutB;	// From memory to MBOX
+  bit validInA, validInB;	// From MBOX to memory
   bit startA, startB;		// From MBOX to memory
 
   W36 dIn;			// From memory to MBOX
@@ -94,8 +94,8 @@ interface iMBUS;
                output adr, adrPar, adrParErr,
 
                input acknA, acknB,
-               output outValidA, outValidB,
-               input inValidA, inValidB,
+               output validOutA, validOutB,
+               input validInA, validInB,
                output startA, startB,
 
 	       input dIn, parIn,
@@ -115,8 +115,8 @@ interface iMBUS;
 		 input adr, adrPar, adrParErr,
 
 		 output acknA, acknB,
-		 input outValidA, outValidB,
-		 output inValidA, inValidB,
+		 input validOutA, validOutB,
+		 output validInA, validInB,
 		 input startA, startB,
 
 		 output dIn, parIn,
