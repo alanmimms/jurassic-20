@@ -248,6 +248,31 @@ From `docs/EK-EBOX-all.pdf`, page `EBOX/3-21` figure 3-20:
 		MBOX CLK.
 
 
+## SBUS <--> MBOX mappings
+* This info is from `io-box*.pdf` DX0 which shows the SBUS[01] signals
+  that drive the MBOX `MEM *` signals and vice versa pretty clearly.
+  
+		Driving Signal				Driven Signal
+	!SBUS[01] ACKN [AB] L		MEM ACKN [AB] H
+	!SBUS[01] ERROR L			MEM ERROR H
+	!SBUS[01] ADR PAR ERR L		MEM ADR PAR ERR H
+	CLK SBUS CLK H				SBUS[01] CLK {INT,EXT} H
+	!DATA VALID[AB] OUT H		SBUS[01] DATA VALID [AB] L
+	!SBUS[01] DATA VALID [AB] L	MEM DATA VALID [AB] L
+	MEM START [AB] H			SBUS[01] START [AB] H
+	MEM RQ [0-3] H				SBUS[01] RQ [0-3] H
+	MEM RD RQ [0-3] H			SBUS[01] RD RQ [0-3] H
+	MEM WR RQ [0-3] H			SBUS[01] WR RQ [0-3] H
+	MEM DIAG L					SBUS[01] DIAG L
+	-MEM ADR PAR L				-SBUS[01] ADR PAR L
+	MB [00-35] H				SBUS[01] D[00-35] H
+	SBUS[01] DATA [00-35] H		MEM DATA IN [00-35] H
+	PMA [14-35] H				SBUS[01] ADR [14-35] H
+	!DIAG MEM RESET H			SBUS[01] MEM RESET L
+	MB PAR H					SBUS[01] DATA PAR H
+	SBUS[01] DATA PAR H			MEM PAR IN H
+	
+
 # How to Build
 It's pretty easy on Ubuntu 22.04, which is what I have been using. I
 couldn't easily tell you which packages you need, but there aren't
