@@ -1,4 +1,4 @@
-// Assemble a machine from *.board files in proper location and population.
+// Assemble a KL10PV from *.board files in proper location and population.
 //
 // Module utilization for CPU bay is PDF10.
 // 
