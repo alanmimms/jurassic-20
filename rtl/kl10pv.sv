@@ -272,6 +272,9 @@ module kl10pv(input clk60, input crobar);
     synchronize_clk_h = 0;
     probe_h = 0;
 
+    // This comes from a selector that I think is correct
+    mbz2_not_connected_h = 0;
+
     ccw_fast_mode_tp_h = 0;	// This is some sort of option?
     ccw_mem_store_tp_h = 0;	// This is only wireOR to assert CCW2 MEM STORE IN H?
 
