@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Dec 12 04:59:45 2023
+[*] Tue Dec 12 20:04:53 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Dec 12 04:59:39 2023"
-[dumpfile_size] 5800269
+[dumpfile_mtime] "Tue Dec 12 20:03:32 2023"
+[dumpfile_size] 5800284
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 19071
+[timestart] 18917
 [size] 1920 1045
 [pos] -1 -1
-*-7.000000 19435 19260 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 19260 19260 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
 [treeopen] top.kl10pv.memory0.
 [sst_width] 261
-[signals_width] 471
+[signals_width] 535
 [sst_expanded] 1
 [sst_vpaned_height] 498
 @28
@@ -636,18 +636,116 @@ top.kl10pv.vma_38.vma3_pc_35_h
 -group_end
 @1000200
 -core-state
+@c00200
+-MBparity-shit
+@28
+[color] 1
+top.kl10pv.mbox_mb_par_err_l
+top.kl10pv.mbz_20.mb_par_odd_h
+top.kl10pv.pag_30.mb_par_h
+top.kl10pv.pag_30.mb_00to05_par_odd_h
+top.kl10pv.pag_30.mb_06to11_par_odd_h
+top.kl10pv.pag_30.mb_12to17_par_odd_h
+top.kl10pv.pag_30.mb_18to23_par_odd_h
+top.kl10pv.pag_30.mb_24to29_par_odd_h
+top.kl10pv.pag_30.mb_30to35_par_odd_h
+top.kl10pv.mb0_14.mb_12to17_par_odd_h
+top.kl10pv.mb0_14.mb_30to35_par_odd_h
+@c04022
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+#{mb0-mb} top.kl10pv.mb0_14.mb_35_h top.kl10pv.mb0_14.mb_34_h top.kl10pv.mb0_14.mb_33_h top.kl10pv.mb0_14.mb_32_h top.kl10pv.mb0_14.mb_31_h top.kl10pv.mb0_14.mb_30_h top.kl10pv.mb0_15.mb_29_h top.kl10pv.mb0_15.mb_28_h top.kl10pv.mb0_15.mb_27_h top.kl10pv.mb0_15.mb_26_h top.kl10pv.mb0_15.mb_25_h top.kl10pv.mb0_15.mb_24_h top.kl10pv.mb0_16.mb_23_h top.kl10pv.mb0_16.mb_22_h top.kl10pv.mb0_16.mb_21_h top.kl10pv.mb0_16.mb_20_h top.kl10pv.mb0_16.mb_19_h top.kl10pv.mb0_16.mb_18_h top.kl10pv.mb0_14.mb_17_h top.kl10pv.mb0_14.mb_16_h top.kl10pv.mb0_14.mb_15_h top.kl10pv.mb0_14.mb_14_h top.kl10pv.mb0_14.mb_13_h top.kl10pv.mb0_14.mb_12_h top.kl10pv.mb0_15.mb_11_h top.kl10pv.mb0_15.mb_10_h top.kl10pv.mb0_15.mb_09_h top.kl10pv.mb0_15.mb_08_h top.kl10pv.mb0_15.mb_07_h top.kl10pv.mb0_15.mb_06_h top.kl10pv.mb0_16.mb_05_h top.kl10pv.mb0_16.mb_04_h top.kl10pv.mb0_16.mb_03_h top.kl10pv.mb0_16.mb_02_h top.kl10pv.mb0_16.mb_01_h top.kl10pv.mb0_16.mb_00_h
+@4028
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_00_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_01_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_02_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_03_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_04_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_05_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_06_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_07_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_08_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_09_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_10_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_11_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_12_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_13_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_14_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_15_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_16_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_17_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_18_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_19_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_20_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_21_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_22_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_16.mb_23_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_24_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_25_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_26_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_27_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_28_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_15.mb_29_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_30_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_31_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_32_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_33_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_34_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.mb0_14.mb_35_h
+@1401200
+-group_end
+@28
+top.kl10pv.memory0.aParity
+@22
+top.kl10pv.memory0.aData[0:35]
+@28
+top.kl10pv.memory0.bParity
+@22
+top.kl10pv.memory0.bData[0:35]
 @28
 [color] 1
 top.kl10pv.apr_34.apr_any_ebox_err_flg_h
 [color] 1
 top.kl10pv.apr_mb_par_err_l
-@29
 [color] 1
-top.kl10pv.mbox_mb_par_err_l
-@28
-top.kl10pv.apr2_wr_bad_adr_par_l
-top.kl10pv.mbox_adr_par_err_l
-top.kl10pv.mem_adr_par_err_h
+top.kl10pv.apr_34.apr1_mb_par_err_in_h
+@1401200
+-MBparity-shit
 @c00200
 -VMA
 @c000b0
@@ -1003,18 +1101,10 @@ top.kl10pv.memory0.mbus.wrRq
 top.kl10pv.memory0.mbus.startA
 [color] 2
 top.kl10pv.memory0.mbus.acknA
-[color] 2
-top.kl10pv.memory0.mbus.inValidA
-[color] 2
-top.kl10pv.memory0.mbus.outValidA
 [color] 7
 top.kl10pv.memory0.mbus.startB
 [color] 7
 top.kl10pv.memory0.mbus.acknB
-[color] 7
-top.kl10pv.memory0.mbus.inValidB
-[color] 7
-top.kl10pv.memory0.mbus.outValidB
 @1401200
 -mbus
 @c00200
@@ -1091,17 +1181,23 @@ top.kl10pv.csh2_mbox_resp_in_h
 top.kl10pv.mbc_22.mem_data_valid_a_l
 @1401200
 -mcl-guts
-@c00200
+@800200
 -MB20-aphase
 @28
 top.kl10pv.memory0.aPhase.ackn
-@22
+@b1
 top.kl10pv.memory0.aPhase.addr[14:35]
 @28
 top.kl10pv.memory0.aPhase.clk
-@22
+top.kl10pv.memory0.aPhase.validIn
+top.kl10pv.memory0.aPhase.validOut
+@4022
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
 top.kl10pv.memory0.aPhase.d[0:35]
-top.kl10pv.memory0.aPhase.inAddr[14:35]
+@b0
+top.kl10pv.memory0.aPhase.fullAddr[14:35]
+@28
+top.kl10pv.memory0.aPhase.wo[34:35]
 @c00028
 top.kl10pv.memory0.aPhase.inRq[0:3]
 @28
@@ -1112,14 +1208,11 @@ top.kl10pv.memory0.aPhase.inRq[0:3]
 @1401200
 -group_end
 @28
-top.kl10pv.memory0.aPhase.inValid
-top.kl10pv.memory0.aPhase.outValid
 top.kl10pv.memory0.aPhase.parity
 top.kl10pv.memory0.aPhase.reset
 top.kl10pv.memory0.aPhase.start
 top.kl10pv.memory0.aPhase.toAck[0:3]
-top.kl10pv.memory0.aPhase.wo[34:35]
-@1401200
+@1000200
 -MB20-aphase
 [pattern_trace] 1
 [pattern_trace] 0
