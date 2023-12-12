@@ -584,7 +584,7 @@ extern "C" void FEinitial(double aNsPerClock) {
   FD_SET(toDTE[0], &dteReadFDs);
 
   nsPerClock = aNsPerClock;
-  FELOG("[%g ns per DTE clock]\n", nsPerClock);
+  //  FELOG("[%g ns per DTE clock]\n", nsPerClock);
 
   pid_t pid = fork();
   if (pid < 0) fatalError("fork FE");
