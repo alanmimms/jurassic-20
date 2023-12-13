@@ -224,7 +224,6 @@ module fe_sim(input bit clk,
 
   initial begin			// Load CRAM and DRAM before start of simulation
     loadRAMs();
-    loadDiagnostic("images/klddt/klddt.a10");
   end
 
   initial begin
@@ -236,24 +235,32 @@ module fe_sim(input bit clk,
   always @(negedge crobar_e_h) begin
     repeat (10) @(negedge clk);
     KLMasterReset();
+    loadDiagnostic("images/klddt/klddt.a10");
     KLSoftReset();
     startKLBoot(startAddr);
+    if (dumpFD != 0) $fflush(dumpFD);
   end
 
 
-  task startKLBoot(W36 startAddr);
+  task automatic startKLBoot(W36 startAddr);
+    static W36 runBootLoaderFlag = 36'o400000_000000;
+
     doDiagFunc(diagfSTOP_CLOCK);                      // STOP THE CLOCK
 
     // Zero ACs
     for (int ac = 0; ac < 16; ++ac) loadAC(ac, '0);
+
+    $display("%7g MEM[10000]=%06o,,%06o", $realtime,
+	     memory0.mem['o10000][0:17], memory0.mem['o10000][18:35]);
 
     execKLInstr(36'o700200_267760);	// CONO APR,267760	; Reset APR
     execKLInstr(36'o700600_010000);	// CONO PI,10000	; Reset PI
     execKLInstr(36'o701200_000000);	// CONO PAG,0		; Clear paging system
     execKLInstr(36'o701140_000000);	// DATAO PAG,0		; Clear user base
 
-    // Set AC0 flag to run boot loader.
-    loadAC(0, 36'o400000_000000);
+    // Set AC0 and MEM[0] flag to run boot loader.
+    loadAC(0, runBootLoaderFlag);
+    writeMem(0, runBootLoaderFlag);
 
     // Enable parity checking on CRAM, DRAM, FS, AR/ARX
     doDiagWrite(diagfRESET_PAR_REGS, 'o16);
@@ -332,47 +339,47 @@ module fe_sim(input bit clk,
   
   // Assuming clock is disabled, set specified AC to specified value.
   task automatic loadAC(int ac, W36 value);
-    kl10pv.edp_53.e69.ram[ac] = value[0];
-    kl10pv.edp_53.e70.ram[ac] = value[1];
-    kl10pv.edp_53.e71.ram[ac] = value[2];
-    kl10pv.edp_53.e72.ram[ac] = value[3];
-    kl10pv.edp_53.e65.ram[ac] = value[4];
-    kl10pv.edp_53.e58.ram[ac] = value[5];
+    edp_53.e69.ram[ac] = value[0];
+    edp_53.e70.ram[ac] = value[1];
+    edp_53.e71.ram[ac] = value[2];
+    edp_53.e72.ram[ac] = value[3];
+    edp_53.e65.ram[ac] = value[4];
+    edp_53.e58.ram[ac] = value[5];
 
-    kl10pv.edp_51.e69.ram[ac] = value[6];
-    kl10pv.edp_51.e70.ram[ac] = value[7];
-    kl10pv.edp_51.e71.ram[ac] = value[8];
-    kl10pv.edp_51.e72.ram[ac] = value[9];
-    kl10pv.edp_51.e65.ram[ac] = value[10];
-    kl10pv.edp_51.e58.ram[ac] = value[11];
+    edp_51.e69.ram[ac] = value[6];
+    edp_51.e70.ram[ac] = value[7];
+    edp_51.e71.ram[ac] = value[8];
+    edp_51.e72.ram[ac] = value[9];
+    edp_51.e65.ram[ac] = value[10];
+    edp_51.e58.ram[ac] = value[11];
 
-    kl10pv.edp_49.e69.ram[ac] = value[12];
-    kl10pv.edp_49.e70.ram[ac] = value[13];
-    kl10pv.edp_49.e71.ram[ac] = value[14];
-    kl10pv.edp_49.e72.ram[ac] = value[15];
-    kl10pv.edp_49.e65.ram[ac] = value[16];
-    kl10pv.edp_49.e58.ram[ac] = value[17];
+    edp_49.e69.ram[ac] = value[12];
+    edp_49.e70.ram[ac] = value[13];
+    edp_49.e71.ram[ac] = value[14];
+    edp_49.e72.ram[ac] = value[15];
+    edp_49.e65.ram[ac] = value[16];
+    edp_49.e58.ram[ac] = value[17];
 
-    kl10pv.edp_43.e69.ram[ac] = value[18];
-    kl10pv.edp_43.e70.ram[ac] = value[19];
-    kl10pv.edp_43.e71.ram[ac] = value[20];
-    kl10pv.edp_43.e72.ram[ac] = value[21];
-    kl10pv.edp_43.e65.ram[ac] = value[22];
-    kl10pv.edp_43.e58.ram[ac] = value[23];
+    edp_43.e69.ram[ac] = value[18];
+    edp_43.e70.ram[ac] = value[19];
+    edp_43.e71.ram[ac] = value[20];
+    edp_43.e72.ram[ac] = value[21];
+    edp_43.e65.ram[ac] = value[22];
+    edp_43.e58.ram[ac] = value[23];
 
-    kl10pv.edp_41.e69.ram[ac] = value[24];
-    kl10pv.edp_41.e70.ram[ac] = value[25];
-    kl10pv.edp_41.e71.ram[ac] = value[26];
-    kl10pv.edp_41.e72.ram[ac] = value[27];
-    kl10pv.edp_41.e65.ram[ac] = value[28];
-    kl10pv.edp_41.e58.ram[ac] = value[29];
+    edp_41.e69.ram[ac] = value[24];
+    edp_41.e70.ram[ac] = value[25];
+    edp_41.e71.ram[ac] = value[26];
+    edp_41.e72.ram[ac] = value[27];
+    edp_41.e65.ram[ac] = value[28];
+    edp_41.e58.ram[ac] = value[29];
 
-    kl10pv.edp_39.e69.ram[ac] = value[30];
-    kl10pv.edp_39.e70.ram[ac] = value[31];
-    kl10pv.edp_39.e71.ram[ac] = value[32];
-    kl10pv.edp_39.e72.ram[ac] = value[33];
-    kl10pv.edp_39.e65.ram[ac] = value[34];
-    kl10pv.edp_39.e58.ram[ac] = value[35];
+    edp_39.e69.ram[ac] = value[30];
+    edp_39.e70.ram[ac] = value[31];
+    edp_39.e71.ram[ac] = value[32];
+    edp_39.e72.ram[ac] = value[33];
+    edp_39.e65.ram[ac] = value[34];
+    edp_39.e58.ram[ac] = value[35];
   endtask // loadAC
 
 
@@ -729,13 +736,17 @@ FOR WDRAM
     end
 
     $fclose(fd);
-    $display("%7g [loaded %s with start=%o]", $realtime, path, startAddr);
+    $display("%7g [loaded %s with start=%o,,%o]", $realtime, path, startAddr[14:17], startAddr[18:35]);
   endtask // loadDiagnostic
 
 
   task automatic writeMem(W36 adr, W36 value);
-    kl10pv.memory0.mem[adr] = value;
-    if (dumpLoadMem && value != 0) $fdisplay(dumpFD, "MEM %08o: %o", adr, value);
+    memory0.mem[adr] = value;
+
+    if (dumpLoadMem && value != 0) $fdisplay(dumpFD, "MEM %o: %o,,%o",
+					     adr[14:35],
+					     memory0.mem[adr][0:17],
+					     memory0.mem[adr][18:35]);
   endtask // writeMem
 
 
@@ -757,9 +768,9 @@ FOR WDRAM
 
     `define putCRM1(N, slot, a0, b0)		\
 	if (adr[10] == 0)			\
-	  kl10pv.slot.a0.ram[adr[0:9]] = cw[N];	\
+	  slot.a0.ram[adr[0:9]] = cw[N];	\
 	else					\
-	  kl10pv.slot.b0.ram[adr[0:9]] = cw[N];
+	  slot.b0.ram[adr[0:9]] = cw[N];
 
     `define putCRM2(N, slot, a0, b0, a1, b1)	\
       `putCRM1(N+0, slot, a0, b0)		\
@@ -841,8 +852,8 @@ FOR WDRAM
     end
 
     `define putDRAMEOBit(ADR, EE, EO, BE, BO)	\
-      kl10pv.ird_48.EE.ram[ADR] = BE;		\
-      kl10pv.ird_48.EO.ram[ADR] = BO;
+      ird_48.EE.ram[ADR] = BE;		\
+      ird_48.EO.ram[ADR] = BO;
 
     `putDRAMEOBit(ea,  e4,  e9, e[13], o[13]) // DRAM A00 X/Y H
     `putDRAMEOBit(ea, e42, e47, e[12], o[12]) // DRAM A01 X/Y H
@@ -852,12 +863,12 @@ FOR WDRAM
     `putDRAMEOBit(ea, e43, e48, e[8], o[8])   // DRAM B02 X/Y H
 
     // J00 doesn't exist in DRAM
-    kl10pv.ird_48.e13.ram[ea] = c[3];	      // DRAM J01 H
-    kl10pv.ird_48.e18.ram[ea] = c[2];	      // DRAM J02 H
-    kl10pv.ird_48.e28.ram[ea] = c[1];	      // DRAM J03 H
-    kl10pv.ird_48.e23.ram[ea] = c[0];	      // DRAM J04 H
+    ird_48.e13.ram[ea] = c[3];	      // DRAM J01 H
+    ird_48.e18.ram[ea] = c[2];	      // DRAM J02 H
+    ird_48.e28.ram[ea] = c[1];	      // DRAM J03 H
+    ird_48.e23.ram[ea] = c[0];	      // DRAM J04 H
     // J05 and J06 "DO NOT EXIST"
-    kl10pv.ird_48.e20.ram[ea] = o[3];	      // DRAM J07 H
+    ird_48.e20.ram[ea] = o[3];	      // DRAM J07 H
     `putDRAMEOBit(ea, e25, e30, e[2], o[2])   // DRAM J08 X/Y H
     `putDRAMEOBit(ea, e35, e38, e[1], o[1])   // DRAM J09 X/Y H
     `putDRAMEOBit(ea, e53, e58, e[0], o[0])   // DRAM J10 X/Y H

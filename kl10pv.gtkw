@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Tue Dec 12 20:04:53 2023
+[*] Wed Dec 13 02:19:38 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Dec 12 20:03:32 2023"
-[dumpfile_size] 5800284
+[dumpfile_mtime] "Wed Dec 13 02:19:16 2023"
+[dumpfile_size] 5554554
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 18917
+[timestart] 18927
 [size] 1920 1045
 [pos] -1 -1
-*-7.000000 19260 19260 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 19270 19270 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -92,7 +92,7 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
-@800200
+@c00200
 -core-state
 @c000b0
 [color] 1
@@ -634,7 +634,6 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
-@1000200
 -core-state
 @c00200
 -MBparity-shit
@@ -1183,22 +1182,26 @@ top.kl10pv.mbc_22.mem_data_valid_a_l
 -mcl-guts
 @800200
 -MB20-aphase
-@28
+@29
+[color] 1
 top.kl10pv.memory0.aPhase.ackn
-@b1
-top.kl10pv.memory0.aPhase.addr[14:35]
 @28
+[color] 3
 top.kl10pv.memory0.aPhase.clk
+top.kl10pv.memory0.aPhase.reset
 top.kl10pv.memory0.aPhase.validIn
 top.kl10pv.memory0.aPhase.validOut
 @4022
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
 top.kl10pv.memory0.aPhase.d[0:35]
-@b0
-top.kl10pv.memory0.aPhase.fullAddr[14:35]
 @28
 top.kl10pv.memory0.aPhase.wo[34:35]
+@b0
+top.kl10pv.memory0.aPhase.fullAddr[14:35]
+[color] 3
+top.kl10pv.memory0.aPhase.addr[14:35]
 @c00028
+[color] 3
 top.kl10pv.memory0.aPhase.inRq[0:3]
 @28
 (0)top.kl10pv.memory0.aPhase.inRq[0:3]
@@ -1209,7 +1212,7 @@ top.kl10pv.memory0.aPhase.inRq[0:3]
 -group_end
 @28
 top.kl10pv.memory0.aPhase.parity
-top.kl10pv.memory0.aPhase.reset
+[color] 3
 top.kl10pv.memory0.aPhase.start
 top.kl10pv.memory0.aPhase.toAck[0:3]
 @1000200

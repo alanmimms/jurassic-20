@@ -32,6 +32,7 @@ module kl10pv(input clk60, input crobar);
 
   // Driving signals from KL10 MBOX into memory.
   always_comb begin
+    mbus.mbox.memReset = diag_mem_reset_h;
     mbus.mbox.startA = mem_start_a_h;
     mbus.mbox.startB = mem_start_b_h;
     mbus.mbox.rdRq = mem_rd_rq_h;
