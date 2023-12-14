@@ -97,23 +97,12 @@ implement latches. This latter practice in today's logic and methods
 leads to circular logic dependencies, metastability black-holes, and
 madness.
 
-I can generate SystemVerilog from the entire netlist of all boards in
-all slots. I can run Verilator on the result and am now starting to
-weed through the `Circular combinational logic` errors I get.
-
-The first of these, which is on its way to being solved now, was the
-EBUS data lines, which also suffered from the wire-OR presumption and
-had to be methodically muxed instead. I put this mux in the top level
-and each board that has to drive EBUS data lines now provides an
-`EBUSdriver` signal and set of data lines that are used as inputs to
-that mux.
-
-I haven't gotten through the circular combinational logic morass
-yet. When I do, I expect to spend a bunch of time converting the
-clocking scheme to use a multi-phase clock, as described above. Since
-I don't have an actual KL10-PV to look at, I have no clear vision of
-what the clock output of the CLK module looks like, although there are
-many hints and one or two good timing diagrams that show some of it.
+## What I'm Doing Now
+I can run microcode to the point that the `execKLInstr()` for `CONO
+PAG,0` instruction hangs. This is apparently caused by the microcode
+accessing the EPT register in the MBOX and getting no response from
+MBOX, so it hangs forever with `apr6 ebox ebr h` and `con mbox wait l`
+asserted. I need to debug why MBOX register accesses never finish.
 
 
 # History
