@@ -70,7 +70,7 @@ module kl10pv(input clk60, input crobar);
      mem_data_in_24_h, mem_data_in_25_h, mem_data_in_26_h, mem_data_in_27_h,
      mem_data_in_28_h, mem_data_in_29_h, mem_data_in_30_h, mem_data_in_31_h,
      mem_data_in_32_h, mem_data_in_33_h, mem_data_in_34_h, mem_data_in_35_h} = mbus.mbox.dIn;
-    mem_par_in_h = mbus.mbox.parOut;
+    mem_par_in_h = mbus.mbox.parIn;
     mem_ackn_a_h = mbus.mbox.acknA;
     mem_ackn_b_h = mbus.mbox.acknB;
     mem_data_valid_a_l = !mbus.mbox.validInA;
