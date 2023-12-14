@@ -250,7 +250,10 @@ From `docs/EK-EBOX-all.pdf`, page `EBOX/3-21` figure 3-20:
 
 ## SBUS <--> MBOX mappings
 * This info is from `io-box*.pdf` DX0 which shows the SBUS[01] signals
-  that drive the MBOX `MEM *` signals and vice versa pretty clearly.
+  that drive the MBOX `MEM *` signals and vice versa pretty
+  clearly. These are not registered except for address latching. They
+  are must combinatorial connections with transceivers for TTL<->ECL
+  translation in the real KL10PV.
   
 		Driving Signal				Driven Signal
 	!SBUS[01] ACKN [AB] L		MEM ACKN [AB] H
