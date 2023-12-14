@@ -15,6 +15,164 @@
     type 07 h\#400\`.
   * On clk3 we see clock buffers driving backplane pins with `\#20\`
     notation.
+	
+
+
+# Some Things I Changed
+* EBUS is a muxed device now instead of a bus with multiple exclusive
+  drivers as in the KL10.
+  
+* Signals of the form `# 00 H` have been renamed to `cram # 00 h` to
+  make the compiler simpler.
+  
+* I had to add leading-zero padding indicators to the signal name
+  macros so `ADX CRY [N+6] H` became `adx cry [n+06] h`. This allows
+  the explicit definition of how many leading zeroes are required in
+  the expansion after the math operation.
+
+* I do not strip newlines embedded in macro selectors, so these have
+  to be coded in a single line of text. So
+
+```
+	<AK1> [N/30+1,
+		ADX CRY [N+6] H,
+		CTL ADX CRY 36 H]
+```
+
+  is now
+
+```
+	{ak1} [n/30+1,adx cry [n+06] h,ctl adx cry 36 h]
+```
+
+
+# Learnings
+KL10-PV schematics use symbols that follow a pretty rigorous symbol
+naming convention, and the use of this convention is _required_ for
+the logic to work.
+
+1. A symbol name always ends in `l` or `h` to indicate its active-low
+   or active-high sense.
+   
+1. A symbol name may be preceded by a `-` to indicate that its sense
+   should be reversed for this net. If a schematic uses a symbol like
+   `-CTL CONSOLE CONTROL L`, this symbol is actually _identical to_ and
+   should be wired to a net with the name `CTL CONSOLE CONTROL H`. The
+   `-` effectively changes the sense of the name, allowing a designer
+   to pretend a signal is active-low for a net but show that the
+   signal is actually generated in its original form as active-high.
+   
+1. A symbol name may be preceded by something that looks like
+   `<BK2>`. This is a reference to a backplane pin on side #2 of the
+   `K` signal in the `B` group of pins. Since I have no wirelist or
+   schematic for the backplane, I have had to "guess" what the wiring
+   is based on symbol names used in module schematics to indicate what
+   these pins should be wired to on other modules.
+   
+1. Each backplane in the system has a backplane type number, a range
+   of pin slot groups it spans, and a slot number. For example, the
+   EDP in CPU slot #49 is `4AF49` because the CPU backplane type
+   number is `4`, it spans the full range of pin groups (`A` through
+   `F`) and therefore is a full-height module, and its slot number is
+   `49`.
+
+1. Each backplane slot, and also the backplane as a whole, has zero or
+   more macro values associated with it. For example, the EDP module
+   in slot #49 has `N=12`. The backplane has backplane itself has
+   `A=2` and `B=1`. You can see these in my `kl10pv.backplane` source.
+
+1. A symbol name may contain a construct enclosed in `[]` that
+   represents a case selector sort of string substitution. The first
+   expression, computed in integer arithmetic, is used as a selector
+   to determine which of the following items in the comma-delimited
+   list of strings should be the selector's expansion. For example,
+   for the following, the expansion is `CTL AR 09-17 LOAD L` when `N`
+   is 12, and it is `CTL ARR LOAD A L` when `N` is 24.
+   
+	[N/6+1,
+	  CTL AR 00-08 LOAD L,
+	  CTL AR 09-17 LOAD L,
+	  CTL AR 09-17 LOAD L,
+	  CTL ARR LOAD A L,
+	  CTL ARR LOAD A L,
+	  CTL ARR LOAD A L]
+
+1. Another way to use the `[]` construct is as a simple macro
+   expansion. If the `[]`s only contain a single expression with no
+   commas, it is this sort of singleton macro. For example `<DL1> AD
+   [N=1] H` in slot #49 expands to `<DL1> AD 12 H` for bit #12
+   (remember _big-endian bit numbering, so this is in the left half of
+   the bus) of the EDP's `AD` register. The evaluated value of the
+   expression is always zero-padded to the widest of any value in the
+   expression. So if an expression is `[N/6+03]` the value will always
+   have two digits even if `N/6` evaluates to `1`. This was really
+   hard to figure out until I realized the people who wrote SUDS (the
+   system used for schematic capture at Stanford and later at DEC)
+   were fucking geniuses. They didn't waste any effort making things
+   complicated that could remain really simple and still do a powerful
+   job. This is a simple, elegant solution to symbol names that
+   contain multiple digits that have to have leading zeroes.
+   
+1. A wire on a schematic that is labeled something like
+
+	^ARMM 14 H <BH2>
+	VMA4 VMA 14 IN H
+	
+   should be wired to backplane pin `<BH2>` with signal name
+   `vma4_vma_14_in_h`.  This is manually connected to `armm_14_h` in
+   `kl10pv.sv`. This represents backplane wiring that cannot be
+   automatically determined from the name of the netlist (at least not
+   with the name `VMA4 VMA 14 IN H`). Examples can be found on VMA4
+   PDF357.
+
+1. A wire labeled something like
+
+	ARMM 14 H <BH2>
+	
+   is the same net as one labeled without the `<BH2>`. This
+   accidentally works properly in the compiler since the net names
+   don't include the backplane pin in their key. I have tried, by
+   convention, to use the fully identified version including the
+   backplane pin label everywhere, but I have no tool that enforces
+   this at this time.
+
+## Clocking and Delays
+From `docs/EK-EBOX-all.pdf`, page `EBOX/3-21` figure 3-20:
+
+	NOTE
+		Actually, EBOX CLOCK is
+		clocked via CLK ODD which
+		occurs ~16ns earlier than
+		MBOX CLK.
+
+
+## SBUS <--> MBOX mappings
+* This info is from `io-box*.pdf` DX0 which shows the SBUS[01] signals
+  that drive the MBOX `MEM *` signals and vice versa pretty
+  clearly. These are not registered except for address latching. They
+  are must combinatorial connections with transceivers for TTL<->ECL
+  translation in the real KL10PV.
+  
+		Driving Signal				Driven Signal
+	!SBUS[01] ACKN [AB] L		MEM ACKN [AB] H
+	!SBUS[01] ERROR L			MEM ERROR H
+	!SBUS[01] ADR PAR ERR L		MEM ADR PAR ERR H
+	CLK SBUS CLK H				SBUS[01] CLK {INT,EXT} H
+	!DATA VALID[AB] OUT H		SBUS[01] DATA VALID [AB] L
+	!SBUS[01] DATA VALID [AB] L	MEM DATA VALID [AB] L
+	MEM START [AB] H			SBUS[01] START [AB] H
+	MEM RQ [0-3] H				SBUS[01] RQ [0-3] H
+	MEM RD RQ [0-3] H			SBUS[01] RD RQ [0-3] H
+	MEM WR RQ [0-3] H			SBUS[01] WR RQ [0-3] H
+	MEM DIAG L					SBUS[01] DIAG L
+	-MEM ADR PAR L				-SBUS[01] ADR PAR L
+	MB [00-35] H				SBUS[01] D[00-35] H
+	SBUS[01] DATA [00-35] H		MEM DATA IN [00-35] H
+	PMA [14-35] H				SBUS[01] ADR [14-35] H
+	!DIAG MEM RESET H			SBUS[01] MEM RESET L
+	MB PAR H					SBUS[01] DATA PAR H
+	SBUS[01] DATA PAR H			MEM PAR IN H
+
 
 # Verilator
 
