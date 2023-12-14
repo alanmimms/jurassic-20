@@ -23,6 +23,17 @@ me. As a hobby I expect it to entertain me for years.
 We'll see.
 
 
+# TO DO
+
+* Redo these boards from new layout version of schematics (missed that
+  in first pass). If I don't do this they will not be easy to debug
+  and won't be maintainable and probably won't work properly with all
+  features. Reworked boards are usually minimum to get it to work and
+  not complete with all fixes from the new version in my
+  experience. We'll see...
+  1. CCL
+  1. CRC
+
 # Architecture
 The backplane and netlist are written in a language I designed for
 this purpose. This is parsed by a JavaScript based "compiler" that
