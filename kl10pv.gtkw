@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Thu Dec 14 00:30:08 2023
+[*] Thu Dec 14 19:52:45 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Dec 13 23:17:54 2023"
-[dumpfile_size] 4571422
+[dumpfile_mtime] "Thu Dec 14 18:57:58 2023"
+[dumpfile_size] 4571417
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 23974
+[timestart] 24048
 [size] 1920 1045
 [pos] -1 -1
-*-7.000000 24395 19270 29180 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 24395 24395 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.mbx_21.e48.
@@ -120,10 +120,41 @@ top.kl10pv.ird_48.ir_12_h
 @1401200
 -group_end
 @28
-[color] 2
+[color] 1
 top.kl10pv.clk_32.con_mbox_wait_l
+top.kl10pv.csh_23.csh1_cache_idle_in_b_l
+top.kl10pv.csh_23.csh3_rd_found_l
+top.kl10pv.csh_23.csh2_sbus_diag_3_a_l
 @29
+top.kl10pv.csh_23.csh2_e23_2
+@28
+[color] 1
+top.kl10pv.csh_23.csh2_mbox_resp_in_h
+[color] 1
 top.kl10pv.apr_34.apr6_ebox_ebr_h
+[color] 2
+top.kl10pv.mbx_21.mbx3_e65_3
+[color] 2
+top.kl10pv.mbx_21.mbx3_e70_14
+[color] 2
+top.kl10pv.mbx_21.mbx4_clk_a_h
+[color] 2
+top.kl10pv.mbx_21.mbx3_sbus_diag_0_l
+[color] 2
+top.kl10pv.mbx_21.mbx3_sbus_diag_1_l
+[color] 2
+top.kl10pv.mbx_21.mbx3_sbus_diag_2_l
+[color] 2
+top.kl10pv.mbx_21.mbx3_sbus_diag_3_l
+top.kl10pv.csh_23.csh2_sbus_diag_3_a_l
+[color] 2
+top.kl10pv.mbx_21.mbx3_diag_cyc_done_h
+[color] 2
+top.kl10pv.mbx_21.mbx3_ebox_diag_cyc_l
+[color] 2
+top.kl10pv.mbx_21.mbx3_sbus_diag_cyc_l
+top.kl10pv.mbc_22.mbc3_a_change_coming_a_l
+top.kl10pv.mbc_22.mbc4_e70_14
 @c00200
 -core-state
 @c040a2
