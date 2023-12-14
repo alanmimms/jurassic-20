@@ -22,10 +22,17 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   always_comb aClk = ~mbus.clk;
   always_comb bClk =  mbus.clk;
 
-  always_comb mbus.dIn = mbus.validInA ? aData : mbus.validInB ? bData : 0;
-  always_comb mbus.parIn = aClk ? aParity : bParity;
+  // This handles muxing the D bus and its parity for A/B.
+  always_comb begin
+    mbus.dIn = mbus.validInA ? aData : mbus.validInB ? bData : 0;
+    mbus.parIn = aClk ? aParity : bParity;
+  end
 
   always_latch if (mbus.adrHold) addr = mbus.adr;
+
+  always @(posedge mbus.startA) begin
+    $display("%7g ----> MB20 mem[%o]=%o mem[10000]=%o", $realtime, mbus.adr, mem[mbus.adr], mem['o10000]);
+  end
 
   mb20Phase aPhase(.clk(aClk),
 		   .reset(mbus.memReset),
@@ -54,7 +61,7 @@ endmodule
 // only read cycles and only non-interleaved organization.
 //
 // NOTE: START may already be asserted for subsequent cycle while we
-// are still finishing up the VALID pulses for the current one.
+// are still finishing up the VALID pulses for the current one?
 module mb20Phase (input bit clk,
 		  input bit reset,
 		  input bit [14:35] addr,
@@ -82,6 +89,8 @@ module mb20Phase (input bit clk,
       toAck <= inRq;		// Addresses remaining to ACK
       validIn <= 1;
       ackn <= 1;
+      $display("%7g ----> PHASE mem[%o]=%o mem[10000]=%o", $realtime, 
+	       {fullAddr[14:33], wo}, memory0.mem[{fullAddr[14:33], wo}], memory0.mem['o10000]);
     end else if (toAck != 0) begin
       wo <= wo + 1;
       toAck <= toAck << 1;
@@ -93,8 +102,8 @@ module mb20Phase (input bit clk,
     end
 
   always_comb begin
-    d = start ? memory0.mem[{fullAddr[14:33], wo}] : 0;
-    parity = start ? ^d : 0;
+    d = memory0.mem[{fullAddr[14:33], wo}];
+    parity = !^d;
   end
 
 endmodule
