@@ -245,8 +245,6 @@ module fe_sim(input bit clk,
   task automatic startKLBoot(W36 startAddr);
     static W36 runBootLoaderFlag = 36'o400000_000000;
 
-    doDiagFunc(diagfSTOP_CLOCK);                      // STOP THE CLOCK
-
     // Zero ACs
     for (int ac = 0; ac < 16; ++ac) loadAC(ac, '0);
 
@@ -390,16 +388,13 @@ module fe_sim(input bit clk,
   // button, and starting up the clock. The routine completes when the
   // microcode reaches the halt loop again.
   task automatic execKLInstr(W36 instr);
-    doDiagFunc(diagfSTOP_CLOCK);	// STOP THE CLOCK
-    loadAR(instr);			// Load AR with the instruction
-    doDiagFunc(diagfCONTINUE);		// Push CONTINUE button
-    doDiagFunc(diagfSTART_CLOCK);	// Start the clocks
+    doDiagFunc(diagfSTOP_CLOCK);		// Stop the clock
 
-    // Wait for KL to halt again
-    @(posedge clk) if (con_ebox_halted_h) begin
-      doDiagFunc(diagfSTOP_CLOCK);	// STOP THE CLOCK
-      return;
-    end
+    loadAR(instr);				// Load AR with the instruction
+    doDiagFunc(diagfCONTINUE);			// Push CONTINUE button
+    doDiagFunc(diagfSTART_CLOCK);		// Start the clocks
+
+    @(posedge clk & con_ebox_halted_h) ;	// Wait for HALT loop again
   endtask // execKLInstr
 
 
