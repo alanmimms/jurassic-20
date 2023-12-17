@@ -30,7 +30,7 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
 
   always_latch if (mbus.adrHold) addr = mbus.adr;
 
-  always @(posedge mbus.startA) begin
+  always @(posedge mbus.startA, posedge mbus.startB) begin
     $display("%7g ----> MB20 mem[%1o]=%o,,%o", $realtime, mbus.adr, mem[mbus.adr][0:17], mem[mbus.adr][18:35]);
   end
 
@@ -43,6 +43,7 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
 		   .inRq(mbus.rq),
 		   .d(aData),
 		   .parity(aParity),
+		   .diag(mbus.diag),
 		   .*);
   mb20Phase bPhase(.clk(bClk),
 		   .reset(mbus.memReset),
@@ -53,6 +54,7 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
 		   .inRq(mbus.rq),
 		   .d(bData),
 		   .parity(bParity),
+		   .diag(mbus.diag),
 		   .*);
 endmodule
 
@@ -71,13 +73,18 @@ module mb20Phase (input bit clk,
 		  output W36 d,
 		  output bit parity,
 		  input bit start,
+		  input bit diag,
 		  output bit ackn);
 
   bit [14:35] fullAddr;	      // Address base we start at for quadword
   bit [34:35] wo;	      // Word offset of quadword
   bit [0:3] toAck;	      // Words we have not yet ACKed
 
-  always_ff @(posedge clk)
+  always_ff @(posedge clk) begin
+
+    if (diag) begin
+      $display("%7g ----> %m DIAG", $realtime);
+    end
 
     if (reset) begin
       toAck <= 0;
@@ -93,18 +100,18 @@ module mb20Phase (input bit clk,
 	       {fullAddr[14:33], wo},
 	       memory0.mem[{fullAddr[14:33], wo}][0:17], memory0.mem[{fullAddr[14:33], wo}][18:35]);
     end else if (toAck != 0) begin
-      ackn <= 0;		// XXX required? ACKed enough already?
+      ackn <= 1;
       validIn <= 1;
       wo <= wo + 1;
       toAck <= toAck << 1;
     end else begin
-      validIn <= 0;
       ackn <= 0;
+      validIn <= 0;
     end
+  end
 
   always_comb begin
     d = memory0.mem[{fullAddr[14:33], wo}];
     parity = !^d;
   end
-
 endmodule

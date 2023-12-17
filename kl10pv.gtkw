@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sun Dec 17 01:10:13 2023
+[*] Sun Dec 17 01:27:24 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Dec 16 22:13:23 2023"
-[dumpfile_size] 5063036
+[dumpfile_mtime] "Sun Dec 17 01:27:21 2023"
+[dumpfile_size] 4571446
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 18368
+[timestart] 18186
 [size] 1831 1094
 [pos] -1 -1
-*-7.000000 18700 18640 18660 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 18540 18640 18660 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [sst_width] 268
-[signals_width] 474
+[signals_width] 403
 [sst_expanded] 1
 [sst_vpaned_height] 316
 @28
@@ -168,10 +168,9 @@ top.kl10pv.con_mbox_wait_l
 top.kl10pv.csh_23.csh6_ebox_sync_hold_h
 @200
 -
-@29
+@28
 [color] 1
 top.kl10pv.csh_23.csh2_e23_2
-@28
 top.kl10pv.csh_23.csh6_ebox_sync_hold_h
 [color] 2
 top.kl10pv.csh_23.csh6_data_dly_1_l
@@ -181,6 +180,7 @@ top.kl10pv.csh_23.csh6_data_dly_1_l
 [color] 2
 top.kl10pv.csh_23.mbc4_core_data_val_NG1_l
 top.kl10pv.csh_23.csh2_e_core_rd_rq_a_l
+[color] 1
 top.kl10pv.csh_23.csh6_e_core_rd_comp_h
 [color] 2
 top.kl10pv.csh_23.csh2_mbox_resp_l
@@ -1033,11 +1033,12 @@ top.kl10pv.memory0.mbus.startB
 top.kl10pv.memory0.mbus.acknB
 @1401200
 -mbus
-@c00200
+@800200
 -MB20-aphase
-@28
+@29
 [color] 2
 top.kl10pv.memory0.aPhase.start
+@28
 [color] 2
 top.kl10pv.memory0.aPhase.ackn
 [color] 3
@@ -1073,9 +1074,9 @@ top.kl10pv.memory0.aPhase.inRq[0:3]
 top.kl10pv.memory0.aPhase.parity
 [color] 3
 top.kl10pv.memory0.aPhase.toAck[0:3]
-@1401200
+@1000200
 -MB20-aphase
-@c00200
+@800200
 -MB20-bphase
 @28
 [color] 2
@@ -1108,7 +1109,7 @@ top.kl10pv.memory0.bPhase.parity
 @22
 [color] 3
 top.kl10pv.memory0.bPhase.toAck[0:3]
-@1401200
+@1000200
 -MB20-bphase
 [pattern_trace] 1
 [pattern_trace] 0
