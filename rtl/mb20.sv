@@ -31,7 +31,7 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   always_latch if (mbus.adrHold) addr = mbus.adr;
 
   always @(posedge mbus.startA) begin
-    $display("%7g ----> MB20 mem[%o]=%o mem[10000]=%o", $realtime, mbus.adr, mem[mbus.adr], mem['o10000]);
+    $display("%7g ----> MB20 mem[%1o]=%o,,%o", $realtime, mbus.adr, mem[mbus.adr][0:17], mem[mbus.adr][18:35]);
   end
 
   mb20Phase aPhase(.clk(aClk),
@@ -87,15 +87,16 @@ module mb20Phase (input bit clk,
       fullAddr <= addr;		// Address of first word we do
       wo <= addr[34:35];	// Word offset we increment mod 4
       toAck <= inRq;		// Addresses remaining to ACK
-      validIn <= 1;
+      validIn <= 0;		// XXX required? Delay a clock before presenting data?
       ackn <= 1;
-      $display("%7g ----> PHASE mem[%o]=%o mem[10000]=%o", $realtime, 
-	       {fullAddr[14:33], wo}, memory0.mem[{fullAddr[14:33], wo}], memory0.mem['o10000]);
+      $display("%7g ----> PHASE mem[%1o]=%o,,%o", $realtime, 
+	       {fullAddr[14:33], wo},
+	       memory0.mem[{fullAddr[14:33], wo}][0:17], memory0.mem[{fullAddr[14:33], wo}][18:35]);
     end else if (toAck != 0) begin
+      ackn <= 0;		// XXX required? ACKed enough already?
+      validIn <= 1;
       wo <= wo + 1;
       toAck <= toAck << 1;
-      validIn <= 1;
-      ackn <= 1;
     end else begin
       validIn <= 0;
       ackn <= 0;
