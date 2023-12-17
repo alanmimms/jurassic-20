@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sun Dec 17 01:27:24 2023
+[*] Sun Dec 17 01:28:16 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Sun Dec 17 01:27:21 2023"
 [dumpfile_size] 4571446
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 18186
+[timestart] 24041
 [size] 1831 1094
 [pos] -1 -1
-*-7.000000 18540 18640 18660 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 24395 18640 18660 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [sst_width] 268
@@ -161,9 +161,10 @@ top.kl10pv.csh_23.csh1_cache_idle_in_b_l
 top.kl10pv.csh_23.e_cache_wr_cyc_l
 @1401200
 -CONO PAG,0 crap
-@28
+@29
 [color] 3
 top.kl10pv.con_mbox_wait_l
+@28
 [color] 2
 top.kl10pv.csh_23.csh6_ebox_sync_hold_h
 @200
@@ -1035,10 +1036,9 @@ top.kl10pv.memory0.mbus.acknB
 -mbus
 @800200
 -MB20-aphase
-@29
+@28
 [color] 2
 top.kl10pv.memory0.aPhase.start
-@28
 [color] 2
 top.kl10pv.memory0.aPhase.ackn
 [color] 3
