@@ -248,9 +248,6 @@ module fe_sim(input bit clk,
     // Zero ACs
     for (int ac = 0; ac < 16; ++ac) loadAC(ac, '0);
 
-    $display("%7g MEM[10000]=%06o,,%06o", $realtime,
-	     memory0.mem['o10000][0:17], memory0.mem['o10000][18:35]);
-
     execKLInstr(36'o700200_267760);	// CONO APR,267760	; Reset APR
     execKLInstr(36'o700600_010000);	// CONO PI,10000	; Reset PI
     execKLInstr(36'o701200_000000);	// CONO PAG,0		; Clear paging system
@@ -316,7 +313,7 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCOND_STEP);          // CONDITIONAL SINGLE STEP
     doDiagFunc(diagfCLR_RESET);          // CLEAR RESET
     doDiagWrite(diagfENABLE_KL, '0);     // ENABLE KL STL DECODING OF CODES & AC'S
-    doDiagWrite(diagfMEM_RESET, '0);	 // SET KL10 MEM RESET FLOP
+    doDiagWrite(diagfMEM_RESET, '0);	 // RESET KL10 MEM RESET FLOP
     doDiagWrite(diagfWRITE_MBOX, 'o120); // WRITE M-BOX
 
     $display("%7g [master reset complete]", $realtime);
@@ -934,6 +931,7 @@ FOR WDRAM
     @(negedge clk) ;
     @(negedge clk) ebus.diagStrobe <= 0;
     @(negedge clk) EBUSdriver.driving <= 0;
+
     @(posedge clk) ;
   endtask
 
@@ -951,7 +949,7 @@ FOR WDRAM
 
     repeat (16) @(negedge clk) ;
     @(negedge clk) ebus.diagStrobe <= 0;
-    @(posedge clk);
+    @(posedge clk) ;
   endtask // doDiagFunc
 
 
