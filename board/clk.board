@@ -118,10 +118,9 @@ e56: 10131 dual ms d ff
      14 ~> %NC%
      15 ~> %NC%
 
-dl5001: delay1 5.0ns
-     1 ~< {ab1} clk
-     2 ~< clk1 main source c h
-     3 ~> clk1-dl5001-2
+dl5001: delay-line 5.0ns
+     1 ~< clk1 main source c h
+     2 ~> clk1-dl5001-2
 
 e51: 10104 quad and/nand
      4 ~< clk1-dl5001-2
@@ -138,15 +137,18 @@ e51: 10104 quad and/nand
      7 ~< ctl3 diag ld func 04x l
      3 ~> clk1-e51-3
 
-dl1: delay3 (was tapped-delay-20-2 20ns 2ns/tap)
-     1 ~< {ab1} clk
-     2 ~< clk1 gated h
-     3 ~> clk1 ebus clk source h
-
-dl1a: delay2 (was earlier tap in tapped-delay-20-2 20ns 2ns/tap)
-     1 ~< {ab1} clk
-     2 ~< clk1 gated h
-     3 ~> clk1-dl1-8
+dl1: tapped-delay-20-2 20ns 2ns/tap
+     3 ~< clk1 gated h
+     4 ~> clk1-dl1-4
+     5 ~> clk1-dl1-5
+     6 ~> clk1-dl1-6
+     7 ~> clk1-dl1-7
+     8 ~> clk1-dl1-8
+     9 ~> clk1-dl1-9
+     10 ~> clk1-dl1-10
+     11 ~> clk1-dl1-11
+     12 ~> clk1-dl1-12
+     13 ~> clk1 ebus clk source h
 
 e73: 10101 quad or/nor
      7 ~< clk1-dl1-8
@@ -199,13 +201,9 @@ e63: 10117 dual 2-3 or-and
      3 ~> %NC%
      2 ~> clk1-e63-2
 
-dlpcb2651: delay1 (was delay-line 2.65ns)
-     1 ~< {ab1} clk
-     2 ~< clk1 clk on h
-     3 ~> clk1-dlpcb2651-2
-//dlpcb2651: wire (was delay1)
-//     1 ~< clk1 clk on h
-//     2 ~> clk1-dlpcb2651-2
+dlpcb2651: delay-line 2.65ns
+     1 ~< clk1 clk on h
+     2 ~> clk1-dlpcb2651-2
 
 e59: 10210 or buffer
      5 ~< %NC%
@@ -457,7 +455,7 @@ e69: 10110 or buffer
      13 ~> {eu2} mr reset 05 h
      12 ~> {em2} mr reset 06 h
 
-dlpcb1: wire (was delay-line PCB)
+dlpcb1: delay-line PCB
      1 ~< {cr2} clk1 clk h
      2 ~> clk1 clk delayed h
 
