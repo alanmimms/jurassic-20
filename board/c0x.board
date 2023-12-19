@@ -60,7 +60,8 @@ z1: zero6 just six zeroes
 z2: zero6 just six zeroes
     1 ~> {fe2} csh 2 valid match h
     2 ~> {et2} csh 3 valid match h
-    3 ~> {br1} csh lru 1 h
-    4 ~> {bs1} csh lru 2 h
-    5 ~> %NC%
+    3 ~> {am2} csh refill ram wr l
+    // These are here because they are apparently no-connects on backplane in a no cache system.
+    4 ~> {br1} csh lru 1 h
+    5 ~> {bs1} csh lru 2 h
     6 ~> %NC%
