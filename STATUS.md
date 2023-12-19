@@ -32,13 +32,24 @@ implement latches. This latter practice in today's logic and methods
 leads to circular logic dependencies, metastability black-holes, and
 madness.
 
-## What I'm Doing Now
-I can run microcode to the point that the `execKLInstr()` for `CONO
-PAG,0` instruction hangs. This is apparently caused by the microcode
-accessing the EPT register in the MBOX and getting no response from
-MBOX, so it hangs forever with `apr6 ebox ebr h` and `con mbox wait l`
-asserted. I need to debug why MBOX register accesses never finish.
+## What I'm Doing Now - Occasional Status and Progress Notes
+
+### `CONO PAG,0` Hangs
+
+[2024.12.14] I can run microcode to the point that the `execKLInstr()`
+for `CONO PAG,0` instruction hangs. This is apparently caused by the
+microcode accessing the EPT register in the MBOX and getting no
+response from MBOX, so it hangs forever with `apr6 ebox ebr h` and
+`con mbox wait l` asserted. I need to debug why MBOX register accesses
+never finish.
+
+[2024.12.19] When the `CONO PAG,0` instruction is issued by the FE, it
+eventually hangs because the `CORE BUSY L` signal is assserted.  This
+was asserted by the `MEM/MB WAIT` in the `NXT INSTR` macro at `FINI:`
+(U 0133) in the microcode. This seems to be a "discovered wait"
+condition (like a "discovered check" in chess), and it causes the next
+MBOX interaction (which is the attempt to set the EBR register value)
+to hang forever waiting for `CORE BUSY L` to deassert.
 
 
 ## History of _What I'm Doing Now_
-
