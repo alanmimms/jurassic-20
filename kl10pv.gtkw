@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Tue Dec 19 00:00:15 2023
+[*] Tue Dec 19 22:23:21 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Dec 18 23:59:58 2023"
-[dumpfile_size] 180155538
+[dumpfile_mtime] "Tue Dec 19 22:22:56 2023"
+[dumpfile_size] 180204841
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 23046
+[timestart] 18206
 [size] 1831 1094
 [pos] -1 -1
-*-7.000000 23400 24315 24320 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 18560 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [sst_width] 268
@@ -91,7 +91,7 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
-@c000b1
+@c000b0
 [color] 2
 #{IR} top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_11_h top.kl10pv.ird_48.ir_10_h top.kl10pv.ird_48.ir_09_h top.kl10pv.ird_48.ir_08_h top.kl10pv.ird_48.ir_07_h top.kl10pv.ird_48.ir_06_h top.kl10pv.ird_48.ir_05_h top.kl10pv.ird_48.ir_04_h top.kl10pv.ird_48.ir_03_h top.kl10pv.ird_48.ir_02_h top.kl10pv.ird_48.ir_01_h top.kl10pv.ird_48.ir_00_h
 @28
@@ -110,155 +110,120 @@ top.kl10pv.ird_48.ir_11_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
-@1401201
--group_end
-@c00200
--CONO PAG,0 crap
-@28
-[color] 3
-top.kl10pv.con_mbox_wait_l
-top.kl10pv.con_35.con3_cono_pag_l
-top.kl10pv.ctl_36.ctl_ad_to_ebus_l_h
-top.kl10pv.ctl_36.ctl_ad_to_ebus_r_h
-top.kl10pv.edp53EBUSdriver.driving
-top.kl10pv.edp_51.edp4_e59_14
-top.kl10pv.ctl_36.ctl3_diag_ar_load_h
-top.kl10pv.con_35.con3_kl10_paging_en_h
-top.kl10pv.con_35.con_ki10_paging_mode_l
-[color] 3
-top.kl10pv.mbx_21.mbx3_ebox_diag_cyc_l
-top.kl10pv.mbx_21.apr_ebox_sbus_diag_l
-top.kl10pv.apr_34.mcl1_memSLreg_func_l
-top.kl10pv.apr_34.apr6_reg_func_en_l
-top.kl10pv.apr_34.apr6_ebox_load_reg_l
-top.kl10pv.csh_23.csh4_ebox_t0_in_l
-top.kl10pv.csh_23.csh1_ready_to_go_l
-top.kl10pv.csh_23.csh1_ebox_req_grant_l
-top.kl10pv.csh_23.clk4_ebox_req_l
-[color] 1
-top.kl10pv.csh_23.csh2_ebox_req_en_l
-[color] 1
-top.kl10pv.csh_23.core_busy_l
-[color] 1
-top.kl10pv.mbz_20.mbz3_mem_start_c_l
-[color] 1
-top.kl10pv.mbz_20.mbz1_core_rd_in_prog_h
-[color] 1
-top.kl10pv.mbz_20.mb_req_hold_h
-top.kl10pv.mbx_21.mbx1_ebox_load_reg_h
-top.kl10pv.mbx_21.csh3_mb_wr_rq_clr_nxt_l
-top.kl10pv.csh_23.csh5_page_refill_t11_h
-top.kl10pv.csh_23.csh6_wr_from_mem_nxt_h
-top.kl10pv.csh_23.chan_read_h
-top.kl10pv.csh_23.csh6_ebox_took_1_wd_h
-top.kl10pv.csh_23.csh6_ebox_sync_seen_l
-top.kl10pv.csh_23.csh2_one_word_rd_l
-[color] 1
-top.kl10pv.csh_23.csh2_mbox_resp_l
-[color] 1
-top.kl10pv.csh_23.csh2_e17_2
-top.kl10pv.csh_23.csh1_cache_idle_in_b_l
-top.kl10pv.csh_23.e_cache_wr_cyc_l
 @1401200
--CONO PAG,0 crap
+-group_end
+@200
+-
 @28
 [color] 1
 top.kl10pv.con_mbox_wait_l
 [color] 1
 top.kl10pv.con_35.con5_mem_cycle_l
 top.kl10pv.con_35.mcl_mbox_cyc_req_h
-top.kl10pv.clk_32.clk1_e73_5
-top.kl10pv.clk_32.clk1_mbox_a_h
-@200
--
-@28
-[color] 2
-top.kl10pv.csh_23.csh6_ebox_sync_hold_h
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh2_e23_2
-top.kl10pv.csh_23.csh6_ebox_sync_hold_h
-[color] 2
-top.kl10pv.csh_23.csh6_data_dly_1_l
-@200
--
-@28
-[color] 2
-top.kl10pv.csh_23.mbc4_core_data_val_NG1_l
-top.kl10pv.csh_23.csh2_e_core_rd_rq_a_l
-[color] 1
-top.kl10pv.csh_23.csh6_e_core_rd_comp_h
-[color] 2
-top.kl10pv.csh_23.csh2_mbox_resp_l
-top.kl10pv.csh_23.csh2_ebox_restart_l
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh6_e_core_rd_comp_h
-[color] 1
-top.kl10pv.csh_23.csh2_e_core_rd_rq_a_l
-[color] 1
-top.kl10pv.csh_23.mbc4_core_data_valid_l
-@200
--
-@28
-[color] 4
-top.kl10pv.csh_23.csh1_cache_idle_l
-[color] 4
-top.kl10pv.csh_23.csh1_cache_idle_in_a_h
-[color] 4
-top.kl10pv.csh_23.csh1_cache_idle_in_b_h
-[color] 4
-top.kl10pv.csh_23.csh3_cache_idle_in_c_l
-[color] 4
-top.kl10pv.csh_23.csh1_cache_idle_in_d_h
 @200
 -
 @800200
--mbc4-core-data-val -2 l
+-core-busy-culprit
+@29
+[color] 1
+top.kl10pv.mbz_20.core_busy_l
 @28
-[color] 3
-top.kl10pv.mbc_22.mem_data_valid_a_l
-[color] 3
-top.kl10pv.mbc_22.mbc3_a_change_coming_b_l
-@1000200
--mbc4-core-data-val -2 l
-@200
--
-@28
-top.kl10pv.mbc_22.mbc4_core_data_valid_NG2_l
-top.kl10pv.mbc_22.mbc4_core_data_val_NG1_l
-top.kl10pv.mbc_22.mbc4_core_data_valid_l
+top.kl10pv.mbz_20.mbz1_chan_core_busy_h
+top.kl10pv.mbz_20.mbz3_mem_start_c_h
+top.kl10pv.mbz_20.mbz4_core_busy_in_a_h
+top.kl10pv.mbz_20.mbz1_core_rd_in_prog_h
+[color] 1
+top.kl10pv.mbz_20.mb_req_hold_h
 @200
 -
 @28
 [color] 1
-top.kl10pv.csh_23.csh2_e17_2
-[color] 2
-top.kl10pv.csh_23.csh2_ebox_restart_h
-top.kl10pv.csh_23.csh2_sbus_diag_3_a_l
-top.kl10pv.csh_23.csh3_rd_found_l
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_clr_ff_l
-[color] 2
 top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
-[color] 2
-top.kl10pv.mbx_21.mb_sel_hold_h
+@200
+-
+@28
+[color] 1
+top.kl10pv.mbx_21.mbx2_mb_0_wr_rq_h
+top.kl10pv.mbx_21.mbx2_core_wd_0_coming_h
+top.kl10pv.mbx_21.mbx2_csh_to_mb_wd_0_h
+top.kl10pv.mbx_21.mbx2_mb_0_wr_rq_h
+top.kl10pv.mbx_21.mbx2_mb_sel_1a_h
+top.kl10pv.mbx_21.mbx2_mb_sel_2a_h
+@200
+-
+@28
+[color] 1
+top.kl10pv.mbx_21.mbx2_mb_wr_rq_clr_l
+top.kl10pv.mbx_21.chan_read_l
+[color] 1
+top.kl10pv.mbx_21.mbx2_mb_sel_hold_l
+@200
+-
+@28
+top.kl10pv.mbx_21.mbx3_core_busy_1a_l
+top.kl10pv.mbx_21.mbc4_mem_start_l
+@200
+-
+@28
+[color] 1
+top.kl10pv.mbx_21.mbx2_mb_sel_hold_l
+[color] 1
+top.kl10pv.mbx_21.csh2_e_cache_wr_cyc_h
+[color] 1
+top.kl10pv.mbx_21.pma5_csh_writeback_cyc_h
+@200
+-
+@28
+top.kl10pv.mbx_21.mbx2_mb_1_wr_rq_h
+top.kl10pv.mbx_21.mbx2_mb_2_wr_rq_h
+top.kl10pv.mbx_21.mbx2_mb_3_wr_rq_h
+@200
+-
+@28
 [color] 1
 top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_in_h
+top.kl10pv.mbx_21.csh3_mb_wr_rq_clr_nxt_l
+top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
+@200
+-
+@28
 [color] 1
-top.kl10pv.mbx_21.mb_req_hold_h
-[color] 3
-top.kl10pv.csh_23.csh4_ebox_t0_l
-[color] 3
-top.kl10pv.csh_23.csh4_ebox_t1_l
-[color] 3
-top.kl10pv.csh_23.csh4_ebox_t2_l
-[color] 3
-top.kl10pv.csh_23.csh4_ebox_t3_l
+top.kl10pv.mbx_21.mb_sel_hold_h
+top.kl10pv.mbx_21.ackn_pulse_l
+[color] 1
+top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_h
+@200
+-
+@28
+[color] 1
+top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_in_h
+top.kl10pv.mbx_21.mb_sel_hold_h
+[color] 1
+top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
+@200
+-
+@28
+[color] 1
+top.kl10pv.mbx_21.mbx2_mb_wr_rq_clr_ff_l
+@200
+-
+@28
+[color] 1
+top.kl10pv.mbx_21.csh3_mb_wr_rq_clr_nxt_l
+top.kl10pv.csh_23.csh5_page_refill_t11_h
+top.kl10pv.csh_23.csh6_wr_from_mem_nxt_h
+top.kl10pv.csh_23.chan_read_h
+@200
+-
+@28
+[color] 1
+top.kl10pv.csh_23.csh6_ebox_took_1_wd_h
+top.kl10pv.csh_23.csh6_ebox_sync_seen_l
+top.kl10pv.csh_23.csh2_one_word_rd_a_l
+@1000200
+-core-busy-culprit
+@200
+-
 @c00200
 -core-state
 @c040a2
@@ -1054,7 +1019,7 @@ top.kl10pv.memory0.mbus.startB
 top.kl10pv.memory0.mbus.acknB
 @1401200
 -mbus
-@800200
+@c00200
 -MB20-aphase
 @28
 [color] 2
@@ -1094,9 +1059,9 @@ top.kl10pv.memory0.aPhase.inRq[0:3]
 top.kl10pv.memory0.aPhase.parity
 [color] 3
 top.kl10pv.memory0.aPhase.toAck[0:3]
-@1000200
+@1401200
 -MB20-aphase
-@800200
+@c00200
 -MB20-bphase
 @28
 [color] 2
@@ -1129,7 +1094,7 @@ top.kl10pv.memory0.bPhase.parity
 @22
 [color] 3
 top.kl10pv.memory0.bPhase.toAck[0:3]
-@1000200
+@1401200
 -MB20-bphase
 [pattern_trace] 1
 [pattern_trace] 0
