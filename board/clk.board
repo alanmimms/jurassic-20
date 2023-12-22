@@ -842,7 +842,7 @@ e34: 10210 or buffer
 Page: CLK4, PDF171
 
 e1:  10121 4-wide or-and
-     4 ~< {bm1} clk4 ebox req h
+     4 ~< {aj1} clk4 ebox req l
      5 ~< %NC%
      6 ~< {al2} -vma1 ac ref l
      7 ~< {al2} -vma1 ac ref l
