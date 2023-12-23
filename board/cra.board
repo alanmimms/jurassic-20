@@ -629,10 +629,6 @@ dl2: delay-line (PCB wired)
      1 ~< {cr2} clk cra h
      2 ~> clk3 cra delayed h
 
-dl3: delay-line (just an input to import clk60)
-     1 ~< {aa2} clk60
-     2 ~> %NC%
-
 e48: 10160 parity
      3 ~< cra3 call, reset h
      4 ~< {dm2} cra3 disp 00 h
@@ -814,18 +810,21 @@ e57: 10141 shft reg
 
 %verilog
 delayNinverted #(.N(1)) dl7
-	       (.clk(clk60), .ntrigger(cra4_stack_write_l), .nq(cra4_stack_write_delay1_l));
+	       (.clk(clk60),
+		.ntrigger(cra4_stack_write_l),
+		.nq(cra4_stack_write_delay1_l));
 %endverilog
 
 %verilog
 bit cra4_ret_and_NG1777_dly1_l;
 always_comb cra4_ret_and_NG1777_dly1_h = !cra4_ret_and_NG1777_dly1_l;
 delayN #(.N(1)) dl9
-       (.clk(clk60), .trigger(!cra4_ret_and_NG1777_l), .q(cra4_ret_and_NG1777_dly1_l));
+       (.clk(clk60),
+	.trigger(!cra4_ret_and_NG1777_l),
+	.q(cra4_ret_and_NG1777_dly1_l));
 %endverilog
 
 e52: 10101 quad or/nor
-     // Must invert delayed signal to return it to its original sense before delaying.
      4 ~< cra4 stack write delay1 l
      12 ~< %NC%
      2 ~> cra4 sel call h
@@ -903,22 +902,8 @@ e76: 10145 16x4 RAM
      15 ~> cra4-e76-15
      14 ~> cra4-e76-14
 
-//dl4: delay3 (PCB delay 1.8ns)
-//     1 ~< {aa2} clk60
-//     2 ~< ` !cra3_clk_b_h
-//     3 ~> cra3 clk b delayed h
-
 // I fiddled around with this for two days before I realized zero
-// delay would work fine.
-dl4: wire (PCB delay 1.8ns)
-     1 ~< cra3 clk b h
-     2 ~> cra3 clk b delayed h
-
-dl5: delay1 (delay N=1)
-     1 ~< {aa2} clk60
-     2 ~< cra3 clk b h
-     3 ~> cra4-dl5-3
-
+// delay would work fine for CRA3 CLK B H feeding the CLK inputs.
 e66: 10141 shft reg
      13 ~< %NC%
      12 ~< %NC%
@@ -928,7 +913,7 @@ e66: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b delayed h
+     4 ~< cra3 clk b h
      14 ~> %NC%
      15 ~> cra4 sbr ret 00 h
      2 ~> cra4 sbr ret 01 h
@@ -943,7 +928,7 @@ e71: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b delayed h
+     4 ~< cra3 clk b h
      14 ~> cra4 sbr ret 03 h
      15 ~> cra4 sbr ret 04 h
      2 ~> cra4 sbr ret 05 h
@@ -958,7 +943,7 @@ e81: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b delayed h
+     4 ~< cra3 clk b h
      14 ~> cra4 sbr ret 07 h
      15 ~> cra4 sbr ret 08 h
      2 ~> cra4 sbr ret 09 h
