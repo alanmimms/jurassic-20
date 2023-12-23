@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Tue Dec 19 22:23:21 2023
+[*] Sat Dec 23 00:59:55 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Dec 19 22:22:56 2023"
-[dumpfile_size] 180204841
+[dumpfile_mtime] "Fri Dec 22 23:24:39 2023"
+[dumpfile_size] 158771610
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 18206
+[timestart] 23427
 [size] 1831 1094
 [pos] -1 -1
-*-7.000000 18560 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 23717 23860 23940 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [sst_width] 268
-[signals_width] 403
+[signals_width] 408
 [sst_expanded] 1
 [sst_vpaned_height] 316
 @28
@@ -114,117 +114,19 @@ top.kl10pv.ird_48.ir_12_h
 -group_end
 @200
 -
+@c00200
+-MBOX-busy
 @28
+[color] 1
+top.kl10pv.csh_23.mem_busy_h
 [color] 1
 top.kl10pv.con_mbox_wait_l
 [color] 1
 top.kl10pv.con_35.con5_mem_cycle_l
 top.kl10pv.con_35.mcl_mbox_cyc_req_h
-@200
--
+@1401200
+-MBOX-busy
 @800200
--core-busy-culprit
-@29
-[color] 1
-top.kl10pv.mbz_20.core_busy_l
-@28
-top.kl10pv.mbz_20.mbz1_chan_core_busy_h
-top.kl10pv.mbz_20.mbz3_mem_start_c_h
-top.kl10pv.mbz_20.mbz4_core_busy_in_a_h
-top.kl10pv.mbz_20.mbz1_core_rd_in_prog_h
-[color] 1
-top.kl10pv.mbz_20.mb_req_hold_h
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_0_wr_rq_h
-top.kl10pv.mbx_21.mbx2_core_wd_0_coming_h
-top.kl10pv.mbx_21.mbx2_csh_to_mb_wd_0_h
-top.kl10pv.mbx_21.mbx2_mb_0_wr_rq_h
-top.kl10pv.mbx_21.mbx2_mb_sel_1a_h
-top.kl10pv.mbx_21.mbx2_mb_sel_2a_h
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_clr_l
-top.kl10pv.mbx_21.chan_read_l
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_sel_hold_l
-@200
--
-@28
-top.kl10pv.mbx_21.mbx3_core_busy_1a_l
-top.kl10pv.mbx_21.mbc4_mem_start_l
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_sel_hold_l
-[color] 1
-top.kl10pv.mbx_21.csh2_e_cache_wr_cyc_h
-[color] 1
-top.kl10pv.mbx_21.pma5_csh_writeback_cyc_h
-@200
--
-@28
-top.kl10pv.mbx_21.mbx2_mb_1_wr_rq_h
-top.kl10pv.mbx_21.mbx2_mb_2_wr_rq_h
-top.kl10pv.mbx_21.mbx2_mb_3_wr_rq_h
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_in_h
-top.kl10pv.mbx_21.csh3_mb_wr_rq_clr_nxt_l
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mb_sel_hold_h
-top.kl10pv.mbx_21.ackn_pulse_l
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_h
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_in_h
-top.kl10pv.mbx_21.mb_sel_hold_h
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_clr_ff_l
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.csh3_mb_wr_rq_clr_nxt_l
-top.kl10pv.csh_23.csh5_page_refill_t11_h
-top.kl10pv.csh_23.csh6_wr_from_mem_nxt_h
-top.kl10pv.csh_23.chan_read_h
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh6_ebox_took_1_wd_h
-top.kl10pv.csh_23.csh6_ebox_sync_seen_l
-top.kl10pv.csh_23.csh2_one_word_rd_a_l
-@1000200
--core-busy-culprit
-@200
--
-@c00200
 -core-state
 @c040a2
 [color] 3
@@ -745,7 +647,42 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
+@1000200
 -core-state
+@800200
+-CRA stack
+@29
+top.kl10pv.cra_45.cra4_stack_adr_y_h
+@c000a8
+#{stack adr a-d} top.kl10pv.cra_45.cra4_stack_adr_d_h top.kl10pv.cra_45.cra4_stack_adr_c_h top.kl10pv.cra_45.cra4_stack_adr_b_h top.kl10pv.cra_45.cra4_stack_adr_a_h
+@28
+top.kl10pv.cra_45.cra4_stack_adr_a_h
+top.kl10pv.cra_45.cra4_stack_adr_b_h
+top.kl10pv.cra_45.cra4_stack_adr_c_h
+top.kl10pv.cra_45.cra4_stack_adr_d_h
+@1401288
+-group_end
+@c000a8
+#{stack adr e-h} top.kl10pv.cra_45.cra4_stack_adr_h_h top.kl10pv.cra_45.cra4_stack_adr_g_h top.kl10pv.cra_45.cra4_stack_adr_f_h top.kl10pv.cra_45.cra4_stack_adr_e_h
+@28
+top.kl10pv.cra_45.cra4_stack_adr_e_h
+top.kl10pv.cra_45.cra4_stack_adr_f_h
+top.kl10pv.cra_45.cra4_stack_adr_g_h
+top.kl10pv.cra_45.cra4_stack_adr_h_h
+@1401288
+-group_end
+@28
+top.kl10pv.cra_45.cra4_stack_adr_z_h
+[color] 3
+top.kl10pv.cra_45.cra4_stack_write_l
+[color] 2
+top.kl10pv.cra_45.cra4_sel_call_h
+[color] 2
+top.kl10pv.cra_45.cra4_callCM_resetCM_1777_h
+[color] 3
+top.kl10pv.cra_45.cra4_ret_and_NG1777_h
+@1000200
+-CRA stack
 @c00200
 -VMA
 @c000b0

@@ -34,16 +34,38 @@ madness.
 
 ## What I'm Doing Now - Occasional Status and Progress Notes
 
+### Two Nested Microinstruction Calls Hangs on Outer Return
+
+[2023.12.22] The microcode hangs in a two microinstruction loop
+0475/3143. The sequence is
+
+	2752: CALL CLRPT
+	3142: CALL ARSWAP
+	0475: RETURN1			; Loop start
+	3143: RETURN4			; Loop end
+	
+I'd bet this is the first time the microinstruction call stack has
+ever been pushed two deep. Hmmm...
+
+
+## Bugs Outstanding TODO
+
+* At `CRA-LOC` 0143 comment says AR should have 77,,777776, but my AR
+  has 77,,777777. Probably this is something wrong with ALU backplane
+  wiring and related to carry in.
+
+## History of _What I'm Doing Now_
+
 ### `CONO PAG,0` Hangs
 
-[2024.12.14] I can run microcode to the point that the `execKLInstr()`
+[2023.12.14] I can run microcode to the point that the `execKLInstr()`
 for `CONO PAG,0` instruction hangs. This is apparently caused by the
 microcode accessing the EPT register in the MBOX and getting no
 response from MBOX, so it hangs forever with `apr6 ebox ebr h` and
 `con mbox wait l` asserted. I need to debug why MBOX register accesses
 never finish.
 
-[2024.12.19] When the `CONO PAG,0` instruction is issued by the FE, it
+[2023.12.19] When the `CONO PAG,0` instruction is issued by the FE, it
 eventually hangs because the `CORE BUSY L` signal is assserted.  This
 was asserted by the `MEM/MB WAIT` in the `NXT INSTR` macro at `FINI:`
 (U 0133) in the microcode. This seems to be a "discovered wait"
@@ -51,5 +73,15 @@ condition (like a "discovered check" in chess), and it causes the next
 MBOX interaction (which is the attempt to set the EBR register value)
 to hang forever waiting for `CORE BUSY L` to deassert.
 
+[2023.12.22] But now there is a hang. The hang is a two
+microinstruction infinite loop between 0475 and 3143 entered from the
+instruction at `CLRPT`=3605. 3172 has `MB WAIT` in it, and the `MEM
+BUSY H` signal has been asserted since the `NXT INSTR` at `FINI` after
+the microcode is started up the first time with CONTINUE button but
+halted with AR set to `CONO APR,267760` instruction by the
+`startKLBoot()` sequence.
 
-## History of _What I'm Doing Now_
+[2023.12.22] This was caused by `CLK4 EBOX REQ L` glitch, which
+resulted from misreading the print on CLK4 because of a smudge in the
+copy I have.
+
