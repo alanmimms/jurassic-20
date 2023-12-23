@@ -367,13 +367,13 @@ e18: 10101 quad or/nor
 
 e33: 10101 quad or/nor
      4 ~< {ae2} cram j09 h
+     12 ~< {bf2} clk4 force 1777 h
      2 ~> %NC%
      5 ~> cra1-e33-5
      7 ~< {af1} cram j10 h
      3 ~> %NC%
      6 ~> cra1-e33-6
      10 ~< cra3 call, reset h
-     12 ~< {bf2} clk4 force 1777 h
      14 ~> cra4 call, reset, 1777 l
      11 ~> cra4 call, reset, 1777 h
      13 ~< cra1 ret l
@@ -812,18 +812,6 @@ e57: 10141 shft reg
      2 ~> cra4 stack adr g h
      3 ~> cra4 stack adr h h
 
-dl6: delay1 (delay N=1 clk60 edge)
-     1 ~< {aa2} clk60
-     2 ~< cra3 clk f h
-     3 ~> cra3 clk f delay1 h
-
-// Delay CRA4 STACK WRITE L leading and trailing edge by one clk60
-// edge to simulate ";END OF RUN".
-//dl7: delay1 (delay N=1 clk60 edge)
-//     1 ~< {aa2} clk60
-//     2 ~< ` !cra4_stack_write_l
-//     3 ~> cra4 stack write delay1 h
-
 %verilog
 delayNinverted #(.N(1)) dl7
 	       (.clk(clk60), .ntrigger(cra4_stack_write_l), .nq(cra4_stack_write_delay1_l));
@@ -836,11 +824,6 @@ delayN #(.N(1)) dl9
        (.clk(clk60), .trigger(!cra4_ret_and_NG1777_l), .q(cra4_ret_and_NG1777_dly1_l));
 %endverilog
 
-//dl9: delay1 (delay N=1 clk60 edge)
-//     1 ~< {aa2} clk60
-//     2 ~< ` !cra4_ret_and_NG1777_l
-//     3 ~> cra4 ret and -1777 dly1 l
-
 e52: 10101 quad or/nor
      // Must invert delayed signal to return it to its original sense before delaying.
      4 ~< cra4 stack write delay1 l
@@ -848,7 +831,6 @@ e52: 10101 quad or/nor
      2 ~> cra4 sel call h
      5 ~> %NC%
      7 ~< -cra4 ret and -1777 dly1 l
-//     7 ~< ` !cra4_ret_and_NG1777_dly1_l
      3 ~> %NC%
      6 ~> cra4 sel call h
      10 ~< cra3 clk f h

@@ -8,8 +8,8 @@ time.
   in first pass). If I don't do this they will not be easy to debug
   and won't be maintainable and probably won't work properly with all
   features. Reworked boards are usually minimum to get it to work and
-  not complete with all fixes from the new version in my
-  experience. We'll see...
+  not complete with all fixes from the new version based on my belief
+  system. We'll see...
   1. CCL
   1. CRC
 

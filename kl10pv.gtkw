@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sat Dec 23 00:59:55 2023
+[*] Sat Dec 23 03:50:38 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Fri Dec 22 23:24:39 2023"
-[dumpfile_size] 158771610
+[dumpfile_mtime] "Sat Dec 23 03:49:40 2023"
+[dumpfile_size] 158132927
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 23427
+[timestart] 23575
 [size] 1831 1094
 [pos] -1 -1
-*-7.000000 23717 23860 23940 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 23879 23860 23940 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [sst_width] 268
@@ -91,7 +91,7 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
-@c000b0
+@c000b1
 [color] 2
 #{IR} top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_11_h top.kl10pv.ird_48.ir_10_h top.kl10pv.ird_48.ir_09_h top.kl10pv.ird_48.ir_08_h top.kl10pv.ird_48.ir_07_h top.kl10pv.ird_48.ir_06_h top.kl10pv.ird_48.ir_05_h top.kl10pv.ird_48.ir_04_h top.kl10pv.ird_48.ir_03_h top.kl10pv.ird_48.ir_02_h top.kl10pv.ird_48.ir_01_h top.kl10pv.ird_48.ir_00_h
 @28
@@ -110,7 +110,7 @@ top.kl10pv.ird_48.ir_11_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
-@1401200
+@1401201
 -group_end
 @200
 -
@@ -126,7 +126,7 @@ top.kl10pv.con_35.con5_mem_cycle_l
 top.kl10pv.con_35.mcl_mbox_cyc_req_h
 @1401200
 -MBOX-busy
-@800200
+@c00200
 -core-state
 @c040a2
 [color] 3
@@ -647,11 +647,35 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
-@1000200
 -core-state
 @800200
 -CRA stack
-@29
+@c000b0
+#{sbr-ret} top.kl10pv.cra_45.cra4_sbr_ret_10_h top.kl10pv.cra_45.cra4_sbr_ret_09_h top.kl10pv.cra_45.cra4_sbr_ret_08_h top.kl10pv.cra_45.cra4_sbr_ret_07_h top.kl10pv.cra_45.cra4_sbr_ret_06_h top.kl10pv.cra_45.cra4_sbr_ret_05_h top.kl10pv.cra_45.cra4_sbr_ret_04_h top.kl10pv.cra_45.cra4_sbr_ret_03_h top.kl10pv.cra_45.cra4_sbr_ret_02_h top.kl10pv.cra_45.cra4_sbr_ret_01_h top.kl10pv.cra_45.cra4_sbr_ret_00_h
+@28
+top.kl10pv.cra_45.cra4_sbr_ret_00_h
+top.kl10pv.cra_45.cra4_sbr_ret_01_h
+top.kl10pv.cra_45.cra4_sbr_ret_02_h
+top.kl10pv.cra_45.cra4_sbr_ret_03_h
+top.kl10pv.cra_45.cra4_sbr_ret_04_h
+top.kl10pv.cra_45.cra4_sbr_ret_05_h
+top.kl10pv.cra_45.cra4_sbr_ret_06_h
+top.kl10pv.cra_45.cra4_sbr_ret_07_h
+top.kl10pv.cra_45.cra4_sbr_ret_08_h
+top.kl10pv.cra_45.cra4_sbr_ret_09_h
+top.kl10pv.cra_45.cra4_sbr_ret_10_h
+@1401200
+-group_end
+@c000a8
+#{stack-adr} top.kl10pv.cra_45.cra4_stack_adr_10_h top.kl10pv.cra_45.cra4_stack_adr_04_h top.kl10pv.cra_45.cra4_stack_adr_02_h top.kl10pv.cra_45.cra4_stack_adr_01_h
+@28
+top.kl10pv.cra_45.cra4_stack_adr_01_h
+top.kl10pv.cra_45.cra4_stack_adr_02_h
+top.kl10pv.cra_45.cra4_stack_adr_04_h
+top.kl10pv.cra_45.cra4_stack_adr_10_h
+@1401200
+-group_end
+@28
 top.kl10pv.cra_45.cra4_stack_adr_y_h
 @c000a8
 #{stack adr a-d} top.kl10pv.cra_45.cra4_stack_adr_d_h top.kl10pv.cra_45.cra4_stack_adr_c_h top.kl10pv.cra_45.cra4_stack_adr_b_h top.kl10pv.cra_45.cra4_stack_adr_a_h
@@ -660,7 +684,7 @@ top.kl10pv.cra_45.cra4_stack_adr_a_h
 top.kl10pv.cra_45.cra4_stack_adr_b_h
 top.kl10pv.cra_45.cra4_stack_adr_c_h
 top.kl10pv.cra_45.cra4_stack_adr_d_h
-@1401288
+@1401200
 -group_end
 @c000a8
 #{stack adr e-h} top.kl10pv.cra_45.cra4_stack_adr_h_h top.kl10pv.cra_45.cra4_stack_adr_g_h top.kl10pv.cra_45.cra4_stack_adr_f_h top.kl10pv.cra_45.cra4_stack_adr_e_h
@@ -669,7 +693,7 @@ top.kl10pv.cra_45.cra4_stack_adr_e_h
 top.kl10pv.cra_45.cra4_stack_adr_f_h
 top.kl10pv.cra_45.cra4_stack_adr_g_h
 top.kl10pv.cra_45.cra4_stack_adr_h_h
-@1401288
+@1401200
 -group_end
 @28
 top.kl10pv.cra_45.cra4_stack_adr_z_h
@@ -681,6 +705,14 @@ top.kl10pv.cra_45.cra4_sel_call_h
 top.kl10pv.cra_45.cra4_callCM_resetCM_1777_h
 [color] 3
 top.kl10pv.cra_45.cra4_ret_and_NG1777_h
+[color] 7
+top.kl10pv.cra_45.cra3_clk_a_h
+[color] 7
+top.kl10pv.cra_45.cra4_stack_write_l
+[color] 7
+top.kl10pv.cra_45.cra4_sel_call_h
+[color] 7
+top.kl10pv.cra_45.cra3_clk_b_h
 @1000200
 -CRA stack
 @c00200
