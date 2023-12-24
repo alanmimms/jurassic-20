@@ -1274,3 +1274,28 @@ e75: 10164 8 mixer
      2 ~< cra5 diag read l
 //     15 ~> {ea1} ebus d05 e h
      15 ~> `EBUSdriver.data[5]
+
+%verilog
+  always @(posedge cra4_stack_write_l) begin
+    $display("%7g %m write[%o]=%o", $realtime,
+	     {cra4_stack_adr_10_h, cra4_stack_adr_04_h, cra4_stack_adr_02_h, cra4_stack_adr_01_h},
+	     {cra3_loc_00_h, cra3_loc_02_h, cra3_loc_02_h,
+	      cra3_loc_03_h, cra3_loc_04_h, cra3_loc_05_h, cra3_loc_06_h,
+	      cra3_loc_07_h, cra3_loc_08_h, cra3_loc_09_h, cra3_loc_10_h});
+  end
+%endverilog
+
+e99: 10101 quad or/nor
+     13 ~< %NC%
+     12 ~< %NC%
+     15 ~> %NC%
+     9 ~> %NC%
+     4 ~< %NC%
+     2 ~> %NC%
+     5 ~> %NC%
+     7 ~< %NC%
+     3 ~> %NC%
+     6 ~> %NC%
+     10 ~< %NC%
+     14 ~> %NC%
+     11 ~> %NC%

@@ -32,6 +32,7 @@ implement latches. This latter practice in today's logic and methods
 leads to circular logic dependencies, metastability black-holes, and
 madness.
 
+
 ## What I'm Doing Now - Occasional Status and Progress Notes
 
 ### Two Nested Microinstruction Calls Hangs on Outer Return
@@ -39,10 +40,11 @@ madness.
 [2023.12.22] The microcode hangs in a two microinstruction loop
 0475/3143. The sequence is
 
-	2752: CALL CLRPT
-	3142: CALL ARSWAP
-	0475: RETURN1			; Loop start
-	3143: RETURN4			; Loop end
+	2752:			... CALL CLRPT
+	3605: CLRPT:	...
+	3142:			... CALL ARSWAP
+	0475: ARSWAP:	... RETURN1			; Loop start (DOES return to 3143)
+	3143:			... RETURN4			; Loop end (SHOULD return to 2756)
 	
 I'd bet this is the first time the microinstruction call stack has
 ever been pushed two deep. Hmmm...
@@ -53,6 +55,7 @@ ever been pushed two deep. Hmmm...
 * At `CRA-LOC` 0143 comment says AR should have 77,,777776, but my AR
   has 77,,777777. Probably this is something wrong with ALU backplane
   wiring and related to carry in.
+
 
 ## History of _What I'm Doing Now_
 
