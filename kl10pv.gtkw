@@ -1,20 +1,20 @@
 [*]
-[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sun Dec 24 02:15:40 2023
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Sun Dec 24 19:10:06 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sun Dec 24 02:15:00 2023"
-[dumpfile_size] 14254981
+[dumpfile_mtime] "Sun Dec 24 15:37:51 2023"
+[dumpfile_size] 14254976
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 23223
-[size] 1831 1044
-[pos] -1 -1
-*-7.000000 23677 23860 23940 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 23837
+[size] 959 1045
+[pos] 909 -1
+*-6.000000 23891 -1 -1 23900 23905 -1 -1 23920 23925 23940 23940 23945 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[sst_width] 268
-[signals_width] 408
-[sst_expanded] 1
+[sst_width] 46
+[signals_width] 343
+[sst_expanded] 0
 [sst_vpaned_height] 316
 @28
 top.kl10pv.crobar_e_h
@@ -91,7 +91,7 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
-@c000b1
+@c000b0
 [color] 2
 #{IR} top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_11_h top.kl10pv.ird_48.ir_10_h top.kl10pv.ird_48.ir_09_h top.kl10pv.ird_48.ir_08_h top.kl10pv.ird_48.ir_07_h top.kl10pv.ird_48.ir_06_h top.kl10pv.ird_48.ir_05_h top.kl10pv.ird_48.ir_04_h top.kl10pv.ird_48.ir_03_h top.kl10pv.ird_48.ir_02_h top.kl10pv.ird_48.ir_01_h top.kl10pv.ird_48.ir_00_h
 @28
@@ -110,7 +110,7 @@ top.kl10pv.ird_48.ir_11_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
-@1401201
+@1401200
 -group_end
 @200
 -
@@ -650,9 +650,6 @@ top.kl10pv.vma_38.vma3_pc_35_h
 -core-state
 @800200
 -CRA stack
-@28
-top.kl10pv.cra_45.cra3_clk_a_h
-top.kl10pv.cra_45.cra4_dl1_3
 @c000b0
 #{sbr-ret} top.kl10pv.cra_45.cra4_sbr_ret_10_h top.kl10pv.cra_45.cra4_sbr_ret_09_h top.kl10pv.cra_45.cra4_sbr_ret_08_h top.kl10pv.cra_45.cra4_sbr_ret_07_h top.kl10pv.cra_45.cra4_sbr_ret_06_h top.kl10pv.cra_45.cra4_sbr_ret_05_h top.kl10pv.cra_45.cra4_sbr_ret_04_h top.kl10pv.cra_45.cra4_sbr_ret_03_h top.kl10pv.cra_45.cra4_sbr_ret_02_h top.kl10pv.cra_45.cra4_sbr_ret_01_h top.kl10pv.cra_45.cra4_sbr_ret_00_h
 @28
@@ -669,44 +666,7 @@ top.kl10pv.cra_45.cra4_sbr_ret_09_h
 top.kl10pv.cra_45.cra4_sbr_ret_10_h
 @1401200
 -group_end
-@28
-[color] 2
-top.kl10pv.cra_45.cra4_sel_call_h
-[color] 2
-top.kl10pv.cra_45.cra4_ret_and_NG1777_h
-@c000b0
-[color] 2
-#{sbr-ret-in} top.kl10pv.cra_45.cra4_e76_14 top.kl10pv.cra_45.cra4_e76_15 top.kl10pv.cra_45.cra4_e76_1 top.kl10pv.cra_45.cra4_e76_2 top.kl10pv.cra_45.cra4_e72_14 top.kl10pv.cra_45.cra4_e72_15 top.kl10pv.cra_45.cra4_e72_1 top.kl10pv.cra_45.cra4_e72_2 top.kl10pv.cra_45.cra4_e67_14 top.kl10pv.cra_45.cra4_e67_15 top.kl10pv.cra_45.cra4_e67_1
-@28
-top.kl10pv.cra_45.cra4_e67_1
-top.kl10pv.cra_45.cra4_e67_15
-top.kl10pv.cra_45.cra4_e67_14
-top.kl10pv.cra_45.cra4_e72_2
-top.kl10pv.cra_45.cra4_e72_1
-top.kl10pv.cra_45.cra4_e72_15
-top.kl10pv.cra_45.cra4_e72_14
-top.kl10pv.cra_45.cra4_e76_2
-top.kl10pv.cra_45.cra4_e76_1
-top.kl10pv.cra_45.cra4_e76_15
-top.kl10pv.cra_45.cra4_e76_14
-@1401200
--group_end
-@28
-[color] 7
-top.kl10pv.cra_45.cra3_clk_b_h
 @c000a8
-[color] 3
-#{disp2,3,4} top.kl10pv.cra_45.cra3_disp_04_a_h top.kl10pv.cra_45.cra3_disp_03_a_h top.kl10pv.cra_45.cra3_disp_02_a_h
-@28
-top.kl10pv.cra_45.cra3_disp_02_a_h
-top.kl10pv.cra_45.cra3_disp_03_a_h
-top.kl10pv.cra_45.cra3_disp_04_a_h
-@1401200
--group_end
-@28
-[color] 3
-top.kl10pv.cra_45.cra3_disp_en_00to07_l
-@c00028
 #{stack-adr} top.kl10pv.cra_45.cra4_stack_adr_10_h top.kl10pv.cra_45.cra4_stack_adr_04_h top.kl10pv.cra_45.cra4_stack_adr_02_h top.kl10pv.cra_45.cra4_stack_adr_01_h
 @28
 top.kl10pv.cra_45.cra4_stack_adr_01_h
@@ -743,14 +703,18 @@ top.kl10pv.cra_45.cra4_stack_write_l
 top.kl10pv.cra_45.cra4_sel_call_h
 [color] 2
 top.kl10pv.cra_45.cra4_callCM_resetCM_1777_h
-[color] 3
+>-1
+[color] 4
 top.kl10pv.cra_45.cra4_ret_and_NG1777_h
+>0
 [color] 7
 top.kl10pv.cra_45.cra3_clk_a_h
-[color] 7
+[color] 2
 top.kl10pv.cra_45.cra4_stack_write_l
-[color] 7
+[color] 3
 top.kl10pv.cra_45.cra4_sel_call_h
+[color] 7
+top.kl10pv.cra_45.cra3_clk_b_h
 @1000200
 -CRA stack
 @c00200
