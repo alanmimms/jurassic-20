@@ -11,7 +11,7 @@ module mc10145(input bit a0, a1, a2, a3,
   always_comb addr = {a0,a1,a2,a3};
   always_comb {q0,q1,q2,q3} = !we ? ram[addr] : 0;
 
-  always @(posedge we) begin
+  always @(negedge we) begin
     ram[addr] <= {d0,d1,d2,d3};
   end
 endmodule

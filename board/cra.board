@@ -824,17 +824,19 @@ delayN #(.N(1)) dl9
 	.q(cra4_ret_and_NG1777_dly1_l));
 %endverilog
 
-// The sequence generator for A,B,C,D,E.
-// A = posedge CRA3 CLK A H.
-// B = A+1: CRA4 SEL CALL H rising edge.
-// C = A+2: CRA4 STACK WRITE L falling edge.
-// D = negedge CRA3 CLK A H.
-// E = D+1: CRA4 SEL CALL H falling edge.
-//
-// To do this, we rename the original undelayed signals to CRA4 SEL
-// CALL IN H and CRA4 STACK WRITE IN L and output their original names
-// with the timings above and use them by their original names.
 %verilog
+  // The sequence generator for tA,tB,tC,tD,tE.
+  // tA = posedge CRA3 CLK A H.
+  // tB = tA+1: CRA4 SEL CALL H rising edge.
+  // tC = tA+2: CRA4 STACK WRITE L falling edge.
+  // tD = negedge CRA3 CLK A H.
+  // tE = tD+1: CRA4 SEL CALL H falling edge.
+  //
+  // To do this, we rename the original undelayed signals to CRA4 SEL
+  // CALL IN H and CRA4 STACK WRITE IN L and output their original names
+  // with the timings above and use them by their original names.
+
+  // XXX TODO
 %endverilog
 
 e52: 10101 quad or/nor
@@ -1290,7 +1292,8 @@ e75: 10164 8 mixer
 
 %verilog
   always @(posedge cra4_stack_write_l) begin
-    $display("%7g %m write[%o]=%o", $realtime,
+    if (feSim.dumpDiagFuncs) $fdisplay(feSim.dumpFD, "%7g %m write[%o]=%o",
+	     $realtime,
 	     {cra4_stack_adr_10_h, cra4_stack_adr_04_h, cra4_stack_adr_02_h, cra4_stack_adr_01_h},
 	     {cra3_loc_00_h, cra3_loc_02_h, cra3_loc_02_h,
 	      cra3_loc_03_h, cra3_loc_04_h, cra3_loc_05_h, cra3_loc_06_h,
