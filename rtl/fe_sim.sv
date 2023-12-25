@@ -239,7 +239,7 @@ module fe_sim(input bit clk,
 
   always @(posedge clk60) begin
 
-    if ($realtime >= 10.0) begin
+    if ($realtime >= 2.5) begin
       $fclose(dumpFD);
       $finish(2);
     end
