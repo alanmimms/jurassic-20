@@ -8,13 +8,10 @@ module mc10141(input bit shft0in,
                input bit clk,
                output bit q0, q1, q2, q3);
 
-  tMode141 mode;
   bit [0:3] value;
 
-  always_comb mode = tMode141'({op2, op1});
-
   always_ff @(posedge clk) begin
-    unique case (mode)
+    unique case (tMode141'({op2, op1}))
       LOAD:   value <= {d0,d1,d2,d3};
       SHIFTR: value <= {value[1:3], shft3in};
       SHIFTL: value <= {shft0in, value[0:2]};

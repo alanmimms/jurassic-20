@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Dec 25 21:39:02 2023
+[*] Mon Dec 25 22:34:38 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Dec 25 21:36:50 2023"
-[dumpfile_size] 14255033
+[dumpfile_mtime] "Mon Dec 25 22:34:35 2023"
+[dumpfile_size] 2654312
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
 [timestart] 23727
 [size] 1588 1063
 [pos] -1 -1
-*-6.000000 23760 -1 -1 23900 23905 -1 -1 23920 23925 23940 23940 23945 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.000000 23860 -1 -1 23900 23905 -1 -1 23920 23925 23940 23940 23945 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
-[sst_width] 238
+[sst_width] 48
 [signals_width] 389
-[sst_expanded] 1
+[sst_expanded] 0
 [sst_vpaned_height] 316
 @28
 top.kl10pv.crobar_e_h
@@ -75,10 +75,10 @@ top.kl10pv.cra_45.cra2_adr_09_h
 top.kl10pv.cra_45.cra2_adr_10_h
 @1401200
 -group_end
-@c000b1
+@c000b0
 [color] 2
 #{cra-loc} top.kl10pv.cra_45.cra3_loc_10_h top.kl10pv.cra_45.cra3_loc_09_h top.kl10pv.cra_45.cra3_loc_08_h top.kl10pv.cra_45.cra3_loc_07_h top.kl10pv.cra_45.cra3_loc_06_h top.kl10pv.cra_45.cra3_loc_05_h top.kl10pv.cra_45.cra3_loc_04_h top.kl10pv.cra_45.cra3_loc_03_h top.kl10pv.cra_45.cra3_loc_02_h top.kl10pv.cra_45.cra3_loc_01_h top.kl10pv.cra_45.cra3_loc_00_h
-@29
+@28
 top.kl10pv.cra_45.cra3_loc_00_h
 top.kl10pv.cra_45.cra3_loc_01_h
 top.kl10pv.cra_45.cra3_loc_02_h
@@ -90,7 +90,7 @@ top.kl10pv.cra_45.cra3_loc_07_h
 top.kl10pv.cra_45.cra3_loc_08_h
 top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
-@1401201
+@1401200
 -group_end
 @c000b0
 [color] 2
@@ -721,10 +721,10 @@ top.kl10pv.cra_45.cra4_stack_write_l
 top.kl10pv.cra_45.cra4_sel_call_h
 [color] 2
 top.kl10pv.cra_45.cra4_callCM_resetCM_1777_h
->-1
-[color] 4
+@29
+[color] 2
 top.kl10pv.cra_45.cra4_ret_and_NG1777_h
->0
+@28
 [color] 7
 top.kl10pv.cra_45.cra3_clk_a_h
 [color] 2
@@ -881,8 +881,6 @@ top.kl10pv.vma_38.e70.d1
 top.kl10pv.vma_38.e70.d2
 [color] 1
 top.kl10pv.vma_38.e70.d3
-[color] 1
-top.kl10pv.vma_38.e70.mode[1:0]
 [color] 1
 top.kl10pv.vma_38.e70.op1
 [color] 1
