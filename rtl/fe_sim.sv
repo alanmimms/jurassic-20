@@ -52,7 +52,7 @@ module fe_sim(input bit clk,
   // complexity.
 
   initial begin
-    con_cono_200000_h = '0;
+    con_cono_200000_h = 0;
   end
 
 
@@ -218,18 +218,14 @@ module fe_sim(input bit clk,
     dumpFD = $fopen("dump.log", "w");
   end
 
-  final begin
-    if (dumpFD != 0) $fclose(dumpFD);
-  end
-
   initial begin			// Load CRAM and DRAM before start of simulation
     loadRAMs();
   end
 
   initial begin
-    crobar_e_h = '1;
+    crobar_e_h = 1;
     repeat (20) @(negedge clk);
-    crobar_e_h = '0;
+    crobar_e_h = 0;
   end
 
   always @(negedge crobar_e_h) begin
@@ -238,7 +234,15 @@ module fe_sim(input bit clk,
     loadDiagnostic("images/klddt/klddt.a10");
     KLSoftReset();
     startKLBoot(startAddr);
-    if (dumpFD != 0) $fflush(dumpFD);
+    $fflush(dumpFD);
+  end
+
+  always @(posedge clk60) begin
+
+    if ($realtime >= 10.0) begin
+      $fclose(dumpFD);
+      $finish(2);
+    end
   end
 
 
@@ -246,7 +250,7 @@ module fe_sim(input bit clk,
     static W36 runBootLoaderFlag = 36'o400000_000000;
 
     // Zero ACs
-    for (int ac = 0; ac < 16; ++ac) loadAC(ac, '0);
+    for (int ac = 0; ac < 16; ++ac) loadAC(ac, 0);
 
     execKLInstr(36'o700200_267760);	// CONO APR,267760	; Reset APR
     execKLInstr(36'o700600_010000);	// CONO PI,10000	; Reset PI
@@ -273,18 +277,18 @@ module fe_sim(input bit clk,
     doDiagFunc(diagfCLR_RUN);
 
     // This is the first phase of DMRMRT table operations.
-    doDiagWrite(diagfCLK_SRC_RATE, '0);		      // CLOCK LOAD FUNC #44
+    doDiagWrite(diagfCLK_SRC_RATE, 0);		      // CLOCK LOAD FUNC #44
     doDiagFunc(diagfSTOP_CLOCK);                      // STOP THE CLOCK
     doDiagFunc(diagfSET_RESET);                       // SET RESET
-    doDiagWrite(diagfRESET_PAR_REGS, '0);             // LOAD CLK PARITY CHECK & FS CHECK
-    doDiagWrite(diagfMBOXDIS_PARCHK_ERRSTOP, '0);     // LOAD CLK MBOX CYCLE DISABLES,
+    doDiagWrite(diagfRESET_PAR_REGS, 0);             // LOAD CLK PARITY CHECK & FS CHECK
+    doDiagWrite(diagfMBOXDIS_PARCHK_ERRSTOP, 0);     // LOAD CLK MBOX CYCLE DISABLES,
 						      // PARITY CHECK, ERROR STOP ENABLE
-    doDiagWrite(diagfBURST_CTR_RH, '0);		      // LOAD BURST COUNTER (8,4,2,1)
-    doDiagWrite(diagfBURST_CTR_LH, '0);		      // LOAD BURST COUNTER (128,64,32,16)
-    doDiagWrite(diagfSET_EBOX_CLK_DISABLES, '0);      // LOAD EBOX CLOCK DISABLE
+    doDiagWrite(diagfBURST_CTR_RH, 0);		      // LOAD BURST COUNTER (8,4,2,1)
+    doDiagWrite(diagfBURST_CTR_LH, 0);		      // LOAD BURST COUNTER (128,64,32,16)
+    doDiagWrite(diagfSET_EBOX_CLK_DISABLES, 0);      // LOAD EBOX CLOCK DISABLE
     doDiagFunc(diagfSTART_CLOCK);                     // START THE CLOCK
-    doDiagWrite(diagfINIT_CHANNELS, '0);              // INIT CHANNELS
-    doDiagWrite(diagfBURST_CTR_RH, '0);		      // LOAD BURST COUNTER (8,4,2,1)
+    doDiagWrite(diagfINIT_CHANNELS, 0);              // INIT CHANNELS
+    doDiagWrite(diagfBURST_CTR_RH, 0);		      // LOAD BURST COUNTER (8,4,2,1)
 
     // Loop up to five (was three in RSX20F) times:
     //   Test MBC3 A CHANGE COMING A L (we have active-high a_change_coming).
@@ -312,8 +316,8 @@ module fe_sim(input bit clk,
     // Phase 2 from DMRMRT table operations.
     doDiagFunc(diagfCOND_STEP);          // CONDITIONAL SINGLE STEP
     doDiagFunc(diagfCLR_RESET);          // CLEAR RESET
-    doDiagWrite(diagfENABLE_KL, '0);     // ENABLE KL STL DECODING OF CODES & AC'S
-    doDiagWrite(diagfMEM_RESET, '0);	 // RESET KL10 MEM RESET FLOP
+    doDiagWrite(diagfENABLE_KL, 0);      // ENABLE KL STL DECODING OF CODES & AC'S
+    doDiagWrite(diagfMEM_RESET, 0);	 // RESET KL10 MEM RESET FLOP
     doDiagWrite(diagfWRITE_MBOX, 'o120); // WRITE M-BOX
 
     $display("%7g [master reset complete]", $realtime);

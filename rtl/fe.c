@@ -143,7 +143,7 @@ static W36 bootAddr;
 
 
 #define TLOG(FMT, ...) do {                                      \
-  printf("%6lld: " FMT, nextReqTicks __VA_OPT__(,) __VA_ARGS__); \
+  printf("%7lld " FMT, nextReqTicks __VA_OPT__(,) __VA_ARGS__); \
 } while (0)
 
 
@@ -593,11 +593,14 @@ extern "C" void FEinitial(double aNsPerClock) {
     runFE();                    /* FE blocks waiting for messages - never returns */
   } else {                      /* Running in the parent (sim context) */
     fePID = pid;                /* Save PID of child */
+    TLOG("[front end started]\n");
   }
 }
 
 
-extern "C" void FEfinal(LL ticks) {
+extern "C" void FEfinal(uint64_t ticks) {
+  TLOG("[front end terminated]\n");
+  
   /* Kill our kid */
   if (fePID > 0) kill(fePID, SIGHUP);
 }

@@ -14,7 +14,6 @@
 
 
 static const double nsPerClock = 10.0;
-static const double endTime = 100 * 1000; // 100us
 
 
 extern "C" void FEinitial(double nsPerClock);
@@ -54,11 +53,9 @@ int main(int argc, char **argv) {
 #endif
 
   // Turn on the Front End.
-  FEinitial(nsPerClock);
+  DTEinitial();
 
   while (!contextp->gotFinish()) {
-    if (contextp->time() >= endTime) break;
-
     top->clk60 = 0;
     top->eval();
     if (trace) trace->dump(contextp->time());
@@ -69,6 +66,8 @@ int main(int argc, char **argv) {
     if (trace) trace->dump(contextp->time());
     contextp->timeInc(5);
   }
+
+  DTEfinal(contextp->time());
 
   // Kill our child (the FE) and wait for it to exit.
   kill(0, SIGINT);
