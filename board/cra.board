@@ -1295,7 +1295,7 @@ e75: 10164 8 mixer
     if (feSim.dumpDiagFuncs) $fdisplay(feSim.dumpFD, "%7g %m write[%o]=%o",
 	     $realtime,
 	     {cra4_stack_adr_10_h, cra4_stack_adr_04_h, cra4_stack_adr_02_h, cra4_stack_adr_01_h},
-	     {cra3_loc_00_h, cra3_loc_02_h, cra3_loc_02_h,
+	     {cra3_loc_00_h, cra3_loc_01_h, cra3_loc_02_h,
 	      cra3_loc_03_h, cra3_loc_04_h, cra3_loc_05_h, cra3_loc_06_h,
 	      cra3_loc_07_h, cra3_loc_08_h, cra3_loc_09_h, cra3_loc_10_h});
   end
