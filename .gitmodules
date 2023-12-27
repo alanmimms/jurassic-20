@@ -1,0 +1,3 @@
+[submodule "tools/asciiwave"]
+	path = tools/asciiwave
+	url = https://github.com/Wren6991/asciiwave.git

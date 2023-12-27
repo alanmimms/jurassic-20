@@ -825,7 +825,61 @@ delayN #(.N(1)) dl9
 %endverilog
 
 %verilog
-  // The sequence generator for tA,tB,tC,tD,tE.
+
+  /* https://wavedrom.com/editor.html
+
+    {signal: [
+      {name: 'CRA CLK A',      wave: '01...0...1.',
+						       node: '.....d....h'},
+      {name: 'clk60',          wave: 'N..........',
+						       node: '.a...,.....'},
+      {name: 'STACK WRITE L',  wave: '1...0.1....',
+						       node: '....c......'},
+      {name: 'CRA SEL CALL H', wave: '0.1...0...1',
+						       node: '..b...e...'},
+      {name: 'CRA CLK B',      wave: '0.1...0...1',
+						       node: '.....,....h'},
+    ],
+      edge: [
+      'b~c ADRsu',
+      'c~d RAMwr',
+      'e~h RAMrd & 10141su',
+    ],
+     head: {text: 'CRA module RAM timing', tick: 0, every: 1},
+     config: {skin: 'lowkey'},
+    }
+
+  */
+
+  /*
+   This version works with `tools/asciiwave/asciiwave` (need `pip3
+   install json jsonschema` for it to work).
+
+    {signal: [
+      {name: 'CRA CLK A',      wave: '01...0...1.'},
+      {name: 'clk60',          wave: 'N..........'},
+      {name: 'STACK WRITE L',  wave: '1...0.1....'},
+      {name: 'CRA SEL CALL H', wave: '0.1...0...1'},
+      {name: 'CRA CLK B',      wave: '0.1...0...1'},
+    ],
+    }
+
+		    ┐     ┌───────────────────────┐                       ┌───────────
+    CRA CLK A     : └─────┘                       └───────────────────────┘           
+		    ┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──
+    clk60         : ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  
+		    ┌───────────────────────┐           ┌─────────────────────────────
+    STACK WRITE L : ┘                       └───────────┘                             
+		    ┐           ┌───────────────────────┐                       ┌─────
+    CRA SEL CALL H: └───────────┘                       └───────────────────────┘     
+		    ┐           ┌───────────────────────┐                       ┌─────
+    CRA CLK B     : └───────────┘                       └───────────────────────┘     
+
+  */
+
+  // The sequence generator for tA,tB,tC,tD,tE where "+1" means "plus
+  // one clk60 edge".
+  //
   // tA = posedge CRA3 CLK A H.
   // tB = tA+1: CRA4 SEL CALL H rising edge.
   // tC = tA+2: CRA4 STACK WRITE L falling edge.
@@ -836,22 +890,22 @@ delayN #(.N(1)) dl9
   // CALL IN H and CRA4 STACK WRITE IN L and output their original names
   // with the timings above and use them by their original names.
 
-  // XXX TODO
+  always @(
 %endverilog
 
 e52: 10101 quad or/nor
      4 ~< cra4 stack write delay1 l
      12 ~< %NC%
-     2 ~> cra4 sel call h
+     2 ~> cra4 sel call in h
      5 ~> %NC%
      7 ~< -cra4 ret and -1777 dly1 l
      3 ~> %NC%
-     6 ~> cra4 sel call h
+     6 ~> cra4 sel call in h
      10 ~< cra3 clk f h
-     11 ~> cra4 sel call h
-     14 ~> cra4 stack write l
+     11 ~> cra4 sel call in h
+     14 ~> cra4 stack write in l
      13 ~< cra4-dl1-3
-     15 ~> cra4 stack write l
+     15 ~> cra4 stack write in l
      9 ~> %NC%
 
 e62: 10158 4x2 mixer

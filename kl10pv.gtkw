@@ -1,6 +1,6 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Dec 25 22:34:38 2023
+[*] Mon Dec 25 22:37:30 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Mon Dec 25 22:34:35 2023"
@@ -18,7 +18,6 @@
 [sst_expanded] 0
 [sst_vpaned_height] 316
 @28
-top.kl10pv.crobar_e_h
 [color] 3
 top.kl10pv.clk
 @c02030
@@ -42,20 +41,8 @@ top.kl10pv.ebus.ds[0:6]
 (6)top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
-@c00200
--Reset/klinit
-@28
-top.kl10pv.con_ebox_halted_h
-top.kl10pv.con_35.con1_reset_l
-top.kl10pv.con_35.con_cono_apr_l
-top.kl10pv.con_35.con_cono_pi_l
-top.kl10pv.con_35.con3_cono_pag_l
-@1401200
--Reset/klinit
 @28
 top.kl10pv.con_35.con_ebox_halted_h
-[color] 3
-top.kl10pv.clk_32.clk4_ebox_clk_l
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
 @c000b0
@@ -113,21 +100,7 @@ top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 @1401200
 -group_end
-@200
--
-@c00200
--MBOX-busy
-@28
-[color] 1
-top.kl10pv.csh_23.mem_busy_h
-[color] 1
-top.kl10pv.con_mbox_wait_l
-[color] 1
-top.kl10pv.con_35.con5_mem_cycle_l
-top.kl10pv.con_35.mcl_mbox_cyc_req_h
-@1401200
--MBOX-busy
-@c00200
+@c00201
 -core-state
 @c040a2
 [color] 3
@@ -648,6 +621,7 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
+@1401201
 -core-state
 @800200
 -CRA stack
@@ -721,10 +695,8 @@ top.kl10pv.cra_45.cra4_stack_write_l
 top.kl10pv.cra_45.cra4_sel_call_h
 [color] 2
 top.kl10pv.cra_45.cra4_callCM_resetCM_1777_h
-@29
 [color] 2
 top.kl10pv.cra_45.cra4_ret_and_NG1777_h
-@28
 [color] 7
 top.kl10pv.cra_45.cra3_clk_a_h
 [color] 2
@@ -735,6 +707,18 @@ top.kl10pv.cra_45.cra4_sel_call_h
 top.kl10pv.cra_45.cra3_clk_b_h
 @1000200
 -CRA stack
+@c00200
+-MBOX-busy
+@28
+[color] 1
+top.kl10pv.csh_23.mem_busy_h
+[color] 1
+top.kl10pv.con_mbox_wait_l
+[color] 1
+top.kl10pv.con_35.con5_mem_cycle_l
+top.kl10pv.con_35.mcl_mbox_cyc_req_h
+@1401200
+-MBOX-busy
 @c00200
 -VMA
 @c000b0
@@ -906,6 +890,7 @@ top.kl10pv.vma_38.e70.value[0:3]
 @c00200
 -clocks
 @28
+top.kl10pv.crobar_e_h
 [color] 2
 top.kl10pv.clk_32.clk1_odd_a_h
 [color] 1

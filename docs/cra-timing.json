@@ -1,0 +1,8 @@
+{signal: [
+  {name: 'CRA CLK A',      wave: '01...0...1.'},
+  {name: 'clk60',          wave: 'N..........'},
+  {name: 'STACK WRITE L',  wave: '1...0.1....'},
+  {name: 'CRA SEL CALL H', wave: '0.1...0...1'},
+  {name: 'CRA CLK B',      wave: '0.1...0...1'},
+],
+}
