@@ -827,53 +827,28 @@ delayN #(.N(1)) dl9
 %verilog
 
   /* https://wavedrom.com/editor.html
+     I tried to use `tools/asciiwave` but it got the clocks wrong.
 
     {signal: [
       {name: 'CRA CLK A',      wave: '01...0...1.',
-						       node: '.....d....h'},
-      {name: 'clk60',          wave: 'N..........',
-						       node: '.a...,.....'},
-      {name: 'STACK WRITE L',  wave: '1...0.1....',
-						       node: '....c......'},
-      {name: 'CRA SEL CALL H', wave: '0.1...0...1',
-						       node: '..b...e...'},
+						       node: '...........'},
+      {name: 'clk60',          wave: '10101010101',
+						       node: '.a.........'},
+      {name: 'STACK WRITE L',  wave: '1..01......',
+						       node: '...de......'},
+      {name: 'CRA SEL CALL H', wave: '0.1...0..1.',
+						       node: '..c...f...'},
       {name: 'CRA CLK B',      wave: '0.1...0...1',
-						       node: '.....,....h'},
+						       node: '..........g'},
     ],
       edge: [
-      'b~c ADRsu',
-      'c~d RAMwr',
-      'e~h RAMrd & 10141su',
+      'c~d ADRsu',
+      'd~e RAMwr',
+      'f~g RAMrd & 10141su',
     ],
-     head: {text: 'CRA module RAM timing', tick: 0, every: 1},
-     config: {skin: 'lowkey'},
+     head: {text: 'CRA module RAM timing', tick: -1, every: 1},
+     config: {skin: 'lowkey', hscale: 2.25},
     }
-
-  */
-
-  /*
-   This version works with `tools/asciiwave/asciiwave` (need `pip3
-   install json jsonschema` for it to work).
-
-    {signal: [
-      {name: 'CRA CLK A',      wave: '01...0...1.'},
-      {name: 'clk60',          wave: 'N..........'},
-      {name: 'STACK WRITE L',  wave: '1...0.1....'},
-      {name: 'CRA SEL CALL H', wave: '0.1...0...1'},
-      {name: 'CRA CLK B',      wave: '0.1...0...1'},
-    ],
-    }
-
-		    ┐     ┌───────────────────────┐                       ┌───────────
-    CRA CLK A     : └─────┘                       └───────────────────────┘           
-		    ┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──┓  ┌──
-    clk60         : ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  ┗──┘  
-		    ┌───────────────────────┐           ┌─────────────────────────────
-    STACK WRITE L : ┘                       └───────────┘                             
-		    ┐           ┌───────────────────────┐                       ┌─────
-    CRA SEL CALL H: └───────────┘                       └───────────────────────┘     
-		    ┐           ┌───────────────────────┐                       ┌─────
-    CRA CLK B     : └───────────┘                       └───────────────────────┘     
 
   */
 
@@ -890,7 +865,26 @@ delayN #(.N(1)) dl9
   // CALL IN H and CRA4 STACK WRITE IN L and output their original names
   // with the timings above and use them by their original names.
 
-  always @(
+  // Sub-cycle counter of clk60 clocks in this CRA3 CLK A H cycle.
+  bit [2:0] subCycle = 0;
+
+  // For each subCycle phase, align the edges of our time controlled
+  // signals.
+  always @(posedge cra3_clk_a_h) subCycle <= 0;
+
+  always @(posedge clk60, negedge clk60) begin
+    subCycle <= subCycle + 1;
+
+    // Clock for mc10141 CRA4 SBR RET nn H register to act as delayed
+    // CRA3 CLK B H.
+    delayed_clk_b_h <= cra3_clk_a_h;
+
+    if (subCycle == 0) cra4_sel_call_h <= cra4_sel_call_in_h;
+    if (subCycle == 4) cra4_sel_call_h <= 0;
+
+    if (subCycle == 1) cra4_stack_write_l <= cra4_stack_write_in_l;
+    if (subCycle == 2) cra4_stack_write_l <= 1;
+  end
 %endverilog
 
 e52: 10101 quad or/nor
@@ -971,8 +965,6 @@ e76: 10145 16x4 RAM
      15 ~> cra4-e76-15
      14 ~> cra4-e76-14
 
-// I fiddled around with this for two days before I realized zero
-// delay would work fine for CRA3 CLK B H feeding the CLK inputs.
 e66: 10141 shft reg
      13 ~< %NC%
      12 ~< %NC%
@@ -982,7 +974,7 @@ e66: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b h
+     4 ~< delayed clk b h
      14 ~> %NC%
      15 ~> cra4 sbr ret 00 h
      2 ~> cra4 sbr ret 01 h
@@ -997,7 +989,7 @@ e71: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b h
+     4 ~< delayed clk b h
      14 ~> cra4 sbr ret 03 h
      15 ~> cra4 sbr ret 04 h
      2 ~> cra4 sbr ret 05 h
@@ -1012,7 +1004,7 @@ e81: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< cra3 clk b h
+     4 ~< delayed clk b h
      14 ~> cra4 sbr ret 07 h
      15 ~> cra4 sbr ret 08 h
      2 ~> cra4 sbr ret 09 h
