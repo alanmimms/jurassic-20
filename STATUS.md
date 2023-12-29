@@ -26,11 +26,7 @@ that does the same thing but subdividing the traditional clock pulses.
 
 The KL10-PV has many presumptions based on its ECL implementation.
 For example, in ECL you can just parallel connect outputs to get a
-wire-OR. Inputs left unconnected see a real logic zero. You can
-relying on gates whose outputs are looped back to their inputs to
-implement latches. This latter practice in today's logic and methods
-leads to circular logic dependencies, metastability black-holes, and
-madness.
+wire-OR. Inputs left unconnected see a real logic zero.
 
 
 ## What I'm Doing Now - Occasional Status and Progress Notes
@@ -40,14 +36,31 @@ madness.
 [2023.12.22] The microcode hangs in a two microinstruction loop
 0475/3143. The sequence is
 
+	2750: SETEBR:   ... CALL SHIFT
+	2604: SHIFT:      ... RETURN2
 	2752:			... CALL CLRPT
 	3605: CLRPT:	...
 	3142:			... CALL ARSWAP
 	0475: ARSWAP:	... RETURN1			; Loop start (DOES return to 3143)
 	3143:			... RETURN4			; Loop end (SHOULD return to 2756)
+		-- BEGINNING OF WRONGITUDE --
+    0004: ...
 	
 I'd bet this is the first time the microinstruction call stack has
-ever been pushed two deep. Hmmm...
+ever been pushed two deep. Hmmm... It looks like `RETURN4` is getting
+zero as its input to OR `4` into.
+
+The sequence should be
+
+	2750: SETEBR:   ... CALL SHIFT
+	2604: SHIFT:      ... RETURN2
+	2752:			... CALL CLRPT
+	3605: CLRPT:	  ...
+	3142:			  ... CALL ARSWAP
+	0475: ARSWAP:	    ... RETURN1			; Loop start (DOES return to 3143)
+	3143:			  ... RETURN4			; Loop end (SHOULD return to 2756)
+	2756: KEEPME:   ... J/PTLOOP
+	2546: PTLOOP:   ...
 
 
 ## Bugs Outstanding TODO
@@ -86,5 +99,5 @@ halted with AR set to `CONO APR,267760` instruction by the
 
 [2023.12.22] This was caused by `CLK4 EBOX REQ L` glitch, which
 resulted from misreading the print on CLK4 because of a smudge in the
-copy I have.
-
+copy I have. I guess I'll never get back those eight days I spent
+hunting for this.

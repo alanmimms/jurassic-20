@@ -809,97 +809,27 @@ e57: 10141 shft reg
      3 ~> cra4 stack adr h h
 
 %verilog
-delayNinverted #(.N(1)) dl7
-	       (.clk(clk60),
-		.ntrigger(cra4_stack_write_l),
-		.nq(cra4_stack_write_delay1_l));
-%endverilog
-
-%verilog
-bit cra4_ret_and_NG1777_dly1_l;
-always_comb cra4_ret_and_NG1777_dly1_h = !cra4_ret_and_NG1777_dly1_l;
-delayN #(.N(1)) dl9
-       (.clk(clk60),
-	.trigger(!cra4_ret_and_NG1777_l),
-	.q(cra4_ret_and_NG1777_dly1_l));
-%endverilog
-
-%verilog
-
-  /* https://wavedrom.com/editor.html
-     I tried to use `tools/asciiwave` but it got the clocks wrong.
-
-    {signal: [
-      {name: 'CRA CLK A',      wave: '01...0...1.',
-						       node: '...........'},
-      {name: 'clk60',          wave: '10101010101',
-						       node: '.a.........'},
-      {name: 'STACK WRITE L',  wave: '1..01......',
-						       node: '...de......'},
-      {name: 'CRA SEL CALL H', wave: '0.1...0..1.',
-						       node: '..c...f...'},
-      {name: 'CRA CLK B',      wave: '0.1...0...1',
-						       node: '..........g'},
-    ],
-      edge: [
-      'c~d ADRsu',
-      'd~e RAMwr',
-      'f~g RAMrd & 10141su',
-    ],
-     head: {text: 'CRA module RAM timing', tick: -1, every: 1},
-     config: {skin: 'lowkey', hscale: 2.25},
-    }
-
-  */
-
-  // The sequence generator for tA,tB,tC,tD,tE where "+1" means "plus
-  // one clk60 edge".
-  //
-  // tA = posedge CRA3 CLK A H.
-  // tB = tA+1: CRA4 SEL CALL H rising edge.
-  // tC = tA+2: CRA4 STACK WRITE L falling edge.
-  // tD = negedge CRA3 CLK A H.
-  // tE = tD+1: CRA4 SEL CALL H falling edge.
-  //
-  // To do this, we rename the original undelayed signals to CRA4 SEL
-  // CALL IN H and CRA4 STACK WRITE IN L and output their original names
-  // with the timings above and use them by their original names.
-
-  // Sub-cycle counter of clk60 clocks in this CRA3 CLK A H cycle.
-  bit [2:0] subCycle = 0;
-
-  // For each subCycle phase, align the edges of our time controlled
-  // signals.
-  always @(posedge cra3_clk_a_h) subCycle <= 0;
-
-  always @(posedge clk60, negedge clk60) begin
-    subCycle <= subCycle + 1;
-
-    // Clock for mc10141 CRA4 SBR RET nn H register to act as delayed
-    // CRA3 CLK B H.
-    delayed_clk_b_h <= cra3_clk_a_h;
-
-    if (subCycle == 0) cra4_sel_call_h <= cra4_sel_call_in_h;
-    if (subCycle == 4) cra4_sel_call_h <= 0;
-
-    if (subCycle == 1) cra4_stack_write_l <= cra4_stack_write_in_l;
-    if (subCycle == 2) cra4_stack_write_l <= 1;
-  end
+  bit cra4_ret_and_NG1777_dly1_l;
+  always_comb cra4_ret_and_NG1777_dly1_h = !cra4_ret_and_NG1777_dly1_l;
+  delayN #(.N(1)) dl9
+	 (.clk(clk60),
+	  .trigger(!cra4_ret_and_NG1777_l),
+	  .q(cra4_ret_and_NG1777_dly1_l));
 %endverilog
 
 e52: 10101 quad or/nor
-     4 ~< cra4 stack write delay1 l
+     4 ~< cra4 stack write l
      12 ~< %NC%
-     2 ~> cra4 sel call in h
+     2 ~> cra4 sel call h
      5 ~> %NC%
      7 ~< -cra4 ret and -1777 dly1 l
      3 ~> %NC%
-     6 ~> cra4 sel call in h
+     6 ~> cra4 sel call h
      10 ~< cra3 clk f h
-     11 ~> cra4 sel call in h
-     14 ~> cra4 stack write in l
+     11 ~> cra4 sel call h
+     14 ~> cra4 stack write l
      13 ~< cra4-dl1-3
-     15 ~> cra4 stack write in l
+     15 ~> cra4 stack write l
      9 ~> %NC%
 
 e62: 10158 4x2 mixer
@@ -965,6 +895,8 @@ e76: 10145 16x4 RAM
      15 ~> cra4-e76-15
      14 ~> cra4-e76-14
 
+// I fiddled around with this for two days before I realized zero
+// delay would work fine for CRA3 CLK B H feeding the CLK inputs.
 e66: 10141 shft reg
      13 ~< %NC%
      12 ~< %NC%
@@ -974,7 +906,7 @@ e66: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< delayed clk b h
+     4 ~< cra3 clk b h
      14 ~> %NC%
      15 ~> cra4 sbr ret 00 h
      2 ~> cra4 sbr ret 01 h
@@ -989,7 +921,7 @@ e71: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< delayed clk b h
+     4 ~< cra3 clk b h
      14 ~> cra4 sbr ret 03 h
      15 ~> cra4 sbr ret 04 h
      2 ~> cra4 sbr ret 05 h
@@ -1004,7 +936,7 @@ e81: 10141 shft reg
      5 ~< %NC%
      7 ~< cra4-e28-3
      10 ~< cra4-e28-3
-     4 ~< delayed clk b h
+     4 ~< cra3 clk b h
      14 ~> cra4 sbr ret 07 h
      15 ~> cra4 sbr ret 08 h
      2 ~> cra4 sbr ret 09 h
@@ -1338,12 +1270,15 @@ e75: 10164 8 mixer
 
 %verilog
   always @(posedge cra4_stack_write_l) begin
-    if (feSim.dumpDiagFuncs) $fdisplay(feSim.dumpFD, "%7g %m write[%o]=%o",
-	     $realtime,
-	     {cra4_stack_adr_10_h, cra4_stack_adr_04_h, cra4_stack_adr_02_h, cra4_stack_adr_01_h},
-	     {cra3_loc_00_h, cra3_loc_01_h, cra3_loc_02_h,
-	      cra3_loc_03_h, cra3_loc_04_h, cra3_loc_05_h, cra3_loc_06_h,
-	      cra3_loc_07_h, cra3_loc_08_h, cra3_loc_09_h, cra3_loc_10_h});
+
+    if (feSim.dumpDiagFuncs)
+       $fdisplay(feSim.dumpFD, "%7g %m write[%o]=%o",
+	 $realtime,
+	 {cra4_stack_adr_10_h, cra4_stack_adr_04_h, cra4_stack_adr_02_h, cra4_stack_adr_01_h},
+	 {cra3_loc_00_h, cra3_loc_01_h,
+	  cra3_loc_02_h, cra3_loc_03_h, cra3_loc_04_h,
+	  cra3_loc_05_h, cra3_loc_06_h, cra3_loc_07_h,
+	  cra3_loc_08_h, cra3_loc_09_h, cra3_loc_10_h});
   end
 %endverilog
 

@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Thu Dec 28 22:22:13 2023
+[*] Fri Dec 29 22:29:10 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Thu Dec 28 22:16:36 2023"
-[dumpfile_size] 2752617
+[dumpfile_mtime] "Fri Dec 29 22:29:05 2023"
+[dumpfile_size] 3047545
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 23811
+[timestart] 23400
 [size] 1588 1063
 [pos] -1 -1
-*-6.000000 24033 23900 23910 23920 23930 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 23820 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
@@ -688,21 +688,15 @@ top.kl10pv.cra_45.cra4_stack_adr_h_h
 -group_end
 @28
 top.kl10pv.cra_45.cra4_stack_adr_z_h
-top.kl10pv.cra_45.cra4_stack_write_in_l
-top.kl10pv.cra_45.cra4_sel_call_in_h
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
-@22
-[color] 7
-top.kl10pv.cra_45.subCycle[2:0]
-@28
 [color] 3
 top.kl10pv.cra_45.cra4_stack_write_l
 [color] 2
 top.kl10pv.cra_45.cra4_sel_call_h
+top.kl10pv.cra_45.cra3_clk_b_h
 @29
-[color] 7
-top.kl10pv.cra_45.delayed_clk_b_h
+top.kl10pv.cra_45.cra3_clk_b_delayed_h
 @1000200
 -CRA stack
 @c00200
