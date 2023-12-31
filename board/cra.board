@@ -842,8 +842,8 @@ e62: 10158 4x2 mixer
      10 ~< cra4 stack adr g h
      11 ~< cra4 stack adr e h
      9 ~< cra4 sel call h
-     2 ~> cra4 stack adr 10 h
-     1 ~> cra4 stack adr 04 h
+     1 ~> cra4 stack adr 10 h
+     2 ~> cra4 stack adr 04 h
      15 ~> cra4 stack adr 02 h
      14 ~> cra4 stack adr 01 h
 
