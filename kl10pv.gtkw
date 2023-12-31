@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Fri Dec 29 22:29:10 2023
+[*] Sun Dec 31 18:36:34 2023
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Fri Dec 29 22:29:05 2023"
-[dumpfile_size] 3047545
+[dumpfile_mtime] "Sun Dec 31 18:32:06 2023"
+[dumpfile_size] 2605148
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 23400
+[timestart] 23554
 [size] 1588 1063
 [pos] -1 -1
-*-7.000000 23820 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 23730 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
@@ -624,9 +624,9 @@ top.kl10pv.vma_38.vma3_pc_35_h
 -core-state
 @800200
 -CRA stack
-@c000b0
+@c000b1
 #{sbr-ret} top.kl10pv.cra_45.cra4_sbr_ret_10_h top.kl10pv.cra_45.cra4_sbr_ret_09_h top.kl10pv.cra_45.cra4_sbr_ret_08_h top.kl10pv.cra_45.cra4_sbr_ret_07_h top.kl10pv.cra_45.cra4_sbr_ret_06_h top.kl10pv.cra_45.cra4_sbr_ret_05_h top.kl10pv.cra_45.cra4_sbr_ret_04_h top.kl10pv.cra_45.cra4_sbr_ret_03_h top.kl10pv.cra_45.cra4_sbr_ret_02_h top.kl10pv.cra_45.cra4_sbr_ret_01_h top.kl10pv.cra_45.cra4_sbr_ret_00_h
-@28
+@29
 top.kl10pv.cra_45.cra4_sbr_ret_00_h
 top.kl10pv.cra_45.cra4_sbr_ret_01_h
 top.kl10pv.cra_45.cra4_sbr_ret_02_h
@@ -638,7 +638,7 @@ top.kl10pv.cra_45.cra4_sbr_ret_07_h
 top.kl10pv.cra_45.cra4_sbr_ret_08_h
 top.kl10pv.cra_45.cra4_sbr_ret_09_h
 top.kl10pv.cra_45.cra4_sbr_ret_10_h
-@1401200
+@1401201
 -group_end
 @c000b0
 #{stack-adr} top.kl10pv.cra_45.cra4_stack_adr_10_h top.kl10pv.cra_45.cra4_stack_adr_04_h top.kl10pv.cra_45.cra4_stack_adr_02_h top.kl10pv.cra_45.cra4_stack_adr_01_h
@@ -690,13 +690,17 @@ top.kl10pv.cra_45.cra4_stack_adr_h_h
 top.kl10pv.cra_45.cra4_stack_adr_z_h
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
+[color] 2
+top.kl10pv.cra_45.cra4_e28_3
+top.kl10pv.cra_45.cra1_ret_l
+top.kl10pv.cra_45.cra4_callCM_resetCM_1777_h
+top.kl10pv.cra_45.cra4_ret_and_NG1777_h
+top.kl10pv.cra_45.clk4_force_1777_h
 [color] 3
 top.kl10pv.cra_45.cra4_stack_write_l
 [color] 2
 top.kl10pv.cra_45.cra4_sel_call_h
 top.kl10pv.cra_45.cra3_clk_b_h
-@29
-top.kl10pv.cra_45.cra3_clk_b_delayed_h
 @1000200
 -CRA stack
 @c00200
