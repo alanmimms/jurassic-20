@@ -19,6 +19,7 @@ module mc10141_tb;
 	      q[0], q[1], q[2], q[3]);
 
   typedef struct packed {
+    bit needsClock;
     tMode141 s;
     bit d0In;
     bit [0:3] d;
@@ -26,48 +27,54 @@ module mc10141_tb;
     bit [0:3] q;
   } StimData;
 
-  StimData stim[36] = {
-                       {LOAD,   1'b0, 4'b1111, 1'b0, 4'b1111},
-                       {LOAD,   1'b1, 4'b1111, 1'b1, 4'b1111},
-                       {LOAD,   1'b0, 4'b1111, 1'b1, 4'b1111},
-                       {LOAD,   1'b1, 4'b1111, 1'b0, 4'b1111},
+  StimData stim[41] = {
+                       {1'b1, LOAD,   1'b1, 4'b1010, 1'b0, 4'b1010},
+                       {1'b1, LOAD,   1'b1, 4'b0101, 1'b1, 4'b0101},
+                       {1'b1, LOAD,   1'b1, 4'b0000, 1'b1, 4'b0000},
+                       {1'b1, LOAD,   1'b0, 4'b1111, 1'b0, 4'b1111},
 
-                       {LOAD,   1'b1, 4'b1010, 1'b0, 4'b1010},
-                       {LOAD,   1'b1, 4'b0101, 1'b1, 4'b0101},
-                       {LOAD,   1'b1, 4'b0000, 1'b1, 4'b0000},
-                       {LOAD,   1'b0, 4'b1111, 1'b0, 4'b1111},
+                       {1'b0, LOAD,   1'b0, 4'b1111, 1'b0, 4'b1111},
+                       {1'b0, LOAD,   1'b1, 4'b0000, 1'b1, 4'b1111},
+                       {1'b1, LOAD,   1'b1, 4'b0000, 1'b1, 4'b0000},
+                       {1'b0, LOAD,   1'b0, 4'b1111, 1'b1, 4'b0000},
+                       {1'b0, LOAD,   1'b1, 4'b0000, 1'b0, 4'b0000},
 
-                       {LOAD,   1'b0, 4'b0000, 1'b0, 4'b0000},
-                       {SHIFTR, 1'b0, 4'b0000, 1'b1, 4'b0001},
-                       {SHIFTR, 1'b1, 4'b0000, 1'b1, 4'b0011},
-                       {SHIFTR, 1'b0, 4'b1010, 1'b1, 4'b0111},
-                       {SHIFTR, 1'b1, 4'b0101, 1'b1, 4'b1111},
-                       {SHIFTR, 1'b0, 4'b0111, 1'b1, 4'b1111},
-                       {SHIFTR, 1'b0, 4'b0011, 1'b0, 4'b1110},
-                       {SHIFTR, 1'b0, 4'b1111, 1'b0, 4'b1100},
-                       {SHIFTR, 1'b1, 4'b0000, 1'b0, 4'b1000},
-                       {SHIFTR, 1'b0, 4'b0000, 1'b0, 4'b0000},
-                       {SHIFTR, 1'b1, 4'b0000, 1'b0, 4'b0000},
+                       {1'b1, LOAD,   1'b1, 4'b1010, 1'b0, 4'b1010},
+                       {1'b1, LOAD,   1'b1, 4'b0101, 1'b1, 4'b0101},
+                       {1'b1, LOAD,   1'b1, 4'b0000, 1'b1, 4'b0000},
+                       {1'b1, LOAD,   1'b0, 4'b1111, 1'b0, 4'b1111},
 
-                       {SHIFTL, 1'b1, 4'b0000, 1'b1, 4'b1000},
-                       {SHIFTL, 1'b1, 4'b0000, 1'b0, 4'b1100},
-                       {SHIFTL, 1'b1, 4'b1111, 1'b0, 4'b1110},
-                       {SHIFTL, 1'b1, 4'b0000, 1'b1, 4'b1111},
-                       {SHIFTL, 1'b0, 4'b0000, 1'b0, 4'b0111},
-                       {SHIFTL, 1'b0, 4'b0000, 1'b0, 4'b0011},
-                       {SHIFTL, 1'b0, 4'b0000, 1'b0, 4'b0001},
-                       {SHIFTL, 1'b0, 4'b0000, 1'b1, 4'b0000},
-                       {SHIFTL, 1'b0, 4'b1010, 1'b0, 4'b0000},
-                       {SHIFTL, 1'b0, 4'b1000, 1'b1, 4'b0000},
+                       {1'b1, LOAD,   1'b0, 4'b0000, 1'b0, 4'b0000},
+                       {1'b1, SHIFTR, 1'b0, 4'b0000, 1'b1, 4'b0001},
+                       {1'b1, SHIFTR, 1'b1, 4'b0000, 1'b1, 4'b0011},
+                       {1'b1, SHIFTR, 1'b0, 4'b1010, 1'b1, 4'b0111},
+                       {1'b1, SHIFTR, 1'b1, 4'b0101, 1'b1, 4'b1111},
+                       {1'b1, SHIFTR, 1'b0, 4'b0111, 1'b1, 4'b1111},
+                       {1'b1, SHIFTR, 1'b0, 4'b0011, 1'b0, 4'b1110},
+                       {1'b1, SHIFTR, 1'b0, 4'b1111, 1'b0, 4'b1100},
+                       {1'b1, SHIFTR, 1'b1, 4'b0000, 1'b0, 4'b1000},
+                       {1'b1, SHIFTR, 1'b0, 4'b0000, 1'b0, 4'b0000},
+                       {1'b1, SHIFTR, 1'b1, 4'b0000, 1'b0, 4'b0000},
 
-                       {LOAD,   1'b0, 4'b1010, 1'b0, 4'b1010},
-                       {HOLD,   1'b1, 4'b1111, 1'b1, 4'b1010},
-                       {HOLD,   1'b0, 4'b0000, 1'b0, 4'b1010},
-                       {HOLD,   1'b0, 4'b0101, 1'b0, 4'b1010},
-                       {HOLD,   1'b0, 4'b0000, 1'b0, 4'b1010},
+                       {1'b1, SHIFTL, 1'b1, 4'b0000, 1'b1, 4'b1000},
+                       {1'b1, SHIFTL, 1'b1, 4'b0000, 1'b0, 4'b1100},
+                       {1'b1, SHIFTL, 1'b1, 4'b1111, 1'b0, 4'b1110},
+                       {1'b1, SHIFTL, 1'b1, 4'b0000, 1'b1, 4'b1111},
+                       {1'b1, SHIFTL, 1'b0, 4'b0000, 1'b0, 4'b0111},
+                       {1'b1, SHIFTL, 1'b0, 4'b0000, 1'b0, 4'b0011},
+                       {1'b1, SHIFTL, 1'b0, 4'b0000, 1'b0, 4'b0001},
+                       {1'b1, SHIFTL, 1'b0, 4'b0000, 1'b1, 4'b0000},
+                       {1'b1, SHIFTL, 1'b0, 4'b1010, 1'b0, 4'b0000},
+                       {1'b1, SHIFTL, 1'b0, 4'b1000, 1'b1, 4'b0000},
 
-                       {LOAD,   1'b0, 4'b0101, 1'b0, 4'b0101},
-                       {LOAD,   1'b0, 4'b1010, 1'b0, 4'b1010}};
+                       {1'b1, LOAD,   1'b0, 4'b1010, 1'b0, 4'b1010},
+                       {1'b1, HOLD,   1'b1, 4'b1111, 1'b1, 4'b1010},
+                       {1'b1, HOLD,   1'b0, 4'b0000, 1'b0, 4'b1010},
+                       {1'b1, HOLD,   1'b0, 4'b0101, 1'b0, 4'b1010},
+                       {1'b1, HOLD,   1'b0, 4'b0000, 1'b0, 4'b1010},
+
+                       {1'b1, LOAD,   1'b0, 4'b0101, 1'b0, 4'b0101},
+                       {1'b1, LOAD,   1'b0, 4'b1010, 1'b0, 4'b1010}};
 
   initial begin
 
@@ -79,11 +86,15 @@ module mc10141_tb;
       d3In = t.d3In;
       clk = 0;
 
-      #1 clk = 1;
-      #1 clk = 0;
-      $display("%s%7g %4s d0In=%01b d=%04b d3In=%01b clk=%01b  Was/Sb: q=%04b/%04b  [%s]",
+      if (t.needsClock) begin
+        #1 clk = 1;
+        #1 clk = 0;
+      end
+
+      $display("%s%7g %s %4s d0In=%01b d=%04b d3In=%01b clk=%01b  Was/Sb: q=%04b/%04b  [%s]",
 	       (q == t.q) ? GREEN : RED,
-	       $realtime, s.name, d0In, d, d3In, clk, q, t.q,
+	       $realtime, t.needsClock ? "CLOCKED" : "NOTCLKD",
+	       s.name, d0In, d, d3In, clk, q, t.q,
 	       (q == t.q) ? "PASS" : "FAIL");
 
     end

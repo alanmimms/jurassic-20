@@ -20,13 +20,17 @@ module mc10141(input bit shft0in,
       HOLD:   ;
     endcase
 
+`ifndef TESTBENCH
     if ($sformatf("%m") == "top.kl10pv.clk_32.e12")
       $fdisplay(feSim.dumpFD, "%7.3f %m posedge clk value=%b", $realtime, value);
+`endif
   end
 
+`ifndef TESTBENCH
   always_ff @(negedge clk) begin
     if ($sformatf("%m") == "top.kl10pv.clk_32.e12")
       $fdisplay(feSim.dumpFD, "%7.3f %m negedge clk value=%b", $realtime, value);
   end
+`endif
 
 endmodule
