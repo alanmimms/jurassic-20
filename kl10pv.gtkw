@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Jan  1 20:35:55 2024
+[*] Mon Jan  1 22:27:56 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Jan  1 20:35:50 2024"
-[dumpfile_size] 140242309
+[dumpfile_mtime] "Mon Jan  1 22:26:28 2024"
+[dumpfile_size] 17941862
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 88
+[timestart] 35150
 [size] 1962 1063
 [pos] -1 -1
-*-5.000000 172 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.000000 35467 35483 35500 35467 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.clk_32.
@@ -151,13 +151,17 @@ top.kl10pv.feSim.ebus.diagStrobe
 [color] 3
 top.kl10pv.clk_32.clk3_e18_14
 top.kl10pv.clk_32.e18.b1
-[color] 3
-top.kl10pv.clk_32.clk3_sync_en_l
-@29
+top.kl10pv.clk_32.clk3_e17_3
 [color] 1
 top.kl10pv.clk_32.clk3_sync_l
+@29
+[color] 3
+top.kl10pv.clk_32.clk3_sync_en_l
 @28
 top.kl10pv.clk_32.clk2_mbox_clk_e_h
+top.kl10pv.clk_32.clk3_error_hold_a_h
+top.kl10pv.clk_32.clk3_error_hold_b_h
+top.kl10pv.clk_32.clk5_ebox_crm_dis_h
 top.kl10pv.clk_32.e18.b3
 top.kl10pv.clk_32.e18.b4
 top.kl10pv.clk_32.e18.b5
