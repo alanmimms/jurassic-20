@@ -741,7 +741,8 @@ Page: CRA4, PDF346
   // Simplified stack for CRA subroutine calls and returns.  Stack
   // pointer always points at most recently pushed value.  Stack grows
   // by increasing `craSP` values, pre-incrementing then writing for
-  // push, reading, then post-decrementing for pop.
+  // push, reading, then post-decrementing for pop. Push is done on
+  // posedge of clock, and pop is done on negedge.
 
   // Stack memory.
   parameter stackSize = 16;
@@ -763,30 +764,32 @@ Page: CRA4, PDF346
      cra4_sbr_ret_08_h, cra4_sbr_ret_09_h, cra4_sbr_ret_10_h} = sbrRet;
   end
 
-  always @(posedge cra3_clk_a_h) begin
+  always @(posedge cra3_clk_a_h, negedge cra3_clk_a_h) begin
     int dumpFD = feSim.dumpFD;
 
     if (cra4_reset_h) begin
       craSP <= '1;
-    end else if (cra4_callCM_resetCM_1777_h) begin
-      if (dumpFD != 0) $fdisplay (dumpFD, "%7g CRA call %o", $realtime,
+    end else if (cra3_clk_a_h && cra4_callCM_resetCM_1777_h) begin // POSedge of clock
+      if (dumpFD != 0) $fdisplay (dumpFD, "%7g CRA call %o SP=%d", $realtime,
 				  {cra1_adr_00_h, cra1_adr_01_h,
 				   cra1_adr_02_h, cra1_adr_03_h, cra1_adr_04_h,
 				   cra1_adr_05_h, cra1_adr_06_h, cra2_adr_07_h,
-				   cra2_adr_08_h, cra2_adr_09_h, cra2_adr_10_h});
+				   cra2_adr_08_h, cra2_adr_09_h, cra2_adr_10_h},
+				  craSP);
 
       stack[craSP + 1] <= {cra3_loc_00_h, cra3_loc_01_h,
 			   cra3_loc_02_h, cra3_loc_03_h, cra3_loc_04_h,
 			   cra3_loc_05_h, cra3_loc_06_h, cra3_loc_07_h,
 			   cra3_loc_08_h, cra3_loc_09_h, cra3_loc_10_h};
       craSP <= craSP + 1;
-    end else if (cra4_ret_and_NG1777_h) begin
-      if (dumpFD != 0) $fdisplay (dumpFD, "%7g CRA return %o J=%o", $realtime,
+    end else if (!cra3_clk_a_h && cra4_ret_and_NG1777_h) begin // NEGedge of clock
+      if (dumpFD != 0) $fdisplay (dumpFD, "%7g CRA return %o J=%o SP=%d", $realtime,
 				  stack[craSP],
 				  {cram_j00_h, cram_j01_h, cram_j02_h,
 				   cram_j03_h, cram_j04_h, cram_j05_h,
 				   cram_j06_h, cram_j07_h, cram_j08_h,
-				   cram_j09_h, cram_j10_h});
+				   cram_j09_h, cram_j10_h},
+				  craSP);
 
       sbrRet <= stack[craSP];
       craSP <= craSP - 1;

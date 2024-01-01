@@ -73,6 +73,10 @@ is driven with the popped CRA-LOC value. This done by clocking the top
 of stack into `sbrRet` and decrementing `craSP` on CRA4 CLK A H
 posedge.
 
+Testing.
+	0142: ... CALL[ROTS]		; ROTS=0044
+	0044: ... RETURN3			; SHOULD return to 0143
+
 
 ## Bugs Outstanding TODO
 
