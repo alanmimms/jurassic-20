@@ -62,6 +62,17 @@ The sequence should be
 	2756: KEEPME:   ... J/PTLOOP
 	2546: PTLOOP:   ...
 
+#### Simplified CRA Stack Pointer Scheme
+
+CRA4 CALL, RESET, 1777 H means push the CRA-LOC. In my simplified
+stack pointer scheme, this is done on CRA3 CLK A H posedge loading
+CRA-LOC into `sbrRet` and incrementing `craSP`.
+
+CRA4 RET AND -1777 H means pop the stack while CRA4 SBR RET 00..10 H
+is driven with the popped CRA-LOC value. This done by clocking the top
+of stack into `sbrRet` and decrementing `craSP` on CRA4 CLK A H
+posedge.
+
 
 ## Bugs Outstanding TODO
 
