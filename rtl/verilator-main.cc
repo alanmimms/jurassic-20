@@ -13,15 +13,15 @@
 #endif
 
 
-static const double nsPerClock = 10.0;
+static const double nsPerTick = 1.0;
 
 
-extern "C" void FEinitial(double nsPerClock);
+extern "C" void FEinitial(double nsPerTick);
 extern "C" void FEfinal(uint64_t ns);
 
 
 void DTEinitial() {
-  FEinitial(nsPerClock);
+  FEinitial(nsPerTick);
 }
 
 

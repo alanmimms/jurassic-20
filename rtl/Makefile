@@ -88,7 +88,7 @@ VFLAGS = \
 	-Wwarn-UNDRIVEN \
 	--CFLAGS "$(DEBUG) $(OPTIMIZE)" \
 	--compiler gcc \
-	--timescale 10ns --timescale-override 10ns \
+	--timescale 1ns --timescale-override 1ns \
 	--timing \
 	--trace --trace-structs \
 	--clk clk60 \

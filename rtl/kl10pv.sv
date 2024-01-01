@@ -17,7 +17,7 @@ module kl10pv(input clk60, input crobar);
 
 `include "kl-backplane.svh"
 
-  assign clk = clk60;
+  assign clk_master = clk60;
 
   // On a real KL10 this is a wire that traverses the width of the
   // backplane to provide delay equivalent to that experienced by the

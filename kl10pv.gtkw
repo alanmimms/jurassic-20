@@ -1,25 +1,26 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Jan  1 00:35:38 2024
+[*] Mon Jan  1 19:08:01 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Jan  1 00:35:33 2024"
-[dumpfile_size] 4522232
+[dumpfile_mtime] "Mon Jan  1 19:07:42 2024"
+[dumpfile_size] 24233680
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 23579
+[timestart] 18315
 [size] 1962 1063
 [pos] -1 -1
-*-7.000000 23940 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.000000 18880 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.feSim.
 [sst_width] 238
-[signals_width] 357
+[signals_width] 412
 [sst_expanded] 1
 [sst_vpaned_height] 316
-@28
+@29
 [color] 3
-top.kl10pv.clk
+top.kl10pv.clk_master
 @c02030
 [color] 7
 ^1 /home/alan/dec20/jurassic-20/rtl/dte.tff
@@ -100,7 +101,76 @@ top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 @1401200
 -group_end
-@c00200
+@28
+[color] 3
+top.kl10pv.feSim.clk
+@c02030
+[color] 7
+^1 /home/alan/dec20/jurassic-20/rtl/dte.tff
+top.kl10pv.ebus.ds[0:6]
+@28
+[color] 3
+(0)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(1)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(2)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(3)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(4)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(5)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(6)top.kl10pv.ebus.ds[0:6]
+@1401200
+-group_end
+@c00030
+[color] 7
+top.kl10pv.ebus.ds[0:6]
+@28
+[color] 3
+(0)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(1)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(2)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(3)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(4)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(5)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(6)top.kl10pv.ebus.ds[0:6]
+@1401200
+-group_end
+@28
+[color] 7
+top.kl10pv.feSim.ebus.diagStrobe
+top.kl10pv.clk_32.ctl3_diag_clk_edp_h
+top.kl10pv.edp_39.clk_edp_30_delayed_h
+top.kl10pv.edp_39.clk_edp_30_h
+top.kl10pv.clk_32.clk4_page_fail_h
+top.kl10pv.clk_32.clk4_pf_dlyd_a_h
+top.kl10pv.clk_32.clk3_e18_14
+top.kl10pv.clk_32.e12.d1
+[color] 3
+top.kl10pv.clk_32.clk1_odd_a_h
+top.kl10pv.clk_32.e12.clk
+[color] 2
+top.kl10pv.clk_32.clk3_e12_15
+top.kl10pv.clk_32.e12.q1
+top.kl10pv.clk_32.e12.op1
+top.kl10pv.clk_32.e12.op2
+@4022
+[color] 7
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.feSim.ebus.data[0:35]
+@28
+[color] 7
+top.kl10pv.feSim.EBUSdriver.driving
+@800200
 -core-state
 @c040a2
 [color] 3
@@ -621,6 +691,7 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
+@1000200
 -core-state
 @800200
 -CRA stack
