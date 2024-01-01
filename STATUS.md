@@ -78,6 +78,44 @@ Testing.
 	0044: ... RETURN3			; SHOULD return to 0143
 
 
+### EBUS Diagnostic Write and Diagnostic Function are flakey
+
+I have struggled to figure out how EBUS should be timed between the FE
+(DTE) and the EBOX. I kept adding more clock delays between
+EBUS.diagStrobe assertion and deassertion to see if that fixed it, and
+was under the impression it did. But now my LOAD AR operations are
+only working about 1/2 the time, and I decided to go figure that
+out. It's crucial these work properly to set up the KL to run its
+booted image (which, at present, is klddt).
+
+I found E12 in the CLK module is leaving its Q1 output (pin 15) high
+during the STOP CLOCK hiatus of CLK1 ODD A H while the diagnostic
+operation is happening, but the input D1 on the last CLK1 ODD A H
+posedge is low. WTF? This is what led me to consider the possibility
+that the `clk` input to the MC10141 at E12 was confused with the
+higher speed global signal that was known as `clk` until I changed it
+just now to `clk master`. This had no effect, which is what I
+expected. I can see the inputs to E12 properly showing CLK1 ODD A H
+pausing while low, but nevertheless the Q1 output goes high half a
+tick after this pause begins even though the D1 input stays low!
+Seriously: WTaF?
+
+Later, I changed the `verilator-main.cc` main loop to go forward in
+time by one unit of time per iteration and to just invert `top->clk60`
+each iteration instead of using the former slightly unrolled loop
+strategy of combining both edges in a single iteration. This changed
+things! Now I see the D1 input to E12 goes high, but _only while the
+E12 clk input is low_ so this shouldn't change the Q1 output at all,
+but it does!
+
+In fact, it appears the E18.nqb (pin 14) output is going high for the
+something analogous to the same reason I was having problems with E12!
+`CLK3 SYNC L` goes low when there is no E10 `CLK2 MBOX CLK E H` clock
+posedge to change it, and this is an MC10176 hex DFF with the same
+problem. Can it be my understanding of basic SystemVerilog and
+clocking of registers is flawed?
+
+
 ## Bugs Outstanding TODO
 
 * At `CRA-LOC` 0143 comment says AR should have 77,,777776, but my AR

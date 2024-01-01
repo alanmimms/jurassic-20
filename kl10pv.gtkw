@@ -1,24 +1,24 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Jan  1 19:08:01 2024
+[*] Mon Jan  1 20:35:55 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Jan  1 19:07:42 2024"
-[dumpfile_size] 24233680
+[dumpfile_mtime] "Mon Jan  1 20:35:50 2024"
+[dumpfile_size] 140242309
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 18315
+[timestart] 88
 [size] 1962 1063
 [pos] -1 -1
-*-8.000000 18880 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-5.000000 172 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.feSim.
 [sst_width] 238
-[signals_width] 412
+[signals_width] 564
 [sst_expanded] 1
 [sst_vpaned_height] 316
-@29
+@28
 [color] 3
 top.kl10pv.clk_master
 @c02030
@@ -148,21 +148,56 @@ top.kl10pv.ebus.ds[0:6]
 @28
 [color] 7
 top.kl10pv.feSim.ebus.diagStrobe
-top.kl10pv.clk_32.ctl3_diag_clk_edp_h
-top.kl10pv.edp_39.clk_edp_30_delayed_h
-top.kl10pv.edp_39.clk_edp_30_h
-top.kl10pv.clk_32.clk4_page_fail_h
-top.kl10pv.clk_32.clk4_pf_dlyd_a_h
+[color] 3
 top.kl10pv.clk_32.clk3_e18_14
+top.kl10pv.clk_32.e18.b1
+[color] 3
+top.kl10pv.clk_32.clk3_sync_en_l
+@29
+[color] 1
+top.kl10pv.clk_32.clk3_sync_l
+@28
+top.kl10pv.clk_32.clk2_mbox_clk_e_h
+top.kl10pv.clk_32.e18.b3
+top.kl10pv.clk_32.e18.b4
+top.kl10pv.clk_32.e18.b5
+top.kl10pv.clk_32.e18.qb
+top.kl10pv.clk_32.e18.nqb
 top.kl10pv.clk_32.e12.d1
 [color] 3
 top.kl10pv.clk_32.clk1_odd_a_h
 top.kl10pv.clk_32.e12.clk
-[color] 2
+[color] 3
 top.kl10pv.clk_32.clk3_e12_15
 top.kl10pv.clk_32.e12.q1
 top.kl10pv.clk_32.e12.op1
 top.kl10pv.clk_32.e12.op2
+@c00200
+-e12
+@28
+top.kl10pv.clk_32.e12.clk
+[color] 3
+top.kl10pv.clk_32.clk3_e22_14
+top.kl10pv.clk_32.e12.d0
+[color] 3
+top.kl10pv.clk_32.clk3_e18_14
+top.kl10pv.clk_32.e12.d1
+[color] 3
+top.kl10pv.clk_32.clk3_e27_14
+top.kl10pv.clk_32.e12.d2
+[color] 3
+top.kl10pv.clk_32.clk3_ebox_src_en_h
+top.kl10pv.clk_32.e12.d3
+top.kl10pv.clk_32.e12.op1
+top.kl10pv.clk_32.e12.op2
+top.kl10pv.clk_32.e12.q0
+top.kl10pv.clk_32.e12.q1
+top.kl10pv.clk_32.e12.q2
+top.kl10pv.clk_32.e12.q3
+top.kl10pv.clk_32.e12.shft0in
+top.kl10pv.clk_32.e12.shft3in
+@1401200
+-e12
 @4022
 [color] 7
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
@@ -918,9 +953,6 @@ top.kl10pv.vma_38.e70.q3
 top.kl10pv.vma_38.e70.shft0in
 [color] 1
 top.kl10pv.vma_38.e70.shft3in
-@22
-[color] 1
-top.kl10pv.vma_38.e70.value[0:3]
 @1401200
 -vma-e70
 -VMA

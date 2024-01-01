@@ -56,15 +56,10 @@ int main(int argc, char **argv) {
   DTEinitial();
 
   while (!contextp->gotFinish()) {
-    top->clk60 = 0;
     top->eval();
     if (trace) trace->dump(contextp->time());
-    contextp->timeInc(5);
-
-    top->clk60 = 1;
-    top->eval();
-    if (trace) trace->dump(contextp->time());
-    contextp->timeInc(5);
+    contextp->timeInc(1);
+    top->clk60 = !top->clk60;
   }
 
   DTEfinal(contextp->time());
