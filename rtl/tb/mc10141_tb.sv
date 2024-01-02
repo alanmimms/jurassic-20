@@ -91,9 +91,9 @@ module mc10141_tb;
         #1 clk = 0;
       end
 
-      $display("%s%7g %s %4s d0In=%01b d=%04b d3In=%01b clk=%01b  Was/Sb: q=%04b/%04b  [%s]",
+      $display("%s%7g %s %6s d0In=%01b d=%04b d3In=%01b clk=%01b  Was/Sb: q=%04b/%04b  [%s]",
 	       (q == t.q) ? GREEN : RED,
-	       $realtime, t.needsClock ? "CLOCKED" : "NOTCLKD",
+	       $realtime, t.needsClock ? "+clk" : "-clk",
 	       s.name, d0In, d, d3In, clk, q, t.q,
 	       (q == t.q) ? "PASS" : "FAIL");
 
