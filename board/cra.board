@@ -736,211 +736,66 @@ e60: 10176 hex dff
 
 Page: CRA4, PDF346
 
-////////////////////////////////////////////////////////////////
-// The incredibly baroque call/return stack implementation
-//
-// STACK ADDRESS SEQUENCE
-// Y  ABCD EFGH  Z  |  WRITE  READ
-// -----------------|------------
-// 0  1111 000X  0  |   16    10         RESET
-// 1  0111 1000  1  |   17    14
-// 0  1011 1100  0  |   07    16
-// 1  0101 1110  0  |   13    17
-//                  |
-// 1  1010 1111  0  |   05    07
-// 0  1101 0111  1  |   12    13
-// 0  0110 1011  1  |   15    05
-// 1  0011 0101  1  |   06    12
-//                  |
-// 0  1001 1010  1  |   03    15
-// 0  0100 1101  0  |   11    06
-// 0  0010 0110  1  |   04    03
-// 1  0001 0011  0  |   02    11
-//                  |
-// 1  1000 1001  1  |   01    04
-// 1  1100 0100  1  |   10    02
-// 1  1110 0010  0  |   14    01
-// 0  1111 0001  0  |   16    10
-
-
-e61: 10113 quad 2 xor
-     7 ~< cra4 stack adr a h
-     6 ~< cra4 stack adr d h
-     9 ~< %NC%
-     3 ~> cra4 stack adr y h
-     12 ~< cra4 stack adr e h
-     13 ~< %NC%
-     15 ~> cra4-e61-15
-     5 ~< cra4 stack adr d h
-     4 ~< %NC%
-     2 ~> cra4-e61-2
-     10 ~< cra4 stack adr f h
-     11 ~< cra4 stack adr e h
-     14 ~> cra4 stack adr z h
-
-e56: 10141 shft reg
-     13 ~< cra4 stack adr y h
-     12 ~< cra4-e8-15
-     11 ~< cra4-e8-15
-     9 ~< cra4-e8-15
-     6 ~< cra4-e8-15
-     5 ~< cra4-e61-15
-     7 ~< cra4 call, reset, 1777 l
-     10 ~< cra4-e8-14
-     4 ~< cra3 clk f h
-     14 ~> cra4 stack adr a h
-     15 ~> cra4 stack adr b h
-     2 ~> cra4 stack adr c h
-     3 ~> cra4 stack adr d h
-
-e57: 10141 shft reg
-     13 ~< cra4-e61-2
-     12 ~< %NC%
-     11 ~< %NC%
-     9 ~< %NC%
-     6 ~< %NC%
-     5 ~< cra4 stack adr z h
-     7 ~< cra4 call, reset, 1777 l
-     10 ~< cra4-e8-14
-     4 ~< cra3 clk f h
-     14 ~> cra4 stack adr e h
-     15 ~> cra4 stack adr f h
-     2 ~> cra4 stack adr g h
-     3 ~> cra4 stack adr h h
-
 %verilog
-  bit cra4_ret_and_NG1777_dly1_l;
-  always_comb cra4_ret_and_NG1777_dly1_h = !cra4_ret_and_NG1777_dly1_l;
-  delayN #(.N(1)) dl9
-	 (.clk(clk60),
-	  .trigger(!cra4_ret_and_NG1777_l),
-	  .q(cra4_ret_and_NG1777_dly1_l));
+
+  // Simplified stack for CRA subroutine calls and returns.  Stack
+  // pointer always points at most recently pushed value.  Stack grows
+  // by increasing `craSP` values, pre-incrementing then writing for
+  // push, reading, then post-decrementing for pop. Push is done on
+  // posedge of clock, and pop is done on negedge.
+
+  // Stack memory.
+  parameter stackSize = 16;
+  tCRAMAddress stack[stackSize];
+
+  // Stack pointer. Points at most recently pushed value and grows
+  // toward higher addresses. Initialized to all ones so it wraps
+  // to zero on first push, which happens at first START CLOCK.
+  bit [0:$clog2(stackSize)-1] craSP = '1;
+
+  // Subroutine return address register.
+  tCRAMAddress sbrRet;
+
+  // Output of our sbrRet drives the return address signals.
+  always_comb begin
+    {cra4_sbr_ret_00_h, cra4_sbr_ret_01_h,
+     cra4_sbr_ret_02_h, cra4_sbr_ret_03_h, cra4_sbr_ret_04_h,
+     cra4_sbr_ret_05_h, cra4_sbr_ret_06_h, cra4_sbr_ret_07_h,
+     cra4_sbr_ret_08_h, cra4_sbr_ret_09_h, cra4_sbr_ret_10_h} = sbrRet;
+  end
+
+  always @(posedge cra3_clk_a_h, negedge cra3_clk_a_h) begin
+    int dumpFD = feSim.dumpFD;
+
+    if (cra4_reset_h) begin
+      craSP <= '1;
+    end else if (cra3_clk_a_h && cra4_callCM_resetCM_1777_h) begin // POSedge of clock
+      if (dumpFD != 0) $fdisplay (dumpFD, "%7g CRA call %o SP=%d", $realtime,
+				  {cra1_adr_00_h, cra1_adr_01_h,
+				   cra1_adr_02_h, cra1_adr_03_h, cra1_adr_04_h,
+				   cra1_adr_05_h, cra1_adr_06_h, cra2_adr_07_h,
+				   cra2_adr_08_h, cra2_adr_09_h, cra2_adr_10_h},
+				  craSP);
+
+      stack[craSP + 1] <= {cra3_loc_00_h, cra3_loc_01_h,
+			   cra3_loc_02_h, cra3_loc_03_h, cra3_loc_04_h,
+			   cra3_loc_05_h, cra3_loc_06_h, cra3_loc_07_h,
+			   cra3_loc_08_h, cra3_loc_09_h, cra3_loc_10_h};
+      craSP <= craSP + 1;
+    end else if (!cra3_clk_a_h && cra4_ret_and_NG1777_h) begin // NEGedge of clock
+      if (dumpFD != 0) $fdisplay (dumpFD, "%7g CRA return %o J=%o SP=%d", $realtime,
+				  stack[craSP],
+				  {cram_j00_h, cram_j01_h, cram_j02_h,
+				   cram_j03_h, cram_j04_h, cram_j05_h,
+				   cram_j06_h, cram_j07_h, cram_j08_h,
+				   cram_j09_h, cram_j10_h},
+				  craSP);
+
+      sbrRet <= stack[craSP];
+      craSP <= craSP - 1;
+    end
+  end
 %endverilog
-
-e52: 10101 quad or/nor
-     4 ~< cra4 stack write l
-     12 ~< %NC%
-     2 ~> cra4 sel call h
-     5 ~> %NC%
-     7 ~< -cra4 ret and -1777 dly1 l
-     3 ~> %NC%
-     6 ~> cra4 sel call h
-     10 ~< cra3 clk f h
-     11 ~> cra4 sel call h
-     14 ~> cra4 stack write l
-     13 ~< cra4-dl1-3
-     15 ~> cra4 stack write l
-     9 ~> %NC%
-
-e62: 10158 4x2 mixer
-     5 ~< cra4 stack adr d h
-     6 ~< cra4 stack adr b h
-     3 ~< cra4 stack adr e h
-     4 ~< cra4 stack adr c h
-     12 ~< cra4 stack adr f h
-     13 ~< cra4 stack adr d h
-     10 ~< cra4 stack adr g h
-     11 ~< cra4 stack adr e h
-     9 ~< cra4 sel call h
-     1 ~> cra4 stack adr 10 h
-     2 ~> cra4 stack adr 04 h
-     15 ~> cra4 stack adr 02 h
-     14 ~> cra4 stack adr 01 h
-
-e67: 10145 16x4 RAM
-     5 ~< %NC%
-     4 ~< cra3 loc 00 h
-     11 ~< cra3 loc 01 h
-     12 ~< cra3 loc 02 h
-     10 ~< cra4 stack adr 10 h
-     9 ~< cra4 stack adr 04 h
-     7 ~< cra4 stack adr 02 h
-     6 ~< cra4 stack adr 01 h
-     3 ~< %NC%
-     13 ~< cra4 stack write l
-     2 ~> %NC%
-     1 ~> cra4-e67-1
-     15 ~> cra4-e67-15
-     14 ~> cra4-e67-14
-
-e72: 10145 16x4 RAM
-     5 ~< cra3 loc 03 h
-     4 ~< cra3 loc 04 h
-     11 ~< cra3 loc 05 h
-     12 ~< cra3 loc 06 h
-     10 ~< cra4 stack adr 10 h
-     9 ~< cra4 stack adr 04 h
-     7 ~< cra4 stack adr 02 h
-     6 ~< cra4 stack adr 01 h
-     3 ~< %NC%
-     13 ~< cra4 stack write l
-     2 ~> cra4-e72-2
-     1 ~> cra4-e72-1
-     15 ~> cra4-e72-15
-     14 ~> cra4-e72-14
-
-e76: 10145 16x4 RAM
-     5 ~< cra3 loc 07 h
-     4 ~< cra3 loc 08 h
-     11 ~< cra3 loc 09 h
-     12 ~< cra3 loc 10 h
-     10 ~< cra4 stack adr 10 h
-     9 ~< cra4 stack adr 04 h
-     7 ~< cra4 stack adr 02 h
-     6 ~< cra4 stack adr 01 h
-     3 ~< %NC%
-     13 ~< cra4 stack write l
-     2 ~> cra4-e76-2
-     1 ~> cra4-e76-1
-     15 ~> cra4-e76-15
-     14 ~> cra4-e76-14
-
-// I fiddled around with this for two days before I realized zero
-// delay would work fine for CRA3 CLK B H feeding the CLK inputs.
-e66: 10141 shft reg
-     13 ~< %NC%
-     12 ~< %NC%
-     11 ~< cra4-e67-1
-     9 ~< cra4-e67-15
-     6 ~< cra4-e67-14
-     5 ~< %NC%
-     7 ~< cra4-e28-3
-     10 ~< cra4-e28-3
-     4 ~< cra3 clk b h
-     14 ~> %NC%
-     15 ~> cra4 sbr ret 00 h
-     2 ~> cra4 sbr ret 01 h
-     3 ~> cra4 sbr ret 02 h
-
-e71: 10141 shft reg
-     13 ~< %NC%
-     12 ~< cra4-e72-2
-     11 ~< cra4-e72-1
-     9 ~< cra4-e72-15
-     6 ~< cra4-e72-14
-     5 ~< %NC%
-     7 ~< cra4-e28-3
-     10 ~< cra4-e28-3
-     4 ~< cra3 clk b h
-     14 ~> cra4 sbr ret 03 h
-     15 ~> cra4 sbr ret 04 h
-     2 ~> cra4 sbr ret 05 h
-     3 ~> cra4 sbr ret 06 h
-
-e81: 10141 shft reg
-     13 ~< %NC%
-     12 ~< cra4-e76-2
-     11 ~< cra4-e76-1
-     9 ~< cra4-e76-15
-     6 ~< cra4-e76-14
-     5 ~< %NC%
-     7 ~< cra4-e28-3
-     10 ~< cra4-e28-3
-     4 ~< cra3 clk b h
-     14 ~> cra4 sbr ret 07 h
-     15 ~> cra4 sbr ret 08 h
-     2 ~> cra4 sbr ret 09 h
-     3 ~> cra4 sbr ret 10 h
 
 Page: CRA5, PDF347
 
@@ -1205,7 +1060,7 @@ e46: 10101 quad or/nor
      11 ~> cra5 ebus 04 h
 
 e80: 10164 8 mixer
-     14 ~< cra4 stack adr 10 h
+     14 ~< `craSP[0]
      13 ~< {dt2} cra3 disp 01 h
      12 ~< cra4 sbr ret 07 h
      11 ~< cra4 sbr ret 01 h
@@ -1221,7 +1076,7 @@ e80: 10164 8 mixer
      15 ~> `EBUSdriver.data[2]
 
 e70: 10164 8 mixer
-     14 ~< cra4 stack adr 04 h
+     14 ~< `craSP[1]
      13 ~< {ef1} cra3 disp 02 h
      12 ~< cra4 sbr ret 08 h
      11 ~< cra4 sbr ret 02 h
@@ -1237,7 +1092,7 @@ e70: 10164 8 mixer
      15 ~> `EBUSdriver.data[3]
 
 e79: 10164 8 mixer
-     14 ~< cra4 stack adr 02 h
+     14 ~< `craSP[2]
      13 ~< {em2} cra3 disp 03 h
      12 ~< cra4 sbr ret 09 h
      11 ~< cra4 sbr ret 03 h
@@ -1253,7 +1108,7 @@ e79: 10164 8 mixer
      15 ~> `EBUSdriver.data[4]
 
 e75: 10164 8 mixer
-     14 ~< cra4 stack adr 01 h
+     14 ~< `craSP[3]
      13 ~< {es2} cra3 disp 04 h
      12 ~< cra4 sbr ret 10 h
      11 ~< cra4 sbr ret 04 h
@@ -1267,20 +1122,6 @@ e75: 10164 8 mixer
      2 ~< cra5 diag read l
 //     15 ~> {ea1} ebus d05 e h
      15 ~> `EBUSdriver.data[5]
-
-%verilog
-  always @(posedge cra4_stack_write_l) begin
-
-    if (feSim.dumpDiagFuncs)
-       $fdisplay(feSim.dumpFD, "%7g %m write[%o]=%o",
-	 $realtime,
-	 {cra4_stack_adr_10_h, cra4_stack_adr_04_h, cra4_stack_adr_02_h, cra4_stack_adr_01_h},
-	 {cra3_loc_00_h, cra3_loc_01_h,
-	  cra3_loc_02_h, cra3_loc_03_h, cra3_loc_04_h,
-	  cra3_loc_05_h, cra3_loc_06_h, cra3_loc_07_h,
-	  cra3_loc_08_h, cra3_loc_09_h, cra3_loc_10_h});
-  end
-%endverilog
 
 e99: 10101 quad or/nor
      13 ~< %NC%

@@ -239,7 +239,7 @@ module fe_sim(input bit clk,
 
   always @(posedge clk60) begin
 
-    if ($realtime >= 2.5) begin
+    if ($realtime >= 500.0) begin
       $fclose(dumpFD);
       $finish(2);
     end
@@ -925,16 +925,18 @@ FOR WDRAM
   task doDiagWrite(input tDiagFunction func, input W36 ebusData);
     if (dumpDiagFuncs) $fdisplay(dumpFD, "%7g %-30s %s", $realtime, func.name, fmt36(ebusData));
 
-    @(negedge clk) begin
-      ebus.ds <= func;
-      ebus.diagStrobe <= 1;
+    @(posedge clk) begin
       EBUSdriver.data <= ebusData;
+      ebus.ds <= func;
       EBUSdriver.driving <= 1;
     end
 
-    @(negedge clk) ;
-    @(negedge clk) ebus.diagStrobe <= 0;
-    @(negedge clk) EBUSdriver.driving <= 0;
+    @(posedge clk) ebus.diagStrobe <= 1;
+
+    repeat (8) @(posedge clk) ;
+
+    @(posedge clk) ebus.diagStrobe <= 0;
+    @(posedge clk) EBUSdriver.driving <= 0;
 
     @(posedge clk) ;
   endtask
@@ -946,13 +948,12 @@ FOR WDRAM
   task doDiagFunc(input tDiagFunction func);
     if (dumpDiagFuncs) $fdisplay(dumpFD, "%7g %s", $realtime, func.name);
 
-    @(negedge clk) begin
-      ebus.ds <= func;
-      ebus.diagStrobe <= 1;            // Strobe this
-    end
+    @(posedge clk) ebus.ds <= func;
+    @(posedge clk) ebus.diagStrobe <= 1;
 
-    repeat (16) @(negedge clk) ;
-    @(negedge clk) ebus.diagStrobe <= 0;
+    repeat (8) @(posedge clk) ;
+
+    @(posedge clk) ebus.diagStrobe <= 0;
     @(posedge clk) ;
   endtask // doDiagFunc
 
@@ -962,13 +963,13 @@ FOR WDRAM
   // if we were the front-end.
   task automatic doDiagRead(input tDiagFunction func, output W36 result);
 
-    @(negedge clk) begin
+    @(posedge clk) begin
       ebus.ds <= func;
       ebus.diagStrobe <= 1;
     end
 
-    @(negedge clk) ;
-    @(negedge clk) result <= ebus.data;
+    @(posedge clk) ;
+    @(posedge clk) result <= ebus.data;
     @(posedge clk) ebus.diagStrobe <= 0;
   endtask
 

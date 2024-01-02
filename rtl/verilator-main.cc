@@ -13,15 +13,31 @@
 #endif
 
 
-static const double nsPerClock = 10.0;
+// Our top level clock frequency in Hz.
+static const double clk60Hz = 60.0e6;
+
+// This is monotonically incremented as we run for each clk60
+// edge. From this we compute the value of contextp->time() based on
+// clk60Hz.
+static uint64_t nTicks = 0;
+
+// This is the number of real ns between each clk60 edge.
+static const double nsPerTick = 1000.0 / (clk60Hz/1.0e6) / 2.0;
 
 
-extern "C" void FEinitial(double nsPerClock);
-extern "C" void FEfinal(uint64_t ns);
+// Returns rounded number of ns for the number of clk60 edges counted
+// by nTicks.
+static inline uint64_t nsFromTicks() {
+  return (uint64_t) (0.5 + (double) nTicks * nsPerTick);
+}
+
+
+extern "C" void FEinitial(double nsPerTick);
+extern "C" void FEfinal(uint64_t nsAtEndOfRun);
 
 
 void DTEinitial() {
-  FEinitial(nsPerClock);
+  FEinitial(nsPerTick);
 }
 
 
@@ -56,15 +72,12 @@ int main(int argc, char **argv) {
   DTEinitial();
 
   while (!contextp->gotFinish()) {
-    top->clk60 = 0;
     top->eval();
     if (trace) trace->dump(contextp->time());
-    contextp->timeInc(5);
 
-    top->clk60 = 1;
-    top->eval();
-    if (trace) trace->dump(contextp->time());
-    contextp->timeInc(5);
+    ++nTicks;
+    contextp->time(nsFromTicks());
+    top->clk60 = !top->clk60;
   }
 
   DTEfinal(contextp->time());

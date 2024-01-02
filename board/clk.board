@@ -7,11 +7,11 @@
 Page: CLK1, PDF168
 
 osc60: oscillator 60MHz
-      1 ~< {ab1} clk
+      1 ~< {ab1} clk master
       2 ~> clk1-osc60-1
 
 osc62: oscillator 62MHz
-      1 ~< {ab1} clk
+      1 ~< {ab1} clk master
       2 ~> clk1-osc62-1
 
 e68:  10131 dual dff

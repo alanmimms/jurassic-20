@@ -16,9 +16,11 @@ LOGIC_TESTS = mc10136 mc10141 mc10181
 TOP = kl10pv
 
 VERILATORROOT = $(HOME)/verilator
-VOBJDIR = ./obj_dir
+VOBJDIR = obj_dir
 LOGICDIR = logic
-GENDIR = ./gen
+GENDIR = gen
+
+VPATH = $(LOGICDIR) $(GENDIR) $(VOBJDIR)
 
 SLOTNAMES-CACHE = \
     apr34 cac17 cac19 cac24 cac25 ccl11 ccw12 cha27 chc09 chx28 clk32 \
@@ -38,8 +40,8 @@ SVFILES = \
 	kl10pv.sv \
 	fe_sim.sv \
 	mb20.sv \
-	$(foreach M,$(MODS),$(LOGICDIR)/$(M).sv) \
-	$(foreach M,$(SLOTNAMES),$(GENDIR)/$(M).sv) \
+	$(foreach M, $(MODS), $(LOGICDIR)/$(M).sv) \
+	$(foreach M, $(SLOTNAMES), $(GENDIR)/$(M).sv) \
 
 SVHFILES = $(TOP).svh $(DTEINTF) logic.svh
 CXXFILES = verilator-main.cc
@@ -51,7 +53,6 @@ DTEINTF = dte.h dte.svh
 DTETFF = dte.tff
 
 EXE = $(VOBJDIR)/kl10pvtb
-LOGICEXEs = $(foreach M,$(MODS),$(VOBJDIR)/V$(M)-tb)
 
 #DEBUG = -g
 DEBUG =
@@ -63,7 +64,7 @@ KILLWARNINGS = \
 	-Wno-UNOPTFLAT \
 	-Wno-INITIALDLY \
 	-Wno-SELRANGE \
-	-Wno-MULTIDRIVEN \
+#	-Wno-MULTIDRIVEN \
 #	-Wno-DECLFILENAME \
 #	-Wno-CLKDATA \
 #	-Wno-TIMESCALEMOD
@@ -88,18 +89,16 @@ VFLAGS = \
 	-Wwarn-UNDRIVEN \
 	--CFLAGS "$(DEBUG) $(OPTIMIZE)" \
 	--compiler gcc \
-	--timescale 10ns --timescale-override 10ns \
+	--timescale 1ns --timescale-override 1ns \
 	--timing \
 	--trace --trace-structs \
 	--clk clk60 \
 	--x-initial 0 \
 	-cc --build --exe -j 9
 
-.PHONY:	all logic-tb clean tests
+.PHONY:	all clean tests
 
 all:	$(EXE)
-
-logic-tb: $(MODS)
 
 ### Default rules...
 -include $(VOBJDIR)/*.d
@@ -113,26 +112,19 @@ $(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES) $(DTEINTF)
 $(DTEINTF) $(DTETFF): dte-interface.js
 	node dte-interface.js -- $(DTEINTF) $(DTETFF)
 
-$(MODS): $(foreach M,$(MODS),$(VOBJDIR)/V$(M))
-
-# Holy fucknoodles these two steps were complicated to get "right".
-$(foreach M,$(MODS),$(VOBJDIR)/V$(M).mk): $(VOBJDIR)/V%.mk: $(LOGICDIR)/%.sv
-	$(VERILATOR) -Wall --trace --cc $< --exe $(TBDIR)/$*-tb.cc
-
-$(foreach M,$(MODS),$(VOBJDIR)/V$(M)-tb): $(VOBJDIR)/V%-tb: $(TBDIR)/%-tb.cc $(VOBJDIR)/V%.mk
-	$(MAKE) -C $(VOBJDIR) -f V$*.mk
-
 clean:
 	@rm -fr obj_dir
 	rm -rf $(VOBJDIR) $(DTEINTF) $(DTETFF) $(foreach F,$(EXE),tb/$(EXE))
 
-# TODO Add back mc10181 test
-tests:	$(foreach T,$(LOGIC_TESTS),$(VOBJDIR)/test-$(T))
-
-$(VOBJDIR)/test-%:	rtl/tb/%_tb.sv rtl/logic/%.sv rtl/logic.svh rtl/util.svh
+test-%:	%.sv $(TBDIR)/%_tb.sv $(LOGICDIR)/%.sv logic.svh util.svh
+	mkdir -p $(VOBJDIR)
 	$(VERILATOR) \
 		$(VFLAGS) -DTESTBENCH \
 		$^ \
-		--top-module $(basename $(notdir $<)) \
-		--main --timing \
-		-o $(@F)
+		-I$(VOBJDIR) \
+		--top-module $(basename $(notdir $<))_tb \
+		--main --timing --trace \
+		--build --exe \
+		-o $@
+
+tests:	$(foreach T, $(LOGIC_TESTS), test-$(T))
