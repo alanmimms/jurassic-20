@@ -88,8 +88,10 @@ many you'll have to add.
 * Clone the project's git respository and go into the top level
   directory.
 * Clone https://github.com/verilator/verilator and install its
-  required packages and build it. I used the `stable` tag version
-  which I _think_ is `v5.012`.
+  required packages and build it. I used the `stable` tag version, and
+  I found that `stable` version 5.012 was buggy for clocking my
+  mc10141 and mc10176 models, but Verilator `stable` 5.020 is working
+  well.
 * Install Yarn package manager `sudo apt install yarnpkg` (the NodeJS
   package manager). You could use npm also, I think, if you want to.
 * Install `gtkwave` to look at the resulting waveform data.
