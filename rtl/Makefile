@@ -123,7 +123,7 @@ test-%:	%.sv $(TBDIR)/%_tb.sv $(LOGICDIR)/%.sv logic.svh util.svh
 		$^ \
 		-I$(VOBJDIR) \
 		--top-module $(basename $(notdir $<))_tb \
-		--main --timing \
+		--main --timing --trace \
 		--build --exe \
 		-o $@
 
