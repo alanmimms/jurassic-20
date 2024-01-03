@@ -248,6 +248,7 @@ module fe_sim(input bit clk,
 
   task automatic startKLBoot(W36 startAddr);
     static W36 runBootLoaderFlag = 36'o400000_000000;
+    static W36 jumpToStart = 36'o254000_010000;
 
     // Zero ACs
     for (int ac = 0; ac < 16; ++ac) loadAC(ac, 0);
@@ -257,9 +258,9 @@ module fe_sim(input bit clk,
     execKLInstr(36'o701200_000000);	// CONO PAG,0		; Clear paging system
     execKLInstr(36'o701140_000000);	// DATAO PAG,0		; Clear user base
 
-    // Set AC0 and MEM[0] to contain the flag to run the boot loader.
-    loadAC(0, runBootLoaderFlag);
-    writeMem(0, runBootLoaderFlag);
+    // Set AC0 and MEM[0] to jump to the boot loader.
+    loadAC(0, jumpToStart);
+    writeMem(0, jumpToStart);
 
     // Enable parity checking on CRAM, DRAM, FS, AR/ARX
 //    doDiagWrite(diagfRESET_PAR_REGS, 'o16);
@@ -746,8 +747,8 @@ FOR WDRAM
 
   task automatic writeMem(W36 adr, W36 value);
     memory0.mem[adr] = value;
-
-    if (dumpLoadMem && value != 0) $fdisplay(dumpFD, "MEM %o: %s", adr[14:35], memory0.mem[adr]);
+    if (dumpLoadMem) $fdisplay(dumpFD, "Write MEM %o: %s",
+			       adr[14:35], fmt36(memory0.mem[adr]));
   endtask // writeMem
 
 
