@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Wed Jan  3 02:49:16 2024
+[*] Wed Jan  3 20:33:36 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Jan  3 02:49:07 2024"
-[dumpfile_size] 16663786
+[dumpfile_mtime] "Wed Jan  3 20:31:55 2024"
+[dumpfile_size] 41438189
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 50266
+[timestart] 50999
 [size] 1962 1063
 [pos] -1 -1
-*-8.000000 50975 35483 35500 35467 44600 44617 44633 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.000000 51792 35483 35500 35467 44600 44617 44633 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
@@ -41,9 +41,8 @@ top.kl10pv.ebus.ds[0:6]
 (6)top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
-@29
-top.kl10pv.con_35.con_ebox_halted_h
 @28
+top.kl10pv.con_35.con_ebox_halted_h
 [color] 1
 top.kl10pv.clk_32.clk3_error_hold_a_h
 @c00200
@@ -1078,7 +1077,7 @@ top.kl10pv.clk_32.clk4_ebox_clk_l
 top.kl10pv.clk_32.clk3_sync_en_h
 @1401200
 -clocks
-@c00200
+@800200
 -MBUS
 @28
 [color] 3
@@ -1090,10 +1089,13 @@ top.kl10pv.memory0.mbus.adrHold
 @30
 [color] 3
 top.kl10pv.memory0.mbus.adr[14:35]
-@22
+@4023
 [color] 3
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
 top.kl10pv.memory0.mbus.dIn[0:35]
+@4022
 [color] 3
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
 top.kl10pv.memory0.mbus.dOut[0:35]
 @c00028
 [color] 3
@@ -1121,7 +1123,7 @@ top.kl10pv.memory0.mbus.acknA
 top.kl10pv.memory0.mbus.startB
 [color] 7
 top.kl10pv.memory0.mbus.acknB
-@1401200
+@1000200
 -mbus
 @c00200
 -MB20-aphase
@@ -1144,8 +1146,6 @@ top.kl10pv.memory0.aPhase.d[0:35]
 [color] 3
 top.kl10pv.memory0.aPhase.wo[34:35]
 @b0
-[color] 3
-top.kl10pv.memory0.aPhase.fullAddr[14:35]
 [color] 3
 top.kl10pv.memory0.aPhase.addr[14:35]
 @c00028
@@ -1186,8 +1186,6 @@ top.kl10pv.memory0.bPhase.d[0:35]
 [color] 3
 top.kl10pv.memory0.bPhase.wo[34:35]
 @22
-[color] 3
-top.kl10pv.memory0.bPhase.fullAddr[14:35]
 [color] 3
 top.kl10pv.memory0.bPhase.addr[14:35]
 [color] 3

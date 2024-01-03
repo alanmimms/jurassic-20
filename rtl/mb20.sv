@@ -78,9 +78,10 @@ module mb20Phase (input bit clk,
 		  input bit diag,
 		  output bit ackn);
 
-  bit [14:35] fullAddr;	      // Address base we start at for quadword
-  bit [34:35] wo;	      // Word offset of quadword
+  bit [14:35] startAddr = 0;  // Address base we start at for quadword
+  bit [34:35] wo = 0;	      // Word offset of quadword
   bit [0:3] toAck;	      // Words we have not yet ACKed
+  W36 word = 36'o123456_654321; // Word we are returning this cycle
   int dumpFD = feSim.dumpFD;
 
   always_ff @(posedge clk) begin
@@ -94,14 +95,16 @@ module mb20Phase (input bit clk,
       validIn <= 0;
       ackn <= 0;
     end else if (start && toAck == 0) begin     // A transfer is starting
-      fullAddr <= addr;		// Address of first word we do
+      startAddr <= addr;	// Address of first word we do
       wo <= addr[34:35];	// Word offset we increment mod 4
+      word <= memory0.mem[startAddr];
       toAck <= inRq;		// Addresses remaining to ACK
       validIn <= 0;		// XXX required? Delay a clock before presenting data?
       ackn <= 1;
       if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> PHASE mem[%1o]=%s", $realtime, 
-	       {fullAddr[14:33], wo}, feSim.fmt36(memory0.mem[{fullAddr[14:33], wo}]));
+				 startAddr, feSim.fmt36(memory0.mem[startAddr]));
     end else if (toAck != 0) begin
+      word <= memory0.mem[wo];
       ackn <= 1;
       validIn <= 1;
       wo <= wo + 1;
@@ -113,7 +116,7 @@ module mb20Phase (input bit clk,
   end
 
   always_comb begin
-    d = memory0.mem[{fullAddr[14:33], wo}];
+    d = word;
     parity = !^d;
   end
 endmodule
