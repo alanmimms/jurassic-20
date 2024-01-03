@@ -1,18 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Tue Jan  2 00:36:06 2024
+[*] Wed Jan  3 00:33:58 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Tue Jan  2 00:35:18 2024"
-[dumpfile_size] 17892704
+[dumpfile_mtime] "Wed Jan  3 00:22:11 2024"
+[dumpfile_size] 18285906
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
 [timestart] 49291
 [size] 1962 1063
 [pos] -1 -1
-*-8.000000 50000 35483 35500 35467 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.000000 50000 35483 35500 35467 44600 44617 44633 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.feSim.
 [sst_width] 238
 [signals_width] 564
@@ -44,6 +43,22 @@ top.kl10pv.ebus.ds[0:6]
 -group_end
 @28
 top.kl10pv.con_35.con_ebox_halted_h
+[color] 1
+top.kl10pv.clk_32.clk3_error_hold_a_h
+[color] 1
+top.kl10pv.clk_32.clk3_cram_par_err_h
+top.kl10pv.crm_40.cram_par_00_h
+top.kl10pv.crm_40.cram_par_04_h
+top.kl10pv.crm_40.cram_par_08_h
+top.kl10pv.crm_40.cram_par_12_h
+@29
+[color] 2
+top.kl10pv.clk_32.cram_par_16_h
+@28
+[color] 3
+top.kl10pv.clk_32.clk5_cram_par_check_l
+top.kl10pv.clk_32.clk3_dram_par_err_h
+top.kl10pv.clk_32.clk3_fm_par_err_h
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
 @c000b0
@@ -101,6 +116,138 @@ top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 @1401200
 -group_end
+@c00200
+-EBUS
+@4022
+[color] 7
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.ebus.data[0:35]
+@28
+[color] 7
+top.kl10pv.ebus.diagStrobe
+@c02030
+[color] 7
+^1 /home/alan/dec20/jurassic-20/rtl/dte.tff
+top.kl10pv.ebus.ds[0:6]
+@28
+[color] 3
+(0)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(1)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(2)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(3)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(4)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(5)top.kl10pv.ebus.ds[0:6]
+[color] 3
+(6)top.kl10pv.ebus.ds[0:6]
+@1401200
+-group_end
+@800028
++{EDP-ARM sel+/en} #{top.kl10pv.edp_39.edp1_e52_[11:5]} top.kl10pv.edp_39.edp1_e52_11 top.kl10pv.edp_39.edp1_e52_9 top.kl10pv.edp_39.edp1_e52_6 top.kl10pv.edp_39.edp1_e52_5
+@28
+top.kl10pv.edp_39.edp1_e52_5
+top.kl10pv.edp_39.edp1_e52_6
+top.kl10pv.edp_39.edp1_e52_9
+top.kl10pv.edp_39.edp1_e52_11
+@c040a2
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+#{ARM} top.kl10pv.edp_39.arm_35_h top.kl10pv.edp_39.arm_34_h top.kl10pv.edp_39.arm_33_h top.kl10pv.edp_39.arm_32_h top.kl10pv.edp_39.arm_31_h top.kl10pv.edp_39.arm_30_h top.kl10pv.edp_41.arm_29_h top.kl10pv.edp_41.arm_28_h top.kl10pv.edp_41.arm_27_h top.kl10pv.edp_41.arm_26_h top.kl10pv.edp_41.arm_25_h top.kl10pv.edp_41.arm_24_h top.kl10pv.edp_43.arm_23_h top.kl10pv.edp_43.arm_22_h top.kl10pv.edp_43.arm_21_h top.kl10pv.edp_43.arm_20_h top.kl10pv.edp_43.arm_19_h top.kl10pv.edp_43.arm_18_h top.kl10pv.edp_49.arm_17_h top.kl10pv.edp_49.arm_16_h top.kl10pv.edp_49.arm_15_h top.kl10pv.edp_49.arm_14_h top.kl10pv.edp_49.arm_13_h top.kl10pv.edp_49.arm_12_h top.kl10pv.edp_51.arm_11_h top.kl10pv.edp_51.arm_10_h top.kl10pv.edp_51.arm_09_h top.kl10pv.edp_51.arm_08_h top.kl10pv.edp_51.arm_07_h top.kl10pv.edp_51.arm_06_h top.kl10pv.edp_53.arm_05_h top.kl10pv.edp_53.arm_04_h top.kl10pv.edp_53.arm_03_h top.kl10pv.edp_53.arm_02_h top.kl10pv.edp_53.arm_01_h top.kl10pv.edp_53.arm_00_h
+@4028
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.arm_00_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.arm_01_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.arm_02_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.arm_03_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.arm_04_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_53.arm_05_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.arm_06_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.arm_07_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.arm_08_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.arm_09_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.arm_10_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_51.arm_11_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.arm_12_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.arm_13_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.arm_14_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.arm_15_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.arm_16_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_49.arm_17_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.arm_18_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.arm_19_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.arm_20_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.arm_21_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.arm_22_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_43.arm_23_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.arm_24_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.arm_25_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.arm_26_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.arm_27_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.arm_28_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_41.arm_29_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.arm_30_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.arm_31_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.arm_32_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.arm_33_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.arm_34_h
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.edp_39.arm_35_h
+@1401200
+-group_end
+@800200
+-CLK-race
+@28
+top.kl10pv.clk_32.clk3_e18_14
+[color] 1
+top.kl10pv.clk_32.clk3_e12_15
+top.kl10pv.clk_32.clk1_odd_a_h
+top.kl10pv.clk_32.ctl3_diag_clk_edp_h
+[color] 3
+top.kl10pv.edp_53.ctl_ar_00to08_load_l
+top.kl10pv.clk_32.clk1_gated_en_h
+@1000200
+-CLK-race
+@1001200
+-group_end
+@1401200
+-EBUS
 @800200
 -core-state
 @c040a2
@@ -880,37 +1027,6 @@ top.kl10pv.clk_32.clk4_ebox_clk_l
 top.kl10pv.clk_32.clk3_sync_en_h
 @1401200
 -clocks
-@c00200
--EBUS
-@40a2
-[color] 7
-^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
-top.kl10pv.ebus.data[0:35]
-@28
-[color] 7
-top.kl10pv.ebus.diagStrobe
-@c02030
-[color] 7
-^1 /home/alan/dec20/jurassic-20/rtl/dte.tff
-top.kl10pv.ebus.ds[0:6]
-@28
-[color] 3
-(0)top.kl10pv.ebus.ds[0:6]
-[color] 3
-(1)top.kl10pv.ebus.ds[0:6]
-[color] 3
-(2)top.kl10pv.ebus.ds[0:6]
-[color] 3
-(3)top.kl10pv.ebus.ds[0:6]
-[color] 3
-(4)top.kl10pv.ebus.ds[0:6]
-[color] 3
-(5)top.kl10pv.ebus.ds[0:6]
-[color] 3
-(6)top.kl10pv.ebus.ds[0:6]
-@1401200
--group_end
--EBUS
 @c00200
 -MBUS
 @28

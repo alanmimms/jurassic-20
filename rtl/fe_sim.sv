@@ -264,6 +264,7 @@ module fe_sim(input bit clk,
     // Enable parity checking on CRAM, DRAM, FS, AR/ARX
     doDiagWrite(diagfRESET_PAR_REGS, 'o16);
 
+    doDiagFunc(diagfSET_RUN);		// Set the RUN flop
     doDiagFunc(diagfCONTINUE);		// Push CONTINUE button
     doDiagFunc(diagfSTART_CLOCK);	// Start clocks
 

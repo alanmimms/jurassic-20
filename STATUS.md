@@ -116,6 +116,16 @@ went away! I have always been using the `stable` branch of
 Verilator. Apparently this version is more stable than the previous
 stable version.
 
+BUT WAIT THERE'S MORE: The "solution" above wasn't a solution. The
+symptom was that I would see in `mc10141.sv` both a posedge on `clk`
+and a negedge on `clk` at the same time tick! I saw this by adding
+some `$fdisplay()` junk to show time and both clock edges (even though
+the model was supposed to only change on posedge). The problem was
+caused by a glitch in the `mc10141.sv` clock from a race induced in
+CLK1 by zero delay being substituted for the 5.0ns delay line between
+CLK1 MAIN SOURCE C H and E51 pin4. Replacing this zero delay with a
+delay based on a single edge of `clk60` solved it.
+
 
 ### Two Nested Microinstruction Calls Hangs on Outer Return
 
