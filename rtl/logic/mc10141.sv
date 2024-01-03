@@ -19,20 +19,6 @@ module mc10141(input bit shft0in,
       SHIFTL: value <= {shft0in, value[0:2]};
       HOLD:   ;
     endcase
-
-`ifndef TESTBENCH
-    if ($sformatf("%m") == "top.kl10pv.clk_32.e12")
-      $fdisplay(feSim.dumpFD, "%7.3f %m posedge clk op=%b d=%b value=%b",
-		$realtime, {op2, op1}, {d0,d1,d2,d3}, value);
-`endif
   end
-
-`ifndef TESTBENCH
-  always_ff @(negedge clk) begin
-    if ($sformatf("%m") == "top.kl10pv.clk_32.e12")
-      $fdisplay(feSim.dumpFD, "%7.3f %m negedge clk op=%b d=%b value=%b",
-		$realtime, {op2, op1}, {d0,d1,d2,d3}, value);
-  end
-`endif
 
 endmodule
