@@ -401,7 +401,7 @@ module fe_sim(input bit clk,
 
 
   task automatic loadAR(W36 ar);
-    if (dumpDiagFuncs) $fdisplay (dumpFD, "Load AR %06o,,%06o", ar[0:17], ar[18:35]);
+    if (dumpDiagFuncs) $fdisplay (dumpFD, "Load AR %s", fmt36(ar));
     doDiagWrite(diagfLOAD_AR, ar);
   endtask // loadAR
 
@@ -733,17 +733,14 @@ FOR WDRAM
     end
 
     $fclose(fd);
-    $display("%7g [loaded %s with start=%o,,%o]", $realtime, path, startAddr[14:17], startAddr[18:35]);
+    $display("%7g [loaded %s with start=%s]", $realtime, path, fmt36(startAddr));
   endtask // loadDiagnostic
 
 
   task automatic writeMem(W36 adr, W36 value);
     memory0.mem[adr] = value;
 
-    if (dumpLoadMem && value != 0) $fdisplay(dumpFD, "MEM %o: %o,,%o",
-					     adr[14:35],
-					     memory0.mem[adr][0:17],
-					     memory0.mem[adr][18:35]);
+    if (dumpLoadMem && value != 0) $fdisplay(dumpFD, "MEM %o: %s", adr[14:35], memory0.mem[adr]);
   endtask // writeMem
 
 
@@ -872,45 +869,6 @@ FOR WDRAM
 
     `putDRAMEOBit(ea,  e3,  e8, e[5], o[5])   // DRAM PAR X/Y H
   endtask // writeDRAM
-
-
-  ////////////////////////////////////////////////////////////////
-  // Read from previously specified address (see
-  // `setCRAMDiagAddress()`) a full CRAM word into `cw`.
-  task automatic readCRAM();
-    W36 readResult;
-
-    doDiagRead(diagfCRAM_READ_00_19, readResult);
-    cw[00:03] = readResult[08:11];
-    cw[04:07] = readResult[14:17];
-    cw[08:11] = readResult[20:23];
-    cw[12:15] = readResult[26:29];
-    cw[16:19] = readResult[32:35];
-
-    doDiagRead(diagfCRAM_READ_20_39, readResult);
-    cw[20:23] = readResult[08:11];
-    cw[24:27] = readResult[14:17];
-    cw[28:31] = readResult[20:23];
-    cw[32:35] = readResult[26:29];
-    cw[36:39] = readResult[32:35];
-
-    doDiagRead(diagfCRAM_READ_40_59, readResult);
-    cw[40:43] = readResult[08:11];
-    cw[44:47] = readResult[14:17];
-    cw[48:51] = readResult[20:23];
-    cw[52:55] = readResult[26:29];
-    cw[56:59] = readResult[32:35];
-
-    doDiagRead(diagfCRAM_READ_60_79, readResult);
-    cw[60:63] = readResult[08:11];
-    cw[64:67] = readResult[14:17];
-    cw[68:71] = readResult[20:23];
-    cw[72:75] = readResult[26:29];
-    cw[76:79] = readResult[32:35];
-
-    doDiagRead(diagfCRAM_READ_80_85, readResult);
-    cw[80:85] = readResult[00:05];
-  endtask // readCRAM
 
 
   ////////////////////////////////////////////////////////////////

@@ -1,10 +1,10 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Wed Jan  3 00:33:58 2024
+[*] Wed Jan  3 02:00:33 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Jan  3 00:22:11 2024"
-[dumpfile_size] 18285906
+[dumpfile_mtime] "Wed Jan  3 02:00:27 2024"
+[dumpfile_size] 18285957
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
 [timestart] 49291
 [size] 1962 1063

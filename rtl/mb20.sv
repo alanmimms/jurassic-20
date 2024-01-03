@@ -18,6 +18,7 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   W36 aData, bData;
   bit aParity, bParity;
   bit [14:35] addr;
+  int dumpFD = feSim.dumpFD;
 
   always_comb aClk = ~mbus.clk;
   always_comb bClk =  mbus.clk;
@@ -31,7 +32,8 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   always_latch if (mbus.adrHold) addr = mbus.adr;
 
   always @(posedge mbus.startA, posedge mbus.startB) begin
-    $display("%7g ----> MB20 mem[%1o]=%o,,%o", $realtime, mbus.adr, mem[mbus.adr][0:17], mem[mbus.adr][18:35]);
+    if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> MB20 mem[%1o]=%s",
+			       $realtime, mbus.adr, feSim.fmt36(mem[mbus.adr]));
   end
 
   mb20Phase aPhase(.clk(aClk),
@@ -79,11 +81,12 @@ module mb20Phase (input bit clk,
   bit [14:35] fullAddr;	      // Address base we start at for quadword
   bit [34:35] wo;	      // Word offset of quadword
   bit [0:3] toAck;	      // Words we have not yet ACKed
+  int dumpFD = feSim.dumpFD;
 
   always_ff @(posedge clk) begin
 
     if (diag) begin
-      $display("%7g ----> %m DIAG", $realtime);
+      if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> %m DIAG", $realtime);
     end
 
     if (reset) begin
@@ -96,9 +99,8 @@ module mb20Phase (input bit clk,
       toAck <= inRq;		// Addresses remaining to ACK
       validIn <= 0;		// XXX required? Delay a clock before presenting data?
       ackn <= 1;
-      $display("%7g ----> PHASE mem[%1o]=%o,,%o", $realtime, 
-	       {fullAddr[14:33], wo},
-	       memory0.mem[{fullAddr[14:33], wo}][0:17], memory0.mem[{fullAddr[14:33], wo}][18:35]);
+      if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> PHASE mem[%1o]=%s", $realtime, 
+	       {fullAddr[14:33], wo}, feSim.fmt36(memory0.mem[{fullAddr[14:33], wo}]));
     end else if (toAck != 0) begin
       ackn <= 1;
       validIn <= 1;
