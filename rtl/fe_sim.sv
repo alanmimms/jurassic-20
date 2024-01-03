@@ -257,12 +257,13 @@ module fe_sim(input bit clk,
     execKLInstr(36'o701200_000000);	// CONO PAG,0		; Clear paging system
     execKLInstr(36'o701140_000000);	// DATAO PAG,0		; Clear user base
 
-    // Set AC0 and MEM[0] flag to run boot loader.
+    // Set AC0 and MEM[0] to contain the flag to run the boot loader.
     loadAC(0, runBootLoaderFlag);
     writeMem(0, runBootLoaderFlag);
 
     // Enable parity checking on CRAM, DRAM, FS, AR/ARX
-    doDiagWrite(diagfRESET_PAR_REGS, 'o16);
+//    doDiagWrite(diagfRESET_PAR_REGS, 'o16);
+    $display("%7g [parity checking TEMPORARILY disabled in initialization sequence]", $realtime);
 
     doDiagFunc(diagfSET_RUN);		// Set the RUN flop
     doDiagFunc(diagfCONTINUE);		// Push CONTINUE button
@@ -338,6 +339,8 @@ module fe_sim(input bit clk,
 
   
   // Assuming clock is disabled, set specified AC to specified value.
+  // Note ACs are actually 37 bits wide plus one more bit for parity
+  // (see APR3 e31 and e26, respectively).
   task automatic loadAC(int ac, W36 value);
     edp_53.e69.ram[ac] = value[0];
     edp_53.e70.ram[ac] = value[1];
@@ -380,6 +383,10 @@ module fe_sim(input bit clk,
     edp_39.e72.ram[ac] = value[33];
     edp_39.e65.ram[ac] = value[34];
     edp_39.e58.ram[ac] = value[35];
+
+    // And that annoying parity bit
+    apr_34.e31.ram[ac] = 0;
+    apr_34.e26.ram[ac] = !^value; // Odd parity for rest of word
   endtask // loadAC
 
 

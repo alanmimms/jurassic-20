@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Wed Jan  3 02:00:33 2024
+[*] Wed Jan  3 02:49:16 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Jan  3 02:00:27 2024"
-[dumpfile_size] 18285957
+[dumpfile_mtime] "Wed Jan  3 02:49:07 2024"
+[dumpfile_size] 16663786
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 49291
+[timestart] 50266
 [size] 1962 1063
 [pos] -1 -1
-*-8.000000 50000 35483 35500 35467 44600 44617 44633 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.000000 50975 35483 35500 35467 44600 44617 44633 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.feSim.
@@ -41,24 +41,75 @@ top.kl10pv.ebus.ds[0:6]
 (6)top.kl10pv.ebus.ds[0:6]
 @1401200
 -group_end
-@28
+@29
 top.kl10pv.con_35.con_ebox_halted_h
+@28
 [color] 1
 top.kl10pv.clk_32.clk3_error_hold_a_h
-[color] 1
-top.kl10pv.clk_32.clk3_cram_par_err_h
+@c00200
+-parity-errors
+-e40
+@28
+top.kl10pv.crm_40.e40.d0
+top.kl10pv.crm_40.e40.d1
+top.kl10pv.crm_40.e40.d2
+top.kl10pv.crm_40.e40.d3
+top.kl10pv.crm_40.e40.d4
+top.kl10pv.crm_40.e40.d5
+top.kl10pv.crm_40.e40.d6
+top.kl10pv.crm_40.e40.d7
+top.kl10pv.crm_40.e40.d8
+top.kl10pv.crm_40.e40.d9
+top.kl10pv.crm_40.e40.d10
+top.kl10pv.crm_40.e40.d11
+top.kl10pv.crm_40.e40.odd
+@1401200
+-e40
+@c00200
+-e16
+@28
+top.kl10pv.crm_40.e16.d0
+top.kl10pv.crm_40.e16.d1
+top.kl10pv.crm_40.e16.d2
+top.kl10pv.crm_40.e16.d3
+top.kl10pv.crm_40.e16.d4
+top.kl10pv.crm_40.e16.d5
+top.kl10pv.crm_40.e16.d6
+top.kl10pv.crm_40.e16.d7
+top.kl10pv.crm_40.e16.d8
+top.kl10pv.crm_40.e16.d9
+top.kl10pv.crm_40.e16.d10
+top.kl10pv.crm_40.e16.d11
+top.kl10pv.crm_40.e16.odd
+@1401200
+-e16
+@800200
+-cram-parity-rollup
+@28
 top.kl10pv.crm_40.cram_par_00_h
 top.kl10pv.crm_40.cram_par_04_h
 top.kl10pv.crm_40.cram_par_08_h
 top.kl10pv.crm_40.cram_par_12_h
-@29
-[color] 2
-top.kl10pv.clk_32.cram_par_16_h
+top.kl10pv.crm_40.cram_par_16_h
+top.kl10pv.crm_40.cr03_par_1st_h
+@1000200
+-cram-parity-rollup
 @28
 [color] 3
 top.kl10pv.clk_32.clk5_cram_par_check_l
+[color] 1
+top.kl10pv.clk_32.clk3_cram_par_err_h
+[color] 3
+top.kl10pv.clk_32.clk5_dram_par_check_l
+[color] 1
 top.kl10pv.clk_32.clk3_dram_par_err_h
+[color] 3
+top.kl10pv.clk_32.clk5_fm_par_check_l
+[color] 1
 top.kl10pv.clk_32.clk3_fm_par_err_h
+@1401200
+-parity-errors
+@28
 [color] 3
 top.kl10pv.clk_32.clk_cra_h
 @c000b0
@@ -771,7 +822,7 @@ top.kl10pv.vma_38.vma3_pc_35_h
 -group_end
 @1000200
 -core-state
-@800200
+@c00200
 -CRA stack
 @28
 [color] 3
@@ -820,7 +871,7 @@ top.kl10pv.cra_45.cram_j10_h
 top.kl10pv.cra_45.craSP[0:3]
 @30
 top.kl10pv.cra_45.sbrRet[0:10]
-@1000200
+@1401200
 -CRA stack
 @c00200
 -MBOX-busy
