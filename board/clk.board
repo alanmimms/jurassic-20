@@ -1,5 +1,6 @@
 %verilog
 ,
+  input bit clk60,
   output tEBUSdriver EBUSdriver
 %endverilog
 
@@ -118,9 +119,10 @@ e56: 10131 dual ms d ff
      14 ~> %NC%
      15 ~> %NC%
 
-dl5001: delay-line 5.0ns
-     1 ~< clk1 main source c h
-     2 ~> clk1-dl5001-2
+%verilog
+  // Delay clk1_main_source_c_h by one clk60 edge.
+  always @(posedge clk60) clk1_dl5001_2 <= clk1_main_source_c_h;
+%endverilog
 
 e51: 10104 quad and/nand
      4 ~< clk1-dl5001-2
