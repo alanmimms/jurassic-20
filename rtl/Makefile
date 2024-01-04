@@ -73,8 +73,7 @@ DEFINES = -D$(KLTYPE)
 INCDIR = $(VERILATORROOT)/include
 CFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd -std=gnu++14 $(DEBUG) $(OPTIMIZE) $(DEFINES)
 CXXFLAGS += -I$(VOBJDIR) -I$(INCDIR) -I$(INCDIR)/vltstd $(DEBUG) $(OPTIMIZE) $(DEFINES)
-#CPPFLAGS += -DVL_DEBUG $(DEFINES)
-CPPFLAGS += $(DEFINES)
+CPPFLAGS += -DVL_DEBUG $(DEFINES)
 
 VFLAGS = \
 	--stats \
@@ -89,7 +88,7 @@ VFLAGS = \
 	--CFLAGS "$(DEBUG) $(OPTIMIZE)" \
 	--compiler gcc \
 	--timescale 1ns --timescale-override 1ns \
-	--timing \
+	--timing --trace \
 	--trace --trace-structs \
 	--clk clk60 \
 	--x-initial 0 \
