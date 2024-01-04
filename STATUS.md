@@ -31,6 +31,38 @@ wire-OR. Inputs left unconnected see a real logic zero.
 
 ## What I'm Doing Now - Occasional Status and Progress Notes
 
+* Memory is now blocking my progress. I have loaded the `klddt`
+  "bootloader" into `memory0` via testbench subterfuge. Now I need the
+  EBOX to be able to request from MBOX the words it needs, by
+  performing read cycles on the MB20 via SBUS.
+
+  * It appears MBOX cannot accept SBUS.ackn on each clock. There has
+    to be enough time between the bits to allow MBOX to shift out
+    leading zeros in RQ and to skip zeros in RQ before another ackn
+    can be seen.  I believe this restriction also applies to the
+    `validIn` and `validOut` signals to clock data through the
+    interface. These cannot be asserted during a clock when the MBOX
+    is skipping a zero bit in RQ.
+  * My current implementation doesn't handle discontiguous bits in
+    SBUS.RQ. In `EK-MBOX-UD-004_May77-ocr.pdf` on PDF201 MBox/3-77
+    there is a table that clearly shows RQ being set up with
+    discontiguous bits.
+  * In `EK-MBOX-UD-004_May77-ocr.pdf` on PDF200 MBox/3-76 is this:
+
+	_The MBox core control waits two MBox clock ticks after receiving
+    `SBUS DATA VALID` for the data bus drivers to stabilize before
+    loading the data into the appropriate MB._
+
+    Also, `EK-MBOX-UD-004_May77-ocr.pdf` PDF204 MBox/3-80 says this:
+  
+	  _After the SBUS DATA VALID pulse is received, the MBox core
+      control waits two clock ticks before it triggers the MB control
+      to transfer the data from the SBus data lines into the
+      appropriate MB_
+
+    These statements imply the `SBUS.validIn` signal and the data
+    lines must remain stable for two (three?) clocks after
+    `SBUS.validIn` is initially asserted.
 
 
 ## Bugs Outstanding TODO
@@ -38,6 +70,12 @@ wire-OR. Inputs left unconnected see a real logic zero.
 * At `CRA-LOC` 0143 comment says AR should have 77,,777776, but my AR
   has 77,,777777. Probably this is something wrong with ALU backplane
   wiring and related to carry in.
+
+* Last I checked, I was getting CRAM parity errors.
+
+* Last I checked, I was getting FM parity errors. I think I solved the
+  FM parity errors by setting up parity in my `fe_sim.sv` function
+  `loadAC()`, but I have not checked since to see if this is the case.
 
 
 ## History of _What I'm Doing Now_

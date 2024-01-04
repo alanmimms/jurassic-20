@@ -1,18 +1,18 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Wed Jan  3 20:33:36 2024
+[*] Thu Jan  4 00:02:57 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Wed Jan  3 20:31:55 2024"
-[dumpfile_size] 41438189
+[dumpfile_mtime] "Thu Jan  4 00:02:42 2024"
+[dumpfile_size] 41143298
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 50999
+[timestart] 51387
 [size] 1962 1063
 [pos] -1 -1
-*-8.000000 51792 35483 35500 35467 44600 44617 44633 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.000000 51742 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.feSim.
+[treeopen] top.kl10pv.memory0.
 [sst_width] 238
 [signals_width] 564
 [sst_expanded] 1
@@ -298,7 +298,7 @@ top.kl10pv.clk_32.clk1_gated_en_h
 -group_end
 @1401200
 -EBUS
-@800200
+@c00200
 -core-state
 @c040a2
 [color] 3
@@ -819,7 +819,6 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
-@1000200
 -core-state
 @c00200
 -CRA stack
@@ -1089,11 +1088,10 @@ top.kl10pv.memory0.mbus.adrHold
 @30
 [color] 3
 top.kl10pv.memory0.mbus.adr[14:35]
-@4023
+@4022
 [color] 3
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
 top.kl10pv.memory0.mbus.dIn[0:35]
-@4022
 [color] 3
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
 top.kl10pv.memory0.mbus.dOut[0:35]
@@ -1111,18 +1109,24 @@ top.kl10pv.memory0.mbus.rq[0:3]
 (3)top.kl10pv.memory0.mbus.rq[0:3]
 @1401200
 -group_end
-@28
+@29
 [color] 3
 top.kl10pv.memory0.mbus.rdRq
+@28
 top.kl10pv.memory0.mbus.wrRq
+top.kl10pv.memory0.aPhase.clk
 [color] 2
 top.kl10pv.memory0.mbus.startA
 [color] 2
 top.kl10pv.memory0.mbus.acknA
+[color] 2
+top.kl10pv.memory0.mbus.validInA
+top.kl10pv.memory0.bPhase.clk
 [color] 7
 top.kl10pv.memory0.mbus.startB
 [color] 7
 top.kl10pv.memory0.mbus.acknB
+top.kl10pv.memory0.mbus.validInB
 @1000200
 -mbus
 @c00200
@@ -1142,9 +1146,6 @@ top.kl10pv.memory0.aPhase.validOut
 [color] 3
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
 top.kl10pv.memory0.aPhase.d[0:35]
-@28
-[color] 3
-top.kl10pv.memory0.aPhase.wo[34:35]
 @b0
 [color] 3
 top.kl10pv.memory0.aPhase.addr[14:35]
@@ -1182,9 +1183,6 @@ top.kl10pv.memory0.bPhase.validOut
 [color] 3
 ^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
 top.kl10pv.memory0.bPhase.d[0:35]
-@28
-[color] 3
-top.kl10pv.memory0.bPhase.wo[34:35]
 @22
 [color] 3
 top.kl10pv.memory0.bPhase.addr[14:35]

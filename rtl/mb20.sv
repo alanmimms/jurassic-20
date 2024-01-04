@@ -7,17 +7,26 @@
 // negedge of mbus.clk and B phase is posedge.
 //
 // TODO:
-// * Implement writing.
+//
+// * Implement write cycles.
+//
+// * Implement read-pause-write cycles.
+//
 // * Implement BLKO PI diagnostic cycle support.
+//
 // * Support interleaving.
+//
 // * Support ACKN of next word while VALID on current word
+//
+// * This design will not properly handle case of inRq with
+//   discontiguous bits. This needs fixing!
+
 module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
-  typedef bit[$clog2(MEMSIZE):0] tMemX;
   W36 mem[] = new[MEMSIZE];
   bit aClk, bClk;
   W36 aData, bData;
   bit aParity, bParity;
-  bit [14:35] addr;
+  tMemAddr addr;
   int dumpFD = feSim.dumpFD;
 
   always_comb aClk = ~mbus.clk;
@@ -32,7 +41,7 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   always_latch if (mbus.adrHold) addr = mbus.adr;
 
   always @(posedge mbus.startA, posedge mbus.startB) begin
-    if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> MB20 mem[%1o]=%s",
+    if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> MB20 READ mem[%1o]=%s",
 			       $realtime, mbus.adr, feSim.fmt36(mem[mbus.adr]));
   end
 
@@ -68,7 +77,7 @@ endmodule
 // are still finishing up the VALID pulses for the current one?
 module mb20Phase (input bit clk,
 		  input bit reset,
-		  input bit [14:35] addr,
+		  input tMemAddr addr,
 		  input bit [0:3] inRq,
 		  output bit validIn,
 		  input bit validOut,
@@ -78,41 +87,55 @@ module mb20Phase (input bit clk,
 		  input bit diag,
 		  output bit ackn);
 
-  bit [14:35] startAddr = 0;  // Address base we start at for quadword
-  bit [34:35] wo = 0;	      // Word offset of quadword
+  typedef bit [0:1] tQuadAddr;
+
+  tMemAddr curAddr = 0;	      // Word we are currently reading/writing
+  tMemAddr nextAddr = 0;      // Word we read/write next
+  tQuadAddr wo = 0;	      // Word offset of quadword
   bit [0:3] toAck;	      // Words we have not yet ACKed
-  W36 word = 36'o123456_654321; // Word we are returning this cycle
-  int dumpFD = feSim.dumpFD;
+  W36 word;		      // Word we are returning this cycle
 
   always_ff @(posedge clk) begin
+    string words[$] = feSim.split($sformatf("%m"), ".");
+    string phase = words[3];	// XXX HaxRUs
+    int dumpFD = feSim.dumpFD;
 
     if (diag) begin
       if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> %m DIAG", $realtime);
     end
 
-    if (reset) begin
+    if (!start) begin		// Whenever we are not busy we're reset
       toAck <= 0;
       validIn <= 0;
       ackn <= 0;
-    end else if (start && toAck == 0) begin     // A transfer is starting
-      startAddr <= addr;	// Address of first word we do
-      wo <= addr[34:35];	// Word offset we increment mod 4
-      word <= memory0.mem[startAddr];
-      toAck <= inRq;		// Addresses remaining to ACK
-      validIn <= 0;		// XXX required? Delay a clock before presenting data?
-      ackn <= 1;
-      if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> PHASE mem[%1o]=%s", $realtime, 
-				 startAddr, feSim.fmt36(memory0.mem[startAddr]));
-    end else if (toAck != 0) begin
-      word <= memory0.mem[wo];
-      ackn <= 1;
-      validIn <= 1;
-      wo <= wo + 1;
-      toAck <= toAck << 1;
+      curAddr <= 0;
+      nextAddr <= 0;
+      wo <= 0;
+      word <= 36'o123456_654321;
     end else begin
-      ackn <= 0;
-      validIn <= 0;
-    end
+
+      if (toAck == 0) begin     // A transfer is starting.
+	tQuadAddr startWO = addr[34:35];
+	curAddr <= addr;		// Address of first word we do.
+	nextAddr <= {addr[14:33], startWO + 2'o1};
+	wo <= startWO;		// Word offset we increment mod 4.
+	word <= memory0.mem[addr];
+	toAck <= inRq << 1;	// Addresses after this one that are remaining to ACK.
+	validIn <= 1;		// Already presenting valid data.
+	ackn <= 1;		// ACK this address.
+	if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> %s mem[%o]=%s (inRq=%b)", $realtime, phase,
+				   addr, feSim.fmt36(memory0.mem[addr]), inRq);
+      end else begin
+	if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> %s mem[%o]=%s (toAck=%b)", $realtime, phase,
+				   curAddr, feSim.fmt36(memory0.mem[curAddr]), toAck);
+	word <= memory0.mem[curAddr];
+	curAddr <= nextAddr;
+	nextAddr <= {curAddr[14:33], wo + 2'o1};
+	ackn <= 1;
+	validIn <= 1;
+	wo <= wo + 1;
+	toAck <= toAck << 1;
+      end
   end
 
   always_comb begin
