@@ -20,7 +20,6 @@
 //
 // * This design will not properly handle case of inRq with
 //   discontiguous bits. This needs fixing!
-
 module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   W36 mem[] = new[MEMSIZE];
   bit aClk, bClk;
@@ -48,6 +47,8 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   mb20Phase aPhase(.clk(aClk),
 		   .reset(mbus.memReset),
 		   .start(mbus.startA),
+		   .rdRq(mbus.rdRq),
+		   .wrRq(mbus.wrRq),
 		   .ackn(mbus.acknA),
 		   .validIn(mbus.validInA),
 		   .validOut(mbus.validOutA),
@@ -59,6 +60,8 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   mb20Phase bPhase(.clk(bClk),
 		   .reset(mbus.memReset),
 		   .start(mbus.startB),
+		   .rdRq(mbus.rdRq),
+		   .wrRq(mbus.wrRq),
 		   .ackn(mbus.acknB),
 		   .validIn(mbus.validInB),
 		   .validOut(mbus.validOutB),
@@ -84,16 +87,34 @@ module mb20Phase (input bit clk,
 		  output W36 d,
 		  output bit parity,
 		  input bit start,
+		  input bit rdRq,
+		  input bit wrRq,
 		  input bit diag,
 		  output bit ackn);
 
+  // This is the sequence:
+  //
+  // 1. Assert `start` to start the cycle. MEM RD/WR RQ or both are
+  //    qualifiers.  MEM RQ 0-3 indicate which words are requested. MEM ADR
+  //    14-35 are address of first word. MB20 registers nextAdr = MEM ADR 14-35,
+  //    MEM RQ 0-3.
+  //
+  // 2. For each clock while there remain bits in MEM RD/WR RQ to be
+  //    done, MB20 asserts SBUS ACKN A/B and also SBUS DATA VALID A/B while
+  //    asserting the data (for read or rpw) or registering the incoming
+  //    data (write).
+
   typedef bit [0:1] tQuadAddr;
 
-  tMemAddr curAddr = 0;	      // Word we are currently reading/writing
-  tMemAddr nextAddr = 0;      // Word we read/write next
-  tQuadAddr wo = 0;	      // Word offset of quadword
-  bit [0:3] toAck;	      // Words we have not yet ACKed
+  tMemAddr nextAddr = 0;      // Address of word we read/write next.
+  bit [0:3] toAck;	      // Flags for words we have not yet ACKed
   W36 word;		      // Word we are returning this cycle
+
+  enum bit [1:0] {
+    IDLE = 0,		      // No cycle is running
+    READ1 = 1,		      // First clock of a word for READ
+    READ2 = 2		      // Second clock of a word for READ
+  } state = IDLE;
 
   always_ff @(posedge clk) begin
     string words[$] = feSim.split($sformatf("%m"), ".");
@@ -104,39 +125,66 @@ module mb20Phase (input bit clk,
       if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> %m DIAG", $realtime);
     end
 
-    if (!start) begin		// Whenever we are not busy we're reset
-      toAck <= 0;
-      validIn <= 0;
-      ackn <= 0;
-      curAddr <= 0;
-      nextAddr <= 0;
-      wo <= 0;
-      word <= 36'o123456_654321;
+    if (reset) begin
+      state <= IDLE;
     end else begin
 
-      if (toAck == 0) begin     // A transfer is starting.
-	tQuadAddr startWO = addr[34:35];
-	curAddr <= addr;		// Address of first word we do.
-	nextAddr <= {addr[14:33], startWO + 2'o1};
-	wo <= startWO;		// Word offset we increment mod 4.
-	word <= memory0.mem[addr];
-	toAck <= inRq << 1;	// Addresses after this one that are remaining to ACK.
-	validIn <= 1;		// Already presenting valid data.
-	ackn <= 1;		// ACK this address.
-	if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> %s mem[%o]=%s (inRq=%b)", $realtime, phase,
-				   addr, feSim.fmt36(memory0.mem[addr]), inRq);
-      end else begin
-	if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> %s mem[%o]=%s (toAck=%b)", $realtime, phase,
-				   curAddr, feSim.fmt36(memory0.mem[curAddr]), toAck);
-	word <= memory0.mem[curAddr];
-	curAddr <= nextAddr;
-	nextAddr <= {curAddr[14:33], wo + 2'o1};
-	ackn <= 1;
-	validIn <= 1;
-	wo <= wo + 1;
-	toAck <= toAck << 1;
-      end
-  end
+      unique case (state)
+
+	IDLE:
+
+	  if (!start) begin	// No active cycle: reset
+	    toAck <= 0;
+	    validIn <= 0;
+	    ackn <= 0;
+	    nextAddr <= 0;
+	    word <= 36'o123456_654321;
+
+	    state <= IDLE;
+	  end else begin	// Starting an active cycle
+	    ackn <= 1;
+	    toAck <= inRq << 1;
+
+	    word <= memory0.mem[addr];
+	    validIn <= 1;
+	    nextAddr <= {addr[14:33], addr[34:35] + 2'b01};
+
+	    state <= READ1;
+	  end // else: !if(!start)
+
+	// Two clocks of stable data after valid asserted.
+	READ1: begin		// MBOX core wait clock #1
+	  state <= READ2;
+	  ackn <= 0;
+	end
+
+	READ2: begin		// MBOX core wait clock #2
+
+	  if (toAck == 0) begin		// No more words to ack, return to idle
+	    validIn <= 0;
+
+	    state <= IDLE;
+	  end else if (toAck[0]) begin	// This word needs to be transferred
+	    ackn <= 1;
+	    validIn <= 0;
+	    toAck <= toAck << 1;
+
+	    word <= memory0.mem[nextAddr];
+	    validIn <= 1;
+	    nextAddr <= {nextAddr[14:33], nextAddr[34:35] + 2'b01};
+
+	    state <= READ1;
+	  end else begin		// This word needs to be skipped, but there are still some to do
+	    ackn <= 0;
+	    validIn <= 0;
+	    toAck <= toAck << 1;
+
+	    state <= (toAck << 1) == 0 ? IDLE : READ2;
+	  end
+	end
+      endcase
+    end // else: !if(reset)
+  end // always_ff @ (posedge clk)
 
   always_comb begin
     d = word;

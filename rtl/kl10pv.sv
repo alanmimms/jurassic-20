@@ -2,7 +2,7 @@
 
 // The top of the hierarchy for KL10PV CPU and its front end, memory,
 // peripherals, and power system.
-module kl10pv(input clk60, input crobar);
+module kl10pv(input clk60);
 
   tEBUSdriver aprEBUSdriver, cclEBUSdriver, ccwEBUSdriver, chcEBUSdriver;
   tEBUSdriver clkEBUSdriver, conEBUSdriver, craEBUSdriver, crcEBUSdriver;
@@ -30,11 +30,13 @@ module kl10pv(input clk60, input crobar);
   iMBUS mbus();
   mb20 #(.MEMSIZE(512*1024)) memory0(.mbus(mbus.memory), .*);
 
-  // Driving signals from KL10 MBOX into memory.
+  // Driving signals from KL10 MBOX to memory.
   always_comb begin
-    mbus.mbox.memReset = diag_mem_reset_h;
-    mbus.mbox.startA = mem_start_a_h;
-    mbus.mbox.startB = mem_start_b_h;
+    mbus.mbox.startA = crobar_e_h ? 0 : mem_start_a_h;
+    mbus.mbox.startB = crobar_e_h ? 0 : mem_start_b_h;
+    mbus.mbox.memReset = crobar_e_h | diag_mem_reset_h;
+
+    mbus.mbox.clk = clk_sbus_clk_h;
     mbus.mbox.rdRq = mem_rd_rq_h;
     mbus.mbox.wrRq = mem_wr_rq_h;
     mbus.mbox.rq = {mem_rq_0_h, mem_rq_1_h, mem_rq_2_h, mem_rq_3_h};
@@ -45,8 +47,6 @@ module kl10pv(input clk60, input crobar);
 		     pma_34_h, pma_35_h};
     mbus.mbox.adrPar = mem_adr_par_h;
     mbus.mbox.diag = !mem_diag_l;
-    mbus.mbox.clk = clk1_clk_h;
-    mbus.mbox.memReset = diag_mem_reset_h;
     mbus.mbox.dOut = {mb_00_h, mb_01_h, mb_02_h, mb_03_h, mb_04_h, mb_05_h,
 		      mb_06_h, mb_07_h, mb_08_h, mb_09_h, mb_10_h, mb_11_h,
 		      mb_12_h, mb_13_h, mb_14_h, mb_15_h, mb_16_h, mb_17_h,
