@@ -11,6 +11,8 @@ typedef bit [0:35] W36;
 typedef bit [0:17] W18;
 typedef bit [15:0] W16;
 
+typedef bit [14:35] tMemAddr;
+
 ///////////////////////////////////////////////////////////////
 // EBUS
 
