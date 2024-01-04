@@ -26,9 +26,9 @@ module fe_sim(input bit clk,
 
   bit dumpCRAM = 0;
   bit dumpDRAM = 0;
-  bit dumpCRA_ADR = 1;
   bit dumpDiagFuncs = 1;
-  bit dumpLoadMem = 1;
+  bit dumpLoadMem = 0;
+  bit dumpLoadedImage = 0;
 
   int dumpFD;
 
@@ -231,7 +231,9 @@ module fe_sim(input bit clk,
   always @(negedge crobar_e_h) begin
     repeat (10) @(negedge clk);
     KLMasterReset();
+    if (dumpLoadMem) $fdisplay(dumpFD, "\nLoad diagnostic image");
     loadDiagnostic("images/klddt/klddt.a10");
+    if (dumpLoadMem) $fdisplay(dumpFD, "Diagnotic image loaded\n");
     KLSoftReset();
     startKLBoot(startAddr);
     $fflush(dumpFD);
@@ -259,6 +261,7 @@ module fe_sim(input bit clk,
     execKLInstr(36'o701140_000000);	// DATAO PAG,0		; Clear user base
 
     // Set AC0 and MEM[0] to jump to the boot loader.
+    if (dumpLoadMem) $fdisplay(dumpFD, "Write to 0 the jump to boot loader");
     loadAC(0, jumpToStart);
     writeMem(0, jumpToStart);
 
@@ -690,6 +693,8 @@ FOR WDRAM
   task automatic loadDiagnostic(string path);
     W36 w;
     W36 adr;
+    W36 highestAdr = 0;
+    W36 lowestAdr = ~36'o0;
     string line, recType, rec;
     string words[$];
 
@@ -718,7 +723,14 @@ FOR WDRAM
 	int zeroCount;
 	zeroCount = int'(unASCIIize(words[2]));
 	if (zeroCount == 0) zeroCount = 64*1024;
-	for (W36 offset = 0; offset < W36'(zeroCount); ++offset) writeMem(adr + offset, 0);
+
+	for (W36 offset = 0; offset < W36'(zeroCount); ++offset) begin
+	  W36 a = adr + offset;
+
+	  if (a > highestAdr) highestAdr = a;
+	  if (a < lowestAdr) lowestAdr = a;
+	  writeMem(a, 0);
+	end
       end
 
       "T": begin
@@ -727,6 +739,7 @@ FOR WDRAM
 	for (W36 offset = 0; offset < W36'(wc); ++offset) begin
 	  int k;
 	  W16 w0, w1, w2;
+	  W36 a;
 
 	  k = 2 + int'(offset*3);
 
@@ -734,14 +747,26 @@ FOR WDRAM
 	  w1 = unASCIIize(words[k+1]);
 	  w2 = unASCIIize(words[k+2]);
 	  w = {w2[3:0], w1, w0};
-	  writeMem(adr + offset, w);
+	  a = adr + offset;
+
+	  if (a > highestAdr) highestAdr = a;
+	  if (a < lowestAdr) lowestAdr = a;
+	  writeMem(a, w);
 	end
       end
       endcase
     end
 
     $fclose(fd);
-    $display("%7g [loaded %s with start=%s]", $realtime, path, fmt36(startAddr));
+    $display("%7g [loaded %s to %o:%o start=%o]", $realtime,
+	     path, lowestAdr[18:35], highestAdr[18:35], startAddr[18:35]);
+
+    if (dumpLoadedImage) begin
+      $fdisplay(dumpFD, "\nOctal dump of loaded image starting at zero:");
+
+      for (W36 a = 0; a <= highestAdr; ++a)
+	$fdisplay(dumpFD, "%o", memory0.mem[a]);
+    end
   endtask // loadDiagnostic
 
 
