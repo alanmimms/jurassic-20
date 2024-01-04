@@ -770,7 +770,7 @@ Page: CRA4, PDF346
     if (cra4_reset_h) begin
       craSP <= '1;
     end else if (cra3_clk_a_h && cra4_callCM_resetCM_1777_h) begin // POSedge of clock
-      if (dumpFD != 0) $fdisplay (dumpFD, "%7g CRA call %o SP=%d", $realtime,
+      if (0 && dumpFD != 0) $fdisplay (dumpFD, "%7g CRA call %o SP=%d", $realtime,
 				  {cra1_adr_00_h, cra1_adr_01_h,
 				   cra1_adr_02_h, cra1_adr_03_h, cra1_adr_04_h,
 				   cra1_adr_05_h, cra1_adr_06_h, cra2_adr_07_h,
@@ -783,7 +783,7 @@ Page: CRA4, PDF346
 			   cra3_loc_08_h, cra3_loc_09_h, cra3_loc_10_h};
       craSP <= craSP + 1;
     end else if (!cra3_clk_a_h && cra4_ret_and_NG1777_h) begin // NEGedge of clock
-      if (dumpFD != 0) $fdisplay (dumpFD, "%7g CRA return %o J=%o SP=%d", $realtime,
+      if (0 && dumpFD != 0) $fdisplay (dumpFD, "%7g CRA return %o J=%o SP=%d", $realtime,
 				  stack[craSP],
 				  {cram_j00_h, cram_j01_h, cram_j02_h,
 				   cram_j03_h, cram_j04_h, cram_j05_h,
