@@ -1,4 +1,5 @@
 Page: CS01, PDF125
+// This is chds-123-125.pdf
 
 w11: wire (jumper)
      1 ~< {au2} mem to cache [n+06] h
@@ -101,12 +102,15 @@ w80: wire6 fan out the parity B bits
     6 ~> %NC%
     7 ~> %NC%
 
+// This is shown on the drawing as connecting pins 6,10 to GND H,
+// which I think is ECL-speak for a fake logic 1 that is buffered into
+// a real logic 1 on the output pins.
 e9: 10110 or buffer
     5 ~< %NC%
-    6 ~< 0
+    6 ~< 1
     7 ~< %NC%
     11 ~< %NC%
-    10 ~< 0
+    10 ~< 1
     9 ~< %NC%
     2 ~> %NC%
     3 ~> %NC%
