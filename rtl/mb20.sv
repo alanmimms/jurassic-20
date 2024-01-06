@@ -28,8 +28,8 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   tMemAddr addr;
   int dumpFD = feSim.dumpFD;
 
-  always_comb aClk = ~mbus.clk;
-  always_comb bClk =  mbus.clk;
+  always_comb aClk = mbus.clk;
+  always_comb bClk = mbus.clk;
 
   // This handles muxing the D bus and its parity for A/B.
   always_comb begin
@@ -110,10 +110,12 @@ module mb20Phase (input bit clk,
   bit [0:3] toAck;	      // Flags for words we have not yet ACKed
   W36 word;		      // Word we are returning this cycle
 
-  enum bit [1:0] {
-    IDLE = 0,		      // No cycle is running
-    READ1 = 1,		      // First clock of a word for READ
-    READ2 = 2		      // Second clock of a word for READ
+  enum bit [4:0] {
+    IDLE,		      // No cycle is running
+    READDATA,		      // Present a word to MBOX
+    READHOLD1,		      // First clock of a word for READ
+    READHOLD2,		      // Second clock of a word for READ
+    READMORE		      // THIRD clock (needed?) for READ
   } state = IDLE;
 
   always_ff @(posedge clk) begin
@@ -144,21 +146,35 @@ module mb20Phase (input bit clk,
 	  end else begin	// Starting an active cycle
 	    ackn <= 1;
 	    toAck <= inRq << 1;
+	    nextAddr <= addr;
 
-	    word <= memory0.mem[addr];
-	    validIn <= 1;
-	    nextAddr <= {addr[14:33], addr[34:35] + 2'b01};
+	    state <= READDATA;
+	  end
 
-	    state <= READ1;
-	  end // else: !if(!start)
+	READDATA: begin
+	  word <= memory0.mem[nextAddr];
+	  validIn <= 1;
+	  nextAddr <= {nextAddr[14:33], nextAddr[34:35] + 2'b01};
 
-	// Two clocks of stable data after valid asserted.
-	READ1: begin		// MBOX core wait clock #1
-	  state <= READ2;
 	  ackn <= 0;
+
+	  state <= READHOLD1;
 	end
 
-	READ2: begin		// MBOX core wait clock #2
+	// Two clocks of stable data after valid asserted.
+	READHOLD1: begin
+	  validIn <= 0;		// Apparently we should only hold validIn for one clock cycle!
+
+	  state <= READHOLD2;
+	end
+
+	READHOLD2: begin
+	  validIn <= 0;		// Apparently we should only hold validIn for one clock cycle!
+
+	  state <= READMORE;
+	end
+
+	READMORE: begin
 
 	  if (toAck == 0) begin		// No more words to ack, return to idle
 	    validIn <= 0;
@@ -169,25 +185,23 @@ module mb20Phase (input bit clk,
 	    validIn <= 0;
 	    toAck <= toAck << 1;
 
-	    word <= memory0.mem[nextAddr];
-	    validIn <= 1;
-	    nextAddr <= {nextAddr[14:33], nextAddr[34:35] + 2'b01};
-
-	    state <= READ1;
+	    state <= READDATA;
 	  end else begin		// This word needs to be skipped, but there are still some to do
 	    ackn <= 0;
 	    validIn <= 0;
 	    toAck <= toAck << 1;
 
-	    state <= (toAck << 1) == 0 ? IDLE : READ2;
+	    state <= (toAck << 1) == 0 ? IDLE : READMORE;
 	  end
 	end
+
+	default: state <= IDLE;
       endcase
     end // else: !if(reset)
   end // always_ff @ (posedge clk)
 
   always_comb begin
     d = word;
-    parity = !^d;
+    parity = !^word;
   end
 endmodule
