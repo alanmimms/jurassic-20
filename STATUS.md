@@ -12,6 +12,11 @@ time.
   system. We'll see...
   1. CCL
   1. CRC
+  
+* Determine use of `CLK EBUS CLK H` <BK1> on CLK1 E66. This is clock
+  to I/O backplane? FYI, the `CLK 10/11 CLK H` on CLK2 E60 is already
+  used by fe_sim.sv (DTE20 front end).
+
 
 # Status
 Basic schematic netlist conversion into my board language is
