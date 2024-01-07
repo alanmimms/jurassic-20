@@ -15,7 +15,7 @@ time.
   
 * Determine use of `CLK EBUS CLK H` <BK1> on CLK1 E66. This is clock
   to I/O backplane? FYI, the `CLK 10/11 CLK H` on CLK2 E60 is already
-  used by fe_sim.sv (DTE20 front end).
+  used by fe_sim.sv (DMA20 front end).
 
 
 # Status
@@ -35,6 +35,11 @@ wire-OR. Inputs left unconnected see a real logic zero.
 
 
 ## What I'm Doing Now - Occasional Status and Progress Notes
+
+* NOTE: `docs/EK-MB020-UD-001_Dec76.pdf` is a precise reference for
+  how MB20 is supposed to operate. Section 2 (PDF15) is very useful.
+  The full (nearly legible) MB20 schematics are in this file starting
+  at PDF91.
 
 * Memory is now blocking my progress. I have loaded the `klddt`
   "bootloader" into `memory0` via testbench subterfuge. Now I need the
@@ -68,7 +73,23 @@ wire-OR. Inputs left unconnected see a real logic zero.
     These statements imply the `SBUS.validIn` signal and the data
     lines must remain stable for two (three?) clocks after
     `SBUS.validIn` is initially asserted.
+	
+  * The blocker seems to be the CSH2 MBOX RESP IN H signal which isn't
+    a steady assertion for several clocks as expected by the consuming
+    logic, but is instead a one clock assertion, one clock
+    deassertion, then two clocks asserted.
 
+		 |   |   |   |
+        _   _         _
+         \_/ \_______/		CSH2 MBOX RESP IN H and also CSH E32 pin 2
+    
+	The sequence of CSH6 E CORE RD COMP H, then CSH6 DATA DLY 1 L,
+    then CSH6 DATA DLY 2 L is working fine. But maybe this is
+    happening one clock too early? CSH2 E23 pins 13,14,15 look like
+    they might be the culprit, but I can't yet see how. Maybe
+    something related to CSH1 CACHE IDLE IN B L which is a term in the
+    next layer?
+	
 
 ## Bugs Outstanding TODO
 
