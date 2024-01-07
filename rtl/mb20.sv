@@ -28,8 +28,11 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   tMemAddr addr;
   int dumpFD = feSim.dumpFD;
 
-  always_comb aClk = mbus.clk;
-  always_comb bClk = mbus.clk;
+  // Timing of these two clocks is shown in
+  // `EK-MB020-UD-001_Dec76.pdf` PDF18.  Although this page documents
+  // the diagnostic cycle, it shows the clocks for any cycle.
+  always_comb aClk = !mbus.clk;
+  always_comb bClk =  mbus.clk;
 
   // This handles muxing the D bus and its parity for A/B.
   always_comb begin
@@ -75,9 +78,6 @@ endmodule
 
 // This is one phase of the MB20 core memory. For now, we implement
 // only read cycles and only non-interleaved organization.
-//
-// NOTE: START may already be asserted for subsequent cycle while we
-// are still finishing up the VALID pulses for the current one?
 module mb20Phase (input bit clk,
 		  input bit reset,
 		  input tMemAddr addr,
@@ -112,6 +112,7 @@ module mb20Phase (input bit clk,
 
   enum bit [4:0] {
     IDLE,		      // No cycle is running
+    ACK,		      // ACK the address
     READDATA,		      // Present a word to MBOX
     READHOLD1,		      // First clock of a word for READ
     READHOLD2,		      // Second clock of a word for READ
@@ -144,12 +145,16 @@ module mb20Phase (input bit clk,
 
 	    state <= IDLE;
 	  end else begin	// Starting an active cycle
-	    ackn <= 1;
-	    toAck <= inRq << 1;
-	    nextAddr <= addr;
-
-	    state <= READDATA;
+	    state <= ACK;
 	  end
+
+	ACK: begin
+	  ackn <= 1;
+	  toAck <= inRq << 1;
+	  nextAddr <= addr;
+
+	  state <= READDATA;
+	end
 
 	READDATA: begin
 	  word <= memory0.mem[nextAddr];
