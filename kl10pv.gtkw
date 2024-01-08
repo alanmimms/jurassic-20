@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Jan  8 02:57:08 2024
+[*] Mon Jan  8 23:10:46 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Jan  8 02:52:59 2024"
-[dumpfile_size] 41929720
+[dumpfile_mtime] "Mon Jan  8 23:08:44 2024"
+[dumpfile_size] 41683914
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 51317
+[timestart] 51724
 [size] 1962 1063
 [pos] -1 -1
-*-8.000000 52160 52175 52142 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.000000 52192 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.memory0.
@@ -970,10 +970,13 @@ top.kl10pv.csh_23.csh3_map_problem_h
 @28
 [color] 1
 top.kl10pv.csh_23.csh2_e23_2
+@800200
+-CSH2 E23 7,9
+@28
 top.kl10pv.csh_23.csh6_ebox_sync_hold_h
 top.kl10pv.csh_23.csh6_data_dly_1_l
-[color] 3
-top.kl10pv.csh_23.csh6_data_dly_2_l
+@1000200
+-CSH2 E23 7,9
 @200
 -
 @800200
@@ -994,7 +997,26 @@ top.kl10pv.csh_23.csh2_mbox_resp_l
 top.kl10pv.csh_23.csh2_ebox_restart_h
 @1000200
 -CSH2 E23 13,14,15
+@200
+-
+@800200
+-core-rd-comp
 @28
+top.kl10pv.csh_23.csh2_e4_2
+@29
+top.kl10pv.csh_23.csh1_clk_a_h
+@28
+top.kl10pv.csh_23.csh1_clk_e_h
+[color] 1
+top.kl10pv.csh_23.csh6_e_core_rd_comp_h
+top.kl10pv.mbc_22.csh2_e_core_rd_rq_b_l
+top.kl10pv.csh_23.mbc4_core_data_valid_l
+@1000200
+-core-rd-comp
+@200
+-
+@28
+top.kl10pv.csh_23.mbc4_core_data_valid_l
 [color] 2
 top.kl10pv.csh_23.clk3_ebox_sync_d_l
 [color] 2
@@ -1010,7 +1032,9 @@ top.kl10pv.mbx_21.mbx5_one_word_rd_a_l
 @28
 [color] 1
 top.kl10pv.mbc_22.mbc3_inh_1st_mb_req_h
-top.kl10pv.mbc_22.csh2_e_core_rd_rq_b_l
+@200
+-
+@28
 top.kl10pv.mbc_22.mbc3_first_wd_adr_sel_l
 top.kl10pv.mbc_22.mbc1_clk_f_h
 top.kl10pv.mbc_22.mbc2_csh_val_wr_pulse_h
@@ -1056,9 +1080,6 @@ top.kl10pv.clk_32.dl1_2
 top.kl10pv.clk_32.dl1_3
 top.kl10pv.clk_32.dl1_4
 top.kl10pv.clk_32.dl1_5
-@29
-top.kl10pv.clk_32.dl1_6
-top.kl10pv.clk_32.dl1_7
 @200
 -
 @28
