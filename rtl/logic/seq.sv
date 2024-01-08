@@ -20,7 +20,7 @@ module seq (input bit clk,
     endcase
   end // always_comb
 
-  always @(posedge clk, negedge clk) begin
+  always_ff @(posedge clk, negedge clk) begin
 
     if (running) begin
 

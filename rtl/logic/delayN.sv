@@ -10,7 +10,7 @@ module delayN #(parameter N=2)
 
   always_comb q = toOnCount == N;
 
-  always @(posedge clk, negedge clk) begin
+  always_ff @(posedge clk, negedge clk) begin
 
     if (trigger && toOnCount != N) begin
       toOnCount <= toOnCount + 1;
