@@ -139,6 +139,8 @@ e51: 10104 quad and/nand
      7 ~< ctl3 diag ld func 04x l
      3 ~> clk1-e51-3
 
+// Replaced this with N clock delay based on clk60.
+/*
 dl1: tapped-delay-20-2 20ns 2ns/tap
      3 ~< clk1 gated h
      4 ~> clk1-dl1-4
@@ -151,9 +153,26 @@ dl1: tapped-delay-20-2 20ns 2ns/tap
      11 ~> clk1-dl1-11
      12 ~> clk1-dl1-12
      13 ~> clk1 ebus clk source h
+*/
+
+%verilog
+  bit dl1_1, dl1_2, dl1_3, dl1_4, dl1_5, dl1_6, dl1_7;
+
+  always_ff @(posedge clk60, negedge clk60) begin
+    dl1_1 <= clk1_gated_h;
+    dl1_2 <= dl1_1;
+    dl1_3 <= dl1_2;
+    dl1_4 <= dl1_3;
+    dl1_5 <= dl1_4;
+    dl1_6 <= dl1_5;
+    dl1_7 <= dl1_6;
+    clk1_ebus_clk_source_h <= dl1_7;
+  end
+%endverilog
 
 e73: 10101 quad or/nor
-     7 ~< clk1-dl1-8
+//     7 ~< clk1-dl1-8
+     7 ~< `dl1_2
      12 ~< %NC%
      3 ~> clk1-e73-3
      6 ~> %NC%
