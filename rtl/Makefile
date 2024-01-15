@@ -48,8 +48,9 @@ CXXFILES = verilator-main.cc
 CFILES = fe.c
 HFILES =
 
-UCODE_SYMBOLS_JS = ../tools/ucode-symbols.js
-UCODE_SYMBOLS_TFF = ./ucode-symbols.tff
+TFF_FILES = ucode-symbols.tff inst-symbols.tff
+
+TOOLSDIR = ../tools
 
 TBDIR = tb
 TBOBJS = $(foreach F,$(CFILES:.c=.o) $(CXXFILES:.cc=.o),$(VOBJDIR)/$F)
@@ -100,7 +101,7 @@ VFLAGS = \
 
 .PHONY:	all clean tests
 
-all:	$(UCODE_SYMBOLS_TFF) $(EXE)
+all:	$(TFF_FILES) $(EXE)
 
 ### Default rules...
 -include $(VOBJDIR)/*.d
@@ -114,8 +115,11 @@ $(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES) $(DTEINTF)
 $(DTEINTF) $(DTETFF): dte-interface.js
 	node dte-interface.js -- $(DTEINTF) $(DTETFF)
 
-$(UCODE_SYMBOLS_TFF): $(UCODE_SYMBOLS_JS)
-	$(UCODE_SYMBOLS_JS) < doc/klx.no-formfeeds.listing > $(UCODE_SYMBOLS_TFF)
+ucode-symbols.tff: $(TOOLSDIR)/ucode-symbols.js
+	$(TOOLSDIR)/ucode-symbols.js < doc/klx.no-formfeeds.listing > ucode-symbols.tff
+
+inst-symbols.tff: $(TOOLSDIR)/inst-symbols.js $(TOOLSDIR)/instructions.js
+	$(TOOLSDIR)/inst-symbols.js > inst-symbols.tff
 
 clean:
 	@rm -fr obj_dir

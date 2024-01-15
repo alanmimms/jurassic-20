@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Jan 15 23:14:07 2024
+[*] Mon Jan 15 23:48:00 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Jan 13 00:25:06 2024"
+[dumpfile_mtime] "Mon Jan 15 23:14:59 2024"
 [dumpfile_size] 41683914
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 50910
+[timestart] 38341
 [size] 1967 1081
 [pos] 1465 661
-*-8.000000 51121 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-8.000000 39158 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.memory0.
@@ -82,11 +82,11 @@ top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
 -group_end
-@c020b1
+@c020b0
 [color] 3
 ^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
 #{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h
-@29
+@28
 top.kl10pv.cra_45.cra1_adr_00_h
 top.kl10pv.cra_45.cra1_adr_01_h
 top.kl10pv.cra_45.cra1_adr_02_h
@@ -98,13 +98,13 @@ top.kl10pv.cra_45.cra2_adr_07_h
 top.kl10pv.cra_45.cra2_adr_08_h
 top.kl10pv.cra_45.cra2_adr_09_h
 top.kl10pv.cra_45.cra2_adr_10_h
-@1401201
+@1401200
 -group_end
-@c020b1
+@c020b0
 [color] 3
 ^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
 #{cra-loc} top.kl10pv.cra_45.cra3_loc_10_h top.kl10pv.cra_45.cra3_loc_09_h top.kl10pv.cra_45.cra3_loc_08_h top.kl10pv.cra_45.cra3_loc_07_h top.kl10pv.cra_45.cra3_loc_06_h top.kl10pv.cra_45.cra3_loc_05_h top.kl10pv.cra_45.cra3_loc_04_h top.kl10pv.cra_45.cra3_loc_03_h top.kl10pv.cra_45.cra3_loc_02_h top.kl10pv.cra_45.cra3_loc_01_h top.kl10pv.cra_45.cra3_loc_00_h
-@2029
+@2028
 ^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
 top.kl10pv.cra_45.cra3_loc_00_h
 ^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
@@ -127,10 +127,11 @@ top.kl10pv.cra_45.cra3_loc_08_h
 top.kl10pv.cra_45.cra3_loc_09_h
 ^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
 top.kl10pv.cra_45.cra3_loc_10_h
-@1401201
+@1401200
 -group_end
-@c000b0
+@c020b1
 [color] 2
+^3 /home/alan/dec20/jurassic-20/rtl/inst-symbols.tff
 #{IR} top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_12_h top.kl10pv.ird_48.ir_11_h top.kl10pv.ird_48.ir_10_h top.kl10pv.ird_48.ir_09_h top.kl10pv.ird_48.ir_08_h top.kl10pv.ird_48.ir_07_h top.kl10pv.ird_48.ir_06_h top.kl10pv.ird_48.ir_05_h top.kl10pv.ird_48.ir_04_h top.kl10pv.ird_48.ir_03_h top.kl10pv.ird_48.ir_02_h top.kl10pv.ird_48.ir_01_h top.kl10pv.ird_48.ir_00_h
 @28
 top.kl10pv.ird_48.ir_00_h
@@ -148,7 +149,7 @@ top.kl10pv.ird_48.ir_11_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
 top.kl10pv.ird_48.ir_12_h
-@1401200
+@1401201
 -group_end
 @c00200
 -IR
