@@ -29,7 +29,7 @@ let lastLabel = null;
 
 
 rl.once('close', () => {
-  console.log(Object.entries(syms).map(([sym, addr]) => `${sym} ${addr}`).join('\n'));
+  console.log(Object.entries(syms).map(([sym, addr]) => `${addr} ${sym}`).join('\n'));
 });
 
 rl.on('line', line => {

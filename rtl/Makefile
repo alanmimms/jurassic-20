@@ -47,6 +47,10 @@ SVHFILES = $(TOP).svh $(DTEINTF) logic.svh
 CXXFILES = verilator-main.cc
 CFILES = fe.c
 HFILES =
+
+UCODE_SYMBOLS_JS = ../tools/ucode-symbols.js
+UCODE_SYMBOLS_TFF = ./ucode-symbols.tff
+
 TBDIR = tb
 TBOBJS = $(foreach F,$(CFILES:.c=.o) $(CXXFILES:.cc=.o),$(VOBJDIR)/$F)
 DTEINTF = dte.h dte.svh
@@ -96,7 +100,7 @@ VFLAGS = \
 
 .PHONY:	all clean tests
 
-all:	$(EXE)
+all:	$(UCODE_SYMBOLS_TFF) $(EXE)
 
 ### Default rules...
 -include $(VOBJDIR)/*.d
@@ -109,6 +113,9 @@ $(EXE):	$(SVFILES) $(CXXFILES) $(CFILES) $(HFILES) $(SVHFILES) $(DTEINTF)
 
 $(DTEINTF) $(DTETFF): dte-interface.js
 	node dte-interface.js -- $(DTEINTF) $(DTETFF)
+
+$(UCODE_SYMBOLS_TFF): $(UCODE_SYMBOLS_JS)
+	$(UCODE_SYMBOLS_JS) < doc/klx.no-formfeeds.listing > $(UCODE_SYMBOLS_TFF)
 
 clean:
 	@rm -fr obj_dir

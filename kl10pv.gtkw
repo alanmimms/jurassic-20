@@ -1,22 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Mon Jan  8 23:13:57 2024
+[*] Mon Jan 15 23:14:07 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Mon Jan  8 23:08:44 2024"
+[dumpfile_mtime] "Sat Jan 13 00:25:06 2024"
 [dumpfile_size] 41683914
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 51724
-[size] 1962 1063
-[pos] -1 -1
-*-8.000000 52192 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 50910
+[size] 1967 1081
+[pos] 1465 661
+*-8.000000 51121 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.memory0.
 [sst_width] 255
 [signals_width] 383
 [sst_expanded] 1
-[sst_vpaned_height] 316
+[sst_vpaned_height] 323
 @28
 top.kl10pv.crobar_e_h
 top.kl10pv.con_35.con_ebox_halted_h
@@ -81,6 +81,53 @@ top.kl10pv.cra_45.cra3_loc_08_h
 top.kl10pv.cra_45.cra3_loc_09_h
 top.kl10pv.cra_45.cra3_loc_10_h
 @1401200
+-group_end
+@c020b1
+[color] 3
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+#{cra-adr} top.kl10pv.cra_45.cra2_adr_10_h top.kl10pv.cra_45.cra2_adr_09_h top.kl10pv.cra_45.cra2_adr_08_h top.kl10pv.cra_45.cra2_adr_07_h top.kl10pv.cra_45.cra1_adr_06_h top.kl10pv.cra_45.cra1_adr_05_h top.kl10pv.cra_45.cra1_adr_04_h top.kl10pv.cra_45.cra1_adr_03_h top.kl10pv.cra_45.cra1_adr_02_h top.kl10pv.cra_45.cra1_adr_01_h top.kl10pv.cra_45.cra1_adr_00_h
+@29
+top.kl10pv.cra_45.cra1_adr_00_h
+top.kl10pv.cra_45.cra1_adr_01_h
+top.kl10pv.cra_45.cra1_adr_02_h
+top.kl10pv.cra_45.cra1_adr_03_h
+top.kl10pv.cra_45.cra1_adr_04_h
+top.kl10pv.cra_45.cra1_adr_05_h
+top.kl10pv.cra_45.cra1_adr_06_h
+top.kl10pv.cra_45.cra2_adr_07_h
+top.kl10pv.cra_45.cra2_adr_08_h
+top.kl10pv.cra_45.cra2_adr_09_h
+top.kl10pv.cra_45.cra2_adr_10_h
+@1401201
+-group_end
+@c020b1
+[color] 3
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+#{cra-loc} top.kl10pv.cra_45.cra3_loc_10_h top.kl10pv.cra_45.cra3_loc_09_h top.kl10pv.cra_45.cra3_loc_08_h top.kl10pv.cra_45.cra3_loc_07_h top.kl10pv.cra_45.cra3_loc_06_h top.kl10pv.cra_45.cra3_loc_05_h top.kl10pv.cra_45.cra3_loc_04_h top.kl10pv.cra_45.cra3_loc_03_h top.kl10pv.cra_45.cra3_loc_02_h top.kl10pv.cra_45.cra3_loc_01_h top.kl10pv.cra_45.cra3_loc_00_h
+@2029
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_00_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_01_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_02_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_03_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_04_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_05_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_06_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_07_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_08_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_09_h
+^2 /home/alan/dec20/jurassic-20/rtl/ucode-symbols.tff
+top.kl10pv.cra_45.cra3_loc_10_h
+@1401201
 -group_end
 @c000b0
 [color] 2
@@ -1006,7 +1053,6 @@ top.kl10pv.csh_23.csh2_ebox_restart_h
 top.kl10pv.csh_23.csh6_e_core_rd_comp_h
 top.kl10pv.csh_23.mbc4_core_data_valid_l
 top.kl10pv.mbc_22.csh2_e_core_rd_rq_b_l
-@29
 [color] 3
 top.kl10pv.csh_23.csh2_e4_2
 @1000200
