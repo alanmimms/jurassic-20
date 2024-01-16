@@ -985,7 +985,6 @@ e18: 10118 triple 4-2 or-and
      14 ~< -scd5 leave user l
      10 ~< scd5 ar 05 l
      11 ~< %NC%
-     9 ~< scd5 load flags a h
      15 ~> scd5 user en l
 
 e22: 10104 quad and

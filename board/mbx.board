@@ -185,7 +185,6 @@ e80: 10118 triple 4-2 or-and
      12 ~< %NC%
      11 ~< mbx2 mb wr rq any h
      10 ~< {af1} mb sel hold h
-     9 ~< %NC%
      15 ~> mbx2 mb sel hold ff in h
 
 e81: 10105 2-3-2 or/nor

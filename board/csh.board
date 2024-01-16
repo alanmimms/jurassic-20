@@ -560,7 +560,6 @@ e9:  10118 triple 4-2 or-and
      5 ~< {ad1} csh5 chan t3 l
      6 ~< %NC%
      7 ~< {ad2} csh6 chan wr cache l
-     9 ~< -csh1 ready to go a l
      2 ~> csh6-e9-2
 
 e75: 10118 triple 4-2 or-and
@@ -576,7 +575,6 @@ e75: 10118 triple 4-2 or-and
      5 ~< {ap2} csh1 cca cyc l
      6 ~< -csh1 cache idle l
      7 ~< {el1} csh7 cca writeback l
-     9 ~< %NC%
      2 ~> csh7-e75-2
 
 e74: 10176 hex dff
@@ -935,7 +933,6 @@ e24: 10118 triple 4-2 or-and
      12 ~< csh5 cca t3 l
      11 ~< csh3-e42-15
      10 ~< csh3 lru any wr l
-     9 ~< -csh3 any valid match l
      15 ~> csh4-e24-15
 
 e59: 10109 4/5 or/nor
@@ -1061,7 +1058,6 @@ e85: 10118 triple 4-2 or-and
      5 ~< csh5 t2 in h
      6 ~< -csh1 ready to go a h
      7 ~< %NC%
-     9 ~< %NC%
      2 ~> csh6-e85-2
 
 e2:  10121 4-wide or-and
@@ -1109,7 +1105,6 @@ e20: 10118 triple 4-2 or-and
      12 ~< %NC%
      11 ~< csh6 wr data rdy l
      10 ~< {am2} -csh6 cache wr in l
-     9 ~< -csh1 reset a l
      15 ~> csh6-e20-15
 
 e1:  10121 4-wide or-and

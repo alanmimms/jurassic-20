@@ -204,7 +204,6 @@ e65: 10118 triple 4-2 or-and
      14 ~< {ds1} pma3 pa 15 h
      10 ~< pag1-e59-15
      11 ~< pag1-e58-15
-     9 ~< -pag3 pt en a h
      15 ~> {de2} pt 15 b h
 
 e60: 10101 quad or/nor
@@ -235,7 +234,6 @@ e55: 10118 triple 4-2 or-and
      14 ~< {dm2} pma3 pa 17 h
      10 ~< pag1-e49-15
      11 ~< pag1-e48-15
-     9 ~< -pag3 pt en a h
      15 ~> {cr1} pt 17 b h
 
 e86: 10144 256x1 RAM
@@ -398,7 +396,6 @@ e42: 10118 triple 4-2 or-and
      // The pin 6-7-9 gate is intentionally permanently disabled
      6 ~< -pag4 page test private l
      7 ~< pag4 page test private l
-     9 ~< pag3 pt en a l
      2 ~> {ct2} pag4 page refill l
 
 e52: 10101 quad or/nor
@@ -429,7 +426,6 @@ e37: 10118 triple 4-2 or-and
      14 ~< {cf2} pma3 pa 20 h
      10 ~< pag2-e31-15
      11 ~< pag2-e30-15
-     9 ~< -pag3 pt en a h
      15 ~> {dj2} pt 20 b h
 
 e32: 10101 quad or/nor
@@ -460,7 +456,6 @@ e27: 10118 triple 4-2 or-and
      14 ~< {cd1} pma3 pa 22 h
      10 ~< pag2-e21-15
      11 ~< pag2-e20-15
-     9 ~< -pag3 pt en b h
      15 ~> {es1} pt 22 b h
 
 e17: 10118 triple 4-2 or-and
@@ -1232,7 +1227,6 @@ e79: 10118 triple 4-2 or-and
      14 ~< pag1 pt access l
      10 ~< pag1 pt access l
      11 ~< pag4 page user paged ref l
-     9 ~< %NC%
      15 ~> pag4-e79-15
 
 e90: 10118 triple 4-2 or-and
@@ -1248,7 +1242,6 @@ e90: 10118 triple 4-2 or-and
      14 ~< {fs2} mcl3 page address cond h
      10 ~< {fm2} csh6 page refill error h
      11 ~< {fs2} mcl3 page address cond h
-     9 ~< -pag4 pf code 2x h
      15 ~> {fp1} pf hold 04 in h
 
 Page: PAG5, PDF110

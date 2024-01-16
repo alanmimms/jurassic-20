@@ -680,7 +680,6 @@ e17: 10118 triple 4-2 or-and
      14 ~< -pic2 comp l
      10 ~< pic2 tim4 l
      11 ~< %NC%
-     9 ~< %NC%
      15 ~> pic4-e17-15
 
 e8:  10103 quad or

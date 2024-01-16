@@ -272,7 +272,6 @@ e40: 10118 triple 4-2 or-and
      5 ~< ccl req ctr=1 l
      6 ~< ccl af t2 l
      7 ~< %NC%
-     9 ~< {bm2} ccl mb rip l
      2 ~> ccl1-e40-2
 
 e35: 10176 hex dff
@@ -734,7 +733,6 @@ e9: 10118 triple 4-2 or-and
     14 ~< -ccl mb req t2 l
     10 ~< ccl3-e43-2
     11 ~< {ek1} ccl mb req t2 l
-    9 ~< ccl act flag req a l
     15 ~> {aj2} ccl alu plus l
 
 e14: 10117 dual 2-3 or/and
