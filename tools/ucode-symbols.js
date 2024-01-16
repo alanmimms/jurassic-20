@@ -56,6 +56,7 @@ rl.on('line', line => {
 <<<${line}>>>
 m=${util.inspect(m)}`);
 
+    if (m.groups.sym) lastLabel = m.groups.sym;
     if (m.groups.addr && lastLabel) syms[lastLabel] = m.groups.addr;
     lastLabel = m.groups.sym;
   }
