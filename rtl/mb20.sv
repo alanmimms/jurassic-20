@@ -136,7 +136,8 @@ module mb20Phase (input bit clk,
 
 	IDLE:
 
-	  if (!start) begin	// No active cycle: reset
+	  if (!start) begin
+	    // No active cycle: reset
 	    toAck <= 0;
 	    validIn <= 0;
 	    ackn <= 0;
@@ -144,7 +145,8 @@ module mb20Phase (input bit clk,
 	    word <= 36'o123456_654321;
 
 	    state <= IDLE;
-	  end else begin	// Starting an active cycle
+	  end else begin
+	    // Starting an active cycle
 	    state <= ACK;
 	  end
 
@@ -168,30 +170,35 @@ module mb20Phase (input bit clk,
 
 	// Two clocks of stable data after valid asserted.
 	READHOLD1: begin
-	  validIn <= 0;		// Apparently we should only hold validIn for one clock cycle!
+	  // Apparently we should only hold validIn for one clock cycle!
+	  validIn <= 0;
 
 	  state <= READHOLD2;
 	end
 
 	READHOLD2: begin
-	  validIn <= 0;		// Apparently we should only hold validIn for one clock cycle!
+	  // Apparently we should only hold validIn for one clock cycle!
+	  validIn <= 0;
 
 	  state <= READMORE;
 	end
 
 	READMORE: begin
 
-	  if (toAck == 0) begin		// No more words to ack, return to idle
+	  if (toAck == 0) begin
+	    // No more words to ack, return to idle
 	    validIn <= 0;
 
 	    state <= IDLE;
-	  end else if (toAck[0]) begin	// This word needs to be transferred
+	  end else if (toAck[0]) begin
+	    // This word needs to be transferred
 	    ackn <= 1;
 	    validIn <= 0;
 	    toAck <= toAck << 1;
 
 	    state <= READDATA;
-	  end else begin		// This word needs to be skipped, but there are still some to do
+	  end else begin
+	    // This word needs to be skipped, but there are still some to do
 	    ackn <= 0;
 	    validIn <= 0;
 	    toAck <= toAck << 1;
