@@ -220,9 +220,29 @@ e63: 10117 dual 2-3 or-and
      3 ~> %NC%
      2 ~> clk1-e63-2
 
-dlpcb2651: delay-line 2.65ns
-     1 ~< clk1 clk on h
-     2 ~> clk1-dlpcb2651-2
+// It LOOKS LIKE MBOX needs to be delayed slightly compared to EBOX
+// clock. This is natural since MBOX is clocked with a 2.65ns delay
+// via CLK1. I "solved" this problem by simply inverting the CLK1 CLK
+// ON H signal to create CLK1 MBOX [ABC] H. This made one problem I
+// was trying to solve work better. See EK-MBOX-UD-004_May77-ocr.pdf
+// pdf47:
+//
+//	When the MBox starts to process the EBox request, the MBox asserts
+//	CSH EBOX TO IN. This signal causes CLK EBOX REQ to be cleared. This
+//	occurs on the clock tick after which the request is made, if the
+//	MBox has no higher priority request pending.
+//
+// Before I changed to this "delayed" MBOX clock, I was _sometimes_
+// seeing CSH4 EBOX REQ L and CSH4 EBOX T0 L asserted simultaneously,
+// and when that happened the EBOX <--> MBOX dialogue would hang.
+
+//dlpcb2651: delay-line 2.65ns
+//     1 ~< clk1 clk on h
+//     2 ~> clk1-dlpcb2651-2
+
+%verilog
+  always_comb clk1_dlpcb2651_2 = !clk1_clk_on_h;
+%endverilog
 
 e59: 10210 or buffer
      5 ~< %NC%
