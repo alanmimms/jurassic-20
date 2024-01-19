@@ -36,60 +36,16 @@ wire-OR. Inputs left unconnected see a real logic zero.
 
 ## What I'm Doing Now - Occasional Status and Progress Notes
 
-* NOTE: `docs/EK-MB020-UD-001_Dec76.pdf` is a precise reference for
-  how MB20 is supposed to operate. Section 2 (PDF15) is very useful.
-  The full (nearly legible) MB20 schematics are in this file starting
-  at PDF91.
+### Now Stuck on Memory Write in JSR
+The test program I'm using is `klddt`, which starts with a JRST and
+then a JSR. The JSR writes its return address to EA, then continues
+executing at EA+1. The write is keeping our old friend MB REQ HOLD H
+asserted long after the MBOX START deasserts. This seems like it could
+be the same symptom as the read version of this problem, which was
+solved by adding another clock before returning the requested word
+from memory, but for writes this handshake doesn't exist, so what to
+do?
 
-* Memory is now blocking my progress. I have loaded the `klddt`
-  "bootloader" into `memory0` via testbench subterfuge. Now I need the
-  EBOX to be able to request from MBOX the words it needs, by
-  performing read cycles on the MB20 via SBUS.
-
-  * It appears MBOX cannot accept SBUS.ackn on each clock. There has
-    to be enough time between the bits to allow MBOX to shift out
-    leading zeros in RQ and to skip zeros in RQ before another ackn
-    can be seen.  I believe this restriction also applies to the
-    `validIn` and `validOut` signals to clock data through the
-    interface. These cannot be asserted during a clock when the MBOX
-    is skipping a zero bit in RQ.
-  * My current implementation doesn't handle discontiguous bits in
-    SBUS.RQ. In `EK-MBOX-UD-004_May77-ocr.pdf` on PDF201 MBox/3-77
-    there is a table that clearly shows RQ being set up with
-    discontiguous bits.
-  * In `EK-MBOX-UD-004_May77-ocr.pdf` on PDF200 MBox/3-76 is this:
-
-	_The MBox core control waits two MBox clock ticks after receiving
-    `SBUS DATA VALID` for the data bus drivers to stabilize before
-    loading the data into the appropriate MB._
-
-    Also, `EK-MBOX-UD-004_May77-ocr.pdf` PDF204 MBox/3-80 says this:
-  
-	  _After the SBUS DATA VALID pulse is received, the MBox core
-      control waits two clock ticks before it triggers the MB control
-      to transfer the data from the SBus data lines into the
-      appropriate MB_
-
-    These statements imply the `SBUS.validIn` signal and the data
-    lines must remain stable for two (three?) clocks after
-    `SBUS.validIn` is initially asserted.
-	
-  * The blocker seems to be the CSH2 MBOX RESP IN H signal which isn't
-    a steady assertion for several clocks as expected by the consuming
-    logic, but is instead a one clock assertion, one clock
-    deassertion, then two clocks asserted.
-
-		 |   |   |   |
-        _   _         _
-         \_/ \_______/		CSH2 MBOX RESP IN H and also CSH E32 pin 2
-    
-	The sequence of CSH6 E CORE RD COMP H, then CSH6 DATA DLY 1 L,
-    then CSH6 DATA DLY 2 L is working fine. But maybe this is
-    happening one clock too early? CSH2 E23 pins 13,14,15 look like
-    they might be the culprit, but I can't yet see how. Maybe
-    something related to CSH1 CACHE IDLE IN B L which is a term in the
-    next layer?
-	
 
 ## Bugs Outstanding TODO
 
@@ -238,3 +194,62 @@ Testing.
 	0044: ... RETURN3			; SHOULD return to 0143
 	
 RESOLUTION: My new simplified stack pointer code is working.
+
+
+#### Memory Clocking is Now Blocking
+Memory is now blocking my progress. I have loaded the `klddt`
+"bootloader" into `memory0` via testbench subterfuge. Now I need the
+EBOX to be able to request from MBOX the words it needs, by performing
+read cycles on the MB20 via SBUS.
+
+* It appears MBOX cannot accept SBUS.ackn on each clock. There has to
+  be enough time between the bits to allow MBOX to shift out leading
+  zeros in RQ and to skip zeros in RQ before another ackn can be seen.
+  I believe this restriction also applies to the `validIn` and
+  `validOut` signals to clock data through the interface. These cannot
+  be asserted during a clock when the MBOX is skipping a zero bit in
+  RQ.
+* My current implementation doesn't handle discontiguous bits in
+  SBUS.RQ. In `EK-MBOX-UD-004_May77-ocr.pdf` on PDF201 MBox/3-77 there
+  is a table that clearly shows RQ being set up with discontiguous
+  bits.
+* In `EK-MBOX-UD-004_May77-ocr.pdf` on PDF200 MBox/3-76 is this:
+
+  _The MBox core control waits two MBox clock ticks after receiving
+  `SBUS DATA VALID` for the data bus drivers to stabilize before
+  loading the data into the appropriate MB._
+
+  Also, `EK-MBOX-UD-004_May77-ocr.pdf` PDF204 MBox/3-80 says this:
+
+	_After the SBUS DATA VALID pulse is received, the MBox core
+	control waits two clock ticks before it triggers the MB control to
+	transfer the data from the SBus data lines into the appropriate
+	MB_
+
+  These statements imply the `SBUS.validIn` signal and the data lines
+  must remain stable for two (three?) clocks after `SBUS.validIn` is
+  initially asserted.
+
+* The blocker seems to be the CSH2 MBOX RESP IN H signal which isn't a
+  steady assertion for several clocks as expected by the consuming
+  logic, but is instead a one clock assertion, one clock deassertion,
+  then two clocks asserted.
+
+	   |   |   |   |
+	  _   _         _
+	   \_/ \_______/		CSH2 MBOX RESP IN H and also CSH E32 pin 2
+
+  The sequence of CSH6 E CORE RD COMP H, then CSH6 DATA DLY 1 L, then
+  CSH6 DATA DLY 2 L is working fine. But maybe this is happening one
+  clock too early? CSH2 E23 pins 13,14,15 look like they might be the
+  culprit, but I can't yet see how. Maybe something related to CSH1
+  CACHE IDLE IN B L which is a term in the next layer?
+	
+RESOLUTION: This was caused by MBOX clock being in step with EBOX
+clock. KL10 needs MBOX to have some delay in its clock so everything
+in MBOX happens one clock later than EBOX requesting actions.
+
+* NOTE: `docs/EK-MB020-UD-001_Dec76.pdf` is a precise reference for
+  how MB20 is supposed to operate. Section 2 (PDF15) is very useful.
+  The full (nearly legible) MB20 schematics are in this file starting
+  at PDF91.

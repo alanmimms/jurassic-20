@@ -1,6 +1,6 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Fri Jan 19 19:09:52 2024
+[*] Fri Jan 19 19:18:06 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Fri Jan 19 19:08:14 2024"
@@ -821,7 +821,7 @@ top.kl10pv.vma_38.vma3_pc_35_h
 @28
 [color] 1
 top.kl10pv.csh_23.mem_busy_h
-@c00200
+@800200
 -MBOX-busy
 @28
 [color] 3
@@ -834,9 +834,10 @@ top.kl10pv.mbz_20.mbz1_core_rd_in_prog_h
 top.kl10pv.mbz_20.mb_req_hold_h
 @200
 -
-@28
+@29
 [color] 1
 top.kl10pv.mbz_20.mb_req_hold_h
+@28
 top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
 [color] 1
 top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_in_h
@@ -1114,7 +1115,7 @@ top.kl10pv.mbx_21.mem_rd_rq_h
 top.kl10pv.mbx_21.mbx6_core_data_valid_b_l
 [color] 7
 top.kl10pv.mbx_21.mbx3_core_busy_1a_l
-@1401200
+@1000200
 -MBOX-busy
 @c00200
 -CRA stack
@@ -1420,10 +1421,9 @@ top.kl10pv.memory0.mbus.rdRq
 top.kl10pv.memory0.mbus.wrRq
 @200
 -
-@29
+@28
 [color] 2
 top.kl10pv.memory0.mbus.startA
-@28
 [color] 2
 top.kl10pv.memory0.mbus.acknA
 [color] 2
