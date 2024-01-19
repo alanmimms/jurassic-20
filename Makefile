@@ -33,7 +33,7 @@ cram-backplane.csv: cram-backplane.ods
 tools/tff-w36-commacomma:	tools/tff-w36-commacomma.c
 
 clean:
-	@rm -f .compile.build
+	@rm -f .compile.build *.log
 	@yarnpkg run clean
 	@rm -f kl10 $(GENRTLDIR)/*
 	@make -C $(RTLDIR) clean
