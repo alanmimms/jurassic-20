@@ -26,6 +26,7 @@
 // simultaneously.
 
 // verilator lint_off MULTIDRIVEN
+// verilator lint_off COMBDLY
 module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   W36 mem[] = new[MEMSIZE];
   bit aClk, bClk;
@@ -46,7 +47,11 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
     mbus.parIn = aClk ? aParity : bParity;
   end
 
-  always_latch if (mbus.adrHold) addr = mbus.adr;
+  always_ff @(posedge mbus.adrHold) begin
+    addr <= mbus.adr;
+  end
+
+//  always_latch if (mbus.adrHold) addr <= mbus.adr;
 
   // Flip driving ownership of mbus.dIn so that A owns it during A
   // cycles and B grabs it when A is not using it.
@@ -126,6 +131,10 @@ module mb20Phase (input bit clk,
   bit [0:3] toAck;	      // Flags for words we have not yet ACKed
   W36 word;		      // Word we are returning this cycle
 
+  // Copied at START edge from MBUS because MBUS rdRq/wrRq are deasserted
+  // after START deassert.
+  bit isRdRq, isWrRq;
+
   enum bit [4:0] {
     IDLE,		      // No cycle is running
     ACK,		      // ACK the address
@@ -133,6 +142,11 @@ module mb20Phase (input bit clk,
     POST,		      // Second clock (needed?) for READ or WRITE
     WRITEDATA		      // Write MBOX's word to memory
   } state = IDLE;
+
+  always_ff @(posedge start) begin
+    isRdRq <= rdRq;
+    isWrRq <= wrRq;
+  end
 
   always_ff @(posedge clk) begin
     string words[$] = feSim.split($sformatf("%m"), ".");
@@ -167,7 +181,7 @@ module mb20Phase (input bit clk,
 	  end
 
 	ACK: begin
-	  ackn <= 1;
+	  ackn <= inRq[0];
 	  toAck <= inRq << 1;
 	  nextAddr <= addr;
 
@@ -197,7 +211,7 @@ module mb20Phase (input bit clk,
 	    validIn <= 0;
 	    toAck <= toAck << 1;
 
-	    state <= wrRq ? WRITEDATA : READDATA;
+	    state <= isWrRq ? WRITEDATA : READDATA;
 	  end else begin
 	    // This word needs to be skipped, but there are still some to do
 	    ackn <= 0;
@@ -231,4 +245,5 @@ module mb20Phase (input bit clk,
   end
 endmodule
 
+// verilator lint_on COMBDLY
 // verilator lint_on MULTIDRIVEN
