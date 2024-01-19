@@ -1,19 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Thu Jan 18 21:30:01 2024
+[*] Fri Jan 19 02:15:25 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Thu Jan 18 18:55:15 2024"
-[dumpfile_size] 17302783
+[dumpfile_mtime] "Fri Jan 19 02:15:20 2024"
+[dumpfile_size] 17253730
 [optimize_vcd]
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 51580
+[timestart] 51564
 [size] 1967 1081
-[pos] 732 166
+[pos] -1 -1
 *-7.506126 52008 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.memory0.
+[treeopen] top.kl10pv.memory0.bPhase.
 [sst_width] 255
 [signals_width] 383
 [sst_expanded] 1
@@ -153,6 +154,36 @@ top.kl10pv.ird_48.ir_12_h
 @1401200
 -group_end
 @c000b0
+[color] 4
+#{VMA-VMA} top.kl10pv.vma_38.vma2_vma_35_h top.kl10pv.vma_38.vma2_vma_34_h top.kl10pv.vma_38.vma2_vma_33_h top.kl10pv.vma_38.vma2_vma_32_h top.kl10pv.vma_38.vma2_vma_31_h top.kl10pv.vma_38.vma2_vma_30_h top.kl10pv.vma_38.vma2_vma_29_h top.kl10pv.vma_38.vma2_vma_28_h top.kl10pv.vma_38.vma2_vma_27_h top.kl10pv.vma_38.vma2_vma_26_h top.kl10pv.vma_38.vma2_vma_25_h top.kl10pv.vma_38.vma2_vma_24_h top.kl10pv.vma_38.vma2_vma_23_h top.kl10pv.vma_38.vma2_vma_22_h top.kl10pv.vma_38.vma2_vma_21_h top.kl10pv.vma_38.vma2_vma_20_h top.kl10pv.vma_38.vma2_vma_19_h top.kl10pv.vma_38.vma2_vma_18_h top.kl10pv.vma_38.vma2_vma_17_h top.kl10pv.vma_38.vma2_vma_16_h top.kl10pv.vma_38.vma2_vma_15_h top.kl10pv.vma_38.vma2_vma_14_h top.kl10pv.vma_38.vma2_vma_13_h top.kl10pv.vma_38.vma2_vma_12_h
+@28
+top.kl10pv.vma_38.vma2_vma_12_h
+top.kl10pv.vma_38.vma2_vma_13_h
+top.kl10pv.vma_38.vma2_vma_14_h
+top.kl10pv.vma_38.vma2_vma_15_h
+top.kl10pv.vma_38.vma2_vma_16_h
+top.kl10pv.vma_38.vma2_vma_17_h
+top.kl10pv.vma_38.vma2_vma_18_h
+top.kl10pv.vma_38.vma2_vma_19_h
+top.kl10pv.vma_38.vma2_vma_20_h
+top.kl10pv.vma_38.vma2_vma_21_h
+top.kl10pv.vma_38.vma2_vma_22_h
+top.kl10pv.vma_38.vma2_vma_23_h
+top.kl10pv.vma_38.vma2_vma_24_h
+top.kl10pv.vma_38.vma2_vma_25_h
+top.kl10pv.vma_38.vma2_vma_26_h
+top.kl10pv.vma_38.vma2_vma_27_h
+top.kl10pv.vma_38.vma2_vma_28_h
+top.kl10pv.vma_38.vma2_vma_29_h
+top.kl10pv.vma_38.vma2_vma_30_h
+top.kl10pv.vma_38.vma2_vma_31_h
+top.kl10pv.vma_38.vma2_vma_32_h
+top.kl10pv.vma_38.vma2_vma_33_h
+top.kl10pv.vma_38.vma2_vma_34_h
+top.kl10pv.vma_38.vma2_vma_35_h
+@1401200
+-group_end
+@c000b0
 [color] 2
 #{VMA3-PC} top.kl10pv.vma_38.vma3_pc_35_h top.kl10pv.vma_38.vma3_pc_34_h top.kl10pv.vma_38.vma3_pc_33_h top.kl10pv.vma_38.vma3_pc_32_h top.kl10pv.vma_38.vma3_pc_31_h top.kl10pv.vma_38.vma3_pc_30_h top.kl10pv.vma_38.vma3_pc_29_h top.kl10pv.vma_38.vma3_pc_28_h top.kl10pv.vma_38.vma3_pc_27_h top.kl10pv.vma_38.vma3_pc_26_h top.kl10pv.vma_38.vma3_pc_25_h top.kl10pv.vma_38.vma3_pc_24_h top.kl10pv.vma_38.vma3_pc_23_h top.kl10pv.vma_38.vma3_pc_22_h top.kl10pv.vma_38.vma3_pc_21_h top.kl10pv.vma_38.vma3_pc_20_h top.kl10pv.vma_38.vma3_pc_19_h top.kl10pv.vma_38.vma3_pc_18_h top.kl10pv.vma_38.vma3_pc_17_h top.kl10pv.vma_38.vma3_pc_16_h top.kl10pv.vma_38.vma3_pc_15_h top.kl10pv.vma_38.vma3_pc_14_h top.kl10pv.vma_38.vma3_pc_13_h
 @28
@@ -267,7 +298,7 @@ top.kl10pv.edp_39.cache_data_35_b_h
 -group_end
 @1000200
 -IR
-@c00200
+@800200
 -core-state
 @c040a2
 [color] 3
@@ -788,6 +819,7 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
+@1000200
 -core-state
 @c00200
 -MBOX-busy
@@ -1302,9 +1334,11 @@ top.kl10pv.vma_38.e70.shft3in
 @1401200
 -vma-e70
 -VMA
-@c00200
+@800200
 -MBUS
 @28
+[color] 3
+top.kl10pv.memory0.mbus.clk
 [color] 3
 top.kl10pv.memory0.mbus.memReset
 [color] 3
@@ -1338,23 +1372,26 @@ top.kl10pv.memory0.mbus.rq[0:3]
 @28
 [color] 3
 top.kl10pv.memory0.mbus.rdRq
-[color] 1
 top.kl10pv.memory0.mbus.wrRq
-[color] 4
+@200
+-
+@28
+[color] 2
 top.kl10pv.memory0.mbus.startA
 [color] 2
 top.kl10pv.memory0.mbus.acknA
 [color] 2
 top.kl10pv.memory0.mbus.validInA
-[color] 4
-top.kl10pv.memory0.mbus.startB
-[color] 7
-top.kl10pv.memory0.mbus.acknB
-[color] 7
-top.kl10pv.memory0.mbus.validInB
+@200
+-
+@28
 [color] 3
-top.kl10pv.memory0.mbus.clk
-@1401200
+top.kl10pv.memory0.mbus.startB
+[color] 3
+top.kl10pv.memory0.mbus.acknB
+[color] 3
+top.kl10pv.memory0.mbus.validInB
+@1000200
 -mbus
 @c00200
 -MB20-aphase
@@ -1365,6 +1402,9 @@ top.kl10pv.memory0.aPhase.start
 top.kl10pv.memory0.aPhase.ackn
 [color] 3
 top.kl10pv.memory0.aPhase.clk
+@24
+top.kl10pv.memory0.aPhase.state[4:0]
+@28
 [color] 3
 top.kl10pv.memory0.aPhase.validIn
 [color] 3
@@ -1393,7 +1433,7 @@ top.kl10pv.memory0.aPhase.parity
 top.kl10pv.memory0.aPhase.toAck[0:3]
 @1401200
 -MB20-aphase
-@c00201
+@800200
 -MB20-bphase
 @28
 [color] 2
@@ -1402,8 +1442,14 @@ top.kl10pv.memory0.bPhase.start
 top.kl10pv.memory0.bPhase.ackn
 [color] 3
 top.kl10pv.memory0.bPhase.clk
+top.kl10pv.mbc_22.mbc4_core_data_valid_l
+@2024
+^4 /home/alan/dec20/jurassic-20/rtl/mb20-symbols.tff
+top.kl10pv.memory0.bPhase.state[4:0]
+@29
 [color] 3
 top.kl10pv.memory0.bPhase.validIn
+@28
 [color] 3
 top.kl10pv.memory0.bPhase.validOut
 @4022
@@ -1421,7 +1467,7 @@ top.kl10pv.memory0.bPhase.parity
 @22
 [color] 3
 top.kl10pv.memory0.bPhase.toAck[0:3]
-@1401201
+@1000200
 -MB20-bphase
 @c00200
 -clocks

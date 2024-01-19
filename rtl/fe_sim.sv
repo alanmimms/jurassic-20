@@ -29,6 +29,7 @@ module fe_sim(input bit clk,
   bit dumpDiagFuncs = 1;
   bit dumpLoadMem = 0;
   bit dumpLoadedImage = 0;
+  bit dumpMemAccesses = 1;
 
   int dumpFD;
 

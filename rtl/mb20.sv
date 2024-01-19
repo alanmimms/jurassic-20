@@ -25,8 +25,8 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   bit aClk, bClk;
   W36 aData, bData;
   bit aParity, bParity;
+  bit aOwns;
   tMemAddr addr;
-  int dumpFD = feSim.dumpFD;
 
   // Timing of these two clocks is shown in
   // `EK-MB020-UD-001_Dec76.pdf` PDF18.  Although this page documents
@@ -36,15 +36,21 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
 
   // This handles muxing the D bus and its parity for A/B.
   always_comb begin
-    mbus.dIn = mbus.validInA ? aData : mbus.validInB ? bData : 0;
+    mbus.dIn = aOwns ? aData : bData;
     mbus.parIn = aClk ? aParity : bParity;
   end
 
   always_latch if (mbus.adrHold) addr = mbus.adr;
 
+  // Flip driving ownership of mbus.dIn so that A owns it during A
+  // cycles and B grabs it when A is not using it.
+  always @(posedge mbus.startA, posedge mbus.startB) aOwns <= mbus.startA;
+
   always @(posedge mbus.startA, posedge mbus.startB) begin
-    if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> MB20 READ mem[%1o]=%s",
-			       $realtime, mbus.adr, feSim.fmt36(mem[mbus.adr]));
+    int dumpFD = feSim.dumpFD;
+
+    if (feSim.dumpMemAccesses != 0) $fdisplay(dumpFD, "%7g ----> MB20 READ mem[%1o]=%s", $realtime,
+					      mbus.adr, feSim.fmt36(mem[mbus.adr]));
   end
 
   mb20Phase aPhase(.clk(aClk),
@@ -104,8 +110,6 @@ module mb20Phase (input bit clk,
   //    asserting the data (for read or rpw) or registering the incoming
   //    data (write).
 
-  typedef bit [0:1] tQuadAddr;
-
   tMemAddr nextAddr = 0;      // Address of word we read/write next.
   bit [0:3] toAck;	      // Flags for words we have not yet ACKed
   W36 word;		      // Word we are returning this cycle
@@ -122,10 +126,11 @@ module mb20Phase (input bit clk,
   always_ff @(posedge clk) begin
     string words[$] = feSim.split($sformatf("%m"), ".");
     string phase = words[3];	// XXX HaxRUs
-    int dumpFD = feSim.dumpFD;
 
     if (diag) begin
-      if (dumpFD != 0) $fdisplay(dumpFD, "%7g ----> %m DIAG", $realtime);
+      int dumpFD = feSim.dumpFD;
+
+      if (feSim.dumpDiagFuncs != 0) $fdisplay(dumpFD, "%7g ----> %m MB20 DIAG", $realtime);
     end
 
     if (reset) begin
@@ -170,14 +175,14 @@ module mb20Phase (input bit clk,
 
 	// Two clocks of stable data after valid asserted.
 	READHOLD1: begin
-	  // Apparently we should only hold validIn for one clock cycle!
+	  // Possibly we should only hold validIn for one clock cycle?
 	  validIn <= 0;
 
 	  state <= READHOLD2;
 	end
 
 	READHOLD2: begin
-	  // Apparently we should only hold validIn for one clock cycle!
+	  // Possibly we should only hold validIn for one clock cycle?
 	  validIn <= 0;
 
 	  state <= READMORE;
