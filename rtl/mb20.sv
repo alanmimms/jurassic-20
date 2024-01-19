@@ -20,6 +20,12 @@
 //
 // * This design will not properly handle case of inRq with
 //   discontiguous bits. This needs fixing!
+
+
+// Two phases write to memory, and we know they do not do it
+// simultaneously.
+
+// verilator lint_off MULTIDRIVEN
 module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   W36 mem[] = new[MEMSIZE];
   bit aClk, bClk;
@@ -47,10 +53,16 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   always @(posedge mbus.startA, posedge mbus.startB) aOwns <= mbus.startA;
 
   always @(posedge mbus.startA, posedge mbus.startB) begin
-    int dumpFD = feSim.dumpFD;
 
-    if (feSim.dumpMemAccesses != 0) $fdisplay(dumpFD, "%7g ----> MB20 READ mem[%1o]=%s", $realtime,
-					      mbus.adr, feSim.fmt36(mem[mbus.adr]));
+    if (feSim.dumpMemAccesses) begin
+      int dumpFD = feSim.dumpFD;
+
+      if (mbus.rdRq) $fdisplay(dumpFD, "%7g ----> MB20 READ  mem[%1o]=%s", $realtime,
+			       mbus.adr, feSim.fmt36(mem[mbus.adr]));
+
+      if (mbus.wrRq) $fdisplay(dumpFD, "%7g ----> MB20 WRITE mem[%1o]=%s", $realtime,
+					 mbus.adr, feSim.fmt36(mbus.dOut));
+    end
   end
 
   mb20Phase aPhase(.clk(aClk),
@@ -118,9 +130,8 @@ module mb20Phase (input bit clk,
     IDLE,		      // No cycle is running
     ACK,		      // ACK the address
     READDATA,		      // Present a word to MBOX
-    READHOLD1,		      // First clock of a word for READ
-    READHOLD2,		      // Second clock of a word for READ
-    READMORE		      // THIRD clock (needed?) for READ
+    POST,		      // Second clock (needed?) for READ or WRITE
+    WRITEDATA		      // Write MBOX's word to memory
   } state = IDLE;
 
   always_ff @(posedge clk) begin
@@ -130,7 +141,7 @@ module mb20Phase (input bit clk,
     if (diag) begin
       int dumpFD = feSim.dumpFD;
 
-      if (feSim.dumpDiagFuncs != 0) $fdisplay(dumpFD, "%7g ----> %m MB20 DIAG", $realtime);
+      if (feSim.dumpDiagFuncs) $fdisplay(dumpFD, "%7g ----> %m MB20 DIAG", $realtime);
     end
 
     if (reset) begin
@@ -170,25 +181,10 @@ module mb20Phase (input bit clk,
 
 	  ackn <= 0;
 
-	  state <= READHOLD1;
+	  state <= POST;
 	end
 
-	// Two clocks of stable data after valid asserted.
-	READHOLD1: begin
-	  // Possibly we should only hold validIn for one clock cycle?
-	  validIn <= 0;
-
-	  state <= READHOLD2;
-	end
-
-	READHOLD2: begin
-	  // Possibly we should only hold validIn for one clock cycle?
-	  validIn <= 0;
-
-	  state <= READMORE;
-	end
-
-	READMORE: begin
+	POST: begin
 
 	  if (toAck == 0) begin
 	    // No more words to ack, return to idle
@@ -201,15 +197,27 @@ module mb20Phase (input bit clk,
 	    validIn <= 0;
 	    toAck <= toAck << 1;
 
-	    state <= READDATA;
+	    state <= wrRq ? WRITEDATA : READDATA;
 	  end else begin
 	    // This word needs to be skipped, but there are still some to do
 	    ackn <= 0;
 	    validIn <= 0;
 	    toAck <= toAck << 1;
 
-	    state <= (toAck << 1) == 0 ? IDLE : READMORE;
+	    state <= (toAck << 1) == 0 ? IDLE : POST;
 	  end
+	end // case: POST
+
+	WRITEDATA: begin
+	  word <= d;
+
+	  memory0.mem[nextAddr] <= d;
+
+	  nextAddr <= {nextAddr[14:33], nextAddr[34:35] + 2'b01};
+
+	  ackn <= 0;
+
+	  state <= POST;
 	end
 
 	default: state <= IDLE;
@@ -222,3 +230,5 @@ module mb20Phase (input bit clk,
     parity = !^word;
   end
 endmodule
+
+// verilator lint_on MULTIDRIVEN
