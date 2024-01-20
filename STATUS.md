@@ -46,6 +46,23 @@ solved by adding another clock before returning the requested word
 from memory, but for writes this handshake doesn't exist, so what to
 do?
 
+LATER: This seems to trace back to `MBUS.wrRq` not being asserted for
+the JSR's write to memory. _Maybe_ this is related to `CSH2 EBOX RETRY
+NEXT H/L`? I see `CSH2 EBOX RETRY REQ L` assert one clock after `CSH4
+E T2 MEM REF L` and `CSH4 E WR T2 L` assert during a cycle with `CSH2
+E CACHE WR CYC H` asserted. This implies the EBOX thought the MBOX was
+busy when it issued the write cycle for the JSR to write its return
+address.
+
+Furthermore, I note `CSH2 EBOX RETRY REQ L` is only asserted for one
+MBOX clock. This is the only time `CSH2 EBOX RETRY REQ L` is ever
+asserted in my sim to this point. Strangely, three clocks before this
+point in the sequence `CLK4 EBOX REQ H` goes up for a clock, then down
+for a clock, then goes up and stays up.
+
+This all starts in my trace at 53.1us after startup, including 1.3us
+of CROBAR asserted at the beginning of time.
+
 
 ## Bugs Outstanding TODO
 
@@ -212,7 +229,7 @@ read cycles on the MB20 via SBUS.
 * My current implementation doesn't handle discontiguous bits in
   SBUS.RQ. In `EK-MBOX-UD-004_May77-ocr.pdf` on PDF201 MBox/3-77 there
   is a table that clearly shows RQ being set up with discontiguous
-  bits.
+  bits. [EDIT: now it does]
 * In `EK-MBOX-UD-004_May77-ocr.pdf` on PDF200 MBox/3-76 is this:
 
   _The MBox core control waits two MBox clock ticks after receiving
@@ -228,7 +245,8 @@ read cycles on the MB20 via SBUS.
 
   These statements imply the `SBUS.validIn` signal and the data lines
   must remain stable for two (three?) clocks after `SBUS.validIn` is
-  initially asserted.
+  initially asserted. [EDIT: It has to be after one or two clocks and
+  held for only two clocks.]
 
 * The blocker seems to be the CSH2 MBOX RESP IN H signal which isn't a
   steady assertion for several clocks as expected by the consuming

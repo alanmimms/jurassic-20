@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Fri Jan 19 19:18:06 2024
+[*] Sat Jan 20 01:22:51 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Fri Jan 19 19:08:14 2024"
-[dumpfile_size] 17253747
+[dumpfile_mtime] "Sat Jan 20 00:53:23 2024"
+[dumpfile_size] 4718872
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 52840
+[timestart] 52607
 [size] 1967 1081
 [pos] -1 -1
-*-7.506126 53108 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.506126 53208 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.memory0.
@@ -210,7 +210,7 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
-@800200
+@c00200
 -IR
 @c000b0
 [color] 2
@@ -294,9 +294,8 @@ top.kl10pv.edp_39.cache_data_34_b_h
 top.kl10pv.edp_39.cache_data_35_b_h
 @1401200
 -group_end
-@1000200
 -IR
-@c00200
+@800200
 -core-state
 @c040a2
 [color] 3
@@ -817,6 +816,7 @@ top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
+@1000200
 -core-state
 @28
 [color] 1
@@ -834,10 +834,67 @@ top.kl10pv.mbz_20.mbz1_core_rd_in_prog_h
 top.kl10pv.mbz_20.mb_req_hold_h
 @200
 -
+@800200
+-ebox-mbox-cycle
+@28
+top.kl10pv.clk_32.clk4_ebox_req_h
+top.kl10pv.csh_23.csh2_ebox_retry_req_l
+top.kl10pv.csh_23.csh4_ebox_t0_in_l
+top.kl10pv.csh_23.csh2_mbox_resp_in_h
+top.kl10pv.clk_32.clk3_ebox_sync_d_l
+@200
+-
+@28
+[color] 1
+top.kl10pv.mcl_47.mcl2_vma_write_l
+top.kl10pv.csh_23.csh_ebox_cyc_a_l
+top.kl10pv.csh_23.csh4_ebox_read_a_h
+[color] 3
+top.kl10pv.csh_23.csh2_e_cache_wr_cyc_h
+top.kl10pv.csh_23.csh4_data_clr_t4_l
+top.kl10pv.csh_23.csh4_e_t2_mem_ref_l
+top.kl10pv.csh_23.csh4_ebox_read_a_h
 @29
+[color] 3
+top.kl10pv.csh_23.csh4_e_wr_t2_l
+@200
+-
+@800200
+-modifiers
+@28
+top.kl10pv.mcl_47.mcl2_vma_read_l
+[color] 3
+top.kl10pv.mcl_47.mcl2_vma_write_l
+top.kl10pv.mcl_47.mcl6_ebox_cache_l
+top.kl10pv.apr_34.apr6_ebox_load_reg_l
+top.kl10pv.apr_34.apr6_ebox_read_reg_l
+top.kl10pv.apr_34.apr6_ebox_cca_h
+top.kl10pv.apr_34.apr6_ebox_ebr_h
+top.kl10pv.apr_34.apr6_ebox_ubr_h
+@1000200
+-modifiers
+-ebox-mbox-cycle
+@200
+-
+@28
+[color] 1
+top.kl10pv.mbc_22.mbx5_mem_wr_rq_in_h
+top.kl10pv.mbx_21.csh4_writeback_t1_a_l
+top.kl10pv.mbx_21.mbx4_cache_to_mb_t1_l
+top.kl10pv.mbx_21.mbx4_cache_to_mb_t2_l
+top.kl10pv.mbx_21.mbx4_cache_to_mb_t3_l
+top.kl10pv.mbx_21.mbx4_cache_to_mb_t4_a_l
+top.kl10pv.mbx_21.mbx4_cache_to_mb_t4_h
+top.kl10pv.mbx_21.mbx4_clk_b_h
+[color] 2
+top.kl10pv.mbx_21.mbx5_e39_3
+top.kl10pv.mbx_21.csh2_one_word_rd_l
+top.kl10pv.mbx_21.mcl2_vma_pause_l
+@200
+-
+@28
 [color] 1
 top.kl10pv.mbz_20.mb_req_hold_h
-@28
 top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
 [color] 1
 top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_in_h
@@ -849,274 +906,193 @@ top.kl10pv.csh_23.csh6_wr_from_mem_nxt_h
 top.kl10pv.csh_23.csh6_ebox_took_1_wd_h
 top.kl10pv.csh_23.csh1_clk_a_h
 top.kl10pv.csh_23.csh6_ebox_sync_seen_l
-@200
--
--See EK-MBOX-UD-004_May77-ocr pdf47
-@28
-top.kl10pv.clk_32.clk1_clk_on_h
-top.kl10pv.clk_32.clk1_mbox_a_h
-[color] 3
-top.kl10pv.clk_32.clk4_ebox_req_l
-[color] 2
-top.kl10pv.csh_23.csh4_ebox_t0_l
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh6_ebox_took_1_wd_h
-top.kl10pv.csh_23.csh6_ebox_sync_seen_l
-[color] 1
-top.kl10pv.csh_23.csh2_one_word_rd_l
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh2_one_word_rd_l
-[color] 3
-top.kl10pv.csh_23.csh2_e9_15
-[color] 7
-top.kl10pv.csh_23.csh4_e_rd_t2_core_ok_l
-[color] 7
-top.kl10pv.csh_23.csh3_any_valid_match_h
-[color] 7
-top.kl10pv.csh_23.mbx1_cache_bit_h
-[color] 5
-top.kl10pv.csh_23.csh2_ebox_restart_h
-[color] 5
-top.kl10pv.csh_23.csh2_e9_15
-[color] 5
-top.kl10pv.csh_23.csh1_ready_to_go_a_h
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh2_ebox_restart_h
-top.kl10pv.csh_23.csh2_mbox_resp_l
-[color] 1
-top.kl10pv.csh_23.csh2_mbox_resp_in_h
-top.kl10pv.csh_23.csh1_cache_idle_in_b_l
-top.kl10pv.csh_23.csh1_ebox_cyc_b_l
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh2_mbox_resp_in_h
-[color] 1
-top.kl10pv.csh_23.csh2_e23_2
-top.kl10pv.csh_23.e_cache_wr_cyc_l
-@200
--
-@28
-top.kl10pv.csh_23.csh4_e_rd_t2_ok_l
-top.kl10pv.csh_23.csh3_rd_found_l
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh1_cache_idle_in_b_l
-top.kl10pv.csh_23.csh1_ebox_cyc_b_l
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh1_cache_idle_in_b_l
-top.kl10pv.csh_23.csh4_ebox_pause_write_l
-top.kl10pv.csh_23.csh1_e37_3
-top.kl10pv.csh_23.csh4_ebox_t0_l
-top.kl10pv.csh_23.apr6_ebox_load_reg_l
-[color] 2
-top.kl10pv.csh_23.csh3_cache_idle_in_c_l
-top.kl10pv.csh_23.csh3_e11_7
-top.kl10pv.csh_23.apr6_ebox_read_reg_l
-top.kl10pv.csh_23.csh4_ebox_t3_l
-top.kl10pv.csh_23.csh3_map_problem_h
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh2_e23_2
-@800200
--CSH2 E23 7,9
-@28
-top.kl10pv.csh_23.csh6_ebox_sync_hold_h
-top.kl10pv.csh_23.csh6_data_dly_1_l
 @1000200
--CSH2 E23 7,9
-@200
--
+-MBOX-busy
 @800200
--CSH2 E23 11,12
+-MBUS
 @28
-top.kl10pv.csh_23.mbc4_core_data_val_NG1_l
-top.kl10pv.csh_23.csh2_e_core_rd_rq_a_l
-@1000200
--CSH2 E23 11,12
-@200
--
-@800200
--CSH2 E23 13,14,15
-@28
-top.kl10pv.csh_23.csh6_e_core_rd_comp_h
-top.kl10pv.csh_23.csh2_mbox_resp_l
-[color] 2
-top.kl10pv.csh_23.csh2_ebox_restart_h
-@1000200
--CSH2 E23 13,14,15
-@200
--
-@800200
--core-rd-comp
-@28
-[color] 1
-top.kl10pv.csh_23.csh6_e_core_rd_comp_h
-top.kl10pv.csh_23.mbc4_core_data_valid_l
-top.kl10pv.mbc_22.csh2_e_core_rd_rq_b_l
 [color] 3
-top.kl10pv.csh_23.csh2_e4_2
-@1000200
--core-rd-comp
-@200
--
-@28
-top.kl10pv.csh_23.mbc4_core_data_valid_l
-[color] 2
-top.kl10pv.csh_23.clk3_ebox_sync_d_l
-[color] 2
-top.kl10pv.mbc_22.mbx5_rq_0_in_h
-top.kl10pv.mbx_21.mbx5_rd_nonNGval_wds_l
-top.kl10pv.mbx_21.mbx5_pa_34_a_h
-top.kl10pv.mbx_21.mbx5_pa_35_a_h
-top.kl10pv.mbx_21.mbx2_mb_0_wr_rq_l
+top.kl10pv.memory0.mbus.clk
 [color] 3
-top.kl10pv.mbx_21.mbx5_one_word_rd_a_l
-@200
--
+top.kl10pv.memory0.mbus.memReset
+[color] 3
+top.kl10pv.memory0.mbus.adrHold
+@30
++{memory0-addr} top.kl10pv.memory0.addr[14:35]
+@c00030
+[color] 3
++{mbus-adr} top.kl10pv.memory0.mbus.adr[14:35]
 @28
-[color] 1
-top.kl10pv.mbc_22.mbc3_inh_1st_mb_req_h
-@200
--
+[color] 3
+(0)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(1)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(2)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(3)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(4)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(5)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(6)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(7)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(8)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(9)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(10)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(11)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(12)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(13)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(14)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(15)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(16)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(17)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(18)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(19)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(20)top.kl10pv.memory0.mbus.adr[14:35]
+[color] 3
+(21)top.kl10pv.memory0.mbus.adr[14:35]
+@1401200
+-group_end
+@4022
+[color] 3
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.memory0.mbus.dIn[0:35]
+[color] 3
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.memory0.mbus.dOut[0:35]
+@c000a8
+[color] 3
+top.kl10pv.memory0.mbus.rq[0:3]
 @28
-top.kl10pv.mbc_22.mbc3_first_wd_adr_sel_l
-top.kl10pv.mbc_22.mbc1_clk_f_h
-top.kl10pv.mbc_22.mbc2_csh_val_wr_pulse_h
-top.kl10pv.mbc_22.mbc1_reset_l
-@200
--
+[color] 3
+(0)top.kl10pv.memory0.mbus.rq[0:3]
+[color] 3
+(1)top.kl10pv.memory0.mbus.rq[0:3]
+[color] 3
+(2)top.kl10pv.memory0.mbus.rq[0:3]
+[color] 3
+(3)top.kl10pv.memory0.mbus.rq[0:3]
+@1401200
+-group_end
 @28
-top.kl10pv.clk_32.clk1_mbox_b_h
-top.kl10pv.clk_32.clk1_source_delayed_h
-[color] 1
-top.kl10pv.clk_32.clk1_gated_h
-[color] 1
-top.kl10pv.clk_32.clk1_ebus_clk_source_h
-top.kl10pv.clk_32.clk1_source_delayed_h
-top.kl10pv.clk_32.clk_crm_00_h
-top.kl10pv.clk_32.clk3_sync_l
-top.kl10pv.clk_32.clk3_sync_en_h
-top.kl10pv.clk_32.clk1_gated_h
-top.kl10pv.clk_32.clk1_gated_en_h
+[color] 3
+top.kl10pv.memory0.mbus.rdRq
+top.kl10pv.memory0.mbus.wrRq
 @200
 -
 @28
 [color] 4
-top.kl10pv.clk_32.clk1_mbox_b_h
-top.kl10pv.clk_32.clk_ebox_sync_a_l
-top.kl10pv.clk_32.clk3_ebox_source_h
-top.kl10pv.clk_32.clk4_ebox_clk_l
-top.kl10pv.csh_23.csh4_ebox_t0_l
-top.kl10pv.mcl_47.mcl1_req_en_l
-top.kl10pv.mcl_47.mcl_mbox_cyc_req_h
-[color] 1
-top.kl10pv.con_mbox_wait_l
-[color] 1
-top.kl10pv.csh2_mbox_resp_in_h
-[color] 1
-top.kl10pv.clk4_resp_mbox_h
-[color] 1
-top.kl10pv.clk_32.clk_sbus_clk_h
-[color] 1
-top.kl10pv.clk_32.clk_ebus_clk_h
-top.kl10pv.clk_32.dl1_1
-top.kl10pv.clk_32.dl1_2
-top.kl10pv.clk_32.dl1_3
-top.kl10pv.clk_32.dl1_4
-top.kl10pv.clk_32.dl1_5
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh6_e_core_rd_comp_h
-top.kl10pv.csh_23.mbc4_core_data_valid_l
-top.kl10pv.csh_23.csh2_e_core_rd_rq_a_l
-@200
--
-@28
-[color] 3
-top.kl10pv.csh_23.csh4_ebox_t0_l
-[color] 3
-top.kl10pv.csh_23.csh4_ebox_t1_l
-[color] 3
-top.kl10pv.csh_23.csh4_ebox_t2_l
-[color] 3
-top.kl10pv.csh_23.csh4_ebox_t3_l
-@200
--
-@28
-[color] 3
-top.kl10pv.mbc_22.mbc4_core_data_val_NG2_l
-[color] 3
-top.kl10pv.csh_23.mbc4_core_data_val_NG1_l
-[color] 3
-top.kl10pv.mbc_22.mbc4_core_data_valid_l
-@200
--
-@28
-[color] 1
-top.kl10pv.mbc_22.mbc4_core_data_val_NG2_l
-top.kl10pv.mbc_22.nxm_data_val_l
-top.kl10pv.mbc_22.mem_data_valid_a_l
-top.kl10pv.mbc_22.mbc3_a_change_coming_b_l
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh1_cache_idle_in_b_l
-top.kl10pv.csh_23.csh4_ebox_pause_write_l
-top.kl10pv.csh_23.csh1_e37_3
-top.kl10pv.csh_23.csh4_ebox_t0_l
-top.kl10pv.csh_23.apr6_ebox_load_reg_l
-top.kl10pv.csh_23.csh3_cache_idle_in_c_l
-@200
--
-@28
-[color] 1
-top.kl10pv.csh_23.csh3_cache_idle_in_c_l
-top.kl10pv.csh_23.apr6_ebox_read_reg_l
-top.kl10pv.csh_23.csh4_ebox_t3_l
-top.kl10pv.csh_23.csh4_page_fail_t3_l
-@200
--
-@28
-[color] 1
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_clr_ff_l
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
-[color] 1
-top.kl10pv.mbx_21.mb_sel_hold_h
-top.kl10pv.mbx_21.mbx2_mb_wr_rq_any_h
+top.kl10pv.memory0.mbus.startA
 [color] 2
-top.kl10pv.mbx_21.mbx2_mb_sel_hold_ff_h
+top.kl10pv.memory0.mbus.acknA
 [color] 2
-top.kl10pv.mbx_21.ackn_pulse_l
-top.kl10pv.mbx_21.mbx2_e65_2
-[color] 7
-top.kl10pv.mbx_21.mem_rd_rq_h
-[color] 7
-top.kl10pv.mbx_21.mbx6_core_data_valid_b_l
-[color] 7
-top.kl10pv.mbx_21.mbx3_core_busy_1a_l
+top.kl10pv.memory0.mbus.validInA
+@200
+-
+@28
+[color] 4
+top.kl10pv.memory0.mbus.startB
+[color] 3
+top.kl10pv.memory0.mbus.acknB
+[color] 3
+top.kl10pv.memory0.mbus.validInB
 @1000200
--MBOX-busy
+-mbus
+@800200
+-MB20-aphase
+@28
+[color] 4
+top.kl10pv.memory0.aPhase.start
+top.kl10pv.memory0.aPhase.isRdRq
+top.kl10pv.memory0.aPhase.isWrRq
+[color] 2
+top.kl10pv.memory0.aPhase.ackn
+[color] 3
+top.kl10pv.memory0.aPhase.clk
+@24
+top.kl10pv.memory0.aPhase.state[4:0]
+@28
+[color] 3
+top.kl10pv.memory0.aPhase.validIn
+[color] 3
+top.kl10pv.memory0.aPhase.validOut
+@4022
+[color] 3
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.memory0.aPhase.d[0:35]
+@30
+[color] 3
+top.kl10pv.memory0.aPhase.addr[14:35]
+@c00028
+[color] 3
+top.kl10pv.memory0.aPhase.inRq[0:3]
+@28
+(0)top.kl10pv.memory0.aPhase.inRq[0:3]
+(1)top.kl10pv.memory0.aPhase.inRq[0:3]
+(2)top.kl10pv.memory0.aPhase.inRq[0:3]
+(3)top.kl10pv.memory0.aPhase.inRq[0:3]
+@1401200
+-group_end
+@28
+[color] 3
+top.kl10pv.memory0.aPhase.parity
+[color] 3
+top.kl10pv.memory0.aPhase.toAck[0:3]
+@1000200
+-MB20-aphase
+@800200
+-MB20-bphase
+@28
+[color] 2
+top.kl10pv.memory0.bPhase.start
+top.kl10pv.memory0.bPhase.isRdRq
+top.kl10pv.memory0.bPhase.isWrRq
+[color] 2
+top.kl10pv.memory0.bPhase.ackn
+[color] 3
+top.kl10pv.memory0.bPhase.clk
+@2024
+^4 /home/alan/dec20/jurassic-20/rtl/mb20-symbols.tff
+top.kl10pv.memory0.bPhase.state[4:0]
+@28
+[color] 3
+top.kl10pv.memory0.bPhase.validIn
+[color] 3
+top.kl10pv.memory0.bPhase.validOut
+@4022
+[color] 3
+^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
+top.kl10pv.memory0.bPhase.d[0:35]
+@30
+[color] 3
+top.kl10pv.memory0.bPhase.addr[14:35]
+@22
+[color] 3
+top.kl10pv.memory0.bPhase.inRq[0:3]
+@28
+[color] 3
+top.kl10pv.memory0.bPhase.parity
+@22
+[color] 3
+top.kl10pv.memory0.bPhase.toAck[0:3]
+@1000200
+-MB20-bphase
 @c00200
 -CRA stack
 @28
@@ -1333,191 +1309,6 @@ top.kl10pv.vma_38.e70.shft3in
 @1401200
 -vma-e70
 -VMA
-@800200
--MBUS
-@28
-[color] 3
-top.kl10pv.memory0.mbus.clk
-[color] 3
-top.kl10pv.memory0.mbus.memReset
-[color] 3
-top.kl10pv.memory0.mbus.adrHold
-@30
-+{memory0-addr} top.kl10pv.memory0.addr[14:35]
-@c00030
-[color] 3
-+{mbus-adr} top.kl10pv.memory0.mbus.adr[14:35]
-@28
-[color] 3
-(0)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(1)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(2)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(3)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(4)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(5)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(6)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(7)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(8)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(9)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(10)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(11)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(12)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(13)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(14)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(15)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(16)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(17)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(18)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(19)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(20)top.kl10pv.memory0.mbus.adr[14:35]
-[color] 3
-(21)top.kl10pv.memory0.mbus.adr[14:35]
-@1401200
--group_end
-@4022
-[color] 3
-^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
-top.kl10pv.memory0.mbus.dIn[0:35]
-[color] 3
-^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
-top.kl10pv.memory0.mbus.dOut[0:35]
-@c000a8
-[color] 3
-top.kl10pv.memory0.mbus.rq[0:3]
-@28
-[color] 3
-(0)top.kl10pv.memory0.mbus.rq[0:3]
-[color] 3
-(1)top.kl10pv.memory0.mbus.rq[0:3]
-[color] 3
-(2)top.kl10pv.memory0.mbus.rq[0:3]
-[color] 3
-(3)top.kl10pv.memory0.mbus.rq[0:3]
-@1401200
--group_end
-@28
-[color] 3
-top.kl10pv.memory0.mbus.rdRq
-top.kl10pv.memory0.mbus.wrRq
-@200
--
-@28
-[color] 2
-top.kl10pv.memory0.mbus.startA
-[color] 2
-top.kl10pv.memory0.mbus.acknA
-[color] 2
-top.kl10pv.memory0.mbus.validInA
-@200
--
-@28
-[color] 3
-top.kl10pv.memory0.mbus.startB
-[color] 3
-top.kl10pv.memory0.mbus.acknB
-[color] 3
-top.kl10pv.memory0.mbus.validInB
-@1000200
--mbus
-@800200
--MB20-aphase
-@28
-[color] 4
-top.kl10pv.memory0.aPhase.start
-top.kl10pv.memory0.aPhase.isRdRq
-top.kl10pv.memory0.aPhase.isWrRq
-[color] 2
-top.kl10pv.memory0.aPhase.ackn
-[color] 3
-top.kl10pv.memory0.aPhase.clk
-@24
-top.kl10pv.memory0.aPhase.state[4:0]
-@28
-[color] 3
-top.kl10pv.memory0.aPhase.validIn
-[color] 3
-top.kl10pv.memory0.aPhase.validOut
-@4022
-[color] 3
-^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
-top.kl10pv.memory0.aPhase.d[0:35]
-@30
-[color] 3
-top.kl10pv.memory0.aPhase.addr[14:35]
-@c00028
-[color] 3
-top.kl10pv.memory0.aPhase.inRq[0:3]
-@28
-(0)top.kl10pv.memory0.aPhase.inRq[0:3]
-(1)top.kl10pv.memory0.aPhase.inRq[0:3]
-(2)top.kl10pv.memory0.aPhase.inRq[0:3]
-(3)top.kl10pv.memory0.aPhase.inRq[0:3]
-@1401200
--group_end
-@28
-[color] 3
-top.kl10pv.memory0.aPhase.parity
-[color] 3
-top.kl10pv.memory0.aPhase.toAck[0:3]
-@1000200
--MB20-aphase
-@800200
--MB20-bphase
-@28
-[color] 2
-top.kl10pv.memory0.bPhase.start
-top.kl10pv.memory0.bPhase.isRdRq
-top.kl10pv.memory0.bPhase.isWrRq
-[color] 2
-top.kl10pv.memory0.bPhase.ackn
-[color] 3
-top.kl10pv.memory0.bPhase.clk
-@2024
-^4 /home/alan/dec20/jurassic-20/rtl/mb20-symbols.tff
-top.kl10pv.memory0.bPhase.state[4:0]
-@28
-[color] 3
-top.kl10pv.memory0.bPhase.validIn
-[color] 3
-top.kl10pv.memory0.bPhase.validOut
-@4022
-[color] 3
-^>1 /home/alan/dec20/jurassic-20/tools/tff-w36-commacomma
-top.kl10pv.memory0.bPhase.d[0:35]
-@30
-[color] 3
-top.kl10pv.memory0.bPhase.addr[14:35]
-@22
-[color] 3
-top.kl10pv.memory0.bPhase.inRq[0:3]
-@28
-[color] 3
-top.kl10pv.memory0.bPhase.parity
-@22
-[color] 3
-top.kl10pv.memory0.bPhase.toAck[0:3]
-@1000200
--MB20-bphase
 @c00200
 -clocks
 @28
