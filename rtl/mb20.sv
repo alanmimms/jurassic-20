@@ -8,8 +8,6 @@
 //
 // TODO:
 //
-// * Implement write cycles.
-//
 // * Implement read-pause-write cycles.
 //
 // * Implement BLKO PI diagnostic cycle support.
@@ -23,10 +21,9 @@
 
 
 // Two phases write to memory, and we know they do not do it
-// simultaneously.
-
+// simultaneously, so we can ignore MULTIDRIVEN lint warning.
+//
 // verilator lint_off MULTIDRIVEN
-// verilator lint_off COMBDLY
 module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   W36 mem[] = new[MEMSIZE];
   bit aClk, bClk;
@@ -50,8 +47,6 @@ module mb20 #(parameter MEMSIZE=512*1024) (iMBUS.memory mbus);
   always_ff @(posedge mbus.adrHold) begin
     addr <= mbus.adr;
   end
-
-//  always_latch if (mbus.adrHold) addr <= mbus.adr;
 
   // Flip driving ownership of mbus.dIn so that A owns it during A
   // cycles and B grabs it when A is not using it.
@@ -139,8 +134,7 @@ module mb20Phase (input bit clk,
     IDLE,		      // No cycle is running
     ACK,		      // ACK the address
     READDATA,		      // Present a word to MBOX
-    POST,		      // Second clock (needed?) for READ or WRITE
-    WRITEDATA		      // Write MBOX's word to memory
+    POST		      // Second clock (needed?) for READ or WRITE
   } state = IDLE;
 
   always_ff @(posedge start) begin
@@ -199,6 +193,9 @@ module mb20Phase (input bit clk,
 	end
 
 	POST: begin
+	  // Always move the flags of words to ACKN forward on each
+	  // cycle.
+	  toAck <= toAck << 1;
 
 	  if (toAck == 0) begin
 	    // No more words to ack, return to idle
@@ -209,30 +206,28 @@ module mb20Phase (input bit clk,
 	    // This word needs to be transferred
 	    ackn <= 1;
 	    validIn <= 0;
-	    toAck <= toAck << 1;
 
-	    state <= isWrRq ? WRITEDATA : READDATA;
+	    // No more clocks are needed for a write cycle.
+	    // We just ACKN and move on.
+	    if (isWrRq) begin
+	      word <= d;
+
+	      memory0.mem[nextAddr] <= d;
+
+	      nextAddr <= {nextAddr[14:33], nextAddr[34:35] + 2'b01};
+
+	      ackn <= 0;
+	    end
+
+	    state <= isWrRq ? POST : READDATA;
 	  end else begin
 	    // This word needs to be skipped, but there are still some to do
 	    ackn <= 0;
 	    validIn <= 0;
-	    toAck <= toAck << 1;
 
 	    state <= (toAck << 1) == 0 ? IDLE : POST;
 	  end
 	end // case: POST
-
-	WRITEDATA: begin
-	  word <= d;
-
-	  memory0.mem[nextAddr] <= d;
-
-	  nextAddr <= {nextAddr[14:33], nextAddr[34:35] + 2'b01};
-
-	  ackn <= 0;
-
-	  state <= POST;
-	end
 
 	default: state <= IDLE;
       endcase
@@ -245,5 +240,4 @@ module mb20Phase (input bit clk,
   end
 endmodule
 
-// verilator lint_on COMBDLY
 // verilator lint_on MULTIDRIVEN
