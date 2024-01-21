@@ -1,21 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sat Jan 20 01:22:51 2024
+[*] Sun Jan 21 18:43:50 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Sat Jan 20 00:53:23 2024"
 [dumpfile_size] 4718872
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 52607
+[timestart] 52673
 [size] 1967 1081
 [pos] -1 -1
-*-7.506126 53208 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.506126 53242 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
+[treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.memory0.
 [treeopen] top.kl10pv.memory0.bPhase.
 [sst_width] 255
-[signals_width] 478
+[signals_width] 688
 [sst_expanded] 1
 [sst_vpaned_height] 323
 @28
@@ -836,8 +837,32 @@ top.kl10pv.mbz_20.mb_req_hold_h
 -
 @800200
 -ebox-mbox-cycle
+@201
+-EK-MBOX-UD-004 says CLK EBOX REQ cleared at READY TO GO
 @28
-top.kl10pv.clk_32.clk4_ebox_req_h
+[color] 1
+top.kl10pv.clk_32.clk4_ebox_req_l
+top.kl10pv.clk_32.clk2_mbox_clk_f_h
+top.kl10pv.clk_32.clk4_e1_2
+top.kl10pv.clk_32.clk4_e1_2$1
+top.kl10pv.clk_32.clk4_e1_2$2
+top.kl10pv.clk_32.vma1_ac_ref_h
+top.kl10pv.clk_32.clk3_sync_en_l
+top.kl10pv.csh_23.csh2_ebox_retry_req_l
+top.kl10pv.clk_32.clk3_sync_l
+top.kl10pv.clk_32.mcl5_mbox_cyc_req_l
+@200
+-
+@28
+top.kl10pv.clk_32.e17.nqb
+top.kl10pv.clk_32.clk4_page_fail_en_h
+top.kl10pv.clk_32.csh4_ebox_t0_in_h
+top.kl10pv.clk_32.clk5_mbox_cycle_dis_h
+top.kl10pv.clk_32.clk2_reset_h
+top.kl10pv.clk_32.clk4_force_1777_h
+@200
+-
+@28
 top.kl10pv.csh_23.csh2_ebox_retry_req_l
 top.kl10pv.csh_23.csh4_ebox_t0_in_l
 top.kl10pv.csh_23.csh2_mbox_resp_in_h
@@ -849,12 +874,14 @@ top.kl10pv.clk_32.clk3_ebox_sync_d_l
 top.kl10pv.mcl_47.mcl2_vma_write_l
 top.kl10pv.csh_23.csh_ebox_cyc_a_l
 top.kl10pv.csh_23.csh4_ebox_read_a_h
+top.kl10pv.con_35.con_cache_look_en_l
+top.kl10pv.csh_23.csh1_cache_idle_h
+top.kl10pv.csh_23.csh1_ready_to_go_h
 [color] 3
 top.kl10pv.csh_23.csh2_e_cache_wr_cyc_h
 top.kl10pv.csh_23.csh4_data_clr_t4_l
 top.kl10pv.csh_23.csh4_e_t2_mem_ref_l
 top.kl10pv.csh_23.csh4_ebox_read_a_h
-@29
 [color] 3
 top.kl10pv.csh_23.csh4_e_wr_t2_l
 @200

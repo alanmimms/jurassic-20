@@ -68,13 +68,7 @@ of CROBAR asserted at the beginning of time.
 
 * At `CRA-LOC` 0143 comment says AR should have 77,,777776, but my AR
   has 77,,777777. Probably this is something wrong with ALU backplane
-  wiring and related to carry in.
-
-* Last I checked, I was getting CRAM parity errors.
-
-* Last I checked, I was getting FM parity errors. I think I solved the
-  FM parity errors by setting up parity in my `fe_sim.sv` function
-  `loadAC()`, but I have not checked since to see if this is the case.
+  wiring related to carry in.
 
 
 ## History of _What I'm Doing Now_
