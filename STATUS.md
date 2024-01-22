@@ -63,6 +63,12 @@ for a clock, then goes up and stays up.
 This all starts in my trace at 53.1us after startup, including 1.3us
 of CROBAR asserted at the beginning of time.
 
+LATER: the JSR read from 10002 was coming as inRq=0010 which resulted
+in having to skip the zero bits to transfer the next word. This was
+broken by my changes to support writes. Fixing led to a single clk60
+pulse showing up as the JSR was preparing to write its return address.
+This is clearly wrong, but it's a clue.
+
 
 ## Bugs Outstanding TODO
 
