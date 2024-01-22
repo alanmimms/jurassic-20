@@ -1,18 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sun Jan 21 18:43:50 2024
+[*] Mon Jan 22 00:29:00 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Jan 20 00:53:23 2024"
+[dumpfile_mtime] "Mon Jan 22 00:09:09 2024"
 [dumpfile_size] 4718872
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 52673
+[timestart] 51962
 [size] 1967 1081
 [pos] -1 -1
-*-7.506126 53242 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-7.506126 52475 53158 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
-[treeopen] top.kl10pv.clk_32.
 [treeopen] top.kl10pv.memory0.
 [treeopen] top.kl10pv.memory0.bPhase.
 [sst_width] 255
@@ -835,26 +834,32 @@ top.kl10pv.mbz_20.mbz1_core_rd_in_prog_h
 top.kl10pv.mbz_20.mb_req_hold_h
 @200
 -
+@28
+top.kl10pv.clk_32.clk1_clk_out_h
+top.kl10pv.clk_32.clk1_clk_h
+top.kl10pv.clk_32.clk1_clk_delayed_h
+@200
+-
 @800200
 -ebox-mbox-cycle
-@201
+@200
 -EK-MBOX-UD-004 says CLK EBOX REQ cleared at READY TO GO
 @28
+top.kl10pv.clk_32.clk2_mbox_clk_f_h
 [color] 1
 top.kl10pv.clk_32.clk4_ebox_req_l
-top.kl10pv.clk_32.clk2_mbox_clk_f_h
+top.kl10pv.csh_23.csh1_ready_to_go_l
 top.kl10pv.clk_32.clk4_e1_2
-top.kl10pv.clk_32.clk4_e1_2$1
-top.kl10pv.clk_32.clk4_e1_2$2
+top.kl10pv.clk_32.clk4_ebox_req_l
 top.kl10pv.clk_32.vma1_ac_ref_h
-top.kl10pv.clk_32.clk3_sync_en_l
 top.kl10pv.csh_23.csh2_ebox_retry_req_l
-top.kl10pv.clk_32.clk3_sync_l
+top.kl10pv.clk_32.clk3_sync_en_l
 top.kl10pv.clk_32.mcl5_mbox_cyc_req_l
+top.kl10pv.clk_32.clk3_sync_l
 @200
 -
 @28
-top.kl10pv.clk_32.e17.nqb
+top.kl10pv.clk_32.e17.qb
 top.kl10pv.clk_32.clk4_page_fail_en_h
 top.kl10pv.clk_32.csh4_ebox_t0_in_h
 top.kl10pv.clk_32.clk5_mbox_cycle_dis_h
@@ -869,6 +874,7 @@ top.kl10pv.csh_23.csh2_mbox_resp_in_h
 top.kl10pv.clk_32.clk3_ebox_sync_d_l
 @200
 -
+-MBOX WRITE never happens for JSR
 @28
 [color] 1
 top.kl10pv.mcl_47.mcl2_vma_write_l
@@ -912,6 +918,9 @@ top.kl10pv.mbx_21.mbx4_cache_to_mb_t2_l
 top.kl10pv.mbx_21.mbx4_cache_to_mb_t3_l
 top.kl10pv.mbx_21.mbx4_cache_to_mb_t4_a_l
 top.kl10pv.mbx_21.mbx4_cache_to_mb_t4_h
+[color] 1
+top.kl10pv.csh_23.csh4_one_word_wr_t0_l
+top.kl10pv.csh_23.csh4_e24_2
 top.kl10pv.mbx_21.mbx4_clk_b_h
 [color] 2
 top.kl10pv.mbx_21.mbx5_e39_3
@@ -933,6 +942,14 @@ top.kl10pv.csh_23.csh6_wr_from_mem_nxt_h
 top.kl10pv.csh_23.csh6_ebox_took_1_wd_h
 top.kl10pv.csh_23.csh1_clk_a_h
 top.kl10pv.csh_23.csh6_ebox_sync_seen_l
+@200
+-
+@28
+[color] 1
+top.kl10pv.csh_23.csh4_one_word_wr_t0_l
+top.kl10pv.csh_23.csh4_e24_2
+@29
+top.kl10pv.csh_23.core_busy_h
 @1000200
 -MBOX-busy
 @800200

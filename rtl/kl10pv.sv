@@ -21,7 +21,9 @@ module kl10pv(input clk60);
 
   // On a real KL10 this is a wire that traverses the width of the
   // backplane to provide delay equivalent to that experienced by the
-  // worst case backplane slot.
+  // worst case backplane slot. On this implementation, we can just
+  // delay it one half cycle.
+//  always_comb clk1_clk_h = !clk1_clk_out_h;
   always_comb clk1_clk_h = clk1_clk_out_h;
 
   iEBUS ebus();
