@@ -184,7 +184,7 @@ module mb20Phase (input bit clk,
 
 	READDATA: begin
 	  word <= memory0.mem[nextAddr];
-	  validIn <= 1;
+	  validIn <= inRq[0];
 	  nextAddr <= {nextAddr[14:33], nextAddr[34:35] + 2'b01};
 
 	  ackn <= 0;
@@ -205,7 +205,6 @@ module mb20Phase (input bit clk,
 	  end else if (toAck[0]) begin
 	    // This word needs to be transferred
 	    ackn <= 1;
-	    validIn <= 0;
 
 	    // No more clocks are needed for a write cycle.
 	    // We just ACKN and move on.
@@ -217,6 +216,8 @@ module mb20Phase (input bit clk,
 	      nextAddr <= {nextAddr[14:33], nextAddr[34:35] + 2'b01};
 
 	      ackn <= 0;
+	    end else begin
+	      validIn <= 1;
 	    end
 
 	    state <= isWrRq ? POST : READDATA;
