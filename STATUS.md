@@ -69,6 +69,23 @@ broken by my changes to support writes. Fixing led to a single clk60
 pulse showing up as the JSR was preparing to write its return address.
 This is clearly wrong, but it's a clue.
 
+LATER: The CLK timing is not what a real KL10 uses. CLK1 EBUS CLK
+SOURCE H should be delayed from CLK1 GATED H by 20ns, and CLK1 SOURCE
+DELAYED H should be delayed from CLK1 GATED H by ~57ns. In my current
+implementation CLK1 SOURCE DELAYED H starts toggling _before_ CLK1
+EBUS CLK SOURCE H does. This could cause problems? I think I can fix
+it pretty easily, by building a digital delay line to make the clocks
+line up in sequence properly.
+
+Another observation is that CLK1 MBOX CLK C H lines up perfectly with
+CLK2 MBOX CLOCK F H, which in a real KL has made the full trip to the
+MBOX and back and thence through a short PCB delay line for
+deskewing. Is it possible I need to make the MBOX [DEF] clocks really
+be delayed from MBOX [ABC] ones or the EBOX or other clocks? Since
+KL10 architecture enables clock on and off a lot for waiting for
+completion of asynchronous events (e.g., EBOX waiting for completion
+of its MBOX requests), this could be crucial?
+
 
 ## Bugs Outstanding TODO
 
