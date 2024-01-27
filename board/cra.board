@@ -620,8 +620,8 @@ e41: 10210 10210 dual 3 or buffer
      13 ~> cra3 clk e h
      14 ~> cra3 clk f h
 
-dl1: delay1 (delay CRA3 CLK A H by one clk60 edge)
-     1 ~< {aa2} clk60
+dl1: delay1 (delay CRA3 CLK A H by one top clk edge)
+     1 ~< {aa2} top clk
      2 ~< cra3 clk a h
      3 ~> cra4-dl1-3
 

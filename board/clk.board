@@ -1,6 +1,6 @@
 %verilog
 ,
-  input bit clk60,
+  input bit top_clk,
   output tEBUSdriver EBUSdriver
 %endverilog
 
@@ -120,8 +120,8 @@ e56: 10131 dual ms d ff
      15 ~> %NC%
 
 %verilog
-  // Delay clk1_main_source_c_h by one clk60 edge.
-  always @(posedge clk60) clk1_dl5001_2 <= clk1_main_source_c_h;
+  // Delay clk1_main_source_c_h by one top clk edge.
+  always @(posedge top_clk) clk1_dl5001_2 <= clk1_main_source_c_h;
 %endverilog
 
 e51: 10104 quad and/nand
@@ -139,7 +139,7 @@ e51: 10104 quad and/nand
      7 ~< ctl3 diag ld func 04x l
      3 ~> clk1-e51-3
 
-// Replaced this with N clock delay based on clk60.
+// Replaced this with N clock delay based on top clk.
 /*
 dl1: tapped-delay-20-2 20ns 2ns/tap
      3 ~< clk1 gated h
@@ -158,7 +158,7 @@ dl1: tapped-delay-20-2 20ns 2ns/tap
 %verilog
   bit dl1_1, dl1_2, dl1_3, dl1_4, dl1_5;
 
-  always_ff @(posedge clk60, negedge clk60) begin
+  always_ff @(posedge top_clk, negedge top_clk) begin
     dl1_1 <= clk1_gated_h;
     dl1_2 <= dl1_1;
     dl1_3 <= dl1_2;

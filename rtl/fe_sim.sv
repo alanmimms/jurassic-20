@@ -8,7 +8,7 @@ typedef bit [0:8] tDRAMAddress;
 
 // Here `clk` is the `CLK 10/11 CLK H` from the CLK module PDF169.
 module fe_sim(input bit clk,
-	      input bit clk60,
+	      input bit ph1, ph2, ph3, ph4,
 	      inout 	 iEBUS ebus,
 	      output 	 tEBUSdriver EBUSdriver,
 	      input 	 mbc3_a_change_coming_a_l,
@@ -240,7 +240,7 @@ module fe_sim(input bit clk,
     $fflush(dumpFD);
   end
 
-  always @(posedge clk60) begin
+  always @(posedge ph1) begin
 
     if ($realtime > 100.0) begin
       $fclose(dumpFD);

@@ -86,6 +86,16 @@ KL10 architecture enables clock on and off a lot for waiting for
 completion of asynchronous events (e.g., EBOX waiting for completion
 of its MBOX requests), this could be crucial?
 
+### Phased Clock
+
+LATER: `clk60` is now `TOP CLK`. I changed the base timing interval to
+10ns (100MHz), but I'm going to use a four-phase clock structure built
+from the 4x clock provided by `verilator-main.cc` to the system. The
+CLK module will use the first two phases as its main clock high level
+and the last two as low. Subsystems that need random delays to operate
+properly (CRA, the FM, EBOX vs MBOX, probably others) will use the
+phases to accomplish these.
+
 
 ## Bugs Outstanding TODO
 

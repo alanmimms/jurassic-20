@@ -14,19 +14,20 @@
 
 
 // Our top level clock frequency in Hz.
-static const double clk60Hz = 60.0e6;
+// 100MHz is easier to head-calculate than 60MHz.
+static const double top_clkHz = 100.0e6;
 
-// This is monotonically incremented as we run for each clk60
-// edge. From this we compute the value of contextp->time() based on
-// clk60Hz.
+// This is monotonically incremented as we run for each top_clk
+// phase. From this we compute the value of contextp->time() based on
+// top_clkHz.
 static uint64_t nTicks = 0;
 
-// This is the number of real ns between each clk60 edge.
-static const double nsPerTick = 1000.0 / (clk60Hz/1.0e6) / 2.0;
+// This is the number of real ns between each top_clk phase.
+static const double nsPerTick = 1000.0 / (top_clkHz/1.0e6) / 4.0;
 
 
-// Returns rounded number of ns for the number of clk60 edges counted
-// by nTicks.
+// Returns rounded number of ns for the number of top_clk phases
+// counted by nTicks.
 static inline uint64_t nsFromTicks() {
   return (uint64_t) (0.5 + (double) nTicks * nsPerTick);
 }
@@ -77,7 +78,7 @@ int main(int argc, char **argv) {
 
     ++nTicks;
     contextp->time(nsFromTicks());
-    top->clk60 = !top->clk60;
+    top->top_clk = !top->top_clk;
   }
 
   DTEfinal(contextp->time());

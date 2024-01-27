@@ -2,7 +2,7 @@
 
 // The top of the hierarchy for KL10PV CPU and its front end, memory,
 // peripherals, and power system.
-module kl10pv(input clk60);
+module kl10pv(input top_clk);
 
   tEBUSdriver aprEBUSdriver, cclEBUSdriver, ccwEBUSdriver, chcEBUSdriver;
   tEBUSdriver clkEBUSdriver, conEBUSdriver, craEBUSdriver, crcEBUSdriver;
@@ -17,7 +17,20 @@ module kl10pv(input clk60);
 
 `include "kl-backplane.svh"
 
-  assign clk_master = clk60;
+  bit [3:0] top_clkPh = 4'b0001;
+  bit ph1, ph2, ph3, ph4;
+
+  assign ph1 = top_clkPh[0];
+  assign ph2 = top_clkPh[1];
+  assign ph3 = top_clkPh[2];
+  assign ph4 = top_clkPh[3];
+
+  // First two phases of our four phase clock are the master clock 1,
+  // last two are 0.
+  assign clk_master = |top_clkPh[3:2];
+
+  // Maintain our four clock phases, rotating phases left each time.
+  always_ff @(posedge top_clk) top_clkPh = {top_clkPh[2:0], top_clkPh[3]};
 
   // On a real KL10 this is a wire that traverses the width of the
   // backplane to provide delay equivalent to that experienced by the

@@ -95,7 +95,7 @@ VFLAGS = \
 	--timescale 1ns --timescale-override 1ns \
 	--timing --trace \
 	--trace --trace-structs \
-	--clk clk60 \
+	--clk top_clk \
 	--x-initial 0 \
 	-cc --build --exe -j 9
 
