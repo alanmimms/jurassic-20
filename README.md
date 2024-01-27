@@ -43,6 +43,9 @@ designators, so I have to do it all as a sort of "Where's Waldo"
 exercise. I'm getting pretty good at this after doing it for so long,
 but it's certainly tedious.
 
+The machine is clocked using a four phase top level clock so I can
+model and synthesize the random delay lines used in the original KL10.
+
 I tried again with OCR using a more modern version of Tesseract OCR
 (`tesseract 4.1.1`). The result is called
 `docs/MP00301_KL10PV_Jun80-OCR2.pdf` and it's also where I have added
