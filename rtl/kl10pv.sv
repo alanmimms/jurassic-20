@@ -27,7 +27,7 @@ module kl10pv(input top_clk);
 
   // First two phases of our four phase clock are the master clock 1,
   // last two are 0.
-  assign clk_master = |top_clkPh[3:2];
+  assign clk_master = ph1 | ph2;
 
   // Maintain our four clock phases, rotating phases left each time.
   always_ff @(posedge top_clk) top_clkPh = {top_clkPh[2:0], top_clkPh[3]};

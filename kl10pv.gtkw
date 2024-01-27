@@ -1,15 +1,15 @@
 [*]
-[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Jan 27 17:35:37 2024
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Sat Jan 27 23:09:31 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Jan 27 17:35:22 2024"
-[dumpfile_size] 4915437
+[dumpfile_mtime] "Sat Jan 27 23:08:51 2024"
+[dumpfile_size] 8798773
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 63523
+[timestart] 52146
 [size] 1918 1044
 [pos] -1 -1
-*-6.506126 63768 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.506126 52388 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.memory0.
@@ -20,14 +20,8 @@
 [sst_vpaned_height] 323
 @28
 top.kl10pv.crobar_e_h
-top.kl10pv.ph1
-top.kl10pv.ph2
-top.kl10pv.ph3
-top.kl10pv.ph4
 [color] 1
 top.kl10pv.clk_32.clk3_error_hold_a_h
-[color] 3
-top.kl10pv.clk_master
 @c02030
 [color] 7
 ^1 /home/alan/dec20/jurassic-20/rtl/dte.tff
@@ -824,6 +818,12 @@ top.kl10pv.vma_38.vma3_pc_35_h
 @800200
 -clk
 @28
+top.kl10pv.ph1
+top.kl10pv.ph2
+top.kl10pv.ph3
+top.kl10pv.ph4
+[color] 3
+top.kl10pv.clk_master
 top.kl10pv.clk_32.clk1_main_source_a_h
 top.kl10pv.clk_32.clk1_gated_en_h
 top.kl10pv.clk_32.clk1_gated_h

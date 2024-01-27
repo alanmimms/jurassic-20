@@ -1,6 +1,6 @@
 %verilog
 ,
-  input bit top_clk,
+  input bit top_clk, ph1, ph2, ph3, ph4,
   output tEBUSdriver EBUSdriver
 %endverilog
 
@@ -139,70 +139,29 @@ e51: 10104 quad and/nand
      7 ~< ctl3 diag ld func 04x l
      3 ~> clk1-e51-3
 
-// Replaced this with N clock delay based on top clk.
-/*
-dl1: tapped-delay-20-2 20ns 2ns/tap
-     3 ~< clk1 gated h
-     4 ~> clk1-dl1-4
-     5 ~> clk1-dl1-5
-     6 ~> clk1-dl1-6
-     7 ~> clk1-dl1-7
-     8 ~> clk1-dl1-8
-     9 ~> clk1-dl1-9
-     10 ~> clk1-dl1-10
-     11 ~> clk1-dl1-11
-     12 ~> clk1-dl1-12
-     13 ~> clk1 ebus clk source h
-*/
-
 %verilog
-  bit dl1_1, dl1_2, dl1_3, dl1_4, dl1_5;
-
-  always_ff @(posedge top_clk, negedge top_clk) begin
-    dl1_1 <= clk1_gated_h;
-    dl1_2 <= dl1_1;
-    dl1_3 <= dl1_2;
-    dl1_4 <= dl1_3;
-    dl1_5 <= dl1_4;
-    clk1_ebus_clk_source_h <= dl1_5;
-  end
+  clockWithEdges ebusClkSource(ph2, ph4, clk1_ebus_clk_source_h);
 %endverilog
 
+// No longer used since delay lines are now an historical oddity.
 e73: 10101 quad or/nor
-//     7 ~< clk1-dl1-8
-     7 ~< `dl1_2
+     7 ~< %NC%
      12 ~< %NC%
-     3 ~> clk1-e73-3
+     3 ~> %NC%
      6 ~> %NC%
-     13 ~< clk1-dl2-3
-     15 ~> clk1-e73-15
+     13 ~< %NC%
+     15 ~> %NC%
      9 ~> %NC%
-     4 ~< clk1-dl3-7
+     4 ~< %NC%
      2 ~> %NC%
-     5 ~> clk1-e73-5
+     5 ~> %NC%
      10 ~< %NC%
      14 ~> %NC%
      11 ~> %NC%
 
-dl2: tapped-delay-50-10 50ns 10ns/tap
-     1 ~< clk1-e73-3
-     2 ~> clk1-dl2-2
-     3 ~> clk1-dl2-3
-     5 ~> clk1-dl2-5
-     6 ~> clk1-dl2-6
-     7 ~> clk1-dl2-7
-
-dl3: tapped-delay-50-10 50ns 10ns/tap
-     1 ~< clk1-e73-15
-     2 ~> clk1-dl3-2
-     3 ~> clk1-dl3-3
-     5 ~> clk1-dl3-5
-     6 ~> clk1-dl3-6
-     7 ~> clk1-dl3-7
-
-dlpcb2501: delay-line 2.5ns
-     1 ~< clk1-e73-5
-     2 ~> clk1 source delayed h
+%verilog
+  clockWithEdges sourceDelayed(ph3, ph1, clk1_source_delayed_h);
+%endverilog
 
 e63: 10117 dual 2-3 or-and
      13 ~< -clk1 error stop h
@@ -223,9 +182,9 @@ e63: 10117 dual 2-3 or-and
 // It LOOKS LIKE MBOX needs to be delayed slightly compared to EBOX
 // clock. This is natural since MBOX is clocked with a 2.65ns delay
 // via CLK1. I "solved" this problem by simply inverting the CLK1 CLK
-// ON H signal to create CLK1 MBOX [ABC] H. This made one problem I
-// was trying to solve work better. See EK-MBOX-UD-004_May77-ocr.pdf
-// pdf47:
+// ON H signal to create CLK1 MBOX [ABC] H. This improved the function
+// of one problem I was trying to solve. See
+// EK-MBOX-UD-004_May77-ocr.pdf pdf47:
 //
 //	When the MBox starts to process the EBox request, the MBox asserts
 //	CSH EBOX TO IN. This signal causes CLK EBOX REQ to be cleared. This
@@ -235,10 +194,6 @@ e63: 10117 dual 2-3 or-and
 // Before I changed to this "delayed" MBOX clock, I was _sometimes_
 // seeing CSH4 EBOX REQ L and CSH4 EBOX T0 L asserted simultaneously,
 // and when that happened the EBOX <--> MBOX dialogue would hang.
-
-//dlpcb2651: delay-line 2.65ns
-//     1 ~< clk1 clk on h
-//     2 ~> clk1-dlpcb2651-2
 
 %verilog
   always_comb clk1_dlpcb2651_2 = !clk1_clk_on_h;

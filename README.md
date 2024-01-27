@@ -45,29 +45,28 @@ but it's certainly tedious.
 
 The machine is clocked using a four phase top level clock so I can
 model and synthesize the random delay lines used in the original KL10.
+These are the phases and their applications, listed in order of phase:
 
-I tried again with OCR using a more modern version of Tesseract OCR
-(`tesseract 4.1.1`). The result is called
-`docs/MP00301_KL10PV_Jun80-OCR2.pdf` and it's also where I have added
-scribbled highlighter marks to show my pin-by-pin review progress,
-which is taking many, many days to complete. This process, while
-tedious and exhausting, has found many problems that would have
-required many _more_ hours to debug in the functioning KL10
-simulation, so it's definitely worth it. In the end, I will
-_definitely_ require a new eyeglasses prescription.
 
-I had to add some escape hatches to allow Verilog code to be
-subsituted for the traditional symbol names in some cases so I could
-replace direct drive of the EBUS data line signals with my per-module
-interface that is used as input to the EBUS mux I had to build, for
-example. This allows use of verilog symbol names and expressions for a
-pin's net name, and there's a variation that can be used as a similar
-escape to allow module header input/output port definitions to be in
-Verilog, and a third to allow arbitrary Verilog to be inserted into
-the generated output in the code for a module.
+## Phase `ph1`
 
-Of course, I have written the top level in System Verilog, and I have
-written the "test bench" that runs the thing under Verilator in C++.
+My fake signal `CLK MASTER`. This is a standin for the 60MHz on-board
+oscillator on CLK1.
+
+
+## Phase `ph2`
+
+Provides the ~10ns delayed `CLK1 EBUS SOURCE H` on CLK1.
+
+
+## Phase `ph3`
+
+Provides the ~45ns delayed `CLK1 SOURCE DELAYED H` on CLK1.
+
+
+## Phase `ph4`
+
+
 
 
 # History
@@ -76,13 +75,15 @@ is a modern KL10-PV implementation I did by coding SystemVerilog
 directly while keeping one eye on the schematics and trying to build
 the logical equivalent in modern SV syntax.
 
-The biggest issue with this effort -- one that leaves it peppered with
-a huge number of randomly dispersed logical errors -- is the fact that
-I didn't understand the KL10-PV symbol naming scheme when I was
-writing the SystemVerilog. Because of this, I know I have hundreds or
-thousands of errors in logic that have the sense of signals backwards
-or use negative logic when positive logic was actually what was
-required. See the `Learnings` section below for details.
+The biggest issue with that effort -- one that leaves it peppered with
+quite some number of randomly dispersed logical errors -- is the fact
+that I didn't understand the KL10-PV symbol naming scheme when I was
+writing the SystemVerilog. Because of this, I know I have many errors
+in logic that have the sense of signals backwards or use negative
+logic when positive logic was actually what was required. See the
+`Learnings` section below for details.
+
+
 # How to Build
 It's pretty easy on Ubuntu 22.04, which is what I have been using. I
 couldn't easily tell you which packages you need, but there aren't
