@@ -22,8 +22,8 @@ static const double top_clkHz = 100.0e6;
 // top_clkHz.
 static uint64_t nTicks = 0;
 
-// This is the number of real ns between each top_clk phase.
-static const double nsPerTick = 1000.0 / (top_clkHz/1.0e6) / 4.0;
+// This is the number of real ns between each top_clk posedge or negedge.
+static const double nsPerTick = 2.0;
 
 
 // Returns rounded number of ns for the number of top_clk phases

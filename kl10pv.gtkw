@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sat Jan 27 23:09:31 2024
+[*] Sat Jan 27 23:20:33 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
-[dumpfile_mtime] "Sat Jan 27 23:08:51 2024"
-[dumpfile_size] 8798773
+[dumpfile_mtime] "Sat Jan 27 23:20:31 2024"
+[dumpfile_size] 10126021
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 52146
+[timestart] 10
 [size] 1918 1044
 [pos] -1 -1
-*-6.506126 52388 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-4.506126 62 46 62 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.memory0.
@@ -179,7 +179,7 @@ top.kl10pv.vma_38.vma2_vma_34_h
 top.kl10pv.vma_38.vma2_vma_35_h
 @1401200
 -group_end
-@c000b1
+@c000b0
 [color] 2
 #{VMA3-PC} top.kl10pv.vma_38.vma3_pc_35_h top.kl10pv.vma_38.vma3_pc_34_h top.kl10pv.vma_38.vma3_pc_33_h top.kl10pv.vma_38.vma3_pc_32_h top.kl10pv.vma_38.vma3_pc_31_h top.kl10pv.vma_38.vma3_pc_30_h top.kl10pv.vma_38.vma3_pc_29_h top.kl10pv.vma_38.vma3_pc_28_h top.kl10pv.vma_38.vma3_pc_27_h top.kl10pv.vma_38.vma3_pc_26_h top.kl10pv.vma_38.vma3_pc_25_h top.kl10pv.vma_38.vma3_pc_24_h top.kl10pv.vma_38.vma3_pc_23_h top.kl10pv.vma_38.vma3_pc_22_h top.kl10pv.vma_38.vma3_pc_21_h top.kl10pv.vma_38.vma3_pc_20_h top.kl10pv.vma_38.vma3_pc_19_h top.kl10pv.vma_38.vma3_pc_18_h top.kl10pv.vma_38.vma3_pc_17_h top.kl10pv.vma_38.vma3_pc_16_h top.kl10pv.vma_38.vma3_pc_15_h top.kl10pv.vma_38.vma3_pc_14_h top.kl10pv.vma_38.vma3_pc_13_h
 @28
@@ -206,7 +206,7 @@ top.kl10pv.vma_38.vma3_pc_32_h
 top.kl10pv.vma_38.vma3_pc_33_h
 top.kl10pv.vma_38.vma3_pc_34_h
 top.kl10pv.vma_38.vma3_pc_35_h
-@1401201
+@1401200
 -group_end
 @c00200
 -IR
@@ -818,12 +818,15 @@ top.kl10pv.vma_38.vma3_pc_35_h
 @800200
 -clk
 @28
+top.kl10pv.top_clk
 top.kl10pv.ph1
 top.kl10pv.ph2
 top.kl10pv.ph3
 top.kl10pv.ph4
+@29
 [color] 3
 top.kl10pv.clk_master
+@28
 top.kl10pv.clk_32.clk1_main_source_a_h
 top.kl10pv.clk_32.clk1_gated_en_h
 top.kl10pv.clk_32.clk1_gated_h
