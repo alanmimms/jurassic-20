@@ -19,7 +19,7 @@ static const double top_clkHz = 100.0e6;
 
 // This is monotonically incremented as we run for each top_clk
 // phase. From this we compute the value of contextp->time() based on
-// top_clkHz.
+// nsPerTick.
 static uint64_t nTicks = 0;
 
 // This is the number of real ns between each top_clk posedge or negedge.
