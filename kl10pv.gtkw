@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
-[*] Sat Jan 27 23:20:33 2024
+[*] Sun Jan 28 22:11:19 2024
 [*]
 [dumpfile] "/home/alan/dec20/jurassic-20/kl10pv-trace.vcd"
 [dumpfile_mtime] "Sat Jan 27 23:20:31 2024"
 [dumpfile_size] 10126021
 [savefile] "/home/alan/dec20/jurassic-20/kl10pv.gtkw"
-[timestart] 10
+[timestart] 41772
 [size] 1918 1044
 [pos] -1 -1
-*-4.506126 62 46 62 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-6.506126 42094 46 62 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.kl10pv.
 [treeopen] top.kl10pv.memory0.
@@ -815,7 +815,7 @@ top.kl10pv.vma_38.vma3_pc_35_h
 @1401200
 -group_end
 -core-state
-@800200
+@c00200
 -clk
 @28
 top.kl10pv.top_clk
@@ -823,10 +823,8 @@ top.kl10pv.ph1
 top.kl10pv.ph2
 top.kl10pv.ph3
 top.kl10pv.ph4
-@29
 [color] 3
 top.kl10pv.clk_master
-@28
 top.kl10pv.clk_32.clk1_main_source_a_h
 top.kl10pv.clk_32.clk1_gated_en_h
 top.kl10pv.clk_32.clk1_gated_h
@@ -842,9 +840,9 @@ top.kl10pv.clk_32.clk1_mbox_c_h
 top.kl10pv.clk_32.clk2_mbox_clk_d_h
 top.kl10pv.clk_32.clk_ebus_clk_h
 top.kl10pv.clk_32.clk_sbus_clk_h
-@1000200
+@1401200
 -clk
-@c00200
+@800200
 -MBOX-busy
 @28
 [color] 1
@@ -865,6 +863,11 @@ top.kl10pv.mbz_20.mb_req_hold_h
 top.kl10pv.clk_32.clk2_mbox_clk_f_h
 [color] 1
 top.kl10pv.clk_32.clk4_ebox_req_l
+top.kl10pv.csh_23.csh4_ebox_t2_l
+top.kl10pv.csh_23.csh4_ebox_t3_l
+@29
+top.kl10pv.csh_23.csh6_ebox_took_1_wd_h
+@28
 top.kl10pv.csh_23.csh1_ready_to_go_l
 top.kl10pv.clk_32.clk4_e1_2
 top.kl10pv.clk_32.clk4_ebox_req_l
@@ -890,9 +893,8 @@ top.kl10pv.apr_34.apr6_ebox_ubr_h
 @1000200
 -modifiers
 -ebox-mbox-cycle
-@1401200
 -MBOX-busy
-@c00200
+@800200
 -MBUS
 @28
 [color] 3
@@ -996,7 +998,7 @@ top.kl10pv.memory0.mbus.startB
 top.kl10pv.memory0.mbus.acknB
 [color] 3
 top.kl10pv.memory0.mbus.validInB
-@1401200
+@1000200
 -mbus
 @c00200
 -MB20-aphase
