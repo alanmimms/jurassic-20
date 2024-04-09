@@ -28,17 +28,19 @@ module fe_sim(input bit clk,
   bit dumpDRAM = 0;
   bit dumpDiagFuncs = 1;
   bit dumpLoadMem = 0;
-  bit dumpLoadedImage = 0;
+  bit dumpLoadedImage = 1;
   bit dumpMemAccesses = 1;
 
   int dumpFD;
+
+  W36 fakeMem[512 * 1024];
 
   always_comb a_change_coming = !mbc3_a_change_coming_a_l;
 
   // The DRAM ("DISPATCH RAM" - not "DYNAMIC RAM") addressing
   // architecture in the KL10 is arse -- a bridge too far. Even the
-  // microcode guys made fun of the choice as is evidenced by this
-  // quip from the microcode listing:
+  // microcode guys made fun of the choice as is evinced by this quip
+  // from the microcode listing:
   //
   //     The J field is the starting location of the microroutine to
   //     execute the instruction.  Note that the 40 and 20 bits must
@@ -428,7 +430,12 @@ module fe_sim(input bit clk,
     $display("%7g [Reading KLX.RAM to load CRAM and DRAM]", $realtime);
 
     fd = $fopen("./images/ucode/klx.ram", "r");
-    if (fd == 0) $display("Could not open KLX.RAM file");
+
+    if (fd == 0) begin
+      $display("Could not open KLX.RAM file");
+      $finish(999);
+    end
+
 
     // Read header line
     $fgets(line, fd);
@@ -766,7 +773,7 @@ FOR WDRAM
       $fdisplay(dumpFD, "\nOctal dump of loaded image starting at zero:");
 
       for (W36 a = 0; a <= highestAdr; ++a)
-	$fdisplay(dumpFD, "%o", memory0.mem[a]);
+	$fdisplay(dumpFD, "%06o: %s", a, fmt36(memory0.mem[a]));
     end
   endtask // loadDiagnostic
 
